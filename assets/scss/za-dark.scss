@@ -1,0 +1,329 @@
+/*
+  Za Dark – Best Dark Theme for Zalo Web
+  Made by NCDAi
+  Version 1.0.0
+*/
+
+@import "./colors";
+
+html {
+  div::-webkit-scrollbar-thumb {
+    background: var(--grey-300);
+  }
+}
+
+.za-dark-chrome-extension {
+  background: var(--white-300);
+
+  .nav__tabs__zalo {
+    height: auto;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .chat-info-link__title {
+    color: var(--neutral-base);
+  }
+
+  .chat-info-general__item:after {
+    border-color: var(--border);
+  }
+
+  .setting-menu,
+  .setting-section {
+    border-color: var(--border);
+  }
+
+  .app-info__header {
+    color: #fff;
+    align-items: center;
+  }
+
+  .app-info__header__logo {
+    height: 48px;
+    margin-right: 16px;
+  }
+
+  .app-info__section {
+    padding: 16px;
+  }
+
+  .message-view__blur__overlay {
+    background: #000;
+  }
+
+  .media-tabs__main {
+    border-bottom-color: var(--border);
+
+    &.active {
+      background-color: var(--white-300);
+      border-color: transparent var(--border);
+    }
+  }
+
+  .emoji-tabs {
+    background-color: var(--white-300);
+  }
+
+  .z--btn--fill--primary {
+    color: var(--black-300);
+  }
+
+  .z--btn--fill--secondary-red {
+    &.--disabled {
+      color: var(--red-300);
+      opacity: 0.5;
+    }
+  }
+
+  .reaction-emoji-list {
+    color: var(--white-400);
+  }
+
+  .leftbar-tab {
+    color: var(--neutral-base);
+  }
+
+  .user-status-footer {
+    .footer-text {
+      color: #fff;
+    }
+  }
+
+  .file-sidebar__option {
+    &.chat-message.first-selected,
+    &.chat-message.last-selected,
+    &.selected {
+      background-color: var(--blue-600);
+      color: #fff;
+    }
+
+    &.chat-message.first-selected > .file-sidebar__option__title,
+    &.chat-message.last-selected > .file-sidebar__option__title,
+    &.selected > .file-sidebar__option__title {
+      color: #fff;
+    }
+  }
+
+  .file-sidebar__option__icon {
+    &.fa-file-icon-drive {
+      color: #fff !important;
+    }
+    &.fa-file-icon-dropbox {
+      color: #fff !important;
+    }
+  }
+
+  .file-sidebar__option {
+    &.chat-message.first-selected:hover,
+    &.chat-message.last-selected:hover,
+    &.selected:hover {
+      background-color: var(--blue-500);
+    }
+
+    &.chat-message.first-selected .file-sidebar__option__icon,
+    &.chat-message.last-selected .file-sidebar__option__icon,
+    &.selected .file-sidebar__option__icon {
+      color: var(--neutral-300);
+    }
+  }
+
+  .leftbar-unread.unread-red {
+    color: #fff;
+  }
+
+  .chat-onboard,
+  .friend-center-main.subtract-title {
+    height: 100vh;
+  }
+
+  .chips--choice.--active {
+    color: #fff;
+  }
+
+  .chat-date {
+    color: var(--neutral-300);
+
+    > span {
+      background: var(--white-500);
+    }
+  }
+
+  #contact-search-input {
+    color: var(--neutral-base);
+  }
+
+  .phone-i-input {
+    color: var(--neutral-base);
+    background-color: var(--white-300);
+  }
+
+  .input {
+    color: var(--neutral-base);
+    background-color: var(--white-300);
+  }
+
+  .chat-input__content.highlight {
+    border-color: var(--blue-600);
+  }
+
+  #ztoolbar div[icon="outline-za-screenshot"] {
+    display: none;
+  }
+
+  .chat-message .extra-btn {
+    background-color: var(--white-500);
+    color: var(--neutral-300);
+    transition: all 250ms ease-in-out;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .chat-group-topic__item {
+    min-height: 56px;
+
+    .icon-container {
+      height: 56px;
+    }
+  }
+
+  .group-board-page {
+    .virtualized-scroll {
+      background: var(--white-base);
+    }
+  }
+
+  .cb-info-file-item__actions-container {
+    > div {
+      background: transparent !important;
+    }
+  }
+
+  #info-links-container {
+    .library-media {
+      > div {
+        background: transparent !important;
+      }
+    }
+  }
+
+  #group-creator .create-group__item__link-icon {
+    color: #fff;
+  }
+
+  div[data-id="div_TabCT_JoinedGrpList"] {
+    background: #000 !important;
+  }
+
+  .chat-message.highlighted .card:not(.card--group-photo) {
+    background-color: var(--blue-700);
+
+    &:hover {
+      background-color: var(--blue-650);
+    }
+  }
+
+  .sticker-selector__menu {
+    height: 48px;
+  }
+
+  #stickerSelector {
+    background-color: var(--white-300) !important;
+  }
+
+  .media-dock-tabs {
+    height: 48px;
+    border-bottom: 0;
+  }
+
+  .gradient-border.left,
+  .gradient-border.right .message-view__guide__item__sign {
+    .fa-sendtome-image {
+      color: #fff;
+    }
+  }
+
+  .card.card--undo > span {
+    color: var(--neutral-300);
+  }
+
+  .card-send-time {
+    color: var(--neutral-500);
+  }
+
+  .card.me {
+    .quote-name-container {
+      color: var(--blue-300);
+    }
+    .quote-banner-content .quote-text {
+      color: var(--neutral-300);
+    }
+    // .card-send-time {
+    //     color: var(--black-300);
+    // }
+  }
+
+  .tipv2-content {
+    color: var(--neutral-300);
+  }
+
+  // Quick Message
+  .qrsc {
+    background: var(--white-300);
+  }
+  .qri {
+    background-color: var(--white-300);
+  }
+}
+
+.za-dark-chrome-extension {
+  // Image Show
+
+  .image-show__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 32px;
+    color: var(--neutral-base);
+
+    > .fl-l {
+      margin: 3px 10px 3px 0px !important;
+    }
+  }
+
+  .image-show__bottom__sender__info {
+    color: var(--neutral-base);
+  }
+
+  .image-show__bottom__ctrl > .btn,
+  .image-show__bottom__ctrl > a > .btn {
+    color: var(--neutral-base);
+  }
+
+  .image-show__icon-fullscreen {
+    color: var(--neutral-base);
+  }
+
+  .image-show .image-show__reaction .msg-reaction-icon {
+    background: var(--neutral-base);
+  }
+
+  .image-show__thumb__legend {
+    color: var(--neutral-base);
+  }
+
+  .timeline-slider__handle {
+    background: var(--neutral-base);
+  }
+
+  .image-show__close > .fa-close,
+  .image-show__close > .quote-base__close-icon {
+    color: var(--neutral-base);
+  }
+
+  .image-show__thumb-container .btn-play {
+    color: var(--neutral-base);
+  }
+}

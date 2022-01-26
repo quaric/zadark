@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Za Dark",
+  "version": "1.0.0",
+
+  "description": "Best Dark Theme for Zalo Web – Made by NCDAi.",
+  "icons": {
+    "16": "./assets/images/za-dark-icon@16.png",
+    "48": "./assets/images/za-dark-icon@48.png",
+    "128": "./assets/images/za-dark-icon@128.png"
+  },
+
+  "author": "NCDAi",
+  "homepage_url": "https://www.facebook.com/iamncdai",
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://chat.zalo.me/*"
+      ],
+
+      "run_at": "document_end",
+
+      "css": [
+        "./assets/css/za-dark.css"
+      ],
+
+      "js": [
+        "./assets/js/za-dark.js"
+      ]
+    }
+  ]
+}
