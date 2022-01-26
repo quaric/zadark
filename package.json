@@ -1,0 +1,14 @@
+{
+  "name": "za-dark-chrome-extension",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ncdai3651408/za-dark-chrome-extension.git",
+  "author": "Dai Nguyen <ncdai3651408@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "sass:watch": "sass --watch src/scss:dist/assets/css --style compressed"
+  },
+  "devDependencies": {
+    "sass": "^1.49.0"
+  }
+}
