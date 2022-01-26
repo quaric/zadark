@@ -4,8 +4,6 @@
   Version 1.0.0
 */
 
-@import "./colors";
-
 html:root {
   --blue-700: #0f2345;
   --blue-650: #0e2d5b;
@@ -206,6 +204,10 @@ html {
       color: var(--red-300);
       opacity: 0.5;
     }
+  }
+
+  .z--btn--fill--danger {
+    color: var(--black-300);
   }
 
   .reaction-emoji-list {
@@ -411,7 +413,7 @@ html {
   }
 
   .conv-action__unread .conv-unread {
-    color: #fff;
+    color: #fff !important;
   }
 }
 
