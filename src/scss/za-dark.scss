@@ -1,7 +1,7 @@
 /*
   Za Dark – Best Dark Theme for Zalo Web
   Made by NCDAi
-  Version 1.0.0
+  Version 1.1
 */
 
 html[data-theme='dark'] {
@@ -172,7 +172,8 @@ html[data-theme='dark'] .za-dark-chrome-extension {
     padding: 16px;
   }
 
-  .message-view__blur__overlay {
+  .message-view__blur__overlay,
+  .message-view__blur__overlay_noavatar {
     background: #000;
   }
 
@@ -206,6 +207,7 @@ html[data-theme='dark'] .za-dark-chrome-extension {
 
   .reaction-emoji-list {
     color: var(--white-400);
+    border: 0.5px solid var(--grey-400);
   }
 
   .leftbar-tab {
@@ -380,18 +382,40 @@ html[data-theme='dark'] .za-dark-chrome-extension {
 
   .card-send-time {
     color: var(--neutral-500);
+
+    &.me {
+      color: var(--neutral-300);
+      opacity: 0.5;
+    }
   }
 
   .card.me {
     .quote-name-container {
       color: var(--blue-300);
     }
+
     .quote-banner-content .quote-text {
       color: var(--neutral-300);
+      opacity: 0.5;
     }
-    // .card-send-time {
-    //     color: var(--black-300);
-    // }
+  }
+
+  .message-reaction-container {
+    &.me {
+      .msg-reaction-icon {
+        border-color: var(--blue-600);
+        background-color: var(--blue-650);
+
+        .default-react-icon-thumb {
+          filter: brightness(2);
+        }
+      }
+
+      .reacts-list {
+        border-color: var(--blue-600);
+        background-color: var(--blue-650);
+      }
+    }
   }
 
   .tipv2-content {
@@ -408,6 +432,16 @@ html[data-theme='dark'] .za-dark-chrome-extension {
 
   .conv-action__unread .conv-unread {
     color: #fff !important;
+  }
+
+  .conv-item.chat-message.first-selected,
+  .conv-item.chat-message.last-selected,
+  .conv-item.selected {
+    background-color: var(--grey-600);
+  }
+
+  .message-view__guide__item__sign {
+    color: var(--neutral-300);
   }
 }
 

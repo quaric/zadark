@@ -1,7 +1,7 @@
 /*
   Za Dark – Best Dark Theme for Zalo Web
   Made by NCDAi
-  Version 1.0.0
+  Version 1.1
 */
 
 document.body.classList.add("za-dark-chrome-extension");
