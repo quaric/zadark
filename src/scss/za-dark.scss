@@ -192,6 +192,7 @@ html[data-theme="dark"] .za-dark-chrome-extension {
 
   .z--btn--fill--primary {
     color: var(--black-300);
+    background: var(--gradient-blue);
   }
 
   .z--btn--fill--secondary-red {
@@ -267,8 +268,10 @@ html[data-theme="dark"] .za-dark-chrome-extension {
     height: 100vh;
   }
 
-  .chips--choice.--active {
-    color: #fff;
+  .chips--choice {
+    &.--active {
+      color: #fff;
+    }
   }
 
   .chat-date {
@@ -301,14 +304,16 @@ html[data-theme="dark"] .za-dark-chrome-extension {
     display: none;
   }
 
-  .chat-message .extra-btn {
-    padding: 6px 16px;
-    background-color: var(--white-500);
-    color: var(--neutral-300);
-    transition: all 250ms ease-in-out;
+  .chat-message {
+    .extra-btn {
+      padding: 6px 16px;
+      background-color: var(--white-500);
+      color: var(--neutral-300);
+      transition: all 250ms ease-in-out;
 
-    &:hover {
-      color: #fff;
+      &:hover {
+        color: #fff;
+      }
     }
   }
 
@@ -446,9 +451,11 @@ html[data-theme="dark"] .za-dark-chrome-extension {
   }
 
   .msg-info-popup {
-    .quote-banner-content .quote-text {
-      color: var(--neutral-300);
-      opacity: 0.5;
+    .quote-banner-content {
+      .quote-text {
+        color: var(--neutral-300);
+        opacity: 0.5;
+      }
     }
 
     .rl-msg {
@@ -479,13 +486,17 @@ html[data-theme="dark"] .za-dark-chrome-extension {
       opacity: 0.5;
     }
 
-    .quote-name-container .quote-name {
-      color: var(--neutral-300);
+    .quote-name-container {
+      .quote-name {
+        color: var(--neutral-300);
+      }
     }
 
-    .quote-banner-content .quote-text {
-      color: var(--neutral-300);
-      opacity: 0.5;
+    .quote-banner-content {
+      .quote-text {
+        color: var(--neutral-300);
+        opacity: 0.5;
+      }
     }
 
     .message-reaction-container {
@@ -504,9 +515,7 @@ html[data-theme="dark"] .za-dark-chrome-extension {
       }
     }
   }
-}
 
-html[data-theme="dark"] .za-dark-chrome-extension {
   // Image Show
 
   .image-show__title {
@@ -525,9 +534,11 @@ html[data-theme="dark"] .za-dark-chrome-extension {
     color: var(--neutral-base);
   }
 
-  .image-show__bottom__ctrl > .btn,
-  .image-show__bottom__ctrl > a > .btn {
-    color: var(--neutral-base);
+  .image-show__bottom__ctrl {
+    > .btn,
+    > a > .btn {
+      color: var(--neutral-base);
+    }
   }
 
   .image-show__icon-fullscreen {
