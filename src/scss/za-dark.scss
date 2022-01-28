@@ -258,8 +258,8 @@ html[data-theme="dark"] .za-dark-chrome-extension {
     }
   }
 
-  .leftbar-unread.unread-red {
-    color: #fff;
+  .leftbar-unread {
+    color: #fff !important;
   }
 
   .chat-onboard,
