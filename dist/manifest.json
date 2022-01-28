@@ -35,7 +35,10 @@
   "background": {
     "service_worker": "./assets/js/background.js"
   },
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["storage", "scripting"],
+  "host_permissions": [
+    "*://chat.zalo.me/*"
+  ],
 
   "action": {
     "default_popup": "./views/popup.html",
