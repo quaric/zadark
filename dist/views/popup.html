@@ -1,35 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <link rel="stylesheet" href="../assets/css/switch.css">
-    <link rel="stylesheet" href="../assets/css/popup.css">
-  </head>
+<html lang="en" data-theme="light">
 
-  <body>
-    <div class="container">
-      <header>
-        <h1 class="title">Za Dark</h1>
-        <h4 class="sub-title">Best Dark Theme for Zalo Web</h4>
-      </header>
+<head>
+  <link rel="stylesheet" href="../assets/css/popup.css">
+</head>
 
-      <main>
-        <div class="form-enable-dark-theme">
-          <label class="form-label" for="checkbox-enable-dark-theme">Enable Dark Theme</label>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="title">Za Dark</h1>
+      <h4 class="sub-title">Best Dark Theme for Zalo Web</h4>
+    </header>
 
-          <label class="switch">
-            <input type="checkbox" id="checkbox-enable-dark-theme">
-            <span class="slider"></span>
-          </label>
-        </div>
-      </main>
+    <main>
+      <div class="select-theme" id="select-theme">
+        <label class="form-radio-container">
+          <input type="radio" name="theme" value="light">
+          <span class="checkmark"></span>
 
-      <footer>
-        <span class="made-by">Made by <a href="https://www.facebook.com/iamncdai" target="_blank">NCDAi</a></span>
-        <span class="version">v1.2</span>
-      </footer>
-    </div>
+          <span class="label-container">
+            <span class="label">Light</span>
+          </span>
+        </label>
 
-    <script src="../assets/libs/jquery/jquery-3.6.0.min.js"></script>
-    <script src="../assets/js/popup.js"></script>
-  </body>
+        <label class="form-radio-container">
+          <input type="radio" name="theme" value="dark">
+          <span class="checkmark"></span>
+
+          <span class="label-container">
+            <span class="label">Dark</span>
+          </span>
+        </label>
+
+        <label class="form-radio-container">
+          <input type="radio" name="theme" value="system">
+          <span class="checkmark"></span>
+
+          <span class="label-container">
+            <span class="label">System</span>
+            <span class="description">Based on system setting</span>
+          </span>
+        </label>
+
+        <label class="form-radio-container">
+          <input type="radio" name="theme" value="auto">
+          <span class="checkmark"></span>
+
+          <span class="label-container">
+            <span class="label">Auto</span>
+            <span class="description">
+              Based on time of day
+            </span>
+          </span>
+        </label>
+      </div>
+    </main>
+
+    <footer>
+      <span class="made-by">Made by <a href="https://www.facebook.com/iamncdai" target="_blank">NCDAi</a></span>
+      <span class="version">v2.0</span>
+    </footer>
+  </div>
+
+  <script src="../assets/libs/jquery/jquery-3.6.0.min.js"></script>
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/popup.js"></script>
+</body>
+
 </html>

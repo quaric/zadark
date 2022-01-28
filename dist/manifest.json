@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Za Dark",
-  "version": "1.2",
+  "version": "2.0",
 
   "description": "Best Dark Theme for Zalo Web – Made by NCDAi.",
   "icons": {
@@ -27,6 +27,7 @@
       ],
 
       "js": [
+        "./assets/js/utils.js",
         "./assets/js/za-dark.js"
       ]
     }

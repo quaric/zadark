@@ -1,19 +1,26 @@
+/*
+  Za Dark – Best Dark Theme for Zalo Web
+  Made by NCDAi
+  Version 2.0
+*/
+
+const selectThemeElName = '#select-theme input:radio[name="theme"]';
+
 chrome.storage.sync.get("theme", ({ theme }) => {
-  const isChecked = theme === 'dark';
-  $('#checkbox-enable-dark-theme').prop('checked', isChecked);
+  _updateTheme(theme);
+  $(selectThemeElName).filter(`[value="${theme}"]`).attr('checked', true);
 });
 
 function setPageTheme() {
   chrome.storage.sync.get("theme", ({ theme }) => {
-    document.documentElement.setAttribute('data-theme', theme);
+    _updateTheme(theme);
   });
 }
 
-async function updateTheme() {
-  let tabs = await chrome.tabs.query({
+async function updateTabs() {
+  const tabs = await chrome.tabs.query({
     url: ["*://chat.zalo.me/*"],
-    currentWindow: true,
-    // active: true
+    currentWindow: true
   });
 
   const hasResult = Array.isArray(tabs) && tabs.length > 0;
@@ -30,8 +37,9 @@ async function updateTheme() {
   });
 }
 
-$('#checkbox-enable-dark-theme').on('change', () => {
-  const theme = $('#checkbox-enable-dark-theme').is(':checked') ? 'dark' : 'light';
+$(selectThemeElName).on('change', function (item) {
+  const theme = $(this).val();
   chrome.storage.sync.set({ theme });
-  updateTheme();
+  updateTabs();
+  _updateTheme(theme);
 });
