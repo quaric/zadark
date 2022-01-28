@@ -1,10 +1,10 @@
 /*
   Za Dark – Best Dark Theme for Zalo Web
   Made by NCDAi
-  Version 1.1
+  Version 1.2
 */
 
-html[data-theme='dark'] {
+html[data-theme="dark"] {
   &:root {
     --blue-700: #0f2345;
     --blue-650: #0e2d5b;
@@ -142,7 +142,7 @@ html[data-theme='dark'] {
   }
 }
 
-html[data-theme='dark'] .za-dark-chrome-extension {
+html[data-theme="dark"] .za-dark-chrome-extension {
   background: var(--white-300);
 
   .chat-info-link__title {
@@ -302,6 +302,7 @@ html[data-theme='dark'] .za-dark-chrome-extension {
   }
 
   .chat-message .extra-btn {
+    padding: 6px 16px;
     background-color: var(--white-500);
     color: var(--neutral-300);
     transition: all 250ms ease-in-out;
@@ -443,9 +444,69 @@ html[data-theme='dark'] .za-dark-chrome-extension {
   .message-view__guide__item__sign {
     color: var(--neutral-300);
   }
+
+  .msg-info-popup {
+    .quote-banner-content .quote-text {
+      color: var(--neutral-300);
+      opacity: 0.5;
+    }
+
+    .rl-msg {
+      .quote-banner {
+        margin-bottom: 10px !important;
+      }
+
+      .msg-from-me {
+        .rl-username {
+          color: var(--blue-base);
+        }
+        .rl-msg-time {
+          color: var(--neutral-300);
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  .multi-select-mode-selected {
+    .card.card--text.show-sender > .card-sender-name {
+      color: var(--neutral-300);
+      opacity: 0.5;
+    }
+
+    .card-send-time {
+      color: var(--neutral-300);
+      opacity: 0.5;
+    }
+
+    .quote-name-container .quote-name {
+      color: var(--neutral-300);
+    }
+
+    .quote-banner-content .quote-text {
+      color: var(--neutral-300);
+      opacity: 0.5;
+    }
+
+    .message-reaction-container {
+      .msg-reaction-icon {
+        border-color: var(--blue-500);
+        background-color: var(--blue-600);
+
+        .default-react-icon-thumb {
+          filter: brightness(2);
+        }
+      }
+
+      .reacts-list {
+        border-color: var(--blue-500);
+        background-color: var(--blue-600);
+      }
+    }
+  }
 }
 
-html[data-theme='dark'] .za-dark-chrome-extension {
+html[data-theme="dark"] .za-dark-chrome-extension {
   // Image Show
 
   .image-show__title {
