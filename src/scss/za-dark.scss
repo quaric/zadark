@@ -214,6 +214,10 @@ html[data-theme="dark"] .za-dark-chrome-extension {
     color: var(--neutral-base);
   }
 
+  .leftbar-unread {
+    color: #fff !important;
+  }
+
   .user-status-footer {
     .footer-text {
       color: #fff;
@@ -256,10 +260,6 @@ html[data-theme="dark"] .za-dark-chrome-extension {
     &.selected .file-sidebar__option__icon {
       color: var(--neutral-300);
     }
-  }
-
-  .leftbar-unread {
-    color: #fff !important;
   }
 
   .chat-onboard,
