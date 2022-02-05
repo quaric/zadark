@@ -1,7 +1,6 @@
 /*
-  Za Dark – Best Dark Theme for Zalo Web
+  Za Dark – Best Dark Theme for Zalo
   Made by NCDAi
-  Version 2.0
 */
 
 html[data-theme="dark"] {
@@ -516,6 +515,16 @@ html[data-theme="dark"] .za-dark {
     }
   }
 
+  .call-msg {
+    &.--callee {
+      background-color: var(--white-300);
+    }
+
+    &__separator {
+      border-bottom: 1px solid var(--border);
+    }
+  }
+
   // Image Show
 
   .image-show__title {
@@ -567,10 +576,17 @@ html[data-theme="dark"] .za-dark {
   }
 }
 
-.za-dark-chrome-extension {
+.za-dark-chrome,
+.za-dark-pc.za-dark-win32 {
   .nav__tabs__zalo {
     height: auto;
     padding-top: 16px;
     padding-bottom: 16px;
   }
+}
+
+.za-dark-chrome .nav__tabs__zalo {
+  height: auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }

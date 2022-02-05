@@ -1,3 +1,8 @@
+/*
+  Za Dark – Best Dark Theme for Zalo
+  Made by NCDAi
+*/
+
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
@@ -45,11 +50,11 @@ const writeIndexFile = (zaloDir) => {
   const indexHTMLContent = fs.readFileSync(srcPath, 'utf8')
   const root = HTMLParser.parse(indexHTMLContent)
 
-  const zaDarkCSS = root.querySelectorAll('link[href="za-dark.css"]')
+  const zaDarkCSS = root.querySelectorAll('link[href="za-dark-pc.css"]')
   if (!zaDarkCSS.length) {
     root.getElementsByTagName('head')[0].insertAdjacentHTML(
       'beforeend',
-      '<link rel="stylesheet" href="za-dark.css">'
+      '<link rel="stylesheet" href="za-dark-pc.css">'
     )
   }
 
@@ -100,13 +105,15 @@ const setTheme = function (zaloDir, theme) {
 
   asar.extractAll(path.join(zaloDir, 'app.asar'), path.join(zaloDir, 'app'))
 
+  const platform = os.platform()
+
   writeIndexFile(zaloDir)
   copyAssetFile(zaloDir, {
-    src: 'css/za-dark.css',
-    dest: 'pc-dist/za-dark.css'
+    src: 'css/za-dark-pc.css',
+    dest: 'pc-dist/za-dark-pc.css'
   })
   copyAssetFile(zaloDir, {
-    src: `js/${theme}/za-dark-pc.js`,
+    src: `js/${theme}/za-dark-pc.${platform}.js`,
     dest: 'pc-dist/za-dark-pc.js'
   })
 

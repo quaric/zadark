@@ -1,7 +1,12 @@
+/*
+  Za Dark – Best Dark Theme for Zalo
+  Made by NCDAi
+*/
+
 const os = require('os')
 const prompt = require('prompt-sync')()
 const chalk = require('chalk')
-const zaDarkPC = require('./zaDarkPC')
+const zaDarkPC = require('./za-dark-pc')
 const packageJSON = require('./package.json')
 
 const platform = os.platform()
@@ -15,6 +20,10 @@ const version = packageJSON.version;
     console.log(chalk.blueBright('Za Dark PC – Best Dark Theme for Zalo PC'))
     console.log(chalk.blueBright('Made by NCDAi'))
     console.log(chalk.blueBright(`v${version} (${platform === 'darwin' ? 'macOS' : 'Windows'})`))
+
+    console.log('')
+    prompt(chalk.redBright('Please exit Zalo App! Press [enter] to continue ...'))
+
     console.log('')
     console.log('Please select dark/light theme, restore defaults, support or exit.')
     console.log('')
@@ -70,7 +79,7 @@ const version = packageJSON.version;
     }
 
     console.log('')
-    prompt('Press any key to exit ...')
+    prompt('Press [enter] to exit ...')
   } catch (error) {
     console.log(chalk.redBright(error.message))
   }

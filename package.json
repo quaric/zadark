@@ -1,6 +1,6 @@
 {
   "name": "za-dark",
-  "version": "2.0",
+  "version": "2.1",
   "main": "index.js",
   "repository": "git@github.com:ncdai3651408/za-dark-chrome-extension.git",
   "author": "Dai Nguyen <ncdai3651408@gmail.com>",
@@ -8,7 +8,7 @@
   "scripts": {
     "pc:start": "node src/pc",
     "pc:build": "node src/pc/build.js",
-    "sass:watch": "sass --watch src/assets/scss:chrome-dist/assets/css src/assets/scss/za-dark.scss:pc-dist/assets/css/za-dark.css --style compressed"
+    "sass:watch": "sass --watch src/assets/scss:chrome-dist/assets/css src/pc:pc-dist/assets/css --style compressed"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
@@ -25,6 +25,10 @@
     "prompt-sync": "^4.2.0"
   },
   "standard": {
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "ignore": [
+      "chrome-dist/assets/**/*.js",
+      "pc-dist/assets/**/*.js"
+    ]
   }
 }

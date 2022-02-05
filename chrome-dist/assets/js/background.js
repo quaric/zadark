@@ -1,7 +1,7 @@
 /*
-  Za Dark – Best Dark Theme for Zalo Web
+  Za Dark – Best Dark Theme for Zalo
+  Chrome Extension
   Made by NCDAi
-  Version 2.0
 */
 
 chrome.runtime.onInstalled.addListener(() => {
