@@ -20,7 +20,7 @@ const WINDOWS_FILE_NAME = `ZaDarkPC-Windows-${VERSION}`
 // macOS
 compile({
   input: INPUT_PATH,
-  output: path.join(__dirname, `${OUTPUT_ROOT_DIR}/${MACOS_FILE_NAME}/${MACOS_FILE_NAME}`),
+  output: path.join(__dirname, `${OUTPUT_ROOT_DIR}/${MACOS_FILE_NAME}/${MACOS_FILE_NAME}.command`),
   resources: RESOURCES_PATH,
   targets: 'mac-x64-14.15.3',
   silent: true

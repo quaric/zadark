@@ -52,5 +52,7 @@ yarn run pc:build
 ### For Zalo PC
 - macOS
   - SourceForge.net: https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/
+  - Tutorial: https://www.youtube.com/watch?v=QBmLOUF4vdA
 - Windows
   - SourceForge.net: https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/
+  - Tutorial: https://www.youtube.com/watch?v=0ndmEmzRCyU
