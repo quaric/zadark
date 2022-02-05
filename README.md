@@ -50,4 +50,7 @@ yarn run pc:build
   - Load unpacked `./chrome-ext-dist`
 
 ### For Zalo PC
-- ...
+- macOS
+  - SourceForge.net: https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/
+- Windows
+  - SourceForge.net: https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/
