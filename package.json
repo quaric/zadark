@@ -2,7 +2,7 @@
   "name": "za-dark",
   "version": "2.1",
   "main": "index.js",
-  "repository": "git@github.com:ncdai3651408/za-dark-chrome-extension.git",
+  "repository": "git@github.com:ncdai3651408/za-dark.git",
   "author": "Dai Nguyen <ncdai3651408@gmail.com>",
   "license": "MIT",
   "scripts": {
