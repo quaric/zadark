@@ -50,11 +50,11 @@ const writeIndexFile = (zaloDir) => {
   const indexHTMLContent = fs.readFileSync(srcPath, 'utf8')
   const root = HTMLParser.parse(indexHTMLContent)
 
-  const zaDarkCSS = root.querySelectorAll('link[href="za-dark-pc.css"]')
+  const zaDarkCSS = root.querySelectorAll('link[href="za-dark.css"]')
   if (!zaDarkCSS.length) {
     root.getElementsByTagName('head')[0].insertAdjacentHTML(
       'beforeend',
-      '<link rel="stylesheet" href="za-dark-pc.css">'
+      '<link rel="stylesheet" href="za-dark.css">'
     )
   }
 
@@ -109,8 +109,8 @@ const setTheme = function (zaloDir, theme) {
 
   writeIndexFile(zaloDir)
   copyAssetFile(zaloDir, {
-    src: 'css/za-dark-pc.css',
-    dest: 'pc-dist/za-dark-pc.css'
+    src: 'css/za-dark.css',
+    dest: 'pc-dist/za-dark.css'
   })
   copyAssetFile(zaloDir, {
     src: `js/${theme}/za-dark-pc.${platform}.js`,

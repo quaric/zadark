@@ -576,17 +576,11 @@ html[data-theme="dark"] .za-dark {
   }
 }
 
-.za-dark-chrome,
+.za-dark-chrome-ext,
 .za-dark-pc.za-dark-win32 {
   .nav__tabs__zalo {
     height: auto;
     padding-top: 16px;
     padding-bottom: 16px;
   }
-}
-
-.za-dark-chrome .nav__tabs__zalo {
-  height: auto;
-  padding-top: 16px;
-  padding-bottom: 16px;
 }

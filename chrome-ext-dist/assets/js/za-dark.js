@@ -4,7 +4,7 @@
   Made by NCDAi
 */
 
-document.body.classList.add("za-dark", "za-dark-chrome");
+document.body.classList.add("za-dark", "za-dark-chrome-ext");
 
 chrome.storage.sync.get("theme", ({ theme }) => {
   _updateTheme(theme);

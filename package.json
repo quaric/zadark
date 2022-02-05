@@ -6,11 +6,14 @@
   "author": "Dai Nguyen <ncdai3651408@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "chrome-ext:build": "node src/chrome-ext/build.js",
+    "chrome-ext:sass-watch": "sass --watch src/scss:chrome-ext-dist/assets/css src/chrome-ext/scss:chrome-ext-dist/assets/css --style compressed",
     "pc:start": "node src/pc",
     "pc:build": "node src/pc/build.js",
-    "sass:watch": "sass --watch src/assets/scss:chrome-dist/assets/css src/pc:pc-dist/assets/css --style compressed"
+    "pc:sass-watch": "sass --watch src/scss:pc-dist/assets/css --style compressed"
   },
   "devDependencies": {
+    "archiver": "^5.3.0",
     "babel-eslint": "^10.1.0",
     "nexe": "^4.0.0-beta.19",
     "sass": "^1.49.0",
@@ -27,7 +30,7 @@
   "standard": {
     "parser": "babel-eslint",
     "ignore": [
-      "chrome-dist/assets/**/*.js",
+      "chrome-ext-dist/assets/**/*.js",
       "pc-dist/assets/**/*.js"
     ]
   }
