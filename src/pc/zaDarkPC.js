@@ -23,7 +23,7 @@ const getDefaultZaloResDir = () => {
 
   const resourcesPath = platform === 'darwin'
     ? '/Applications/Zalo.app/Contents/Resources'
-    : process.env.HOME + '/AppData/Local/Programs/Zalo/Zalo-*/resources'
+    : process.env.USERPROFILE + '/AppData/Local/Programs/Zalo/Zalo-*/resources'
 
   const resources = glob.sync(resourcesPath)
 

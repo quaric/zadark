@@ -16,14 +16,14 @@ const version = packageJSON.version;
     console.log(chalk.blueBright('Made by NCDAi'))
     console.log(chalk.blueBright(`v${version} (${platform === 'darwin' ? 'macOS' : 'Windows'})`))
     console.log('')
-    console.log('Please select dark/light theme, restore defaults, support or quit.')
+    console.log('Please select dark/light theme, restore defaults, support or exit.')
     console.log('')
     console.log('[1] Dark Theme')
     console.log('[2] Light Theme')
     console.log('[3] Restore Defaults')
     console.log('')
     console.log('[4] Support')
-    console.log('[5] Quit')
+    console.log('[5] Exit')
     console.log('')
 
     const selected = prompt('[?] Select the appropriate number [1-4] then [enter]: ')
@@ -68,7 +68,9 @@ const version = packageJSON.version;
         break
       }
     }
+
     console.log('')
+    prompt('Press any key to exit ...')
   } catch (error) {
     console.log(chalk.redBright(error.message))
   }
