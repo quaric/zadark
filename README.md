@@ -22,6 +22,7 @@ yarn run install
 ```bash
 # Chrome Extension
 yarn run chrome-ext:sass-watch
+
 # PC
 yarn run pc:sass-watch
 ```
