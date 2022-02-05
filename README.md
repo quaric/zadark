@@ -5,7 +5,9 @@ Za Dark helps you turn on Dark Mode for Zalo Web/PC (*) - making it easier for y
 > (*) Zalo Web [https://chat.zalo.me/], Zalo PC [https://zalo.me/pc/]
 
 ![Za Dark – Best Dark Theme for Zalo](./Screenshot.png)
-## Development
+## Run Development
+
+### Install
 
 ```bash
 git clone git@github.com:ncdai3651408/za-dark.git
@@ -15,10 +17,11 @@ cd za-dark
 yarn run install
 ```
 
+### Sass Watch
+
 ```bash
 # Chrome Extension
 yarn run chrome-ext:sass-watch
-
 # PC
 yarn run pc:sass-watch
 ```
