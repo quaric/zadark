@@ -1,2 +1,5 @@
 .DS_Store
 node_modules/
+
+# Za Dark PC Build
+pc-dist/release/

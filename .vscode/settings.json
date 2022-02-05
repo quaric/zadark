@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "[html]": {
+    "editor.formatOnSave": false
+  },
+  "standard.enable": true,
+  "standard.autoFixOnSave": true,
+  "standard.validate": [
+    {
+      "language": "javascript",
+      "autoFix": true
+    }
+  ],
+}
