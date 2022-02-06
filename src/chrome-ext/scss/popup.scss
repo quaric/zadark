@@ -1,6 +1,6 @@
 /*
-  Za Dark – Best Dark Theme for Zalo
-  Made by NCDAi
+  ZaDark – Best Dark Theme for Zalo
+  Made by NCDAi Studio
 */
 
 html[data-theme="light"] {
@@ -130,6 +130,13 @@ footer {
   .made-by {
     flex: 1;
   }
+
+  .github {
+    &::after {
+      content: "·";
+      margin: 0 4px;
+    }
+  }
 }
 
 .form-radio-container {
@@ -205,8 +212,4 @@ footer {
 .select-theme {
   margin-top: -16px;
   margin-bottom: -16px;
-}
-
-background {
-  color: red;
 }

@@ -1,10 +1,10 @@
-# Za Dark – Best Dark Theme for Zalo
+# ZaDark – Best Dark Theme for Zalo
 
-Za Dark helps you turn on Dark Mode for Zalo Web/PC (*) - making it easier for you to look and feel less dazzling than Zalo's default interface.
+ZaDark helps you turn on Dark Mode for Zalo Web/PC (*) - making it easier for you to look and feel less dazzling than Zalo's default interface.
 
 > (*) Zalo Web [https://chat.zalo.me/], Zalo PC [https://zalo.me/pc/]
 
-![Za Dark – Best Dark Theme for Zalo](./Screenshot.png)
+![ZaDark – Best Dark Theme for Zalo](./Screenshot.png)
 ## Run Development
 
 ### Install

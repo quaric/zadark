@@ -1,3 +1,8 @@
+/*
+  ZaDark – Best Dark Theme for Zalo
+  Made by NCDAi Studio
+*/
+
 const path = require('path')
 const chalk = require('chalk')
 const { zipDir } = require('../../utils')

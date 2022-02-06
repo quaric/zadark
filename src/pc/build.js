@@ -1,6 +1,6 @@
 /*
-  Za Dark – Best Dark Theme for Zalo
-  Made by NCDAi
+  ZaDark – Best Dark Theme for Zalo
+  Made by NCDAi Studio
 */
 
 const chalk = require('chalk')
@@ -25,7 +25,7 @@ compile({
   targets: 'mac-x64-14.15.3',
   silent: true
 }).then(() => {
-  console.log(chalk.green('macOS Success ✅'))
+  console.log(chalk.green('macOS Compile Success ✅'))
 
   zipDir({
     src: path.join(__dirname, `${OUTPUT_ROOT_DIR}/${MACOS_FILE_NAME}`),
@@ -39,7 +39,7 @@ compile({
       console.log(chalk.redBright('macOS ZIP Error ✅'), error.message)
     })
 }).catch((error) => {
-  console.log(chalk.redBright('macOS Error ❌'), error.message)
+  console.log(chalk.redBright('macOS Compile Error ❌'), error.message)
 })
 
 // Windows
@@ -50,7 +50,7 @@ compile({
   targets: 'windows-x86-14.15.3',
   silent: true
 }).then(() => {
-  console.log(chalk.green('Windows Success ✅'))
+  console.log(chalk.green('Windows Compile Success ✅'))
 
   zipDir({
     src: path.join(__dirname, `${OUTPUT_ROOT_DIR}/${WINDOWS_FILE_NAME}`),
@@ -64,5 +64,5 @@ compile({
       console.log(chalk.redBright('Windows ZIP Error ✅'), error.message)
     })
 }).catch((error) => {
-  console.log(chalk.redBright('Windows Error ❌'), error.message)
+  console.log(chalk.redBright('Windows Compile Error ❌'), error.message)
 })

@@ -1,7 +1,7 @@
 /*
-  Za Dark – Best Dark Theme for Zalo
+  ZaDark – Best Dark Theme for Zalo
   Windows
-  Made by NCDAi
+  Made by NCDAi Studio
 */
 
 document.body.classList.add("za-dark", "za-dark-pc", "za-dark-win32");

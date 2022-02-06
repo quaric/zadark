@@ -1,6 +1,6 @@
 /*
-  Za Dark – Best Dark Theme for Zalo
-  Made by NCDAi
+  ZaDark – Best Dark Theme for Zalo
+  Made by NCDAi Studio
 */
 
 const os = require('os')
@@ -16,67 +16,89 @@ const version = packageJSON.version;
 
 (async () => {
   try {
-    const zaloResDir = zaDarkPC.getDefaultZaloResDir()
-    const isEnabledDarkTheme = zaDarkPC.isEnabledDarkTheme(zaloResDir)
+    const zaloResDirList = zaDarkPC.getDefaultZaloResDirList()
 
     log('')
-    log(chalk.blueBright.bold('Za Dark PC – Best Dark Theme for Zalo PC'))
-    log(chalk.blueBright.bold('Made by NCDAi'))
+    log(chalk.blueBright.bold('ZaDark – Best Dark Theme for Zalo'))
     log(chalk.blueBright('Version :', `${platform === 'darwin' ? 'macOS' : 'Windows'}-${version}`))
-    log(chalk.blueBright('Zalo Resources :', zaloResDir))
-
-    log('')
-    log(isEnabledDarkTheme ? chalk.green('[i] Dark Theme has been', chalk.bold('enabled.')) : chalk.grey('[i] Dark Theme has been', chalk.bold('disabled.')))
-
-    log('')
-    prompt(chalk.redBright('Please exit Zalo App! Press', chalk.bold('[enter]'), 'to continue ...'))
-
-    log('')
-    log('[1] Enable Dark Theme')
-    log('[2] Disable Dark Theme')
-
-    log('')
-    log('[3] Support')
-    log('[4] Exit')
+    log(chalk.blueBright('GitHub : https://github.com/ncdai3651408/za-dark'))
     log('')
 
-    const selected = prompt(chalk('[?] Select the appropriate number', chalk.bold('[1-4]'), 'then', chalk.bold('[enter]'), ': '))
+    log(chalk.magentaBright('[Important Notes]'))
+    log('')
+    log('1. Please exit Zalo before installing/uninstalling Dark Theme.')
+    log('2. Please uninstall Dark Theme before installing Zalo updates.')
+    log('3. Please uninstall Dark Theme when Zalo encounters an error.')
+    log('')
+
+    prompt(chalk.yellowBright('> Press', chalk.bold('[enter]'), 'to continue ...'))
+    log('')
+
+    log(chalk.magentaBright('[Features]'))
+    log('')
+    log('1. Install Dark Theme')
+    log('2. Uninstall Dark Theme')
+    log('')
+
+    log('3. Contact')
+    log('4. Exit')
+    log('')
+
+    const selected = prompt(chalk.yellowBright('> Select the appropriate number', chalk.bold('[1-4]'), 'then', chalk.bold('[enter]'), ': '))
 
     log('')
 
     switch (selected) {
       case '1': {
-        log(chalk.green('➜ Enable Dark Theme ...'))
-        if (isEnabledDarkTheme) {
-          log(chalk.green('[i] Dark Theme has been', chalk.bold('enabled.')))
+        log(chalk.magentaBright('[Install Dark Theme]'))
+
+        for (const zaloResDir of zaloResDirList) {
+          log('')
+          log(chalk('>> Installing at', chalk.bold(zaloResDir)))
+          await zaDarkPC.installDarkTheme(zaloResDir)
         }
-        await zaDarkPC.enableDarkTheme(zaloResDir)
+
+        log('')
+        log(chalk.green('>> Installed successfully. Please restart Zalo.'))
+
         break
       }
 
       case '2': {
-        log(chalk.green('➜ Disable Dark Theme ...'))
-        await zaDarkPC.restoreTheme(zaloResDir)
+        log(chalk.magentaBright('[Uninstall Dark Theme]'))
+
+        for (const zaloResDir of zaloResDirList) {
+          log('')
+          log(chalk('>> Uninstalling at', chalk.bold(zaloResDir)))
+          await zaDarkPC.uninstallDarkTheme(zaloResDir)
+        }
+
+        log('')
+        log(chalk.green('>> Uninstalled successfully. Please restart Zalo.'))
+
         break
       }
 
       case '3': {
-        log(chalk.green('➜ Support'))
-        log('- Email : ncdai+zadarkpc@penphy.edu.vn')
-        log('- Messenger : m.me/iamncdai')
+        log(chalk.magentaBright('[Contact]'))
+        log('- Email :', chalk.bold('ncdai+zadarkpc@penphy.edu.vn'))
+        log('- Messenger :', chalk.bold('m.me/iamncdai'))
         break
       }
 
       default: {
-        log(chalk.green('Thank you so much!'))
-        log(chalk.green('Goodbye ✌️'))
+        log(chalk.magentaBright('[Exit]'))
         break
       }
     }
   } catch (error) {
+    log('')
     logError('Error :', error.message)
   } finally {
     log('')
-    prompt(chalk('Press', chalk.bold('[enter]'), 'to exit ...'))
+    log('Thank you so much!')
+    log('Goodbye.')
+    log('')
+    prompt(chalk.yellowBright('> Press', chalk.bold('[enter]'), 'to exit ...'))
   }
 })()
