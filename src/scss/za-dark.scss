@@ -123,8 +123,8 @@ html[data-theme="dark"] {
     --white-600: hsla(0, 0%, 20%, 0.25);
     --white-500: hsla(0, 0%, 20%, 0.5);
     --white-400: hsla(0, 0%, 20%, 0.75);
-    --white-300: #141414;
-    --white-base: #141414;
+    --white-300: #18191a;
+    --white-base: #18191a;
 
     --black-700: rgba(0, 0, 0, 0.1);
     --black-600: rgba(0, 0, 0, 0.25);
@@ -212,6 +212,10 @@ html[data-theme="dark"] .za-dark {
 
   .leftbar-tab {
     color: var(--neutral-base);
+
+    &:hover {
+      background-color: var(--shades-left-bar-active);
+    }
   }
 
   .leftbar-unread {
@@ -306,7 +310,7 @@ html[data-theme="dark"] .za-dark {
   .chat-message {
     .extra-btn {
       padding: 6px 16px;
-      background-color: var(--white-500);
+      background-color: var(--white-300);
       color: var(--neutral-300);
       transition: all 250ms ease-in-out;
 
@@ -322,6 +326,10 @@ html[data-theme="dark"] .za-dark {
     .icon-container {
       height: 56px;
     }
+  }
+
+  .chat-group-topic-outer {
+    min-height: 58px;
   }
 
   .group-board-page {
@@ -370,8 +378,10 @@ html[data-theme="dark"] .za-dark {
   }
 
   .media-dock-tabs {
-    height: 48px;
-    border-bottom: 0;
+    &:not(.docked) {
+      height: 48px;
+      border-bottom: 0;
+    }
   }
 
   .gradient-border.left,
@@ -443,7 +453,11 @@ html[data-theme="dark"] .za-dark {
   .conv-item.chat-message.last-selected,
   .conv-item.selected {
     background-color: var(--grey-600);
+    box-shadow: inset 0px -1px 0px var(--grey-500), 0px -1px 0px var(--grey-500);
   }
+  // .conv-item:hover {
+  //   background-color: red;
+  // }
 
   .message-view__guide__item__sign {
     color: var(--neutral-300);
