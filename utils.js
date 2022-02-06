@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const archiver = require('archiver')
+const chalk = require('chalk')
 
 const zipDir = ({ src, dest, fileName }) => {
   return new Promise((resolve, reject) => {
@@ -29,6 +30,13 @@ const zipDir = ({ src, dest, fileName }) => {
   })
 }
 
+const log = (...args) => console.log(args.join(' '))
+const logDebug = (...args) => process.env.NODE_ENV === 'development' ? log(...args) : null
+const logError = (...args) => console.log(chalk.redBright(args.join(' ')))
+
 module.exports = {
-  zipDir
+  zipDir,
+  log,
+  logDebug,
+  logError
 }

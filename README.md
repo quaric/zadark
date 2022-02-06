@@ -27,6 +27,13 @@ yarn run chrome-ext:sass-watch
 yarn run pc:sass-watch
 ```
 
+### Run
+
+```bash
+# PC
+yarn run pc:dev
+```
+
 ## Build Production
 
 ```bash

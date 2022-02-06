@@ -9,78 +9,74 @@ const chalk = require('chalk')
 const zaDarkPC = require('./za-dark-pc')
 const packageJSON = require('./package.json')
 
+const { log, logError } = require('../../utils')
+
 const platform = os.platform()
 const version = packageJSON.version;
 
 (async () => {
   try {
     const zaloResDir = zaDarkPC.getDefaultZaloResDir()
+    const isEnabledDarkTheme = zaDarkPC.isEnabledDarkTheme(zaloResDir)
 
-    console.log('')
-    console.log(chalk.blueBright('Za Dark PC – Best Dark Theme for Zalo PC'))
-    console.log(chalk.blueBright('Made by NCDAi'))
-    console.log(chalk.blueBright(`v${version} (${platform === 'darwin' ? 'macOS' : 'Windows'})`))
+    log('')
+    log(chalk.blueBright.bold('Za Dark PC – Best Dark Theme for Zalo PC'))
+    log(chalk.blueBright.bold('Made by NCDAi'))
+    log(chalk.blueBright('Version :', `${platform === 'darwin' ? 'macOS' : 'Windows'}-${version}`))
+    log(chalk.blueBright('Zalo Resources :', zaloResDir))
 
-    console.log('')
-    prompt(chalk.redBright('Please exit Zalo App! Press [enter] to continue ...'))
+    log('')
+    log(isEnabledDarkTheme ? chalk.green('[i] Dark Theme has been', chalk.bold('enabled.')) : chalk.grey('[i] Dark Theme has been', chalk.bold('disabled.')))
 
-    console.log('')
-    console.log('Please select dark/light theme, restore defaults, support or exit.')
-    console.log('')
-    console.log('[1] Dark Theme')
-    console.log('[2] Light Theme')
-    console.log('[3] Restore Defaults')
-    console.log('')
-    console.log('[4] Support')
-    console.log('[5] Exit')
-    console.log('')
+    log('')
+    prompt(chalk.redBright('Please exit Zalo App! Press', chalk.bold('[enter]'), 'to continue ...'))
 
-    const selected = prompt('[?] Select the appropriate number [1-4] then [enter]: ')
+    log('')
+    log('[1] Enable Dark Theme')
+    log('[2] Disable Dark Theme')
 
-    console.log('')
+    log('')
+    log('[3] Support')
+    log('[4] Exit')
+    log('')
+
+    const selected = prompt(chalk('[?] Select the appropriate number', chalk.bold('[1-4]'), 'then', chalk.bold('[enter]'), ': '))
+
+    log('')
 
     switch (selected) {
       case '1': {
-        console.log(chalk.green('➜ Dark Theme'))
-        zaDarkPC.setTheme(zaloResDir, 'dark')
+        log(chalk.green('➜ Enable Dark Theme ...'))
+        if (isEnabledDarkTheme) {
+          log(chalk.green('[i] Dark Theme has been', chalk.bold('enabled.')))
+        }
+        await zaDarkPC.enableDarkTheme(zaloResDir)
         break
       }
 
       case '2': {
-        console.log(chalk.green('➜ Light Theme'))
-        zaDarkPC.setTheme(zaloResDir, 'light')
+        log(chalk.green('➜ Disable Dark Theme ...'))
+        await zaDarkPC.restoreTheme(zaloResDir)
         break
       }
 
       case '3': {
-        console.log(chalk.green('➜ Restore Defaults'))
-
-        console.log('Zalo Theme will be restored to the original settings.')
-        const confirm = prompt('[?] Are you sure you want to reset defaults? [Y/n]: ')
-
-        if (confirm === 'Y') {
-          await zaDarkPC.restoreDefaults(zaloResDir)
-        }
-        break
-      }
-
-      case '4': {
-        console.log(chalk.green('➜ Support'))
-        console.log('- Email: ncdai+zadarkpc@penphy.edu.vn')
-        console.log('- Messenger: m.me/iamncdai')
+        log(chalk.green('➜ Support'))
+        log('- Email : ncdai+zadarkpc@penphy.edu.vn')
+        log('- Messenger : m.me/iamncdai')
         break
       }
 
       default: {
-        console.log(chalk.green('Thank you so much!'))
-        console.log(chalk.green('Goodbye ✌️'))
+        log(chalk.green('Thank you so much!'))
+        log(chalk.green('Goodbye ✌️'))
         break
       }
     }
-
-    console.log('')
-    prompt('Press [enter] to exit ...')
   } catch (error) {
-    console.log(chalk.redBright(error.message))
+    logError('Error :', error.message)
+  } finally {
+    log('')
+    prompt(chalk('Press', chalk.bold('[enter]'), 'to exit ...'))
   }
 })()

@@ -7,10 +7,14 @@ const fs = require('fs')
 const os = require('os')
 const path = require('path')
 const del = require('del')
-const asar = require('asar')
-const glob = require('glob')
 const chalk = require('chalk')
+const asar = require('asar')
 const HTMLParser = require('node-html-parser')
+const glob = require('glob')
+
+const { log, logDebug } = require('../../utils')
+
+const platform = os.platform()
 
 const getLastElOfArray = (arr) => {
   if (Array.isArray(arr) && arr.length > 0) {
@@ -20,8 +24,6 @@ const getLastElOfArray = (arr) => {
 }
 
 const getDefaultZaloResDir = () => {
-  const platform = os.platform()
-
   if (!['darwin', 'win32'].includes(platform)) {
     throw new Error(`The "${platform}" platform is not supported`)
   }
@@ -37,6 +39,11 @@ const getDefaultZaloResDir = () => {
   }
 
   return getLastElOfArray(resources.sort())
+}
+
+const isEnabledDarkTheme = (zaloDir) => {
+  const zaDarkJS = path.join(zaloDir, 'app/pc-dist/za-dark-pc.js')
+  return fs.existsSync(zaDarkJS)
 }
 
 const writeIndexFile = (zaloDir) => {
@@ -67,11 +74,12 @@ const writeIndexFile = (zaloDir) => {
   }
 
   fs.writeFileSync(srcPath, root.toString())
-  console.log('- writeIndexFile', srcPath)
+  logDebug('- writeIndexFile', srcPath)
 }
 
 const copyAssetFile = (zaloDir, { dest, src }) => {
   const srcPath = path.join(__dirname, `../../pc-dist/assets/${src}`)
+  const destPath = path.join(zaloDir, `app/${dest}`)
 
   if (!fs.existsSync(srcPath)) {
     throw new Error(srcPath + ' doesn\'t exist.')
@@ -79,33 +87,30 @@ const copyAssetFile = (zaloDir, { dest, src }) => {
 
   const newContents = fs.readFileSync(srcPath, 'utf8')
 
-  const destPath = path.join(zaloDir, `app/${dest}`)
   fs.writeFileSync(destPath, newContents)
 
-  console.log('- copyAssetFile', src, '➜', destPath)
+  logDebug('- copyAssetFile', src, '➜', destPath)
 }
 
-const setTheme = function (zaloDir, theme) {
-  if (!['dark', 'light'].includes(theme)) {
-    throw new Error(`Theme "${theme}" is not valid.`)
-  }
-
+const enableDarkTheme = async (zaloDir) => {
   if (!fs.existsSync(zaloDir)) {
     throw new Error(zaloDir + ' doesn\'t exist.')
   }
 
-  if (!fs.existsSync(path.join(zaloDir, 'app.asar'))) {
+  const appDirPath = path.join(zaloDir, 'app')
+  const appAsarPath = path.join(zaloDir, 'app.asar')
+  const appAsarBakPath = path.join(zaloDir, 'app.asar.bak')
+
+  if (!fs.existsSync(appAsarPath)) {
     throw new Error(zaloDir + ' doesn\'t contain "app.asar".')
   }
 
-  if (!fs.existsSync(path.join(zaloDir, 'app.asar.bak'))) {
-    console.log('- backupFile', path.join(zaloDir, 'app.asar'))
-    fs.createReadStream(path.join(zaloDir, 'app.asar')).pipe(fs.createWriteStream(path.join(zaloDir, 'app.asar.bak')))
+  if (!fs.existsSync(appAsarBakPath)) {
+    logDebug('- backupFile', appAsarPath)
+    fs.createReadStream(appAsarPath).pipe(fs.createWriteStream(appAsarBakPath))
   }
 
-  asar.extractAll(path.join(zaloDir, 'app.asar'), path.join(zaloDir, 'app'))
-
-  const platform = os.platform()
+  asar.extractAll(appAsarPath, appDirPath)
 
   writeIndexFile(zaloDir)
   copyAssetFile(zaloDir, {
@@ -113,33 +118,42 @@ const setTheme = function (zaloDir, theme) {
     dest: 'pc-dist/za-dark.css'
   })
   copyAssetFile(zaloDir, {
-    src: `js/${theme}/za-dark-pc.${platform}.js`,
+    src: `js/za-dark-pc.${platform}.js`,
     dest: 'pc-dist/za-dark-pc.js'
   })
 
-  console.log(chalk.green('➜ Done ✅'))
+  await del(appAsarPath, { force: true })
+  logDebug('- deleteFile', appAsarPath)
+
+  log(chalk.green('➜ Done.'))
 }
 
-const restoreDefaults = async (zaloDir) => {
+const restoreTheme = async (zaloDir) => {
   const appDirPath = path.join(zaloDir, 'app')
-
-  if (fs.existsSync(appDirPath)) {
-    console.log('- deleteDir', appDirPath)
-    await del(appDirPath, { force: true })
-  }
-
+  const appAsarPath = path.join(zaloDir, 'app.asar')
   const appAsarBakPath = path.join(zaloDir, 'app.asar.bak')
 
-  if (fs.existsSync(appAsarBakPath)) {
-    console.log('- deleteFile', appAsarBakPath)
-    fs.unlinkSync(appAsarBakPath)
+  if (fs.existsSync(appDirPath)) {
+    await del(appDirPath, { force: true })
+    logDebug('- deleteDir', appDirPath)
   }
 
-  console.log(chalk.green('➜ Done ✅'))
+  if (fs.existsSync(appAsarBakPath)) {
+    if (fs.existsSync(appAsarPath)) {
+      await del(appAsarPath, { force: true })
+      logDebug('- deleteFile', appAsarPath)
+    }
+
+    fs.renameSync(appAsarBakPath, appAsarPath)
+    logDebug('- renameFile', appAsarBakPath, '➜', appAsarPath)
+  }
+
+  log(chalk.green('➜ Done.'))
 }
 
 module.exports = {
   getDefaultZaloResDir,
-  setTheme,
-  restoreDefaults
+  isEnabledDarkTheme,
+  enableDarkTheme,
+  restoreTheme
 }
