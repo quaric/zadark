@@ -1,6 +1,6 @@
 {
   "name": "za-dark-chrome-ext",
-  "version": "2.3",
+  "version": "2.4",
   "main": "index.js",
   "author": "Dai Nguyen <ncdai3651408@gmail.com>",
   "license": "MIT"
