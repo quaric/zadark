@@ -53,13 +53,14 @@ yarn run pc:build
 ### For Zalo Web
 - Chrome Web Store
   - https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob
+  - Tutorial: https://youtu.be/T8r1k0Rhleo
 - Chrome Developer Mode (Local)
   - Load unpacked `./chrome-ext-dist`
 
 ### For Zalo PC
 - macOS
   - SourceForge.net: https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/
-  - Tutorial: https://www.youtube.com/watch?v=QBmLOUF4vdA
+  - Tutorial: https://youtu.be/QBmLOUF4vdA
 - Windows
   - SourceForge.net: https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/
-  - Tutorial: https://www.youtube.com/watch?v=0ndmEmzRCyU
+  - Tutorial: https://youtu.be/0ndmEmzRCyU
