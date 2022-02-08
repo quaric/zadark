@@ -28,7 +28,7 @@ const getDefaultZaloResDirList = () => {
   const resources = glob.sync(resourcesPath)
 
   if (!Array.isArray(resources) || !resources.length) {
-    throw new Error('Zalo Resources not found.')
+    throw new Error('Zalo Resources not found. Please make sure you have installed Zalo PC from "https://zalo.me/pc".')
   }
 
   return resources.sort()
