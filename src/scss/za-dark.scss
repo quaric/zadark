@@ -683,6 +683,12 @@ html[data-theme="dark"] body.za-dark {
     }
   }
 
+  // Pin Input
+  .pin-input__item {
+    background: var(--white-300);
+    color: var(--neutral-300);
+  }
+
   // Image Show
 
   .image-show__title {
