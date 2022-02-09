@@ -182,18 +182,16 @@ html[data-theme="dark"] body.za-dark {
     border-color: var(--border);
   }
 
-  .app-info__header {
-    color: #fff;
-    align-items: center;
-  }
+  .app-info {
+    &__header {
+      align-items: center;
+      color: #fff;
+      background-color: #0068ff;
+    }
 
-  .app-info__header__logo {
-    height: 40px;
-    margin-right: 16px;
-  }
-
-  .app-info__section {
-    padding: 16px;
+    &__section {
+      padding: 16px;
+    }
   }
 
   .message-view__blur__overlay {
