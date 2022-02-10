@@ -20,7 +20,7 @@ This extension helps you turn on Dark Theme for Zalo Web/PC(*), making your eyes
 
 ### Important Notes
 
-- This extension is not an official extension of Zalo.
+- This extension is not an official extension from Zalo.
 - This extension only injects the CSS file to change the color scheme of Zalo without affecting any features and security of Zalo.
 
 ![ZaDark – Best Dark Theme for Zalo](./Screenshot.png)
