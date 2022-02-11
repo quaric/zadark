@@ -3,13 +3,6 @@
   Made by NCDAi Studio
 */
 
-// %card-me-a {
-//   text-decoration: underline;
-//   color: #fff;
-//   text-underline-offset: 2px;
-//   text-decoration-color: rgba(255, 255, 255, 0.4);
-// }
-
 body.za-dark {
   font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: auto;
@@ -450,7 +443,6 @@ html[data-theme="dark"] body.za-dark {
 
     &.admin {
       border: 1px solid var(--neutral-700);
-      // border: 1px solid var(--blue-500);
     }
 
     &.me {
@@ -486,19 +478,7 @@ html[data-theme="dark"] body.za-dark {
           color: var(--neutral-300);
           opacity: 0.5;
         }
-
-        // .card-content > .card--link__src,
-        // a {
-        //   @extend %card-me-a;
-        // }
       }
-
-      // &.card--text {
-      //   a {
-      //     @extend %card-me-a;
-      //     // &.mention-name {}
-      //   }
-      // }
 
       &.card--business {
         .card-content {
@@ -509,10 +489,6 @@ html[data-theme="dark"] body.za-dark {
 
         .msg-contact-footer {
           border-top: 1px solid var(--blue-600);
-
-          // > .ct-btn-right {
-          //   @extend %card-me-a;
-          // }
         }
       }
 
