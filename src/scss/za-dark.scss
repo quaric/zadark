@@ -12,7 +12,7 @@
 
 body.za-dark {
   font-family: "Open Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: auto;
 
   &.za-dark-chrome-ext,
   &.za-dark-win32 {
@@ -167,7 +167,6 @@ html[data-theme="dark"] {
 
 html[data-theme="dark"] body.za-dark {
   background: var(--white-300);
-  -moz-osx-font-smoothing: grayscale;
 
   .chat-info-link__title {
     color: var(--neutral-base);
@@ -443,24 +442,19 @@ html[data-theme="dark"] body.za-dark {
     &.card--video,
     &.card--sticker,
     &.card--group-photo {
-      border: 0;
+      &,
+      &.admin {
+        border: 0;
+      }
+    }
+
+    &.admin {
+      border: 1px solid var(--neutral-700);
+      // border: 1px solid var(--blue-500);
     }
 
     &.me {
       border-color: transparent;
-      // background-attachment: fixed;
-      // background-color: var(--blue-600);
-      // background-image: linear-gradient(var(--blue-500), var(--blue-600));
-      // box-shadow: none;
-
-      // &.card--oa,
-      // &.card--picture,
-      // &.card--video,
-      // &.card--sticker,
-      // &.card--group-photo {
-      //   background-color: transparent;
-      //   background-image: none;
-      // }
 
       .quote-name-container {
         color: var(--blue-300);
@@ -530,13 +524,8 @@ html[data-theme="dark"] body.za-dark {
       }
     }
 
-    &.admin {
-      border: 1px solid var(--neutral-700);
-      // border: 1px solid var(--blue-500);
-    }
-
     &.card--undo {
-      opacity: 0.5;
+      opacity: 0.75;
       filter: blur(1px);
 
       > span {
