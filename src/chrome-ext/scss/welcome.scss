@@ -1,0 +1,105 @@
+/*
+  ZaDark – Best Dark Theme for Zalo
+  Made by NCDAi Studio
+*/
+
+header.welcome-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-base);
+  background-color: var(--grey-700);
+
+  .page-title {
+    font-weight: var(--font-semibold);
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
+.slide-intro {
+  &.slick-dotted.slick-slider {
+    margin-bottom: 0;
+  }
+
+  .slick-slide {
+    outline: none;
+  }
+
+  .slide-intro-item {
+    height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+
+    img {
+      height: calc(100vh - var(--header-height));
+      display: block;
+      margin: 0 auto;
+      width: auto;
+      max-width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .slick-prev {
+    left: 16px;
+  }
+  .slick-next {
+    right: 16px;
+  }
+
+  .slick-prev,
+  .slick-next {
+    --prev-next-size: 32px;
+
+    z-index: 10;
+    width: var(--prev-next-size);
+    height: var(--prev-next-size);
+
+    &::before {
+      font-size: var(--prev-next-size);
+      color: var(--neutral-base);
+    }
+  }
+
+  .slick-dots {
+    bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    li {
+      margin: 0;
+
+      &,
+      &.slick-active {
+        button:before {
+          color: var(--neutral-base);
+        }
+      }
+    }
+
+    li {
+      --dot-size: 12px;
+
+      width: var(--dot-size);
+      height: var(--dot-size);
+      margin: 0 4px;
+
+      button {
+        width: var(--dot-size);
+        height: var(--dot-size);
+        padding: 0;
+
+        &:before {
+          width: var(--dot-size);
+          height: var(--dot-size);
+          font-size: var(--dot-size);
+          line-height: var(--dot-size);
+        }
+      }
+    }
+  }
+}

@@ -1,13 +1,13 @@
 {
   "name": "za-dark",
   "description": "Best Dark Theme for Zalo",
-  "version": "2.7",
+  "version": "3.0",
   "repository": "git@github.com:ncdai3651408/za-dark.git",
   "author": "Dai Nguyen <ncdai3651408@gmail.com>",
   "license": "MIT",
   "scripts": {
     "chrome-ext:build": "node src/chrome-ext/build.js",
-    "chrome-ext:sass-watch": "sass --watch src/scss:chrome-ext-dist/assets/css src/chrome-ext/scss:chrome-ext-dist/assets/css --style compressed",
+    "chrome-ext:sass-watch": "sass --watch src/scss:chrome-ext-dist/assets/css src/chrome-ext/scss:chrome-ext-dist/assets/css",
     "pc:dev": "NODE_ENV=development node src/pc",
     "pc:start": "node src/pc",
     "pc:build": "node src/pc/build.js",
@@ -34,5 +34,8 @@
       "chrome-ext-dist/assets/**/*.js",
       "pc-dist/assets/**/*.js"
     ]
+  },
+  "engines": {
+    "node": ">=14.15"
   }
 }

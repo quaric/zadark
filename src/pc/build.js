@@ -4,8 +4,9 @@
 */
 
 const chalk = require('chalk')
-const { compile } = require('nexe')
 const path = require('path')
+const { compile } = require('nexe')
+
 const { zipDir } = require('../../utils')
 const packageJSON = require('./package.json')
 
@@ -25,7 +26,7 @@ compile({
   targets: 'mac-x64-14.15.3',
   silent: true
 }).then(() => {
-  console.log(chalk.green('macOS Compile Success ✅'))
+  console.log(chalk.green('macOS: Compile Success ✅'))
 
   zipDir({
     src: path.join(__dirname, `${OUTPUT_ROOT_DIR}/${MACOS_FILE_NAME}`),
@@ -33,13 +34,13 @@ compile({
     fileName: `${MACOS_FILE_NAME}`
   })
     .then(() => {
-      console.log(chalk.green('macOS ZIP Success ✅'))
+      console.log(chalk.green('macOS: ZIP Success ✅'))
     })
     .catch((error) => {
-      console.log(chalk.redBright('macOS ZIP Error ✅'), error.message)
+      console.log(chalk.redBright('macOS: ZIP Error ✅'), error.message)
     })
 }).catch((error) => {
-  console.log(chalk.redBright('macOS Compile Error ❌'), error.message)
+  console.log(chalk.redBright('macOS: Compile Error ❌'), error.message)
 })
 
 // Windows
@@ -50,7 +51,7 @@ compile({
   targets: 'windows-x86-14.15.3',
   silent: true
 }).then(() => {
-  console.log(chalk.green('Windows Compile Success ✅'))
+  console.log(chalk.green('Windows: Compile Success ✅'))
 
   zipDir({
     src: path.join(__dirname, `${OUTPUT_ROOT_DIR}/${WINDOWS_FILE_NAME}`),
@@ -58,11 +59,11 @@ compile({
     fileName: `${WINDOWS_FILE_NAME}`
   })
     .then(() => {
-      console.log(chalk.green('Windows ZIP Success ✅'))
+      console.log(chalk.green('Windows: ZIP Success ✅'))
     })
     .catch((error) => {
-      console.log(chalk.redBright('Windows ZIP Error ✅'), error.message)
+      console.log(chalk.redBright('Windows: ZIP Error ✅'), error.message)
     })
 }).catch((error) => {
-  console.log(chalk.redBright('Windows Compile Error ❌'), error.message)
+  console.log(chalk.redBright('Windows: Compile Error ❌'), error.message)
 })

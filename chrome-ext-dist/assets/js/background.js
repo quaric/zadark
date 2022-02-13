@@ -4,7 +4,12 @@
   Made by NCDAi Studio
 */
 
-chrome.runtime.onInstalled.addListener(() => {
-  const theme = "dark"; // ["light", "dark", "system", "auto"]
-  chrome.storage.sync.set({ theme });
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === "install") {
+    chrome.tabs.create({ url: "views/welcome.html" });
+  }
+
+  if (details.reason == "update") {
+    chrome.tabs.create({ url: "views/changelog.html" });
+  }
 });

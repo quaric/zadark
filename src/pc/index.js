@@ -36,26 +36,34 @@ const version = packageJSON.version;
 
     log(chalk.magentaBright('[Features]'))
     log('')
-    log('1. Install Dark Theme')
-    log('2. Uninstall Dark Theme')
+    log('1. Install Dark default')
+    log('2. Install Dark dimmed')
+    log('3. Uninstall theme')
     log('')
 
-    log('3. Contact')
-    log('4. Exit')
+    log('4. Contact')
+    log('5. Exit')
     log('')
 
-    const selected = prompt(chalk.yellowBright('> Select the appropriate number', chalk.bold('[1-4]'), 'then', chalk.bold('[enter]'), ': '))
+    const selected = prompt(chalk.yellowBright('> Select the appropriate number', chalk.bold('[1-5]'), 'then', chalk.bold('[enter]'), ': '))
 
     log('')
 
     switch (selected) {
-      case '1': {
-        log(chalk.magentaBright('[Install Dark Theme]'))
+      case '1': // Dark default
+      case '2': { // Dark dimmed
+        const darkTheme = selected === '1' ? 'dark' : 'dark_dimmed'
+        const darkThemeLabel = {
+          dark: 'default',
+          dark_dimmed: 'dimmed'
+        }
+
+        log(chalk.magentaBright(`[Install Dark Theme (${darkThemeLabel[darkTheme]})]`))
 
         for (const zaloResDir of zaloResDirList) {
           log('')
           log(chalk('>> Installing at', chalk.bold(zaloResDir)))
-          await zaDarkPC.installDarkTheme(zaloResDir)
+          await zaDarkPC.installDarkTheme(zaloResDir, darkTheme)
         }
 
         log('')
@@ -64,7 +72,7 @@ const version = packageJSON.version;
         break
       }
 
-      case '2': {
+      case '3': {
         log(chalk.magentaBright('[Uninstall Dark Theme]'))
 
         for (const zaloResDir of zaloResDirList) {
@@ -79,7 +87,7 @@ const version = packageJSON.version;
         break
       }
 
-      case '3': {
+      case '4': {
         log(chalk.magentaBright('[Contact]'))
         log('- Email :', chalk.bold('ncdai+zadarkpc@penphy.edu.vn'))
         log('- Messenger :', chalk.bold('m.me/iamncdai'))

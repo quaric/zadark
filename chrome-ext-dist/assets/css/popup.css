@@ -1,1 +1,64 @@
-﻿html[data-theme=light]:root{--neutral-700: #e5e7eb;--neutral-600: #abb4bc;--neutral-500: #72808e;--neutral-400: #394e60;--neutral-300: #001a33;--neutral-200: #081020;--neutral-100: #050a19;--neutral-base: #001a33;--white-700: hsla(0, 0%, 100%, 0.1);--white-600: hsla(0, 0%, 100%, 0.25);--white-500: hsla(0, 0%, 100%, 0.5);--white-400: hsla(0, 0%, 100%, 0.75);--white-300: #fff;--white-base: #fff;--grey-700: #fbfbfd;--grey-600: #f4f5f7;--grey-500: #eeeff2;--grey-400: #e8eaef;--grey-300: #e1e4ea;--grey-base: #e1e4ea}html[data-theme=dark]:root{--neutral-700: #454545;--neutral-600: #5b5b5b;--neutral-500: #7e7e7e;--neutral-400: #adadad;--neutral-300: #dcdcdc;--neutral-200: #e8e8e8;--neutral-100: #f3f3f3;--neutral-base: #dcdcdc;--white-700: hsla(0, 0%, 20%, 0.1);--white-600: hsla(0, 0%, 20%, 0.25);--white-500: hsla(0, 0%, 20%, 0.5);--white-400: hsla(0, 0%, 20%, 0.75);--white-300: #141414;--white-base: #141414;--grey-700: #161616;--grey-600: #222222;--grey-500: #292929;--grey-400: #333333;--grey-300: #3c3c3c;--grey-base: #3c3c3c}html[data-theme=dark] body{border:1px solid var(--border-base)}:root{--border-base: var(--grey-300);--primary-base: #3989ff;--primary-dark: #035bdc}body{margin:0;padding:0;font-size:14px;background:var(--white-300);color:var(--neutral-base)}a{color:var(--primary-base)}a,a:hover{text-decoration:none}a:hover{color:var(--primary-dark)}.container{min-width:400px}header{padding:16px;border-bottom:1px solid var(--border-base);background-color:var(--grey-700)}header .title{margin-top:0;margin-bottom:4px;font-size:18px;font-weight:600;color:var(--primary-base)}header .sub-title{margin-top:0;margin-bottom:0;font-weight:normal}main{padding:16px}footer{display:flex;align-items:center;justify-content:space-between;padding:16px;border-top:1px solid var(--border-base);background-color:var(--grey-700);color:var(--neutral-500)}footer .made-by{flex:1}footer .github::after{content:"·";margin:0 4px}.form-radio-container{position:relative;display:flex;align-items:center;cursor:pointer;user-select:none}.form-radio-container input{position:absolute;opacity:0;cursor:pointer;height:0;width:0}.form-radio-container input:checked~.checkmark{border-color:var(--primary-base)}.form-radio-container input:checked~.checkmark:after{opacity:1}.form-radio-container .checkmark{position:relative;height:20px;width:20px;margin-right:16px;border:2px solid var(--border-base);border-radius:50rem}.form-radio-container .checkmark:after{content:"";position:absolute;top:4px;left:4px;width:12px;height:12px;border-radius:6px;background:var(--primary-base);opacity:0}.form-radio-container .label-container{flex:1;display:flex;flex-direction:column;padding:16px 0;border-bottom:1px solid var(--border-base)}.form-radio-container .label-container .description{margin-top:4px;font-size:12px;color:var(--neutral-500)}.form-radio-container:last-child .label-container{border-bottom:0}.select-theme{margin-top:-16px;margin-bottom:-16px}/*# sourceMappingURL=popup.css.map */
+@charset "UTF-8";
+/*
+  ZaDark – Best Dark Theme for Zalo
+  Made by NCDAi Studio
+*/
+html[data-theme-mode=dark] body {
+  border: 1px solid var(--border-base);
+}
+
+.ext-container {
+  min-width: 512px;
+}
+
+#theme-mode-auto,
+#theme-mode-single {
+  display: none;
+}
+
+.panel-dark-theme .badge-active,
+.panel-light-theme .badge-active {
+  display: none;
+  padding: 2px 12px;
+  border-radius: 50rem;
+  border: 1px solid var(--blue-400);
+  background: var(--blue-650);
+  color: var(--blue-300);
+  font-size: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .panel-dark-theme {
+    --panel-active-border: var(--blue-400);
+    --panel-active-bg: var(--blue-700);
+  }
+  .panel-dark-theme.panel {
+    border-color: var(--panel-active-border);
+  }
+  .panel-dark-theme.panel .panel-heading {
+    background: var(--panel-active-bg);
+    border-color: var(--panel-active-border);
+  }
+  .panel-dark-theme.panel .panel-heading .badge-active {
+    display: flex;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .panel-light-theme {
+    --panel-active-border: var(--blue-400);
+    --panel-active-bg: var(--blue-700);
+  }
+  .panel-light-theme.panel {
+    border-color: var(--panel-active-border);
+  }
+  .panel-light-theme.panel .panel-heading {
+    background: var(--panel-active-bg);
+    border-color: var(--panel-active-border);
+  }
+  .panel-light-theme.panel .panel-heading .badge-active {
+    display: flex;
+  }
+}
+
+/*# sourceMappingURL=popup.css.map */

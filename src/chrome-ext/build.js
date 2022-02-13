@@ -5,6 +5,7 @@
 
 const path = require('path')
 const chalk = require('chalk')
+
 const { zipDir } = require('../../utils')
 const manifest = require('../../chrome-ext-dist/manifest.json')
 
@@ -14,8 +15,8 @@ zipDir({
   fileName: `ZaDarkChromeExtension-${manifest.version}`
 })
   .then(() => {
-    console.log(chalk.green('Chrome Extension ZIP Success ✅'))
+    console.log(chalk.green('Chrome Extension: ZIP Success ✅'))
   })
   .catch((error) => {
-    console.log(chalk.redBright('ZIP Error ❌'), error.message)
+    console.log(chalk.redBright('Chrome Extension: ZIP Error ❌'), error.message)
   })

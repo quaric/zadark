@@ -4,59 +4,55 @@
   Made by NCDAi Studio
 */
 
-function _pad(n) {
-  return n < 10 ? "0" + n : n;
+function _getExtensionSettings() {
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.get({
+      themeMode: "single",
+      userTheme: "dark_dimmed",
+      darkTheme: "dark_dimmed"
+    }, (items) => {
+      resolve(items);
+    });
+  });
 }
 
-function _getTimeNow() {
-  const dt = new Date();
-  const h = dt.getHours();
-  const m = dt.getMinutes();
-  return _pad(h) + ":" + _pad(m);
+function _setThemeModeAttribute(themeMode) {
+  document.documentElement.setAttribute("data-theme-mode", themeMode);
 }
 
-function _isInRange(value, range) {
-  return value >= range[0] && value <= range[1];
+function _setDarkThemeAttribute(themeMode) {
+  document.documentElement.setAttribute("data-dark-theme", themeMode);
 }
 
-function _setThemeAttribute(isDark) {
-  document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+function _setLightThemeAttribute(themeMode) {
+  document.documentElement.setAttribute("data-light-theme", themeMode);
 }
 
 function _mediaQueryListener(event) {
-  chrome.storage.sync.get("theme", ({ theme }) => {
-    if (theme === "system") {
-      document.documentElement.setAttribute("data-theme", event.matches ? "dark" : "light");
+  _getExtensionSettings().then(({ themeMode }) => {
+    if (themeMode === "auto") {
+      _setThemeModeAttribute(event.matches ? "dark" : "light");
     }
   });
 }
 
-function _updateTheme(theme) {
-  switch (theme) {
-    case "system": {
-      window.matchMedia("(prefers-color-scheme: dark)").addListener(_mediaQueryListener);
-      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      _setThemeAttribute(isDark);
-      return;
+function _updateTheme({ themeMode, userTheme, darkTheme }) {
+  if (themeMode === "single") {
+    if (["dark", "dark_dimmed"].includes(userTheme)) {
+      _setThemeModeAttribute("dark");
+      _setDarkThemeAttribute(userTheme);
+    } else {
+      _setThemeModeAttribute("light");
+      _setLightThemeAttribute(userTheme);
     }
+  }
 
-    case "auto": {
-      const timeNow = _getTimeNow();
-      const isDark = !_isInRange(timeNow, ["07:00", "18:00"]);
-      _setThemeAttribute(isDark);
-      return;
-    }
+  if (themeMode === "auto") {
+    window.matchMedia("(prefers-color-scheme: dark)").addListener(_mediaQueryListener);
 
-    case "light":
-    case "dark": {
-      const isDark = theme === "dark";
-      _setThemeAttribute(isDark);
-      return;
-    }
+    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-    default: {
-      console.error("Unknown theme");
-      return;
-    }
+    _setThemeModeAttribute(isDark ? "dark" : "light");
+    _setDarkThemeAttribute(darkTheme);
   }
 }

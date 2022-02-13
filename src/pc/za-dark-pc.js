@@ -34,7 +34,7 @@ const getDefaultZaloResDirList = () => {
   return resources.sort()
 }
 
-const writeIndexFile = (zaloDir) => {
+const writeIndexFile = (zaloDir, { darkTheme }) => {
   const src = 'pc-dist/index.html'
   const srcPath = path.join(zaloDir, `app/${src}`)
 
@@ -45,21 +45,37 @@ const writeIndexFile = (zaloDir) => {
   const indexHTMLContent = fs.readFileSync(srcPath, 'utf8')
   const root = HTMLParser.parse(indexHTMLContent)
 
+  const htmlElement = root.getElementsByTagName('html')[0]
+  const headElement = root.getElementsByTagName('head')[0]
+  const bodyElement = root.getElementsByTagName('body')[0]
+
+  // Required font
+  const zaDarkFont = root.querySelectorAll('style[id="za-dark-font"]')
+  if (!zaDarkFont.length) {
+    headElement.insertAdjacentHTML(
+      'beforeend',
+      '<style id="za-dark-font">@import url(\'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap\');</style>'
+    )
+  }
+
+  // Required stylesheet
   const zaDarkCSS = root.querySelectorAll('link[href="za-dark.css"]')
   if (!zaDarkCSS.length) {
-    root.getElementsByTagName('head')[0].insertAdjacentHTML(
+    headElement.insertAdjacentHTML(
       'beforeend',
       '<link rel="stylesheet" href="za-dark.css">'
     )
   }
 
-  const zaDarkJS = root.querySelectorAll('script[src="za-dark-pc.js"]')
-  if (!zaDarkJS.length) {
-    root.getElementsByTagName('body')[0].insertAdjacentHTML(
-      'beforeend',
-      '<script src="za-dark-pc.js"></script>'
-    )
-  }
+  // Required themeAttributes
+  htmlElement.setAttribute('data-theme-mode', 'dark')
+  htmlElement.setAttribute('data-dark-theme', darkTheme)
+
+  // Required classNames
+  const zaDarkClassNames = ['za-dark', 'za-dark-pc', `za-dark-${platform}`]
+  zaDarkClassNames.forEach((className) => {
+    bodyElement.classList.add(className)
+  })
 
   fs.writeFileSync(srcPath, root.toString())
   logDebug('- writeIndexFile', srcPath)
@@ -79,7 +95,7 @@ const copyAssetFile = (zaloDir, { dest, src }) => {
   logDebug('- copyAssetFile', src, '➜', destPath)
 }
 
-const installDarkTheme = async (zaloDir) => {
+const installDarkTheme = async (zaloDir, darkTheme = 'dark') => {
   if (!fs.existsSync(zaloDir)) {
     throw new Error(zaloDir + ' doesn\'t exist.')
   }
@@ -108,18 +124,14 @@ const installDarkTheme = async (zaloDir) => {
   logDebug('- extractAsar', appAsarPath)
   asar.extractAll(appAsarPath, appDirPath)
 
-  // Copy assets "za-dark.css, za-dark-pc.js" to "resources/app/pc-dist"
+  // Copy assets "za-dark.css" to "resources/app/pc-dist"
   copyAssetFile(zaloDir, {
     src: 'css/za-dark.css',
     dest: 'pc-dist/za-dark.css'
   })
-  copyAssetFile(zaloDir, {
-    src: `js/za-dark-pc.${platform}.js`,
-    dest: 'pc-dist/za-dark-pc.js'
-  })
 
-  // Add stylesheet[href=za-dark.css], script[src=za-dark-pc.js] to "resources/app/pc-dist/index.html"
-  writeIndexFile(zaloDir)
+  // Add "themeAttributes, classNames, font, stylesheet" to "resources/app/pc-dist/index.html"
+  writeIndexFile(zaloDir, { darkTheme })
 
   log(chalk.green('- Done.'))
 }
