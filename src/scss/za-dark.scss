@@ -703,6 +703,21 @@ html[data-theme-mode="dark"] {
       }
     }
 
+    .chat-message.me {
+      .call-msg {
+        border-color: var(--blue-500);
+
+        &__separator {
+          border-bottom: 1px solid var(--blue-500);
+        }
+
+        &__content__txt > span {
+          color: var(--neutral-300);
+          opacity: 0.5;
+        }
+      }
+    }
+
     // Pin Input
     .pin-input__item {
       background: var(--white-300);
