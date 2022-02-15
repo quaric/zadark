@@ -14,9 +14,9 @@ This extension helps you turn on Dark Theme for Zalo Web/PC(*), making your eyes
 - Fully support features of Zalo Web/PC.
 - Safety and Transparency (Open Source: https://github.com/ncdai3651408/za-dark).
 - Allow customization according to your needs (Chrome Extension):
-    + Light / Dark;
-    + Automatically switch the theme based on the Operating System (OS);
-    + Automatically switch the theme based on the time of day (7am - 6pm is Light, 6pm - 7am is Dark).
+    + Themes: Light, Dark and Dark dimmed.
+    + Single Theme: Zalo will use your selected theme.
+    + Sync With System: Zalo theme will match your system settings.
 
 ### Important Notes
 
