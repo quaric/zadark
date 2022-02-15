@@ -13,10 +13,10 @@ This extension helps you turn on Dark Theme for Zalo Web/PC(*), making your eyes
 - The colors have good contrast.
 - Fully support features of Zalo Web/PC.
 - Safety and Transparency (Open Source: https://github.com/ncdai3651408/za-dark).
-- Allow customization according to your needs (Chrome Extension):
+- Allow customization according to your needs:
     + Themes: Light, Dark and Dark dimmed.
     + Single Theme: Zalo will use your selected theme.
-    + Sync With System: Zalo theme will match your system settings.
+    + Sync With System: Zalo theme will match your system settings (Chrome Extension  only).
 
 ### Important Notes
 
