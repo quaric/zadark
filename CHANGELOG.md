@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2]
+
+### Fixed
+- .call-msg.me
+
 ## [3.1] - 2022-02-15
 
 ### Fixed
