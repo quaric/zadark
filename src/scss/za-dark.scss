@@ -226,6 +226,7 @@ html[data-theme-mode="dark"] {
 
   body.za-dark {
     background: var(--white-300);
+    -webkit-font-smoothing: auto;
 
     #main-tab {
       border-right: 1px solid var(--border);
@@ -324,21 +325,14 @@ html[data-theme-mode="dark"] {
     }
 
     .file-sidebar__option {
-      &.chat-message.first-selected,
-      &.chat-message.last-selected,
-      &.selected {
-        background-color: var(--grey-600);
-        color: #fff;
-
-        &:hover {
-          background-color: var(--grey-600);
-        }
+      &:hover {
+        background-color: var(--grey-700);
       }
 
       &.chat-message.first-selected > .file-sidebar__option__title,
       &.chat-message.last-selected > .file-sidebar__option__title,
       &.selected > .file-sidebar__option__title {
-        color: #fff;
+        color: var(--neutral-300);
       }
 
       &.chat-message.first-selected .file-sidebar__option__icon,
@@ -362,9 +356,11 @@ html[data-theme-mode="dark"] {
       height: 100vh;
     }
 
-    .chips--choice {
-      &.--active {
-        color: #fff;
+    .chips {
+      &--choice {
+        &.--active {
+          color: #fff;
+        }
       }
     }
 
@@ -449,7 +445,7 @@ html[data-theme-mode="dark"] {
 
     div[data-id="div_TabCT_FrdReqList"],
     div[data-id="div_TabCT_JoinedGrpList"] {
-      background: #000 !important;
+      background: var(--message-view-gradient) !important;
     }
 
     .chat-message.highlighted .card:not(.card--group-photo) {
@@ -616,12 +612,6 @@ html[data-theme-mode="dark"] {
     }
 
     .conv-item {
-      &.chat-message.first-selected,
-      &.chat-message.last-selected,
-      &.selected {
-        background-color: var(--grey-700);
-      }
-
       &:hover {
         background-color: var(--grey-700);
       }
@@ -728,6 +718,48 @@ html[data-theme-mode="dark"] {
       border-top: 1px solid var(--grey-700);
     }
 
+    // Zavi Meeting
+    .zavi {
+      &-clock__date,
+      &-clock__time {
+        color: var(--neutral-300);
+      }
+
+      &-btn {
+        > .fa-icn-createmeeting {
+          color: var(--neutral-300);
+        }
+      }
+    }
+
+    .btn-play {
+      color: var(--neutral-300);
+    }
+
+    // conv-item
+    .conv-item.chat-message.first-selected,
+    .conv-item.chat-message.last-selected,
+    .conv-item.selected,
+    // zavi-sidebar-list-item
+    .zavi-sidebar-list-item.chat-message.first-selected,
+    .zavi-sidebar-list-item.chat-message.last-selected,
+    .zavi-sidebar-list-item.selected
+    // contact-list-item
+    .contact-list-item.chat-message.first-selected,
+    .contact-list-item.chat-message.last-selected,
+    .contact-list-item.selected,
+    // file-sidebar__option
+    .file-sidebar__option.chat-message.first-selected,
+    .file-sidebar__option.chat-message.last-selected,
+    .file-sidebar__option.selected {
+      background: var(--grey-700);
+    }
+
+    .contact-list.web {
+      top: 71px;
+      height: calc(100% - 71px);
+    }
+
     // Image Show
 
     .image-show__title {
@@ -788,7 +820,6 @@ html[data-theme-mode="dark"] {
 
 body.za-dark {
   font-family: "Open Sans", sans-serif;
-  -webkit-font-smoothing: auto;
 
   &.za-dark-chrome-ext,
   &.za-dark-win32 {
