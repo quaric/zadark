@@ -1,6 +1,10 @@
 # ZaDark – Best Dark Theme for Zalo
 
-[![Download ZaDark – Best Dark Theme for Zalo](https://img.shields.io/sourceforge/dt/zadark.svg)](https://sourceforge.net/projects/zadark/)
+[![Sourceforge](https://img.shields.io/sourceforge/dt/zadark.svg)](https://sourceforge.net/projects/zadark/)
+[![For Zalo Web](https://img.shields.io/badge/-Chrome%20Extension-34a853?style=flat-square&logo=google-chrome&logoColor=ffffff)](https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob)
+[![For Zalo PC (Windows)](https://img.shields.io/badge/-Windows-0078D6?style=flat-square&logo=windows&logoColor=ffffff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
+[![For Zalo PC (macOS)](https://img.shields.io/badge/-macOS-5b5b5b?style=flat-square&logo=apple&logoColor=ffffff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
+[![ZaDark on YouTube](https://img.shields.io/badge/-YouTube-f30005?style=flat-square&logo=youtube&logoColor=ffffff)](https://www.youtube.com/playlist?list=PLDa_fu5vscWwzGnNFXwxnpDbKJXMN5NG2)
 
 ## Overview
 
@@ -29,7 +33,9 @@ A product from NCDAi Studio.
 
 ## Install
 
-[![Download ZaDark – Best Dark Theme for Zalo](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/zadark/)
+[![For Zalo Web](https://img.shields.io/badge/-Chrome%20Extension-34a853?style=flat-square&logo=google-chrome&logoColor=ffffff)](https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob)
+[![For Zalo PC (Windows)](https://img.shields.io/badge/-Windows-0078D6?style=flat-square&logo=windows&logoColor=ffffff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
+[![For Zalo PC (macOS)](https://img.shields.io/badge/-macOS-5b5b5b?style=flat-square&logo=apple&logoColor=ffffff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
 
 ### For Zalo Web
 - Chrome Web Store: https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob
