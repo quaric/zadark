@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ZaDark – Best Dark Theme for Zalo",
-  "version": "3.1",
+  "version": "3.2",
   "description": "The best dark theme for your Zalo Web.",
   "icons": {
     "16": "./assets/images/za-dark-icon@16.png",
