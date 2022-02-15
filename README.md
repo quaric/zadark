@@ -7,6 +7,8 @@
 This extension helps you turn on Dark Theme for Zalo Web/PC(*), making your eyes feel comfortable when you work, especially at night.
 
 > (*) Zalo Web https://chat.zalo.me/, Zalo PC https://zalo.me/pc/
+> 
+A product from NCDAi Studio.
 
 ### Highlights
 
