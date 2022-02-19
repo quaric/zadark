@@ -6,18 +6,22 @@
   "author": "Dai Nguyen <ncdai3651408@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "chrome-ext:build": "node src/chrome-ext/build.js",
-    "chrome-ext:sass-watch": "sass --watch src/scss:chrome-ext-dist/assets/css src/chrome-ext/scss:chrome-ext-dist/assets/css --style compressed",
-    "pc:dev": "NODE_ENV=development node src/pc",
-    "pc:start": "node src/pc",
-    "pc:build": "node src/pc/build.js",
-    "pc:sass-watch": "sass --watch src/scss:pc-dist/assets/css --style compressed"
+    "watch": "gulp watch",
+    "build": "gulp build",
+    "dist": "gulp dist",
+    "pc:dev": "NODE_ENV=development nodemon build/pc",
+    "pc:start": "NODE_ENV=production node build/pc"
   },
   "devDependencies": {
-    "archiver": "^5.3.1",
     "babel-eslint": "^10.1.0",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-zip": "^5.1.0",
+    "merge-stream": "^2.0.0",
     "nexe": "^4.0.0-beta.19",
-    "sass": "^1.49.0",
+    "nodemon": "^2.0.15",
+    "sass": "^1.49.8",
     "standard": "^16.0.4"
   },
   "dependencies": {
@@ -30,10 +34,13 @@
   },
   "standard": {
     "parser": "babel-eslint",
-    "ignore": [
-      "chrome-ext-dist/assets/**/*.js",
-      "pc-dist/assets/**/*.js"
-    ]
+    "global": [
+      "$",
+      "chrome",
+      "browser",
+      "zadark"
+    ],
+    "ignore": []
   },
   "engines": {
     "node": ">=14.15"

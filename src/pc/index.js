@@ -9,7 +9,7 @@ const chalk = require('chalk')
 const zaDarkPC = require('./za-dark-pc')
 const packageJSON = require('./package.json')
 
-const { log, logError } = require('../../utils')
+const { log, logError } = require('./utils')
 
 const platform = os.platform()
 const version = packageJSON.version;

@@ -12,7 +12,7 @@ const asar = require('asar')
 const HTMLParser = require('node-html-parser')
 const glob = require('glob')
 
-const { log, logDebug } = require('../../utils')
+const { log, logDebug } = require('./utils')
 
 const platform = os.platform()
 
@@ -82,7 +82,7 @@ const writeIndexFile = (zaloDir, { darkTheme }) => {
 }
 
 const copyAssetFile = (zaloDir, { dest, src }) => {
-  const srcPath = path.join(__dirname, `../../pc-dist/assets/${src}`)
+  const srcPath = path.join(__dirname, `./assets/${src}`)
   const destPath = path.join(zaloDir, `app/${dest}`)
 
   if (!fs.existsSync(srcPath)) {
