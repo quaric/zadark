@@ -703,6 +703,21 @@ html[data-theme-mode="dark"] {
       }
     }
 
+    .chat-message.me {
+      .call-msg {
+        border-color: var(--blue-500);
+
+        &__separator {
+          border-bottom: 1px solid var(--blue-500);
+        }
+
+        &__content__txt > span {
+          color: var(--neutral-300);
+          opacity: 0.5;
+        }
+      }
+    }
+
     // Pin Input
     .pin-input__item {
       background: var(--white-300);
@@ -821,7 +836,7 @@ html[data-theme-mode="dark"] {
 body.za-dark {
   font-family: "Open Sans", sans-serif;
 
-  &.za-dark-chrome-ext,
+  &.za-dark-browser-ext,
   &.za-dark-win32 {
     .nav__tabs__zalo {
       height: auto;
