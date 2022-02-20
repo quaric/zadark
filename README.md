@@ -156,8 +156,8 @@ yarn dist
   - Chrome Web Store: https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob
   - Tutorial: https://youtu.be/T8r1k0Rhleo
 - Firefox
-  - Firefox Browser Add-ons: `coming soon ...`
-  - Tutorial: `coming soon ...`
+  - Firefox Browser Add-ons: https://addons.mozilla.org/en-US/firefox/addon/zadark/
+  - Tutorial: https://youtu.be/rWmSUd0uxQI
 
 ### For Zalo PC
 
