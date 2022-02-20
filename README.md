@@ -1,10 +1,9 @@
 # ZaDark – Best Dark Theme for Zalo
 
-[![Sourceforge](https://img.shields.io/sourceforge/dt/zadark.svg)](https://sourceforge.net/projects/zadark/)
-[![For Zalo Web](https://img.shields.io/badge/-Chrome%20Extension-34a853?style=flat-square&logo=google-chrome&logoColor=ffffff)](https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob)
-[![For Zalo PC (Windows)](https://img.shields.io/badge/-Windows-0078D6?style=flat-square&logo=windows&logoColor=ffffff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
-[![For Zalo PC (macOS)](https://img.shields.io/badge/-macOS-5b5b5b?style=flat-square&logo=apple&logoColor=ffffff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
-[![ZaDark on YouTube](https://img.shields.io/badge/-YouTube-f30005?style=flat-square&logo=youtube&logoColor=ffffff)](https://www.youtube.com/playlist?list=PLDa_fu5vscWwzGnNFXwxnpDbKJXMN5NG2)
+[![ZaDark-Chrome](https://img.shields.io/chrome-web-store/users/llfhpkkeljlgnjgkholeppfnepmjppob?color=34a853&label=Chrome%20Extension&logo=google-chrome&logoColor=fff)](https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob)
+[![ZaDark-Firefox](https://img.shields.io/amo/users/zadark?color=FF9500&label=Firefox%20Extension&logo=firefox&logoColor=fff)](https://addons.mozilla.org/en-US/firefox/addon/zadark/)
+[![ZaDark-macOS](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/macOS?color=9b9b9b&label=macOS&logo=apple&logoColor=fff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
+[![ZaDark-Windows](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/Windows?color=0078D6&label=Windows&logo=windows&logoColor=fff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
 
 <details>
   <summary>Table of Contents</summary>
@@ -40,7 +39,7 @@
 
 ## About The Project
 
-This extension helps you turn on Dark Theme for Zalo Web, making your eyes feel comfortable when you work, especially at night.
+This extension helps you turn on Dark Theme for Zalo, making your eyes feel comfortable when you work, especially at night.
 
 > (*) Zalo Web https://chat.zalo.me/, Zalo PC https://zalo.me/pc/
 
@@ -145,10 +144,6 @@ yarn dist
 ```
 
 ## Usage
-
-[![For Zalo Web](https://img.shields.io/badge/-Chrome%20Extension-34a853?style=flat-square&logo=google-chrome&logoColor=ffffff)](https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob)
-[![For Zalo PC (Windows)](https://img.shields.io/badge/-Windows-0078D6?style=flat-square&logo=windows&logoColor=ffffff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
-[![For Zalo PC (macOS)](https://img.shields.io/badge/-macOS-5b5b5b?style=flat-square&logo=apple&logoColor=ffffff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
 
 ### For Zalo Web
 
