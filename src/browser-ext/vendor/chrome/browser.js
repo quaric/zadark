@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars, camelcase */
-
 /*
   ZaDark – Best Dark Theme for Zalo
   Chrome Extension

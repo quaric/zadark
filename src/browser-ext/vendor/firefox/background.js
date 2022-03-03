@@ -1,6 +1,6 @@
 /*
   ZaDark – Best Dark Theme for Zalo
-  Chrome Extension
+  Firefox Extension
   Made by NCDAi Studio
 */
 

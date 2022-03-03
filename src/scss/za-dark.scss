@@ -830,6 +830,10 @@ html[data-theme-mode="dark"] {
     .image-show__caption {
       color: var(--neutral-base);
     }
+
+    .friend-profile__addfriend__msg {
+      background: transparent;
+    }
   }
 }
 

@@ -1,16 +1,16 @@
 {
   "manifest_version": 3,
   "name": "ZaDark – Best Dark Theme for Zalo",
-  "version": "3.2",
-  "description": "The best dark theme for your Zalo Web.",
+  "version": "3.3",
+  "description": "The best dark theme for your Zalo.",
+  "author": "NCDAi Studio",
+  "homepage_url": "https://github.com/ncdai3651408/za-dark",
   "icons": {
     "16": "images/icons/za-dark-icon@16.png",
     "32": "images/icons/za-dark-icon@32.png",
     "48": "images/icons/za-dark-icon@48.png",
     "128": "images/icons/za-dark-icon@128.png"
   },
-  "author": "NCDAi Studio",
-  "homepage_url": "https://github.com/ncdai3651408/za-dark",
   "content_scripts": [
     {
       "matches": [
