@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## v3.3
+
+### Fixed
+- `.friend-profile__addfriend__msg`
+
 ## v3.2
 
 ### Added
