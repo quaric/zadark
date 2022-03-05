@@ -11,6 +11,9 @@ All notable changes to this project will be documented in this file.
 - `.overlay__video i`
 - `.zl-avatar`
 
+### Changed
+- ZaDark Docs URL
+
 ## v3.3
 
 > 2022-03-03
