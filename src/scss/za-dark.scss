@@ -725,8 +725,9 @@ html[data-theme-mode="dark"] {
     }
 
     // Avatar
-    .zl-avatar__alphabet {
-      color: #000;
+    .zl-avatar {
+      --white-base: #fff;
+      --neutral-500: #000;
     }
 
     .chat-date .line {
