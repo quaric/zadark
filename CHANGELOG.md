@@ -2,12 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## v3.4
+
+> 2022-03-04
+
+### Fixed
+- `.overlay__video__duration`
+- `.overlay__video i`
+- `.zl-avatar`
+
 ## v3.3
+
+> 2022-03-03
 
 ### Fixed
 - `.friend-profile__addfriend__msg`
 
 ## v3.2
+
+> 2022-02-19
 
 ### Added
 - Firefox Extension
