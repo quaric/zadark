@@ -834,6 +834,18 @@ html[data-theme-mode="dark"] {
     .friend-profile__addfriend__msg {
       background: transparent;
     }
+
+    .overlay__video {
+      &__duration {
+        color: var(--neutral-300);
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+        font-weight: 500;
+      }
+
+      i {
+        color: var(--neutral-base);
+      }
+    }
   }
 }
 
