@@ -45,7 +45,7 @@ This extension helps you turn on Dark Theme for Zalo, making your eyes feel comf
 
 A product from NCDAi Studio.
 
-![ZaDark – Best Dark Theme for Zalo](./screenshot.png)
+![ZaDark – Best Dark Theme for Zalo](./zadark-cover.png)
 
 ### Highlights
 
