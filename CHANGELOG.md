@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## v3.5
+
+> 2022-03-07
+
+### Fixed
+- `.toast`
+
 ## v3.4
 
 > 2022-03-04

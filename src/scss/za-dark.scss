@@ -847,6 +847,15 @@ html[data-theme-mode="dark"] {
         color: var(--neutral-base);
       }
     }
+
+    // Example: You can also view this File on mobile
+    .toast {
+      color: var(--neutral-300);
+      background-color: var(--grey-700);
+      border: 1px solid var(--grey-base);
+      box-shadow: 4px 4px 12px var(--black-500);
+      padding: 16px 24px;
+    }
   }
 }
 
