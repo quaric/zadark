@@ -13,7 +13,7 @@
       <ul>
         <li><a href="#highlights">Highlights</a></li>
         <li><a href="#important-notes">Important Notes</a></li>
-        <li><a href="#grateful-for-1password">Grateful for 1Password</a></li>
+        <li><a href="#awards">Awards</a></li>
       </ul>
     </li>
     <li>
