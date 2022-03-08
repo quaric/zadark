@@ -387,7 +387,8 @@ html[data-theme-mode="dark"] {
     }
 
     .chat-input__content.highlight {
-      border-color: var(--neutral-500);
+      // border-color: var(--neutral-500);
+      border-color: #0068ff;
     }
 
     #ztoolbar div[icon="outline-za-screenshot"] {

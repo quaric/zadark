@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Zalo PC: `.app-lock__main__input`
 
+### Changed
+- `.chat-input__content.highlight`
+
 ## v3.5
 
 > 2022-03-07
