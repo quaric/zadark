@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## v3.6
+
+> 2022-03-08
+
+### Fixed
+- Zalo PC: `.app-lock__main__input`
+
 ## v3.5
 
 > 2022-03-07
