@@ -62,16 +62,23 @@ A product from NCDAi Studio.
 
 - This extension is not an official extension from Zalo.
 - This extension only injects the CSS file to change the color scheme of Zalo without affecting any features and security of Zalo.
+### Awards
 
-<!-- ### ZaDark x 1Password Teams -->
-
-### Grateful for 1Password
+#### Grateful for 1Password
 
 ZaDark is proud to have been accepted by [1Password](https://1password.com/) for participating in the **1Password for Open Source Projects** program (https://github.com/1Password/1password-teams-open-source). Once accepted, contributors will receive a free 1Password Teams membership.
 
-![ZaDark – Best Dark Theme for Zalo](./zadark-and-1password-teams.png)
+![Grateful for 1Password](./zadark-and-1password-teams.png)
 
 Thanks to 1Password for helping teams work more efficiently and securely.
+
+#### Rising Star award by SourceForge
+
+ZaDark has just been recognized with a Rising Star award by SourceForge. This honor is awarded only to select projects that have reached significant milestones in terms of downloads and user engagement from the SourceForge community.
+
+![Rising Star award by SourceForge](sourceforge-rising-star.png)
+
+Thanks to everyone for trusting and using ZaDark!
 
 ## Getting Started
 
