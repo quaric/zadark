@@ -4,4 +4,8 @@
   Made by NCDAi Studio
 */
 
-window.zadark.utils.refreshPageTheme()
+if (window.zadark) {
+  window.zadark.utils.refreshPageTheme()
+} else {
+  window.location.reload()
+}

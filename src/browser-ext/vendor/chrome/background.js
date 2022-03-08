@@ -10,6 +10,10 @@ chrome.runtime.onInstalled.addListener((details) => {
   }
 
   if (details.reason === 'update') {
-    chrome.tabs.create({ url: 'changelog.html' })
+    chrome.storage.sync.get({ isReceiveUpdateNoti: true }, ({ isReceiveUpdateNoti }) => {
+      if (isReceiveUpdateNoti) {
+        chrome.tabs.create({ url: 'changelog.html' })
+      }
+    })
   }
 })

@@ -12,3 +12,16 @@ $('#ext-links-home').on('click', () => {
 })
 
 window.zadark.utils.refreshPageTheme()
+
+// Receive update notifications
+
+const checkboxReceiveUpdateNotiElName = '#checkbox-receive-update-noti'
+
+window.zadark.browser.getExtensionSettings().then(({ isReceiveUpdateNoti }) => {
+  $(checkboxReceiveUpdateNotiElName).prop('checked', isReceiveUpdateNoti)
+})
+
+$(checkboxReceiveUpdateNotiElName).on('change', () => {
+  const isReceiveUpdateNoti = $(checkboxReceiveUpdateNotiElName).is(':checked')
+  window.zadark.browser.saveExtensionSettings({ isReceiveUpdateNoti })
+})

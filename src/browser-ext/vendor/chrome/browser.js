@@ -23,7 +23,8 @@
         chrome.storage.sync.get({
           themeMode: 'single',
           userTheme: 'dark_dimmed',
-          darkTheme: 'dark_dimmed'
+          darkTheme: 'dark_dimmed',
+          isReceiveUpdateNoti: true
         }, (items) => {
           resolve(items)
         })

@@ -387,7 +387,8 @@ html[data-theme-mode="dark"] {
     }
 
     .chat-input__content.highlight {
-      border-color: var(--neutral-500);
+      // border-color: var(--neutral-500);
+      border-color: #0068ff;
     }
 
     #ztoolbar div[icon="outline-za-screenshot"] {
@@ -591,6 +592,9 @@ html[data-theme-mode="dark"] {
     }
 
     .tipv2-content {
+      color: var(--neutral-300);
+    }
+    .tipv2 .tip-close-button {
       color: var(--neutral-300);
     }
 
@@ -855,6 +859,32 @@ html[data-theme-mode="dark"] {
       border: 1px solid var(--grey-base);
       box-shadow: 4px 4px 12px var(--black-500);
       padding: 16px 24px;
+    }
+
+    // App Lock
+
+    .app-lock__main__input {
+      display: flex;
+      align-items: center;
+
+      input {
+        height: 40px;
+        padding: 0px 16px;
+        border-right: 0;
+        color: var(--neutral-base);
+      }
+
+      a {
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px 16px;
+
+        border: 1px solid var(--blue-300);
+        background: var(--gradient-blue);
+        color: var(--neutral-300);
+      }
     }
   }
 }

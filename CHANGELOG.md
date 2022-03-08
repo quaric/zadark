@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## v3.6
+
+> 2022-03-08
+
+### Added
+- Browser Extension: Allows users to Enable/Disable notifications when ZaDark updates
+
+### Changed
+- `.chat-input__content.highlight`
+
+### Fixed
+- Zalo PC: `.app-lock__main__input`
+- `.tipv2 .tip-close-button`
+
 ## v3.5
 
 > 2022-03-07

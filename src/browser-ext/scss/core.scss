@@ -201,6 +201,9 @@ ul {
 .mr-2 {
   margin-right: 8px;
 }
+.mr-4 {
+  margin-right: 16px;
+}
 
 .mb-2 {
   margin-bottom: 8px;
@@ -227,6 +230,10 @@ ul {
 
 .text-zadark {
   font-family: "Bubblegum Sans", cursive;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 // END: Utils
@@ -376,6 +383,56 @@ header.main-header {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+.form-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  &-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--grey-base);
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+
+    border-radius: 50rem;
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      -webkit-transition: 0.25s;
+      transition: 0.25s;
+      border-radius: 50rem;
+    }
+  }
+
+  input:checked + .form-switch-slider {
+    background-color: #3989ff;
+  }
+
+  input:checked + .form-switch-slider:before {
+    -webkit-transform: translateX(24px);
+    -ms-transform: translateX(24px);
+    transform: translateX(24px);
+  }
 }
 
 .panel {

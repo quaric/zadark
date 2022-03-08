@@ -10,6 +10,10 @@ browser.runtime.onInstalled.addListener((details) => {
   }
 
   if (details.reason === 'update') {
-    browser.tabs.create({ url: 'changelog.html' })
+    browser.storage.sync.get({ isReceiveUpdateNoti: true }, ({ isReceiveUpdateNoti }) => {
+      if (isReceiveUpdateNoti) {
+        browser.tabs.create({ url: 'changelog.html' })
+      }
+    })
   }
 })
