@@ -44,7 +44,7 @@
   </header>
 
   <main class="p-4">
-    <h1 class="text-2xl mb-4 font-semibold">What's new in ZaDark <span id="ext-version2"></span></h1>
+    <h1 class="text-2xl mb-4 font-semibold">What's new in ZaDark <span id="ext-version2"></span>?</h1>
 
     <div class="panel">
       <div class="panel-body">
@@ -55,12 +55,26 @@
         </p>
 
         <ul>
+          <li>Added: Allows users to Enable/Disable notifications when ZaDark updates (Browser Extension)</li>
+          <li>Changed: <code>.chat-input__content.highlight</code></li>
           <li>Fixed: <code>.app-lock__main__input</code></li>
           <li>Fixed: <code>.tipv2 .tip-close-button</code></li>
-          <li>Changed: <code>.chat-input__content.highlight</code></li>
         </ul>
 
         <p>Thank you for using!</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-body">
+        <div class="flex items-center">
+          <label class="mr-4 cursor-pointer" for="checkbox-receive-update-noti">Receive notifications when ZaDark updates</label>
+
+          <label class="form-switch">
+            <input type="checkbox" id="checkbox-receive-update-noti">
+            <span class="form-switch-slider"></span>
+          </label>
+        </div>
       </div>
     </div>
   </main>

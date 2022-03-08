@@ -191,6 +191,8 @@ yarn dist
     - [x] Welcome page
     - [x] Changelog page
     - [x] Sync theme with system
+    - [x] Allows users to Enable/Disable notifications when ZaDark updates
+    - [ ] Custom Fonts
     - [ ] More themes
 
 ### For Zalo PC
