@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Zalo PC: `.app-lock__main__input`
+- `.tipv2 .tip-close-button`
 
 ### Changed
 - `.chat-input__content.highlight`
