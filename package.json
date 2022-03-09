@@ -1,7 +1,7 @@
 {
   "name": "za-dark",
   "description": "Best Dark Theme for Zalo",
-  "version": "3.6",
+  "version": "3.7",
   "repository": "git@github.com:ncdai3651408/za-dark.git",
   "author": "Dai Nguyen <ncdai3651408@gmail.com>",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "watch": "gulp watch",
     "build": "gulp build",
     "dist": "gulp dist",
-    "pc:dev": "NODE_ENV=development nodemon build/pc",
+    "pc:dev": "NODE_ENV=development node build/pc",
     "pc:start": "NODE_ENV=production node build/pc"
   },
   "devDependencies": {

@@ -46,7 +46,7 @@ This extension helps you turn on Dark Theme for Zalo, making your eyes feel comf
 
 A product from NCDAi Studio.
 
-![ZaDark – Best Dark Theme for Zalo](./zadark-cover.png)
+![ZaDark – Best Dark Theme for Zalo](./assets/images/zadark-cover.png)
 
 ### Highlights
 
@@ -68,7 +68,7 @@ A product from NCDAi Studio.
 
 ZaDark is proud to have been accepted by [1Password](https://1password.com/) for participating in the **1Password for Open Source Projects** program (https://github.com/1Password/1password-teams-open-source). Once accepted, contributors will receive a free 1Password Teams membership.
 
-![Grateful for 1Password](./zadark-and-1password-teams.png)
+![Grateful for 1Password](./assets/images/zadark-and-1password-teams.png)
 
 Thanks to 1Password for helping teams work more efficiently and securely.
 
@@ -76,7 +76,7 @@ Thanks to 1Password for helping teams work more efficiently and securely.
 
 ZaDark has just been recognized with a Rising Star award by SourceForge. This honor is awarded only to select projects that have reached significant milestones in terms of downloads and user engagement from the SourceForge community.
 
-![Rising Star award by SourceForge](sourceforge-rising-star.png)
+![Rising Star award by SourceForge](./assets/images/sourceforge-rising-star.png)
 
 Thanks to everyone for trusting and using ZaDark!
 

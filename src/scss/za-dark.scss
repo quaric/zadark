@@ -159,6 +159,8 @@
   --card-me-btn-bg: var(--blue-650);
   --card-me-btn-border: var(--blue-600);
   --message-view-gradient: linear-gradient(to top, #000, #121212);
+
+  --brand-base: #0068ff;
 }
 
 @mixin darkDimmed() {
@@ -224,6 +226,10 @@ html[data-theme-mode="dark"] {
     background: var(--grey-300);
   }
 
+  ::selection {
+    background: var(--brand-base);
+  }
+
   body.za-dark {
     background: var(--white-300);
     -webkit-font-smoothing: auto;
@@ -253,7 +259,7 @@ html[data-theme-mode="dark"] {
       &__header {
         align-items: center;
         color: #fff;
-        background-color: #0068ff;
+        background-color: var(--brand-base);
       }
 
       &__section {
@@ -388,11 +394,7 @@ html[data-theme-mode="dark"] {
 
     .chat-input__content.highlight {
       // border-color: var(--neutral-500);
-      border-color: #0068ff;
-    }
-
-    #ztoolbar div[icon="outline-za-screenshot"] {
-      display: none;
+      border-color: var(--brand-base);
     }
 
     .chat-message {
@@ -886,6 +888,11 @@ html[data-theme-mode="dark"] {
         color: var(--neutral-300);
       }
     }
+
+    .chat-input__img-preview__thumb__title {
+      color: var(--neutral-300);
+      background-color: var(--black-400);
+    }
   }
 }
 
@@ -898,6 +905,12 @@ body.za-dark {
       height: auto;
       padding-top: 16px;
       padding-bottom: 16px;
+    }
+  }
+
+  &.za-dark-browser-ext {
+    #ztoolbar div[icon="outline-za-screenshot"] {
+      display: none;
     }
   }
 }
