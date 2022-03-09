@@ -52,7 +52,6 @@ const buildBrowserExt = (browser) => {
     src(`./src/browser-ext/vendor/${browser}/browser.js`).pipe(dest(`./build/${browser}/js`)),
     src(`./src/browser-ext/vendor/${browser}/background.js`).pipe(dest(`./build/${browser}/js`)),
 
-    src(`./src/browser-ext/vendor/${browser}/images/**/*`).pipe(dest(`./build/${browser}/images`)),
     src(`./src/browser-ext/vendor/${browser}/welcome.html`).pipe(dest(`./build/${browser}`)),
 
     src('./src/browser-ext/libs/**/*').pipe(dest(`./build/${browser}/libs`)),
