@@ -893,6 +893,11 @@ html[data-theme-mode="dark"] {
       color: var(--neutral-300);
       background-color: var(--black-400);
     }
+
+    #scroll-vertical > div {
+      background-color: var(--neutral-500) !important;
+      opacity: 0.5;
+    }
   }
 }
 

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## v3.8
+
+> ...
+
+### Fixed
+- `#scroll-vertical > div`
+
 ## v3.7
 
 > 2022-03-09
