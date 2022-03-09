@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## v3.7
+
+> 2022-03-09
+
+### Fixed
+- `.chat-input__img-preview__thumb__title`
+- `.za-screenshot`
+- `::selection` (background)
+
 ## v3.6
 
 > 2022-03-08
