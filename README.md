@@ -111,6 +111,9 @@ Thanks to everyone for trusting and using ZaDark!
     #   firefox/
     #     manifest.json
     #     ...
+    #   opera/
+    #     manifest.json
+    #     ...
     #   pc/
     #     index.js
     #     ...
@@ -145,7 +148,7 @@ yarn dist
 # ➜ Output:
 # dist/
 #   chrome/
-#     ZaDark-Chrome-x.x.zip
+#     ZaDark-Chrome-3.1.zip
 #     ZaDark-Chrome-3.2.zip
 #     ZaDark-Chrome-3.3.zip
 #     ...
@@ -153,6 +156,11 @@ yarn dist
 #     ZaDark-Firefox-3.1.zip
 #     ZaDark-Firefox-3.2.zip
 #     ZaDark-Firefox-3.3.zip
+#     ...
+#   opera/
+#     ZaDark-Opera-3.1.zip
+#     ZaDark-Opera-3.2.zip
+#     ZaDark-Opera-3.3.zip
 #     ...
 #   macos/
 #     ZaDark-macOS-3.1.zip
