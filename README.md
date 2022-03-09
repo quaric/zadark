@@ -127,6 +127,11 @@ Thanks to everyone for trusting and using ZaDark!
   - Step 1: Open `about:debugging#/runtime/this-firefox`
   - Step 2: Click `Load Temporary Add-on...`
   - Step 3: Choose file `build/firefox/manifest.json`
+- Opera Extension
+  - Step 1: Open `opera://extensions/`
+  - Step 2: Turn on `Developer Mode`
+  - Step 3: Click `Load unpacked`
+  - Step 4: Choose folder `build/opera/`
 - macOS & Windows
   ```bash
   yarn run pc:dev
@@ -165,12 +170,15 @@ yarn dist
 
 ### For Zalo Web
 
-- Chromium Based Browsers (Google Chrome, Microsoft Edge, Opera,...)
+- Google Chrome
   - Chrome Web Store: https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob
   - Tutorial: https://youtu.be/T8r1k0Rhleo
 - Firefox
   - Firefox Browser Add-ons: https://addons.mozilla.org/en-US/firefox/addon/zadark/
   - Tutorial: https://youtu.be/rWmSUd0uxQI
+- Opera
+  - Opera Add-ons: coming soon ...
+  - Tutorial: coming soon ...
 
 ### For Zalo PC
 
@@ -185,8 +193,10 @@ yarn dist
 
 ### For Zalo Web
   - [ ] Browsers
-    - [x] Chromium Based Browsers: Google Chrome, Microsoft Edge, Opera,...
+    - [x] Google Chrome
+    - [ ] Microsoft Edge
     - [x] Firefox
+    - [x] Opera
     - [ ] Safari
   - [x] Basic features
     - [x] Themes

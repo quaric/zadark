@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 
 > 2022-03-09
 
+### Added
+- Opera Extension
+
 ### Fixed
 - `.chat-input__img-preview__thumb__title`
 - `.za-screenshot`
