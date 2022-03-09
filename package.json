@@ -9,7 +9,7 @@
     "watch": "gulp watch",
     "build": "gulp build",
     "dist": "gulp dist",
-    "pc:dev": "NODE_ENV=development nodemon build/pc",
+    "pc:dev": "NODE_ENV=development node build/pc",
     "pc:start": "NODE_ENV=production node build/pc"
   },
   "devDependencies": {
