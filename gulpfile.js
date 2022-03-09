@@ -8,11 +8,13 @@ const { compile } = require('nexe')
 
 const chromeManifest = require('./src/browser-ext/vendor/chrome/manifest.json')
 const firefoxManifest = require('./src/browser-ext/vendor/firefox/manifest.json')
+const operaManifest = require('./src/browser-ext/vendor/opera/manifest.json')
 const pcPackageJSON = require('./src/pc/package.json')
 
 const FILE_NAME = {
   CHROME: `ZaDark-Chrome-${chromeManifest.version}`,
   FIREFOX: `ZaDark-Firefox-${firefoxManifest.version}`,
+  OPERA: `ZaDark-Opera-${operaManifest.version}`,
   MACOS: `ZaDark-macOS-${pcPackageJSON.version}`,
   WINDOWS: `ZaDark-Windows-${pcPackageJSON.version}`
 }
@@ -30,52 +32,47 @@ const cleanDist = () => {
 const buildCoreStyles = () => {
   return src('./src/scss/**/*.scss')
     .pipe(yupSass({ outputStyle: 'compressed' }).on('error', yupSass.logError))
-    .pipe(dest('./build/firefox/css'))
     .pipe(dest('./build/chrome/css'))
+    .pipe(dest('./build/firefox/css'))
+    .pipe(dest('./build/opera/css'))
     .pipe(dest('./build/pc/assets/css'))
 }
 
 const buildBrowserExtStyles = () => {
   return src('./src/browser-ext/scss/**/*.scss')
     .pipe(yupSass({ outputStyle: 'compressed' }).on('error', yupSass.logError))
-    .pipe(dest('./build/firefox/css'))
     .pipe(dest('./build/chrome/css'))
+    .pipe(dest('./build/firefox/css'))
+    .pipe(dest('./build/opera/css'))
+}
+
+const buildBrowserExt = (browser) => {
+  return mergeStream(
+    src(`./src/browser-ext/vendor/${browser}/manifest.json`).pipe(dest(`./build/${browser}`)),
+    src(`./src/browser-ext/vendor/${browser}/browser.js`).pipe(dest(`./build/${browser}/js`)),
+    src(`./src/browser-ext/vendor/${browser}/background.js`).pipe(dest(`./build/${browser}/js`)),
+
+    src(`./src/browser-ext/vendor/${browser}/welcome.html`).pipe(dest(`./build/${browser}`)),
+
+    src('./src/browser-ext/libs/**/*').pipe(dest(`./build/${browser}/libs`)),
+    src('./src/browser-ext/js/**/*').pipe(dest(`./build/${browser}/js`)),
+    src('./src/browser-ext/css/**/*').pipe(dest(`./build/${browser}/css`)),
+    src('./src/browser-ext/images/**/*').pipe(dest(`./build/${browser}/images`)),
+
+    src('./src/browser-ext/*.html').pipe(dest(`./build/${browser}`))
+  )
 }
 
 const buildChrome = () => {
-  return mergeStream(
-    src('./src/browser-ext/vendor/chrome/manifest.json').pipe(dest('./build/chrome')),
-    src('./src/browser-ext/vendor/chrome/browser.js').pipe(dest('./build/chrome/js')),
-    src('./src/browser-ext/vendor/chrome/background.js').pipe(dest('./build/chrome/js')),
-
-    src('./src/browser-ext/vendor/chrome/images/**/*').pipe(dest('./build/chrome/images')),
-    src('./src/browser-ext/vendor/chrome/welcome.html').pipe(dest('./build/chrome')),
-
-    src('./src/browser-ext/libs/**/*').pipe(dest('./build/chrome/libs')),
-    src('./src/browser-ext/js/**/*').pipe(dest('./build/chrome/js')),
-    src('./src/browser-ext/css/**/*').pipe(dest('./build/chrome/css')),
-    src('./src/browser-ext/images/**/*').pipe(dest('./build/chrome/images')),
-
-    src('./src/browser-ext/*.html').pipe(dest('./build/chrome'))
-  )
+  return buildBrowserExt('chrome')
 }
 
 const buildFirefox = () => {
-  return mergeStream(
-    src('./src/browser-ext/vendor/firefox/manifest.json').pipe(dest('./build/firefox')),
-    src('./src/browser-ext/vendor/firefox/browser.js').pipe(dest('./build/firefox/js')),
-    src('./src/browser-ext/vendor/firefox/background.js').pipe(dest('./build/firefox/js')),
+  return buildBrowserExt('firefox')
+}
 
-    src('./src/browser-ext/vendor/firefox/images/**/*').pipe(dest('./build/firefox/images')),
-    src('./src/browser-ext/vendor/firefox/welcome.html').pipe(dest('./build/firefox')),
-
-    src('./src/browser-ext/libs/**/*').pipe(dest('./build/firefox/libs')),
-    src('./src/browser-ext/js/**/*').pipe(dest('./build/firefox/js')),
-    src('./src/browser-ext/css/**/*').pipe(dest('./build/firefox/css')),
-    src('./src/browser-ext/images/**/*').pipe(dest('./build/firefox/images')),
-
-    src('./src/browser-ext/*.html').pipe(dest('./build/firefox'))
-  )
+const buildOpera = () => {
+  return buildBrowserExt('opera')
 }
 
 const buildPC = () => {
@@ -144,6 +141,12 @@ const firefoxDist = () => {
     .pipe(dest('./dist/firefox'))
 }
 
+const operaDist = () => {
+  return src('./build/opera/**')
+    .pipe(gulpZip(`${FILE_NAME.OPERA}.zip`))
+    .pipe(dest('./dist/opera'))
+}
+
 const macOSDist = series(compileMacOS, zipMacOS)
 const windowsDist = series(compileWindows, zipWindows)
 
@@ -156,6 +159,7 @@ const buildAll = series(
     buildBrowserExtStyles,
     buildChrome,
     buildFirefox,
+    buildOpera,
     buildPC
   )
 )
@@ -166,6 +170,7 @@ const distAll = series(
   parallel(
     chromeDist,
     firefoxDist,
+    operaDist,
     macOSDist,
     windowsDist
   )
