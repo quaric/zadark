@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## v3.8
+
+> 2022-03-10
+
+### Added
+- Add warning: "TO BE SAFE, before installing make sure you have downloaded this program from: https://sourceforge.net/projects/zadark/files/ZaDarkPC/" (PC only)
+
+### Fixed
+- `#scroll-vertical > div`
+- `.file-icon__ext-text`
+- `.conv-message.progress-bar .progress-track`
+- `.file-progress__track`
+
 ## v3.7
 
 > 2022-03-09

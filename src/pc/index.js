@@ -26,9 +26,12 @@ const version = packageJSON.version;
 
     log(chalk.magentaBright('[Important Notes]'))
     log('')
-    log('1. Please exit Zalo before installing/uninstalling Dark Theme.')
-    log('2. Please uninstall Dark Theme before installing Zalo updates.')
-    log('3. Please uninstall Dark Theme when Zalo encounters an error.')
+    log(chalk.redBright('1. TO BE SAFE, before installing make sure you have downloaded this program from'))
+    log('  ', chalk.underline.redBright('https://sourceforge.net/projects/zadark/files/ZaDarkPC/'))
+    log('')
+    log('2. Please exit Zalo before installing/uninstalling Dark Theme.')
+    log('3. Please uninstall Dark Theme before installing Zalo updates.')
+    log('4. Please uninstall Dark Theme when Zalo encounters an error.')
     log('')
 
     prompt(chalk.yellowBright('> Press', chalk.bold('[enter]'), 'to continue ...'))

@@ -488,10 +488,24 @@ html[data-theme-mode="dark"] {
         color: var(--neutral-300);
         opacity: 0.5;
       }
+
+      // .card-send-time__sendTime
+      // .card-send-status
     }
 
     .chat-message {
       line-height: 1.5;
+    }
+
+    .file-message__container {
+      .file-progress-no {
+        color: var(--neutral-300);
+        opacity: 0.5;
+      }
+
+      .file-progress__track {
+        background-color: var(--grey-600);
+      }
     }
 
     .card {
@@ -528,11 +542,6 @@ html[data-theme-mode="dark"] {
           .file-message__actions-icon {
             border-color: var(--card-me-btn-border);
             background-color: var(--card-me-btn-bg);
-          }
-
-          .file-progress-no {
-            color: var(--neutral-300);
-            opacity: 0.5;
           }
 
           .file-progress__track {
@@ -620,6 +629,14 @@ html[data-theme-mode="dark"] {
     .conv-item {
       &:hover {
         background-color: var(--grey-700);
+      }
+
+      .conv-message {
+        &.progress-bar {
+          .progress-track {
+            background-color: var(--grey-400) !important;
+          }
+        }
       }
     }
 
@@ -892,6 +909,15 @@ html[data-theme-mode="dark"] {
     .chat-input__img-preview__thumb__title {
       color: var(--neutral-300);
       background-color: var(--black-400);
+    }
+
+    #scroll-vertical > div {
+      background-color: var(--neutral-500) !important;
+      opacity: 0.5;
+    }
+
+    .file-icon__ext-text {
+      color: #fff;
     }
   }
 }
