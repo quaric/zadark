@@ -1,9 +1,13 @@
-# ZaDark – Best Dark Theme for Zalo
+<div align="center">
+  <img src=".github/za-dark-icon@1024w.png" width="128" alt="ZaDark Icon" />
 
-[![ZaDark-Chrome](https://img.shields.io/chrome-web-store/users/llfhpkkeljlgnjgkholeppfnepmjppob?color=34a853&label=Chrome%20Extension&logo=google-chrome&logoColor=fff)](https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob)
-[![ZaDark-Firefox](https://img.shields.io/amo/users/zadark?color=FF9500&label=Firefox%20Extension&logo=firefox&logoColor=fff)](https://addons.mozilla.org/en-US/firefox/addon/zadark/)
-[![ZaDark-macOS](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/macOS?color=9b9b9b&label=macOS&logo=apple&logoColor=fff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
-[![ZaDark-Windows](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/Windows?color=0078D6&label=Windows&logo=windows&logoColor=fff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
+  <h1>ZaDark – Best Dark Theme for Zalo</h1>
+
+  [![ZaDark-Chrome](https://img.shields.io/chrome-web-store/users/llfhpkkeljlgnjgkholeppfnepmjppob?color=34a853&label=Chrome%20Extension&logo=google-chrome&logoColor=fff)](https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob)
+  [![ZaDark-Firefox](https://img.shields.io/amo/users/zadark?color=FF9500&label=Firefox%20Extension&logo=firefox&logoColor=fff)](https://addons.mozilla.org/en-US/firefox/addon/zadark/)
+  [![ZaDark-macOS](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/macOS?color=9b9b9b&label=macOS&logo=apple&logoColor=fff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
+  [![ZaDark-Windows](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/Windows?color=0078D6&label=Windows&logo=windows&logoColor=fff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
+</div>
 
 <details>
   <summary>Table of Contents</summary>
@@ -42,11 +46,10 @@
 
 This extension helps you turn on Dark Theme for Zalo, making your eyes feel comfortable when you work, especially at night.
 
-> (*) Zalo Web https://chat.zalo.me/, Zalo PC https://zalo.me/pc/
+- Zalo Web: https://chat.zalo.me/
+- Zalo PC: https://zalo.me/pc/
 
-A product from NCDAi Studio.
-
-![ZaDark – Best Dark Theme for Zalo](./assets/images/zadark-cover.png)
+> A product from NCDAi Studio.
 
 ### Highlights
 
@@ -68,7 +71,7 @@ A product from NCDAi Studio.
 
 ZaDark is proud to have been accepted by [1Password](https://1password.com/) for participating in the **1Password for Open Source Projects** program (https://github.com/1Password/1password-teams-open-source). Once accepted, contributors will receive a free 1Password Teams membership.
 
-![Grateful for 1Password](./assets/images/zadark-and-1password-teams.png)
+![Grateful for 1Password](.github/zadark-and-1password-teams.png)
 
 Thanks to 1Password for helping teams work more efficiently and securely.
 
@@ -76,7 +79,7 @@ Thanks to 1Password for helping teams work more efficiently and securely.
 
 ZaDark has just been recognized with a Rising Star award by SourceForge. This honor is awarded only to select projects that have reached significant milestones in terms of downloads and user engagement from the SourceForge community.
 
-![Rising Star award by SourceForge](./assets/images/sourceforge-rising-star.png)
+![Rising Star award by SourceForge](.github/sourceforge-rising-star.png)
 
 Thanks to everyone for trusting and using ZaDark!
 
