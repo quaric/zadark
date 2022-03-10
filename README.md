@@ -257,7 +257,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Hi, I'm Nguyễn Chánh Đại
+Hi, I'm Nguyễn Chánh Đại - Founder of ZaDark!
   - My Facebook: [@iamncdai](https://www.facebook.com/iamncdai/)
   - My LinkedIn: [@iamncdai](https://www.linkedin.com/in/iamncdai/)
   - My Email: [ncdai@penphy.edu.vn](mailto:ncdai@penphy.edu.vn?subject=Mail%20from%20ZaDark)
