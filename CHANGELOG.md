@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## pc-v4.0
+
+> 2022-03-11
+
+### Added
+- Zalo PC: Sync with System (Zalo theme will match your system settings)
+- Zalo PC: Changelog (https://github.com/ncdai3651408/za-dark/blob/main/CHANGELOG.md)
+
 ## v3.8
 
 > 2022-03-10
