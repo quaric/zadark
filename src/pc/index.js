@@ -9,20 +9,25 @@ const chalk = require('chalk')
 const zaDarkPC = require('./za-dark-pc')
 const packageJSON = require('./package.json')
 
-const { log, logError } = require('./utils')
+const { log, logError, open } = require('./utils')
 
 const platform = os.platform()
-const version = packageJSON.version;
+const version = packageJSON.version
+
+const renderHeader = () => {
+  log('')
+  log(chalk.blueBright.bold('ZaDark – Best Dark Theme for Zalo'))
+  log(chalk.blueBright('Version :', `${platform === 'darwin' ? 'macOS' : 'Windows'}-${version}`))
+  log(chalk.blueBright('GitHub :', chalk.underline('https://github.com/ncdai3651408/za-dark')))
+  log('')
+}
 
 (async () => {
   try {
     const zaloResDirList = zaDarkPC.getDefaultZaloResDirList()
 
-    log('')
-    log(chalk.blueBright.bold('ZaDark – Best Dark Theme for Zalo'))
-    log(chalk.blueBright('Version :', `${platform === 'darwin' ? 'macOS' : 'Windows'}-${version}`))
-    log(chalk.blueBright('GitHub : https://github.com/ncdai3651408/za-dark'))
-    log('')
+    console.clear()
+    renderHeader()
 
     log(chalk.magentaBright('[Important Notes]'))
     log('')
@@ -35,7 +40,10 @@ const version = packageJSON.version;
     log('')
 
     prompt(chalk.yellowBright('> Press', chalk.bold('[enter]'), 'to continue ...'))
-    log('')
+    // log('')
+
+    console.clear()
+    renderHeader()
 
     log(chalk.magentaBright('[Features]'))
     log('')
@@ -44,13 +52,16 @@ const version = packageJSON.version;
     log('3. Uninstall theme')
     log('')
 
-    log('4. Contact')
-    log('5. Exit')
+    log('4. Changelog')
+    log('5. Contact')
+    log('6. Exit')
     log('')
 
     const selected = prompt(chalk.yellowBright('> Select the appropriate number', chalk.bold('[1-5]'), 'then', chalk.bold('[enter]'), ': '))
+    // log('')
 
-    log('')
+    console.clear()
+    renderHeader()
 
     switch (selected) {
       case '1': // Dark default
@@ -63,10 +74,17 @@ const version = packageJSON.version;
 
         log(chalk.magentaBright(`[Install Dark Theme (${darkThemeLabel[darkTheme]})]`))
 
+        log('')
+        log('Do you want to enable "Sync with system"?')
+        log('Once enabled, Zalo theme will match your system settings.')
+        log('')
+
+        const isSyncWithSystem = prompt(chalk.yellowBright('> Press', chalk.bold('[Y]'), 'to enable,', chalk.bold('[enter]'), 'to skip : ')).toUpperCase() === 'Y'
+
         for (const zaloResDir of zaloResDirList) {
           log('')
           log(chalk('>> Installing at', chalk.bold(zaloResDir)))
-          await zaDarkPC.installDarkTheme(zaloResDir, darkTheme)
+          await zaDarkPC.installDarkTheme(zaloResDir, darkTheme, isSyncWithSystem)
         }
 
         log('')
@@ -91,8 +109,15 @@ const version = packageJSON.version;
       }
 
       case '4': {
+        log(chalk.magentaBright('[Changelog]'))
+        log('>> Opening', chalk.underline('https://github.com/ncdai3651408/za-dark/blob/main/CHANGELOG.md'))
+        open('https://github.com/ncdai3651408/za-dark/blob/main/CHANGELOG.md')
+        break
+      }
+
+      case '5': {
         log(chalk.magentaBright('[Contact]'))
-        log('- Email :', chalk.bold('ncdai+zadarkpc@penphy.edu.vn'))
+        log('- Email :', chalk.bold('ncdai@penphy.edu.vn'))
         log('- Messenger :', chalk.bold('m.me/iamncdai'))
         break
       }

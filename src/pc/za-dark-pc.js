@@ -34,7 +34,7 @@ const getDefaultZaloResDirList = () => {
   return resources.sort()
 }
 
-const writeIndexFile = (zaloDir, { darkTheme }) => {
+const writeIndexFile = (zaloDir, { darkTheme, isSyncWithSystem }) => {
   const src = 'pc-dist/index.html'
   const srcPath = path.join(zaloDir, `app/${src}`)
 
@@ -67,6 +67,17 @@ const writeIndexFile = (zaloDir, { darkTheme }) => {
     )
   }
 
+  if (isSyncWithSystem) {
+    // Required script
+    const zaDarkSWSScript = root.querySelectorAll('script[src="za-dark-sws.js"]')
+    if (!zaDarkSWSScript.length) {
+      bodyElement.insertAdjacentHTML(
+        'beforeend',
+        '<script src="za-dark-sws.js"></script>'
+      )
+    }
+  }
+
   // Required themeAttributes
   htmlElement.setAttribute('data-theme-mode', 'dark')
   htmlElement.setAttribute('data-dark-theme', darkTheme)
@@ -95,7 +106,7 @@ const copyAssetFile = (zaloDir, { dest, src }) => {
   logDebug('- copyAssetFile', src, '➜', destPath)
 }
 
-const installDarkTheme = async (zaloDir, darkTheme = 'dark') => {
+const installDarkTheme = async (zaloDir, darkTheme = 'dark', isSyncWithSystem = false) => {
   if (!fs.existsSync(zaloDir)) {
     throw new Error(zaloDir + ' doesn\'t exist.')
   }
@@ -130,10 +141,27 @@ const installDarkTheme = async (zaloDir, darkTheme = 'dark') => {
     dest: 'pc-dist/za-dark.css'
   })
 
-  // Add "themeAttributes, classNames, font, stylesheet" to "resources/app/pc-dist/index.html"
-  writeIndexFile(zaloDir, { darkTheme })
+  if (isSyncWithSystem) {
+    // Copy assets "za-dark-sws.js" to "resources/app/pc-dist"
+    copyAssetFile(zaloDir, {
+      src: 'js/za-dark-sws.js',
+      dest: 'pc-dist/za-dark-sws.js'
+    })
+  }
 
-  log(chalk.green('- Done.'))
+  // Add "themeAttributes, classNames, font, stylesheet" to "resources/app/pc-dist/index.html"
+  writeIndexFile(zaloDir, { darkTheme, isSyncWithSystem })
+
+  const darkThemeLabel = {
+    dark: 'Dark default',
+    dark_dimmed: 'Dark dimmed'
+  }
+
+  log(chalk.green(`- Installed "${darkThemeLabel[darkTheme]}".`))
+
+  if (isSyncWithSystem) {
+    log(chalk.green('- Enabled "Sync with system".'))
+  }
 }
 
 const uninstallDarkTheme = async (zaloDir) => {
@@ -152,7 +180,7 @@ const uninstallDarkTheme = async (zaloDir) => {
     logDebug('- deleteFile', appAsarBakPath)
   }
 
-  log(chalk.green('- Done.'))
+  log(chalk.green('- Uninstalled.'))
 }
 
 module.exports = {

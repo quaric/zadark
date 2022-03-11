@@ -233,8 +233,8 @@ yarn dist
     - [x] Unsintall theme
   - [ ] Advanced features
     - [ ] Check for updates
-    - [ ] Changelog
-    - [ ] Sync theme with system
+    - [x] Changelog
+    - [x] Sync theme with system
     - [ ] No need to reinstall the theme when Zalo updates
     - [ ] GUI (Graphical User Interface)
     - [ ] More themes
