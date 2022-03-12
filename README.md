@@ -59,7 +59,7 @@ This extension helps you turn on Dark Theme for Zalo, making your eyes feel comf
 - Allow customization according to your needs:
     + Themes: Light, Dark and Dark dimmed.
     + Single Theme: Zalo will use your selected theme.
-    + Sync With System: Zalo theme will match your system settings (Browser Extension  only).
+    + Sync With System: Zalo theme will match your system settings.
 
 ### Important Notes
 
