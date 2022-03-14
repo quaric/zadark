@@ -188,8 +188,8 @@ yarn dist
   - Firefox Browser Add-ons: https://addons.mozilla.org/en-US/firefox/addon/zadark/
   - Tutorial: https://youtu.be/rWmSUd0uxQI
 - Opera
-  - Opera Add-ons: coming soon ...
-  - Tutorial: coming soon ...
+  - Opera Add-ons: https://addons.opera.com/en/extensions/details/zadark-best-dark-theme-for-zalo/
+  - Tutorial: https://youtu.be/fO2ahv2Ya4g
 
 ### For Zalo PC
 
