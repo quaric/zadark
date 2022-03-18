@@ -13,11 +13,10 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">About</a>
       <ul>
         <li><a href="#highlights">Highlights</a></li>
         <li><a href="#important-notes">Important Notes</a></li>
-        <li><a href="#awards">Awards</a></li>
       </ul>
     </li>
     <li>
@@ -38,50 +37,33 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#awards">Awards</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
-## About The Project
+## About
 
-This extension helps you turn on Dark Theme for Zalo, making your eyes feel comfortable when you work, especially at night.
-
-- Zalo Web: https://chat.zalo.me/
-- Zalo PC: https://zalo.me/pc/
+ZaDark is an extension for Browser and PC that helps you turn on Dark Theme for Zalo (https://zalo.me), making your eyes feel comfortable when you work, especially at night.
 
 > A product from NCDAi Studio.
 
 ### Highlights
 
-- Multi-platform support: Zalo Web and Zalo PC (macOS, Windows).
+- Multi-platform support:
+  - Zalo Web: Chrome, Firefox, Opera, Edge.
+  - Zalo PC: macOS, Windows.
 - Nice colors, good contrast.
-- Safety and Transparency (Open Source: https://github.com/ncdai3651408/za-dark).
+- Safety and Transparency (Open Source: https://j2c.cc/zadark-github).
 - Allow customization according to your needs:
-    + Themes: Light, Dark and Dark dimmed.
-    + Single Theme: Zalo will use your selected theme.
-    + Sync With System: Zalo theme will match your system settings.
+  - Themes: Light, Dark and Dark dimmed.
+  - Single Theme: Zalo will use your selected theme.
+  - Sync With System: Zalo theme will match your system settings.
 
 ### Important Notes
 
 - This extension is not an official extension from Zalo.
 - This extension only injects the CSS file to change the color scheme of Zalo without affecting any features and security of Zalo.
-### Awards
-
-#### Grateful for 1Password
-
-ZaDark is proud to have been accepted by [1Password](https://1password.com/) for participating in the **1Password for Open Source Projects** program (https://github.com/1Password/1password-teams-open-source). Once accepted, contributors will receive a free 1Password Teams membership.
-
-![Grateful for 1Password](.github/zadark-and-1password-teams.png)
-
-Thanks to 1Password for helping teams work more efficiently and securely.
-
-#### Rising Star award by SourceForge
-
-ZaDark has just been recognized with a Rising Star award by SourceForge. This honor is awarded only to select projects that have reached significant milestones in terms of downloads and user engagement from the SourceForge community.
-
-![Rising Star award by SourceForge](.github/sourceforge-rising-star.png)
-
-Thanks to everyone for trusting and using ZaDark!
 
 ## Getting Started
 
@@ -117,6 +99,9 @@ Thanks to everyone for trusting and using ZaDark!
     #   opera/
     #     manifest.json
     #     ...
+    #   edge/
+    #     manifest.json
+    #     ...
     #   pc/
     #     index.js
     #     ...
@@ -138,10 +123,13 @@ Thanks to everyone for trusting and using ZaDark!
   - Step 2: Turn on `Developer Mode`
   - Step 3: Click `Load unpacked`
   - Step 4: Choose folder `build/opera/`
+- Edge Extension
+  - Step 1: Open `edge://extensions/`
+  - Step 2: Turn on `Developer Mode`
+  - Step 3: Click `Load unpacked`
+  - Step 4: Choose folder `build/edge/`
 - macOS & Windows
-  ```bash
-  yarn run pc:dev
-  ```
+  - `yarn run pc:dev`
 
 ### Creating Built Distributions
 
@@ -165,6 +153,11 @@ yarn dist
 #     ZaDark-Opera-3.2.zip
 #     ZaDark-Opera-3.3.zip
 #     ...
+#   edge/
+#     ZaDark-Edge-3.1.zip
+#     ZaDark-Edge-3.2.zip
+#     ZaDark-Edge-3.3.zip
+#     ...
 #   macos/
 #     ZaDark-macOS-3.1.zip
 #     ZaDark-macOS-3.2.zip
@@ -179,49 +172,31 @@ yarn dist
 
 ## Usage
 
+### For Zalo PC
+
+- Windows
+  - Download from **SourceForge.net**: https://j2c.cc/zadark-windows
+  - Tutorial: https://j2c.cc/zadark-windows-tutorial
+- macOS
+  - Download from **SourceForge.net**: https://j2c.cc/zadark-macos
+  - Tutorial: https://j2c.cc/zadark-macos-tutorial
+
 ### For Zalo Web
 
 - Google Chrome
-  - Chrome Web Store: https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob
-  - Tutorial: https://youtu.be/T8r1k0Rhleo
+  - Download from **Chrome Web Store**: https://j2c.cc/zadark-chrome
+  - Tutorial: https://j2c.cc/zadark-chrome-tutorial
 - Firefox
-  - Firefox Browser Add-ons: https://addons.mozilla.org/en-US/firefox/addon/zadark/
-  - Tutorial: https://youtu.be/rWmSUd0uxQI
+  - Download from **Firefox Browser Add-ons**: https://j2c.cc/zadark-firefox
+  - Tutorial: https://j2c.cc/zadark-firefox-tutorial
 - Opera
-  - Opera Add-ons: https://addons.opera.com/en/extensions/details/zadark-best-dark-theme-for-zalo/
-  - Tutorial: https://youtu.be/fO2ahv2Ya4g
-
-### For Zalo PC
-
-- macOS
-  - SourceForge.net: https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/
-  - Tutorial: https://youtu.be/QBmLOUF4vdA
-- Windows
-  - SourceForge.net: https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/
-  - Tutorial: https://youtu.be/0ndmEmzRCyU
+  - Download from **Opera Add-ons**: https://j2c.cc/zadark-opera
+  - Tutorial: https://j2c.cc/zadark-opera-tutorial
+- Microsoft Edge
+  - Download from **Edge Add-ons**: coming soon ...
+  - Tutorial: coming soon ...
 
 ## Roadmap
-
-### For Zalo Web
-  - [ ] Browsers
-    - [x] Google Chrome
-    - [ ] Microsoft Edge
-    - [x] Firefox
-    - [x] Opera
-    - [ ] Safari
-  - [x] Basic features
-    - [x] Themes
-      - [x] Light
-      - [x] Dark
-      - [x] Dark dimmed
-    - [x] Choose a theme
-  - [ ] Advanced features
-    - [x] Welcome page
-    - [x] Changelog page
-    - [x] Sync theme with system
-    - [x] Allows users to Enable/Disable notifications when ZaDark updates
-    - [ ] Custom Fonts
-    - [ ] More themes
 
 ### For Zalo PC
   - [x] Platforms
@@ -237,6 +212,27 @@ yarn dist
     - [x] Sync theme with system
     - [ ] No need to reinstall the theme when Zalo updates
     - [ ] GUI (Graphical User Interface)
+    - [ ] More themes
+
+### For Zalo Web
+  - [ ] Browsers
+    - [x] Google Chrome
+    - [x] Microsoft Edge
+    - [x] Firefox
+    - [x] Opera
+    - [ ] Safari
+  - [x] Basic features
+    - [x] Themes
+      - [x] Light
+      - [x] Dark
+      - [x] Dark dimmed
+    - [x] Choose a theme
+  - [ ] Advanced features
+    - [x] Welcome page
+    - [x] Changelog page
+    - [x] Sync theme with system
+    - [x] Allows users to Enable/Disable notifications when ZaDark updates
+    - [ ] Custom Fonts
     - [ ] More themes
 
 ## Contributing
@@ -257,11 +253,38 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
+### Founder
+
 Hi, I'm Nguyễn Chánh Đại - Founder of ZaDark!
-  - My Facebook: [@iamncdai](https://www.facebook.com/iamncdai/)
-  - My LinkedIn: [@iamncdai](https://www.linkedin.com/in/iamncdai/)
-  - My Email: [ncdai@penphy.edu.vn](mailto:ncdai@penphy.edu.vn?subject=Mail%20from%20ZaDark)
-  - Project Link: https://github.com/ncdai3651408/za-dark
+If you have a new idea or report a bug, you can contact me via:
+
+- Facebook: https://j2c.cc/ncdai-fb
+- LinkedIn: https://j2c.cc/ncdai-linkedin
+- Email: [ncdai@penphy.edu.vn](mailto:ncdai@penphy.edu.vn?subject=[ZaDark]%20Feedback)
+
+### Social Network
+
+- Facebook Page: https://j2c.cc/zadark-fb-page
+- Facebook Group: https://j2c.cc/zadark-fb-group
+- GitHub: https://j2c.cc/zadark-github
+
+## Awards
+
+### Grateful for 1Password
+
+ZaDark is proud to have been accepted by [1Password](https://1password.com/) for participating in the **1Password for Open Source Projects** program (https://github.com/1Password/1password-teams-open-source). Once accepted, contributors will receive a free 1Password Teams membership.
+
+![Grateful for 1Password](.github/zadark-and-1password-teams.png)
+
+Thanks to 1Password for helping teams work more efficiently and securely.
+
+### Rising Star award by SourceForge
+
+ZaDark has just been recognized with a Rising Star award by SourceForge. This honor is awarded only to select projects that have reached significant milestones in terms of downloads and user engagement from the SourceForge community.
+
+![Rising Star award by SourceForge](.github/sourceforge-rising-star.png)
+
+Thanks to everyone for trusting and using ZaDark!
 
 ## Acknowledgments
 

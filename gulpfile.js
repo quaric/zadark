@@ -9,12 +9,14 @@ const { compile } = require('nexe')
 const chromeManifest = require('./src/browser-ext/vendor/chrome/manifest.json')
 const firefoxManifest = require('./src/browser-ext/vendor/firefox/manifest.json')
 const operaManifest = require('./src/browser-ext/vendor/opera/manifest.json')
+const edgeManifest = require('./src/browser-ext/vendor/edge/manifest.json')
 const pcPackageJSON = require('./src/pc/package.json')
 
 const FILE_NAME = {
   CHROME: `ZaDark-Chrome-${chromeManifest.version}`,
   FIREFOX: `ZaDark-Firefox-${firefoxManifest.version}`,
   OPERA: `ZaDark-Opera-${operaManifest.version}`,
+  EDGE: `ZaDark-Edge-${edgeManifest.version}`,
   MACOS: `ZaDark-macOS-${pcPackageJSON.version}`,
   WINDOWS: `ZaDark-Windows-${pcPackageJSON.version}`
 }
@@ -35,6 +37,7 @@ const buildCoreStyles = () => {
     .pipe(dest('./build/chrome/css'))
     .pipe(dest('./build/firefox/css'))
     .pipe(dest('./build/opera/css'))
+    .pipe(dest('./build/edge/css'))
     .pipe(dest('./build/pc/assets/css'))
 }
 
@@ -44,6 +47,7 @@ const buildBrowserExtStyles = () => {
     .pipe(dest('./build/chrome/css'))
     .pipe(dest('./build/firefox/css'))
     .pipe(dest('./build/opera/css'))
+    .pipe(dest('./build/edge/css'))
 }
 
 const buildBrowserExt = (browser) => {
@@ -73,6 +77,10 @@ const buildFirefox = () => {
 
 const buildOpera = () => {
   return buildBrowserExt('opera')
+}
+
+const buildEdge = () => {
+  return buildBrowserExt('edge')
 }
 
 const buildPC = () => {
@@ -147,6 +155,12 @@ const operaDist = () => {
     .pipe(dest('./dist/opera'))
 }
 
+const edgeDist = () => {
+  return src('./build/edge/**')
+    .pipe(gulpZip(`${FILE_NAME.EDGE}.zip`))
+    .pipe(dest('./dist/edge'))
+}
+
 const macOSDist = series(compileMacOS, zipMacOS)
 const windowsDist = series(compileWindows, zipWindows)
 
@@ -160,6 +174,7 @@ const buildAll = series(
     buildChrome,
     buildFirefox,
     buildOpera,
+    buildEdge,
     buildPC
   )
 )
@@ -171,6 +186,7 @@ const distAll = series(
     chromeDist,
     firefoxDist,
     operaDist,
+    edgeDist,
     macOSDist,
     windowsDist
   )

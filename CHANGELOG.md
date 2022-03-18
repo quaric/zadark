@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## pc-v4.1, browser-v3.9
+
+### Added
+- Edge Extension
+
+### Fixed
+- `.z-toggle > div`
+- `.todo-filter-input`
+
 ## pc-v4.0
 
 > 2022-03-11
