@@ -1,0 +1,49 @@
+{
+  "manifest_version": 2,
+  "name": "ZaDark – Best Dark Theme for Zalo",
+  "version": "3.9",
+  "description": "The best dark theme for your Zalo.",
+  "author": "NCDAi Studio",
+  "homepage_url": "https://github.com/ncdai3651408/za-dark",
+  "icons": {
+    "16": "images/icons/za-dark-icon@16.png",
+    "32": "images/icons/za-dark-icon@32.png",
+    "48": "images/icons/za-dark-icon@48.png",
+    "128": "images/icons/za-dark-icon@128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://chat.zalo.me/*"
+      ],
+      "run_at": "document_end",
+      "css": [
+        "css/za-dark.css"
+      ],
+      "js": [
+        "js/browser.js",
+        "js/utils.js",
+        "js/za-dark.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": [
+      "js/background.js"
+    ]
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "*://chat.zalo.me/*"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icons/za-dark-icon@16.png",
+      "32": "images/icons/za-dark-icon@32.png",
+      "48": "images/icons/za-dark-icon@48.png",
+      "128": "images/icons/za-dark-icon@128.png"
+    }
+  }
+}
