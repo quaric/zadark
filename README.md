@@ -138,10 +138,13 @@ Thanks to everyone for trusting and using ZaDark!
   - Step 2: Turn on `Developer Mode`
   - Step 3: Click `Load unpacked`
   - Step 4: Choose folder `build/opera/`
+- Edge Extension
+  - Step 1: Open `edge://extensions/`
+  - Step 2: Turn on `Developer Mode`
+  - Step 3: Click `Load unpacked`
+  - Step 4: Choose folder `build/edge/`
 - macOS & Windows
-  ```bash
-  yarn run pc:dev
-  ```
+  - `yarn run pc:dev`
 
 ### Creating Built Distributions
 
@@ -165,6 +168,11 @@ yarn dist
 #     ZaDark-Opera-3.2.zip
 #     ZaDark-Opera-3.3.zip
 #     ...
+#   edge/
+#     ZaDark-Edge-3.1.zip
+#     ZaDark-Edge-3.2.zip
+#     ZaDark-Edge-3.3.zip
+#     ...
 #   macos/
 #     ZaDark-macOS-3.1.zip
 #     ZaDark-macOS-3.2.zip
@@ -182,14 +190,14 @@ yarn dist
 ### For Zalo Web
 
 - Google Chrome
-  - Chrome Web Store: https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob
-  - Tutorial: https://youtu.be/T8r1k0Rhleo
+  - Chrome Web Store: https://j2c.cc/zadark-chrome
+  - Tutorial: https://j2c.cc/zadark-chrome-tutorial
 - Firefox
-  - Firefox Browser Add-ons: https://addons.mozilla.org/en-US/firefox/addon/zadark/
-  - Tutorial: https://youtu.be/rWmSUd0uxQI
+  - Firefox Browser Add-ons: https://j2c.cc/zadark-firefox
+  - Tutorial: https://j2c.cc/zadark-firefox-tutorial
 - Opera
-  - Opera Add-ons: https://addons.opera.com/en/extensions/details/zadark-best-dark-theme-for-zalo/
-  - Tutorial: https://youtu.be/fO2ahv2Ya4g
+  - Opera Add-ons: https://j2c.cc/zadark-opera
+  - Tutorial: https://j2c.cc/zadark-opera-tutorial
 - Microsoft Edge
   - Edge Add-ons: coming soon ...
   - Tutorial: coming soon ...
@@ -197,11 +205,11 @@ yarn dist
 ### For Zalo PC
 
 - macOS
-  - SourceForge.net: https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/
-  - Tutorial: https://youtu.be/QBmLOUF4vdA
+  - SourceForge.net: https://j2c.cc/zadark-macos
+  - Tutorial: https://j2c.cc/zadark-macos-tutorial
 - Windows
-  - SourceForge.net: https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/
-  - Tutorial: https://youtu.be/0ndmEmzRCyU
+  - SourceForge.net: https://j2c.cc/zadark-windows
+  - Tutorial: https://j2c.cc/zadark-windows-tutorial
 
 ## Roadmap
 
