@@ -13,11 +13,10 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">About</a>
       <ul>
         <li><a href="#highlights">Highlights</a></li>
         <li><a href="#important-notes">Important Notes</a></li>
-        <li><a href="#awards">Awards</a></li>
       </ul>
     </li>
     <li>
@@ -38,11 +37,12 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#awards">Awards</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
-## About The Project
+## About
 
 ZaDark is an extension for Browser and PC that helps you turn on Dark Theme for Zalo (https://zalo.me/), making your eyes feel comfortable when you work, especially at night.
 
@@ -64,24 +64,6 @@ ZaDark is an extension for Browser and PC that helps you turn on Dark Theme for 
 
 - This extension is not an official extension from Zalo.
 - This extension only injects the CSS file to change the color scheme of Zalo without affecting any features and security of Zalo.
-
-### Awards
-
-#### Grateful for 1Password
-
-ZaDark is proud to have been accepted by [1Password](https://1password.com/) for participating in the **1Password for Open Source Projects** program (https://github.com/1Password/1password-teams-open-source). Once accepted, contributors will receive a free 1Password Teams membership.
-
-![Grateful for 1Password](.github/zadark-and-1password-teams.png)
-
-Thanks to 1Password for helping teams work more efficiently and securely.
-
-#### Rising Star award by SourceForge
-
-ZaDark has just been recognized with a Rising Star award by SourceForge. This honor is awarded only to select projects that have reached significant milestones in terms of downloads and user engagement from the SourceForge community.
-
-![Rising Star award by SourceForge](.github/sourceforge-rising-star.png)
-
-Thanks to everyone for trusting and using ZaDark!
 
 ## Getting Started
 
@@ -190,25 +172,25 @@ yarn dist
 ### For Zalo Web
 
 - Google Chrome
-  - Chrome Web Store: https://j2c.cc/zadark-chrome
+  - Download from **Chrome Web Store**: https://j2c.cc/zadark-chrome
   - Tutorial: https://j2c.cc/zadark-chrome-tutorial
 - Firefox
-  - Firefox Browser Add-ons: https://j2c.cc/zadark-firefox
+  - Download from **Firefox Browser Add-ons**: https://j2c.cc/zadark-firefox
   - Tutorial: https://j2c.cc/zadark-firefox-tutorial
 - Opera
-  - Opera Add-ons: https://j2c.cc/zadark-opera
+  - Download from **Opera Add-ons**: https://j2c.cc/zadark-opera
   - Tutorial: https://j2c.cc/zadark-opera-tutorial
 - Microsoft Edge
-  - Edge Add-ons: coming soon ...
+  - Download from **Edge Add-ons**: coming soon ...
   - Tutorial: coming soon ...
 
 ### For Zalo PC
 
 - macOS
-  - SourceForge.net: https://j2c.cc/zadark-macos
+  - Download from **SourceForge.net**: https://j2c.cc/zadark-macos
   - Tutorial: https://j2c.cc/zadark-macos-tutorial
 - Windows
-  - SourceForge.net: https://j2c.cc/zadark-windows
+  - Download from **SourceForge.net**: https://j2c.cc/zadark-windows
   - Tutorial: https://j2c.cc/zadark-windows-tutorial
 
 ## Roadmap
@@ -273,6 +255,24 @@ Hi, I'm Nguyễn Chánh Đại - Founder of ZaDark!
   - My LinkedIn: [@iamncdai](https://www.linkedin.com/in/iamncdai/)
   - My Email: [ncdai@penphy.edu.vn](mailto:ncdai@penphy.edu.vn?subject=Mail%20from%20ZaDark)
   - Project Link: https://github.com/ncdai3651408/za-dark
+
+## Awards
+
+### Grateful for 1Password
+
+ZaDark is proud to have been accepted by [1Password](https://1password.com/) for participating in the **1Password for Open Source Projects** program (https://github.com/1Password/1password-teams-open-source). Once accepted, contributors will receive a free 1Password Teams membership.
+
+![Grateful for 1Password](.github/zadark-and-1password-teams.png)
+
+Thanks to 1Password for helping teams work more efficiently and securely.
+
+### Rising Star award by SourceForge
+
+ZaDark has just been recognized with a Rising Star award by SourceForge. This honor is awarded only to select projects that have reached significant milestones in terms of downloads and user engagement from the SourceForge community.
+
+![Rising Star award by SourceForge](.github/sourceforge-rising-star.png)
+
+Thanks to everyone for trusting and using ZaDark!
 
 ## Acknowledgments
 
