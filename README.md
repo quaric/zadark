@@ -54,7 +54,7 @@ ZaDark is an extension for Browser and PC that helps you turn on Dark Theme for 
   - Zalo Web: Chrome, Firefox, Opera, Edge.
   - Zalo PC: macOS, Windows.
 - Nice colors, good contrast.
-- Safety and Transparency (Open Source: https://github.com/ncdai3651408/za-dark).
+- Safety and Transparency (Open Source: https://j2c.cc/zadark-github).
 - Allow customization according to your needs:
   - Themes: Light, Dark and Dark dimmed.
   - Single Theme: Zalo will use your selected theme.
@@ -97,6 +97,9 @@ ZaDark is an extension for Browser and PC that helps you turn on Dark Theme for 
     #     manifest.json
     #     ...
     #   opera/
+    #     manifest.json
+    #     ...
+    #   edge/
     #     manifest.json
     #     ...
     #   pc/
@@ -169,6 +172,15 @@ yarn dist
 
 ## Usage
 
+### For Zalo PC
+
+- Windows
+  - Download from **SourceForge.net**: https://j2c.cc/zadark-windows
+  - Tutorial: https://j2c.cc/zadark-windows-tutorial
+- macOS
+  - Download from **SourceForge.net**: https://j2c.cc/zadark-macos
+  - Tutorial: https://j2c.cc/zadark-macos-tutorial
+
 ### For Zalo Web
 
 - Google Chrome
@@ -184,16 +196,23 @@ yarn dist
   - Download from **Edge Add-ons**: coming soon ...
   - Tutorial: coming soon ...
 
-### For Zalo PC
-
-- macOS
-  - Download from **SourceForge.net**: https://j2c.cc/zadark-macos
-  - Tutorial: https://j2c.cc/zadark-macos-tutorial
-- Windows
-  - Download from **SourceForge.net**: https://j2c.cc/zadark-windows
-  - Tutorial: https://j2c.cc/zadark-windows-tutorial
-
 ## Roadmap
+
+### For Zalo PC
+  - [x] Platforms
+    - [x] macOS
+    - [x] Windows
+  - [x] Basic features
+    - [x] CLI (Command Line Interface)
+    - [x] Install theme: Dark, Dark dimmed
+    - [x] Unsintall theme
+  - [ ] Advanced features
+    - [ ] Check for updates
+    - [x] Changelog
+    - [x] Sync theme with system
+    - [ ] No need to reinstall the theme when Zalo updates
+    - [ ] GUI (Graphical User Interface)
+    - [ ] More themes
 
 ### For Zalo Web
   - [ ] Browsers
@@ -216,22 +235,6 @@ yarn dist
     - [ ] Custom Fonts
     - [ ] More themes
 
-### For Zalo PC
-  - [x] Platforms
-    - [x] macOS
-    - [x] Windows
-  - [x] Basic features
-    - [x] CLI (Command Line Interface)
-    - [x] Install theme: Dark, Dark dimmed
-    - [x] Unsintall theme
-  - [ ] Advanced features
-    - [ ] Check for updates
-    - [x] Changelog
-    - [x] Sync theme with system
-    - [ ] No need to reinstall the theme when Zalo updates
-    - [ ] GUI (Graphical User Interface)
-    - [ ] More themes
-
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
@@ -250,11 +253,20 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
+### Founder
+
 Hi, I'm Nguyễn Chánh Đại - Founder of ZaDark!
-  - My Facebook: [@iamncdai](https://www.facebook.com/iamncdai/)
-  - My LinkedIn: [@iamncdai](https://www.linkedin.com/in/iamncdai/)
-  - My Email: [ncdai@penphy.edu.vn](mailto:ncdai@penphy.edu.vn?subject=Mail%20from%20ZaDark)
-  - Project Link: https://github.com/ncdai3651408/za-dark
+If you have a new idea or report a bug, you can contact me via:
+
+- Facebook: https://j2c.cc/ncdai-fb
+- LinkedIn: https://j2c.cc/ncdai-linkedin
+- Email: [ncdai@penphy.edu.vn](mailto:ncdai@penphy.edu.vn?subject=[ZaDark]%20Feedback)
+
+### Social Network
+
+- Facebook Page: https://j2c.cc/zadark-fb-page
+- Facebook Group: https://j2c.cc/zadark-fb-group
+- GitHub: https://j2c.cc/zadark-github
 
 ## Awards
 
