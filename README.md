@@ -190,6 +190,9 @@ yarn dist
 - Opera
   - Opera Add-ons: https://addons.opera.com/en/extensions/details/zadark-best-dark-theme-for-zalo/
   - Tutorial: https://youtu.be/fO2ahv2Ya4g
+- Microsoft Edge
+  - Edge Add-ons: coming soon ...
+  - Tutorial: coming soon ...
 
 ### For Zalo PC
 
@@ -205,7 +208,7 @@ yarn dist
 ### For Zalo Web
   - [ ] Browsers
     - [x] Google Chrome
-    - [ ] Microsoft Edge
+    - [x] Microsoft Edge
     - [x] Firefox
     - [x] Opera
     - [ ] Safari
