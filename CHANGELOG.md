@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - `.z-toggle > div`
+- `.todo-filter-input`
 
 ## pc-v4.0
 

@@ -923,6 +923,24 @@ html[data-theme-mode="dark"] {
     .z-toggle > div {
       background: #fff;
     }
+
+    .todo-filter-input {
+      background-color: var(--grey-400);
+      border: 1px solid var(--grey-400);
+      color: var(--neutral-base);
+
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      &::placeholder {
+        color: var(--neutral-500);
+        opacity: 1; /* Firefox */
+      }
+
+      /* Microsoft Edge */
+      /* Internet Explorer 10-11 */
+      &::-ms-input-placeholder {
+        color: var(--neutral-500);
+      }
+    }
   }
 }
 
