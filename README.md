@@ -9,7 +9,7 @@
   [![ZaDark-Windows](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/Windows?color=0078D6&label=Windows&logo=windows&logoColor=fff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
 </div>
 
-<details>
+<details open>
   <summary>Table of Contents</summary>
   <ol>
     <li>
@@ -29,11 +29,17 @@
     <li>
       <a href="#usage">Usage</a>
       <ul>
-        <li><a href="#for-zalo-web">For Zalo Web</a></li>
-        <li><a href="#for-zalo-pc">For Zalo PC</a></li>
+        <li><a href="#install-for-zalo-pc">Install for Zalo PC</a></li>
+        <li><a href="#install-for-zalo-web">Install for Zalo Web</a></li>
       </ul>
     </li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li>
+      <a href="#roadmap">Roadmap</a>
+      <ul>
+        <li><a href="#roadmap-for-zalo-pc">Roadmap for Zalo PC</a></li>
+        <li><a href="#roadmap-for-zalo-web">Roadmap for Zalo Web</a></li>
+      </ul>
+    </li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -174,7 +180,7 @@ yarn dist
 
 ## Usage
 
-### For Zalo PC
+### Install for Zalo PC
 
 - Windows
   - Download from **SourceForge.net**: https://j2c.cc/zadark-windows
@@ -183,7 +189,7 @@ yarn dist
   - Download from **SourceForge.net**: https://j2c.cc/zadark-macos
   - Tutorial: https://j2c.cc/zadark-macos-tutorial
 
-### For Zalo Web
+### Install for Zalo Web
 
 - Google Chrome
   - Download from **Chrome Web Store**: https://j2c.cc/zadark-chrome
@@ -200,7 +206,7 @@ yarn dist
 
 ## Roadmap
 
-### For Zalo PC
+### Roadmap for Zalo PC
   - [x] Platforms
     - [x] macOS
     - [x] Windows
@@ -216,7 +222,7 @@ yarn dist
     - [ ] GUI (Graphical User Interface)
     - [ ] More themes
 
-### For Zalo Web
+### Roadmap for Zalo Web
   - [ ] Browsers
     - [x] Google Chrome
     - [x] Microsoft Edge
