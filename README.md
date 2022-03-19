@@ -13,7 +13,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About</a>
+      <a href="#about">About</a>
       <ul>
         <li><a href="#highlights">Highlights</a></li>
         <li><a href="#important-notes">Important Notes</a></li>
@@ -69,9 +69,7 @@ ZaDark is an extension for Browser and PC that helps you turn on Dark Theme for 
 - This extension is not an official extension from Zalo.
 - This extension only injects the CSS file to change the color scheme of Zalo without affecting any features and security of Zalo.
 
----
-ZaDark from NCDAi Studio<br />
-Official Website: https://zadark.ncdaistudio.com
+> ZaDark from NCDAi Studio<br />Official Website: https://zadark.ncdaistudio.com
 
 ## Getting Started
 
