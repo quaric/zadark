@@ -306,3 +306,4 @@ Thanks to everyone for trusting and using ZaDark!
 - https://github.com/othneildrew/Best-README-Template
 - https://github.com/1Password/1password-teams-open-source
 - https://scriptingosx.com/2019/09/notarize-a-command-line-tool/
+- https://github.com/txoof/codesign#codesign
