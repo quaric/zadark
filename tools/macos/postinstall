@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ZADARK_FILE=/Applications/ZaDark
+
+if [ ! -f "$ZADARK_FILE" ]; then
+  echo "$ZADARK_FILE does not exist."
+  exit 0
+fi
+
+open "$ZADARK_FILE"
+
+exit 0

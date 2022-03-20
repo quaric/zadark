@@ -4,7 +4,7 @@ const gulpClean = require('gulp-clean')
 const sass = require('sass')
 const yupSass = require('gulp-sass')(sass)
 const gulpZip = require('gulp-zip')
-const { compile } = require('nexe')
+const pkg = require('pkg')
 
 const chromeManifest = require('./src/browser-ext/vendor/chrome/manifest.json')
 const firefoxManifest = require('./src/browser-ext/vendor/firefox/manifest.json')
@@ -12,19 +12,23 @@ const operaManifest = require('./src/browser-ext/vendor/opera/manifest.json')
 const edgeManifest = require('./src/browser-ext/vendor/edge/manifest.json')
 const pcPackageJSON = require('./src/pc/package.json')
 
+const dot2Underscore = (v = '') => v.replace(/\./g, '_')
+
 const FILE_NAME = {
-  CHROME: `ZaDark-Chrome-${chromeManifest.version}`,
-  FIREFOX: `ZaDark-Firefox-${firefoxManifest.version}`,
-  OPERA: `ZaDark-Opera-${operaManifest.version}`,
-  EDGE: `ZaDark-Edge-${edgeManifest.version}`,
-  MACOS: `ZaDark-macOS-${pcPackageJSON.version}`,
-  WINDOWS: `ZaDark-Windows-${pcPackageJSON.version}`
+  CHROME: `ZaDark-Chrome-${dot2Underscore(chromeManifest.version)}`,
+  FIREFOX: `ZaDark-Firefox-${dot2Underscore(firefoxManifest.version)}`,
+  OPERA: `ZaDark-Opera-${dot2Underscore(operaManifest.version)}`,
+  EDGE: `ZaDark-Edge-${dot2Underscore(edgeManifest.version)}`,
+  MACOS: `ZaDark-macOS-${dot2Underscore(pcPackageJSON.version)}`,
+  WINDOWS: `ZaDark-Windows-${dot2Underscore(pcPackageJSON.version)}`
 }
 
 // Clean
+
 const cleanBuild = () => {
   return src('build', { read: false, allowEmpty: true }).pipe(gulpClean())
 }
+
 const cleanDist = () => {
   return src('dist', { read: false, allowEmpty: true }).pipe(gulpClean())
 }
@@ -87,18 +91,16 @@ const buildPC = () => {
   return src('./src/pc/**/*').pipe(dest('./build/pc'))
 }
 
-// Compile
+// Package
 
-const compileMacOS = () => {
+const pkgMacOS = () => {
   return new Promise((resolve, reject) => {
-    // macOS
-    compile({
-      input: './build/pc/index.js',
-      output: `./dist/macOS/${FILE_NAME.MACOS}.command`,
-      resources: './build/pc/assets/**/*',
-      targets: 'mac-x64-14.15.3',
-      silent: true
-    }).then(() => {
+    pkg.exec([
+      './build/pc/index.js',
+      '--config', './pkg.config.json',
+      '--targets', 'node14-macos-x64',
+      '--output', `./dist/macos/${FILE_NAME.MACOS}`
+    ]).then(() => {
       resolve(true)
     }).catch((error) => {
       reject(error)
@@ -106,16 +108,14 @@ const compileMacOS = () => {
   })
 }
 
-const compileWindows = () => {
+const pkgWindows = () => {
   return new Promise((resolve, reject) => {
-    // Windows
-    compile({
-      input: './build/pc/index.js',
-      output: `./dist/Windows/${FILE_NAME.WINDOWS}.exe`,
-      resources: './build/pc/assets/**/*',
-      targets: 'windows-x86-14.15.3',
-      silent: true
-    }).then(() => {
+    pkg.exec([
+      './build/pc/index.js',
+      '--config', './pkg.config.json',
+      '--targets', 'node14-win-x64',
+      '--output', `./dist/windows/${FILE_NAME.WINDOWS}`
+    ]).then(() => {
       resolve(true)
     }).catch((error) => {
       reject(error)
@@ -124,11 +124,13 @@ const compileWindows = () => {
 }
 
 // Zip
+
 const zipMacOS = () => {
-  return src(`./dist/macOS/${FILE_NAME.MACOS}.command`)
+  return src(`./dist/macOS/${FILE_NAME.MACOS}`)
     .pipe(gulpZip(`${FILE_NAME.MACOS}.zip`))
     .pipe(dest('./dist/macOS'))
 }
+
 const zipWindows = () => {
   return src(`./dist/Windows/${FILE_NAME.WINDOWS}.exe`)
     .pipe(gulpZip(`${FILE_NAME.WINDOWS}.zip`))
@@ -161,8 +163,11 @@ const edgeDist = () => {
     .pipe(dest('./dist/edge'))
 }
 
-const macOSDist = series(compileMacOS, zipMacOS)
-const windowsDist = series(compileWindows, zipWindows)
+const pcDist = series(
+  pkgMacOS,
+  pkgWindows,
+  parallel(zipMacOS, zipWindows)
+)
 
 // Exports
 
@@ -187,8 +192,7 @@ const distAll = series(
     firefoxDist,
     operaDist,
     edgeDist,
-    macOSDist,
-    windowsDist
+    pcDist
   )
 )
 

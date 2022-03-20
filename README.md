@@ -302,5 +302,7 @@ Thanks to everyone for trusting and using ZaDark!
 - https://sass-lang.com/guide
 - https://shields.io
 - https://github.com/nexe/nexe
+- https://github.com/vercel/pkg
 - https://github.com/othneildrew/Best-README-Template
 - https://github.com/1Password/1password-teams-open-source
+- https://scriptingosx.com/2019/09/notarize-a-command-line-tool/
