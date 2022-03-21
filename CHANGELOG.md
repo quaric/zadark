@@ -9,9 +9,13 @@
 #### Browser specific
 - manifest.json homepage_url: https://zadark.ncdaistudio.com
 - Header: remove `About`, rename `Docs` to `Website`
+- After installation, open `https://zadark.ncdaistudio.com/browser-ext/***` instead of `chrome-extension:@id/welcome.html`
+
+### Removed
+#### Browser specific
+- Remove `welcome.html`
 
 ### Security
-
 #### PC specific
 - macOS codesign and notarize
 

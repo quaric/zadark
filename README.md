@@ -307,3 +307,5 @@ Thanks to everyone for trusting and using ZaDark!
 - https://github.com/1Password/1password-teams-open-source
 - https://scriptingosx.com/2019/09/notarize-a-command-line-tool/
 - https://github.com/txoof/codesign#codesign
+- https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/
+- https://dev.opera.com/extensions/basics/
