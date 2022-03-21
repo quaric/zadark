@@ -1,6 +1,6 @@
 # Changelog
 
-## PC v4.2 & Browser v3.10
+## PC v4.2 & Browser v4.0
 
 ### Changed
 #### PC specific
