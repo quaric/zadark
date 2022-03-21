@@ -9,7 +9,9 @@
     "watch": "gulp watch",
     "build": "gulp build",
     "dist": "gulp dist",
-    "ncdai": "gulp pkg",
+    "watch:pc": "gulp watchPC",
+    "build:pc": "gulp buildPC",
+    "dist:pc": "gulp distPC",
     "pc:dev": "NODE_ENV=development node build/pc",
     "pc:start": "NODE_ENV=production node build/pc",
     "codesign:macos": "node tools/macos/codesign tools/macos/config.ini"

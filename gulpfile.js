@@ -169,6 +169,8 @@ const pcDist = series(
 
 // Exports
 
+// All
+
 const buildAll = series(
   cleanBuild,
   parallel(
@@ -201,3 +203,24 @@ const watchAll = () => {
 exports.build = buildAll
 exports.dist = distAll
 exports.watch = watchAll
+
+// PC only
+
+const buildPCOnly = series(
+  cleanBuild,
+  buildPC
+)
+
+const watchPCOnly = () => {
+  watch('src/pc/**/*', buildPCOnly)
+}
+
+const distPCOnly = series(
+  buildPCOnly,
+  cleanDist,
+  pcDist
+)
+
+exports.buildPC = buildPCOnly
+exports.distPC = distPCOnly
+exports.watchPC = watchPCOnly

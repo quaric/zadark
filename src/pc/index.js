@@ -40,7 +40,6 @@ const renderHeader = () => {
     log('')
 
     prompt(chalk.yellowBright('> Press', chalk.bold('[enter]'), 'to continue ...'))
-    // log('')
 
     console.clear()
     renderHeader()
@@ -58,7 +57,6 @@ const renderHeader = () => {
     log('')
 
     const selected = prompt(chalk.yellowBright('> Select the appropriate number', chalk.bold('[1-5]'), 'then', chalk.bold('[enter]'), ': '))
-    // log('')
 
     console.clear()
     renderHeader()
