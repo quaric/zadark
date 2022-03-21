@@ -18,7 +18,7 @@ const renderHeader = () => {
   log('')
   log(chalk.blueBright.bold('ZaDark – Best Dark Theme for Zalo'))
   log(chalk.blueBright('Version :', `${platform === 'darwin' ? 'macOS' : 'Windows'}-${version}`))
-  log(chalk.blueBright('GitHub :', chalk.underline('https://github.com/ncdai3651408/za-dark')))
+  log(chalk.blueBright('Website :', chalk.underline('https://zadark.ncdaistudio.com')))
   log('')
 }
 

@@ -5,6 +5,7 @@
 ### Changed
 #### PC specific
 - Build tool: replace `nexe` with `pkg`
+- Header: update website to https://zadark.ncdaistudio.com
 
 #### Browser specific
 - manifest.json homepage_url: https://zadark.ncdaistudio.com
