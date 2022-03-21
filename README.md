@@ -199,8 +199,8 @@ yarn dist
   - Download from **Opera Add-ons**: https://j2c.cc/zadark-opera
   - Tutorial: https://j2c.cc/zadark-opera-tutorial
 - Microsoft Edge
-  - Download from **Edge Add-ons**: coming soon ...
-  - Tutorial: coming soon ...
+  - Download from **Edge Add-ons**: https://j2c.cc/zadark-edge
+  - Tutorial: https://j2c.cc/zadark-edge-tutorial
 
 ## Roadmap
 
