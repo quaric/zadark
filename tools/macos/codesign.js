@@ -6,7 +6,6 @@
 const os = require('os')
 const fs = require('fs')
 const path = require('path')
-const _ = require('lodash')
 const chalk = require('chalk')
 const { exec } = require('child_process')
 
@@ -120,7 +119,7 @@ const checkNotarization = async (config, stdout = '') => {
   for (const line of stdout.split(os.EOL)) {
     if (line.toLowerCase().includes('requestuuid')) {
       const id = line.split('=')
-      uuids.push(_.trim(id[1]))
+      uuids.push(id[1].trim())
     }
   }
 
@@ -128,7 +127,7 @@ const checkNotarization = async (config, stdout = '') => {
 
   const notarizationInfoCMD = [
     'xcrun altool',
-    '--notarization-info', _.first(uuids),
+    '--notarization-info', uuids[0],
     '--username', config.identification.apple_id,
     '--password', config.identification.apple_password
   ]
@@ -146,7 +145,7 @@ const checkNotarization = async (config, stdout = '') => {
       for (const line of stdout.split(os.EOL)) {
         if (line.toLowerCase().includes('status')) {
           const temp = line.split(':')
-          status[_.trim(temp[0]).toLowerCase()] = _.trim(temp[1])
+          status[temp[0].trim().toLowerCase()] = temp[1].trim()
         }
       }
 

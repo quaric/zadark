@@ -14,7 +14,7 @@ const pcPackageJSON = require('./src/pc/package.json')
 
 const dot2Underscore = (v = '') => v.replace(/\./g, '_')
 
-const FILE_NAME = {
+const DIST_FILE_NAME = {
   CHROME: `ZaDark-Chrome-${dot2Underscore(chromeManifest.version)}`,
   FIREFOX: `ZaDark-Firefox-${dot2Underscore(firefoxManifest.version)}`,
   OPERA: `ZaDark-Opera-${dot2Underscore(operaManifest.version)}`,
@@ -97,7 +97,7 @@ const pkgMacOS = () => {
       './build/pc/index.js',
       '--config', './pkg.config.json',
       '--targets', 'node14-macos-x64',
-      '--output', `./dist/macos/${FILE_NAME.MACOS}`
+      '--output', `./dist/macos/${DIST_FILE_NAME.MACOS}`
     ]).then(() => {
       resolve(true)
     }).catch((error) => {
@@ -112,7 +112,7 @@ const pkgWindows = () => {
       './build/pc/index.js',
       '--config', './pkg.config.json',
       '--targets', 'node14-win-x64',
-      '--output', `./dist/windows/${FILE_NAME.WINDOWS}`
+      '--output', `./dist/windows/${DIST_FILE_NAME.WINDOWS}`
     ]).then(() => {
       resolve(true)
     }).catch((error) => {
@@ -124,14 +124,14 @@ const pkgWindows = () => {
 // Zip
 
 const zipMacOS = () => {
-  return src(`./dist/macOS/${FILE_NAME.MACOS}`)
-    .pipe(gulpZip(`${FILE_NAME.MACOS}.zip`))
+  return src(`./dist/macOS/${DIST_FILE_NAME.MACOS}`)
+    .pipe(gulpZip(`${DIST_FILE_NAME.MACOS}.zip`))
     .pipe(dest('./dist/macOS'))
 }
 
 const zipWindows = () => {
-  return src(`./dist/Windows/${FILE_NAME.WINDOWS}.exe`)
-    .pipe(gulpZip(`${FILE_NAME.WINDOWS}.zip`))
+  return src(`./dist/Windows/${DIST_FILE_NAME.WINDOWS}.exe`)
+    .pipe(gulpZip(`${DIST_FILE_NAME.WINDOWS}.zip`))
     .pipe(dest('./dist/Windows'))
 }
 
@@ -139,25 +139,25 @@ const zipWindows = () => {
 
 const chromeDist = () => {
   return src('./build/chrome/**')
-    .pipe(gulpZip(`${FILE_NAME.CHROME}.zip`))
+    .pipe(gulpZip(`${DIST_FILE_NAME.CHROME}.zip`))
     .pipe(dest('./dist/chrome'))
 }
 
 const firefoxDist = () => {
   return src('./build/firefox/**')
-    .pipe(gulpZip(`${FILE_NAME.FIREFOX}.zip`))
+    .pipe(gulpZip(`${DIST_FILE_NAME.FIREFOX}.zip`))
     .pipe(dest('./dist/firefox'))
 }
 
 const operaDist = () => {
   return src('./build/opera/**')
-    .pipe(gulpZip(`${FILE_NAME.OPERA}.zip`))
+    .pipe(gulpZip(`${DIST_FILE_NAME.OPERA}.zip`))
     .pipe(dest('./dist/opera'))
 }
 
 const edgeDist = () => {
   return src('./build/edge/**')
-    .pipe(gulpZip(`${FILE_NAME.EDGE}.zip`))
+    .pipe(gulpZip(`${DIST_FILE_NAME.EDGE}.zip`))
     .pipe(dest('./dist/edge'))
 }
 
@@ -168,8 +168,6 @@ const pcDist = series(
 )
 
 // Exports
-
-// All
 
 const buildAll = series(
   cleanBuild,
@@ -203,24 +201,3 @@ const watchAll = () => {
 exports.build = buildAll
 exports.dist = distAll
 exports.watch = watchAll
-
-// PC only
-
-const buildPCOnly = series(
-  cleanBuild,
-  buildPC
-)
-
-const watchPCOnly = () => {
-  watch('src/pc/**/*', buildPCOnly)
-}
-
-const distPCOnly = series(
-  buildPCOnly,
-  cleanDist,
-  pcDist
-)
-
-exports.buildPC = buildPCOnly
-exports.distPC = distPCOnly
-exports.watchPC = watchPCOnly
