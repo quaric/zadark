@@ -18,7 +18,7 @@ const renderHeader = () => {
   log('')
   log(chalk.blueBright.bold('ZaDark – Best Dark Theme for Zalo'))
   log(chalk.blueBright('Version :', `${platform === 'darwin' ? 'macOS' : 'Windows'}-${version}`))
-  log(chalk.blueBright('GitHub :', chalk.underline('https://github.com/ncdai3651408/za-dark')))
+  log(chalk.blueBright('Website :', chalk.underline('https://zadark.ncdaistudio.com')))
   log('')
 }
 
@@ -40,7 +40,6 @@ const renderHeader = () => {
     log('')
 
     prompt(chalk.yellowBright('> Press', chalk.bold('[enter]'), 'to continue ...'))
-    // log('')
 
     console.clear()
     renderHeader()
@@ -57,8 +56,7 @@ const renderHeader = () => {
     log('6. Exit')
     log('')
 
-    const selected = prompt(chalk.yellowBright('> Select the appropriate number', chalk.bold('[1-5]'), 'then', chalk.bold('[enter]'), ': '))
-    // log('')
+    const selected = prompt(chalk.yellowBright('> Select the appropriate number', chalk.bold('[1-6]'), 'then', chalk.bold('[enter]'), ': '))
 
     console.clear()
     renderHeader()
@@ -110,15 +108,21 @@ const renderHeader = () => {
 
       case '4': {
         log(chalk.magentaBright('[Changelog]'))
-        log('>> Opening', chalk.underline('https://github.com/ncdai3651408/za-dark/blob/main/CHANGELOG.md'))
-        open('https://github.com/ncdai3651408/za-dark/blob/main/CHANGELOG.md')
+
+        const changelogUrl = 'https://github.com/ncdai3651408/za-dark/blob/main/CHANGELOG.md'
+        log('>> Opening', chalk.underline(changelogUrl))
+        open(changelogUrl)
+
         break
       }
 
       case '5': {
         log(chalk.magentaBright('[Contact]'))
-        log('- Email :', chalk.bold('ncdai@penphy.edu.vn'))
-        log('- Messenger :', chalk.bold('m.me/iamncdai'))
+
+        const contactUrl = 'https://zadark.ncdaistudio.com/contact'
+        log('>> Opening', chalk.underline(contactUrl))
+        open(contactUrl)
+
         break
       }
 

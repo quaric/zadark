@@ -85,10 +85,6 @@ $(selectDarkThemeElName).on('change', function () {
   fireThemeSettingsChanged()
 })
 
-$('#ext-links-home').on('click', () => {
-  window.zadark.browser.createTab({ url: 'welcome.html' })
-})
-
 $('#ext-version').on('click', () => {
   window.zadark.browser.createTab({ url: 'changelog.html' })
 })

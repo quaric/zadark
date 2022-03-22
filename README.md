@@ -199,8 +199,8 @@ yarn dist
   - Download from **Opera Add-ons**: https://j2c.cc/zadark-opera
   - Tutorial: https://j2c.cc/zadark-opera-tutorial
 - Microsoft Edge
-  - Download from **Edge Add-ons**: coming soon ...
-  - Tutorial: coming soon ...
+  - Download from **Edge Add-ons**: https://j2c.cc/zadark-edge
+  - Tutorial: https://j2c.cc/zadark-edge-tutorial
 
 ## Roadmap
 
@@ -302,5 +302,10 @@ Thanks to everyone for trusting and using ZaDark!
 - https://sass-lang.com/guide
 - https://shields.io
 - https://github.com/nexe/nexe
+- https://github.com/vercel/pkg
 - https://github.com/othneildrew/Best-README-Template
 - https://github.com/1Password/1password-teams-open-source
+- https://scriptingosx.com/2019/09/notarize-a-command-line-tool/
+- https://github.com/txoof/codesign#codesign
+- https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/
+- https://dev.opera.com/extensions/basics/

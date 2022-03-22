@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
   "name": "ZaDark – Best Dark Theme for Zalo",
-  "version": "3.9",
+  "version": "4.0",
   "description": "The best dark theme for your Zalo.",
   "author": "NCDAi Studio",
-  "homepage_url": "https://github.com/ncdai3651408/za-dark",
+  "homepage_url": "https://zadark.ncdaistudio.com",
   "icons": {
     "16": "images/icons/za-dark-icon@16.png",
     "32": "images/icons/za-dark-icon@32.png",

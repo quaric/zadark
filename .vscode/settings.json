@@ -10,10 +10,5 @@
       "language": "javascript",
       "autoFix": true
     }
-  ],
-  "search.exclude": {
-    "**/node_modules": true,
-    "**/yarn.lock": true,
-    "**/CHANGELOG.md": true
-  }
+  ]
 }

@@ -1,8 +1,28 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## PC v4.2 & Browser v4.0
 
-## pc-v4.1, browser-v3.9
+### Changed
+#### PC specific
+- Build tool: replace `nexe` with `pkg`
+- Header: update website to https://zadark.ncdaistudio.com
+
+#### Browser specific
+- manifest.json homepage_url: https://zadark.ncdaistudio.com
+- Header: remove `About`, rename `Docs` to `Website`
+- After installation, open `https://zadark.ncdaistudio.com/browser-ext/***` instead of `chrome-extension:@id/welcome.html`
+
+### Removed
+#### Browser specific
+- Remove `welcome.html`
+
+### Security
+#### PC specific
+- macOS codesign and notarize
+
+## PC v4.1 & Browser v3.9
+
+> 2022-03-18
 
 ### Added
 - Edge Extension
@@ -11,19 +31,22 @@ All notable changes to this project will be documented in this file.
 - `.z-toggle > div`
 - `.todo-filter-input`
 
-## pc-v4.0
+## PC v4.0
 
 > 2022-03-11
 
 ### Added
-- Zalo PC: Sync with System (Zalo theme will match your system settings)
-- Zalo PC: Changelog (https://github.com/ncdai3651408/za-dark/blob/main/CHANGELOG.md)
+#### PC specific
+
+- Sync with System (Zalo theme will match your system settings)
+- Changelog (https://github.com/ncdai3651408/za-dark/blob/main/CHANGELOG.md)
 
 ## v3.8
 
 > 2022-03-10
 
 ### Added
+#### PC specific
 - Add warning: "TO BE SAFE, before installing make sure you have downloaded this program from: https://sourceforge.net/projects/zadark/files/ZaDarkPC/" (PC only)
 
 ### Fixed
@@ -37,6 +60,7 @@ All notable changes to this project will be documented in this file.
 > 2022-03-09
 
 ### Added
+#### Browser specific
 - Opera Extension
 
 ### Fixed
@@ -49,14 +73,17 @@ All notable changes to this project will be documented in this file.
 > 2022-03-08
 
 ### Added
-- Browser Extension: Allows users to Enable/Disable notifications when ZaDark updates
+#### Browser specific
+- Allows users to Enable/Disable notifications when ZaDark updates
 
 ### Changed
 - `.chat-input__content.highlight`
 
 ### Fixed
-- Zalo PC: `.app-lock__main__input`
 - `.tipv2 .tip-close-button`
+
+#### PC specific
+- `.app-lock__main__input`
 
 ## v3.5
 
@@ -75,6 +102,7 @@ All notable changes to this project will be documented in this file.
 - `.zl-avatar`
 
 ### Changed
+#### Browser specific
 - ZaDark Docs URL
 
 ## v3.3
@@ -89,6 +117,7 @@ All notable changes to this project will be documented in this file.
 > 2022-02-19
 
 ### Added
+#### Browser specific
 - Firefox Extension
 
 ### Changed
@@ -98,6 +127,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - `.call-msg.me`
+#### Browser specific
 - Extension Popup: font-smoothing
 
 ## v3.1
@@ -105,12 +135,18 @@ All notable changes to this project will be documented in this file.
 > 2022-02-15
 
 ### Fixed
-- `.image-show__caption`
-- font-smoothing (Light Theme)
-- Zavi Meeting: `.zavi-clock__date`, `.zavi-clock__time`, `.zavi-btn` (Windows)
-- `.contact-list-item`, `.zavi-sidebar-list-item`, `.conv-item`, `.file-sidebar__option`
 - Tab Friend Request List, Tab Joined Group List
+- font-smoothing (Light Theme)
+- `.image-show__caption`
+- `.contact-list-item`
+- `.zavi-sidebar-list-item`
+- `.conv-item`
+- `.file-sidebar__option`
 - `.contact-list.web`
+#### PC specific
+- `.zavi-clock__date`
+- `zavi-clock__time`
+- `.zavi-btn`
 
 ## v3.0
 
@@ -118,11 +154,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Dark dimmed theme
+#### Browser specific
 - Welcome, Changelog page
 
 ### Changed
+#### Browser specific
 - Extension Popup
-
-## Acknowledgments
-
-- https://keepachangelog.com/en/1.0.0/

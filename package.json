@@ -1,7 +1,7 @@
 {
   "name": "za-dark",
   "description": "Best Dark Theme for Zalo",
-  "version": "4.1",
+  "version": "4.2",
   "repository": "git@github.com:ncdai3651408/za-dark.git",
   "author": "Dai Nguyen <ncdai3651408@gmail.com>",
   "license": "MIT",
@@ -10,17 +10,19 @@
     "build": "gulp build",
     "dist": "gulp dist",
     "pc:dev": "NODE_ENV=development node build/pc",
-    "pc:start": "NODE_ENV=production node build/pc"
+    "pc:start": "NODE_ENV=production node build/pc",
+    "codesign:macos": "node tools/macos/codesign tools/macos/config.ini"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "config-ini-parser": "^1.5.9",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-sass": "^5.1.0",
     "gulp-zip": "^5.1.0",
     "merge-stream": "^2.0.0",
-    "nexe": "^4.0.0-beta.19",
     "nodemon": "^2.0.15",
+    "pkg": "5.5.2",
     "sass": "^1.49.8",
     "standard": "^16.0.4"
   },
