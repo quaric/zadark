@@ -1,6 +1,6 @@
 /*
   ZaDark – Best Dark Theme for Zalo
-  Chrome Extension
+  Safari Extension
   Made by NCDAi Studio
 */
 
@@ -8,19 +8,19 @@
   window.zadark = window.zadark || {}
 
   window.zadark.browser = {
-    name: 'Chrome',
+    name: 'Safari',
 
     initClassNames: () => {
-      document.body.classList.add('za-dark', 'za-dark-browser-ext', 'za-dark-chrome')
+      document.body.classList.add('za-dark', 'za-dark-browser-ext', 'za-dark-safari')
     },
 
     getManifest: () => {
-      return chrome.runtime.getManifest()
+      return browser.runtime.getManifest()
     },
 
     getExtensionSettings: () => {
       return new Promise((resolve, reject) => {
-        chrome.storage.sync.get({
+        browser.storage.sync.get({
           themeMode: 'single',
           userTheme: 'dark_dimmed',
           darkTheme: 'dark_dimmed',
@@ -32,18 +32,15 @@
     },
 
     saveExtensionSettings: (items) => {
-      return chrome.storage.sync.set(items)
+      return browser.storage.sync.set(items)
     },
 
     executeScript: (tabId, file) => {
-      chrome.scripting.executeScript({
-        target: { tabId },
-        files: [file]
-      })
+      browser.tabs.executeScript(tabId, { file })
     },
 
     getZaloTabs: async () => {
-      const tabs = await chrome.tabs.query({
+      const tabs = await browser.tabs.query({
         url: ['*://chat.zalo.me/*'],
         currentWindow: true
       })
@@ -51,7 +48,7 @@
     },
 
     createTab: ({ url }) => {
-      chrome.tabs.create({ url })
+      browser.tabs.create({ url })
     }
   }
 })(window)

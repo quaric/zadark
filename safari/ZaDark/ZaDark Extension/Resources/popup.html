@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Popup | ZaDark</title>
+
+  <link rel="stylesheet" href="css/core.css">
+  <link rel="stylesheet" href="css/popup.css">
+
+  <style id="za-dark-font">
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+  </style>
+</head>
+
+<body>
+  <div class="ext-container">
+    <header class="main-header">
+      <div class="ext-name">
+        <h1 class="ext-name-title">ZaDark</h1>
+        <h4 class="ext-name-slogan">Best Dark Theme for Zalo</h4>
+      </div>
+
+      <div class="ext-links">
+        <span class="ext-links-item divider">
+          <a href="https://zadark.ncdaistudio.com" title="ZaDark Official Website" target="_blank">Website</a>
+        </span>
+
+        <span class="ext-links-item divider">
+          <a href="https://github.com/ncdai3651408/za-dark" title="ZaDark GitHub" target="_blank">GitHub</a>
+        </span>
+
+        <span class="ext-links-item">
+          <a href="#changelog" id="ext-version" title="Changelog"></a>
+        </span>
+      </div>
+    </header>
+
+    <main class="p-4">
+      <div class="mb-4">
+        <label class="mb-2 block font-semibold">Theme mode</label>
+
+        <div class="flex items-center">
+          <select id="select-theme-mode" class="form-select mr-2">
+            <option value="single">Single theme</option>
+            <option value="auto">Sync with system</option>
+          </select>
+
+          <span class="theme-mode-description text-neutral-500" data-theme-mode="single">Zalo will use your selected theme.</span>
+          <span class="theme-mode-description text-neutral-500" data-theme-mode="auto">Zalo theme will match your system settings.</span>
+        </div>
+      </div>
+
+      <div id="theme-mode-single">
+        <div class="panel">
+          <div class="panel-body">
+            <div id="select-user-theme" class="form-radio-group">
+              <label class="form-radio-container">
+                <input type="radio" name="user_theme" value="light">
+                <span class="checkmark"></span>
+
+                <span class="label-container">
+                  <span class="label">Light</span>
+                </span>
+              </label>
+
+              <label class="form-radio-container">
+                <input type="radio" name="user_theme" value="dark">
+                <span class="checkmark"></span>
+
+                <span class="label-container">
+                  <span class="label">Dark default</span>
+                </span>
+              </label>
+
+              <label class="form-radio-container">
+                <input type="radio" name="user_theme" value="dark_dimmed">
+                <span class="checkmark"></span>
+
+                <span class="label-container">
+                  <span class="label">Dark dimmed</span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="theme-mode-auto">
+        <div class="panel panel-light-theme">
+          <div class="panel-heading">
+            <span class="font-semibold flex-1">Day theme</span>
+            <span class="badge-active">Active</span>
+          </div>
+
+          <div class="panel-body">
+            <p class="text-neutral-500 mb-4">This theme will be active when your system is set to "Light Mode".</p>
+
+            <div id="select-light-theme" class="form-radio-group">
+              <label class="form-radio-container">
+                <input type="radio" name="light_theme" value="light" checked>
+                <span class="checkmark"></span>
+
+                <span class="label-container">
+                  <span class="label">Light</span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-dark-theme">
+          <div class="panel-heading">
+            <span class="font-semibold flex-1">Night theme</span>
+            <span class="badge-active">Active</span>
+          </div>
+
+          <div class="panel-body">
+            <p class="text-neutral-500 mb-4">This theme will be active when your system is set to "Dark Mode".</p>
+
+            <div id="select-dark-theme" class="form-radio-group">
+              <label class="form-radio-container">
+                <input type="radio" name="dark_theme" value="dark">
+                <span class="checkmark"></span>
+
+                <span class="label-container">
+                  <span class="label">Dark default</span>
+                </span>
+              </label>
+
+              <label class="form-radio-container">
+                <input type="radio" name="dark_theme" value="dark_dimmed">
+                <span class="checkmark"></span>
+
+                <span class="label-container">
+                  <span class="label">Dark dimmed</span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+  <script src="js/browser.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/popup.js"></script>
+</body>
+
+</html>

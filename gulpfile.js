@@ -42,6 +42,7 @@ const buildCoreStyles = () => {
     .pipe(dest('./build/firefox/css'))
     .pipe(dest('./build/opera/css'))
     .pipe(dest('./build/edge/css'))
+    .pipe(dest('./safari/ZaDark/ZaDark Extension/Resources/css'))
     .pipe(dest('./build/pc/assets/css'))
 }
 
@@ -52,6 +53,7 @@ const buildBrowserExtStyles = () => {
     .pipe(dest('./build/firefox/css'))
     .pipe(dest('./build/opera/css'))
     .pipe(dest('./build/edge/css'))
+    .pipe(dest('./safari/ZaDark/ZaDark Extension/Resources/css'))
 }
 
 const buildBrowserExt = (browser) => {
@@ -83,6 +85,21 @@ const buildOpera = () => {
 
 const buildEdge = () => {
   return buildBrowserExt('edge')
+}
+
+const buildSafari = () => {
+  return mergeStream(
+    src('./src/browser-ext/vendor/safari/manifest.json').pipe(dest('./safari/ZaDark/ZaDark Extension/Resources')),
+    src('./src/browser-ext/vendor/safari/browser.js').pipe(dest('./safari/ZaDark/ZaDark Extension/Resources/js')),
+    src('./src/browser-ext/vendor/safari/background.js').pipe(dest('./safari/ZaDark/ZaDark Extension/Resources/js')),
+
+    src('./src/browser-ext/libs/**/*').pipe(dest('./safari/ZaDark/ZaDark Extension/Resources/libs')),
+    src('./src/browser-ext/js/**/*').pipe(dest('./safari/ZaDark/ZaDark Extension/Resources/js')),
+    // src('./src/browser-ext/css/**/*').pipe(dest(`./build/${browser}/css`)),
+    // src('./src/browser-ext/images/**/*').pipe(dest(`./build/${browser}/images`)),
+
+    src('./src/browser-ext/*.html').pipe(dest('./safari/ZaDark/ZaDark Extension/Resources'))
+  )
 }
 
 const buildPC = () => {
@@ -178,6 +195,7 @@ const buildAll = series(
     buildFirefox,
     buildOpera,
     buildEdge,
+    buildSafari,
     buildPC
   )
 )

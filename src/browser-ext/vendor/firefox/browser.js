@@ -32,7 +32,7 @@
     },
 
     saveExtensionSettings: (items) => {
-      browser.storage.sync.set(items)
+      return browser.storage.sync.set(items)
     },
 
     executeScript: (tabId, file) => {

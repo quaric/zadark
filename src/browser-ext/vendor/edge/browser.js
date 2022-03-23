@@ -32,7 +32,7 @@
     },
 
     saveExtensionSettings: (items) => {
-      chrome.storage.sync.set(items)
+      return chrome.storage.sync.set(items)
     },
 
     executeScript: (tabId, file) => {

@@ -6,10 +6,11 @@
   "author": "NCDAi Studio",
   "homepage_url": "https://zadark.ncdaistudio.com",
   "icons": {
-    "16": "images/icons/za-dark-icon@16.png",
-    "32": "images/icons/za-dark-icon@32.png",
-    "48": "images/icons/za-dark-icon@48.png",
-    "128": "images/icons/za-dark-icon@128.png"
+    "48": "images/zadark-icon-48.png",
+    "96": "images/zadark-icon-96.png",
+    "128": "images/zadark-icon-128.png",
+    "256": "images/zadark-icon-256.png",
+    "512": "images/zadark-icon-512.png"
   },
   "content_scripts": [
     {
@@ -40,10 +41,12 @@
   "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/icons/za-dark-icon@16.png",
-      "32": "images/icons/za-dark-icon@32.png",
-      "48": "images/icons/za-dark-icon@48.png",
-      "128": "images/icons/za-dark-icon@128.png"
+      "16": "images/zadark-toolbar-icon-16.png",
+      "19": "images/zadark-toolbar-icon-19.png",
+      "32": "images/zadark-toolbar-icon-32.png",
+      "38": "images/zadark-toolbar-icon-38.png",
+      "48": "images/zadark-toolbar-icon-48.png",
+      "72": "images/zadark-toolbar-icon-72.png"
     }
   },
   "browser_specific_settings": {
