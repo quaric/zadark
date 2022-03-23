@@ -15,9 +15,10 @@ xcuserdata/
 
 # Safari Extension
 # safari/ZaDark/ZaDark Extension/Resources/manifest.json
-src/safari/**/Resources/css/*
-src/safari/**/Resources/js/*
-src/safari/**/Resources/libs/*
-!src/safari/**/Resources/css/.gitkeep
-!src/safari/**/Resources/js/.gitkeep
-!src/safari/**/Resources/libs/.gitkeep
+src/safari/**/Resources/*
+!src/safari/**/Resources/.gitkeep
+
+# src/safari/**/Resources/js/*
+# src/safari/**/Resources/libs/*
+# !src/safari/**/Resources/js/.gitkeep
+# !src/safari/**/Resources/libs/.gitkeep
