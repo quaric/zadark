@@ -6,21 +6,18 @@ dist/
 
 .zadark
 
-# safari/ZaDark/ZaDark Extension/Resources/manifest.json
-
-**/Resources/css/*
-**/Resources/js/*
-**/Resources/libs/*
-
-!**/Resources/css/.gitkeep
-!**/Resources/js/.gitkeep
-!**/Resources/libs/.gitkeep
-
-# User settings
-xcuserdata
-
-# Xcode 8 and earlier
+# Xcode
+## User settings
+xcuserdata/
+## Xcode 8 and earlier
 *.xcscmblueprint
 *.xccheckout
 
-xcschememanagement.plist
+# Safari Extension
+# safari/ZaDark/ZaDark Extension/Resources/manifest.json
+src/safari/**/Resources/css/*
+src/safari/**/Resources/js/*
+src/safari/**/Resources/libs/*
+!src/safari/**/Resources/css/.gitkeep
+!src/safari/**/Resources/js/.gitkeep
+!src/safari/**/Resources/libs/.gitkeep
