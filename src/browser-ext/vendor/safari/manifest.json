@@ -48,10 +48,5 @@
       "48": "images/zadark-toolbar-icon-48.png",
       "72": "images/zadark-toolbar-icon-72.png"
     }
-  },
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "zadark-firefox@ncdaistudio.com"
-    }
   }
 }

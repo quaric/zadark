@@ -5,6 +5,7 @@ const sass = require('sass')
 const yupSass = require('gulp-sass')(sass)
 const gulpZip = require('gulp-zip')
 const pkg = require('pkg')
+const path = require('path')
 
 const chromeManifest = require('./src/browser-ext/vendor/chrome/manifest.json')
 const firefoxManifest = require('./src/browser-ext/vendor/firefox/manifest.json')
@@ -22,6 +23,8 @@ const DIST_FILE_NAME = {
   MACOS: `ZaDark-macOS-${dot2Underscore(pcPackageJSON.version)}`,
   WINDOWS: `ZaDark-Windows-${dot2Underscore(pcPackageJSON.version)}`
 }
+
+const safariResources = './src/safari/ZaDark Extension/Resources'
 
 // Clean
 
@@ -42,7 +45,7 @@ const buildCoreStyles = () => {
     .pipe(dest('./build/firefox/css'))
     .pipe(dest('./build/opera/css'))
     .pipe(dest('./build/edge/css'))
-    .pipe(dest('./src/safari/ZaDark Extension/Resources/css'))
+    .pipe(dest(path.join(safariResources, '/css')))
     .pipe(dest('./build/pc/assets/css'))
 }
 
@@ -53,7 +56,7 @@ const buildBrowserExtStyles = () => {
     .pipe(dest('./build/firefox/css'))
     .pipe(dest('./build/opera/css'))
     .pipe(dest('./build/edge/css'))
-    .pipe(dest('./src/safari/ZaDark Extension/Resources//css'))
+    .pipe(dest(path.join(safariResources, '/css')))
 }
 
 const buildBrowserExt = (browser) => {
@@ -88,15 +91,17 @@ const buildEdge = () => {
 }
 
 const buildSafari = () => {
+  const jsDir = path.join(safariResources, '/js')
+
   return mergeStream(
-    src('./src/browser-ext/vendor/safari/manifest.json').pipe(dest('./src/safari/ZaDark Extension/Resources/')),
-    src('./src/browser-ext/vendor/safari/browser.js').pipe(dest('./src/safari/ZaDark Extension/Resources/js')),
-    src('./src/browser-ext/vendor/safari/background.js').pipe(dest('./src/safari/ZaDark Extension/Resources/js')),
+    src('./src/browser-ext/vendor/safari/manifest.json').pipe(dest(safariResources)),
+    src('./src/browser-ext/vendor/safari/browser.js').pipe(dest(jsDir)),
+    src('./src/browser-ext/vendor/safari/background.js').pipe(dest(jsDir)),
 
-    src('./src/browser-ext/libs/**/*').pipe(dest('./src/safari/ZaDark Extension/Resources/libs')),
-    src('./src/browser-ext/js/**/*').pipe(dest('./src/safari/ZaDark Extension/Resources/js')),
+    src('./src/browser-ext/libs/**/*').pipe(dest(path.join(safariResources, '/libs'))),
+    src('./src/browser-ext/js/**/*').pipe(dest(jsDir)),
 
-    src('./src/browser-ext/*.html').pipe(dest('./src/safari/ZaDark Extension/Resources/'))
+    src('./src/browser-ext/*.html').pipe(dest(safariResources))
   )
 }
 

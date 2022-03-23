@@ -14,11 +14,6 @@ xcuserdata/
 *.xccheckout
 
 # Safari Extension
-# safari/ZaDark/ZaDark Extension/Resources/manifest.json
 src/safari/**/Resources/*
+!src/safari/**/Resources/images
 !src/safari/**/Resources/.gitkeep
-
-# src/safari/**/Resources/js/*
-# src/safari/**/Resources/libs/*
-# !src/safari/**/Resources/js/.gitkeep
-# !src/safari/**/Resources/libs/.gitkeep
