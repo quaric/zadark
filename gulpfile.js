@@ -1,11 +1,11 @@
 const { parallel, src, dest, watch, series } = require('gulp')
 const mergeStream = require('merge-stream')
-const gulpClean = require('gulp-clean')
 const sass = require('sass')
 const yupSass = require('gulp-sass')(sass)
 const gulpZip = require('gulp-zip')
 const pkg = require('pkg')
 const path = require('path')
+const del = require('del')
 
 const chromeManifest = require('./src/browser-ext/vendor/chrome/manifest.json')
 const firefoxManifest = require('./src/browser-ext/vendor/firefox/manifest.json')
@@ -35,11 +35,11 @@ const buildSass = (_src, _dest) => {
 // Clean
 
 const cleanBuild = () => {
-  return src('build', { read: false, allowEmpty: true }).pipe(gulpClean())
+  return del('build')
 }
 
 const cleanDist = () => {
-  return src('dist', { read: false, allowEmpty: true }).pipe(gulpClean())
+  return del('dist')
 }
 
 // Build
@@ -96,18 +96,30 @@ const buildEdge = () => {
   return buildBrowserExt('edge')
 }
 
+const cleanSafariResources = () => {
+  const patterns = [
+    path.join(safariResources, '**/*'),
+    `!${path.join(safariResources, 'images')}`,
+    `!${path.join(safariResources, '.gitkeep')}`
+  ]
+  return del(patterns)
+}
+
 const buildSafari = () => {
   const jsDir = path.join(safariResources, '/js')
+  const cssDir = path.join(safariResources, '/css')
+  const libsDir = path.join(safariResources, '/libs')
+  const fontsDir = path.join(safariResources, '/fonts')
 
   return mergeStream(
     src('./src/browser-ext/vendor/safari/manifest.json').pipe(dest(safariResources)),
     src('./src/browser-ext/vendor/safari/browser.js').pipe(dest(jsDir)),
     src('./src/browser-ext/vendor/safari/background.js').pipe(dest(jsDir)),
-    buildSass('./src/browser-ext/vendor/safari/*.scss', path.join(safariResources, '/css')),
+    buildSass('./src/browser-ext/vendor/safari/*.scss', cssDir),
 
-    src('./src/browser-ext/libs/**/*').pipe(dest(path.join(safariResources, '/libs'))),
+    src('./src/browser-ext/libs/**/*').pipe(dest(libsDir)),
     src('./src/browser-ext/js/**/*').pipe(dest(jsDir)),
-    src('./src/core/fonts/**/*').pipe(dest(path.join(safariResources, '/fonts'))),
+    src('./src/core/fonts/**/*').pipe(dest(fontsDir)),
     src('./src/browser-ext/*.html').pipe(dest(safariResources))
   )
 }
@@ -204,7 +216,7 @@ const pcDist = series(
 // Exports
 
 const buildAll = series(
-  cleanBuild,
+  parallel(cleanBuild, cleanSafariResources),
   parallel(
     buildCoreStyles,
     buildBrowserExtStyles,

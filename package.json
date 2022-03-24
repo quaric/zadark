@@ -9,6 +9,7 @@
     "watch": "gulp watch",
     "build": "gulp build",
     "dist": "gulp dist",
+    "test2": "gulp test2",
     "pc:dev": "NODE_ENV=development node build/pc",
     "pc:start": "NODE_ENV=production node build/pc",
     "codesign:macos": "node tools/macos/codesign tools/macos/config.ini"
@@ -17,7 +18,6 @@
     "babel-eslint": "^10.1.0",
     "config-ini-parser": "^1.5.9",
     "gulp": "^4.0.2",
-    "gulp-clean": "^0.4.0",
     "gulp-sass": "^5.1.0",
     "gulp-zip": "^5.1.0",
     "merge-stream": "^2.0.0",
