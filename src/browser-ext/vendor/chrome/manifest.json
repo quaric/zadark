@@ -1,15 +1,15 @@
 {
   "manifest_version": 3,
   "name": "ZaDark – Best Dark Theme for Zalo",
-  "version": "4.0",
+  "version": "4.1",
   "description": "The best dark theme for your Zalo.",
   "author": "NCDAi Studio",
   "homepage_url": "https://zadark.ncdaistudio.com",
   "icons": {
-    "16": "images/icons/za-dark-icon@16.png",
-    "32": "images/icons/za-dark-icon@32.png",
-    "48": "images/icons/za-dark-icon@48.png",
-    "128": "images/icons/za-dark-icon@128.png"
+    "16": "images/zadark-icon-16.png",
+    "32": "images/zadark-icon-32.png",
+    "48": "images/zadark-icon-48.png",
+    "128": "images/zadark-icon-128.png"
   },
   "content_scripts": [
     {
@@ -18,12 +18,13 @@
       ],
       "run_at": "document_end",
       "css": [
-        "css/za-dark.css"
+        "css/zadark-fonts.css",
+        "css/zadark.css"
       ],
       "js": [
         "js/browser.js",
         "js/utils.js",
-        "js/za-dark.js"
+        "js/zadark.js"
       ]
     }
   ],
@@ -40,10 +41,14 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/icons/za-dark-icon@16.png",
-      "32": "images/icons/za-dark-icon@32.png",
-      "48": "images/icons/za-dark-icon@48.png",
-      "128": "images/icons/za-dark-icon@128.png"
+      "16": "images/zadark-icon-16.png",
+      "32": "images/zadark-icon-32.png",
+      "48": "images/zadark-icon-48.png",
+      "128": "images/zadark-icon-128.png"
     }
-  }
+  },
+  "web_accessible_resources": [{
+    "resources": ["fonts/*"],
+    "matches": ["*://chat.zalo.me/*"]
+  }]
 }

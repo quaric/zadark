@@ -11,7 +11,7 @@
     name: 'Chrome',
 
     initClassNames: () => {
-      document.body.classList.add('za-dark', 'za-dark-browser-ext', 'za-dark-chrome')
+      document.body.classList.add('zadark', 'zadark-browser-ext', 'zadark-chrome')
     },
 
     getManifest: () => {
@@ -32,7 +32,7 @@
     },
 
     saveExtensionSettings: (items) => {
-      chrome.storage.sync.set(items)
+      return chrome.storage.sync.set(items)
     },
 
     executeScript: (tabId, file) => {

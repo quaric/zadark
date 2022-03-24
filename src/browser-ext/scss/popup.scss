@@ -3,6 +3,10 @@
   Made by NCDAi Studio
 */
 
+:root {
+  color-scheme: light dark;
+}
+
 html[data-theme-mode="dark"] {
   body {
     border: 1px solid var(--border-base);

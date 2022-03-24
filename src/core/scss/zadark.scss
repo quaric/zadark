@@ -230,7 +230,7 @@ html[data-theme-mode="dark"] {
     background: var(--brand-base);
   }
 
-  body.za-dark {
+  body.zadark {
     background: var(--white-300);
     -webkit-font-smoothing: auto;
 
@@ -944,11 +944,11 @@ html[data-theme-mode="dark"] {
   }
 }
 
-body.za-dark {
+body.zadark {
   font-family: "Open Sans", sans-serif;
 
-  &.za-dark-browser-ext,
-  &.za-dark-win32 {
+  &.zadark-browser-ext,
+  &.zadark-win32 {
     .nav__tabs__zalo {
       height: auto;
       padding-top: 16px;
@@ -956,7 +956,7 @@ body.za-dark {
     }
   }
 
-  &.za-dark-browser-ext {
+  &.zadark-browser-ext {
     #ztoolbar div[icon="outline-za-screenshot"] {
       display: none;
     }

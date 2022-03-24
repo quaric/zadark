@@ -1,7 +1,19 @@
 .DS_Store
 node_modules/
 
+# ZaDark
 build/
 dist/
-
 .zadark
+
+# Xcode
+## User settings
+xcuserdata/
+## Xcode 8 and earlier
+*.xcscmblueprint
+*.xccheckout
+
+# Safari Extension
+src/browser-ext/vendor/safari/**/Resources/*
+!src/browser-ext/vendor/safari/**/Resources/images
+!src/browser-ext/vendor/safari/**/Resources/.gitkeep

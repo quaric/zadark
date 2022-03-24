@@ -11,7 +11,7 @@
     name: 'Firefox',
 
     initClassNames: () => {
-      document.body.classList.add('za-dark', 'za-dark-browser-ext', 'za-dark-firefox')
+      document.body.classList.add('zadark', 'zadark-browser-ext', 'zadark-firefox')
     },
 
     getManifest: () => {
@@ -32,7 +32,7 @@
     },
 
     saveExtensionSettings: (items) => {
-      browser.storage.sync.set(items)
+      return browser.storage.sync.set(items)
     },
 
     executeScript: (tabId, file) => {

@@ -66,22 +66,22 @@ const fireThemeSettingsChanged = () => {
   window.zadark.utils.refreshPageTheme()
 }
 
-$(selectThemeModeElName).on('change', function () {
+$(selectThemeModeElName).on('change', async function () {
   const themeMode = $(this).val()
-  window.zadark.browser.saveExtensionSettings({ themeMode })
+  await window.zadark.browser.saveExtensionSettings({ themeMode })
   updateThemeMode(themeMode)
   fireThemeSettingsChanged()
 })
 
-$(selectUserThemeElName).on('change', function () {
+$(selectUserThemeElName).on('change', async function () {
   const userTheme = $(this).val()
-  window.zadark.browser.saveExtensionSettings({ userTheme })
+  await window.zadark.browser.saveExtensionSettings({ userTheme })
   fireThemeSettingsChanged()
 })
 
-$(selectDarkThemeElName).on('change', function () {
+$(selectDarkThemeElName).on('change', async function () {
   const darkTheme = $(this).val()
-  window.zadark.browser.saveExtensionSettings({ darkTheme })
+  await window.zadark.browser.saveExtensionSettings({ darkTheme })
   fireThemeSettingsChanged()
 })
 

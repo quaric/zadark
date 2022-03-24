@@ -1,6 +1,22 @@
 # Changelog
 
+## PC v4.3 & Browser v4.1
+
+### Added
+- Safari Extension
+
+### Changed
+- Use `local font source` instead of `online font source`
+- Change the algorithm to build code for pc
+#### Browser specific
+- Replace `ZaDark` with `SVG Logo` in Header
+
+### Removed
+- `@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap");`
+
 ## PC v4.2 & Browser v4.0
+
+> 2022-03-22
 
 ### Changed
 #### PC specific
