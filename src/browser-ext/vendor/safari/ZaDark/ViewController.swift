@@ -9,7 +9,7 @@ import Cocoa
 import SafariServices
 import WebKit
 
-let extensionBundleIdentifier = "com.ncdaistudio.ZaDark.Extension"
+let extensionBundleIdentifier = "com.ncdaistudio.ZaDark.BrowserExt.Safari"
 
 class ViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHandler {
 
