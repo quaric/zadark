@@ -6,7 +6,7 @@
 const os = require('os')
 const prompt = require('prompt-sync')()
 const chalk = require('chalk')
-const zaDarkPC = require('./za-dark-pc')
+const zaDarkPC = require('./zadark-pc')
 const packageJSON = require('./package.json')
 
 const { log, logError, open } = require('./utils')

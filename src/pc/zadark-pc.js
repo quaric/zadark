@@ -12,7 +12,7 @@ const asar = require('asar')
 const HTMLParser = require('node-html-parser')
 const glob = require('glob')
 
-const { log, logDebug } = require('./utils')
+const { log, logDebug, copyRecursiveSync } = require('./utils')
 
 const platform = os.platform()
 
@@ -50,30 +50,30 @@ const writeIndexFile = (zaloDir, { darkTheme, isSyncWithSystem }) => {
   const bodyElement = root.getElementsByTagName('body')[0]
 
   // Required font
-  const zaDarkFont = root.querySelectorAll('style[id="za-dark-font"]')
+  const zaDarkFont = root.querySelectorAll('link[href="zadark/css/zadark-fonts.css"]')
   if (!zaDarkFont.length) {
     headElement.insertAdjacentHTML(
       'beforeend',
-      '<style id="za-dark-font">@import url(\'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap\');</style>'
+      '<link rel="stylesheet" href="zadark/css/zadark-fonts.css">'
     )
   }
 
   // Required stylesheet
-  const zaDarkCSS = root.querySelectorAll('link[href="za-dark.css"]')
+  const zaDarkCSS = root.querySelectorAll('link[href="zadark/css/zadark.css"]')
   if (!zaDarkCSS.length) {
     headElement.insertAdjacentHTML(
       'beforeend',
-      '<link rel="stylesheet" href="za-dark.css">'
+      '<link rel="stylesheet" href="zadark/css/zadark.css">'
     )
   }
 
   if (isSyncWithSystem) {
     // Required script
-    const zaDarkSWSScript = root.querySelectorAll('script[src="za-dark-sws.js"]')
+    const zaDarkSWSScript = root.querySelectorAll('script[src="zadark/js/zadark-sws.js"]')
     if (!zaDarkSWSScript.length) {
       bodyElement.insertAdjacentHTML(
         'beforeend',
-        '<script src="za-dark-sws.js"></script>'
+        '<script src="zadark/js/zadark-sws.js"></script>'
       )
     }
   }
@@ -83,7 +83,7 @@ const writeIndexFile = (zaloDir, { darkTheme, isSyncWithSystem }) => {
   htmlElement.setAttribute('data-dark-theme', darkTheme)
 
   // Required classNames
-  const zaDarkClassNames = ['za-dark', 'za-dark-pc', `za-dark-${platform}`]
+  const zaDarkClassNames = ['zadark', 'zadark-pc', `zadark-${platform}`]
   zaDarkClassNames.forEach((className) => {
     bodyElement.classList.add(className)
   })
@@ -92,7 +92,24 @@ const writeIndexFile = (zaloDir, { darkTheme, isSyncWithSystem }) => {
   logDebug('- writeIndexFile', srcPath)
 }
 
-const copyAssetFile = (zaloDir, { dest, src }) => {
+// const copyAssetFile = (zaloDir, { dest, src }) => {
+//   const srcPath = path.join(__dirname, `assets/${src}`)
+//   const destPath = path.join(zaloDir, `app/${dest}`)
+
+//   if (!fs.existsSync(srcPath)) {
+//     throw new Error(srcPath + ' doesn\'t exist.')
+//   }
+
+//   const folder = path.dirname(destPath)
+//   if (!fs.existsSync(folder)) {
+//     fs.mkdirSync(folder, { recursive: true })
+//   }
+//   fs.copyFileSync(srcPath, destPath)
+
+//   logDebug('- copyAssetFile', src, '➜', destPath)
+// }
+
+const copyAssetDir = (zaloDir, { dest, src }) => {
   const srcPath = path.join(__dirname, `./assets/${src}`)
   const destPath = path.join(zaloDir, `app/${dest}`)
 
@@ -100,10 +117,9 @@ const copyAssetFile = (zaloDir, { dest, src }) => {
     throw new Error(srcPath + ' doesn\'t exist.')
   }
 
-  const newContents = fs.readFileSync(srcPath, 'utf8')
-  fs.writeFileSync(destPath, newContents)
+  copyRecursiveSync(srcPath, destPath)
 
-  logDebug('- copyAssetFile', src, '➜', destPath)
+  logDebug('- copyAssetDir', src, '➜', destPath)
 }
 
 const installDarkTheme = async (zaloDir, darkTheme = 'dark', isSyncWithSystem = false) => {
@@ -135,17 +151,23 @@ const installDarkTheme = async (zaloDir, darkTheme = 'dark', isSyncWithSystem = 
   logDebug('- extractAsar', appAsarPath)
   asar.extractAll(appAsarPath, appDirPath)
 
-  // Copy assets "za-dark.css" to "resources/app/pc-dist"
-  copyAssetFile(zaloDir, {
-    src: 'css/za-dark.css',
-    dest: 'pc-dist/za-dark.css'
+  // Copy assets "fonts/*" to "resources/app/pc-dist/zadark/fonts"
+  copyAssetDir(zaloDir, {
+    src: 'fonts',
+    dest: 'pc-dist/zadark/fonts'
+  })
+
+  // Copy assets "css/*" to "resources/app/pc-dist/zadark/css"
+  copyAssetDir(zaloDir, {
+    src: 'css',
+    dest: 'pc-dist/zadark/css'
   })
 
   if (isSyncWithSystem) {
-    // Copy assets "za-dark-sws.js" to "resources/app/pc-dist"
-    copyAssetFile(zaloDir, {
-      src: 'js/za-dark-sws.js',
-      dest: 'pc-dist/za-dark-sws.js'
+    // Copy assets "zadark-sws.js" to "resources/app/pc-dist/zadark/js"
+    copyAssetDir(zaloDir, {
+      src: 'js/zadark-sws.js',
+      dest: 'pc-dist/zadark/js/zadark-sws.js'
     })
   }
 

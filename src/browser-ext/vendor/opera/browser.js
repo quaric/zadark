@@ -11,7 +11,7 @@
     name: 'Opera',
 
     initClassNames: () => {
-      document.body.classList.add('za-dark', 'za-dark-browser-ext', 'za-dark-opera')
+      document.body.classList.add('zadark', 'zadark-browser-ext', 'zadark-opera')
     },
 
     getManifest: () => {

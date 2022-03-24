@@ -1,9 +1,9 @@
 .DS_Store
 node_modules/
 
+# ZaDark
 build/
 dist/
-
 .zadark
 
 # Xcode
@@ -14,6 +14,6 @@ xcuserdata/
 *.xccheckout
 
 # Safari Extension
-src/safari/**/Resources/*
-!src/safari/**/Resources/images
-!src/safari/**/Resources/.gitkeep
+src/browser-ext/vendor/safari/**/Resources/*
+!src/browser-ext/vendor/safari/**/Resources/images
+!src/browser-ext/vendor/safari/**/Resources/.gitkeep

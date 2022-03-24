@@ -11,7 +11,7 @@
     name: 'Safari',
 
     initClassNames: () => {
-      document.body.classList.add('za-dark', 'za-dark-browser-ext', 'za-dark-safari')
+      document.body.classList.add('zadark', 'zadark-browser-ext', 'zadark-safari')
     },
 
     getManifest: () => {

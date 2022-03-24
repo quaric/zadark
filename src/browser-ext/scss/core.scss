@@ -248,15 +248,13 @@ header.main-header {
 
   .ext-name {
     flex: 1;
+    margin-right: 8px;
 
-    &-title {
-      margin-bottom: 4px;
-      margin-right: 8px;
-
-      font-family: "Bubblegum Sans", cursive;
-      font-size: 24px;
-      font-weight: var(--font-regular);
-      color: var(--primary-base);
+    &-logo {
+      margin: 4px 0;
+      img {
+        height: 20px;
+      }
     }
 
     &-slogan {

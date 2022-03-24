@@ -24,7 +24,13 @@ const DIST_FILE_NAME = {
   WINDOWS: `ZaDark-Windows-${dot2Underscore(pcPackageJSON.version)}`
 }
 
-const safariResources = './src/safari/ZaDark Extension/Resources'
+const safariResources = './src/browser-ext/vendor/safari/ZaDark Extension/Resources'
+
+const buildSass = (_src, _dest) => {
+  return src(_src)
+    .pipe(yupSass({ outputStyle: 'compressed' }).on('error', yupSass.logError))
+    .pipe(dest(_dest))
+}
 
 // Clean
 
@@ -39,7 +45,7 @@ const cleanDist = () => {
 // Build
 
 const buildCoreStyles = () => {
-  return src('./src/scss/**/*.scss')
+  return src('./src/core/scss/**/*.scss')
     .pipe(yupSass({ outputStyle: 'compressed' }).on('error', yupSass.logError))
     .pipe(dest('./build/chrome/css'))
     .pipe(dest('./build/firefox/css'))
@@ -64,12 +70,12 @@ const buildBrowserExt = (browser) => {
     src(`./src/browser-ext/vendor/${browser}/manifest.json`).pipe(dest(`./build/${browser}`)),
     src(`./src/browser-ext/vendor/${browser}/browser.js`).pipe(dest(`./build/${browser}/js`)),
     src(`./src/browser-ext/vendor/${browser}/background.js`).pipe(dest(`./build/${browser}/js`)),
+    buildSass(`./src/browser-ext/vendor/${browser}/*.scss`, `./build/${browser}/css`),
 
     src('./src/browser-ext/libs/**/*').pipe(dest(`./build/${browser}/libs`)),
     src('./src/browser-ext/js/**/*').pipe(dest(`./build/${browser}/js`)),
-    src('./src/browser-ext/css/**/*').pipe(dest(`./build/${browser}/css`)),
     src('./src/browser-ext/images/**/*').pipe(dest(`./build/${browser}/images`)),
-
+    src('./src/core/fonts/**/*').pipe(dest(`./build/${browser}/fonts`)),
     src('./src/browser-ext/*.html').pipe(dest(`./build/${browser}`))
   )
 }
@@ -97,16 +103,24 @@ const buildSafari = () => {
     src('./src/browser-ext/vendor/safari/manifest.json').pipe(dest(safariResources)),
     src('./src/browser-ext/vendor/safari/browser.js').pipe(dest(jsDir)),
     src('./src/browser-ext/vendor/safari/background.js').pipe(dest(jsDir)),
+    buildSass('./src/browser-ext/vendor/safari/*.scss', path.join(safariResources, '/css')),
 
     src('./src/browser-ext/libs/**/*').pipe(dest(path.join(safariResources, '/libs'))),
     src('./src/browser-ext/js/**/*').pipe(dest(jsDir)),
-
+    src('./src/core/fonts/**/*').pipe(dest(path.join(safariResources, '/fonts'))),
     src('./src/browser-ext/*.html').pipe(dest(safariResources))
   )
 }
 
 const buildPC = () => {
-  return src('./src/pc/**/*').pipe(dest('./build/pc'))
+  return mergeStream(
+    src([
+      './src/pc/**/*',
+      '!./src/pc/assets/scss/**'
+    ]).pipe(dest('./build/pc')),
+    src('./src/core/fonts/**/*').pipe(dest('./build/pc/assets/fonts')),
+    buildSass('./src/pc/assets/scss/*.scss', './build/pc/assets/css')
+  )
 }
 
 // Package
@@ -216,7 +230,14 @@ const distAll = series(
 )
 
 const watchAll = () => {
-  watch('src/**/*', buildAll)
+  watch([
+    'src/core/**/*',
+    'src/pc/**/*',
+    'src/browser-ext/**/*',
+    '!src/browser-ext/vendor/safari/ZaDark/**/*',
+    '!src/browser-ext/vendor/safari/ZaDark Extension/**/*',
+    '!src/browser-ext/vendor/safari/ZaDark.xcodeproj/**/*'
+  ], buildAll)
 }
 
 exports.build = buildAll

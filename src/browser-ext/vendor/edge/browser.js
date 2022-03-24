@@ -11,7 +11,7 @@
     name: 'Edge',
 
     initClassNames: () => {
-      document.body.classList.add('za-dark', 'za-dark-browser-ext', 'za-dark-edge')
+      document.body.classList.add('zadark', 'zadark-browser-ext', 'zadark-edge')
     },
 
     getManifest: () => {

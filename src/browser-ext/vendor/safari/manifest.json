@@ -19,12 +19,13 @@
       ],
       "run_at": "document_end",
       "css": [
-        "css/za-dark.css"
+        "css/zadark-fonts.css",
+        "css/zadark.css"
       ],
       "js": [
         "js/browser.js",
         "js/utils.js",
-        "js/za-dark.js"
+        "js/zadark.js"
       ]
     }
   ],
@@ -48,5 +49,8 @@
       "48": "images/zadark-toolbar-icon-48.png",
       "72": "images/zadark-toolbar-icon-72.png"
     }
-  }
+  },
+  "web_accessible_resources": [
+    "fonts/*"
+  ]
 }
