@@ -196,7 +196,7 @@ yarn dist
 
 - For Google Chrome, Firefox, Opera and Microsoft Edge: Distribute `dist/[PLATFORM]/ZaDark-[PLATFORM]-[VERSION].zip` to Store
 - For Windows: Distribute `dist/windows/ZaDark-Windows-[VERSION].zip` directly to users
-- For macOS: Let's see the [Codesign macOS Application](#codesign-macos-application-section)
+- For macOS: Let's see the [Codesign macOS Application](#codesign-macos-application)
 
 #### Codesign macOS Application
 
