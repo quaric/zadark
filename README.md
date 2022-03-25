@@ -65,24 +65,23 @@
 
 ## About
 
-ZaDark is an extension for Browser and PC that helps you turn on Dark Theme for Zalo (https://zalo.me), making your eyes feel comfortable when you work, especially at night.
+ZaDark is an open source extension for Browser and PC that helps you turn on Dark Theme for Zalo.
 
 ### Highlights
 
-- Multi-platform support:
-  - Zalo Web: Chrome, Firefox, Opera, Edge.
-  - Zalo PC: macOS, Windows.
 - Nice colors, good contrast.
-- Safety and Transparency (Open Source: https://short.ncdaistudio.com/zadark-github).
 - Allow customization according to your needs:
   - Themes: Light, Dark and Dark dimmed.
-  - Single Theme: Zalo will use your selected theme.
   - Sync With System: Zalo theme will match your system settings.
+- Cross-platform:
+  - Zalo PC: macOS and Windows.
+  - Zalo Web: Chrome, Firefox, Opera, Edge and Safari.
+- Open Source (https://short.ncdaistudio.com/zadark-github).
 
 ### Important Notes
 
-- This extension is not an official extension from Zalo.
-- This extension only injects the CSS file to change the color scheme of Zalo without affecting any features and security of Zalo.
+- ZaDark is not a product from Zalo Group.
+- ZaDark had never collected and will never collect any personal data, browsing history etc.
 
 > ZaDark from NCDAi Studio<br />Official Website: https://zadark.ncdaistudio.com
 
