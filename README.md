@@ -74,7 +74,7 @@ ZaDark is an open source extension for Browser and PC that helps you turn on Dar
   - Themes: Light, Dark and Dark dimmed.
   - Sync With System: Zalo theme will match your system settings.
 - Cross-platform:
-  - Zalo PC: macOS and Windows.
+  - Zalo PC: Windows and macOS.
   - Zalo Web: Chrome, Firefox, Opera, Edge and Safari.
 - Open Source (https://short.ncdaistudio.com/zadark-github).
 
