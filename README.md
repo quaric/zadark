@@ -1,4 +1,6 @@
-<div align="center" style="margin-top: 24px;">
+<br />
+
+<div align="center">
   <img src=".github/za-dark-icon@1024w.png" width="128" alt="ZaDark Icon" />
 
   <h1>ZaDark – Best Dark Theme for Zalo</h1>
@@ -19,6 +21,8 @@
   [![Edge](https://img.shields.io/badge/Edge-555555.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/nbcljbcabjegmmogkcegephdkhckegcf)
   [![Safari](https://img.shields.io/badge/Safari-555555.svg?&style=for-the-badge&logo=safari&logoColor=white)](https://zadark.ncdaistudio.com/browser-ext/safari)
 </div>
+
+<br />
 
 <details>
   <summary>Table of Contents</summary>
