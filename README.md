@@ -5,21 +5,21 @@
 
   <h1>ZaDark – Best Dark Theme for Zalo</h1>
 
-  <!-- [![Windows](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/Windows?color=4C4C4C&label=Windows&logo=windows&logoColor=white&style=for-the-badge)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
-  [![macOS](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/macOS?color=4C4C4C&label=macOS&logo=apple&logoColor=white&style=for-the-badge)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
-  [![Chrome](https://img.shields.io/chrome-web-store/users/llfhpkkeljlgnjgkholeppfnepmjppob?color=4C4C4C&label=Chrome&logo=google-chrome&logoColor=white&style=for-the-badge)](https://chrome.google.com/webstore/detail/llfhpkkeljlgnjgkholeppfnepmjppob)<br />
-  [![Firefox](https://img.shields.io/badge/Firefox-555555.svg?&style=for-the-badge&logo=firefox&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/zadark/)
-  [![Opera](https://img.shields.io/badge/Opera-555555.svg?&style=for-the-badge&logo=opera&logoColor=white)](https://addons.opera.com/en/extensions/details/zadark-best-dark-theme-for-zalo/)
-  [![Edge](https://img.shields.io/badge/Edge-555555.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/nbcljbcabjegmmogkcegephdkhckegcf)
-  [![Safari](https://img.shields.io/badge/Safari-555555.svg?&style=for-the-badge&logo=safari&logoColor=white)](https://zadark.ncdaistudio.com/browser-ext/safari) -->
+  <!-- [![Windows](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/Windows?color=4C4C4C&label=Windows&logo=windows&logoColor=white&style=for-the-badge)](https://short.ncdaistudio.com/zadark-win)
+  [![macOS](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/macOS?color=4C4C4C&label=macOS&logo=apple&logoColor=white&style=for-the-badge)](https://short.ncdaistudio.com/zadark-mac)
+  [![Chrome](https://img.shields.io/chrome-web-store/users/llfhpkkeljlgnjgkholeppfnepmjppob?color=4C4C4C&label=Chrome&logo=google-chrome&logoColor=white&style=for-the-badge)](https://short.ncdaistudio.com/zadark-chrome)<br />
+  [![Firefox](https://img.shields.io/badge/Firefox-555555.svg?&style=for-the-badge&logo=firefox&logoColor=white)](https://short.ncdaistudio.com/zadark-firefox)
+  [![Opera](https://img.shields.io/badge/Opera-555555.svg?&style=for-the-badge&logo=opera&logoColor=white)](https://short.ncdaistudio.com/zadark-opera)
+  [![Edge](https://img.shields.io/badge/Edge-555555.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://short.ncdaistudio.com/zadark-edge)
+  [![Safari](https://img.shields.io/badge/Safari-555555.svg?&style=for-the-badge&logo=safari&logoColor=white)](https://short.ncdaistudio.com/zadark-safari) -->
 
-  [![Windows](https://img.shields.io/badge/Windows-141414.svg?&style=for-the-badge&logo=windows&logoColor=white)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
-  [![macOS](https://img.shields.io/badge/macOS-141414.svg?&style=for-the-badge&logo=apple&logoColor=white)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
-  [![Chrome](https://img.shields.io/badge/Chrome-141414.svg?&style=for-the-badge&logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/llfhpkkeljlgnjgkholeppfnepmjppob)
-  [![Firefox](https://img.shields.io/badge/Firefox-141414.svg?&style=for-the-badge&logo=firefox&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/zadark/)
-  [![Opera](https://img.shields.io/badge/Opera-141414.svg?&style=for-the-badge&logo=opera&logoColor=white)](https://addons.opera.com/en/extensions/details/zadark-best-dark-theme-for-zalo/)
-  [![Edge](https://img.shields.io/badge/Edge-141414.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/nbcljbcabjegmmogkcegephdkhckegcf)
-  [![Safari](https://img.shields.io/badge/Safari-141414.svg?&style=for-the-badge&logo=safari&logoColor=white)](https://zadark.ncdaistudio.com/browser-ext/safari)
+  [![Windows](https://img.shields.io/badge/Windows-141414.svg?&style=for-the-badge&logo=windows&logoColor=white)](https://short.ncdaistudio.com/zadark-win)
+  [![macOS](https://img.shields.io/badge/macOS-141414.svg?&style=for-the-badge&logo=apple&logoColor=white)](https://short.ncdaistudio.com/zadark-mac)
+  [![Chrome](https://img.shields.io/badge/Chrome-141414.svg?&style=for-the-badge&logo=google-chrome&logoColor=white)](https://short.ncdaistudio.com/zadark-chrome)
+  [![Firefox](https://img.shields.io/badge/Firefox-141414.svg?&style=for-the-badge&logo=firefox&logoColor=white)](https://short.ncdaistudio.com/zadark-firefox)
+  [![Opera](https://img.shields.io/badge/Opera-141414.svg?&style=for-the-badge&logo=opera&logoColor=white)](https://short.ncdaistudio.com/zadark-opera)
+  [![Edge](https://img.shields.io/badge/Edge-141414.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://short.ncdaistudio.com/zadark-edge)
+  [![Safari](https://img.shields.io/badge/Safari-141414.svg?&style=for-the-badge&logo=safari&logoColor=white)](https://short.ncdaistudio.com/zadark-safari)
 </div>
 
 <br />
@@ -73,7 +73,7 @@ ZaDark is an extension for Browser and PC that helps you turn on Dark Theme for 
   - Zalo Web: Chrome, Firefox, Opera, Edge.
   - Zalo PC: macOS, Windows.
 - Nice colors, good contrast.
-- Safety and Transparency (Open Source: https://j2c.cc/zadark-github).
+- Safety and Transparency (Open Source: https://short.ncdaistudio.com/zadark-github).
 - Allow customization according to your needs:
   - Themes: Light, Dark and Dark dimmed.
   - Single Theme: Zalo will use your selected theme.
@@ -214,26 +214,26 @@ yarn dist
 ### Install for Zalo PC
 
 - Windows
-  - Download from **SourceForge.net**: https://j2c.cc/zadark-windows
-  - Tutorial: https://j2c.cc/zadark-windows-tutorial
+  - Download from **SourceForge.net**: https://short.ncdaistudio.com/zadark-win
+  - Tutorial: https://short.ncdaistudio.com/zadark-win-tut
 - macOS
-  - Download from **SourceForge.net**: https://j2c.cc/zadark-macos
-  - Tutorial: https://j2c.cc/zadark-macos-tutorial
+  - Download from **SourceForge.net**: https://short.ncdaistudio.com/zadark-mac
+  - Tutorial: https://short.ncdaistudio.com/zadark-mac-tut
 
 ### Install for Zalo Web
 
 - Google Chrome
-  - Download from **Chrome Web Store**: https://j2c.cc/zadark-chrome
-  - Tutorial: https://j2c.cc/zadark-chrome-tutorial
+  - Download from **Chrome Web Store**: https://short.ncdaistudio.com/zadark-chrome
+  - Tutorial: https://short.ncdaistudio.com/zadark-chrome-tut
 - Firefox
-  - Download from **Firefox Browser Add-ons**: https://j2c.cc/zadark-firefox
-  - Tutorial: https://j2c.cc/zadark-firefox-tutorial
+  - Download from **Firefox Browser Add-ons**: https://short.ncdaistudio.com/zadark-firefox
+  - Tutorial: https://short.ncdaistudio.com/zadark-firefox-tut
 - Opera
-  - Download from **Opera Add-ons**: https://j2c.cc/zadark-opera
-  - Tutorial: https://j2c.cc/zadark-opera-tutorial
+  - Download from **Opera Add-ons**: https://short.ncdaistudio.com/zadark-opera
+  - Tutorial: https://short.ncdaistudio.com/zadark-opera-tut
 - Microsoft Edge
-  - Download from **Edge Add-ons**: https://j2c.cc/zadark-edge
-  - Tutorial: https://j2c.cc/zadark-edge-tutorial
+  - Download from **Edge Add-ons**: https://short.ncdaistudio.com/zadark-edge
+  - Tutorial: https://short.ncdaistudio.com/zadark-edge-tut
 - Safari
   - Download from **Mac App Store**: `coming soon ...`
   - Tutorial: `coming soon ...`
@@ -300,15 +300,15 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Hi, I'm Nguyễn Chánh Đại - Founder of ZaDark!
 If you have a new idea or report a bug, you can contact me via:
 
-- Facebook: https://j2c.cc/ncdai-fb
-- LinkedIn: https://j2c.cc/ncdai-linkedin
+- Facebook: https://short.ncdaistudio.com/ncdai-fb
+- LinkedIn: https://short.ncdaistudio.com/ncdai-linkedin
 - Email: [ncdai@penphy.edu.vn](mailto:ncdai@penphy.edu.vn?subject=[ZaDark]%20Feedback)
 
 ### Social Network
 
-- Facebook Page: https://j2c.cc/zadark-fb-page
-- Facebook Group: https://j2c.cc/zadark-fb-group
-- GitHub: https://j2c.cc/zadark-github
+- Facebook Page: https://short.ncdaistudio.com/zadark-fb-page
+- Facebook Group: https://short.ncdaistudio.com/zadark-fb-group
+- GitHub: https://short.ncdaistudio.com/zadark-github
 
 ## Awards
 
