@@ -134,10 +134,24 @@ ZaDark is an extension for Browser and PC that helps you turn on Dark Theme for 
   - Step 2: Turn on `Developer Mode`
   - Step 3: Click `Load unpacked`
   - Step 4: Choose folder `build/edge/`
+- Safari Extension
+  - Step 1: Open `src/browser-ext/vendor/safari/ZaDark.xcodeproj` in Xcode
+  - Step 2: Choose `Product > Run`
+  - Step 3: Open `Safari > Preferences > Extensions` > Turn on `ZaDark – Best Dark Theme for Zalo`
 - macOS & Windows
   - `yarn run pc:dev`
 
 ### Creating Built Distributions
+
+#### For Safari Extension
+
+1. Run `yarn build`
+2. Open `src/browser-ext/vendor/safari/ZaDark.xcodeproj` in Xcode
+3. Choose `Product > Archive`
+
+> Documentation: https://developer.apple.com/documentation/xcode/distributing-your-app-for-beta-testing-and-releases
+
+#### For Other Platforms
 
 ```bash
 yarn dist
@@ -145,36 +159,40 @@ yarn dist
 # ➜ Output:
 # dist/
 #   chrome/
-#     ZaDark-Chrome-3.1.zip
-#     ZaDark-Chrome-3.2.zip
-#     ZaDark-Chrome-3.3.zip
-#     ...
+#     ZaDark-Chrome-[VERSION].zip
+#
 #   firefox/
-#     ZaDark-Firefox-3.1.zip
-#     ZaDark-Firefox-3.2.zip
-#     ZaDark-Firefox-3.3.zip
-#     ...
+#     ZaDark-Firefox-[VERSION].zip
+#
 #   opera/
-#     ZaDark-Opera-3.1.zip
-#     ZaDark-Opera-3.2.zip
-#     ZaDark-Opera-3.3.zip
-#     ...
+#     ZaDark-Opera-[VERSION].zip
+#
 #   edge/
-#     ZaDark-Edge-3.1.zip
-#     ZaDark-Edge-3.2.zip
-#     ZaDark-Edge-3.3.zip
-#     ...
+#     ZaDark-Edge-[VERSION].zip
+#
 #   macos/
-#     ZaDark-macOS-3.1.zip
-#     ZaDark-macOS-3.2.zip
-#     ZaDark-macOS-3.3.zip
-#     ...
+#     ZaDark-macOS-[VERSION]
+#     ZaDark-macOS-[VERSION].zip
+#
 #   windows/
-#     ZaDark-Windows-3.1.zip
-#     ZaDark-Windows-3.2.zip
-#     ZaDark-Windows-3.3.zip
-#     ...
+#     ZaDark-Windows-[VERSION].exe
+#     ZaDark-Windows-[VERSION].zip
 ```
+
+- For Google Chrome, Firefox, Opera and Microsoft Edge: Distribute `dist/[PLATFORM]/ZaDark-[PLATFORM]-[VERSION].zip` to Store
+- For Windows: Distribute `dist/windows/ZaDark-Windows-[VERSION].zip` directly to users
+- For macOS: Let's see the [Codesign macOS Application](#codesign-macos-application-section)
+
+#### Codesign macOS Application
+
+1. Edit the configuration file `tools/macos/config.ini`
+2. Run `yarn codesign:macos` to begin the signing and notarization process
+3. Enter your `username` and `password` as needed to unlock your keychain
+4. Once the package is submitted to Apple, `codesign:macos` will check to see if the process is complete
+5. Rejoyce in your signed `dist/macos/ZaDark-macOS-[VERSION].pkg` file
+6. Distribute `dist/macos/ZaDark-macOS-[VERSION].pkg` directly to users
+
+> `codesign:macos` script is converted from Python (https://github.com/txoof/codesign) to Node. Thanks @txoof.
 
 ## Usage
 
@@ -201,6 +219,9 @@ yarn dist
 - Microsoft Edge
   - Download from **Edge Add-ons**: https://j2c.cc/zadark-edge
   - Tutorial: https://j2c.cc/zadark-edge-tutorial
+- Safari
+  - Download from **Mac App Store**: `coming soon ...`
+  - Tutorial: `coming soon ...`
 
 ## Roadmap
 
@@ -221,12 +242,12 @@ yarn dist
     - [ ] More themes
 
 ### Roadmap for Zalo Web
-  - [ ] Browsers
+  - [x] Browsers
     - [x] Google Chrome
     - [x] Microsoft Edge
     - [x] Firefox
     - [x] Opera
-    - [ ] Safari
+    - [x] Safari
   - [x] Basic features
     - [x] Themes
       - [x] Light
