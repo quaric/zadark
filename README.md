@@ -3,10 +3,10 @@
 
   <h1>ZaDark – Best Dark Theme for Zalo</h1>
 
-  [![Windows](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/Windows?color=404040&label=Windows&logo=windows&logoColor=white&style=for-the-badge)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
-  [![macOS](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/macOS?color=404040&label=macOS&logo=apple&logoColor=white&style=for-the-badge)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
-  [![Chrome](https://img.shields.io/chrome-web-store/users/llfhpkkeljlgnjgkholeppfnepmjppob?color=404040&label=Chrome&logo=google-chrome&logoColor=white&style=for-the-badge)](https://chrome.google.com/webstore/detail/llfhpkkeljlgnjgkholeppfnepmjppob)
-  [![Firefox](https://img.shields.io/amo/users/zadark?color=404040&label=Firefox&logo=firefox&logoColor=white&style=for-the-badge)](https://addons.mozilla.org/en-US/firefox/addon/zadark/)
+  [![Windows](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/Windows?color=4C4C4C&label=Windows&logo=windows&logoColor=white&style=for-the-badge)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
+  [![macOS](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/macOS?color=4C4C4C&label=macOS&logo=apple&logoColor=white&style=for-the-badge)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
+  [![Chrome](https://img.shields.io/chrome-web-store/users/llfhpkkeljlgnjgkholeppfnepmjppob?color=4C4C4C&label=Chrome&logo=google-chrome&logoColor=white&style=for-the-badge)](https://chrome.google.com/webstore/detail/llfhpkkeljlgnjgkholeppfnepmjppob)
+  [![Firefox](https://img.shields.io/amo/users/zadark?color=4C4C4C&label=Firefox&logo=firefox&logoColor=white&style=for-the-badge)](https://addons.mozilla.org/en-US/firefox/addon/zadark/)<br />
   [![Opera](https://img.shields.io/badge/Opera-555555.svg?&style=for-the-badge&logo=opera&logoColor=white)](https://addons.opera.com/en/extensions/details/zadark-best-dark-theme-for-zalo/)
   [![Edge](https://img.shields.io/badge/Edge-555555.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/nbcljbcabjegmmogkcegephdkhckegcf)
   [![Safari](https://img.shields.io/badge/Safari-555555.svg?&style=for-the-badge&logo=safari&logoColor=white)](https://zadark.ncdaistudio.com/browser-ext/safari)
