@@ -3,13 +3,24 @@
 
   <h1>ZaDark – Best Dark Theme for Zalo</h1>
 
-  [![ZaDark-Chrome](https://img.shields.io/chrome-web-store/users/llfhpkkeljlgnjgkholeppfnepmjppob?color=34a853&label=Chrome%20Extension&logo=google-chrome&logoColor=fff)](https://chrome.google.com/webstore/detail/za-dark/llfhpkkeljlgnjgkholeppfnepmjppob)
-  [![ZaDark-Firefox](https://img.shields.io/amo/users/zadark?color=FF9500&label=Firefox%20Extension&logo=firefox&logoColor=fff)](https://addons.mozilla.org/en-US/firefox/addon/zadark/)
-  [![ZaDark-macOS](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/macOS?color=9b9b9b&label=macOS&logo=apple&logoColor=fff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
-  [![ZaDark-Windows](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/Windows?color=0078D6&label=Windows&logo=windows&logoColor=fff)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
+  [![Windows](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/Windows?color=404040&label=Windows&logo=windows&logoColor=white&style=for-the-badge)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
+  [![macOS](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/macOS?color=404040&label=macOS&logo=apple&logoColor=white&style=for-the-badge)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
+  [![Chrome](https://img.shields.io/chrome-web-store/users/llfhpkkeljlgnjgkholeppfnepmjppob?color=404040&label=Chrome&logo=google-chrome&logoColor=white&style=for-the-badge)](https://chrome.google.com/webstore/detail/llfhpkkeljlgnjgkholeppfnepmjppob)
+  [![Firefox](https://img.shields.io/amo/users/zadark?color=404040&label=Firefox&logo=firefox&logoColor=white&style=for-the-badge)](https://addons.mozilla.org/en-US/firefox/addon/zadark/)
+  [![Opera](https://img.shields.io/badge/Opera-555555.svg?&style=for-the-badge&logo=opera&logoColor=white)](https://addons.opera.com/en/extensions/details/zadark-best-dark-theme-for-zalo/)
+  [![Edge](https://img.shields.io/badge/Edge-555555.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/nbcljbcabjegmmogkcegephdkhckegcf)
+  [![Safari](https://img.shields.io/badge/Safari-555555.svg?&style=for-the-badge&logo=safari&logoColor=white)](https://zadark.ncdaistudio.com/browser-ext/safari)
+
+  <!-- [![Windows](https://img.shields.io/badge/Windows-555555.svg?&style=for-the-badge&logo=windows&logoColor=white)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows/)
+  [![macOS](https://img.shields.io/badge/macOS-555555.svg?&style=for-the-badge&logo=apple&logoColor=white)](https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS/)
+  [![Chrome](https://img.shields.io/badge/Chrome-555555.svg?&style=for-the-badge&logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/llfhpkkeljlgnjgkholeppfnepmjppob)
+  [![Firefox](https://img.shields.io/badge/Firefox-555555.svg?&style=for-the-badge&logo=firefox&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/zadark/)
+  [![Opera](https://img.shields.io/badge/Opera-555555.svg?&style=for-the-badge&logo=opera&logoColor=white)](https://addons.opera.com/en/extensions/details/zadark-best-dark-theme-for-zalo/)
+  [![Edge](https://img.shields.io/badge/Edge-555555.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/nbcljbcabjegmmogkcegephdkhckegcf)
+  [![Safari](https://img.shields.io/badge/Safari-555555.svg?&style=for-the-badge&logo=safari&logoColor=white)](https://zadark.ncdaistudio.com/browser-ext/safari) -->
 </div>
 
-<details open>
+<details>
   <summary>Table of Contents</summary>
   <ol>
     <li>
