@@ -1,5 +1,5 @@
 /*
-  ZaDark – Best Dark Theme for Zalo
+  ZaDark – Zalo Dark Mode
   Made by NCDAi Studio
 */
 
@@ -91,23 +91,6 @@ const writeIndexFile = (zaloDir, { darkTheme, isSyncWithSystem }) => {
   fs.writeFileSync(srcPath, root.toString())
   logDebug('- writeIndexFile', srcPath)
 }
-
-// const copyAssetFile = (zaloDir, { dest, src }) => {
-//   const srcPath = path.join(__dirname, `assets/${src}`)
-//   const destPath = path.join(zaloDir, `app/${dest}`)
-
-//   if (!fs.existsSync(srcPath)) {
-//     throw new Error(srcPath + ' doesn\'t exist.')
-//   }
-
-//   const folder = path.dirname(destPath)
-//   if (!fs.existsSync(folder)) {
-//     fs.mkdirSync(folder, { recursive: true })
-//   }
-//   fs.copyFileSync(srcPath, destPath)
-
-//   logDebug('- copyAssetFile', src, '➜', destPath)
-// }
 
 const copyAssetDir = (zaloDir, { dest, src }) => {
   const srcPath = path.join(__dirname, `./assets/${src}`)

@@ -1,5 +1,5 @@
 /*
-  ZaDark – Best Dark Theme for Zalo
+  ZaDark – Zalo Dark Mode
   Microsoft Edge Extension
   Made by NCDAi Studio
 */

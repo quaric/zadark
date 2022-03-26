@@ -1,5 +1,5 @@
 /*
-  ZaDark – Best Dark Theme for Zalo
+  ZaDark – Zalo Dark Mode
   Made by NCDAi Studio
 */
 
@@ -16,7 +16,7 @@ const version = packageJSON.version
 
 const renderHeader = () => {
   log('')
-  log(chalk.blueBright.bold('ZaDark – Best Dark Theme for Zalo'))
+  log(chalk.blueBright.bold('ZaDark – Zalo Dark Mode'))
   log(chalk.blueBright('Version :', `${platform === 'darwin' ? 'macOS' : 'Windows'}-${version}`))
   log(chalk.blueBright('Website :', chalk.underline('https://zadark.ncdaistudio.com')))
   log('')
