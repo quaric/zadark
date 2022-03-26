@@ -3,7 +3,7 @@
 <div align="center">
   <img src=".github/za-dark-icon@1024w.png" width="128" alt="ZaDark Icon" />
 
-  <h1>ZaDark – Best Dark Theme for Zalo</h1>
+  <h1>ZaDark – Zalo Dark Mode</h1>
 
   <!-- [![Windows](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/Windows?color=4C4C4C&label=Windows&logo=windows&logoColor=white&style=for-the-badge)](https://short.ncdaistudio.com/zadark-win)
   [![macOS](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/macOS?color=4C4C4C&label=macOS&logo=apple&logoColor=white&style=for-the-badge)](https://short.ncdaistudio.com/zadark-mac)
@@ -65,7 +65,7 @@
 
 ## About
 
-ZaDark is an open source extension for Browser and PC that helps you turn on Dark Theme for Zalo.
+ZaDark is an open source extension for Browser and PC that helps you turn on Dark Mode for Zalo.
 
 ### Highlights
 
@@ -248,9 +248,10 @@ yarn dist
     - [x] Install theme: Dark, Dark dimmed
     - [x] Unsintall theme
   - [ ] Advanced features
-    - [ ] Check for updates
     - [x] Changelog
     - [x] Sync theme with system
+    - [ ] Vietnamese
+    - [ ] Check for updates
     - [ ] No need to reinstall the theme when Zalo updates
     - [ ] GUI (Graphical User Interface)
     - [ ] More themes
@@ -273,6 +274,7 @@ yarn dist
     - [x] Changelog page
     - [x] Sync theme with system
     - [x] Allows users to Enable/Disable notifications when ZaDark updates
+    - [ ] Vietnamese
     - [ ] Custom Fonts
     - [ ] More themes
 
