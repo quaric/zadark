@@ -305,8 +305,7 @@ If you have a new idea or report a bug, you can contact me via:
 
 ### Social Network
 
-- Facebook Page: https://short.ncdaistudio.com/zadark-fb-page
-- Facebook Group: https://short.ncdaistudio.com/zadark-fb-group
+- Facebook: https://short.ncdaistudio.com/zadark-fb-page
 - GitHub: https://short.ncdaistudio.com/zadark-github
 
 ## Awards
