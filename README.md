@@ -234,8 +234,8 @@ yarn dist
   - Download from **Edge Add-ons**: https://short.ncdaistudio.com/zadark-edge
   - Tutorial: https://short.ncdaistudio.com/zadark-edge-tut
 - Safari
-  - Download from **Mac App Store**: `coming soon ...`
-  - Tutorial: `coming soon ...`
+  - Download from **Mac App Store**: https://short.ncdaistudio.com/zadark-safari
+  - Tutorial: https://short.ncdaistudio.com/zadark-safari-tut
 
 ## Roadmap
 
