@@ -5,10 +5,6 @@
 */
 
 browser.runtime.onInstalled.addListener((details) => {
-  if (details.reason === 'install') {
-    browser.tabs.create({ url: 'https://zadark.ncdaistudio.com/browser-ext/safari' })
-  }
-
   if (details.reason === 'update') {
     browser.storage.sync.get({ isReceiveUpdateNoti: true }, ({ isReceiveUpdateNoti }) => {
       if (isReceiveUpdateNoti) {

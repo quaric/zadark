@@ -638,6 +638,13 @@ html[data-theme-mode="dark"] {
           }
         }
       }
+
+      &.pinned {
+        background-color: initial;
+        &:hover {
+          background-color: var(--grey-700);
+        }
+      }
     }
 
     .message-view__guide__item__sign {

@@ -179,6 +179,13 @@ ul {
   }
 }
 
+code {
+  padding: 2px 4px;
+  border-radius: 4px;
+  background: var(--grey-500);
+  font-size: 85%;
+}
+
 // END: Reset
 
 // BEGIN: Utils
