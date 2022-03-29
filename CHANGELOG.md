@@ -3,9 +3,12 @@
 ## PC v4.4 & Browser v4.2
 
 ### Changed
-- `zadark brand`: change "ZaDark – Best Dark Theme for Zalo" to "ZaDark – Zalo Dark Mode"
+- `zadark brand` : change "ZaDark – Best Dark Theme for Zalo" to "ZaDark – Zalo Dark Mode"
 - `chat-input highlight` : remove blue line
 - `conv-item pinned` : remove background
+
+### Fixed
+- `font` : update font files
 
 ## PC v4.3 & Browser v4.1
 
