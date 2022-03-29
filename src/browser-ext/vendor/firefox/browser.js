@@ -2,6 +2,8 @@
   ZaDark – Zalo Dark Mode
   Firefox Extension
   Made by NCDAi Studio
+
+  ! This file must use VanillaJS
 */
 
 ;(function (window) {

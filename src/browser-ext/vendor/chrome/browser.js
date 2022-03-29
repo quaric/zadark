@@ -2,6 +2,8 @@
   ZaDark – Zalo Dark Mode
   Chrome Extension
   Made by NCDAi Studio
+
+  ! This file must use VanillaJS
 */
 
 ;(function (window) {
