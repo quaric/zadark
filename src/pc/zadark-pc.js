@@ -29,6 +29,7 @@ const getDefaultZaloResDirList = () => {
 
   if (!Array.isArray(resources) || !resources.length) {
     throw new Error('Zalo Resources not found. Please make sure you have installed Zalo PC from "https://zalo.me/pc".')
+    // Khong tim thay Zalo. Vui long tai va cai dat Zalo tai "https://zalo.me/pc".
   }
 
   return resources.sort()
@@ -163,9 +164,11 @@ const installDarkTheme = async (zaloDir, darkTheme = 'dark', isSyncWithSystem = 
   }
 
   log(chalk.green(`- Installed "${darkThemeLabel[darkTheme]}".`))
+  // - Dat cai dat.
 
   if (isSyncWithSystem) {
     log(chalk.green('- Enabled "Sync with system".'))
+    // - Da kich hoat "Dong bo giao dien voi he dieu hanh".
   }
 }
 
@@ -186,6 +189,7 @@ const uninstallDarkTheme = async (zaloDir) => {
   }
 
   log(chalk.green('- Uninstalled.'))
+  // - Da go cai dat.
 }
 
 module.exports = {
