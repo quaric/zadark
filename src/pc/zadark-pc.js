@@ -1,5 +1,5 @@
 /*
-  ZaDark – Best Dark Theme for Zalo
+  ZaDark – Zalo Dark Mode
   Made by NCDAi Studio
 */
 
@@ -29,6 +29,7 @@ const getDefaultZaloResDirList = () => {
 
   if (!Array.isArray(resources) || !resources.length) {
     throw new Error('Zalo Resources not found. Please make sure you have installed Zalo PC from "https://zalo.me/pc".')
+    // Khong tim thay Zalo. Vui long tai va cai dat Zalo tai "https://zalo.me/pc".
   }
 
   return resources.sort()
@@ -91,23 +92,6 @@ const writeIndexFile = (zaloDir, { darkTheme, isSyncWithSystem }) => {
   fs.writeFileSync(srcPath, root.toString())
   logDebug('- writeIndexFile', srcPath)
 }
-
-// const copyAssetFile = (zaloDir, { dest, src }) => {
-//   const srcPath = path.join(__dirname, `assets/${src}`)
-//   const destPath = path.join(zaloDir, `app/${dest}`)
-
-//   if (!fs.existsSync(srcPath)) {
-//     throw new Error(srcPath + ' doesn\'t exist.')
-//   }
-
-//   const folder = path.dirname(destPath)
-//   if (!fs.existsSync(folder)) {
-//     fs.mkdirSync(folder, { recursive: true })
-//   }
-//   fs.copyFileSync(srcPath, destPath)
-
-//   logDebug('- copyAssetFile', src, '➜', destPath)
-// }
 
 const copyAssetDir = (zaloDir, { dest, src }) => {
   const srcPath = path.join(__dirname, `./assets/${src}`)
@@ -180,9 +164,11 @@ const installDarkTheme = async (zaloDir, darkTheme = 'dark', isSyncWithSystem = 
   }
 
   log(chalk.green(`- Installed "${darkThemeLabel[darkTheme]}".`))
+  // - Dat cai dat.
 
   if (isSyncWithSystem) {
     log(chalk.green('- Enabled "Sync with system".'))
+    // - Da kich hoat "Dong bo giao dien voi he dieu hanh".
   }
 }
 
@@ -203,6 +189,7 @@ const uninstallDarkTheme = async (zaloDir) => {
   }
 
   log(chalk.green('- Uninstalled.'))
+  // - Da go cai dat.
 }
 
 module.exports = {

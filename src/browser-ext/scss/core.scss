@@ -175,8 +175,15 @@ ul {
   padding-left: 16px;
 
   li {
-    line-height: 1.5;
+    line-height: 1.6;
   }
+}
+
+code {
+  padding: 2px 4px;
+  border-radius: 4px;
+  background: var(--grey-500);
+  font-size: 85%;
 }
 
 // END: Reset
@@ -246,19 +253,13 @@ header.main-header {
   display: flex;
   align-items: center;
 
-  .ext-name {
+  .ext-logo {
     flex: 1;
     margin-right: 8px;
 
-    &-logo {
-      margin: 4px 0;
-      img {
-        height: 20px;
-      }
-    }
-
-    &-slogan {
-      font-weight: var(--font-regular);
+    img {
+      margin-top: 4px;
+      height: 20px;
     }
   }
 

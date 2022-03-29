@@ -1,9 +1,9 @@
 /*
-  ZaDark – Best Dark Theme for Zalo
+  ZaDark – Zalo Dark Mode
   Made by NCDAi Studio
-*/
 
-// This script helps to handle the "Sync with system" feature
+  This script helps to handle the "Sync with system" feature
+*/
 
 function setThemeMode (isDark) {
   document.documentElement.setAttribute('data-theme-mode', isDark ? 'dark' : 'light')

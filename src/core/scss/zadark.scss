@@ -1,5 +1,5 @@
 /*
-  ZaDark – Best Dark Theme for Zalo
+  ZaDark – Zalo Dark Mode
   Made by NCDAi Studio
 */
 
@@ -394,7 +394,14 @@ html[data-theme-mode="dark"] {
 
     .chat-input__content.highlight {
       // border-color: var(--neutral-500);
-      border-color: var(--brand-base);
+      // border-color: var(--brand-base);
+      border-color: var(--grey-300);
+    }
+
+    .chat-input__content__input .quote-banner {
+      height: 40px;
+      margin: 12px 16px 0;
+      background-color: var(--grey-700);
     }
 
     .chat-message {
@@ -636,6 +643,13 @@ html[data-theme-mode="dark"] {
           .progress-track {
             background-color: var(--grey-400) !important;
           }
+        }
+      }
+
+      &.pinned {
+        background-color: initial;
+        &:hover {
+          background-color: var(--grey-700);
         }
       }
     }

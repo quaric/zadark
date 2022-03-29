@@ -199,7 +199,7 @@ yarn dist
 
 #### Codesign macOS Application
 
-1. Edit the configuration file `tools/macos/config.ini`
+1. Create the configuration file `tools/macos/config.ini` with content from `tools/macos/example.config.ini`
 2. Run `yarn codesign:macos` to begin the signing and notarization process
 3. Enter your `username` and `password` as needed to unlock your keychain
 4. Once the package is submitted to Apple, `codesign:macos` will check to see if the process is complete
