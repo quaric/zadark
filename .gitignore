@@ -17,3 +17,5 @@ xcuserdata/
 src/browser-ext/vendor/safari/ZaDark Extension/Resources/*
 !src/browser-ext/vendor/safari/ZaDark Extension/Resources/images
 !src/browser-ext/vendor/safari/ZaDark Extension/Resources/.gitkeep
+
+tools/**/config.ini
