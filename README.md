@@ -250,7 +250,7 @@ yarn dist
   - [ ] Advanced features
     - [x] Changelog
     - [x] Sync theme with system
-    - [ ] Vietnamese
+    - [x] Vietnamese
     - [ ] Check for updates
     - [ ] No need to reinstall the theme when Zalo updates
     - [ ] GUI (Graphical User Interface)
