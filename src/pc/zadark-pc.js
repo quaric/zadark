@@ -4,7 +4,6 @@
 */
 
 const fs = require('fs')
-const os = require('os')
 const path = require('path')
 const del = require('del')
 const chalk = require('chalk')
@@ -13,23 +12,21 @@ const HTMLParser = require('node-html-parser')
 const glob = require('glob')
 
 const { log, logDebug, copyRecursiveSync } = require('./utils')
-
-const platform = os.platform()
+const { PLATFORM } = require('./constants')
 
 const getDefaultZaloResDirList = () => {
-  if (!['darwin', 'win32'].includes(platform)) {
-    throw new Error(`The "${platform}" platform is not supported.`)
+  if (!['darwin', 'win32'].includes(PLATFORM)) {
+    throw new Error(`Khong ho tro he dieu hanh "${PLATFORM}".`)
   }
 
-  const resourcesPath = platform === 'darwin'
+  const resourcesPath = PLATFORM === 'darwin'
     ? '/Applications/Zalo.app/Contents/Resources'
     : process.env.USERPROFILE + '/AppData/Local/Programs/Zalo/Zalo-*/resources'
 
   const resources = glob.sync(resourcesPath)
 
   if (!Array.isArray(resources) || !resources.length) {
-    throw new Error('Zalo Resources not found. Please make sure you have installed Zalo PC from "https://zalo.me/pc".')
-    // Khong tim thay Zalo. Vui long tai va cai dat Zalo tai "https://zalo.me/pc".
+    throw new Error('Khong tim thay Zalo. Vui long tai va cai dat Zalo tai "https://zalo.me/pc".')
   }
 
   return resources.sort()
@@ -40,7 +37,7 @@ const writeIndexFile = (zaloDir, { darkTheme, isSyncWithSystem }) => {
   const srcPath = path.join(zaloDir, `app/${src}`)
 
   if (!fs.existsSync(srcPath)) {
-    throw new Error(srcPath + ' doesn\'t exist.')
+    throw new Error(srcPath + ' khong ton tai.')
   }
 
   const indexHTMLContent = fs.readFileSync(srcPath, 'utf8')
@@ -84,7 +81,7 @@ const writeIndexFile = (zaloDir, { darkTheme, isSyncWithSystem }) => {
   htmlElement.setAttribute('data-dark-theme', darkTheme)
 
   // Required classNames
-  const zaDarkClassNames = ['zadark', 'zadark-pc', `zadark-${platform}`]
+  const zaDarkClassNames = ['zadark', 'zadark-pc', `zadark-${PLATFORM}`]
   zaDarkClassNames.forEach((className) => {
     bodyElement.classList.add(className)
   })
@@ -108,7 +105,7 @@ const copyAssetDir = (zaloDir, { dest, src }) => {
 
 const installDarkTheme = async (zaloDir, darkTheme = 'dark', isSyncWithSystem = false) => {
   if (!fs.existsSync(zaloDir)) {
-    throw new Error(zaloDir + ' doesn\'t exist.')
+    throw new Error(zaloDir + ' khong ton tai.')
   }
 
   const appDirPath = path.join(zaloDir, 'app')
@@ -116,7 +113,7 @@ const installDarkTheme = async (zaloDir, darkTheme = 'dark', isSyncWithSystem = 
   const appAsarBakPath = path.join(zaloDir, 'app.asar.bak')
 
   if (!fs.existsSync(appAsarPath)) {
-    throw new Error(zaloDir + ' doesn\'t contain "app.asar".')
+    throw new Error(zaloDir + ' khong co tap tin "app.asar".')
   }
 
   // Backup "app.asar"
@@ -163,12 +160,10 @@ const installDarkTheme = async (zaloDir, darkTheme = 'dark', isSyncWithSystem = 
     dark_dimmed: 'Dark dimmed'
   }
 
-  log(chalk.green(`- Installed "${darkThemeLabel[darkTheme]}".`))
-  // - Dat cai dat.
+  log(chalk.green(`- Da cai dat "${darkThemeLabel[darkTheme]}".`))
 
   if (isSyncWithSystem) {
-    log(chalk.green('- Enabled "Sync with system".'))
-    // - Da kich hoat "Dong bo giao dien voi he dieu hanh".
+    log(chalk.green('- Da kich hoat "Tu dong thay doi giao dien Zalo theo He dieu hanh".'))
   }
 }
 
@@ -188,8 +183,7 @@ const uninstallDarkTheme = async (zaloDir) => {
     logDebug('- deleteFile', appAsarBakPath)
   }
 
-  log(chalk.green('- Uninstalled.'))
-  // - Da go cai dat.
+  log(chalk.green('- Da go cai dat.'))
 }
 
 module.exports = {

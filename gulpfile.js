@@ -169,11 +169,11 @@ const pkgWindows = () => {
 
 // Zip
 
-const zipMacOS = () => {
-  return src(`./dist/macOS/${DIST_FILE_NAME.MACOS}`)
-    .pipe(gulpZip(`${DIST_FILE_NAME.MACOS}.zip`))
-    .pipe(dest('./dist/macOS'))
-}
+// const zipMacOS = () => {
+//   return src(`./dist/macOS/${DIST_FILE_NAME.MACOS}`)
+//     .pipe(gulpZip(`${DIST_FILE_NAME.MACOS}.zip`))
+//     .pipe(dest('./dist/macOS'))
+// }
 
 const zipWindows = () => {
   return src(`./dist/Windows/${DIST_FILE_NAME.WINDOWS}.exe`)
@@ -210,7 +210,8 @@ const edgeDist = () => {
 const pcDist = series(
   pkgMacOS,
   pkgWindows,
-  parallel(zipMacOS, zipWindows)
+  zipWindows
+  // parallel(zipMacOS, zipWindows)
 )
 
 // Exports
