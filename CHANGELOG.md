@@ -1,5 +1,11 @@
 # Changelog
 
+## PC v4.5
+
+### Changed
+#### PC specific
+- Convert English to Vietnamese
+
 ## PC v4.4 & Browser v4.2
 
 ### Changed
