@@ -1,5 +1,10 @@
 # Changelog
 
+## Browser v4.3
+### Changed
+#### Browser specific
+- Convert English to Vietnamese
+
 ## PC v4.5
 
 ### Changed

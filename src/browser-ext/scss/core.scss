@@ -205,6 +205,9 @@ code {
   flex: 1;
 }
 
+.mr-1 {
+  margin-right: 4px;
+}
 .mr-2 {
   margin-right: 8px;
 }
@@ -257,8 +260,12 @@ header.main-header {
     flex: 1;
     margin-right: 8px;
 
-    img {
+    a {
+      display: block;
       margin-top: 4px;
+    }
+
+    img {
       height: 20px;
     }
   }
