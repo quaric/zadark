@@ -1,5 +1,10 @@
 # Changelog
 
+## Browser v4.4
+### Changed
+#### Browser specific
+- `manifest.json` : update description
+
 ## Browser v4.3
 ### Changed
 #### Browser specific
