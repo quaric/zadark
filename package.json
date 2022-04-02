@@ -9,7 +9,6 @@
     "watch": "gulp watch",
     "build": "gulp build",
     "dist": "gulp dist",
-    "test2": "gulp test2",
     "pc:dev": "NODE_ENV=development node build/pc",
     "pc:start": "NODE_ENV=production node build/pc",
     "codesign:macos": "node tools/macos/codesign tools/macos/config.ini",
