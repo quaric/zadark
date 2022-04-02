@@ -66,17 +66,26 @@ const buildBrowserExtStyles = () => {
 }
 
 const buildBrowserExt = (browser) => {
-  return mergeStream(
-    src(`./src/browser-ext/vendor/${browser}/manifest.json`).pipe(dest(`./build/${browser}`)),
-    src(`./src/browser-ext/vendor/${browser}/browser.js`).pipe(dest(`./build/${browser}/js`)),
-    src(`./src/browser-ext/vendor/${browser}/background.js`).pipe(dest(`./build/${browser}/js`)),
-    buildSass(`./src/browser-ext/vendor/${browser}/*.scss`, `./build/${browser}/css`),
+  const rootDir = `./build/${browser}`
+  const jsDir = `./build/${browser}/js`
+  const cssDir = `./build/${browser}/css`
+  const localesDir = `./build/${browser}/_locales`
+  const libsDir = `./build/${browser}/libs`
+  const imagesDir = `./build/${browser}/images`
+  const fontsDir = `./build/${browser}/fonts`
 
-    src('./src/browser-ext/libs/**/*').pipe(dest(`./build/${browser}/libs`)),
-    src('./src/browser-ext/js/**/*').pipe(dest(`./build/${browser}/js`)),
-    src('./src/browser-ext/images/**/*').pipe(dest(`./build/${browser}/images`)),
-    src('./src/core/fonts/**/*').pipe(dest(`./build/${browser}/fonts`)),
-    src('./src/browser-ext/*.html').pipe(dest(`./build/${browser}`))
+  return mergeStream(
+    src(`./src/browser-ext/vendor/${browser}/manifest.json`).pipe(dest(rootDir)),
+    src(`./src/browser-ext/vendor/${browser}/browser.js`).pipe(dest(jsDir)),
+    src(`./src/browser-ext/vendor/${browser}/background.js`).pipe(dest(jsDir)),
+    buildSass(`./src/browser-ext/vendor/${browser}/*.scss`, cssDir),
+
+    src('./src/browser-ext/_locales/**/*').pipe(dest(localesDir)),
+    src('./src/browser-ext/libs/**/*').pipe(dest(libsDir)),
+    src('./src/browser-ext/js/**/*').pipe(dest(jsDir)),
+    src('./src/browser-ext/images/**/*').pipe(dest(imagesDir)),
+    src('./src/core/fonts/**/*').pipe(dest(fontsDir)),
+    src('./src/browser-ext/*.html').pipe(dest(rootDir))
   )
 }
 
@@ -108,6 +117,7 @@ const cleanSafariResources = () => {
 const buildSafari = () => {
   const jsDir = path.join(safariResources, '/js')
   const cssDir = path.join(safariResources, '/css')
+  const localesDir = path.join(safariResources, '/_locales')
   const libsDir = path.join(safariResources, '/libs')
   const fontsDir = path.join(safariResources, '/fonts')
 
@@ -117,6 +127,7 @@ const buildSafari = () => {
     src('./src/browser-ext/vendor/safari/background.js').pipe(dest(jsDir)),
     buildSass('./src/browser-ext/vendor/safari/*.scss', cssDir),
 
+    src('./src/browser-ext/_locales/**/*').pipe(dest(localesDir)),
     src('./src/browser-ext/libs/**/*').pipe(dest(libsDir)),
     src('./src/browser-ext/js/**/*').pipe(dest(jsDir)),
     src('./src/core/fonts/**/*').pipe(dest(fontsDir)),
