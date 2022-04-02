@@ -1,5 +1,10 @@
 # Changelog
 
+## Browser v4.5
+### Changed
+#### Browser specific
+- Add `_locales/vi`
+
 ## Browser v4.4
 ### Changed
 #### Browser specific
