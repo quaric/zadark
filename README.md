@@ -5,14 +5,6 @@
 
   <h1>ZaDark – Zalo Dark Mode</h1>
 
-  <!-- [![Windows](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/Windows?color=4C4C4C&label=Windows&logo=windows&logoColor=white&style=for-the-badge)](https://short.ncdaistudio.com/zadark-win)
-  [![macOS](https://img.shields.io/sourceforge/dt/zadark/ZaDarkPC/macOS?color=4C4C4C&label=macOS&logo=apple&logoColor=white&style=for-the-badge)](https://short.ncdaistudio.com/zadark-mac)
-  [![Chrome](https://img.shields.io/chrome-web-store/users/llfhpkkeljlgnjgkholeppfnepmjppob?color=4C4C4C&label=Chrome&logo=google-chrome&logoColor=white&style=for-the-badge)](https://short.ncdaistudio.com/zadark-chrome)<br />
-  [![Firefox](https://img.shields.io/badge/Firefox-555555.svg?&style=for-the-badge&logo=firefox&logoColor=white)](https://short.ncdaistudio.com/zadark-firefox)
-  [![Opera](https://img.shields.io/badge/Opera-555555.svg?&style=for-the-badge&logo=opera&logoColor=white)](https://short.ncdaistudio.com/zadark-opera)
-  [![Edge](https://img.shields.io/badge/Edge-555555.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://short.ncdaistudio.com/zadark-edge)
-  [![Safari](https://img.shields.io/badge/Safari-555555.svg?&style=for-the-badge&logo=safari&logoColor=white)](https://short.ncdaistudio.com/zadark-safari) -->
-
   [![Windows](https://img.shields.io/badge/Windows-141414.svg?&style=for-the-badge&logo=windows&logoColor=white)](https://short.ncdaistudio.com/zadark-win)
   [![macOS](https://img.shields.io/badge/macOS-141414.svg?&style=for-the-badge&logo=apple&logoColor=white)](https://short.ncdaistudio.com/zadark-mac)
   [![Chrome](https://img.shields.io/badge/Chrome-141414.svg?&style=for-the-badge&logo=google-chrome&logoColor=white)](https://short.ncdaistudio.com/zadark-chrome)
@@ -160,7 +152,7 @@ ZaDark is an open source extension for Browser and PC that helps you turn on Dar
 #### For Safari Extension
 
 1. Run `yarn build`
-2. Open `src/browser-ext/vendor/safari/ZaDark.xcodeproj` in Xcode
+2. RUn `yarn safari` or open `src/browser-ext/vendor/safari/ZaDark.xcodeproj` in Xcode
 3. Choose `Product > Archive`
 
 > Documentation: https://developer.apple.com/documentation/xcode/distributing-your-app-for-beta-testing-and-releases

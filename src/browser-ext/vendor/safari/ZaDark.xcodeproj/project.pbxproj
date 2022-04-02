@@ -25,6 +25,7 @@
 		C158767627EB671A00E008A0 /* changelog.html in Resources */ = {isa = PBXBuildFile; fileRef = C158766F27EB671A00E008A0 /* changelog.html */; };
 		C158767727EB671A00E008A0 /* js in Resources */ = {isa = PBXBuildFile; fileRef = C158767027EB671A00E008A0 /* js */; };
 		C158767B27EC1ED600E008A0 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = C158767A27EC1ED600E008A0 /* fonts */; };
+		C1E2CFA727F801DE00AACE85 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = C1E2CFA627F801DE00AACE85 /* _locales */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		C158766F27EB671A00E008A0 /* changelog.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = changelog.html; sourceTree = "<group>"; };
 		C158767027EB671A00E008A0 /* js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = js; sourceTree = "<group>"; };
 		C158767A27EC1ED600E008A0 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		C1E2CFA527F7FC0700AACE85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C1E2CFA627F801DE00AACE85 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,7 @@
 		C15875CF27EB09C300E008A0 /* ZaDark */ = {
 			isa = PBXGroup;
 			children = (
+				C1E2CFA527F7FC0700AACE85 /* Info.plist */,
 				C15875D027EB09C300E008A0 /* AppDelegate.swift */,
 				C15875DC27EB09C300E008A0 /* ViewController.swift */,
 				C15875DE27EB09C300E008A0 /* Main.storyboard */,
@@ -152,6 +156,7 @@
 		C158766927EB66D200E008A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C1E2CFA627F801DE00AACE85 /* _locales */,
 				C158767A27EC1ED600E008A0 /* fonts */,
 				C158766B27EB671A00E008A0 /* css */,
 				C158766A27EB671A00E008A0 /* images */,
@@ -175,6 +180,7 @@
 				C15875CA27EB09C300E008A0 /* Frameworks */,
 				C15875CB27EB09C300E008A0 /* Resources */,
 				C158760827EB09C400E008A0 /* Embed App Extensions */,
+				C1E2CFA427F7EDAB00AACE85 /* Set Build Number */,
 			);
 			buildRules = (
 			);
@@ -193,6 +199,7 @@
 				C15875E527EB09C400E008A0 /* Sources */,
 				C15875E627EB09C400E008A0 /* Frameworks */,
 				C15875E727EB09C400E008A0 /* Resources */,
+				C1E2CFA827F8083800AACE85 /* Set Build Number */,
 			);
 			buildRules = (
 			);
@@ -258,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1E2CFA727F801DE00AACE85 /* _locales in Resources */,
 				C158767527EB671A00E008A0 /* libs in Resources */,
 				C158767227EB671A00E008A0 /* css in Resources */,
 				C158767427EB671A00E008A0 /* popup.html in Resources */,
@@ -270,6 +278,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C1E2CFA427F7EDAB00AACE85 /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Generate the build number using current date and time\nbuildNumber=$(date \"+%s\")\n\n# Set the build number in plist file\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		C1E2CFA827F8083800AACE85 /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Generate the build number using current date and time\nbuildNumber=$(date \"+%s\")\n\n# Set the build number in plist file\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C15875C927EB09C300E008A0 /* Sources */ = {
@@ -438,7 +485,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -451,7 +498,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 4.3;
+				MARKETING_VERSION = 4.5;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -470,7 +517,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -483,7 +530,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 4.3;
+				MARKETING_VERSION = 4.5;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -505,10 +552,11 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZaDark/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ZaDark;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -519,7 +567,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 4.3;
+				MARKETING_VERSION = 4.5;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -542,10 +590,11 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZaDark/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ZaDark;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -556,7 +605,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 4.3;
+				MARKETING_VERSION = 4.5;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
