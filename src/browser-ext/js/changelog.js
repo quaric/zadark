@@ -5,13 +5,14 @@
 */
 
 const manifestData = window.zadark.browser.getManifest()
-$('#ext-version1, #ext-version2').html(`v${manifestData.version}`)
+$('#js-ext-version1').html(`Phiên bản ${manifestData.version}`)
+$('#js-ext-version2').html(manifestData.version)
 
 window.zadark.utils.refreshPageTheme()
 
 // Receive update notifications
 
-const checkboxReceiveUpdateNotiElName = '#checkbox-receive-update-noti'
+const checkboxReceiveUpdateNotiElName = '#js-checkbox-receive-update-noti'
 
 window.zadark.browser.getExtensionSettings().then(({ isReceiveUpdateNoti }) => {
   $(checkboxReceiveUpdateNotiElName).prop('checked', isReceiveUpdateNoti)

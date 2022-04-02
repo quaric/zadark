@@ -26,6 +26,7 @@ body {
 
     font: -apple-system-short-body;
     text-align: center;
+    line-height: 1.6;
 }
 
 body:not(.state-on, .state-off) :is(.state-on, .state-off) {
@@ -42,4 +43,12 @@ body.state-off :is(.state-on, .state-unknown) {
 
 button {
     font-size: 1em;
+}
+
+.text-green {
+    color: #2ecc71;
+}
+
+.text-red {
+    color: #e74c3c;
 }

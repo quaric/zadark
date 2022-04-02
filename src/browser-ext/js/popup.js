@@ -4,18 +4,25 @@
   Made by NCDAi Studio
 */
 
-const selectThemeModeElName = '#select-theme-mode'
-const selectUserThemeElName = '#select-user-theme input:radio[name="user_theme"]'
-const selectDarkThemeElName = '#select-dark-theme input:radio[name="dark_theme"]'
+const versionElName = '#js-ext-version'
 
-const themeModeSingleElName = '#theme-mode-single'
-const themeModeAutoElName = '#theme-mode-auto'
+const selectThemeModeElName = '#js-select-theme-mode'
+const selectUserThemeElName = '#js-select-user-theme input:radio[name="user_theme"]'
+const selectDarkThemeElName = '#js-select-dark-theme input:radio[name="dark_theme"]'
+
+const themeModeSingleElName = '#js-theme-mode-single'
+const themeModeAutoElName = '#js-theme-mode-auto'
 
 const themeModeSingleDescElName = '.theme-mode-description[data-theme-mode="single"]'
 const themeModeAutoDescElName = '.theme-mode-description[data-theme-mode="auto"]'
 
 const manifestData = window.zadark.browser.getManifest()
-$('#ext-version').html(`Version ${manifestData.version}`)
+
+$(versionElName).html(`Phiên bản ${manifestData.version}`)
+
+$(versionElName).on('click', () => {
+  window.zadark.browser.createTab({ url: 'changelog.html' })
+})
 
 window.zadark.utils.refreshPageTheme()
 
@@ -83,8 +90,4 @@ $(selectDarkThemeElName).on('change', async function () {
   const darkTheme = $(this).val()
   await window.zadark.browser.saveExtensionSettings({ darkTheme })
   fireThemeSettingsChanged()
-})
-
-$('#ext-version').on('click', () => {
-  window.zadark.browser.createTab({ url: 'changelog.html' })
 })
