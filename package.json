@@ -1,6 +1,6 @@
 {
   "name": "za-dark",
-  "description": "Tiện ích kích hoạt Dark Mode tốt nhất cho Zalo",
+  "description": "Dark Mode tốt nhất cho Zalo",
   "version": "4.6",
   "repository": "git@github.com:ncdai3651408/za-dark.git",
   "author": "Dai Nguyen <ncdai3651408@gmail.com>",
@@ -12,7 +12,8 @@
     "test2": "gulp test2",
     "pc:dev": "NODE_ENV=development node build/pc",
     "pc:start": "NODE_ENV=production node build/pc",
-    "codesign:macos": "node tools/macos/codesign tools/macos/config.ini"
+    "codesign:macos": "node tools/macos/codesign tools/macos/config.ini",
+    "safari": "xed src/browser-ext/vendor/safari/ZaDark.xcodeproj"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
