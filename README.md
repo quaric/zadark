@@ -251,9 +251,8 @@ yarn dist
     - [x] Changelog
     - [x] Sync theme with system
     - [x] Vietnamese
-    - [ ] Check for updates
-    - [ ] No need to reinstall the theme when Zalo updates
     - [ ] GUI (Graphical User Interface)
+    - [ ] Check for updates
     - [ ] More themes
 
 ### Roadmap for Zalo Web
@@ -274,7 +273,7 @@ yarn dist
     - [x] Changelog page
     - [x] Sync theme with system
     - [x] Allows users to Enable/Disable notifications when ZaDark updates
-    - [ ] Vietnamese
+    - [x] Vietnamese
     - [ ] Custom Fonts
     - [ ] More themes
 
