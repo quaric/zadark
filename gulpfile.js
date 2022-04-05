@@ -85,7 +85,8 @@ const buildBrowserExt = (browser) => {
     src('./src/browser-ext/js/**/*').pipe(dest(jsDir)),
     src('./src/browser-ext/images/**/*').pipe(dest(imagesDir)),
     src('./src/core/fonts/**/*').pipe(dest(fontsDir)),
-    src('./src/browser-ext/*.html').pipe(dest(rootDir))
+    src('./src/browser-ext/*.html').pipe(dest(rootDir)),
+    src('./src/browser-ext/*.json').pipe(dest(rootDir))
   )
 }
 

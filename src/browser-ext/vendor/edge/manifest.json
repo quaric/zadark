@@ -34,9 +34,21 @@
       "js/background.js"
     ]
   },
+  "declarative_net_request" : {
+    "rule_resources" : [{
+      "id": "rules_block_seen",
+      "enabled": false,
+      "path": "rules_block_seen.json"
+    }, {
+      "id": "rules_block_typing",
+      "enabled": false,
+      "path": "rules_block_typing.json"
+    }]
+  },
   "permissions": [
     "storage",
     "tabs",
+    "declarativeNetRequest",
     "*://chat.zalo.me/*"
   ],
   "browser_action": {

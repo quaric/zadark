@@ -91,3 +91,19 @@ $(selectDarkThemeElName).on('change', async function () {
   await window.zadark.browser.saveExtensionSettings({ darkTheme })
   fireThemeSettingsChanged()
 })
+
+$('#js-block-seen').on('click', function () {
+  chrome.declarativeNetRequest.updateEnabledRulesets({
+    enableRulesetIds: ['rules_block_seen']
+  })
+})
+
+$('#js-unblock-seen').on('click', function () {
+  chrome.declarativeNetRequest.updateEnabledRulesets({
+    disableRulesetIds: ['rules_block_seen']
+  })
+})
+
+chrome.declarativeNetRequest.getEnabledRulesets((rulesetIds) => {
+  console.log('getEnabledRulesets', rulesetIds)
+})
