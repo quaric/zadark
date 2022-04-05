@@ -217,7 +217,7 @@ yarn dist
   - Download from **Chrome Web Store**: https://short.ncdaistudio.com/zadark-chrome
   - Tutorial: https://short.ncdaistudio.com/zadark-chrome-tut
 - Firefox
-  - Download from **Firefox Browser Add-ons**: https://short.ncdaistudio.com/zadark-firefox
+  - Download from **Firefox Browser Add-ons**: `https://short.ncdaistudio.com/zadark-firefox`
   - Tutorial: https://short.ncdaistudio.com/zadark-firefox-tut
 - Opera
   - Download from **Opera Add-ons**: https://short.ncdaistudio.com/zadark-opera
@@ -313,11 +313,19 @@ Thanks to 1Password for helping teams work more efficiently and securely.
 
 ### Rising Star award by SourceForge
 
-ZaDark has just been recognized with a Rising Star award by SourceForge. This honor is awarded only to select projects that have reached significant milestones in terms of downloads and user engagement from the SourceForge community.
+ZaDark Wins Rising Star award by SourceForge. The Rising Star badge is awarded to open source projects that have reached the milestone of **100 monthly downloads** for the first time.
+
+> Thanks to everyone for trusting and using ZaDark!
 
 ![Rising Star award by SourceForge](.github/sourceforge-rising-star.png)
 
-Thanks to everyone for trusting and using ZaDark!
+### Favorite award by SourceForge
+
+ZaDark Wins Favorite award by SourceForge. The SourceForge Favorite badge is awarded to open source projects that have reached the milestone of **2,000 monthly downloads** for the first time.
+
+> Thanks to everyone for trusting and using ZaDark!
+
+![Favorite award by SourceForge](.github/sourceforge-favorite.png)
 
 ## Acknowledgments
 
