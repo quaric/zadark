@@ -205,6 +205,10 @@ code {
   flex: 1;
 }
 
+.mt-4 {
+  margin-top: 16px;
+}
+
 .mr-1 {
   margin-right: 4px;
 }
@@ -246,9 +250,16 @@ code {
   cursor: pointer;
 }
 
+.select-none {
+  user-select: none;
+}
+
 // END: Utils
 
 header.main-header {
+  position: sticky;
+  top: 0;
+
   padding: 16px;
   border-bottom: 1px solid var(--border-base);
   background-color: var(--grey-700);
@@ -365,6 +376,21 @@ header.main-header {
     }
   }
 }
+
+.form-switch-group {
+  margin-top: -16px;
+  margin-bottom: -16px;
+
+  .form-switch-container {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-base);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+// .form-switch-container {}
 
 .form-select {
   display: inline-block;

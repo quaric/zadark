@@ -54,6 +54,26 @@
 
     createTab: ({ url }) => {
       chrome.tabs.create({ url })
+    },
+
+    getEnabledBlockingRuleIds: () => {
+      return new Promise((resolve, reject) => {
+        chrome.storage.sync.get({
+          enabledBlockingRuleIds: []
+        }, ({ enabledBlockingRuleIds }) => {
+          resolve(enabledBlockingRuleIds)
+        })
+      })
+    },
+
+    updateEnabledBlockingRuleIds: ({ enableRuleIds = [], disableRuleIds = [] }) => {
+      chrome.runtime.sendMessage({
+        type: 'updateEnabledBlockingRuleIds',
+        data: {
+          enableRuleIds,
+          disableRuleIds
+        }
+      })
     }
   }
 })(window)

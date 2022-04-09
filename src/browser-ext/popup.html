@@ -38,11 +38,6 @@
     </header>
 
     <main class="p-4">
-      <div>
-        <button id="js-block-seen">Block seen</button>
-        <button id="js-unblock-seen">Unblock seen</button>
-      </div>
-
       <div class="mb-4">
         <label class="mb-2 block font-semibold">Giao diện</label>
 
@@ -105,9 +100,8 @@
           </div>
 
           <div class="panel-body">
-            <p class="text-neutral-500 mb-4">Giao diện này sẽ được sử dụng khi Hệ điều hành ở "Light Mode"</p>
-
-            <div id="js-select-light-theme" class="form-radio-group">
+            <p class="text-neutral-500">Giao diện Zalo gốc sẽ được sử dụng khi Hệ điều hành ở "Light Mode"</p>
+            <!-- <div id="js-select-light-theme" class="form-radio-group">
               <label class="form-radio-container">
                 <input type="radio" name="light_theme" value="light" checked>
                 <span class="checkmark"></span>
@@ -116,7 +110,7 @@
                   <span class="label">Light</span>
                 </span>
               </label>
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -152,6 +146,34 @@
                   <span class="label">Dark dimmed</span>
                 </span>
               </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <label class="mb-2 block font-semibold">Riêng tư</label>
+
+        <div class="panel">
+          <div class="panel-body">
+            <div class="form-switch-group">
+              <div class="flex items-center form-switch-container">
+                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-seen">Chặn "Đã xem" tin nhắn</label>
+
+                <label class="form-switch">
+                  <input type="checkbox" id="js-switch-block-seen">
+                  <span class="form-switch-slider"></span>
+                </label>
+              </div>
+
+              <div class="flex items-center form-switch-container">
+                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-typing">Chặn "Đang soạn tin nhắn..."</label>
+
+                <label class="form-switch">
+                  <input type="checkbox" id="js-switch-block-typing">
+                  <span class="form-switch-slider"></span>
+                </label>
+              </div>
             </div>
           </div>
         </div>

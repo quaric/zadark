@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "ZaDark – Zalo Dark Mode",
-  "version": "4.5",
+  "version": "5.0",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
   "author": "NCDAi Studio",
@@ -37,7 +37,12 @@
   "permissions": [
     "storage",
     "tabs",
-    "*://chat.zalo.me/*"
+    "webRequest",
+    "webRequestBlocking",
+    "*://chat.zalo.me/*",
+    "https://*.chat.zalo.me/api/message/typing*",
+    "https://*.chat.zalo.me/api/message/seenv2*",
+    "https://*.chat.zalo.me/api/group/seenv2*"
   ],
   "browser_action": {
     "default_popup": "popup.html",

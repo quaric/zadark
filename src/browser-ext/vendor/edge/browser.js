@@ -54,6 +54,16 @@
 
     createTab: ({ url }) => {
       chrome.tabs.create({ url })
+    },
+
+    declarativeNetRequest: {
+      getEnabledRulesets: async () => {
+        const rulesetIds = await chrome.declarativeNetRequest.getEnabledRulesets()
+        return rulesetIds
+      },
+      updateEnabledRulesets: (options) => {
+        return chrome.declarativeNetRequest.updateEnabledRulesets(options)
+      }
     }
   }
 })(window)

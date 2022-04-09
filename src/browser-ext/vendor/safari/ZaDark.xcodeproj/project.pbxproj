@@ -25,6 +25,8 @@
 		C158767627EB671A00E008A0 /* changelog.html in Resources */ = {isa = PBXBuildFile; fileRef = C158766F27EB671A00E008A0 /* changelog.html */; };
 		C158767727EB671A00E008A0 /* js in Resources */ = {isa = PBXBuildFile; fileRef = C158767027EB671A00E008A0 /* js */; };
 		C158767B27EC1ED600E008A0 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = C158767A27EC1ED600E008A0 /* fonts */; };
+		C1B4A76B2801627500D4671C /* rules_block_seen.json in Resources */ = {isa = PBXBuildFile; fileRef = C1B4A7692801627500D4671C /* rules_block_seen.json */; };
+		C1B4A76C2801627500D4671C /* rules_block_typing.json in Resources */ = {isa = PBXBuildFile; fileRef = C1B4A76A2801627500D4671C /* rules_block_typing.json */; };
 		C1E2CFA727F801DE00AACE85 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = C1E2CFA627F801DE00AACE85 /* _locales */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +78,8 @@
 		C158766F27EB671A00E008A0 /* changelog.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = changelog.html; sourceTree = "<group>"; };
 		C158767027EB671A00E008A0 /* js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = js; sourceTree = "<group>"; };
 		C158767A27EC1ED600E008A0 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		C1B4A7692801627500D4671C /* rules_block_seen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rules_block_seen.json; sourceTree = "<group>"; };
+		C1B4A76A2801627500D4671C /* rules_block_typing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rules_block_typing.json; sourceTree = "<group>"; };
 		C1E2CFA527F7FC0700AACE85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C1E2CFA627F801DE00AACE85 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,15 +160,17 @@
 		C158766927EB66D200E008A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C1B4A7692801627500D4671C /* rules_block_seen.json */,
+				C1B4A76A2801627500D4671C /* rules_block_typing.json */,
 				C1E2CFA627F801DE00AACE85 /* _locales */,
-				C158767A27EC1ED600E008A0 /* fonts */,
+				C158766F27EB671A00E008A0 /* changelog.html */,
 				C158766B27EB671A00E008A0 /* css */,
+				C158767A27EC1ED600E008A0 /* fonts */,
 				C158766A27EB671A00E008A0 /* images */,
 				C158767027EB671A00E008A0 /* js */,
 				C158766E27EB671A00E008A0 /* libs */,
-				C158766F27EB671A00E008A0 /* changelog.html */,
-				C158766D27EB671A00E008A0 /* popup.html */,
 				C158766C27EB671A00E008A0 /* manifest.json */,
+				C158766D27EB671A00E008A0 /* popup.html */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -269,6 +275,8 @@
 				C158767527EB671A00E008A0 /* libs in Resources */,
 				C158767227EB671A00E008A0 /* css in Resources */,
 				C158767427EB671A00E008A0 /* popup.html in Resources */,
+				C1B4A76B2801627500D4671C /* rules_block_seen.json in Resources */,
+				C1B4A76C2801627500D4671C /* rules_block_typing.json in Resources */,
 				C158767727EB671A00E008A0 /* js in Resources */,
 				C158767627EB671A00E008A0 /* changelog.html in Resources */,
 				C158767327EB671A00E008A0 /* manifest.json in Resources */,
@@ -498,7 +506,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 4.5;
+				MARKETING_VERSION = 5.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -530,7 +538,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 4.5;
+				MARKETING_VERSION = 5.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -567,7 +575,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 4.5;
+				MARKETING_VERSION = 5.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -605,7 +613,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 4.5;
+				MARKETING_VERSION = 5.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,

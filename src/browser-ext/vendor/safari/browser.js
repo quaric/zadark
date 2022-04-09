@@ -51,6 +51,18 @@
 
     createTab: ({ url }) => {
       browser.tabs.create({ url })
+    },
+
+    getEnabledBlockingRuleIds: async () => {
+      const rulesetIds = await chrome.declarativeNetRequest.getEnabledRulesets()
+      return rulesetIds
+    },
+
+    updateEnabledBlockingRuleIds: ({ enableRuleIds = [], disableRuleIds = [] }) => {
+      return chrome.declarativeNetRequest.updateEnabledRulesets({
+        enableRulesetIds: enableRuleIds,
+        disableRulesetIds: disableRuleIds
+      })
     }
   }
 })(window)

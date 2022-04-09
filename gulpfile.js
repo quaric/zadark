@@ -132,7 +132,8 @@ const buildSafari = () => {
     src('./src/browser-ext/libs/**/*').pipe(dest(libsDir)),
     src('./src/browser-ext/js/**/*').pipe(dest(jsDir)),
     src('./src/core/fonts/**/*').pipe(dest(fontsDir)),
-    src('./src/browser-ext/*.html').pipe(dest(safariResources))
+    src('./src/browser-ext/*.html').pipe(dest(safariResources)),
+    src('./src/browser-ext/*.json').pipe(dest(safariResources))
   )
 }
 

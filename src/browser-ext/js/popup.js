@@ -16,6 +16,9 @@ const themeModeAutoElName = '#js-theme-mode-auto'
 const themeModeSingleDescElName = '.theme-mode-description[data-theme-mode="single"]'
 const themeModeAutoDescElName = '.theme-mode-description[data-theme-mode="auto"]'
 
+const switchBlockSeenElName = '#js-switch-block-seen'
+const switchBlockTypingElName = '#js-switch-block-typing'
+
 const manifestData = window.zadark.browser.getManifest()
 
 $(versionElName).html(`Phiên bản ${manifestData.version}`)
@@ -23,6 +26,8 @@ $(versionElName).html(`Phiên bản ${manifestData.version}`)
 $(versionElName).on('click', () => {
   window.zadark.browser.createTab({ url: 'changelog.html' })
 })
+
+// Theme
 
 window.zadark.utils.refreshPageTheme()
 
@@ -92,18 +97,22 @@ $(selectDarkThemeElName).on('change', async function () {
   fireThemeSettingsChanged()
 })
 
-$('#js-block-seen').on('click', function () {
-  chrome.declarativeNetRequest.updateEnabledRulesets({
-    enableRulesetIds: ['rules_block_seen']
-  })
+// Privacy
+
+window.zadark.browser.getEnabledBlockingRuleIds().then((ruleIds) => {
+  $(switchBlockSeenElName).prop('checked', ruleIds.includes('rules_block_seen'))
+  $(switchBlockTypingElName).prop('checked', ruleIds.includes('rules_block_typing'))
 })
 
-$('#js-unblock-seen').on('click', function () {
-  chrome.declarativeNetRequest.updateEnabledRulesets({
-    disableRulesetIds: ['rules_block_seen']
-  })
-})
+const handleBlockingRuleChange = function (elName, ruleId) {
+  return function () {
+    const isChecked = $(elName).is(':checked')
+    window.zadark.browser.updateEnabledBlockingRuleIds(isChecked
+      ? { enableRuleIds: [ruleId] }
+      : { disableRuleIds: [ruleId] }
+    )
+  }
+}
 
-chrome.declarativeNetRequest.getEnabledRulesets((rulesetIds) => {
-  console.log('getEnabledRulesets', rulesetIds)
-})
+$(switchBlockSeenElName).on('change', handleBlockingRuleChange(switchBlockSeenElName, 'rules_block_seen'))
+$(switchBlockTypingElName).on('change', handleBlockingRuleChange(switchBlockTypingElName, 'rules_block_typing'))
