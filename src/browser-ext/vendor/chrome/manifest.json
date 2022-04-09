@@ -32,6 +32,14 @@
   "background": {
     "service_worker": "js/background.js"
   },
+  "permissions": [
+    "storage",
+    "scripting",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "*://chat.zalo.me/*"
+  ],
   "declarative_net_request" : {
     "rule_resources" : [{
       "id": "rules_block_seen",
@@ -43,14 +51,6 @@
       "path": "rules_block_typing.json"
     }]
   },
-  "permissions": [
-    "storage",
-    "scripting",
-    "declarativeNetRequest"
-  ],
-  "host_permissions": [
-    "*://chat.zalo.me/*"
-  ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

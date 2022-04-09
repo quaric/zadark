@@ -26,10 +26,7 @@
           themeMode: 'single',
           userTheme: 'dark_dimmed',
           darkTheme: 'dark_dimmed',
-
-          isReceiveUpdateNoti: true,
-          isBlockSeen: false,
-          isBlockTyping: false
+          isReceiveUpdateNoti: true
         }, (items) => {
           resolve(items)
         })

@@ -40,7 +40,8 @@
       "$",
       "chrome",
       "browser",
-      "zadark"
+      "zadark",
+      "bowser"
     ],
     "ignore": [
       "./src/browser-ext/libs/**/*"

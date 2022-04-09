@@ -56,14 +56,19 @@
       chrome.tabs.create({ url })
     },
 
-    declarativeNetRequest: {
-      getEnabledRulesets: async () => {
-        const rulesetIds = await chrome.declarativeNetRequest.getEnabledRulesets()
-        return rulesetIds
-      },
-      updateEnabledRulesets: (options) => {
-        return chrome.declarativeNetRequest.updateEnabledRulesets(options)
-      }
+    getEnabledBlockingRuleIds: () => {
+      return new Promise((resolve, reject) => {
+        chrome.declarativeNetRequest.getEnabledRulesets((rulesetIds) => {
+          resolve(rulesetIds)
+        })
+      })
+    },
+
+    updateEnabledBlockingRuleIds: ({ enableRuleIds = [], disableRuleIds = [] }) => {
+      return chrome.declarativeNetRequest.updateEnabledRulesets({
+        enableRulesetIds: enableRuleIds,
+        disableRulesetIds: disableRuleIds
+      })
     }
   }
 })(window)

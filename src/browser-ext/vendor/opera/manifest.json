@@ -37,13 +37,20 @@
   "permissions": [
     "storage",
     "tabs",
-    "webRequest",
-    "webRequestBlocking",
-    "*://chat.zalo.me/*",
-    "https://*.chat.zalo.me/api/message/typing*",
-    "https://*.chat.zalo.me/api/message/seenv2*",
-    "https://*.chat.zalo.me/api/group/seenv2*"
+    "declarativeNetRequest",
+    "*://chat.zalo.me/*"
   ],
+  "declarative_net_request" : {
+    "rule_resources" : [{
+      "id": "rules_block_seen",
+      "enabled": false,
+      "path": "rules_block_seen.json"
+    }, {
+      "id": "rules_block_typing",
+      "enabled": false,
+      "path": "rules_block_typing.json"
+    }]
+  },
   "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {

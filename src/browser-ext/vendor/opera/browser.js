@@ -58,21 +58,16 @@
 
     getEnabledBlockingRuleIds: () => {
       return new Promise((resolve, reject) => {
-        chrome.storage.sync.get({
-          enabledBlockingRuleIds: []
-        }, ({ enabledBlockingRuleIds }) => {
-          resolve(enabledBlockingRuleIds)
+        chrome.declarativeNetRequest.getEnabledRulesets((rulesetIds) => {
+          resolve(rulesetIds)
         })
       })
     },
 
     updateEnabledBlockingRuleIds: ({ enableRuleIds = [], disableRuleIds = [] }) => {
-      chrome.runtime.sendMessage({
-        type: 'updateEnabledBlockingRuleIds',
-        data: {
-          enableRuleIds,
-          disableRuleIds
-        }
+      return chrome.declarativeNetRequest.updateEnabledRulesets({
+        enableRulesetIds: enableRuleIds,
+        disableRulesetIds: disableRuleIds
       })
     }
   }

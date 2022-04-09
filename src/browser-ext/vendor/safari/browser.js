@@ -54,12 +54,12 @@
     },
 
     getEnabledBlockingRuleIds: async () => {
-      const rulesetIds = await chrome.declarativeNetRequest.getEnabledRulesets()
+      const rulesetIds = await browser.declarativeNetRequest.getEnabledRulesets()
       return rulesetIds
     },
 
     updateEnabledBlockingRuleIds: ({ enableRuleIds = [], disableRuleIds = [] }) => {
-      return chrome.declarativeNetRequest.updateEnabledRulesets({
+      return browser.declarativeNetRequest.updateEnabledRulesets({
         enableRulesetIds: enableRuleIds,
         disableRulesetIds: disableRuleIds
       })

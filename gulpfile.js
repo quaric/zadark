@@ -74,6 +74,10 @@ const buildBrowserExt = (browser) => {
   const imagesDir = `./build/${browser}/images`
   const fontsDir = `./build/${browser}/fonts`
 
+  const copyRulesJSON = browser !== 'firefox'
+    ? [src('./src/browser-ext/rules_*.json').pipe(dest(rootDir))]
+    : []
+
   return mergeStream(
     src(`./src/browser-ext/vendor/${browser}/manifest.json`).pipe(dest(rootDir)),
     src(`./src/browser-ext/vendor/${browser}/browser.js`).pipe(dest(jsDir)),
@@ -86,7 +90,7 @@ const buildBrowserExt = (browser) => {
     src('./src/browser-ext/images/**/*').pipe(dest(imagesDir)),
     src('./src/core/fonts/**/*').pipe(dest(fontsDir)),
     src('./src/browser-ext/*.html').pipe(dest(rootDir)),
-    src('./src/browser-ext/*.json').pipe(dest(rootDir))
+    ...copyRulesJSON
   )
 }
 
@@ -133,7 +137,7 @@ const buildSafari = () => {
     src('./src/browser-ext/js/**/*').pipe(dest(jsDir)),
     src('./src/core/fonts/**/*').pipe(dest(fontsDir)),
     src('./src/browser-ext/*.html').pipe(dest(safariResources)),
-    src('./src/browser-ext/*.json').pipe(dest(safariResources))
+    src('./src/browser-ext/rules_*.json').pipe(dest(safariResources))
   )
 }
 
