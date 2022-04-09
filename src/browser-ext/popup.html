@@ -100,9 +100,8 @@
           </div>
 
           <div class="panel-body">
-            <p class="text-neutral-500 mb-4">Giao diện này sẽ được sử dụng khi Hệ điều hành ở "Light Mode"</p>
-
-            <div id="js-select-light-theme" class="form-radio-group">
+            <p class="text-neutral-500">Giao diện Zalo gốc sẽ được sử dụng khi Hệ điều hành ở "Light Mode"</p>
+            <!-- <div id="js-select-light-theme" class="form-radio-group">
               <label class="form-radio-container">
                 <input type="radio" name="light_theme" value="light" checked>
                 <span class="checkmark"></span>
@@ -111,7 +110,7 @@
                   <span class="label">Light</span>
                 </span>
               </label>
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -151,10 +150,39 @@
           </div>
         </div>
       </div>
+
+      <div class="mt-8" id="js-panel-privacy">
+        <label class="mb-2 block font-semibold">Riêng tư<span class="pro-badge ml-2" style="position: relative; top: -1px;">Premium</span></label>
+
+        <div class="panel">
+          <div class="panel-body">
+            <div class="form-switch-group">
+              <div class="flex items-center form-switch-container">
+                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-seen">Chặn "Đã xem" tin nhắn trên Zalo</label>
+
+                <label class="form-switch">
+                  <input type="checkbox" id="js-switch-block-seen">
+                  <span class="form-switch-slider"></span>
+                </label>
+              </div>
+
+              <div class="flex items-center form-switch-container">
+                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-typing">Chặn "Đang soạn tin nhắn..." trên Zalo</label>
+
+                <label class="form-switch">
+                  <input type="checkbox" id="js-switch-block-typing">
+                  <span class="form-switch-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 
   <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+  <script src="libs/bowser/bowser-es5-2.10.0.js"></script>
   <script src="js/browser.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/popup.js"></script>

@@ -65,3 +65,22 @@ html[data-theme-mode="dark"] {
     @include _panelThemeActive();
   }
 }
+
+#js-panel-privacy {
+  display: none;
+}
+
+.pro-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0px 4px;
+
+  border: 1px solid var(--blue-base);
+  border-radius: 4px;
+
+  color: var(--blue-base);
+  font-size: 12px;
+  font-weight: var(--font-semibold);
+  user-select: none;
+}
