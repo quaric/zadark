@@ -243,9 +243,10 @@ yarn dist
     - [x] Changelog
     - [x] Sync theme with system
     - [x] Vietnamese
-    - [ ] GUI (Graphical User Interface)
+    - [ ] Block seen
+    - [ ] Block typing
     - [ ] Check for updates
-    - [ ] More themes
+    - [ ] Theme Store
 
 ### Roadmap for Zalo Web
   - [x] Browsers
@@ -266,8 +267,9 @@ yarn dist
     - [x] Sync theme with system
     - [x] Allows users to Enable/Disable notifications when ZaDark updates
     - [x] Vietnamese
-    - [ ] Custom Fonts
-    - [ ] More themes
+    - [x] Block seen
+    - [x] Block typing
+    - [ ] Theme Store
 
 ## Contributing
 
