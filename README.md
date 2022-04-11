@@ -19,13 +19,7 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about">About</a>
-      <ul>
-        <li><a href="#highlights">Highlights</a></li>
-        <li><a href="#important-notes">Important Notes</a></li>
-      </ul>
-    </li>
+    <li><a href="#about">About</a></li>
     <li><a href="#install">Install</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
