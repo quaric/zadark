@@ -26,27 +26,8 @@
         <li><a href="#important-notes">Important Notes</a></li>
       </ul>
     </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#development">Development</a></li>
-        <li><a href="#creating-built-distributions">Creating Built Distributions</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#usage">Usage</a>
-      <ul>
-        <li><a href="#install-for-zalo-pc">Install for Zalo PC</a></li>
-        <li><a href="#install-for-zalo-web">Install for Zalo Web</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#roadmap">Roadmap</a>
-      <ul>
-        <li><a href="#roadmap-for-zalo-pc">Roadmap for Zalo PC</a></li>
-        <li><a href="#roadmap-for-zalo-web">Roadmap for Zalo Web</a></li>
-      </ul>
-    </li>
+    <li><a href="#install">Install</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -57,219 +38,17 @@
 
 ## About
 
-ZaDark is an open source extension for Browser and PC that helps you turn on Dark Mode for Zalo.
+ZaDark is an open source extension that helps you enable Dark Mode for Zalo on PC and Browser.
 
-### Highlights
+https://zadark.ncdaistudio.com
 
-- Nice colors, good contrast.
-- Allow customization according to your needs:
-  - Themes: Light, Dark and Dark dimmed.
-  - Sync With System: Zalo theme will match your system settings.
-- Cross-platform:
-  - Zalo PC: Windows and macOS.
-  - Zalo Web: Chrome, Firefox, Opera, Edge and Safari.
-- Open Source (https://short.ncdaistudio.com/zadark-github).
+## Install
 
-### Important Notes
-
-- ZaDark is not a product from Zalo Group.
-- ZaDark had never collected and will never collect any personal data, browsing history etc.
-
-> ZaDark from NCDAi Studio<br />Official Website: https://zadark.ncdaistudio.com
-
-## Getting Started
-
-### Development
-
-1. Clone the repo
-    ```bash
-    git clone git@github.com:ncdai3651408/za-dark.git
-    cd za-dark
-    ```
-
-2. Install packages
-    ```bash
-    yarn install
-    ```
-
-3. Start development
-    ```bash
-    # Watching files
-    yarn watch
-
-    # or build
-    yarn build
-
-    # ➜ Output:
-    # build/
-    #   chrome/
-    #     manifest.json
-    #     ...
-    #   firefox/
-    #     manifest.json
-    #     ...
-    #   opera/
-    #     manifest.json
-    #     ...
-    #   edge/
-    #     manifest.json
-    #     ...
-    #   pc/
-    #     index.js
-    #     ...
-    ```
-
-4. Testing
-
-- Chrome Extension
-  - Step 1: Open `chrome://extensions/`
-  - Step 2: Turn on `Developer Mode`
-  - Step 3: Click `Load unpacked`
-  - Step 4: Choose folder `build/chrome/`
-- Firefox Extension
-  - Step 1: Open `about:debugging#/runtime/this-firefox`
-  - Step 2: Click `Load Temporary Add-on...`
-  - Step 3: Choose file `build/firefox/manifest.json`
-- Opera Extension
-  - Step 1: Open `opera://extensions/`
-  - Step 2: Turn on `Developer Mode`
-  - Step 3: Click `Load unpacked`
-  - Step 4: Choose folder `build/opera/`
-- Edge Extension
-  - Step 1: Open `edge://extensions/`
-  - Step 2: Turn on `Developer Mode`
-  - Step 3: Click `Load unpacked`
-  - Step 4: Choose folder `build/edge/`
-- Safari Extension
-  - Step 1: Open `src/browser-ext/vendor/safari/ZaDark.xcodeproj` in Xcode
-  - Step 2: Choose `Product > Run`
-  - Step 3: Open `Safari > Preferences > Extensions` > Turn on `ZaDark – Best Dark Theme for Zalo`
-- macOS & Windows
-  - `yarn run pc:dev`
-
-### Creating Built Distributions
-
-#### For Safari Extension
-
-1. Run `yarn build`
-2. RUn `yarn safari` or open `src/browser-ext/vendor/safari/ZaDark.xcodeproj` in Xcode
-3. Choose `Product > Archive`
-
-> Documentation: https://developer.apple.com/documentation/xcode/distributing-your-app-for-beta-testing-and-releases
-
-#### For Other Platforms
-
-```bash
-yarn dist
-
-# ➜ Output:
-# dist/
-#   chrome/
-#     ZaDark-Chrome-[VERSION].zip
-#
-#   firefox/
-#     ZaDark-Firefox-[VERSION].zip
-#
-#   opera/
-#     ZaDark-Opera-[VERSION].zip
-#
-#   edge/
-#     ZaDark-Edge-[VERSION].zip
-#
-#   macos/
-#     ZaDark-macOS-[VERSION]
-#     ZaDark-macOS-[VERSION].zip
-#
-#   windows/
-#     ZaDark-Windows-[VERSION].exe
-#     ZaDark-Windows-[VERSION].zip
-```
-
-- For Google Chrome, Firefox, Opera and Microsoft Edge: Distribute `dist/[PLATFORM]/ZaDark-[PLATFORM]-[VERSION].zip` to Store
-- For Windows: Distribute `dist/windows/ZaDark-Windows-[VERSION].zip` directly to users
-- For macOS: Let's see the [Codesign macOS Application](#codesign-macos-application)
-
-#### Codesign macOS Application
-
-1. Create the configuration file `tools/macos/config.ini` with content from `tools/macos/example.config.ini`
-2. Run `yarn codesign:macos` to begin the signing and notarization process
-3. Enter your `username` and `password` as needed to unlock your keychain
-4. Once the package is submitted to Apple, `codesign:macos` will check to see if the process is complete
-5. Rejoyce in your signed `dist/macos/ZaDark-macOS-[VERSION].pkg` file
-6. Distribute `dist/macos/ZaDark-macOS-[VERSION].pkg` directly to users
-
-> `codesign:macos` script is converted from Python (https://github.com/txoof/codesign) to Node. Thanks @txoof.
-
-## Usage
-
-### Install for Zalo PC
-
-- Windows
-  - Download from **SourceForge.net**: https://short.ncdaistudio.com/zadark-win
-  - Tutorial: https://short.ncdaistudio.com/zadark-win-tut
-- macOS
-  - Download from **SourceForge.net**: https://short.ncdaistudio.com/zadark-mac
-  - Tutorial: https://short.ncdaistudio.com/zadark-mac-tut
-
-### Install for Zalo Web
-
-- Google Chrome
-  - Download from **Chrome Web Store**: https://short.ncdaistudio.com/zadark-chrome
-  - Tutorial: https://short.ncdaistudio.com/zadark-chrome-tut
-- Firefox
-  - Download from **Firefox Browser Add-ons**: `https://short.ncdaistudio.com/zadark-firefox`
-  - Tutorial: https://short.ncdaistudio.com/zadark-firefox-tut
-- Opera
-  - Download from **Opera Add-ons**: https://short.ncdaistudio.com/zadark-opera
-  - Tutorial: https://short.ncdaistudio.com/zadark-opera-tut
-- Microsoft Edge
-  - Download from **Edge Add-ons**: https://short.ncdaistudio.com/zadark-edge
-  - Tutorial: https://short.ncdaistudio.com/zadark-edge-tut
-- Safari
-  - Download from **Mac App Store**: https://short.ncdaistudio.com/zadark-safari
-  - Tutorial: https://short.ncdaistudio.com/zadark-safari-tut
+https://zadark.ncdaistudio.com/install
 
 ## Roadmap
 
-### Roadmap for Zalo PC
-  - [x] Platforms
-    - [x] macOS
-    - [x] Windows
-  - [x] Basic features
-    - [x] CLI (Command Line Interface)
-    - [x] Install theme: Dark, Dark dimmed
-    - [x] Unsintall theme
-  - [ ] Advanced features
-    - [x] Changelog
-    - [x] Sync theme with system
-    - [x] Vietnamese
-    - [ ] Block seen
-    - [ ] Block typing
-    - [ ] Check for updates
-    - [ ] Theme Store
-
-### Roadmap for Zalo Web
-  - [x] Browsers
-    - [x] Google Chrome
-    - [x] Microsoft Edge
-    - [x] Firefox
-    - [x] Opera
-    - [x] Safari
-  - [x] Basic features
-    - [x] Themes
-      - [x] Light
-      - [x] Dark
-      - [x] Dark dimmed
-    - [x] Choose a theme
-  - [ ] Advanced features
-    - [x] Welcome page
-    - [x] Changelog page
-    - [x] Sync theme with system
-    - [x] Allows users to Enable/Disable notifications when ZaDark updates
-    - [x] Vietnamese
-    - [x] Block seen
-    - [x] Block typing
-    - [ ] Theme Store
+https://zadark.ncdaistudio.com/roadmap
 
 ## Contributing
 
@@ -279,55 +58,22 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 1. Fork the project
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m "Add some amazing feature"`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a pull request
+3. Read [contributing/DEVELOPMENT.md](./contributing/DEVELOPMENT.md)
+4. Commit your changes (`git commit -m "Add some amazing feature"`)
+5. Push to the branch (`git push origin feature/amazing-feature`)
+6. Open a pull request
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. See [LICENSE](./LICENSE) for more information.
 
 ## Contact
 
-### Founder
-
-Hi, I'm Nguyễn Chánh Đại - Founder of ZaDark!
-If you have a new idea or report a bug, you can contact me via:
-
-- Facebook: https://short.ncdaistudio.com/ncdai-fb
-- LinkedIn: https://short.ncdaistudio.com/ncdai-linkedin
-- Email: [ncdai@penphy.edu.vn](mailto:ncdai@penphy.edu.vn?subject=[ZaDark]%20Feedback)
-
-### Social Network
-
-- Facebook: https://short.ncdaistudio.com/zadark-fb-page
-- GitHub: https://short.ncdaistudio.com/zadark-github
+https://zadark.ncdaistudio.com/contact
 
 ## Awards
 
-### Grateful for 1Password
-
-ZaDark is proud to have been accepted by [1Password](https://1password.com/) for participating in the **1Password for Open Source Projects** program (https://github.com/1Password/1password-teams-open-source). Once accepted, contributors will receive a free 1Password Teams membership.
-
-![Grateful for 1Password](.github/zadark-and-1password-teams.png)
-
-Thanks to 1Password for helping teams work more efficiently and securely.
-
-### Rising Star award by SourceForge
-
-ZaDark Wins Rising Star award by SourceForge. The Rising Star badge is awarded to open source projects that have reached the milestone of **100 monthly downloads** for the first time.
-
-> Thanks to everyone for trusting and using ZaDark!
-
-![Rising Star award by SourceForge](.github/sourceforge-rising-star.png)
-
-### Favorite award by SourceForge
-
-ZaDark Wins Favorite award by SourceForge. The SourceForge Favorite badge is awarded to open source projects that have reached the milestone of **2,000 monthly downloads** for the first time.
-
-> Thanks to everyone for trusting and using ZaDark!
-
-![Favorite award by SourceForge](.github/sourceforge-favorite.png)
+https://zadark.ncdaistudio.com/awards
 
 ## Acknowledgments
 
@@ -346,3 +92,5 @@ ZaDark Wins Favorite award by SourceForge. The SourceForge Favorite badge is awa
 - https://github.com/txoof/codesign#codesign
 - https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/
 - https://dev.opera.com/extensions/basics/
+- https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/
+- https://developer.apple.com/documentation/safariservices/safari_web_extensions/blocking_content_with_your_safari_web_extension
