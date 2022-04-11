@@ -75,7 +75,7 @@ This document describes the process for running this application on your local c
 ### For Safari Extension
 
 1. Run `yarn build`
-2. RUn `yarn safari` or open `src/browser-ext/vendor/safari/ZaDark.xcodeproj` in Xcode
+2. Run `yarn safari` or open `src/browser-ext/vendor/safari/ZaDark.xcodeproj` in Xcode
 3. Choose `Product > Archive`
 
 > Documentation: https://developer.apple.com/documentation/xcode/distributing-your-app-for-beta-testing-and-releases
