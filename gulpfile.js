@@ -73,9 +73,10 @@ const buildBrowserExt = (browser) => {
   const libsDir = `./build/${browser}/libs`
   const imagesDir = `./build/${browser}/images`
   const fontsDir = `./build/${browser}/fonts`
+  const rulesDir = `./build/${browser}/rules`
 
   const copyRulesJSON = browser !== 'firefox'
-    ? [src('./src/browser-ext/rules_*.json').pipe(dest(rootDir))]
+    ? [src('./src/browser-ext/rules/**/*').pipe(dest(rulesDir))]
     : []
 
   return mergeStream(
@@ -125,6 +126,7 @@ const buildSafari = () => {
   const localesDir = path.join(safariResources, '/_locales')
   const libsDir = path.join(safariResources, '/libs')
   const fontsDir = path.join(safariResources, '/fonts')
+  const rulesDir = path.join(safariResources, '/rules')
 
   return mergeStream(
     src('./src/browser-ext/vendor/safari/manifest.json').pipe(dest(safariResources)),
@@ -136,8 +138,8 @@ const buildSafari = () => {
     src('./src/browser-ext/libs/**/*').pipe(dest(libsDir)),
     src('./src/browser-ext/js/**/*').pipe(dest(jsDir)),
     src('./src/core/fonts/**/*').pipe(dest(fontsDir)),
-    src('./src/browser-ext/*.html').pipe(dest(safariResources)),
-    src('./src/browser-ext/rules_*.json').pipe(dest(safariResources))
+    src('./src/browser-ext/rules/**/*').pipe(dest(rulesDir)),
+    src('./src/browser-ext/*.html').pipe(dest(safariResources))
   )
 }
 

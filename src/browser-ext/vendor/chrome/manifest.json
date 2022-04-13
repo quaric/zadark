@@ -45,11 +45,15 @@
     "rule_resources" : [{
       "id": "rules_block_seen",
       "enabled": false,
-      "path": "rules_block_seen.json"
+      "path": "rules/rules_block_seen.json"
     }, {
       "id": "rules_block_typing",
       "enabled": false,
-      "path": "rules_block_typing.json"
+      "path": "rules/rules_block_typing.json"
+    }, {
+      "id": "rules_block_delivered",
+      "enabled": false,
+      "path": "rules/rules_block_delivered.json"
     }]
   },
   "action": {

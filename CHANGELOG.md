@@ -1,10 +1,15 @@
 # Changelog
 
+## Browser 5.1
+### Added
+#### Browser specific (Chrome, Safari, Edge, Opera)
+- Block `delivered`
+
 ## Browser v5.0
 ### Added
 #### Browser specific (Chrome, Safari, Edge, Opera)
-- Block seen
-- Block typing
+- Block `seen`
+- Block `typing`
 
 ## Browser v4.5
 ### Changed
