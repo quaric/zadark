@@ -14,19 +14,19 @@ const glob = require('glob')
 const { log, logDebug, copyRecursiveSync } = require('./utils')
 const { PLATFORM } = require('./constants')
 
-const getDefaultZaloResDirList = () => {
+const getZaloResDirList = (customZaloPath) => {
   if (!['darwin', 'win32'].includes(PLATFORM)) {
     throw new Error(`Khong ho tro he dieu hanh "${PLATFORM}".`)
   }
 
   const resourcesPath = PLATFORM === 'darwin'
-    ? '/Applications/Zalo.app/Contents/Resources'
-    : process.env.USERPROFILE + '/AppData/Local/Programs/Zalo/Zalo-*/resources'
+    ? path.join(customZaloPath, './Contents/Resources')
+    : path.join(customZaloPath, './Zalo-*/resources')
 
   const resources = glob.sync(resourcesPath)
 
   if (!Array.isArray(resources) || !resources.length) {
-    throw new Error('Khong tim thay Zalo. Vui long tai va cai dat Zalo tai "https://zalo.me/pc".')
+    return []
   }
 
   return resources.sort()
@@ -187,7 +187,7 @@ const uninstallDarkTheme = async (zaloDir) => {
 }
 
 module.exports = {
-  getDefaultZaloResDirList,
+  getZaloResDirList,
 
   installDarkTheme,
   uninstallDarkTheme
