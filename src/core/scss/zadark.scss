@@ -268,7 +268,8 @@ html[data-theme-mode="dark"] {
     }
 
     .message-view__blur__overlay {
-      &,
+      background: rgba(0, 0, 0, 0.8);
+
       &_noavatar {
         background: var(--message-view-gradient);
       }
