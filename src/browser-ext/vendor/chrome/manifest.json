@@ -35,8 +35,7 @@
   "permissions": [
     "storage",
     "scripting",
-    "declarativeNetRequest",
-    "contextMenus"
+    "declarativeNetRequest"
   ],
   "host_permissions": [
     "*://chat.zalo.me/*"
