@@ -1,12 +1,18 @@
 # Changelog
 
-## Browser 5.1
+## PC v4.6 & Browser v5.1
+
 ### Added
 - Use avatar as chat background
 #### Browser specific (Chrome, Safari, Edge, Opera)
 - Block `delivered`
-### PC specific
+#### PC specific
 - Allow customizing Zalo path
+
+### Fixed
+- `#copyExcel`
+- `.message-view__banner.offline`
+- `.message-view__banner--no-message-mutualGroup`
 
 ## Browser v5.0
 ### Added

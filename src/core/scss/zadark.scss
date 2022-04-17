@@ -267,11 +267,29 @@ html[data-theme-mode="dark"] {
       }
     }
 
-    .message-view__blur__overlay {
-      background: rgba(0, 0, 0, 0.8);
+    .message-view {
+      &__blur__overlay {
+        background: rgba(18, 18, 18, 0.9);
 
-      &_noavatar {
-        background: var(--message-view-gradient);
+        &_noavatar {
+          background: var(--message-view-gradient);
+        }
+      }
+
+      &__banner {
+        &.offline {
+          background-color: var(--red-300);
+          color: #fff;
+        }
+
+        &--no-message-mutualGroup {
+          background-color: var(--grey-700);
+          color: #fff;
+        }
+
+        &__icon-accept {
+          color: #fff;
+        }
       }
     }
 
@@ -954,6 +972,18 @@ html[data-theme-mode="dark"] {
       /* Internet Explorer 10-11 */
       &::-ms-input-placeholder {
         color: var(--neutral-500);
+      }
+    }
+
+    #copyExcel {
+      img {
+        background: #fff !important;
+        max-width: 100% !important;
+      }
+
+      > div > div {
+        max-width: 100% !important;
+        min-height: auto !important;
       }
     }
   }
