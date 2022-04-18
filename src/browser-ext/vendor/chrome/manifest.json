@@ -40,20 +40,24 @@
   "host_permissions": [
     "*://chat.zalo.me/*"
   ],
-  "declarative_net_request" : {
-    "rule_resources" : [{
-      "id": "rules_block_seen",
-      "enabled": false,
-      "path": "rules/rules_block_seen.json"
-    }, {
-      "id": "rules_block_typing",
-      "enabled": false,
-      "path": "rules/rules_block_typing.json"
-    }, {
-      "id": "rules_block_delivered",
-      "enabled": false,
-      "path": "rules/rules_block_delivered.json"
-    }]
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "rules_block_typing",
+        "enabled": false,
+        "path": "rules/rules_block_typing.json"
+      },
+      {
+        "id": "rules_block_seen",
+        "enabled": false,
+        "path": "rules/rules_block_seen.json"
+      },
+      {
+        "id": "rules_block_delivered",
+        "enabled": false,
+        "path": "rules/rules_block_delivered.json"
+      }
+    ]
   },
   "action": {
     "default_popup": "popup.html",
@@ -64,8 +68,14 @@
       "128": "images/zadark-icon-128.png"
     }
   },
-  "web_accessible_resources": [{
-    "resources": ["fonts/*"],
-    "matches": ["*://chat.zalo.me/*"]
-  }]
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "fonts/*"
+      ],
+      "matches": [
+        "*://chat.zalo.me/*"
+      ]
+    }
+  ]
 }
