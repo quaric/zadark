@@ -270,12 +270,16 @@ html[data-theme-mode="dark"] {
 
     .message-view {
       &__blur__overlay {
-        background: rgba(18, 18, 18, 0.9);
-
+        // background: rgba(0, 0, 0, 0.5);
+        &,
         &_noavatar {
           background: var(--message-view-gradient);
         }
       }
+
+      // &__blur {
+      //   opacity: 0.16 !important;
+      // }
 
       &__banner {
         &.offline {

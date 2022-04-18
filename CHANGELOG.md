@@ -2,8 +2,6 @@
 
 ## PC v4.6 & Browser v5.1
 
-### Added
-- Use avatar as chat background
 #### Browser specific (Chrome, Safari, Edge, Opera)
 - Block `delivered`
 #### PC specific
