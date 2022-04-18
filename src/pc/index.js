@@ -33,7 +33,27 @@ const handleInstall = async (zaloResDirList, darkTheme, isSyncWithSystem = false
 
 (async () => {
   try {
-    const zaloResDirList = zaDarkPC.getDefaultZaloResDirList()
+    const defaultZaloPath = PLATFORM === 'darwin'
+      ? '/Applications/Zalo.app' // ! Can't be changed
+      : process.env.USERPROFILE + '/AppData/Local/Programs/Zalo' // ! Can't be changed
+
+    let zaloResDirList = zaDarkPC.getZaloResDirList(defaultZaloPath)
+    if (!zaloResDirList.length) {
+      log('')
+      log(chalk.redBright(`Khong tim thay Zalo tai duong dan mac dinh (${defaultZaloPath}).`))
+      log('')
+
+      log(chalk.magentaBright.bold('[TUY CHINH DUONG DAN ZALO]'))
+      log('')
+
+      const examplePath = PLATFORM === 'darwin' ? '/ThuMucDaCaiZalo/Zalo.app' : 'D:\\ThuMucDaCaiZalo\\Zalo'
+      const customZaloPath = prompt(chalk.yellowBright(`> Nhap duong dan Zalo cua ban (VD: ${examplePath}) : `))
+
+      zaloResDirList = zaDarkPC.getZaloResDirList(customZaloPath)
+      if (!zaloResDirList.length) {
+        throw new Error('Khong tim thay Zalo. Vui long tai va cai dat Zalo tai "https://zalo.me/pc".')
+      }
+    }
 
     console.clear()
     renderHeader()

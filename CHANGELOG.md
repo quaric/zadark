@@ -1,10 +1,26 @@
 # Changelog
 
+## PC v4.6 & Browser v5.1
+
+#### Browser specific (Chrome, Safari, Edge, Opera)
+- Block `delivered`
+#### PC specific
+- Allow customizing Zalo path
+
+### Fixed
+- `#copyExcel`
+- `.message-view__banner.offline`
+- `.message-view__banner--no-message-mutualGroup`
+- `.img-msg-v2.-admin > .img-msg-v2__bub`
+
+### Changed
+- ZaDark Logo Icon
+
 ## Browser v5.0
 ### Added
 #### Browser specific (Chrome, Safari, Edge, Opera)
-- Block seen
-- Block typing
+- Block `seen`
+- Block `typing`
 
 ## Browser v4.5
 ### Changed

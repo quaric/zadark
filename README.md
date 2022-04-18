@@ -1,7 +1,7 @@
 <br />
 
 <div align="center">
-  <img src=".github/za-dark-icon@1024w.png" width="128" alt="ZaDark Icon" />
+  <img src=".github/zadark-icon.png" width="128" alt="ZaDark" />
 
   <h1>ZaDark – Zalo Dark Mode</h1>
 

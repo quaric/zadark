@@ -159,6 +159,7 @@
   --card-me-btn-bg: var(--blue-650);
   --card-me-btn-border: var(--blue-600);
   --message-view-gradient: linear-gradient(to top, #000, #121212);
+  --card-admin-border: var(--neutral-700);
 
   --brand-base: #0068ff;
 }
@@ -267,10 +268,33 @@ html[data-theme-mode="dark"] {
       }
     }
 
-    .message-view__blur__overlay {
-      &,
-      &_noavatar {
-        background: var(--message-view-gradient);
+    .message-view {
+      &__blur__overlay {
+        // background: rgba(0, 0, 0, 0.5);
+        &,
+        &_noavatar {
+          background: var(--message-view-gradient);
+        }
+      }
+
+      // &__blur {
+      //   opacity: 0.16 !important;
+      // }
+
+      &__banner {
+        &.offline {
+          background-color: var(--red-300);
+          color: #fff;
+        }
+
+        &--no-message-mutualGroup {
+          background-color: var(--grey-700);
+          color: #fff;
+        }
+
+        &__icon-accept {
+          color: #fff;
+        }
       }
     }
 
@@ -515,6 +539,10 @@ html[data-theme-mode="dark"] {
       }
     }
 
+    .img-msg-v2.-admin > .img-msg-v2__bub {
+      border: 1px solid var(--card-admin-border);
+    }
+
     .card {
       border: 1px solid var(--grey-600);
 
@@ -530,7 +558,7 @@ html[data-theme-mode="dark"] {
       }
 
       &.admin {
-        border: 1px solid var(--neutral-700);
+        border: 1px solid var(--card-admin-border);
       }
 
       &.me {
@@ -953,6 +981,18 @@ html[data-theme-mode="dark"] {
       /* Internet Explorer 10-11 */
       &::-ms-input-placeholder {
         color: var(--neutral-500);
+      }
+    }
+
+    #copyExcel {
+      img {
+        background: #fff !important;
+        max-width: 100% !important;
+      }
+
+      > div > div {
+        max-width: 100% !important;
+        min-height: auto !important;
       }
     }
   }

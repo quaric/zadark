@@ -25,8 +25,7 @@
 		C158767627EB671A00E008A0 /* changelog.html in Resources */ = {isa = PBXBuildFile; fileRef = C158766F27EB671A00E008A0 /* changelog.html */; };
 		C158767727EB671A00E008A0 /* js in Resources */ = {isa = PBXBuildFile; fileRef = C158767027EB671A00E008A0 /* js */; };
 		C158767B27EC1ED600E008A0 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = C158767A27EC1ED600E008A0 /* fonts */; };
-		C1B4A76B2801627500D4671C /* rules_block_seen.json in Resources */ = {isa = PBXBuildFile; fileRef = C1B4A7692801627500D4671C /* rules_block_seen.json */; };
-		C1B4A76C2801627500D4671C /* rules_block_typing.json in Resources */ = {isa = PBXBuildFile; fileRef = C1B4A76A2801627500D4671C /* rules_block_typing.json */; };
+		C15BC4CC28068B5D008D6F4F /* rules in Resources */ = {isa = PBXBuildFile; fileRef = C15BC4CB28068B5D008D6F4F /* rules */; };
 		C1E2CFA727F801DE00AACE85 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = C1E2CFA627F801DE00AACE85 /* _locales */; };
 /* End PBXBuildFile section */
 
@@ -78,8 +77,7 @@
 		C158766F27EB671A00E008A0 /* changelog.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = changelog.html; sourceTree = "<group>"; };
 		C158767027EB671A00E008A0 /* js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = js; sourceTree = "<group>"; };
 		C158767A27EC1ED600E008A0 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
-		C1B4A7692801627500D4671C /* rules_block_seen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rules_block_seen.json; sourceTree = "<group>"; };
-		C1B4A76A2801627500D4671C /* rules_block_typing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rules_block_typing.json; sourceTree = "<group>"; };
+		C15BC4CB28068B5D008D6F4F /* rules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = rules; sourceTree = "<group>"; };
 		C1E2CFA527F7FC0700AACE85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C1E2CFA627F801DE00AACE85 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,8 +158,7 @@
 		C158766927EB66D200E008A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C1B4A7692801627500D4671C /* rules_block_seen.json */,
-				C1B4A76A2801627500D4671C /* rules_block_typing.json */,
+				C15BC4CB28068B5D008D6F4F /* rules */,
 				C1E2CFA627F801DE00AACE85 /* _locales */,
 				C158766F27EB671A00E008A0 /* changelog.html */,
 				C158766B27EB671A00E008A0 /* css */,
@@ -273,10 +270,9 @@
 			files = (
 				C1E2CFA727F801DE00AACE85 /* _locales in Resources */,
 				C158767527EB671A00E008A0 /* libs in Resources */,
+				C15BC4CC28068B5D008D6F4F /* rules in Resources */,
 				C158767227EB671A00E008A0 /* css in Resources */,
 				C158767427EB671A00E008A0 /* popup.html in Resources */,
-				C1B4A76B2801627500D4671C /* rules_block_seen.json in Resources */,
-				C1B4A76C2801627500D4671C /* rules_block_typing.json in Resources */,
 				C158767727EB671A00E008A0 /* js in Resources */,
 				C158767627EB671A00E008A0 /* changelog.html in Resources */,
 				C158767327EB671A00E008A0 /* manifest.json in Resources */,
@@ -506,7 +502,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 5.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -538,7 +534,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 5.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -565,9 +561,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZaDark/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ZaDark;
+				INFOPLIST_KEY_CFBundleDisplayName = "ZaDark Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© NCDAi Studio";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -575,7 +571,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 5.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -605,7 +601,7 @@
 				INFOPLIST_FILE = ZaDark/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ZaDark;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© NCDAi Studio";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -613,7 +609,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 5.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
