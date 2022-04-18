@@ -15,6 +15,9 @@
 - `.message-view__banner--no-message-mutualGroup`
 - `.img-msg-v2.-admin > .img-msg-v2__bub`
 
+### Changed
+- ZaDark Logo Icon
+
 ## Browser v5.0
 ### Added
 #### Browser specific (Chrome, Safari, Edge, Opera)

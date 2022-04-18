@@ -116,15 +116,15 @@ const isSupportPrivacy = getIsSupportPrivacy()
 
 if (isSupportPrivacy) {
   const panelPrivacyElName = '#js-panel-privacy'
-  const switchBlockSeenElName = '#js-switch-block-seen'
   const switchBlockTypingElName = '#js-switch-block-typing'
+  const switchBlockSeenElName = '#js-switch-block-seen'
   const switchBlockDeliveredElName = '#js-switch-block-delivered'
 
   $(panelPrivacyElName).show()
 
   window.zadark.browser.getEnabledBlockingRuleIds().then((ruleIds) => {
-    $(switchBlockSeenElName).prop('checked', ruleIds.includes('rules_block_seen'))
     $(switchBlockTypingElName).prop('checked', ruleIds.includes('rules_block_typing'))
+    $(switchBlockSeenElName).prop('checked', ruleIds.includes('rules_block_seen'))
     $(switchBlockDeliveredElName).prop('checked', ruleIds.includes('rules_block_delivered'))
   })
 
@@ -138,7 +138,7 @@ if (isSupportPrivacy) {
     }
   }
 
-  $(switchBlockSeenElName).on('change', handleBlockingRuleChange(switchBlockSeenElName, 'rules_block_seen'))
   $(switchBlockTypingElName).on('change', handleBlockingRuleChange(switchBlockTypingElName, 'rules_block_typing'))
+  $(switchBlockSeenElName).on('change', handleBlockingRuleChange(switchBlockSeenElName, 'rules_block_seen'))
   $(switchBlockDeliveredElName).on('change', handleBlockingRuleChange(switchBlockDeliveredElName, 'rules_block_delivered'))
 }
