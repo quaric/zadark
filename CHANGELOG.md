@@ -2,6 +2,7 @@
 
 ## PC v4.6 & Browser v5.1
 
+### Added
 #### Browser specific (Chrome, Safari, Edge, Opera)
 - Block `delivered`
 #### PC specific
