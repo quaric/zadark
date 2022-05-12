@@ -300,7 +300,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Generate the build number using current date and time\nbuildNumber=$(date \"+%s\")\n\n# Set the build number in plist file\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+			shellScript = "# Generate the build number using current date and time\n# buildNumber=$(date \"+%s\")\n\n# Set the build number in plist file\n# /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
 		};
 		C1E2CFA827F8083800AACE85 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -318,7 +318,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Generate the build number using current date and time\nbuildNumber=$(date \"+%s\")\n\n# Set the build number in plist file\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+			shellScript = "# Generate the build number using current date and time\n# buildNumber=$(date \"+%s\")\n\n# Set the build number in plist file\n# /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -489,7 +489,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1652359190;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -521,7 +521,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1652359190;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -556,7 +556,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1652359190;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -594,7 +594,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1652359190;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
