@@ -155,6 +155,10 @@ const installDarkTheme = async (zaloDir, darkTheme = 'dark', isSyncWithSystem = 
   // Add "themeAttributes, classNames, font, stylesheet" to "resources/app/pc-dist/index.html"
   writeIndexFile(zaloDir, { darkTheme, isSyncWithSystem })
 
+  // Create package "resources/app.asar" from "resources/app" -> Delete "resources/app"
+  await asar.createPackage(appDirPath, appAsarPath)
+  await del(appDirPath, { force: true })
+
   const darkThemeLabel = {
     dark: 'Dark default',
     dark_dimmed: 'Dark dimmed'
@@ -169,6 +173,7 @@ const installDarkTheme = async (zaloDir, darkTheme = 'dark', isSyncWithSystem = 
 
 const uninstallDarkTheme = async (zaloDir) => {
   const appDirPath = path.join(zaloDir, 'app')
+  const appAsarPath = path.join(zaloDir, 'app.asar')
   const appAsarBakPath = path.join(zaloDir, 'app.asar.bak')
 
   // Delete "resources/app"
@@ -177,10 +182,10 @@ const uninstallDarkTheme = async (zaloDir) => {
     logDebug('- deleteDir', appDirPath)
   }
 
-  // Delete "resources/app.asar.bak"
+  // Rename "resources/app.asar.bak" to "resources/app.asar"
   if (fs.existsSync(appAsarBakPath)) {
-    await del(appAsarBakPath, { force: true })
-    logDebug('- deleteFile', appAsarBakPath)
+    fs.renameSync(appAsarBakPath, appAsarPath)
+    logDebug('- renameFile', appAsarBakPath)
   }
 
   log(chalk.green('- Da go cai dat.'))
