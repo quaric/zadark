@@ -291,10 +291,6 @@ html[data-theme-mode="dark"] {
           background-color: var(--grey-700);
           color: #fff;
         }
-
-        &__icon-accept {
-          color: #fff;
-        }
       }
     }
 
@@ -312,11 +308,31 @@ html[data-theme-mode="dark"] {
     }
 
     .z--btn--fill--primary {
-      color: var(--black-300);
       background: var(--gradient-blue);
+      color: #fff;
+    }
+
+    .z--btn--fill--secondary {
+      border: 1px solid var(--blue-base);
+      background: transparent;
+      color: var(--blue-base);
+
+      &:hover {
+        background: var(--blue-base);
+        color: #fff;
+      }
     }
 
     .z--btn--fill--secondary-red {
+      border: 1px solid var(--red-base);
+      background: transparent;
+      color: var(--red-base);
+
+      &:hover {
+        background: var(--red-base);
+        color: #fff;
+      }
+
       &.--disabled {
         color: var(--red-300);
         opacity: 0.5;
@@ -993,6 +1009,16 @@ html[data-theme-mode="dark"] {
       > div > div {
         max-width: 100% !important;
         min-height: auto !important;
+      }
+    }
+
+    .user-profile-button.rg {
+      color: #fff;
+    }
+
+    #chatOnboard {
+      .slideshow__page__image {
+        filter: invert(0.86);
       }
     }
   }

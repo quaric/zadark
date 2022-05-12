@@ -1,5 +1,19 @@
 # Changelog
 
+## PC v4.7 & Browser v5.2
+### Fixed
+- Button Add friend : `.user-profile-button.rg`
+- Button Secondary : `.z--btn--fill--secondary`
+- Button Secondary Red : `.z--btn--fill--secondary-red`
+- Chat Onboard : `.slideshow__page__image`
+
+### Changed
+#### PC specific
+- New workflow:
+  - Step 1. Extract `resources/app.asar` to `resources/app`
+  - Step 2. Inject CSS to `resources/app`
+  - Step 3. Create package `resources/app.asar` from `resources/app`
+
 ## PC v4.6 & Browser v5.1
 
 ### Added
