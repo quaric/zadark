@@ -48,30 +48,30 @@ const writeIndexFile = (zaloDir, { darkTheme, isSyncWithSystem }) => {
   const bodyElement = root.getElementsByTagName('body')[0]
 
   // Required font
-  const zaDarkFont = root.querySelectorAll('link[href="zadark/css/zadark-fonts.css"]')
+  const zaDarkFont = root.querySelectorAll('link[href="zadark-fonts.css"]')
   if (!zaDarkFont.length) {
     headElement.insertAdjacentHTML(
       'beforeend',
-      '<link rel="stylesheet" href="zadark/css/zadark-fonts.css">'
+      '<link rel="stylesheet" href="zadark-fonts.css">'
     )
   }
 
   // Required stylesheet
-  const zaDarkCSS = root.querySelectorAll('link[href="zadark/css/zadark.css"]')
+  const zaDarkCSS = root.querySelectorAll('link[href="zadark.css"]')
   if (!zaDarkCSS.length) {
     headElement.insertAdjacentHTML(
       'beforeend',
-      '<link rel="stylesheet" href="zadark/css/zadark.css">'
+      '<link rel="stylesheet" href="zadark.css">'
     )
   }
 
   if (isSyncWithSystem) {
     // Required script
-    const zaDarkSWSScript = root.querySelectorAll('script[src="zadark/js/zadark-sws.js"]')
+    const zaDarkSWSScript = root.querySelectorAll('script[src="zadark-auto.js"]')
     if (!zaDarkSWSScript.length) {
       bodyElement.insertAdjacentHTML(
         'beforeend',
-        '<script src="zadark/js/zadark-sws.js"></script>'
+        '<script src="zadark-auto.js"></script>'
       )
     }
   }
@@ -132,23 +132,23 @@ const installDarkTheme = async (zaloDir, darkTheme = 'dark', isSyncWithSystem = 
   logDebug('- extractAsar', appAsarPath)
   asar.extractAll(appAsarPath, appDirPath)
 
-  // Copy assets "fonts/*" to "resources/app/pc-dist/zadark/fonts"
+  // Copy assets "fonts/*" to "resources/app/pc-dist/fonts"
   copyAssetDir(zaloDir, {
     src: 'fonts',
-    dest: 'pc-dist/zadark/fonts'
+    dest: 'pc-dist/fonts'
   })
 
-  // Copy assets "css/*" to "resources/app/pc-dist/zadark/css"
+  // Copy assets "css/*" to "resources/app/pc-dist"
   copyAssetDir(zaloDir, {
     src: 'css',
-    dest: 'pc-dist/zadark/css'
+    dest: 'pc-dist'
   })
 
   if (isSyncWithSystem) {
-    // Copy assets "zadark-sws.js" to "resources/app/pc-dist/zadark/js"
+    // Copy assets "zadark-auto.js" to "resources/app/pc-dist"
     copyAssetDir(zaloDir, {
-      src: 'js/zadark-sws.js',
-      dest: 'pc-dist/zadark/js/zadark-sws.js'
+      src: 'js/zadark-auto.js',
+      dest: 'pc-dist/zadark-auto.js'
     })
   }
 

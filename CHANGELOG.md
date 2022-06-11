@@ -1,8 +1,10 @@
 # Changelog
 
-## Browser v5.3
+## PC v4.8 & Browser v5.3
 ### Fixed
 - Chat Onboard : `.slideshow__page__image` `.slideshow__page__text__title` `.slideshow__bottom`
+#### PC specific
+- Change the structure of the folder injected into `Zalo Resources`
 
 ## PC v4.7 & Browser v5.2
 ### Fixed
