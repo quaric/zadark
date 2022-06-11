@@ -1,5 +1,11 @@
 # Changelog
 
+## PC v4.8 & Browser v5.3
+### Fixed
+- Chat Onboard : `.slideshow__page__image` `.slideshow__page__text__title` `.slideshow__bottom`
+#### PC specific
+- Fixed a bug that sometimes needed sudo privileges to install ZaDark for macOS
+
 ## PC v4.7 & Browser v5.2
 ### Fixed
 - Button Add friend : `.user-profile-button.rg`

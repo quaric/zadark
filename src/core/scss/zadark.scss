@@ -1018,7 +1018,18 @@ html[data-theme-mode="dark"] {
 
     #chatOnboard {
       .slideshow__page__image {
-        filter: invert(0.86);
+        padding: 16px;
+        background-color: #fff !important;
+        border-radius: 64px 8px 64px 8px;
+        filter: invert(0.9);
+      }
+
+      .slideshow__page__text__title {
+        margin-top: 50px;
+      }
+
+      .slideshow__bottom {
+        margin-top: 50px;
       }
     }
   }
