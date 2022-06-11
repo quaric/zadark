@@ -1,5 +1,9 @@
 # Changelog
 
+## Browser v5.3
+### Fixed
+- Chat Onboard : `.slideshow__page__image` `.slideshow__page__text__title` `.slideshow__bottom`
+
 ## PC v4.7 & Browser v5.2
 ### Fixed
 - Button Add friend : `.user-profile-button.rg`
