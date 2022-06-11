@@ -4,7 +4,7 @@
 ### Fixed
 - Chat Onboard : `.slideshow__page__image` `.slideshow__page__text__title` `.slideshow__bottom`
 #### PC specific
-- Change the structure of the folder injected into `Zalo Resources`
+- Fixed a bug that sometimes needed sudo privileges to install ZaDark for macOS
 
 ## PC v4.7 & Browser v5.2
 ### Fixed
