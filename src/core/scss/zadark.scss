@@ -481,14 +481,6 @@ html[data-theme-mode="dark"] {
       }
     }
 
-    #info-links-container {
-      .library-media {
-        > div {
-          background: transparent !important;
-        }
-      }
-    }
-
     #group-creator .create-group__item__link-icon {
       color: #fff;
     }
@@ -1032,6 +1024,25 @@ html[data-theme-mode="dark"] {
         margin-top: 50px;
       }
     }
+
+    .cb-info-file-item__actions-container {
+      background: var(--white-base);
+      box-shadow: 0 1px 10px var(--white-base);
+    }
+
+    .chat-info-link__action {
+      background: var(--white-base);
+      box-shadow: 0 1px 10px var(--white-base);
+    }
+
+    .media-store-preview-item > .image-menu-container {
+      background: var(--white-base) !important;
+      box-shadow: 0 1px 10px var(--white-base);
+
+      > div {
+        background: transparent !important;
+      }
+    }
   }
 }
 
@@ -1051,5 +1062,15 @@ body.zadark {
     #ztoolbar div[icon="outline-za-screenshot"] {
       display: none;
     }
+  }
+
+  .setting-menu {
+    width: 232px;
+  }
+
+  .z-business-label {
+    padding: 0 8px;
+    line-height: 18px;
+    font-size: 10px;
   }
 }

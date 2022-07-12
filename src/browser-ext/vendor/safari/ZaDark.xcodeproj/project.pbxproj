@@ -489,7 +489,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1654875747;
+				CURRENT_PROJECT_VERSION = 1657621839;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -502,7 +502,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 5.3;
+				MARKETING_VERSION = 5.4;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -521,7 +521,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1654875747;
+				CURRENT_PROJECT_VERSION = 1657621839;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -534,7 +534,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 5.3;
+				MARKETING_VERSION = 5.4;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -556,7 +556,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1654875747;
+				CURRENT_PROJECT_VERSION = 1657621839;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -571,7 +571,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 5.3;
+				MARKETING_VERSION = 5.4;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -594,7 +594,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1654875747;
+				CURRENT_PROJECT_VERSION = 1657621839;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -609,7 +609,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 5.3;
+				MARKETING_VERSION = 5.4;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
