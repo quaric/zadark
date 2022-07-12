@@ -1,5 +1,13 @@
 # Changelog
 
+## PC v4.9 & Browser v5.4
+### Fixed
+- `.setting-menu` : Sửa lỗi chữ "Resource management" xuống dòng.
+- `.cb-info-file-item__actions-container` : Sửa lỗi màu nền sai khi rê chuột vào File (Media Store Preview).
+- `.chat-info-link__action` : Sửa lỗi mất màu nền khi rê chuột vào Link (Media Store Preview).
+- `.media-store-preview-item > .image-menu-container` : Sửa lỗi màu nền sai khi rê chuột vào Photo/Video (Media Store Preview).
+- `.z-business-label` : Sửa lỗi nhãn "Business" quá to không đẹp.
+
 ## PC v4.8 & Browser v5.3
 ### Fixed
 - Chat Onboard : `.slideshow__page__image` `.slideshow__page__text__title` `.slideshow__bottom`
