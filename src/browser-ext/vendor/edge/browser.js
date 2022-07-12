@@ -38,30 +38,27 @@
     },
 
     executeScript: (tabId, file) => {
-      chrome.tabs.executeScript(tabId, { file })
+      chrome.scripting.executeScript({
+        target: { tabId },
+        files: [file]
+      })
     },
 
     getZaloTabs: async () => {
-      return new Promise((resolve) => {
-        chrome.tabs.query({
-          url: ['*://chat.zalo.me/*'],
-          currentWindow: true
-        }, (tabs) => {
-          resolve(tabs)
-        })
+      const tabs = await chrome.tabs.query({
+        url: ['*://chat.zalo.me/*'],
+        currentWindow: true
       })
+      return tabs
     },
 
     createTab: ({ url }) => {
       chrome.tabs.create({ url })
     },
 
-    getEnabledBlockingRuleIds: () => {
-      return new Promise((resolve, reject) => {
-        chrome.declarativeNetRequest.getEnabledRulesets((rulesetIds) => {
-          resolve(rulesetIds)
-        })
-      })
+    getEnabledBlockingRuleIds: async () => {
+      const rulesetIds = await chrome.declarativeNetRequest.getEnabledRulesets()
+      return rulesetIds
     },
 
     updateEnabledBlockingRuleIds: ({ enableRuleIds = [], disableRuleIds = [] }) => {
