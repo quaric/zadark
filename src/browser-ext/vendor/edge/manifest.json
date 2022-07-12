@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "ZaDark – Zalo Dark Mode",
   "version": "5.4",
   "description": "__MSG_appDesc__",
@@ -30,14 +30,14 @@
     }
   ],
   "background": {
-    "scripts": [
-      "js/background.js"
-    ]
+    "service_worker": "js/background.js"
   },
   "permissions": [
     "storage",
-    "tabs",
-    "declarativeNetRequest",
+    "scripting",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
     "*://chat.zalo.me/*"
   ],
   "declarative_net_request": {
@@ -59,7 +59,7 @@
       }
     ]
   },
-  "browser_action": {
+  "action": {
     "default_popup": "popup.html",
     "default_icon": {
       "16": "images/zadark-icon-16.png",
@@ -69,6 +69,13 @@
     }
   },
   "web_accessible_resources": [
-    "fonts/*"
+    {
+      "resources": [
+        "fonts/*"
+      ],
+      "matches": [
+        "*://chat.zalo.me/*"
+      ]
+    }
   ]
 }
