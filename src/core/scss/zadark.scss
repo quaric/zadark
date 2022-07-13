@@ -1043,6 +1043,25 @@ html[data-theme-mode="dark"] {
         background: transparent !important;
       }
     }
+
+    // Zalo Business
+
+    .zl-group-input__search:not(.inherit-input)>.zl-input {
+      background: var(--grey-500) !important;
+    }
+
+    .product-list-view {
+      background-color: var(--white-base);
+
+      .catalog-body-list {
+        background: var(--white-base);
+      }
+
+      .multisel-panel {
+        background: var(--grey-700) !important;
+        border-top: 1px solid var(--border) !important;
+      }
+    }
   }
 }
 
