@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ZaDark – Zalo Dark Mode",
-  "version": "5.4",
+  "version": "5.5",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
   "author": "NCDAi Studio",

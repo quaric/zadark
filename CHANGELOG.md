@@ -1,5 +1,9 @@
 # Changelog
 
+## PC v4.10 && Browser v5.5
+### Fixed
+- Zalo Business
+
 ## PC v4.9 & Browser v5.4
 ### Fixed
 - `.setting-menu` : Sửa lỗi chữ "Resource management" xuống dòng.
