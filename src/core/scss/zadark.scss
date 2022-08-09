@@ -1065,6 +1065,7 @@ html[data-theme-mode="dark"] {
 
     .zl-modal {
       backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
     }
   }
 }
