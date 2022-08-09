@@ -1062,6 +1062,11 @@ html[data-theme-mode="dark"] {
         border-top: 1px solid var(--border) !important;
       }
     }
+
+    .zl-modal {
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
   }
 }
 

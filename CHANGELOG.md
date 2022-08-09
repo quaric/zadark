@@ -1,5 +1,9 @@
 # Changelog
 
+## PC v4.11 && Browser v5.6
+### Changed
+- `.zl-modal` : Thêm hiệu ứng mờ cho nền.
+
 ## PC v4.10 && Browser v5.5
 ### Fixed
 - Zalo Business
