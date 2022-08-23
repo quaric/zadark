@@ -34,7 +34,9 @@
 
 ZaDark is an open source extension that helps you enable Dark Mode for Zalo on PC and Browser.
 
-https://zadark.ncdaistudio.com
+https://zadark.ncdaistudio.com/
+
+[![ZaDark from NCDAi Studio](./.github/zadark-from-ncdaistudio.svg)](https://ncdaistudio.com/)
 
 ![ZaDark Wins Many Awards by SourceForge](./.github/sourceforge-awards.png)
 
