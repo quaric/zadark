@@ -13,7 +13,7 @@
     name: 'Edge',
 
     initClassNames: () => {
-      document.body.classList.add('zadark', 'zadark-browser-ext', 'zadark-edge')
+      document.body.classList.add('zadark', 'zadark-web', 'zadark-edge')
     },
 
     getManifest: () => {
@@ -23,9 +23,8 @@
     getExtensionSettings: () => {
       return new Promise((resolve, reject) => {
         chrome.storage.sync.get({
-          themeMode: 'single',
-          userTheme: 'dark_dimmed',
-          darkTheme: 'dark_dimmed',
+          themeMode: 'custom',
+          customTheme: 'dark',
           isReceiveUpdateNoti: true
         }, (items) => {
           resolve(items)

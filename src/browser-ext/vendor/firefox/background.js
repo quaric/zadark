@@ -16,4 +16,11 @@ browser.runtime.onInstalled.addListener((details) => {
       }
     })
   }
+
+  // Init Storage
+  browser.storage.sync.set({
+    themeMode: 'custom',
+    customTheme: 'dark',
+    isReceiveUpdateNoti: true
+  })
 })

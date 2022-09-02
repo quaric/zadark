@@ -1,5 +1,12 @@
 # Changelog
 
+## PC v5.0 && Browser v6.1
+### Fixed
+- Sửa lỗi hiển thị sai màu sắc do Zalo có sự thay đổi lớn về bảng màu (Colors CSS Variables) từ ngày 31/08/2022.
+
+### Removed
+- Dark dimmed
+
 ## PC v4.11 && Browser v5.6
 ### Changed
 - `.zl-modal` : Thêm hiệu ứng mờ cho nền.
