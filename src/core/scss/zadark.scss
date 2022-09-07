@@ -253,7 +253,7 @@
   --btn-primary-bg: linear-gradient(45deg, #408dfd, #0068ff);
 }
 
-html[data-theme-mode="dark"] {
+html[data-zadark-theme="dark"] {
   &:root {
     @include cssVariables();
   }
@@ -767,6 +767,10 @@ html[data-theme-mode="dark"] {
     .pin-input__item {
       background: var(--WA100);
       color: var(--primary-text);
+    }
+
+    .pin-input-hidden-chat__contain_text {
+      color: var(--NG60) !important;
     }
 
     .zl-avatar {

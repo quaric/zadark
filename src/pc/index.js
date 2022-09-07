@@ -13,13 +13,13 @@ const { PLATFORM, ZADARK_VERSION } = require('./constants')
 const renderHeader = () => {
   log('')
   log(chalk.blueBright.bold('ZaDark – Zalo Dark Mode'))
-  log(chalk.blueBright('Version :', `${PLATFORM === 'darwin' ? 'macOS' : 'Windows'}-${ZADARK_VERSION}`))
-  log(chalk.blueBright('Website :', chalk.underline('https://zadark.ncdaistudio.com')))
+  log(chalk.blueBright('Website   :', chalk.underline('https://zadark.ncdaistudio.com')))
+  log(chalk.blueBright('Phien ban :', `${PLATFORM === 'darwin' ? 'macOS' : 'Windows'}-${ZADARK_VERSION}`))
   log('')
 }
 
 const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
-  log(chalk.magentaBright.bold('[CAI DAT DARK THEME]'))
+  log(chalk.magentaBright.bold('[KICH HOAT GIAO DIEN TOI]'))
 
   for (const zaloResDir of zaloResDirList) {
     log('')
@@ -73,9 +73,9 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
 
     log(chalk.magentaBright.bold('[CHUC NANG]'))
     log('')
-    log('1. Cai dat Dark default')
-    log('2. Cai dat Dark auto')
-    log('3. Khoi phuc Zalo goc')
+    log('1. Kich hoat giao dien Toi')
+    log('2. Kich hoat giao dien Tu dong thay doi theo He dieu hanh')
+    log('3. Khoi phuc Zalo PC goc')
     log('')
 
     log('4. Lien he')
@@ -88,26 +88,15 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
     renderHeader()
 
     switch (featureIndex) {
-      case '1': {
-        await handleInstall(zaloResDirList)
-        break
-      }
-
+      case '1':
       case '2': {
-        log(chalk.magentaBright.bold('[CAI DAT DARK AUTO]'))
-        log(chalk.magentaBright('Tu dong thay doi giao dien Zalo theo He dieu hanh.'))
-        log('')
-
-        await handleInstall(
-          zaloResDirList,
-          true
-        )
-
+        const isSyncWithSystem = featureIndex === '2'
+        await handleInstall(zaloResDirList, isSyncWithSystem)
         break
       }
 
       case '3': {
-        log(chalk.magentaBright.bold('[KHOI PHUC ZALO GOC]'))
+        log(chalk.magentaBright.bold('[KHOI PHUC ZALO PC GOC]'))
 
         for (const zaloResDir of zaloResDirList) {
           log('')

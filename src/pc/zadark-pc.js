@@ -77,7 +77,7 @@ const writeIndexFile = (zaloDir, { isSyncWithSystem }) => {
   }
 
   // Required themeAttributes
-  htmlElement.setAttribute('data-theme-mode', 'dark')
+  htmlElement.setAttribute('data-zadark-theme', 'dark')
 
   // Required classNames
   const zaDarkClassNames = ['zadark', 'zadark-pc', `zadark-${PLATFORM}`]
@@ -158,10 +158,10 @@ const installDarkTheme = async (zaloDir, isSyncWithSystem = false) => {
   await asar.createPackage(appDirPath, appAsarPath)
   await del(appDirPath, { force: true })
 
-  log(chalk.green('- Da cai dat.'))
-
   if (isSyncWithSystem) {
-    log(chalk.green('- Da kich hoat "Tu dong thay doi giao dien Zalo theo He dieu hanh".'))
+    log(chalk.green('- Da kich hoat giao dien Tu dong thay doi theo He dieu hanh.'))
+  } else {
+    log(chalk.green('- Da kich hoat giao dien Toi.'))
   }
 }
 
@@ -182,7 +182,7 @@ const uninstallDarkTheme = async (zaloDir) => {
     logDebug('- renameFile', appAsarBakPath)
   }
 
-  log(chalk.green('- Da go cai dat.'))
+  log(chalk.green('- Da khoi phuc Zalo PC goc.'))
 }
 
 module.exports = {

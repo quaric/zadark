@@ -5,16 +5,7 @@
 */
 
 const versionElName = '#js-ext-version'
-
-const selectThemeModeElName = '#js-select-theme-mode'
-const selectCustomThemeElName = '#js-select-custom-theme input:radio[name="custom_theme"]'
-
-const themeModeCustomElName = '#js-theme-mode-custom'
-const themeModeAutoElName = '#js-theme-mode-auto'
-
-const themeModeCustomDescElName = '.theme-mode-description[data-theme-mode="custom"]'
-const themeModeAutoDescElName = '.theme-mode-description[data-theme-mode="auto"]'
-
+const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const manifestData = window.zadark.browser.getManifest()
 
 $(versionElName).html(`Phiên bản ${manifestData.version}`)
@@ -23,27 +14,8 @@ $(versionElName).on('click', () => {
 })
 
 window.zadark.utils.refreshPageTheme()
-
-const updateThemeMode = (themeMode) => {
-  $(themeModeCustomElName).hide()
-  $(themeModeCustomDescElName).hide()
-  $(themeModeAutoElName).hide()
-  $(themeModeAutoDescElName).hide()
-
-  if (themeMode === 'custom') {
-    $(themeModeCustomElName).show()
-    $(themeModeCustomDescElName).show()
-  } else {
-    $(themeModeAutoElName).show()
-    $(themeModeAutoDescElName).show()
-  }
-}
-
-window.zadark.browser.getExtensionSettings().then(({ themeMode, customTheme }) => {
-  updateThemeMode(themeMode)
-
-  $(selectThemeModeElName).val(themeMode)
-  $(selectCustomThemeElName).filter(`[value="${customTheme}"]`).attr('checked', true)
+window.zadark.browser.getExtensionSettings().then(({ theme }) => {
+  $(selectThemeElName).filter(`[value="${theme}"]`).attr('checked', true)
 })
 
 const setPageThemeForAllZaloTabs = async () => {
@@ -69,16 +41,9 @@ const fireThemeSettingsChanged = () => {
   window.zadark.utils.refreshPageTheme()
 }
 
-$(selectThemeModeElName).on('change', async function () {
-  const themeMode = $(this).val()
-  await window.zadark.browser.saveExtensionSettings({ themeMode })
-  updateThemeMode(themeMode)
-  fireThemeSettingsChanged()
-})
-
-$(selectCustomThemeElName).on('change', async function () {
-  const customTheme = $(this).val()
-  await window.zadark.browser.saveExtensionSettings({ customTheme })
+$(selectThemeElName).on('change', async function () {
+  const theme = $(this).val()
+  await window.zadark.browser.saveExtensionSettings({ theme })
   fireThemeSettingsChanged()
 })
 

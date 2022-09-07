@@ -1,5 +1,20 @@
 # Changelog
 
+## PC v5.1 && Browser v6.2
+### Added
+#### Browser specific (Safari)
+- Thêm "ZaDark Website" vào Menu Help
+
+### Changed
+#### Browser specific
+- Trải nghiệm chọn "Giao diện" nhanh hơn
+- Tên các chức năng ở phần "Riêng tư" dễ hiểu hơn
+#### PC specific
+- Tên các chức năng dễ hiểu hơn
+
+### Fixed
+- Sửa lỗi màu sắc cho giao diện "Đặt mã PIN" ẩn cuộc trò chuyện
+
 ## PC v5.0 && Browser v6.1
 ### Fixed
 - Sửa lỗi hiển thị sai màu sắc do Zalo có sự thay đổi lớn về bảng màu (Colors CSS Variables) từ ngày 31/08/2022.

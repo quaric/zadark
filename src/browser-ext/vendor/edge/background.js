@@ -16,11 +16,4 @@ chrome.runtime.onInstalled.addListener((details) => {
       }
     })
   }
-
-  // Init Storage
-  chrome.storage.sync.set({
-    themeMode: 'custom',
-    customTheme: 'dark',
-    isReceiveUpdateNoti: true
-  })
 })

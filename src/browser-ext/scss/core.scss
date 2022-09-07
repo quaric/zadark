@@ -1,4 +1,4 @@
-html[data-theme-mode="light"] {
+html[data-zadark-theme="light"] {
   &:root {
     --white-700: hsla(0, 0%, 100%, 0.1);
     --white-600: hsla(0, 0%, 100%, 0.25);
@@ -37,7 +37,7 @@ html[data-theme-mode="light"] {
   }
 }
 
-html[data-theme-mode="dark"] {
+html[data-zadark-theme="dark"] {
   &:root {
     --white-700: hsla(0, 0%, 27%, 0.1);
     --white-600: hsla(0, 0%, 27%, 0.25);
@@ -216,10 +216,6 @@ code {
   font-size: 24px;
 }
 
-.text-zadark {
-  font-family: "Bubblegum Sans", cursive;
-}
-
 .cursor-pointer {
   cursor: pointer;
 }
@@ -365,7 +361,6 @@ header.main-header {
     }
   }
 }
-// .form-switch-container {}
 
 .form-select {
   display: inline-block;

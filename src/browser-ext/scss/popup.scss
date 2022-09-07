@@ -7,7 +7,7 @@
   color-scheme: light dark;
 }
 
-html[data-theme-mode="dark"] {
+html[data-zadark-theme="dark"] {
   body {
     border: 1px solid var(--border-base);
   }
@@ -15,11 +15,6 @@ html[data-theme-mode="dark"] {
 
 .ext-container {
   min-width: 512px;
-}
-
-#theme-mode-auto,
-#theme-mode-custom {
-  display: none;
 }
 
 #js-panel-privacy {

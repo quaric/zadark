@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="dark">
+<html lang="vi" data-zadark-theme="dark">
 
 <head>
   <meta charset="UTF-8">
@@ -38,42 +38,38 @@
     </header>
 
     <main class="p-4">
-      <div class="mb-4">
-        <label class="mb-2 block font-semibold">Giao diện</label>
+      <label class="mb-2 block font-semibold">Giao diện</label>
 
-        <div class="flex items-center">
-          <select id="js-select-theme-mode" class="form-select mr-2" style="min-width: 128px;">
-            <option value="custom">Tuỳ chỉnh</option>
-            <option value="auto">Tự động</option>
-          </select>
+      <div class="panel">
+        <div class="panel-body">
+          <div id="js-select-theme" class="form-radio-group">
+            <label class="form-radio-container">
+              <input type="radio" name="theme" value="light">
+              <span class="checkmark"></span>
 
-          <span class="theme-mode-description text-neutral-500" data-theme-mode="custom">Zalo sẽ sử dụng giao diện bạn chọn</span>
-          <span class="theme-mode-description text-neutral-500" data-theme-mode="auto">Giao diện Zalo sẽ thay đổi theo Hệ điều hành</span>
-        </div>
-      </div>
+              <span class="label-container">
+                <span class="label">Sáng</span>
+              </span>
+            </label>
 
-      <div id="js-theme-mode-custom">
-        <div class="panel">
-          <div class="panel-body">
-            <div id="js-select-custom-theme" class="form-radio-group">
-              <label class="form-radio-container">
-                <input type="radio" name="custom_theme" value="light">
-                <span class="checkmark"></span>
+            <label class="form-radio-container">
+              <input type="radio" name="theme" value="dark">
+              <span class="checkmark"></span>
 
-                <span class="label-container">
-                  <span class="label">Light</span>
-                </span>
-              </label>
+              <span class="label-container">
+                <span class="label">Tối</span>
+              </span>
+            </label>
 
-              <label class="form-radio-container">
-                <input type="radio" name="custom_theme" value="dark">
-                <span class="checkmark"></span>
+            <label class="form-radio-container">
+              <input type="radio" name="theme" value="auto">
+              <span class="checkmark"></span>
 
-                <span class="label-container">
-                  <span class="label">Dark</span>
-                </span>
-              </label>
-            </div>
+              <span class="label-container">
+                <span class="label">Tự động</span>
+                <span class="description">Giao diện Zalo Web sẽ thay đổi theo Hệ điều hành</span>
+              </span>
+            </label>
           </div>
         </div>
       </div>
@@ -85,7 +81,7 @@
           <div class="panel-body">
             <div class="form-switch-group">
               <div class="flex items-center form-switch-container">
-                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-typing">Chặn "Đang soạn tin nhắn..." trên Zalo</label>
+                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn" trên Zalo Web</label>
 
                 <label class="form-switch">
                   <input type="checkbox" id="js-switch-block-typing">
@@ -94,19 +90,19 @@
               </div>
 
               <div class="flex items-center form-switch-container">
-                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-seen">Chặn "Đã xem" tin nhắn trên Zalo</label>
+                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-delivered">Ẩn trạng thái "Đã nhận" tin nhắn trên Zalo Web</label>
 
                 <label class="form-switch">
-                  <input type="checkbox" id="js-switch-block-seen">
+                  <input type="checkbox" id="js-switch-block-delivered">
                   <span class="form-switch-slider"></span>
                 </label>
               </div>
 
               <div class="flex items-center form-switch-container">
-                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-delivered">Chặn "Đã nhận" tin nhắn trên Zalo</label>
+                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-seen">Ẩn trạng thái "Đã xem" tin nhắn trên Zalo Web</label>
 
                 <label class="form-switch">
-                  <input type="checkbox" id="js-switch-block-delivered">
+                  <input type="checkbox" id="js-switch-block-seen">
                   <span class="form-switch-slider"></span>
                 </label>
               </div>

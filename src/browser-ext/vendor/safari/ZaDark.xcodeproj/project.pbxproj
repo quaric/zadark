@@ -54,6 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C1482C8F28C9052100909D13 /* ZaDark.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ZaDark.entitlements; sourceTree = "<group>"; };
 		C15875CD27EB09C300E008A0 /* ZaDark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZaDark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C15875D027EB09C300E008A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C15875D427EB09C300E008A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
@@ -64,7 +65,6 @@
 		C15875DF27EB09C300E008A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C15875E127EB09C400E008A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C15875E327EB09C400E008A0 /* ZaDark.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZaDark.entitlements; sourceTree = "<group>"; };
-		C15875E427EB09C400E008A0 /* ZaDark.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZaDark.entitlements; sourceTree = "<group>"; };
 		C15875E927EB09C400E008A0 /* ZaDark Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ZaDark Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C15875EE27EB09C400E008A0 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		C158760127EB09C400E008A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 				C15875DE27EB09C300E008A0 /* Main.storyboard */,
 				C15875E127EB09C400E008A0 /* Assets.xcassets */,
 				C15875E327EB09C400E008A0 /* ZaDark.entitlements */,
-				C15875E427EB09C400E008A0 /* ZaDark.entitlements */,
+				C1482C8F28C9052100909D13 /* ZaDark.entitlements */,
 				C15875D227EB09C300E008A0 /* Resources */,
 			);
 			path = ZaDark;
@@ -489,7 +489,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1662120253;
+				CURRENT_PROJECT_VERSION = 1662569822;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -502,7 +502,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 6.1;
+				MARKETING_VERSION = 6.2;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -521,7 +521,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1662120253;
+				CURRENT_PROJECT_VERSION = 1662569822;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -534,7 +534,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 6.1;
+				MARKETING_VERSION = 6.2;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -556,7 +556,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1662120253;
+				CURRENT_PROJECT_VERSION = 1662569822;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -571,7 +571,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 6.1;
+				MARKETING_VERSION = 6.2;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -594,7 +594,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1662120253;
+				CURRENT_PROJECT_VERSION = 1662569822;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -609,7 +609,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 6.1;
+				MARKETING_VERSION = 6.2;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,

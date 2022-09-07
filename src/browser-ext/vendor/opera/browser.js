@@ -23,8 +23,7 @@
     getExtensionSettings: () => {
       return new Promise((resolve, reject) => {
         chrome.storage.sync.get({
-          themeMode: 'custom',
-          customTheme: 'dark',
+          theme: 'dark',
           isReceiveUpdateNoti: true
         }, (items) => {
           resolve(items)

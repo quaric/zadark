@@ -13,7 +13,7 @@
     name: 'Safari',
 
     initClassNames: () => {
-      document.body.classList.add('zadark', 'zadark-web', 'zadark-safari')
+      document.body.classList.add('zadark', 'zadark-browser-ext', 'zadark-safari')
     },
 
     getManifest: () => {
@@ -23,8 +23,7 @@
     getExtensionSettings: () => {
       return new Promise((resolve, reject) => {
         browser.storage.sync.get({
-          themeMode: 'custom',
-          customTheme: 'dark',
+          theme: 'dark',
           isReceiveUpdateNoti: true
         }, (items) => {
           resolve(items)
