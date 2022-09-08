@@ -173,7 +173,7 @@
 #### PC specific
 
 - Sync with System (Zalo theme will match your system settings)
-- Changelog (https://github.com/ncdai3651408/za-dark/blob/main/CHANGELOG.md)
+- Changelog (https://short.ncdaistudio.com/zadark-github/blob/main/CHANGELOG.md)
 
 ## v3.8
 
