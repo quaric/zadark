@@ -13,7 +13,7 @@
     name: 'Chrome',
 
     initClassNames: () => {
-      document.body.classList.add('zadark', 'zadark-browser-ext', 'zadark-chrome')
+      document.body.classList.add('zadark', 'zadark-web', 'zadark-chrome')
     },
 
     getManifest: () => {
@@ -23,9 +23,7 @@
     getExtensionSettings: () => {
       return new Promise((resolve, reject) => {
         chrome.storage.sync.get({
-          themeMode: 'single',
-          userTheme: 'dark_dimmed',
-          darkTheme: 'dark_dimmed',
+          theme: 'dark',
           isReceiveUpdateNoti: true
         }, (items) => {
           resolve(items)

@@ -5,17 +5,7 @@
 */
 
 const versionElName = '#js-ext-version'
-
-const selectThemeModeElName = '#js-select-theme-mode'
-const selectUserThemeElName = '#js-select-user-theme input:radio[name="user_theme"]'
-const selectDarkThemeElName = '#js-select-dark-theme input:radio[name="dark_theme"]'
-
-const themeModeSingleElName = '#js-theme-mode-single'
-const themeModeAutoElName = '#js-theme-mode-auto'
-
-const themeModeSingleDescElName = '.theme-mode-description[data-theme-mode="single"]'
-const themeModeAutoDescElName = '.theme-mode-description[data-theme-mode="auto"]'
-
+const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const manifestData = window.zadark.browser.getManifest()
 
 $(versionElName).html(`Phiên bản ${manifestData.version}`)
@@ -24,29 +14,8 @@ $(versionElName).on('click', () => {
 })
 
 window.zadark.utils.refreshPageTheme()
-
-const updateThemeMode = (themeMode) => {
-  $(themeModeSingleElName).hide()
-  $(themeModeAutoElName).hide()
-
-  $(themeModeSingleDescElName).hide()
-  $(themeModeAutoDescElName).hide()
-
-  if (themeMode === 'single') {
-    $(themeModeSingleElName).show()
-    $(themeModeSingleDescElName).show()
-  } else {
-    $(themeModeAutoElName).show()
-    $(themeModeAutoDescElName).show()
-  }
-}
-
-window.zadark.browser.getExtensionSettings().then(({ themeMode, userTheme, darkTheme }) => {
-  updateThemeMode(themeMode)
-
-  $(selectThemeModeElName).val(themeMode)
-  $(selectUserThemeElName).filter(`[value="${userTheme}"]`).attr('checked', true)
-  $(selectDarkThemeElName).filter(`[value="${darkTheme}"]`).attr('checked', true)
+window.zadark.browser.getExtensionSettings().then(({ theme }) => {
+  $(selectThemeElName).filter(`[value="${theme}"]`).attr('checked', true)
 })
 
 const setPageThemeForAllZaloTabs = async () => {
@@ -72,22 +41,9 @@ const fireThemeSettingsChanged = () => {
   window.zadark.utils.refreshPageTheme()
 }
 
-$(selectThemeModeElName).on('change', async function () {
-  const themeMode = $(this).val()
-  await window.zadark.browser.saveExtensionSettings({ themeMode })
-  updateThemeMode(themeMode)
-  fireThemeSettingsChanged()
-})
-
-$(selectUserThemeElName).on('change', async function () {
-  const userTheme = $(this).val()
-  await window.zadark.browser.saveExtensionSettings({ userTheme })
-  fireThemeSettingsChanged()
-})
-
-$(selectDarkThemeElName).on('change', async function () {
-  const darkTheme = $(this).val()
-  await window.zadark.browser.saveExtensionSettings({ darkTheme })
+$(selectThemeElName).on('change', async function () {
+  const theme = $(this).val()
+  await window.zadark.browser.saveExtensionSettings({ theme })
   fireThemeSettingsChanged()
 })
 

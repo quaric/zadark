@@ -1,14 +1,33 @@
 # Changelog
 
-## PC v4.12 && Browser v5.7
+## PC v4.12
 ### Changed
-#### PC specific (macOS)
-- Mở trang hướng dẫn ZaDark for macOS sau khi giải nén tập tin pkg
+- macOS : Mở trang hướng dẫn [ZaDark for macOS](https://zadark.ncdaistudio.com/pc/macos) sau khi giải nén tập tin pkg
+### Fixed
+- Sửa lỗi màu sắc cho giao diện "Đặt mã PIN" ẩn cuộc trò chuyện
+- macOS : Sửa lỗi các chức năng không hoạt động khi không chạy ZaDark for macOS với quyền Root
+
+## PC v5.1 && Browser v6.2
+### Added
+#### Browser specific (Safari)
+- Thêm "ZaDark Website" vào Menu Help
+### Changed
+#### Browser specific
+- Trải nghiệm chọn "Giao diện" nhanh hơn
+- Tên các chức năng ở phần "Riêng tư" dễ hiểu hơn
+#### PC specific
+- Sẵn sàng cho sự thay đổi lớn về bảng màu (Colors CSS Variables) trên Zalo PC
+- Tên các chức năng dễ hiểu hơn
+- macOS : Mở trang hướng dẫn [ZaDark for macOS](https://zadark.ncdaistudio.com/pc/macos) sau khi giải nén tập tin pkg
 
 ### Fixed
+- Sửa lỗi hiển thị sai màu sắc do Zalo Web có sự thay đổi lớn về bảng màu (Colors CSS Variables) từ ngày 31/08/2022
+- Sẵn sàng cho sự thay đổi lớn về bảng màu (Colors CSS Variables) trên Zalo PC
 - Sửa lỗi màu sắc cho giao diện "Đặt mã PIN" ẩn cuộc trò chuyện
 #### PC specific (macOS)
 - Sửa lỗi các chức năng không hoạt động khi không chạy ZaDark for macOS với quyền Root
+### Removed
+- Dark dimmed
 
 ## PC v4.11 && Browser v5.6
 ### Changed
@@ -161,7 +180,7 @@
 #### PC specific
 
 - Sync with System (Zalo theme will match your system settings)
-- Changelog (https://github.com/ncdai3651408/za-dark/blob/main/CHANGELOG.md)
+- Changelog (https://short.ncdaistudio.com/zadark-github/blob/main/CHANGELOG.md)
 
 ## v3.8
 

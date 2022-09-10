@@ -5,8 +5,8 @@
 */
 
 const manifestData = window.zadark.browser.getManifest()
-$('#js-ext-version1').html(`Phiên bản ${manifestData.version}`)
-$('#js-ext-version2').html(manifestData.version)
+$('#js-ext-version-in-header').html(`Phiên bản ${manifestData.version}`)
+$('#js-ext-version-in-content').html(manifestData.version)
 
 window.zadark.utils.refreshPageTheme()
 

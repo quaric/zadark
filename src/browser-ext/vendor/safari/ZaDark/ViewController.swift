@@ -50,4 +50,9 @@ class ViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHan
         }
     }
 
+    @IBAction func showHelp(_ sender: Any) {
+        if let url = URL(string: "https://zadark.ncdaistudio.com") {
+            NSWorkspace.shared.open(url)
+        }
+    }
 }

@@ -23,9 +23,7 @@
     getExtensionSettings: () => {
       return new Promise((resolve, reject) => {
         browser.storage.sync.get({
-          themeMode: 'single',
-          userTheme: 'dark_dimmed',
-          darkTheme: 'dark_dimmed',
+          theme: 'dark',
           isReceiveUpdateNoti: true
         }, (items) => {
           resolve(items)

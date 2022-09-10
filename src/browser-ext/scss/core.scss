@@ -1,7 +1,5 @@
-html[data-theme-mode="light"] {
+html[data-zadark-theme="light"] {
   &:root {
-    // Source: Zalo
-
     --white-700: hsla(0, 0%, 100%, 0.1);
     --white-600: hsla(0, 0%, 100%, 0.25);
     --white-500: hsla(0, 0%, 100%, 0.5);
@@ -39,56 +37,14 @@ html[data-theme-mode="light"] {
   }
 }
 
-// Dark Default
-html[data-theme-mode="dark"] {
+html[data-zadark-theme="dark"] {
   &:root {
-    // Source: za-dark.scss
-
-    --white-700: hsla(0, 0%, 20%, 0.1);
-    --white-600: hsla(0, 0%, 20%, 0.25);
-    --white-500: hsla(0, 0%, 20%, 0.5);
-    --white-400: hsla(0, 0%, 20%, 0.75);
-    --white-300: #18191a;
-    --white-base: #18191a;
-
-    --neutral-700: #4f5051;
-    --neutral-600: #747576;
-    --neutral-500: #999a9a;
-    --neutral-400: #bebfbf;
-    --neutral-300: #e3e3e3;
-    --neutral-200: #f6f6f6;
-    --neutral-100: #ffffff;
-    --neutral-base: #e3e3e3;
-
-    --grey-700: #232525;
-    --grey-600: #2a2b2c;
-    --grey-500: #313233;
-    --grey-400: #38393a;
-    --grey-300: #3d3e3f;
-    --grey-base: #3d3e3f;
-
-    --blue-700: #0f2345;
-    --blue-650: #0e2d5b;
-    --blue-600: #0b3a7e;
-    --blue-500: #074bad;
-    --blue-400: #035bdc;
-    --blue-300: #3989ff;
-    --blue-base: #3989ff;
-  }
-
-  div::-webkit-scrollbar-thumb {
-    background: var(--grey-300);
-  }
-
-  body {
-    -webkit-font-smoothing: auto;
-  }
-}
-
-// Dark Dimmed
-html[data-theme-mode="dark"][data-dark-theme="dark_dimmed"] {
-  &:root {
-    // Source: za-dark.scss
+    --white-700: hsla(0, 0%, 27%, 0.1);
+    --white-600: hsla(0, 0%, 27%, 0.25);
+    --white-500: hsla(0, 0%, 27%, 0.5);
+    --white-400: hsla(0, 0%, 27%, 0.75);
+    --white-300: #232526;
+    --white-base: #232526;
 
     --neutral-700: #58595a;
     --neutral-600: #7b7c7d;
@@ -106,12 +62,21 @@ html[data-theme-mode="dark"][data-dark-theme="dark_dimmed"] {
     --grey-300: #464849;
     --grey-base: #464849;
 
-    --white-700: hsla(0, 0%, 27%, 0.1);
-    --white-600: hsla(0, 0%, 27%, 0.25);
-    --white-500: hsla(0, 0%, 27%, 0.5);
-    --white-400: hsla(0, 0%, 27%, 0.75);
-    --white-300: #232526;
-    --white-base: #232526;
+    --blue-700: #0f2345;
+    --blue-650: #0e2d5b;
+    --blue-600: #0b3a7e;
+    --blue-500: #074bad;
+    --blue-400: #035bdc;
+    --blue-300: #3989ff;
+    --blue-base: #3989ff;
+  }
+
+  div::-webkit-scrollbar-thumb {
+    background: var(--grey-300);
+  }
+
+  body {
+    -webkit-font-smoothing: auto;
   }
 }
 
@@ -249,10 +214,6 @@ code {
 
 .text-2xl {
   font-size: 24px;
-}
-
-.text-zadark {
-  font-family: "Bubblegum Sans", cursive;
 }
 
 .cursor-pointer {
@@ -400,7 +361,6 @@ header.main-header {
     }
   }
 }
-// .form-switch-container {}
 
 .form-select {
   display: inline-block;
