@@ -7,6 +7,6 @@ if [ ! -f "$ZADARK_FILE" ]; then
   exit 0
 fi
 
-open "$ZADARK_FILE"
+open https://zadark.ncdaistudio.com/pc/macos
 
 exit 0

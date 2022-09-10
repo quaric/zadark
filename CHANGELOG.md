@@ -1,5 +1,15 @@
 # Changelog
 
+## PC v4.12 && Browser v5.7
+### Changed
+#### PC specific (macOS)
+- Mở trang hướng dẫn ZaDark for macOS sau khi giải nén tập tin pkg
+
+### Fixed
+- Sửa lỗi màu sắc cho giao diện "Đặt mã PIN" ẩn cuộc trò chuyện
+#### PC specific (macOS)
+- Sửa lỗi các chức năng không hoạt động khi không chạy ZaDark for macOS với quyền Root
+
 ## PC v4.11 && Browser v5.6
 ### Changed
 - `.zl-modal` : Thêm hiệu ứng mờ cho nền.

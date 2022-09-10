@@ -796,6 +796,9 @@ html[data-theme-mode="dark"] {
       background: var(--white-300);
       color: var(--neutral-300);
     }
+    .pin-input-hidden-chat__contain_text {
+      color: var(--neutral-500) !important;
+    }
 
     // Avatar
     .zl-avatar {

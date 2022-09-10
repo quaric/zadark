@@ -7,7 +7,7 @@ const prompt = require('prompt-sync')()
 const chalk = require('chalk')
 
 const zaDarkPC = require('./zadark-pc')
-const { log, logError, open } = require('./utils')
+const { log, logError, open, isRoot } = require('./utils')
 const { PLATFORM, ZADARK_VERSION, DARK_TYPE_LABEL } = require('./constants')
 
 const renderHeader = () => {
@@ -33,6 +33,12 @@ const handleInstall = async (zaloResDirList, darkTheme, isSyncWithSystem = false
 
 (async () => {
   try {
+    if (PLATFORM === 'darwin' && !isRoot()) {
+      const supportUrl = 'https://zadark.ncdaistudio.com/pc/macos#run-zadark-as-root'
+      open(supportUrl)
+      throw new Error(`Vui long chay ZaDark voi quyen Root (${supportUrl}).`)
+    }
+
     const defaultZaloPath = PLATFORM === 'darwin'
       ? '/Applications/Zalo.app' // ! Can't be changed
       : process.env.USERPROFILE + '/AppData/Local/Programs/Zalo' // ! Can't be changed
