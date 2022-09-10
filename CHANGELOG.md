@@ -4,6 +4,8 @@
 ### Added
 #### Browser specific (Safari)
 - Thêm "ZaDark Website" vào Menu Help
+#### PC specific (macOS)
+- Yêu cầu chạy ZaDark với quyền Root
 
 ### Changed
 #### Browser specific
@@ -11,9 +13,12 @@
 - Tên các chức năng ở phần "Riêng tư" dễ hiểu hơn
 #### PC specific
 - Tên các chức năng dễ hiểu hơn
+- macOS : Mở trang hướng dẫn [ZaDark for macOS](https://zadark.ncdaistudio.com/pc/macos) sau khi giải nén tập tin pkg
 
 ### Fixed
 - Sửa lỗi màu sắc cho giao diện "Đặt mã PIN" ẩn cuộc trò chuyện
+#### PC specific (macOS)
+- Sửa lỗi các chức năng không hoạt động khi không chạy ZaDark for macOS với quyền Root
 
 ## PC v5.0 && Browser v6.1
 ### Fixed

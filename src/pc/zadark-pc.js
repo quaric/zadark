@@ -94,7 +94,7 @@ const copyAssetDir = (zaloDir, { dest, src }) => {
   const destPath = path.join(zaloDir, `app/${dest}`)
 
   if (!fs.existsSync(srcPath)) {
-    throw new Error(srcPath + ' doesn\'t exist.')
+    throw new Error(srcPath + ' khong ton tai.')
   }
 
   copyRecursiveSync(srcPath, destPath)

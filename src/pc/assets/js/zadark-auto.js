@@ -6,7 +6,7 @@
 */
 
 function setThemeMode (isDark) {
-  document.documentElement.setAttribute('data-theme-mode', isDark ? 'dark' : 'light')
+  document.documentElement.setAttribute('data-zadark-theme', isDark ? 'dark' : 'light')
 }
 
 const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
