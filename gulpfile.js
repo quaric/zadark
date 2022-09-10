@@ -52,7 +52,7 @@ const buildCoreStyles = () => {
     .pipe(dest('./build/opera/css'))
     .pipe(dest('./build/edge/css'))
     .pipe(dest(path.join(safariResources, '/css')))
-    .pipe(dest('./build/pc/assets/css'))
+    // .pipe(dest('./build/pc/assets/css'))
 }
 
 const buildBrowserExtStyles = () => {
