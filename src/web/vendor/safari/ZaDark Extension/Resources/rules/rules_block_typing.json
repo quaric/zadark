@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {"urlFilter": "||chat.zalo.me/api/message/typing", "resourceTypes": ["xmlhttprequest"] }
+  },
+  {
+    "id": 2,
+    "priority": 2,
+    "action": { "type": "block" },
+    "condition": {"urlFilter": "||chat.zalo.me/api/group/typing", "resourceTypes": ["xmlhttprequest"] }
+  }
+]

@@ -68,7 +68,7 @@ This document describes the process for running this application on your local c
   - Step 2: Choose `Product > Run`
   - Step 3: Open `Safari > Preferences > Extensions` > Turn on `ZaDark – Best Dark Theme for Zalo`
 - macOS & Windows
-  - `yarn run pc:dev`
+  - `sudo yarn run pc:dev`
 
 ## Creating Built Distributions
 

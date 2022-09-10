@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi" data-zadark-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ZaDark – Zalo Dark Mode</title>
+
+  <link rel="stylesheet" href="css/zadark-fonts.css">
+  <link rel="stylesheet" href="css/core.css">
+  <link rel="stylesheet" href="css/popup.css">
+</head>
+
+<body>
+  <div class="ext-container">
+    <header class="main-header">
+      <div class="ext-logo">
+        <a href="https://zadark.ncdaistudio.com" title="ZaDark – Zalo Dark Mode" target="_blank">
+          <img src="images/zadark-logo-text.svg" alt="ZaDark" />
+        </a>
+      </div>
+
+      <div class="ext-links">
+        <span class="ext-links-item divider">
+          <a href="https://zadark.ncdaistudio.com" title="Website chính thức" target="_blank">Website</a>
+        </span>
+
+        <span class="ext-links-item divider">
+          <a href="https://short.ncdaistudio.com/zadark-github" title="Mã nguồn ZaDark" target="_blank">GitHub</a>
+        </span>
+
+        <span class="ext-links-item">
+          <a href="#changelog" id="js-ext-version" title="Có gì mới trong phiên bản này?"></a>
+        </span>
+      </div>
+    </header>
+
+    <main class="p-4">
+      <label class="mb-2 block font-semibold">Giao diện</label>
+
+      <div class="panel">
+        <div class="panel-body">
+          <div id="js-select-theme" class="form-radio-group">
+            <label class="form-radio-container">
+              <input type="radio" name="theme" value="light">
+              <span class="checkmark"></span>
+
+              <span class="label-container">
+                <span class="label">Sáng</span>
+              </span>
+            </label>
+
+            <label class="form-radio-container">
+              <input type="radio" name="theme" value="dark">
+              <span class="checkmark"></span>
+
+              <span class="label-container">
+                <span class="label">Tối</span>
+              </span>
+            </label>
+
+            <label class="form-radio-container">
+              <input type="radio" name="theme" value="auto">
+              <span class="checkmark"></span>
+
+              <span class="label-container">
+                <span class="label">Tự động</span>
+                <span class="description">Giao diện Zalo Web sẽ thay đổi theo Hệ điều hành</span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4" id="js-panel-privacy">
+        <label class="mb-2 block font-semibold">Riêng tư</label>
+
+        <div class="panel">
+          <div class="panel-body">
+            <div class="form-switch-group">
+              <div class="flex items-center form-switch-container">
+                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn" trên Zalo Web</label>
+
+                <label class="form-switch">
+                  <input type="checkbox" id="js-switch-block-typing">
+                  <span class="form-switch-slider"></span>
+                </label>
+              </div>
+
+              <div class="flex items-center form-switch-container">
+                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-delivered">Ẩn trạng thái "Đã nhận" tin nhắn trên Zalo Web</label>
+
+                <label class="form-switch">
+                  <input type="checkbox" id="js-switch-block-delivered">
+                  <span class="form-switch-slider"></span>
+                </label>
+              </div>
+
+              <div class="flex items-center form-switch-container">
+                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-seen">Ẩn trạng thái "Đã xem" tin nhắn trên Zalo Web</label>
+
+                <label class="form-switch">
+                  <input type="checkbox" id="js-switch-block-seen">
+                  <span class="form-switch-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+  <script src="libs/bowser/bowser-es5-2.10.0.js"></script>
+  <script src="js/browser.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/popup.js"></script>
+</body>
+
+</html>

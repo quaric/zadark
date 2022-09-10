@@ -1,0 +1,22 @@
+/*
+  ZaDark – Zalo Dark Mode
+  Made by NCDAi Studio
+*/
+
+:root {
+  color-scheme: light dark;
+}
+
+html[data-zadark-theme="dark"] {
+  body {
+    border: 1px solid var(--border-base);
+  }
+}
+
+.ext-container {
+  min-width: 512px;
+}
+
+#js-panel-privacy {
+  display: none;
+}

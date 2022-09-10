@@ -7,11 +7,19 @@ const pkg = require('pkg')
 const path = require('path')
 const del = require('del')
 
-const chromeManifest = require('./src/browser-ext/vendor/chrome/manifest.json')
-const firefoxManifest = require('./src/browser-ext/vendor/firefox/manifest.json')
-const operaManifest = require('./src/browser-ext/vendor/opera/manifest.json')
-const edgeManifest = require('./src/browser-ext/vendor/edge/manifest.json')
+const chromeManifest = require('./src/web/vendor/chrome/manifest.json')
+const firefoxManifest = require('./src/web/vendor/firefox/manifest.json')
+const operaManifest = require('./src/web/vendor/opera/manifest.json')
+const edgeManifest = require('./src/web/vendor/edge/manifest.json')
 const pcPackageJSON = require('./src/pc/package.json')
+
+const CORE_PATH = './src/core'
+const WEB_PATH = './src/web'
+const PC_PATH = './src/pc'
+
+const getCorePath = (p) => path.join(CORE_PATH, p)
+const getWebPath = (p) => path.join(WEB_PATH, p)
+const getPCPath = (p) => path.join(PC_PATH, p)
 
 const dot2Underscore = (v = '') => v.replace(/\./g, '_')
 
@@ -24,7 +32,7 @@ const DIST_FILE_NAME = {
   WINDOWS: `ZaDark-Windows-${dot2Underscore(pcPackageJSON.version)}`
 }
 
-const safariResources = './src/browser-ext/vendor/safari/ZaDark Extension/Resources'
+const safariResources = getWebPath('./vendor/safari/ZaDark Extension/Resources')
 
 const buildSass = (_src, _dest) => {
   return src(_src)
@@ -44,28 +52,28 @@ const cleanDist = () => {
 
 // Build
 
-const buildCoreStyles = () => {
-  return src('./src/core/scss/**/*.scss')
+// const buildCoreStyles = () => {
+//   return src(getCorePath('./scss/**/*.scss'))
+//     .pipe(yupSass({ outputStyle: 'compressed' }).on('error', yupSass.logError))
+//     .pipe(dest('./build/chrome/css'))
+//     .pipe(dest('./build/firefox/css'))
+//     .pipe(dest('./build/opera/css'))
+//     .pipe(dest('./build/edge/css'))
+//     .pipe(dest(path.join(safariResources, '/css')))
+//     .pipe(dest('./build/pc/assets/css'))
+// }
+
+const buildWebStyles = () => {
+  return src(getWebPath('./scss/**/*.scss'))
     .pipe(yupSass({ outputStyle: 'compressed' }).on('error', yupSass.logError))
     .pipe(dest('./build/chrome/css'))
     .pipe(dest('./build/firefox/css'))
     .pipe(dest('./build/opera/css'))
     .pipe(dest('./build/edge/css'))
     .pipe(dest(path.join(safariResources, '/css')))
-    .pipe(dest('./build/pc/assets/css'))
 }
 
-const buildBrowserExtStyles = () => {
-  return src('./src/browser-ext/scss/**/*.scss')
-    .pipe(yupSass({ outputStyle: 'compressed' }).on('error', yupSass.logError))
-    .pipe(dest('./build/chrome/css'))
-    .pipe(dest('./build/firefox/css'))
-    .pipe(dest('./build/opera/css'))
-    .pipe(dest('./build/edge/css'))
-    .pipe(dest(path.join(safariResources, '/css')))
-}
-
-const buildBrowserExt = (browser) => {
+const buildWeb = (browser) => {
   const rootDir = `./build/${browser}`
   const jsDir = `./build/${browser}/js`
   const cssDir = `./build/${browser}/css`
@@ -76,39 +84,39 @@ const buildBrowserExt = (browser) => {
   const rulesDir = `./build/${browser}/rules`
 
   const copyRulesJSON = browser !== 'firefox'
-    ? [src('./src/browser-ext/rules/**/*').pipe(dest(rulesDir))]
+    ? [src(getWebPath('./rules/**/*')).pipe(dest(rulesDir))]
     : []
 
   return mergeStream(
-    src(`./src/browser-ext/vendor/${browser}/manifest.json`).pipe(dest(rootDir)),
-    src(`./src/browser-ext/vendor/${browser}/browser.js`).pipe(dest(jsDir)),
-    src(`./src/browser-ext/vendor/${browser}/background.js`).pipe(dest(jsDir)),
-    buildSass(`./src/browser-ext/vendor/${browser}/*.scss`, cssDir),
+    src(getWebPath(`./vendor/${browser}/manifest.json`)).pipe(dest(rootDir)),
+    src(getWebPath(`./vendor/${browser}/browser.js`)).pipe(dest(jsDir)),
+    src(getWebPath(`./vendor/${browser}/background.js`)).pipe(dest(jsDir)),
+    buildSass(getWebPath(`./vendor/${browser}/*.scss`), cssDir),
 
-    src('./src/browser-ext/_locales/**/*').pipe(dest(localesDir)),
-    src('./src/browser-ext/libs/**/*').pipe(dest(libsDir)),
-    src('./src/browser-ext/js/**/*').pipe(dest(jsDir)),
-    src('./src/browser-ext/images/**/*').pipe(dest(imagesDir)),
-    src('./src/core/fonts/**/*').pipe(dest(fontsDir)),
-    src('./src/browser-ext/*.html').pipe(dest(rootDir)),
+    src(getWebPath('./_locales/**/*')).pipe(dest(localesDir)),
+    src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
+    src(getWebPath('./js/**/*')).pipe(dest(jsDir)),
+    src(getWebPath('./images/**/*')).pipe(dest(imagesDir)),
+    src(getCorePath('./fonts/**/*')).pipe(dest(fontsDir)),
+    src(getWebPath('./*.html')).pipe(dest(rootDir)),
     ...copyRulesJSON
   )
 }
 
 const buildChrome = () => {
-  return buildBrowserExt('chrome')
+  return buildWeb('chrome')
 }
 
 const buildFirefox = () => {
-  return buildBrowserExt('firefox')
+  return buildWeb('firefox')
 }
 
 const buildOpera = () => {
-  return buildBrowserExt('opera')
+  return buildWeb('opera')
 }
 
 const buildEdge = () => {
-  return buildBrowserExt('edge')
+  return buildWeb('edge')
 }
 
 const cleanSafariResources = () => {
@@ -129,28 +137,28 @@ const buildSafari = () => {
   const rulesDir = path.join(safariResources, '/rules')
 
   return mergeStream(
-    src('./src/browser-ext/vendor/safari/manifest.json').pipe(dest(safariResources)),
-    src('./src/browser-ext/vendor/safari/browser.js').pipe(dest(jsDir)),
-    src('./src/browser-ext/vendor/safari/background.js').pipe(dest(jsDir)),
-    buildSass('./src/browser-ext/vendor/safari/*.scss', cssDir),
+    src(getWebPath('./vendor/safari/manifest.json')).pipe(dest(safariResources)),
+    src(getWebPath('./vendor/safari/browser.js')).pipe(dest(jsDir)),
+    src(getWebPath('./vendor/safari/background.js')).pipe(dest(jsDir)),
+    buildSass(getWebPath('./vendor/safari/*.scss'), cssDir),
 
-    src('./src/browser-ext/_locales/**/*').pipe(dest(localesDir)),
-    src('./src/browser-ext/libs/**/*').pipe(dest(libsDir)),
-    src('./src/browser-ext/js/**/*').pipe(dest(jsDir)),
-    src('./src/core/fonts/**/*').pipe(dest(fontsDir)),
-    src('./src/browser-ext/rules/**/*').pipe(dest(rulesDir)),
-    src('./src/browser-ext/*.html').pipe(dest(safariResources))
+    src(getWebPath('./_locales/**/*')).pipe(dest(localesDir)),
+    src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
+    src(getWebPath('./js/**/*')).pipe(dest(jsDir)),
+    src(getCorePath('./fonts/**/*')).pipe(dest(fontsDir)),
+    src(getWebPath('./rules/**/*')).pipe(dest(rulesDir)),
+    src(getWebPath('./*.html')).pipe(dest(safariResources))
   )
 }
 
 const buildPC = () => {
   return mergeStream(
     src([
-      './src/pc/**/*',
-      '!./src/pc/assets/scss/**'
+      getPCPath('./**/*'),
+      `!${getPCPath('./assets/scss/**')}`
     ]).pipe(dest('./build/pc')),
-    src('./src/core/fonts/**/*').pipe(dest('./build/pc/assets/fonts')),
-    buildSass('./src/pc/assets/scss/*.scss', './build/pc/assets/css')
+    src(getCorePath('./fonts/**/*')).pipe(dest('./build/pc/assets/fonts')),
+    buildSass(getPCPath('./assets/scss/*.scss'), './build/pc/assets/css')
   )
 }
 
@@ -188,12 +196,6 @@ const pkgWindows = () => {
 
 // Zip
 
-// const zipMacOS = () => {
-//   return src(`./dist/macOS/${DIST_FILE_NAME.MACOS}`)
-//     .pipe(gulpZip(`${DIST_FILE_NAME.MACOS}.zip`))
-//     .pipe(dest('./dist/macOS'))
-// }
-
 const zipWindows = () => {
   return src(`./dist/Windows/${DIST_FILE_NAME.WINDOWS}.exe`)
     .pipe(gulpZip(`${DIST_FILE_NAME.WINDOWS}.zip`))
@@ -230,7 +232,6 @@ const pcDist = series(
   pkgMacOS,
   pkgWindows,
   zipWindows
-  // parallel(zipMacOS, zipWindows)
 )
 
 // Exports
@@ -238,8 +239,8 @@ const pcDist = series(
 const buildAll = series(
   parallel(cleanBuild, cleanSafariResources),
   parallel(
-    buildCoreStyles,
-    buildBrowserExtStyles,
+    // buildCoreStyles,
+    buildWebStyles,
     buildChrome,
     buildFirefox,
     buildOpera,
@@ -263,12 +264,12 @@ const distAll = series(
 
 const watchAll = () => {
   watch([
-    'src/core/**/*',
-    'src/pc/**/*',
-    'src/browser-ext/**/*',
-    '!src/browser-ext/vendor/safari/ZaDark/**/*',
-    '!src/browser-ext/vendor/safari/ZaDark Extension/**/*',
-    '!src/browser-ext/vendor/safari/ZaDark.xcodeproj/**/*'
+    getCorePath('./**/*'),
+    getWebPath('./**/*'),
+    getPCPath('./**/*'),
+    `!${getWebPath('./vendor/safari/ZaDark/**/*')}`,
+    `!${getWebPath('./vendor/safari/ZaDark Extension/**/*')}`,
+    `!${getWebPath('./vendor/safari/ZaDark.xcodeproj/**/')}`
   ], buildAll)
 }
 
