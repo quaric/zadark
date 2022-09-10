@@ -1,5 +1,9 @@
 # Changelog
 
+## PC v4.14 && PC v5.2 && Web v6.3
+### Changed
+- `.leftbar-mark-unread` : Thay đổi kích thước và vị trí đẹp hơn
+
 ## PC v4.12
 ### Changed
 - macOS : Mở trang hướng dẫn [ZaDark for macOS](https://zadark.ncdaistudio.com/pc/macos) sau khi giải nén tập tin pkg
