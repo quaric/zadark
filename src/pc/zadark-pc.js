@@ -32,7 +32,7 @@ const getZaloResDirList = (customZaloPath) => {
   return resources.sort()
 }
 
-const writeIndexFile = (zaloDir, { isSyncWithSystem }) => {
+const writeIndexFile = (zaloDir, { darkTheme, isSyncWithSystem }) => {
   const src = 'pc-dist/index.html'
   const srcPath = path.join(zaloDir, `app/${src}`)
 
@@ -77,7 +77,8 @@ const writeIndexFile = (zaloDir, { isSyncWithSystem }) => {
   }
 
   // Required themeAttributes
-  htmlElement.setAttribute('data-zadark-theme', 'dark')
+  htmlElement.setAttribute('data-theme-mode', 'dark')
+  htmlElement.setAttribute('data-dark-theme', darkTheme)
 
   // Required classNames
   const zaDarkClassNames = ['zadark', 'zadark-pc', `zadark-${PLATFORM}`]
@@ -94,7 +95,7 @@ const copyAssetDir = (zaloDir, { dest, src }) => {
   const destPath = path.join(zaloDir, `app/${dest}`)
 
   if (!fs.existsSync(srcPath)) {
-    throw new Error(srcPath + ' khong ton tai.')
+    throw new Error(srcPath + ' doesn\'t exist.')
   }
 
   copyRecursiveSync(srcPath, destPath)
@@ -102,7 +103,7 @@ const copyAssetDir = (zaloDir, { dest, src }) => {
   logDebug('- copyAssetDir', src, '➜', destPath)
 }
 
-const installDarkTheme = async (zaloDir, isSyncWithSystem = false) => {
+const installDarkTheme = async (zaloDir, darkTheme = 'dark', isSyncWithSystem = false) => {
   if (!fs.existsSync(zaloDir)) {
     throw new Error(zaloDir + ' khong ton tai.')
   }
@@ -152,16 +153,21 @@ const installDarkTheme = async (zaloDir, isSyncWithSystem = false) => {
   }
 
   // Add "themeAttributes, classNames, font, stylesheet" to "resources/app/pc-dist/index.html"
-  writeIndexFile(zaloDir, { isSyncWithSystem })
+  writeIndexFile(zaloDir, { darkTheme, isSyncWithSystem })
 
   // Create package "resources/app.asar" from "resources/app" -> Delete "resources/app"
   await asar.createPackage(appDirPath, appAsarPath)
   await del(appDirPath, { force: true })
 
+  const darkThemeLabel = {
+    dark: 'Dark default',
+    dark_dimmed: 'Dark dimmed'
+  }
+
+  log(chalk.green(`- Da cai dat "${darkThemeLabel[darkTheme]}".`))
+
   if (isSyncWithSystem) {
-    log(chalk.green('- Da kich hoat giao dien Tu dong thay doi theo He dieu hanh.'))
-  } else {
-    log(chalk.green('- Da kich hoat giao dien Toi.'))
+    log(chalk.green('- Da kich hoat "Tu dong thay doi giao dien Zalo theo He dieu hanh".'))
   }
 }
 
@@ -182,7 +188,7 @@ const uninstallDarkTheme = async (zaloDir) => {
     logDebug('- renameFile', appAsarBakPath)
   }
 
-  log(chalk.green('- Da khoi phuc Zalo PC goc.'))
+  log(chalk.green('- Da go cai dat.'))
 }
 
 module.exports = {

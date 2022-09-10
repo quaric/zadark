@@ -8,23 +8,23 @@ const chalk = require('chalk')
 
 const zaDarkPC = require('./zadark-pc')
 const { log, logError, open, isRoot } = require('./utils')
-const { PLATFORM, ZADARK_VERSION } = require('./constants')
+const { PLATFORM, ZADARK_VERSION, DARK_TYPE_LABEL } = require('./constants')
 
 const renderHeader = () => {
   log('')
   log(chalk.blueBright.bold('ZaDark – Zalo Dark Mode'))
-  log(chalk.blueBright('Website   :', chalk.underline('https://zadark.ncdaistudio.com')))
-  log(chalk.blueBright('Phien ban :', `${PLATFORM === 'darwin' ? 'macOS' : 'Windows'}-${ZADARK_VERSION}`))
+  log(chalk.blueBright('Version :', `${PLATFORM === 'darwin' ? 'macOS' : 'Windows'}-${ZADARK_VERSION}`))
+  log(chalk.blueBright('Website :', chalk.underline('https://zadark.ncdaistudio.com')))
   log('')
 }
 
-const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
-  log(chalk.magentaBright.bold('[KICH HOAT GIAO DIEN TOI]'))
+const handleInstall = async (zaloResDirList, darkTheme, isSyncWithSystem = false) => {
+  log(chalk.magentaBright.bold(`[CAI DAT DARK THEME (${DARK_TYPE_LABEL[darkTheme]})]`))
 
   for (const zaloResDir of zaloResDirList) {
     log('')
     log(chalk('>> Dang cai dat', chalk.bold(zaloResDir)))
-    await zaDarkPC.installDarkTheme(zaloResDir, isSyncWithSystem)
+    await zaDarkPC.installDarkTheme(zaloResDir, darkTheme, isSyncWithSystem)
   }
 
   log('')
@@ -79,16 +79,17 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
 
     log(chalk.magentaBright.bold('[CHUC NANG]'))
     log('')
-    log('1. Kich hoat giao dien Toi')
-    log('2. Kich hoat giao dien Tu dong thay doi theo He dieu hanh')
-    log('3. Khoi phuc Zalo PC goc')
+    log('1. Cai dat Dark default')
+    log('2. Cai dat Dark dimmed')
+    log('3. Cai dat Dark auto')
+    log('4. Khoi phuc Zalo goc')
     log('')
 
-    log('4. Lien he')
-    log('5. Thoat')
+    log('5. Lien he')
+    log('6. Thoat')
     log('')
 
-    const featureIndex = prompt(chalk.yellowBright('> Nhap STT chuc nang', chalk.bold('[1-5]'), 'va nhan', chalk.bold('[enter]'), ': '))
+    const featureIndex = prompt(chalk.yellowBright('> Nhap STT chuc nang', chalk.bold('[1-6]'), 'va nhan', chalk.bold('[enter]'), ': '))
 
     console.clear()
     renderHeader()
@@ -96,13 +97,35 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
     switch (featureIndex) {
       case '1':
       case '2': {
-        const isSyncWithSystem = featureIndex === '2'
-        await handleInstall(zaloResDirList, isSyncWithSystem)
+        const darkTheme = featureIndex === '1' ? 'dark' : 'dark_dimmed'
+        await handleInstall(zaloResDirList, darkTheme)
         break
       }
 
       case '3': {
-        log(chalk.magentaBright.bold('[KHOI PHUC ZALO PC GOC]'))
+        log(chalk.magentaBright.bold('[CAI DAT DARK AUTO]'))
+        log(chalk.magentaBright('Tu dong thay doi giao dien Zalo theo He dieu hanh.'))
+
+        log('')
+        log('Khi giao dien He dieu hanh la Dark, ban muon Zalo su dung giao dien nao?')
+        log('1. Dark default')
+        log('2. Dark dimmed')
+        log('')
+
+        const darkTypeIndex = prompt(chalk.yellowBright('> Nhap STT giao dien', chalk.bold('[1-2]'), 'va nhan', chalk.bold('[enter]'), ': '))
+        log('')
+
+        await handleInstall(
+          zaloResDirList,
+          darkTypeIndex === '1' ? 'dark' : 'dark_dimmed',
+          true
+        )
+
+        break
+      }
+
+      case '4': {
+        log(chalk.magentaBright.bold('[KHOI PHUC ZALO GOC]'))
 
         for (const zaloResDir of zaloResDirList) {
           log('')
@@ -116,7 +139,7 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
         break
       }
 
-      case '4': {
+      case '5': {
         log(chalk.magentaBright.bold('[LIEN HE]'))
 
         const contactUrl = 'https://zadark.ncdaistudio.com/contact'
