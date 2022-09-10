@@ -28,7 +28,7 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
   }
 
   log('')
-  log(chalk.green('>> Cai dat thanh cong. Vui long khoi dong lai Zalo.'))
+  log(chalk.green('>> Cai dat thanh cong. Vui long khoi dong lai Zalo PC.'))
 }
 
 (async () => {
@@ -46,18 +46,18 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
     let zaloResDirList = zaDarkPC.getZaloResDirList(defaultZaloPath)
     if (!zaloResDirList.length) {
       log('')
-      log(chalk.redBright(`Khong tim thay Zalo tai duong dan mac dinh (${defaultZaloPath}).`))
+      log(chalk.redBright(`Khong tim thay Zalo PC tai duong dan mac dinh (${defaultZaloPath}).`))
       log('')
 
       log(chalk.magentaBright.bold('[TUY CHINH DUONG DAN ZALO]'))
       log('')
 
       const examplePath = PLATFORM === 'darwin' ? '/ThuMucDaCaiZalo/Zalo.app' : 'D:\\ThuMucDaCaiZalo\\Zalo'
-      const customZaloPath = prompt(chalk.yellowBright(`> Nhap duong dan Zalo cua ban (VD: ${examplePath}) : `))
+      const customZaloPath = prompt(chalk.yellowBright(`> Nhap duong dan Zalo PC cua ban (VD: ${examplePath}) : `))
 
       zaloResDirList = zaDarkPC.getZaloResDirList(customZaloPath)
       if (!zaloResDirList.length) {
-        throw new Error('Khong tim thay Zalo. Vui long tai va cai dat Zalo tai "https://zalo.me/pc".')
+        throw new Error('Khong tim thay Zalo PC. Vui long tai va cai dat Zalo PC tai "https://zalo.me/pc".')
       }
     }
 
@@ -68,8 +68,8 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
     log('')
     log(chalk.redBright('1. DE DAM BAO AN TOAN, truoc khi cai dat hay chac chan ban da tai ZaDark tu'))
     log('  ', chalk.underline.redBright('https://sourceforge.net/projects/zadark/files/ZaDarkPC/'))
-    log('2. Vui long thoat Zalo truoc khi cai dat, go cai dat ZaDark.')
-    log('3. Vui long cai dat lai ZaDark sau khi cap nhat Zalo.')
+    log('2. Vui long thoat Zalo PC truoc khi cai dat, go cai dat ZaDark.')
+    log('3. Vui long cai dat lai ZaDark sau khi cap nhat Zalo PC.')
     log('')
 
     prompt(chalk.yellowBright('> Nhan', chalk.bold('[enter]'), 'de bat dau ...'))
@@ -111,7 +111,7 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
         }
 
         log('')
-        log(chalk.green('>> Khoi phuc Zalo goc thanh cong. Vui long khoi dong lai Zalo.'))
+        log(chalk.green('>> Khoi phuc Zalo PC goc thanh cong. Vui long khoi dong lai Zalo PC.'))
 
         break
       }

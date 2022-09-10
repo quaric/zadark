@@ -6,7 +6,7 @@
 
 browser.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
-    browser.tabs.create({ url: 'https://zadark.ncdaistudio.com/browser-ext/firefox' })
+    browser.tabs.create({ url: 'https://zadark.ncdaistudio.com/web/firefox' })
   }
 
   if (details.reason === 'update') {

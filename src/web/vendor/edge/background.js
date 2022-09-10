@@ -6,7 +6,7 @@
 
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
-    chrome.tabs.create({ url: 'https://zadark.ncdaistudio.com/browser-ext/edge' })
+    chrome.tabs.create({ url: 'https://zadark.ncdaistudio.com/web/edge' })
   }
 
   if (details.reason === 'update') {

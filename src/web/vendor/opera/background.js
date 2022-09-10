@@ -6,7 +6,7 @@
 
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
-    chrome.tabs.create({ url: 'https://zadark.ncdaistudio.com/browser-ext/opera' })
+    chrome.tabs.create({ url: 'https://zadark.ncdaistudio.com/web/opera' })
   }
 
   if (details.reason === 'update') {
