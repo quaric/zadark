@@ -1,0 +1,9 @@
+{
+  "name": "zadark-pc",
+  "description": "Dark Mode tốt nhất cho Zalo",
+  "version": "4.12",
+  "main": "index.js",
+  "repository": "git@github.com:ncdai3651408/za-dark.git",
+  "author": "Dai Nguyen <ncdai3651408@gmail.com>",
+  "license": "MIT"
+}
