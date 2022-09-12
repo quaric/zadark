@@ -1,5 +1,13 @@
 # Changelog
 
+## PC v5.3 && Web v6.4
+### Added
+- ZaDark PC v5.x
+### Fixed
+- `.zl-avatar__badge` : Sửa lỗi màu sắc của biểu tượng "Đang trực tuyến" ở Avatar
+### Removed
+- ZaDark PC <= v4.x
+
 ## PC v4.14 && PC v5.2 && Web v6.3
 ### Changed
 - `.leftbar-mark-unread` : Thay đổi kích thước và vị trí đẹp hơn

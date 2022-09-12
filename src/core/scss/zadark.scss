@@ -782,6 +782,10 @@ html[data-zadark-theme="dark"] {
       box-shadow: 0 0 0 1px var(--bg-default);
     }
 
+    .zl-avatar__badge {
+      --WA100: #232526;
+    }
+
     .chat-date .line {
       border-top: 1px solid var(--NG10);
     }

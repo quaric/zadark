@@ -52,16 +52,16 @@ const cleanDist = () => {
 
 // Build
 
-// const buildCoreStyles = () => {
-//   return src(getCorePath('./scss/**/*.scss'))
-//     .pipe(yupSass({ outputStyle: 'compressed' }).on('error', yupSass.logError))
-//     .pipe(dest('./build/chrome/css'))
-//     .pipe(dest('./build/firefox/css'))
-//     .pipe(dest('./build/opera/css'))
-//     .pipe(dest('./build/edge/css'))
-//     .pipe(dest(path.join(safariResources, '/css')))
-//     .pipe(dest('./build/pc/assets/css'))
-// }
+const buildCoreStyles = () => {
+  return src(getCorePath('./scss/**/*.scss'))
+    .pipe(yupSass({ outputStyle: 'compressed' }).on('error', yupSass.logError))
+    .pipe(dest('./build/chrome/css'))
+    .pipe(dest('./build/firefox/css'))
+    .pipe(dest('./build/opera/css'))
+    .pipe(dest('./build/edge/css'))
+    .pipe(dest(path.join(safariResources, '/css')))
+    .pipe(dest('./build/pc/assets/css'))
+}
 
 const buildWebStyles = () => {
   return src(getWebPath('./scss/**/*.scss'))
@@ -239,7 +239,7 @@ const pcDist = series(
 const buildAll = series(
   parallel(cleanBuild, cleanSafariResources),
   parallel(
-    // buildCoreStyles,
+    buildCoreStyles,
     buildWebStyles,
     buildChrome,
     buildFirefox,
