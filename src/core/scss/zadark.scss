@@ -270,6 +270,11 @@ html[data-zadark-theme="dark"] {
     background-color: var(--bg-default);
     -webkit-font-smoothing: auto;
 
+    .title-name.unfocus {
+      color: var(--primary-text);
+      opacity: 0.5;
+    }
+
     #main-tab {
       border-right: 1px solid var(--border);
     }
