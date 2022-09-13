@@ -44,7 +44,7 @@
       "bowser"
     ],
     "ignore": [
-      "./src/browser-ext/libs/**/*"
+      "./src/web/libs/**/*"
     ]
   },
   "engines": {
