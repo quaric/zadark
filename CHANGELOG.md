@@ -5,6 +5,7 @@
 - ZaDark PC v5.x
 ### Fixed
 - `.zl-avatar__badge` : Sửa lỗi màu sắc của biểu tượng "Đang trực tuyến" ở Avatar
+#### PC specific
 - `.title-name.unfocus` : Sửa lỗi tiêu đề TitleBar hiển thị màu đen khi Unfocus Zalo
 ### Removed
 - ZaDark PC <= v4.x
