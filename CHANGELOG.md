@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark v22.9.6
+> Web v6.5
+
+### Fixed
+#### Web specific
+- `.nav__tabs__zalo` (Safari)
+
 ## PC v5.4 && Web v6.4
 ### Changed
 - `scrollbar` : Cập nhật màu nền nhạt hơn cho thanh cuộn
