@@ -1,11 +1,22 @@
 # Changelog
 
-## PC v5.3 && Web v6.4
+## PC v5.4 && Web v6.4
+### Changed
+- `scrollbar` : Cập nhật màu nền nhạt hơn cho thanh cuộn
+- `self-bubble-chat` : Cập nhật màu nền tin nhắn của tôi (Màu sắc giống trên Zalo Mobile)
+- `.z-tooltip` : Cập nhật Dark Mode cho Tooltip
+- `.user-reacted-container` : Cập nhật Dark Mode cho "Danh sách bày tỏ cảm xúc"
+- `.toast-v2` : Cập nhật Dark Mode cho Toast v2
+- `::selection` : Cập nhật màu nền khi tô khối chữ
+### Fixed
+- `.zl-avatar__badge` : Sửa lỗi màu sắc của biểu tượng "Đang trực tuyến" ở Avatar
+- `tab-bar-item` : Sửa lỗi Tab Bar Item không nằm giữa ở mục "Thông tin hội thoại"
+
+## PC v5.3
 ### Added
 - ZaDark PC v5.x
 ### Fixed
 - `.zl-avatar__badge` : Sửa lỗi màu sắc của biểu tượng "Đang trực tuyến" ở Avatar
-#### PC specific
 - `.title-name.unfocus` : Sửa lỗi tiêu đề TitleBar hiển thị màu đen khi Unfocus Zalo
 ### Removed
 - ZaDark PC <= v4.x

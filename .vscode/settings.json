@@ -3,6 +3,9 @@
   "[html]": {
     "editor.formatOnSave": false
   },
+  "[scss]": {
+    "editor.formatOnSave": true
+  },
   "standard.enable": true,
   "standard.autoFixOnSave": true,
   "standard.validate": [
