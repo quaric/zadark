@@ -534,9 +534,10 @@ html[data-zadark-theme="dark"] {
     }
 
     .chat-message.highlighted .card:not(.card--group-photo) {
-      background-color: var(--B10);
+      background: var(--selected-bubble-chat);
+      border-color: var(--selected-bubble-chat-border);
       &:hover {
-        background-color: var(--B20);
+        background: var(--selected-bubble-chat);
       }
     }
 

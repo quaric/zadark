@@ -1,9 +1,10 @@
 # Changelog
 
 ## ZaDark v22.9.6
-> Web v6.5
+> PC 5.5 && Web v6.5
 
 ### Fixed
+- `.chat-message.highlighted` : Sửa lỗi màu sắc tin nhắn highlighted
 #### Web specific
 - `.nav__tabs__zalo` (Safari)
 
