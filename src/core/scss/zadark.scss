@@ -1398,6 +1398,12 @@ html[data-zadark-theme="dark"] {
     .zmenu-body.content-only {
       box-shadow: 4px 4px 12px var(--BA50);
     }
+
+    .group-board-item.v2 .item-calendar-preview > .date,
+    .v2.view-notice-pinmsg-content .item-calendar-preview > .date,
+    .v2.view-notice-topic-content .item-calendar-preview > .date {
+      color: var(--primary-text);
+    }
   }
 }
 
