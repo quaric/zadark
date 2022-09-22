@@ -35,7 +35,7 @@
   --B20: #0e2d5b;
   --B30: #0b3a7e;
   --B40: #074bad;
-  --B50: #035bdc;
+  --B50: #0068ff;
   --B60: #3989ff;
   --B70: #3989ff;
   --B80: #72abff;
@@ -67,88 +67,100 @@
   --SKB100: #3ac8f0;
 
   // Red
-  --R10: #431418;
-  --R20: #431418;
-  --R30: #58181c;
-  --R40: #791a1f;
-  --R50: #a61d24;
-  --R60: #d32029;
-  --R70: #d32029;
-  --R80: #d32029;
-  --R90: #d32029;
-  --R100: #d32029;
+  --R10: #5c0011;
+  --R20: #820014;
+  --R30: #a8071a;
+  --R40: #cf1322;
+  --R50: #f5222d;
+  --R60: #f5222d;
+  --R70: #f5222d;
+  --R80: #f5222d;
+  --R90: #f5222d;
+  --R100: #f5222d;
 
   // Orange
-  --O10: #432716;
-  --O20: #58351c;
-  --O30: #58351c;
-  --O40: #794620;
-  --O50: #a65c26;
-  --O60: #d3722b;
-  --O70: #d3722b;
-  --O80: #d3722b;
-  --O90: #d3722b;
-  --O100: #d3722b;
+  --O10: #612500;
+  --O20: #873800;
+  --O30: #ad4e00;
+  --O40: #d46b08;
+  --O50: #fa8c16;
+  --O60: #fa8c16;
+  --O70: #fa8c16;
+  --O80: #fa8c16;
+  --O90: #fa8c16;
+  --O100: #fa8c16;
 
   // Yellow
-  --Y10: #443b11;
-  --Y20: #595014;
-  --Y30: #7c6e14;
-  --Y40: #aa9514;
-  --Y50: #d8bd14;
-  --Y60: #e8d639;
-  --Y70: #e8d639;
-  --Y80: #e8d639;
-  --Y90: #e8d639;
-  --Y100: #e8d639;
+  --Y10: #614700;
+  --Y20: #876800;
+  --Y30: #ad8b00;
+  --Y40: #d4b106;
+  --Y50: #fadb14;
+  --Y60: #fadb14;
+  --Y70: #fadb14;
+  --Y80: #fadb14;
+  --Y90: #fadb14;
+  --Y100: #fadb14;
 
   // Green
-  --GR10: #1d3712;
-  --GR20: #274916;
-  --GR30: #306317;
-  --GR40: #3c8618;
-  --GR50: #49aa19;
-  --GR60: #49aa19;
-  --GR70: #49aa19;
-  --GR80: #49aa19;
-  --GR90: #49aa19;
-  --GR100: #49aa19;
+  --GR10: #063312;
+  --GR20: #0c591e;
+  --GR30: #17802c;
+  --GR40: #26a63b;
+  --GR50: #3acc4d;
+  --GR60: #3acc4d;
+  --GR70: #3acc4d;
+  --GR80: #3acc4d;
+  --GR90: #3acc4d;
+  --GR100: #3acc4d;
 
   // Teal
-  --TL10: #113536;
-  --TL20: #144848;
-  --TL30: #146262;
-  --TL40: #138585;
-  --TL50: #13a8a8;
-  --TL60: #13a8a8;
-  --TL70: #13a8a8;
-  --TL80: #13a8a8;
-  --TL90: #13a8a8;
-  --TL100: #13a8a8;
+  --TL10: #002329;
+  --TL20: #00474f;
+  --TL30: #006d75;
+  --TL40: #08979c;
+  --TL50: #13c2c2;
+  --TL60: #13c2c2;
+  --TL70: #13c2c2;
+  --TL80: #13c2c2;
+  --TL90: #13c2c2;
+  --TL100: #13c2c2;
 
   // Purple
-  --PU10: #24163a;
-  --PU20: #301c4d;
-  --PU30: #3e2069;
-  --PU40: #51258f;
-  --PU50: #642ab5;
-  --PU60: #642ab5;
-  --PU70: #642ab5;
-  --PU80: #642ab5;
-  --PU90: #642ab5;
-  --PU100: #642ab5;
+  --PU10: #120338;
+  --PU20: #22075e;
+  --PU30: #391085;
+  --PU40: #531dab;
+  --PU50: #722ed1;
+  --PU60: #722ed1;
+  --PU70: #722ed1;
+  --PU80: #722ed1;
+  --PU90: #722ed1;
+  --PU100: #722ed1;
 
   // Pink
-  --PI10: #40162f;
-  --PI20: #551c3b;
-  --PI30: #75204f;
-  --PI40: #a02669;
-  --PI50: #cb2b83;
-  --PI60: #cb2b83;
-  --PI70: #cb2b83;
-  --PI80: #cb2b83;
-  --PI90: #cb2b83;
-  --PI100: #cb2b83;
+  --PI10: #520339;
+  --PI20: #780650;
+  --PI30: #9e1068;
+  --PI40: #c41d7f;
+  --PI50: #eb2f96;
+  --PI60: #eb2f96;
+  --PI70: #eb2f96;
+  --PI80: #eb2f96;
+  --PI90: #eb2f96;
+  --PI100: #eb2f96;
+
+  // Self Bubble Chat
+  --SBC-10: #080c16;
+  --SBC-20: #1f252f;
+  --SBC-30: #353e4b;
+  --SBC-40: #4b5767;
+  --SBC-50: #617084;
+  --SBC-60: #7b8a9e;
+  --SBC-70: #98a4b4;
+  --SBC-80: #b4beca;
+  --SBC-90: #d0d8e2;
+  --SBC-100: #eaf3fc;
 
   // BlackAlpha
   --BA0: transparent;
@@ -206,22 +218,22 @@
   --input-placeholder-gr: var(--N100);
   --input-icon-gr: var(--N100);
 
-  --self-bubble-chat: #353e4b;
+  --self-bubble-chat: #353e4b; // --SBC-30
   --self-bubble-chat-shadow: transparent;
   --self-link: var(--B60);
 
   --text-quote: var(--primary-text-50);
 
-  --self-quote: #404a59;
-  --self-quote-border: #4b5767;
+  --self-quote: #404a59; // --SBC-40, Alpha 0.5
+  --self-quote-border: #4b5767; // --SBC-40
   --self-quote-line: #4491f6;
 
   --other-bubble-chat: var(--WA100);
   --other-quote: var(--NG10);
   --other-quote-border: var(--NG20);
 
-  --selected-bubble-chat: #1f252f;
-  --selected-bubble-chat-border: #4b5767;
+  --selected-bubble-chat: #1f252f; // --SBC-20
+  --selected-bubble-chat-border: #4b5767; // --SBC-40
 
   --bg-default-csc: var(--NG10);
   --bg-divide-bb-blue: var(--N60);
@@ -245,11 +257,11 @@
 
   --brand-primary: #0068ff;
 
-  --self-bubble-chat-border: #4b5767;
-  --self-bubble-chat-action-bg: #404a58;
-  --self-bubble-chat-action-border: #4b5767;
-  --self-bubble-chat-btn-bg: #4b5767;
-  --self-bubble-chat-btn-border: #617084;
+  --self-bubble-chat-border: #4b5767; // --SBC-40
+  --self-bubble-chat-action-bg: #404a59; // --SBC-40, Alpha 0.5
+  --self-bubble-chat-action-border: #4b5767; // --SBC-40
+  --self-bubble-chat-btn-bg: #4b5767; // --SBC-40
+  --self-bubble-chat-btn-border: #617084; // --SBC-50
 
   --other-bubble-chat-border: var(--NG20);
   --other-bubble-chat-action-bg: var(--NG10);
@@ -263,10 +275,13 @@
   --btn-primary-bg: linear-gradient(45deg, #408dfd, #0068ff);
 
   --file-progress-track: var(--N20);
-  --self-file-progress-track: #4b5767;
+  --self-file-progress-track: #4b5767; // --SBC-40
 
   --scrollbar-bg: var(--NG40);
   --scrollbar-opacity: 0.5;
+
+  --selection-bg: #0068ff; // --brand-primary
+  --selection-color: #fff;
 }
 
 html[data-zadark-theme="dark"] {
@@ -288,7 +303,8 @@ html[data-zadark-theme="dark"] {
   }
 
   ::selection {
-    background: var(--B50) !important;
+    background: var(--selection-bg) !important;
+    color: var(--selection-color) !important;
   }
 
   body.zadark {
@@ -377,6 +393,10 @@ html[data-zadark-theme="dark"] {
       &.--disabled {
         color: var(--R60);
         opacity: 0.5;
+
+        &:hover {
+          color: #fff;
+        }
       }
     }
 
@@ -534,9 +554,10 @@ html[data-zadark-theme="dark"] {
     }
 
     .chat-message.highlighted .card:not(.card--group-photo) {
-      background-color: var(--B10);
+      background: var(--selected-bubble-chat);
+      border-color: var(--selected-bubble-chat-border);
       &:hover {
-        background-color: var(--B20);
+        background: var(--selected-bubble-chat);
       }
     }
 
@@ -688,10 +709,9 @@ html[data-zadark-theme="dark"] {
       }
 
       &.card--undo {
-        opacity: 0.75;
-        filter: blur(1px);
         > span {
-          color: var(--primary-text);
+          font-style: italic;
+          color: var(--primary-text-50);
         }
       }
 
@@ -1371,6 +1391,12 @@ html[data-zadark-theme="dark"] {
       &:before {
         display: none;
       }
+    }
+
+    .popover-v2,
+    .popover-v3,
+    .zmenu-body.content-only {
+      box-shadow: 4px 4px 12px var(--BA50);
     }
   }
 }

@@ -13,7 +13,7 @@
     name: 'Safari',
 
     initClassNames: () => {
-      document.body.classList.add('zadark', 'zadark-browser-ext', 'zadark-safari')
+      document.body.classList.add('zadark', 'zadark-web', 'zadark-safari')
     },
 
     getManifest: () => {
