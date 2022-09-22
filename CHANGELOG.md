@@ -7,6 +7,7 @@
 - `.card--undo` : Bỏ hiệu ứng mờ cho tin nhắn được thu hồi
 - `:selection` : Cập nhật màu nền khi tô khối chữ
 - `colors` : Thay đổi màu sắc sáng hơn (Red, Orange, Yellow, Green, Teal, Purple và Pink)
+- `.popover-v2, .popover-v3, .zmenu-body.content-only` : Cập nhật hiệu ứng đổ bóng cho Popover, Menu
 ### Fixed
 - `.chat-message.highlighted` : Sửa lỗi màu sắc tin nhắn highlighted
 - `.z--btn--fill--secondary-red:hover` : Sửa lỗi màu chữ khi rê chuột vào nút (viền đỏ)
