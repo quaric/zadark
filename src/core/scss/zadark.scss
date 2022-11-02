@@ -1404,6 +1404,10 @@ html[data-zadark-theme="dark"] {
     .v2.view-notice-topic-content .item-calendar-preview > .date {
       color: var(--primary-text);
     }
+
+    .reminder-info-v2 > .content > .cal > .wd-time > .wd-time__txt {
+      color: #fff;
+    }
   }
 }
 
