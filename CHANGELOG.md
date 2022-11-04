@@ -1,7 +1,15 @@
 # Changelog
 
+## ZaDark v22.11.1
+> PC v5.6 && Web v.6.6
+
+### Fixed
+- `.item-calendar-preview > .date` : Sửa lỗi màu sắc của "Ngày" trong Calendar Preview
+- `.message-view` : Sửa lỗi Font chữ của nội dung tin nhắn không phải là Font "Open Sans"
+- `.reminder-info-v2 > .wd-time__txt` : Sửa lỗi màu sắc của "Ngày" của Calendar trong Reminder
+
 ## ZaDark v22.9.6
-> PC 5.5 && Web v6.5
+> PC v5.5 && Web v6.5
 
 ### Changed
 - `.card--undo` : Bỏ hiệu ứng mờ cho tin nhắn được thu hồi

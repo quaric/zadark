@@ -1398,6 +1398,16 @@ html[data-zadark-theme="dark"] {
     .zmenu-body.content-only {
       box-shadow: 4px 4px 12px var(--BA50);
     }
+
+    .group-board-item.v2 .item-calendar-preview > .date,
+    .v2.view-notice-pinmsg-content .item-calendar-preview > .date,
+    .v2.view-notice-topic-content .item-calendar-preview > .date {
+      color: var(--primary-text);
+    }
+
+    .reminder-info-v2 > .content > .cal > .wd-time > .wd-time__txt {
+      color: #fff;
+    }
   }
 }
 
@@ -1434,5 +1444,10 @@ body.zadark {
     height: 8px;
     top: 10px;
     right: 10px;
+  }
+
+  .message-view {
+    font-family: "Open Sans", sans-serif;
+    letter-spacing: normal;
   }
 }
