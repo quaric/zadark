@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark v22.11.2
+> PC v6.0 && Web v7.0
+
+### Fixed
+- Sửa lỗi hiển thị sai màu sắc do Zalo Web có sự thay đổi lớn lần 2 về bảng màu (Colors CSS Variables) từ ngày 22/11/2022
+- Sẵn sàng cho sự thay đổi lớn về bảng màu (Colors CSS Variables) trên Zalo PC
+
 ## ZaDark v22.11.1
 > PC v5.6 && Web v.6.6
 
