@@ -410,9 +410,12 @@
   --white-quote: var(--NG10);
   --white-quote-selected: var(--NG10);
   --white-quote-border: var(--NG20);
+  --white-quote-line: #4491f6;
+
+  --white-link: var(--B60);
+  --white-file-progress-track: #4b5767; // --SBC-40
 
   --admin-message-border: var(--N40);
-  --white-file-progress-track: #4b5767; // --SBC-40
 
   // Buttons
 
@@ -793,6 +796,10 @@ html[data-zadark-theme="dark"] {
       border: 1px solid var(--white-message-border);
       box-shadow: none;
 
+      a {
+        color: var(--white-link);
+      }
+
       &.card--oa,
       &.card--picture,
       &.card--video,
@@ -881,6 +888,9 @@ html[data-zadark-theme="dark"] {
       .quote-banner,
       .quote-base {
         border: 1px solid var(--white-quote-border);
+      }
+      .quote-line {
+        background-color: var(--white-quote-line);
       }
     }
 
