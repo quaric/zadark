@@ -51,7 +51,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHan
     }
 
     @IBAction func showHelp(_ sender: Any) {
-        if let url = URL(string: "https://zadark.ncdaistudio.com") {
+        if let url = URL(string: "https://zadark.quaric.com") {
             NSWorkspace.shared.open(url)
         }
     }

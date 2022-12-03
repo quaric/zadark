@@ -1,7 +1,7 @@
 /*
   ZaDark – Zalo Dark Mode
   Chrome Extension
-  Made by NCDAi Studio
+  Made by Quaric
 
   ! This file must use VanillaJS
 */

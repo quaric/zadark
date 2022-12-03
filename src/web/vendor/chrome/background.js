@@ -1,12 +1,12 @@
 /*
   ZaDark – Zalo Dark Mode
   Chrome Extension
-  Made by NCDAi Studio
+  Made by Quaric
 */
 
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
-    chrome.tabs.create({ url: 'https://zadark.ncdaistudio.com/web/chrome' })
+    chrome.tabs.create({ url: 'https://zadark.quaric.com/web/chrome' })
   }
 
   if (details.reason === 'update') {

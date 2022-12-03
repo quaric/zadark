@@ -1,5 +1,13 @@
 # Changelog
 
+## ZaDark v22.12.1
+> PC v6.1 && Web v7.1
+
+### Changed
+- Thêm nhận diện thương hiệu của Nhà phát hành
+- Cập nhật địa chỉ Website chính thức sang https://zadark.quaric.com
+- Thêm Menu "Donate"
+
 ## ZaDark v22.11.2
 > PC v6.0 && Web v7.0
 
