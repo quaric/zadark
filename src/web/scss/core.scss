@@ -35,6 +35,10 @@ html[data-zadark-theme="light"] {
   body {
     -webkit-font-smoothing: antialiased;
   }
+
+  .quaric-lockup-dark {
+    display: inline-block;
+  }
 }
 
 html[data-zadark-theme="dark"] {
@@ -78,10 +82,14 @@ html[data-zadark-theme="dark"] {
   body {
     -webkit-font-smoothing: auto;
   }
+
+  .quaric-lockup-light {
+    display: inline-block;
+  }
 }
 
 html:root {
-  --primary-base: #0E70FF;
+  --primary-base: #0e70ff;
   --primary-dark: #035bdc;
 
   --border-base: var(--grey-300);
@@ -163,6 +171,10 @@ code {
 
   &.items-center {
     align-items: center;
+  }
+
+  &.justify-center {
+    justify-content: center;
   }
 }
 .flex-1 {
@@ -457,5 +469,28 @@ header.main-header {
 
   &-body {
     padding: 16px;
+  }
+}
+
+.zadark-from-quaric {
+  height: 32px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 16px;
+  border: 1px solid var(--border-base);
+  border-radius: 16px;
+  user-select: none;
+
+  span {
+    color: var(--neutral-500);
+  }
+
+  .quaric-lockup {
+    height: 12px;
+    display: none;
+    margin-left: 8px;
   }
 }

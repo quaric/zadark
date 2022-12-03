@@ -1,7 +1,7 @@
 /*
   ZaDark – Zalo Dark Mode
   Browser Extension
-  Made by NCDAi Studio
+  Made by Quaric
 */
 
 const versionElName = '#js-ext-version'

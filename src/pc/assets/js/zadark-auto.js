@@ -1,6 +1,6 @@
 /*
   ZaDark – Zalo Dark Mode
-  Made by NCDAi Studio
+  Made by Quaric
 
   This script helps to handle the "Sync with system" feature
 */

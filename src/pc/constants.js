@@ -1,6 +1,6 @@
 /*
   ZaDark – Zalo Dark Mode
-  Made by NCDAi Studio
+  Made by Quaric
 */
 
 const os = require('os')

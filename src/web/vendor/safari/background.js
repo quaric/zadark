@@ -1,7 +1,7 @@
 /*
   ZaDark – Zalo Dark Mode
   Safari Extension
-  Made by NCDAi Studio
+  Made by Quaric
 */
 
 browser.runtime.onInstalled.addListener((details) => {

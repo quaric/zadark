@@ -1,6 +1,6 @@
 /*
   ZaDark – Zalo Dark Mode
-  Made by NCDAi Studio
+  Made by Quaric
 */
 
 const prompt = require('prompt-sync')()
@@ -13,8 +13,10 @@ const { PLATFORM, ZADARK_VERSION } = require('./constants')
 const renderHeader = () => {
   log('')
   log(chalk.blueBright.bold('ZaDark – Zalo Dark Mode'))
-  log(chalk.blueBright('Website   :', chalk.underline('https://zadark.ncdaistudio.com')))
+  log(chalk.blueBright('Website   :', chalk.underline('https://zadark.quaric.com')))
   log(chalk.blueBright('Phien ban :', `${PLATFORM === 'darwin' ? 'macOS' : 'Windows'}-${ZADARK_VERSION}`))
+  log('')
+  log(chalk.blueBright('<ZaDark from Quaric>'))
   log('')
 }
 
@@ -34,7 +36,7 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
 (async () => {
   try {
     if (PLATFORM === 'darwin' && !isRoot()) {
-      const supportUrl = 'https://zadark.ncdaistudio.com/pc/macos#run-zadark-as-root'
+      const supportUrl = 'https://zadark.quaric.com/pc/macos#run-zadark-as-root'
       open(supportUrl)
       throw new Error(`Vui long chay ZaDark voi quyen Root (${supportUrl}).`)
     }
@@ -71,6 +73,9 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
     log('2. Vui long thoat Zalo PC truoc khi cai dat, go cai dat ZaDark.')
     log('3. Vui long cai dat lai ZaDark sau khi cap nhat Zalo PC.')
     log('')
+    log(chalk.greenBright('Neu ban yeu thich ZaDark, ban co the Donate cho ZaDark tai dia chi :'))
+    log(chalk.greenBright(chalk.underline('https://zadark.quaric.com/donate')))
+    log('')
 
     prompt(chalk.yellowBright('> Nhan', chalk.bold('[enter]'), 'de bat dau ...'))
 
@@ -84,11 +89,12 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
     log('3. Khoi phuc Zalo PC goc')
     log('')
 
-    log('4. Lien he')
-    log('5. Thoat')
+    log('4. Donate')
+    log('5. Lien he')
+    log('6. Thoat')
     log('')
 
-    const featureIndex = prompt(chalk.yellowBright('> Nhap STT chuc nang', chalk.bold('[1-5]'), 'va nhan', chalk.bold('[enter]'), ': '))
+    const featureIndex = prompt(chalk.yellowBright('> Nhap STT chuc nang', chalk.bold('[1-6]'), 'va nhan', chalk.bold('[enter]'), ': '))
 
     console.clear()
     renderHeader()
@@ -117,9 +123,19 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
       }
 
       case '4': {
+        log(chalk.magentaBright.bold('[DONATE]'))
+
+        const donateUrl = 'https://zadark.quaric.com/donate'
+        log('>> Truy cap', chalk.underline(donateUrl))
+        open(donateUrl)
+
+        break
+      }
+
+      case '5': {
         log(chalk.magentaBright.bold('[LIEN HE]'))
 
-        const contactUrl = 'https://zadark.ncdaistudio.com/contact'
+        const contactUrl = 'https://zadark.quaric.com/contact'
         log('>> Truy cap', chalk.underline(contactUrl))
         open(contactUrl)
 
