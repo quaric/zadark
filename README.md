@@ -19,6 +19,7 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
+    <li><a href="#archived">Archived</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#install">Install</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -29,6 +30,10 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
+
+## Archived
+
+This repository is archived. To help us better improve the product and protect our intellectual assets, ZaDark app's development has been moved to a closed source code base.
 
 ## About
 
