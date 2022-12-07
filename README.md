@@ -32,7 +32,7 @@
 
 ## About
 
-ZaDark is an open source extension that helps you enable Dark Mode for Zalo PC and Web.
+ZaDark is an extension that helps you enable Dark Mode for Zalo PC and Web.
 
 https://zadark.quaric.com/
 
