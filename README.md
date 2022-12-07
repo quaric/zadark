@@ -5,13 +5,13 @@
 
   <h1>ZaDark – Zalo Dark Mode</h1>
 
-  [![Windows](https://img.shields.io/badge/Windows-00002D.svg?&style=for-the-badge&logo=windows&logoColor=3989FF)](https://short.ncdaistudio.com/zadark-win)
-  [![macOS](https://img.shields.io/badge/macOS-00002D.svg?&style=for-the-badge&logo=apple&logoColor=3989FF)](https://short.ncdaistudio.com/zadark-mac)
-  [![Chrome](https://img.shields.io/badge/Chrome-00002D.svg?&style=for-the-badge&logo=google-chrome&logoColor=3989FF)](https://short.ncdaistudio.com/zadark-chrome)
-  [![Firefox](https://img.shields.io/badge/Firefox-00002D.svg?&style=for-the-badge&logo=firefox&logoColor=3989FF)](https://short.ncdaistudio.com/zadark-firefox)
-  [![Opera](https://img.shields.io/badge/Opera-00002D.svg?&style=for-the-badge&logo=opera&logoColor=3989FF)](https://short.ncdaistudio.com/zadark-opera)
-  [![Edge](https://img.shields.io/badge/Edge-00002D.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=3989FF)](https://short.ncdaistudio.com/zadark-edge)
-  [![Safari](https://img.shields.io/badge/Safari-00002D.svg?&style=for-the-badge&logo=safari&logoColor=3989FF)](https://short.ncdaistudio.com/zadark-safari)
+  [![Windows](https://img.shields.io/badge/Windows-00002D.svg?&style=for-the-badge&logo=windows&logoColor=3989FF)](https://go.quaric.com/zadark-win)
+  [![macOS](https://img.shields.io/badge/macOS-00002D.svg?&style=for-the-badge&logo=apple&logoColor=3989FF)](https://go.quaric.com/zadark-mac)
+  [![Chrome](https://img.shields.io/badge/Chrome-00002D.svg?&style=for-the-badge&logo=google-chrome&logoColor=3989FF)](https://go.quaric.com/zadark-chrome)
+  [![Firefox](https://img.shields.io/badge/Firefox-00002D.svg?&style=for-the-badge&logo=firefox&logoColor=3989FF)](https://go.quaric.com/zadark-firefox)
+  [![Opera](https://img.shields.io/badge/Opera-00002D.svg?&style=for-the-badge&logo=opera&logoColor=3989FF)](https://go.quaric.com/zadark-opera)
+  [![Edge](https://img.shields.io/badge/Edge-00002D.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=3989FF)](https://go.quaric.com/zadark-edge)
+  [![Safari](https://img.shields.io/badge/Safari-00002D.svg?&style=for-the-badge&logo=safari&logoColor=3989FF)](https://go.quaric.com/zadark-safari)
 </div>
 
 <br />
