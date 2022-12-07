@@ -1,5 +1,13 @@
 # Changelog
 
+## ZaDark v22.12.2
+> PC v6.2 && Web v7.2
+
+### Changed
+- Sửa giao diện Banner Download Zalo PC
+#### Web specific
+- Xoá Menu GitHub vì ZaDark đã chuyển sang mã nguồn đóng
+
 ## ZaDark v22.12.1
 > PC v6.1 && Web v7.1
 

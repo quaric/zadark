@@ -1589,6 +1589,18 @@ html[data-zadark-theme="dark"] {
         color: var(--B60);
       }
     }
+
+    .tds-banner-download {
+      &__container {
+        background-color: var(--N20);
+        border-bottom: 1px solid var(--N30);
+        max-height: 32px;
+      }
+
+      &__action-button-wrapper {
+        color: var(--B60);
+      }
+    }
   }
 }
 
