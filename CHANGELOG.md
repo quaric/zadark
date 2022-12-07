@@ -4,8 +4,8 @@
 > PC v6.2 && Web v7.2
 
 ### Changed
-- Sửa giao diện Banner Download Zalo PC
 #### Web specific
+- Sửa giao diện Banner Download Zalo PC
 - Xoá Menu GitHub vì ZaDark đã chuyển sang mã nguồn đóng
 
 ## ZaDark v22.12.1
