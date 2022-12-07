@@ -8,6 +8,9 @@
 - Sửa giao diện Banner Download Zalo PC
 - Xoá Menu GitHub vì ZaDark đã chuyển sang mã nguồn đóng
 
+### Fixed
+- Sửa lỗi Avatar Alpha
+
 ## ZaDark v22.12.1
 > PC v6.1 && Web v7.1
 

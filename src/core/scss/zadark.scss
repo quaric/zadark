@@ -1111,14 +1111,23 @@ html[data-zadark-theme="dark"] {
       color: var(--neutral-500) !important;
     }
 
-    .zl-avatar {
+    // .zl-avatar {
+    //   --WA100: #fff;
+    //   --NG50: #000;
+    //   box-shadow: 0 0 0 1px var(--bg-default);
+    // }
+
+    // .zl-avatar__badge {
+    //   --WA100: #232526;
+    // }
+
+    .zavatar {
       --WA100: #fff;
       --NG50: #000;
-      box-shadow: 0 0 0 1px var(--bg-default);
-    }
 
-    .zl-avatar__badge {
-      --WA100: #232526;
+      .a-child {
+        border-color: var(--bg-default);
+      }
     }
 
     .chat-date .line {
