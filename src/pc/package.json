@@ -3,7 +3,7 @@
   "description": "Dark Mode tốt nhất cho Zalo",
   "version": "6.1",
   "main": "index.js",
-  "repository": "https://github.com/quaric/zadark.git",
+  "repository": "https://github.com/quaric/zadark-legacy.git",
   "author": "Dai Nguyen <ncdai3651408@gmail.com>",
   "license": "MIT"
 }

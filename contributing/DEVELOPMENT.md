@@ -6,8 +6,8 @@ This document describes the process for running this application on your local c
 
 1. Clone the repo
     ```bash
-    git clone git@github.com:ncdai3651408/za-dark.git
-    cd za-dark
+    git clone https://github.com/quaric/zadark-legacy.git
+    cd zadark-legacy
     ```
 
 2. Install packages
@@ -64,9 +64,9 @@ This document describes the process for running this application on your local c
   - Step 3: Click `Load unpacked`
   - Step 4: Choose folder `build/edge/`
 - Safari Extension
-  - Step 1: Open `src/browser-ext/vendor/safari/ZaDark.xcodeproj` in Xcode
+  - Step 1: Open `src/web/vendor/safari/ZaDark.xcodeproj` in Xcode
   - Step 2: Choose `Product > Run`
-  - Step 3: Open `Safari > Preferences > Extensions` > Turn on `ZaDark – Best Dark Theme for Zalo`
+  - Step 3: Open `Safari > Preferences > Extensions` > Turn on `ZaDark – Zalo Dark Mode`
 - macOS & Windows
   - `sudo yarn run pc:dev`
 
@@ -75,7 +75,7 @@ This document describes the process for running this application on your local c
 ### For Safari Extension
 
 1. Run `yarn build`
-2. Run `yarn safari` or open `src/browser-ext/vendor/safari/ZaDark.xcodeproj` in Xcode
+2. Run `yarn safari` or open `src/web/vendor/safari/ZaDark.xcodeproj` in Xcode
 3. Choose `Product > Archive`
 
 > Documentation: https://developer.apple.com/documentation/xcode/distributing-your-app-for-beta-testing-and-releases

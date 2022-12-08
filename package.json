@@ -2,7 +2,7 @@
   "name": "zadark",
   "description": "Dark Mode tốt nhất cho Zalo",
   "version": "22.11.2",
-  "repository": "https://github.com/quaric/zadark.git",
+  "repository": "https://github.com/quaric/zadark-legacy.git",
   "author": "Dai Nguyen <ncdai3651408@gmail.com>",
   "license": "MIT",
   "scripts": {
