@@ -12,7 +12,7 @@
     "pc:dev": "NODE_ENV=development node build/pc",
     "pc:start": "NODE_ENV=production node build/pc",
     "codesign:macos": "node tools/macos/codesign tools/macos/config.ini",
-    "safari": "xed src/browser-ext/vendor/safari/ZaDark.xcodeproj"
+    "safari": "xed src/web/vendor/safari/ZaDark.xcodeproj"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
