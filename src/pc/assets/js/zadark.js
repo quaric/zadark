@@ -161,40 +161,6 @@ const popupMainHTML = `
         </div>
       </div>
     </div>
-
-    <div id="js-panel-privacy">
-      <label class="zadark-form__label">Riêng tư</label>
-
-      <div class="zadark-panel">
-        <div class="zadark-panel__body">
-          <div class="zadark-switch__list">
-            <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn" trên Zalo Web</label>
-              <label class="zadark-switch__checkbox">
-                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
-                <span class="zadark-switch__slider"></span>
-              </label>
-            </div>
-
-            <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái "Đã nhận" tin nhắn trên Zalo Web</label>
-              <label class="zadark-switch__checkbox">
-                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
-                <span class="zadark-switch__slider"></span>
-              </label>
-            </div>
-
-            <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái "Đã xem" tin nhắn trên Zalo Web</label>
-              <label class="zadark-switch__checkbox">
-                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
-                <span class="zadark-switch__slider"></span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 `
 

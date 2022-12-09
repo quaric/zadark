@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark v22.12.3
+> PC v7.1
+
+### Fixed
+#### PC specific
+- Sửa lỗi hiển thị sai phần Cài đặt riêng tư. Cài đặt riêng tư chỉ có trên ZaDark Web
+
 ## ZaDark v22.12.2
 > PC v7.0 && Web v8.0
 
