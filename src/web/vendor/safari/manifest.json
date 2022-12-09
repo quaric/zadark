@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
   "name": "ZaDark – Zalo Dark Mode",
-  "version": "7.2",
+  "version": "8.0",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
-  "author": "NCDAi Studio",
+  "author": "Quaric",
   "homepage_url": "https://zadark.quaric.com",
   "icons": {
     "48": "images/zadark-icon-48.png",
@@ -20,19 +20,23 @@
       ],
       "run_at": "document_end",
       "css": [
-        "css/zadark-fonts.css",
-        "css/zadark.css"
+        "css/zadark-fonts.min.css",
+        "css/zadark-popup.min.css",
+        "css/zadark.min.css"
       ],
       "js": [
-        "js/browser.js",
-        "js/utils.js",
-        "js/zadark.js"
+        "libs/jquery.min.js",
+        "libs/bowser-es5.min.js",
+        "libs/popper.min.js",
+        "js/browser.min.js",
+        "js/utils.min.js",
+        "js/zadark.min.js"
       ]
     }
   ],
   "background": {
     "scripts": [
-      "js/background.js"
+      "js/service-worker.min.js"
     ]
   },
   "permissions": [
@@ -72,6 +76,7 @@
     }
   },
   "web_accessible_resources": [
-    "fonts/*"
+    "fonts/*",
+    "images/*"
   ]
 }

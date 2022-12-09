@@ -23,8 +23,7 @@
     getExtensionSettings: () => {
       return new Promise((resolve, reject) => {
         chrome.storage.sync.get({
-          theme: 'dark',
-          isReceiveUpdateNoti: true
+          theme: 'dark'
         }, (items) => {
           resolve(items)
         })
@@ -35,37 +34,41 @@
       return chrome.storage.sync.set(items)
     },
 
-    executeScript: (tabId, file) => {
-      chrome.tabs.executeScript(tabId, { file })
-    },
-
     getZaloTabs: async () => {
-      return new Promise((resolve) => {
-        chrome.tabs.query({
-          url: ['*://chat.zalo.me/*'],
-          currentWindow: true
-        }, (tabs) => {
-          resolve(tabs)
-        })
+      const tabs = await chrome.tabs.query({
+        url: ['*://chat.zalo.me/*'],
+        currentWindow: true
       })
+      return tabs
     },
 
-    createTab: ({ url }) => {
-      chrome.tabs.create({ url })
-    },
-
-    getEnabledBlockingRuleIds: () => {
-      return new Promise((resolve, reject) => {
-        chrome.declarativeNetRequest.getEnabledRulesets((rulesetIds) => {
-          resolve(rulesetIds)
-        })
-      })
+    getEnabledBlockingRuleIds: async () => {
+      const rulesetIds = await chrome.declarativeNetRequest.getEnabledRulesets()
+      return rulesetIds
     },
 
     updateEnabledBlockingRuleIds: ({ enableRuleIds = [], disableRuleIds = [] }) => {
       return chrome.declarativeNetRequest.updateEnabledRulesets({
         enableRulesetIds: enableRuleIds,
         disableRulesetIds: disableRuleIds
+      })
+    },
+
+    sendMessage2Tab: async function (tabId, action, payload) {
+      if (!tabId) {
+        return
+      }
+
+      await chrome.tabs.sendMessage(tabId, {
+        action,
+        payload
+      })
+    },
+
+    sendMessage2ZaloTabs: async function (action, payload) {
+      const tabs = await this.getZaloTabs()
+      tabs.forEach((tab) => {
+        this.sendMessage2Tab(tab.id, action, payload)
       })
     }
   }

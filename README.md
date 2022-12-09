@@ -92,3 +92,6 @@ https://zadark.quaric.com/awards
 - https://dev.opera.com/extensions/basics/
 - https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/
 - https://developer.apple.com/documentation/safariservices/safari_web_extensions/blocking_content_with_your_safari_web_extension
+- https://popper.js.org/
+- https://usefulangle.com/post/356/javascript-detect-element-added-to-dom
+- https://developer.chrome.com/docs/extensions/mv3/messaging/

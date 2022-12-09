@@ -12,7 +12,7 @@ const HTMLParser = require('node-html-parser')
 const glob = require('glob')
 
 const { log, logDebug, copyRecursiveSync } = require('./utils')
-const { PLATFORM } = require('./constants')
+const { PLATFORM, ZADARK_VERSION } = require('./constants')
 
 const getZaloResDirList = (customZaloPath) => {
   if (!['darwin', 'win32'].includes(PLATFORM)) {
@@ -32,7 +32,7 @@ const getZaloResDirList = (customZaloPath) => {
   return resources.sort()
 }
 
-const writeIndexFile = (zaloDir, { isSyncWithSystem }) => {
+const writeIndexFile = (zaloDir) => {
   const src = 'pc-dist/index.html'
   const srcPath = path.join(zaloDir, `app/${src}`)
 
@@ -47,37 +47,62 @@ const writeIndexFile = (zaloDir, { isSyncWithSystem }) => {
   const headElement = root.getElementsByTagName('head')[0]
   const bodyElement = root.getElementsByTagName('body')[0]
 
-  // Required font
-  const zaDarkFont = root.querySelectorAll('link[href="zadark-fonts.css"]')
-  if (!zaDarkFont.length) {
+  // Required fonts
+  const zadarkFonts = root.querySelectorAll('link[href="zadark-fonts.min.css"]')
+  if (!zadarkFonts.length) {
     headElement.insertAdjacentHTML(
       'beforeend',
-      '<link rel="stylesheet" href="zadark-fonts.css">'
+      '<link rel="stylesheet" href="zadark-fonts.min.css">'
     )
   }
 
-  // Required stylesheet
-  const zaDarkCSS = root.querySelectorAll('link[href="zadark.css"]')
-  if (!zaDarkCSS.length) {
+  // Required stylesheets
+
+  const zadarkCSS = root.querySelectorAll('link[href="zadark.min.css"]')
+  if (!zadarkCSS.length) {
     headElement.insertAdjacentHTML(
       'beforeend',
-      '<link rel="stylesheet" href="zadark.css">'
+      '<link rel="stylesheet" href="zadark.min.css">'
     )
   }
 
-  if (isSyncWithSystem) {
-    // Required script
-    const zaDarkSWSScript = root.querySelectorAll('script[src="zadark-auto.js"]')
-    if (!zaDarkSWSScript.length) {
-      bodyElement.insertAdjacentHTML(
-        'beforeend',
-        '<script src="zadark-auto.js"></script>'
-      )
-    }
+  const zadarkPopupCSS = root.querySelectorAll('link[href="zadark-popup.min.css"]')
+  if (!zadarkPopupCSS.length) {
+    headElement.insertAdjacentHTML(
+      'beforeend',
+      '<link rel="stylesheet" href="zadark-popup.min.css">'
+    )
+  }
+
+  // Required scripts
+
+  const zadarkJQueryScript = root.querySelectorAll('script[src="zadark-jquery.min.js"]')
+  if (!zadarkJQueryScript.length) {
+    bodyElement.insertAdjacentHTML(
+      'beforeend',
+      '<script src="zadark-jquery.min.js"></script>'
+    )
+  }
+
+  const zadarkPopperScript = root.querySelectorAll('script[src="zadark-popper.min.js"]')
+  if (!zadarkPopperScript.length) {
+    bodyElement.insertAdjacentHTML(
+      'beforeend',
+      '<script src="zadark-popper.min.js"></script>'
+    )
+  }
+
+  // Required script
+  const zadarkScript = root.querySelectorAll('script[src="zadark.min.js"]')
+  if (!zadarkScript.length) {
+    bodyElement.insertAdjacentHTML(
+      'beforeend',
+      '<script src="zadark.min.js"></script>'
+    )
   }
 
   // Required themeAttributes
-  htmlElement.setAttribute('data-zadark-theme', 'dark')
+  htmlElement.setAttribute('data-zadark-version', ZADARK_VERSION)
 
   // Required classNames
   const zaDarkClassNames = ['zadark', 'zadark-pc', `zadark-${PLATFORM}`]
@@ -102,7 +127,7 @@ const copyAssetDir = (zaloDir, { dest, src }) => {
   logDebug('- copyAssetDir', src, '➜', destPath)
 }
 
-const installDarkTheme = async (zaloDir, isSyncWithSystem = false) => {
+const installDarkTheme = async (zaloDir) => {
   if (!fs.existsSync(zaloDir)) {
     throw new Error(zaloDir + ' khong ton tai.')
   }
@@ -137,32 +162,36 @@ const installDarkTheme = async (zaloDir, isSyncWithSystem = false) => {
     dest: 'pc-dist/fonts'
   })
 
+  // Copy assets "images/*" to "resources/app/pc-dist"
+  copyAssetDir(zaloDir, {
+    src: 'images',
+    dest: 'pc-dist'
+  })
+
   // Copy assets "css/*" to "resources/app/pc-dist"
   copyAssetDir(zaloDir, {
     src: 'css',
     dest: 'pc-dist'
   })
 
-  if (isSyncWithSystem) {
-    // Copy assets "zadark-auto.js" to "resources/app/pc-dist"
-    copyAssetDir(zaloDir, {
-      src: 'js/zadark-auto.js',
-      dest: 'pc-dist/zadark-auto.js'
-    })
-  }
+  // Copy assets "js/*" to "resources/app/pc-dist"
+  copyAssetDir(zaloDir, {
+    src: 'js',
+    dest: 'pc-dist'
+  })
+
+  // Copy assets "libs/*" to "resources/app/pc-dist"
+  copyAssetDir(zaloDir, {
+    src: 'libs',
+    dest: 'pc-dist'
+  })
 
   // Add "themeAttributes, classNames, font, stylesheet" to "resources/app/pc-dist/index.html"
-  writeIndexFile(zaloDir, { isSyncWithSystem })
+  writeIndexFile(zaloDir)
 
   // Create package "resources/app.asar" from "resources/app" -> Delete "resources/app"
   await asar.createPackage(appDirPath, appAsarPath)
   await del(appDirPath, { force: true })
-
-  if (isSyncWithSystem) {
-    log(chalk.green('- Da kich hoat giao dien Tu dong thay doi theo He dieu hanh.'))
-  } else {
-    log(chalk.green('- Da kich hoat giao dien Toi.'))
-  }
 }
 
 const uninstallDarkTheme = async (zaloDir) => {
@@ -182,7 +211,7 @@ const uninstallDarkTheme = async (zaloDir) => {
     logDebug('- renameFile', appAsarBakPath)
   }
 
-  log(chalk.green('- Da khoi phuc Zalo PC goc.'))
+  log(chalk.green('- Da go cai dat ZaDark.'))
 }
 
 module.exports = {

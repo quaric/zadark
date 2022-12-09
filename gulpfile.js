@@ -6,6 +6,8 @@ const gulpZip = require('gulp-zip')
 const pkg = require('pkg')
 const path = require('path')
 const del = require('del')
+const minify = require('gulp-minify')
+const rename = require('gulp-rename')
 
 const chromeManifest = require('./src/web/vendor/chrome/manifest.json')
 const firefoxManifest = require('./src/web/vendor/firefox/manifest.json')
@@ -36,7 +38,10 @@ const safariResources = getWebPath('./vendor/safari/ZaDark Extension/Resources')
 
 const buildSass = (_src, _dest) => {
   return src(_src)
-    .pipe(yupSass({ outputStyle: 'compressed' }).on('error', yupSass.logError))
+    .pipe(yupSass({ outputStyle: 'compressed', outFile: '.min.css' }).on('error', yupSass.logError))
+    .pipe(rename({
+      suffix: '.min'
+    }))
     .pipe(dest(_dest))
 }
 
@@ -55,6 +60,9 @@ const cleanDist = () => {
 const buildCoreStyles = () => {
   return src(getCorePath('./scss/**/*.scss'))
     .pipe(yupSass({ outputStyle: 'compressed' }).on('error', yupSass.logError))
+    .pipe(rename({
+      suffix: '.min'
+    }))
     .pipe(dest('./build/chrome/css'))
     .pipe(dest('./build/firefox/css'))
     .pipe(dest('./build/opera/css'))
@@ -66,6 +74,9 @@ const buildCoreStyles = () => {
 const buildWebStyles = () => {
   return src(getWebPath('./scss/**/*.scss'))
     .pipe(yupSass({ outputStyle: 'compressed' }).on('error', yupSass.logError))
+    .pipe(rename({
+      suffix: '.min'
+    }))
     .pipe(dest('./build/chrome/css'))
     .pipe(dest('./build/firefox/css'))
     .pipe(dest('./build/opera/css'))
@@ -89,16 +100,30 @@ const buildWeb = (browser) => {
 
   return mergeStream(
     src(getWebPath(`./vendor/${browser}/manifest.json`)).pipe(dest(rootDir)),
-    src(getWebPath(`./vendor/${browser}/browser.js`)).pipe(dest(jsDir)),
-    src(getWebPath(`./vendor/${browser}/background.js`)).pipe(dest(jsDir)),
+    // src(getWebPath(`./vendor/${browser}/browser.js`)).pipe(dest(jsDir)),
+    // src(getWebPath(`./vendor/${browser}/service-worker.js`)).pipe(dest(jsDir)),
     buildSass(getWebPath(`./vendor/${browser}/*.scss`), cssDir),
 
     src(getWebPath('./_locales/**/*')).pipe(dest(localesDir)),
     src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
-    src(getWebPath('./js/**/*')).pipe(dest(jsDir)),
+    //
+    // src(getWebPath('./js/**/*')).pipe(dest(jsDir)),
+    src([
+      getWebPath(`./vendor/${browser}/browser.js`),
+      getWebPath(`./vendor/${browser}/service-worker.js`),
+      getWebPath('./js/**/*')
+    ]).pipe(minify({
+      ext: {
+        min: '.min.js'
+      },
+      ignoreFiles: ['.min.js'],
+      noSource: true
+    })).pipe(dest(jsDir)),
+    //
     src(getWebPath('./images/**/*')).pipe(dest(imagesDir)),
     src(getCorePath('./fonts/**/*')).pipe(dest(fontsDir)),
     src(getWebPath('./*.html')).pipe(dest(rootDir)),
+
     ...copyRulesJSON
   )
 }
@@ -138,13 +163,26 @@ const buildSafari = () => {
 
   return mergeStream(
     src(getWebPath('./vendor/safari/manifest.json')).pipe(dest(safariResources)),
-    src(getWebPath('./vendor/safari/browser.js')).pipe(dest(jsDir)),
-    src(getWebPath('./vendor/safari/background.js')).pipe(dest(jsDir)),
+    // src(getWebPath('./vendor/safari/browser.js')).pipe(dest(jsDir)),
+    // src(getWebPath('./vendor/safari/service-worker.js')).pipe(dest(jsDir)),
     buildSass(getWebPath('./vendor/safari/*.scss'), cssDir),
 
     src(getWebPath('./_locales/**/*')).pipe(dest(localesDir)),
     src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
-    src(getWebPath('./js/**/*')).pipe(dest(jsDir)),
+    //
+    // src(getWebPath('./js/**/*')).pipe(dest(jsDir)),
+    src([
+      getWebPath('./vendor/safari/browser.js'),
+      getWebPath('./vendor/safari/service-worker.js'),
+      getWebPath('./js/**/*')
+    ]).pipe(minify({
+      ext: {
+        min: '.min.js'
+      },
+      ignoreFiles: ['.min.js'],
+      noSource: true
+    })).pipe(dest(jsDir)),
+    //
     src(getCorePath('./fonts/**/*')).pipe(dest(fontsDir)),
     src(getWebPath('./rules/**/*')).pipe(dest(rulesDir)),
     src(getWebPath('./*.html')).pipe(dest(safariResources))
@@ -155,10 +193,18 @@ const buildPC = () => {
   return mergeStream(
     src([
       getPCPath('./**/*'),
-      `!${getPCPath('./assets/scss/**')}`
+      `!${getPCPath('./assets/scss/**')}`,
+      `!${getPCPath('./assets/js/**')}`
     ]).pipe(dest('./build/pc')),
     src(getCorePath('./fonts/**/*')).pipe(dest('./build/pc/assets/fonts')),
-    buildSass(getPCPath('./assets/scss/*.scss'), './build/pc/assets/css')
+    buildSass(getPCPath('./assets/scss/*.scss'), './build/pc/assets/css'),
+    src(getPCPath('./assets/js/*.js')).pipe(minify({
+      ext: {
+        min: '.min.js'
+      },
+      ignoreFiles: ['.min.js'],
+      noSource: true
+    })).pipe(dest('./build/pc/assets/js'))
   )
 }
 
