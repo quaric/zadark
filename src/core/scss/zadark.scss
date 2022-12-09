@@ -484,6 +484,14 @@
   --scrollbar-opacity: 0.5;
   --selection: #0068ff;
   --selection-text: #fff;
+
+  --popper-shadow: 4px 4px 12px var(--BA50);
+}
+
+html[data-zadark-theme="light"] {
+  &:root {
+    --popper-shadow: 0 0 10px 0 var(--BA20);
+  }
 }
 
 html[data-zadark-theme="dark"] {
@@ -1111,14 +1119,23 @@ html[data-zadark-theme="dark"] {
       color: var(--neutral-500) !important;
     }
 
-    .zl-avatar {
+    // .zl-avatar {
+    //   --WA100: #fff;
+    //   --NG50: #000;
+    //   box-shadow: 0 0 0 1px var(--bg-default);
+    // }
+
+    // .zl-avatar__badge {
+    //   --WA100: #232526;
+    // }
+
+    .zavatar {
       --WA100: #fff;
       --NG50: #000;
-      box-shadow: 0 0 0 1px var(--bg-default);
-    }
 
-    .zl-avatar__badge {
-      --WA100: #232526;
+      .a-child {
+        border-color: var(--bg-default);
+      }
     }
 
     .chat-date .line {
@@ -1331,6 +1348,7 @@ html[data-zadark-theme="dark"] {
         padding: 16px;
         background-color: #fff !important;
         border-radius: 64px 8px 64px 8px;
+        border: 1px solid var(--BA20);
         filter: invert(0.9);
       }
       .slideshow__page__text__title {
@@ -1338,6 +1356,13 @@ html[data-zadark-theme="dark"] {
       }
       .slideshow__bottom {
         margin-top: 50px;
+      }
+
+      .chat-onboard {
+        > div:nth-child(1) {
+          // background-color: red;
+          width: 480px !important;
+        }
       }
     }
 
@@ -1589,6 +1614,18 @@ html[data-zadark-theme="dark"] {
         color: var(--B60);
       }
     }
+
+    .tds-banner-download {
+      &__container {
+        background-color: var(--N20);
+        border-bottom: 1px solid var(--N30);
+        max-height: 32px;
+      }
+
+      &__action-button-wrapper {
+        color: var(--B60);
+      }
+    }
   }
 }
 
@@ -1630,5 +1667,30 @@ body.zadark {
   .message-view {
     font-family: "Open Sans", sans-serif;
     letter-spacing: normal;
+  }
+
+  #div_Main_TabZaDark {
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .zadark-popper {
+    z-index: 9999;
+    overflow: auto;
+
+    display: none;
+    width: 512px;
+    min-height: 256px;
+    max-height: 600px;
+
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: var(--popper-shadow);
+
+    &[data-visible] {
+      display: block;
+    }
   }
 }

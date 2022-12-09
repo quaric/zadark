@@ -20,17 +20,30 @@ const renderHeader = () => {
   log('')
 }
 
-const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
-  log(chalk.magentaBright.bold('[KICH HOAT GIAO DIEN TOI]'))
+const handleInstall = async (zaloResDirList) => {
+  log(chalk.magentaBright.bold('[CAI DAT ZADARK]'))
 
   for (const zaloResDir of zaloResDirList) {
     log('')
     log(chalk('>> Dang cai dat', chalk.bold(zaloResDir)))
-    await zaDarkPC.installDarkTheme(zaloResDir, isSyncWithSystem)
+    await zaDarkPC.installDarkTheme(zaloResDir)
   }
 
   log('')
-  log(chalk.green('>> Cai dat thanh cong. Vui long khoi dong lai Zalo PC.'))
+  log(chalk.green('>> Da cai dat ZaDark. Vui long khoi dong lai Zalo PC.'))
+}
+
+const handleUninstall = async (zaloResDirList) => {
+  log(chalk.magentaBright.bold('[GOI CAI DAT ZADARK]'))
+
+  for (const zaloResDir of zaloResDirList) {
+    log('')
+    log(chalk('>> Dang go cai dat', chalk.bold(zaloResDir)))
+    await zaDarkPC.uninstallDarkTheme(zaloResDir)
+  }
+
+  log('')
+  log(chalk.green('>> Da go cai dat ZaDark. Vui long khoi dong lai Zalo PC.'))
 }
 
 (async () => {
@@ -73,9 +86,6 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
     log('2. Vui long thoat Zalo PC truoc khi cai dat, go cai dat ZaDark.')
     log('3. Vui long cai dat lai ZaDark sau khi cap nhat Zalo PC.')
     log('')
-    log(chalk.greenBright('Neu ban yeu thich ZaDark, ban co the Donate cho ZaDark tai dia chi :'))
-    log(chalk.greenBright(chalk.underline('https://zadark.quaric.com/donate')))
-    log('')
 
     prompt(chalk.yellowBright('> Nhan', chalk.bold('[enter]'), 'de bat dau ...'))
 
@@ -84,61 +94,24 @@ const handleInstall = async (zaloResDirList, isSyncWithSystem = false) => {
 
     log(chalk.magentaBright.bold('[CHUC NANG]'))
     log('')
-    log('1. Kich hoat giao dien Toi')
-    log('2. Kich hoat giao dien Tu dong thay doi theo He dieu hanh')
-    log('3. Khoi phuc Zalo PC goc')
+    log('1. Cai dat ZaDark')
+    log('2. Go cai dat ZaDark')
+    log('3. Thoat')
     log('')
 
-    log('4. Donate')
-    log('5. Lien he')
-    log('6. Thoat')
-    log('')
-
-    const featureIndex = prompt(chalk.yellowBright('> Nhap STT chuc nang', chalk.bold('[1-6]'), 'va nhan', chalk.bold('[enter]'), ': '))
+    const featureIndex = prompt(chalk.yellowBright('> Nhap STT chuc nang', chalk.bold('[1-3]'), 'va nhan', chalk.bold('[enter]'), ': '))
 
     console.clear()
     renderHeader()
 
     switch (featureIndex) {
-      case '1':
+      case '1': {
+        await handleInstall(zaloResDirList)
+        break
+      }
+
       case '2': {
-        const isSyncWithSystem = featureIndex === '2'
-        await handleInstall(zaloResDirList, isSyncWithSystem)
-        break
-      }
-
-      case '3': {
-        log(chalk.magentaBright.bold('[KHOI PHUC ZALO PC GOC]'))
-
-        for (const zaloResDir of zaloResDirList) {
-          log('')
-          log(chalk('>> Dang go cai dat', chalk.bold(zaloResDir)))
-          await zaDarkPC.uninstallDarkTheme(zaloResDir)
-        }
-
-        log('')
-        log(chalk.green('>> Khoi phuc Zalo PC goc thanh cong. Vui long khoi dong lai Zalo PC.'))
-
-        break
-      }
-
-      case '4': {
-        log(chalk.magentaBright.bold('[DONATE]'))
-
-        const donateUrl = 'https://zadark.quaric.com/donate'
-        log('>> Truy cap', chalk.underline(donateUrl))
-        open(donateUrl)
-
-        break
-      }
-
-      case '5': {
-        log(chalk.magentaBright.bold('[LIEN HE]'))
-
-        const contactUrl = 'https://zadark.quaric.com/contact'
-        log('>> Truy cap', chalk.underline(contactUrl))
-        open(contactUrl)
-
+        await handleUninstall(zaloResDirList)
         break
       }
 

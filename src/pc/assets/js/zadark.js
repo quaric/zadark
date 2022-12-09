@@ -4,14 +4,62 @@
   Made by Quaric
 */
 
-window.zadark.browser.initClassNames()
+// eslint-disable-next-line no-global-assign
+const $ = jQuery = module.exports // Ref: https://github.com/electron/electron/issues/345#issuecomment-43894441
+
+const ZADARK_THEME_KEY = '@ZaDark:THEME'
+
+window.zadark = window.zadark || {}
+
+window.zadark.utils = {
+  setThemeAttr: (themeMode) => {
+    document.documentElement.setAttribute('data-zadark-theme', themeMode)
+  },
+
+  setPageTheme: function (theme) {
+    switch (theme) {
+      case 'light':
+      case 'dark': {
+        this.setThemeAttr(theme)
+        return
+      }
+
+      case 'auto': {
+        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        this.setThemeAttr(isDark ? 'dark' : 'light')
+        return
+      }
+
+      default: {
+        this.setThemeAttr('dark')
+      }
+    }
+  },
+
+  refreshPageTheme: function () {
+    const theme = localStorage.getItem(ZADARK_THEME_KEY)
+    this.setPageTheme(theme)
+  }
+}
+
+window.zadark.storage = {
+  getTheme: () => {
+    return localStorage.getItem(ZADARK_THEME_KEY) || 'dark'
+  },
+
+  saveTheme: (theme) => {
+    return localStorage.setItem(ZADARK_THEME_KEY, theme)
+  }
+}
+
 window.zadark.utils.refreshPageTheme()
 
-const MSG_ACTIONS = {
-  CHANGE_THEME: '@ZaDark:CHANGE_THEME',
-  GET_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:GET_ENABLED_BLOCKING_RULE_IDS',
-  UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS'
-}
+window.matchMedia('(prefers-color-scheme: dark)').addListener((event) => {
+  const theme = window.zadark.storage.getTheme()
+  if (theme === 'auto') {
+    window.zadark.utils.setThemeAttr(event.matches ? 'dark' : 'light')
+  }
+})
 
 const observer = new MutationObserver((mutationsList) => {
   mutationsList.forEach((mutation) => {
@@ -27,21 +75,8 @@ const observer = new MutationObserver((mutationsList) => {
 
 observer.observe(document.querySelector('#app'), { subtree: false, childList: true })
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === MSG_ACTIONS.CHANGE_THEME) {
-    window.zadark.utils.refreshPageTheme()
-    setSelectTheme(message.payload.theme)
-    sendResponse({ received: true })
-  }
-})
-
 const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
-
-const panelPrivacyElName = '#js-panel-privacy'
-const switchBlockTypingElName = '#js-switch-block-typing'
-const switchBlockSeenElName = '#js-switch-block-seen'
-const switchBlockDeliveredElName = '#js-switch-block-delivered'
 
 const setSelectTheme = (theme) => {
   const options = ['light', 'dark', 'auto']
@@ -50,23 +85,11 @@ const setSelectTheme = (theme) => {
   })
 }
 
-async function handleSelectThemeChange () {
+async function handleThemeChange () {
   const theme = $(this).val()
-  await window.zadark.browser.saveExtensionSettings({ theme })
+  window.zadark.storage.saveTheme(theme)
   window.zadark.utils.refreshPageTheme()
   setSelectTheme(theme)
-}
-
-const handleBlockingRuleChange = (elName, ruleId) => {
-  return async () => {
-    const isChecked = $(elName).is(':checked')
-
-    const payload = isChecked
-      ? { enableRuleIds: [ruleId] }
-      : { disableRuleIds: [ruleId] }
-
-    chrome.runtime.sendMessage({ action: MSG_ACTIONS.UPDATE_ENABLED_BLOCKING_RULE_IDS, payload })
-  }
 }
 
 const zadarkButtonHTML = `
@@ -84,7 +107,7 @@ const popupHeaderHTML = `
   <div class="zadark-popup__header">
     <div class="zadark-popup__header__logo">
       <a href="https://zadark.quaric.com" title="ZaDark – Zalo Dark Mode" target="_blank" class="zadark-popup__header__logo-link">
-        <img src="${chrome.runtime.getURL('images/zadark-lockup.svg')}" alt="ZaDark" class="zadark-popup__header__logo-img" />
+        <img src="zadark-lockup.svg" alt="ZaDark" class="zadark-popup__header__logo-img" />
       </a>
     </div>
 
@@ -179,8 +202,8 @@ const popupFooterHTML = `
   <div class="zadark-popup__footer">
     <div class="zadark-publisher">
       <span class="zadark-publisher__from">ZaDark from</span>
-      <img src="${chrome.runtime.getURL('images/quaric-lockup-dark.svg')}" class="zadark-publisher__lockup zadark-publisher__lockup--dark">
-      <img src="${chrome.runtime.getURL('images/quaric-lockup-light.svg')}" class="zadark-publisher__lockup zadark-publisher__lockup--light">
+      <img src="quaric-lockup-dark.svg" class="zadark-publisher__lockup zadark-publisher__lockup--dark">
+      <img src="quaric-lockup-light.svg" class="zadark-publisher__lockup zadark-publisher__lockup--light">
     </div>
   </div>
 `
@@ -194,19 +217,8 @@ const zadarkPopupHTML = `
 `
 
 const loadPopupState = async () => {
-  const { theme } = await window.zadark.browser.getExtensionSettings()
+  const theme = window.zadark.storage.getTheme()
   setSelectTheme(theme)
-
-  const isSupportPrivacy = window.zadark.utils.getIsSupportPrivacy()
-
-  if (isSupportPrivacy) {
-    const ruleIds = await chrome.runtime.sendMessage({ action: MSG_ACTIONS.GET_ENABLED_BLOCKING_RULE_IDS })
-    $(switchBlockTypingElName).prop('checked', ruleIds.includes('rules_block_typing'))
-    $(switchBlockSeenElName).prop('checked', ruleIds.includes('rules_block_seen'))
-    $(switchBlockDeliveredElName).prop('checked', ruleIds.includes('rules_block_delivered'))
-  } else {
-    $(panelPrivacyElName).hide()
-  }
 }
 
 const openZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
@@ -262,12 +274,9 @@ const loadZaDarkPopup = () => {
   const zaloAppBody = document.body
   zaloAppBody.insertAdjacentHTML('beforeend', zadarkPopupHTML)
 
-  const zadarkVersion = window.zadark.browser.getManifest().version
+  const zadarkVersion = $('html').data('zadark-version')
   $(versionElName).html(`Phiên bản ${zadarkVersion}`)
-  $(selectThemeElName).on('change', handleSelectThemeChange)
-  $(switchBlockTypingElName).on('change', handleBlockingRuleChange(switchBlockTypingElName, 'rules_block_typing'))
-  $(switchBlockSeenElName).on('change', handleBlockingRuleChange(switchBlockSeenElName, 'rules_block_seen'))
-  $(switchBlockDeliveredElName).on('change', handleBlockingRuleChange(switchBlockDeliveredElName, 'rules_block_delivered'))
+  $(selectThemeElName).on('change', handleThemeChange)
 
   const popupEl = document.querySelector('#zadark-popup')
   const buttonEl = document.getElementById('div_Main_TabZaDark')

@@ -38,6 +38,25 @@
       window.zadark.browser.getExtensionSettings().then(({ theme }) => {
         this.setPageTheme(theme)
       })
+    },
+
+    getIsSupportPrivacy: () => {
+      const { parsedResult: { browser } } = bowser.getParser(window.navigator.userAgent)
+
+      const browserName = browser.name
+      const browserVersion = parseFloat(browser.version)
+
+      // Chrome (Chromium) 84+ supports Declarative Net Request WebExtensions API
+      if (['Chrome', 'Microsoft Edge', 'Opera'].includes(browserName) && browserVersion >= 84) {
+        return true
+      }
+
+      // Safari 15+ supports Declarative Net Request WebExtensions API
+      if (browserName === 'Safari' && browserVersion >= 15) {
+        return true
+      }
+
+      return false
     }
   }
 

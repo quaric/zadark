@@ -1,5 +1,30 @@
 # Changelog
 
+## ZaDark v22.12.2
+> PC v7.0 && Web v8.0
+
+### Added
+- Thêm Menu tuỳ chỉnh ZaDark vào Menu bên trái của Zalo. Kể từ PC v7.0, Web 8.0 người dùng có thể tuỳ chỉnh ZaDark ngay trên Zalo
+
+### Changed
+#### PC specific
+- Thay đổi Flow tuỳ chỉnh giao diện và cài đặt giao diện tối
+#### Web specific
+- Thay đổi Flow tuỳ chỉnh giao diện và chức năng riêng tư
+- ZaDark for Opera: Nâng cấp lên Manifest v3
+
+### Fixed
+- Sửa lỗi Avatar Alpha
+#### Web specific
+- Sửa giao diện Banner Download Zalo PC
+
+### Removed
+#### PC specific
+- Xoá Menu Cài giao diện thay đổi theo hệ điều hành. Kể từ v7.0 người dùng có thể tuỳ chỉnh ZaDark ngay trên Zalo mà không cần phải chạy lại chương trình ZaDark PC
+#### Web specific
+- Xoá Menu GitHub
+- Xoá giao diện xem lịch sử thay đổi trên Extension khi click vào Tên phiên bản. Kể từ v8.0 người dùng có thể xem lịch sử thay đổi trên Website chính thức bằng cách click vào Tên phiên bản
+
 ## ZaDark v22.12.1
 > PC v6.1 && Web v7.1
 

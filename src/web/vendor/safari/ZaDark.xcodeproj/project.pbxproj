@@ -22,7 +22,6 @@
 		C158767327EB671A00E008A0 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = C158766C27EB671A00E008A0 /* manifest.json */; };
 		C158767427EB671A00E008A0 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = C158766D27EB671A00E008A0 /* popup.html */; };
 		C158767527EB671A00E008A0 /* libs in Resources */ = {isa = PBXBuildFile; fileRef = C158766E27EB671A00E008A0 /* libs */; };
-		C158767627EB671A00E008A0 /* changelog.html in Resources */ = {isa = PBXBuildFile; fileRef = C158766F27EB671A00E008A0 /* changelog.html */; };
 		C158767727EB671A00E008A0 /* js in Resources */ = {isa = PBXBuildFile; fileRef = C158767027EB671A00E008A0 /* js */; };
 		C158767B27EC1ED600E008A0 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = C158767A27EC1ED600E008A0 /* fonts */; };
 		C15BC4CC28068B5D008D6F4F /* rules in Resources */ = {isa = PBXBuildFile; fileRef = C15BC4CB28068B5D008D6F4F /* rules */; };
@@ -74,7 +73,6 @@
 		C158766C27EB671A00E008A0 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		C158766D27EB671A00E008A0 /* popup.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
 		C158766E27EB671A00E008A0 /* libs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = libs; sourceTree = "<group>"; };
-		C158766F27EB671A00E008A0 /* changelog.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = changelog.html; sourceTree = "<group>"; };
 		C158767027EB671A00E008A0 /* js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = js; sourceTree = "<group>"; };
 		C158767A27EC1ED600E008A0 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		C15BC4CB28068B5D008D6F4F /* rules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = rules; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 			children = (
 				C15BC4CB28068B5D008D6F4F /* rules */,
 				C1E2CFA627F801DE00AACE85 /* _locales */,
-				C158766F27EB671A00E008A0 /* changelog.html */,
 				C158766B27EB671A00E008A0 /* css */,
 				C158767A27EC1ED600E008A0 /* fonts */,
 				C158766A27EB671A00E008A0 /* images */,
@@ -274,7 +271,6 @@
 				C158767227EB671A00E008A0 /* css in Resources */,
 				C158767427EB671A00E008A0 /* popup.html in Resources */,
 				C158767727EB671A00E008A0 /* js in Resources */,
-				C158767627EB671A00E008A0 /* changelog.html in Resources */,
 				C158767327EB671A00E008A0 /* manifest.json in Resources */,
 				C158767127EB671A00E008A0 /* images in Resources */,
 				C158767B27EC1ED600E008A0 /* fonts in Resources */,
@@ -489,7 +485,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1669980242;
+				CURRENT_PROJECT_VERSION = 1670545187;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -502,7 +498,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 7.1;
+				MARKETING_VERSION = 8.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -521,7 +517,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1669980242;
+				CURRENT_PROJECT_VERSION = 1670545187;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -534,7 +530,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 7.1;
+				MARKETING_VERSION = 8.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -556,7 +552,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1669980242;
+				CURRENT_PROJECT_VERSION = 1670545187;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -571,7 +567,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 7.1;
+				MARKETING_VERSION = 8.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -594,7 +590,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1669980242;
+				CURRENT_PROJECT_VERSION = 1670545187;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -609,7 +605,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 7.1;
+				MARKETING_VERSION = 8.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,

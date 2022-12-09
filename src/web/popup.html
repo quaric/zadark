@@ -8,128 +8,116 @@
 
   <title>ZaDark – Zalo Dark Mode</title>
 
-  <link rel="stylesheet" href="css/zadark-fonts.css">
-  <link rel="stylesheet" href="css/core.css">
-  <link rel="stylesheet" href="css/popup.css">
+  <link rel="stylesheet" href="css/zadark-fonts.min.css">
+  <link rel="stylesheet" href="css/zadark-popup.min.css">
+  <link rel="stylesheet" href="css/popup.min.css">
 </head>
 
-<body>
-  <div class="ext-container">
-    <header class="main-header">
-      <div class="ext-logo">
-        <a href="https://zadark.quaric.com" title="ZaDark – Zalo Dark Mode" target="_blank">
-          <img src="images/zadark-lockup.svg" alt="ZaDark" />
-        </a>
-      </div>
+<body id="zadark-popup">
+  <div class="zadark-popup__header">
+    <div class="zadark-popup__header__logo">
+      <a href="https://zadark.quaric.com" title="ZaDark – Zalo Dark Mode" target="_blank" class="zadark-popup__header__logo-link">
+        <img src="images/zadark-lockup.svg" alt="ZaDark" class="zadark-popup__header__logo-img" />
+      </a>
+    </div>
 
-      <div class="ext-links">
-        <span class="ext-links-item divider">
-          <a href="https://zadark.quaric.com" title="Website chính thức" target="_blank">Website</a>
-        </span>
+    <div class="zadark-popup__header__menu-list">
+      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+        <a href="https://zadark.quaric.com" title="Website chính thức" target="_blank">Website</a>
+      </span>
 
-        <span class="ext-links-item divider">
-          <a href="https://go.quaric.com/zadark-github" title="Mã nguồn ZaDark" target="_blank">GitHub</a>
-        </span>
+      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+        <a href="https://zadark.quaric.com/donate" title="Donate" target="_blank">Donate</a>
+      </span>
 
-        <span class="ext-links-item divider">
-          <a href="https://zadark.quaric.com/donate" title="Donate" target="_blank">Donate</a>
-        </span>
+      <span class="zadark-popup__header__menu-item">
+        <a href="https://zadark.quaric.com/blog/changelog" id="js-ext-version" title="Có gì mới trong phiên bản này?" target="_blank"></a>
+      </span>
+    </div>
+  </div>
 
-        <span class="ext-links-item">
-          <a href="#changelog" id="js-ext-version" title="Có gì mới trong phiên bản này?"></a>
-        </span>
-      </div>
-    </header>
+  <div class="zadark-popup__main">
+    <label class="zadark-form__label">Giao diện</label>
 
-    <main class="p-4">
-      <label class="mb-2 block font-semibold">Giao diện</label>
+    <div class="zadark-panel">
+      <div class="zadark-panel__body">
+        <div id="js-select-theme" class="zadark-radio__list">
+          <label class="zadark-radio">
+            <input type="radio" name="theme" value="light" class="zadark-radio__input">
+            <span class="zadark-radio__checkmark"></span>
+            <span class="zadark-radio__label">
+              <span>Sáng</span>
+            </span>
+          </label>
 
-      <div class="panel">
-        <div class="panel-body">
-          <div id="js-select-theme" class="form-radio-group">
-            <label class="form-radio-container">
-              <input type="radio" name="theme" value="light">
-              <span class="checkmark"></span>
+          <label class="zadark-radio">
+            <input type="radio" name="theme" value="dark" class="zadark-radio__input">
+            <span class="zadark-radio__checkmark"></span>
+            <span class="zadark-radio__label">
+              <span>Tối</span>
+            </span>
+          </label>
 
-              <span class="label-container">
-                <span class="label">Sáng</span>
-              </span>
-            </label>
-
-            <label class="form-radio-container">
-              <input type="radio" name="theme" value="dark">
-              <span class="checkmark"></span>
-
-              <span class="label-container">
-                <span class="label">Tối</span>
-              </span>
-            </label>
-
-            <label class="form-radio-container">
-              <input type="radio" name="theme" value="auto">
-              <span class="checkmark"></span>
-
-              <span class="label-container">
-                <span class="label">Tự động</span>
-                <span class="description">Giao diện Zalo Web sẽ thay đổi theo Hệ điều hành</span>
-              </span>
-            </label>
-          </div>
+          <label class="zadark-radio">
+            <input type="radio" name="theme" value="auto" class="zadark-radio__input">
+            <span class="zadark-radio__checkmark"></span>
+            <span class="zadark-radio__label">
+              <span>Tự động</span>
+              <span>Giao diện Zalo Web sẽ thay đổi theo Hệ điều hành</span>
+            </span>
+          </label>
         </div>
       </div>
+    </div>
 
-      <div class="mt-4" id="js-panel-privacy">
-        <label class="mb-2 block font-semibold">Riêng tư</label>
+    <div id="js-panel-privacy">
+      <label class="zadark-form__label">Riêng tư</label>
 
-        <div class="panel">
-          <div class="panel-body">
-            <div class="form-switch-group">
-              <div class="flex items-center form-switch-container">
-                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn" trên Zalo Web</label>
+      <div class="zadark-panel">
+        <div class="zadark-panel__body">
+          <div class="zadark-switch__list">
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn" trên Zalo Web</label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
 
-                <label class="form-switch">
-                  <input type="checkbox" id="js-switch-block-typing">
-                  <span class="form-switch-slider"></span>
-                </label>
-              </div>
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái "Đã nhận" tin nhắn trên Zalo Web</label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
 
-              <div class="flex items-center form-switch-container">
-                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-delivered">Ẩn trạng thái "Đã nhận" tin nhắn trên Zalo Web</label>
-
-                <label class="form-switch">
-                  <input type="checkbox" id="js-switch-block-delivered">
-                  <span class="form-switch-slider"></span>
-                </label>
-              </div>
-
-              <div class="flex items-center form-switch-container">
-                <label class="flex-1 cursor-pointer select-none" for="js-switch-block-seen">Ẩn trạng thái "Đã xem" tin nhắn trên Zalo Web</label>
-
-                <label class="form-switch">
-                  <input type="checkbox" id="js-switch-block-seen">
-                  <span class="form-switch-slider"></span>
-                </label>
-              </div>
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái "Đã xem" tin nhắn trên Zalo Web</label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
+                <span class="zadark-switch__slider"></span>
+              </label>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="mt-4 flex justify-center">
-        <div class="zadark-from-quaric">
-          <span class="text-gray-400">ZaDark from</span>
-          <img src="images/quaric-lockup-dark.svg" class="quaric-lockup quaric-lockup-dark">
-          <img src="images/quaric-lockup-light.svg" class="quaric-lockup quaric-lockup-light">
-        </div>
-      </div>
-    </main>
+    </div>
   </div>
 
-  <script src="libs/jquery/jquery-3.6.0.min.js"></script>
-  <script src="libs/bowser/bowser-es5-2.10.0.js"></script>
-  <script src="js/browser.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/popup.js"></script>
+  <div class="zadark-popup__footer">
+    <div class="zadark-publisher">
+      <span class="zadark-publisher__from">ZaDark from</span>
+      <img src="images/quaric-lockup-dark.svg" class="zadark-publisher__lockup zadark-publisher__lockup--dark">
+      <img src="images/quaric-lockup-light.svg" class="zadark-publisher__lockup zadark-publisher__lockup--light">
+    </div>
+  </div>
+
+  <script src="libs/jquery.min.js"></script>
+  <script src="libs/bowser-es5.min.js"></script>
+  <script src="js/browser.min.js"></script>
+  <script src="js/utils.min.js"></script>
+  <script src="js/popup.min.js"></script>
 </body>
 
 </html>

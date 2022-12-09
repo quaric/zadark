@@ -7,16 +7,25 @@
   color-scheme: light dark;
 }
 
-html[data-zadark-theme="dark"] {
+html[data-zadark-theme="light"] {
   body {
-    border: 1px solid var(--border-base);
+    -webkit-font-smoothing: antialiased;
   }
 }
 
-.ext-container {
-  min-width: 512px;
+html[data-zadark-theme="dark"] {
+  body {
+    -webkit-font-smoothing: auto;
+    border: 1px solid var(--border-base);
+  }
+
+  div::-webkit-scrollbar-thumb {
+    background: var(--zadark-grey-300);
+  }
 }
 
-#js-panel-privacy {
-  display: none;
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 512px;
 }
