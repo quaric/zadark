@@ -12,6 +12,8 @@
   [![Opera](https://img.shields.io/badge/Opera-00002D.svg?&style=for-the-badge&logo=opera&logoColor=3989FF)](https://go.quaric.com/zadark-opera)
   [![Edge](https://img.shields.io/badge/Edge-00002D.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=3989FF)](https://go.quaric.com/zadark-edge)
   [![Safari](https://img.shields.io/badge/Safari-00002D.svg?&style=for-the-badge&logo=safari&logoColor=3989FF)](https://go.quaric.com/zadark-safari)
+
+  <img src="./.github/zadark-from-quaric.svg" alt="ZaDark from Quaric" />
 </div>
 
 <br />
@@ -36,8 +38,6 @@
 ZaDark is an extension that helps you enable Dark Mode for Zalo PC and Web.
 
 https://zadark.quaric.com/
-
-[![ZaDark from Quaric](./.github/zadark-from-quaric.svg)](https://quaric.com/)
 
 ![ZaDark Wins Many Awards by SourceForge](./.github/sourceforge-awards.png)
 
