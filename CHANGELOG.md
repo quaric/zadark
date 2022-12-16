@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark v22.12.4
+
+### Changed
+#### PC (macOS) specific
+- Thay đổi cách đóng gói ZaDark PC (macOS)
+
 ## ZaDark v22.12.3
 > PC v7.1
 
