@@ -34,7 +34,7 @@ const DIST_FILE_NAME = {
   WINDOWS: `ZaDark-Windows-${dot2Underscore(pcPackageJSON.version)}`
 }
 
-const safariResources = getWebPath('./vendor/safari/ZaDark Extension/Resources')
+const SAFARI_RESOURCES = getWebPath('./vendor/safari/ZaDark Extension/Resources')
 
 const buildSass = (_src, _dest) => {
   return src(_src)
@@ -67,7 +67,7 @@ const buildCoreStyles = () => {
     .pipe(dest('./build/firefox/css'))
     .pipe(dest('./build/opera/css'))
     .pipe(dest('./build/edge/css'))
-    .pipe(dest(path.join(safariResources, '/css')))
+    .pipe(dest(path.join(SAFARI_RESOURCES, '/css')))
     .pipe(dest('./build/pc/assets/css'))
 }
 
@@ -81,7 +81,7 @@ const buildWebStyles = () => {
     .pipe(dest('./build/firefox/css'))
     .pipe(dest('./build/opera/css'))
     .pipe(dest('./build/edge/css'))
-    .pipe(dest(path.join(safariResources, '/css')))
+    .pipe(dest(path.join(SAFARI_RESOURCES, '/css')))
 }
 
 const buildWeb = (browser) => {
@@ -100,13 +100,10 @@ const buildWeb = (browser) => {
 
   return mergeStream(
     src(getWebPath(`./vendor/${browser}/manifest.json`)).pipe(dest(rootDir)),
+    src(getWebPath('./*.html')).pipe(dest(rootDir)),
+
     // src(getWebPath(`./vendor/${browser}/browser.js`)).pipe(dest(jsDir)),
     // src(getWebPath(`./vendor/${browser}/service-worker.js`)).pipe(dest(jsDir)),
-    buildSass(getWebPath(`./vendor/${browser}/*.scss`), cssDir),
-
-    src(getWebPath('./_locales/**/*')).pipe(dest(localesDir)),
-    src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
-    //
     // src(getWebPath('./js/**/*')).pipe(dest(jsDir)),
     src([
       getWebPath(`./vendor/${browser}/browser.js`),
@@ -119,11 +116,12 @@ const buildWeb = (browser) => {
       ignoreFiles: ['.min.js'],
       noSource: true
     })).pipe(dest(jsDir)),
-    //
+    buildSass(getWebPath(`./vendor/${browser}/*.scss`), cssDir),
+
+    src(getWebPath('./_locales/**/*')).pipe(dest(localesDir)),
+    src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
     src(getWebPath('./images/**/*')).pipe(dest(imagesDir)),
     src(getCorePath('./fonts/**/*')).pipe(dest(fontsDir)),
-    src(getWebPath('./*.html')).pipe(dest(rootDir)),
-
     ...copyRulesJSON
   )
 }
@@ -146,30 +144,27 @@ const buildEdge = () => {
 
 const cleanSafariResources = () => {
   const patterns = [
-    path.join(safariResources, '**/*'),
-    `!${path.join(safariResources, 'images')}`,
-    `!${path.join(safariResources, '.gitkeep')}`
+    path.join(SAFARI_RESOURCES, '**/*'),
+    `!${path.join(SAFARI_RESOURCES, 'images')}`,
+    `!${path.join(SAFARI_RESOURCES, '.gitkeep')}`
   ]
   return del(patterns)
 }
 
 const buildSafari = () => {
-  const jsDir = path.join(safariResources, '/js')
-  const cssDir = path.join(safariResources, '/css')
-  const localesDir = path.join(safariResources, '/_locales')
-  const libsDir = path.join(safariResources, '/libs')
-  const fontsDir = path.join(safariResources, '/fonts')
-  const rulesDir = path.join(safariResources, '/rules')
+  const jsDir = path.join(SAFARI_RESOURCES, '/js')
+  const cssDir = path.join(SAFARI_RESOURCES, '/css')
+  const localesDir = path.join(SAFARI_RESOURCES, '/_locales')
+  const libsDir = path.join(SAFARI_RESOURCES, '/libs')
+  const fontsDir = path.join(SAFARI_RESOURCES, '/fonts')
+  const rulesDir = path.join(SAFARI_RESOURCES, '/rules')
 
   return mergeStream(
-    src(getWebPath('./vendor/safari/manifest.json')).pipe(dest(safariResources)),
+    src(getWebPath('./vendor/safari/manifest.json')).pipe(dest(SAFARI_RESOURCES)),
+    src(getWebPath('./*.html')).pipe(dest(SAFARI_RESOURCES)),
+
     // src(getWebPath('./vendor/safari/browser.js')).pipe(dest(jsDir)),
     // src(getWebPath('./vendor/safari/service-worker.js')).pipe(dest(jsDir)),
-    buildSass(getWebPath('./vendor/safari/*.scss'), cssDir),
-
-    src(getWebPath('./_locales/**/*')).pipe(dest(localesDir)),
-    src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
-    //
     // src(getWebPath('./js/**/*')).pipe(dest(jsDir)),
     src([
       getWebPath('./vendor/safari/browser.js'),
@@ -182,10 +177,13 @@ const buildSafari = () => {
       ignoreFiles: ['.min.js'],
       noSource: true
     })).pipe(dest(jsDir)),
-    //
+
+    buildSass(getWebPath('./vendor/safari/*.scss'), cssDir),
+
+    src(getWebPath('./_locales/**/*')).pipe(dest(localesDir)),
+    src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
     src(getCorePath('./fonts/**/*')).pipe(dest(fontsDir)),
-    src(getWebPath('./rules/**/*')).pipe(dest(rulesDir)),
-    src(getWebPath('./*.html')).pipe(dest(safariResources))
+    src(getWebPath('./rules/**/*')).pipe(dest(rulesDir))
   )
 }
 
@@ -196,15 +194,17 @@ const buildPC = () => {
       `!${getPCPath('./assets/scss/**')}`,
       `!${getPCPath('./assets/js/**')}`
     ]).pipe(dest('./build/pc')),
-    src(getCorePath('./fonts/**/*')).pipe(dest('./build/pc/assets/fonts')),
-    buildSass(getPCPath('./assets/scss/*.scss'), './build/pc/assets/css'),
+
     src(getPCPath('./assets/js/*.js')).pipe(minify({
       ext: {
         min: '.min.js'
       },
       ignoreFiles: ['.min.js'],
       noSource: true
-    })).pipe(dest('./build/pc/assets/js'))
+    })).pipe(dest('./build/pc/assets/js')),
+
+    src(getCorePath('./fonts/**/*')).pipe(dest('./build/pc/assets/fonts')),
+    buildSass(getPCPath('./assets/scss/*.scss'), './build/pc/assets/css')
   )
 }
 
@@ -242,6 +242,12 @@ const pkgWindows = () => {
 
 // Zip
 
+const zipMacOS = () => {
+  return src(`./dist/macOS/${DIST_FILE_NAME.MACOS}`)
+    .pipe(gulpZip(`${DIST_FILE_NAME.MACOS}.zip`))
+    .pipe(dest('./dist/macOS'))
+}
+
 const zipWindows = () => {
   return src(`./dist/Windows/${DIST_FILE_NAME.WINDOWS}.exe`)
     .pipe(gulpZip(`${DIST_FILE_NAME.WINDOWS}.zip`))
@@ -277,6 +283,7 @@ const edgeDist = () => {
 const pcDist = series(
   pkgMacOS,
   pkgWindows,
+  zipMacOS,
   zipWindows
 )
 
