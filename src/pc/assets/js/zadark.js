@@ -131,7 +131,7 @@ const popupMainHTML = `
   <div class="zadark-popup__main">
     <label class="zadark-form__label">Giao diện</label>
 
-    <div class="zadark-panel">
+    <div class="zadark-panel" style="margin-bottom: 16px;">
       <div class="zadark-panel__body">
         <div id="js-select-theme" class="zadark-radio__list">
           <label class="zadark-radio">
@@ -155,7 +155,7 @@ const popupMainHTML = `
             <span class="zadark-radio__checkmark"></span>
             <span class="zadark-radio__label">
               <span>Tự động</span>
-              <span>Giao diện Zalo Web sẽ thay đổi theo Hệ điều hành</span>
+              <span>Giao diện Zalo PC sẽ thay đổi theo Hệ điều hành</span>
             </span>
           </label>
         </div>
