@@ -1,5 +1,13 @@
 # Changelog
 
+## ZaDark v22.12.5
+> PC v7.2
+
+### Fixed
+#### PC specific
+- Sửa lỗi khoảng cách giữa phần "Giao diện" và "ZaDark from Quaric" ở ZaDark Popup
+- Cập nhật mô tả cho "Giao diện tự động"
+
 ## ZaDark v22.12.4
 
 ### Changed
