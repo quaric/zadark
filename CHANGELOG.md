@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark v23.1.1
+> PC v7.3
+
+### Fixed
+#### PC specific (macOS)
+- Sửa lỗi khoảng cách Avatar và macOS TitleBar ở Zalo Tabs quá lớn
+
 ## ZaDark v22.12.5
 > PC v7.2
 

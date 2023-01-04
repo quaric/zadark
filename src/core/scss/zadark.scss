@@ -1641,6 +1641,18 @@ body.zadark {
     }
   }
 
+  &.zadark-darwin {
+    .nav__tabs--darwin {
+      padding-top: 0;
+    }
+
+    .nav__tabs__zalo {
+      height: auto;
+      padding-top: 40px; // 24px (TitleBar) + 16px
+      padding-bottom: 16px;
+    }
+  }
+
   &.zadark-web {
     #ztoolbar div[icon="outline-za-screenshot"] {
       display: none;
