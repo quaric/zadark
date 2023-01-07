@@ -419,12 +419,14 @@
 
   // Buttons
 
-  --button-primary-normal: var(--B55); // linear-gradient(45deg, #408dfd, #0068ff)
+  --button-primary-normal: var(--B55);
   --button-primary-hover: var(--B60);
   --button-primary-pressed: var(--B80);
   --button-primary-disabled: var(--B25);
   --button-primary-text: #fff;
-  --button-primary-text-disabled: var(--WA65);
+  --button-primary-text-disabled: var(--B50);
+  --button-primary-focus-bg: var(--B60);
+  --button-primary-focus-text: #fff;
 
   --button-secondary-normal: var(--B15);
   --button-secondary-hover: var(--B20);
@@ -432,6 +434,8 @@
   --button-secondary-disabled: var(--B15);
   --button-secondary-text: var(--B55);
   --button-secondary-text-disabled: var(--B25);
+  --button-secondary-focus-bg: var(--B20);
+  --button-secondary-focus-text: var(--B55);
 
   --button-danger-normal: var(--R60);
   --button-danger-hover: var(--R70);
@@ -439,6 +443,8 @@
   --button-danger-disabled: var(--R25);
   --button-danger-text: #fff;
   --button-danger-text-disabled: var(--WA65);
+  --button-danger-focus-bg: var(--R70);
+  --button-danger-focus-text: #fff;
 
   --button-secondary-danger-normal: var(--R15);
   --button-secondary-danger-hover: var(--R20);
@@ -446,6 +452,8 @@
   --button-secondary-danger-disabled: var(--R15);
   --button-secondary-danger-text: var(--R60);
   --button-secondary-danger-text-disabled: var(--R25);
+  --button-secondary-danger-focus-bg: var(--R20);
+  --button-secondary-danger-focus-text: var(--R60);
 
   --button-neutral-normal: var(--N20);
   --button-neutral-hover: var(--N30);
@@ -453,6 +461,8 @@
   --button-neutral-disabled: var(--N20);
   --button-neutral-text: var(--N300);
   --button-neutral-text-disabled: var(--N60);
+  --button-neutral-focus-bg: var(--N30);
+  --button-neutral-focus-text: var(--N300);
 
   --button-tertiary-primary-normal: transparent;
   --button-tertiary-primary-hover: var(--B15);
@@ -460,6 +470,8 @@
   --button-tertiary-primary-disabled: transparent;
   --button-tertiary-primary-text: var(--B55);
   --button-tertiary-primary-text-disabled: var(--B40);
+  --button-tertiary-primary-focus-bg: var(--B15);
+  --button-tertiary-primary-focus-text: var(--B55);
 
   --button-tertiary-danger-normal: transparent;
   --button-tertiary-danger-hover: var(--R15);
@@ -467,14 +479,18 @@
   --button-tertiary-danger-disabled: transparent;
   --button-tertiary-danger-text: var(--R60);
   --button-tertiary-danger-text-disabled: var(--R25);
+  --button-tertiary-danger-focus-bg: var(--R15);
+  --button-tertiary-danger-focus-text: var(--R60);
 
   --button-tertiary-neutral-normal: transparent;
   --button-tertiary-neutral-hover: var(--N25);
+  --button-tertiary-neutral-pressed: var(--N25);
   --button-tertiary-neutral-disabled: transparent;
   --button-tertiary-neutral-focus: var(--B15);
   --button-tertiary-neutral-text: var(--N300);
   --button-tertiary-neutral-text-disabled: var(--N60);
-  --button-tertiary-neutral-text-focus: var(--B55);
+  --button-tertiary-neutral-focus-bg: var(--B15);
+  --button-tertiary-neutral-focus-text: var(--B55);
 
   // ZaDark
 
@@ -492,6 +508,13 @@ html[data-zadark-theme="light"] {
   &:root {
     --popper-shadow: 0 0 10px 0 var(--BA20);
   }
+}
+
+@mixin transition-all {
+  -webkit-transition: all 250ms ease-in-out;
+  -moz-transition: all 250ms ease-in-out;
+  -o-transition: all 250ms ease-in-out;
+  transition: all 250ms ease-in-out;
 }
 
 html[data-zadark-theme="dark"] {
@@ -583,20 +606,68 @@ html[data-zadark-theme="dark"] {
       border: 0.5px solid var(--NG30);
     }
 
-    .leftbar-tab {
-      color: var(--text-primary);
-      -webkit-transition: all 250ms ease-in-out;
-      -moz-transition: all 250ms ease-in-out;
-      -o-transition: all 250ms ease-in-out;
-      transition: all 250ms ease-in-out;
-
-      &:hover {
-        background-color: var(--layer-background-leftmenu-hover);
-      }
-    }
-
     .leftbar-unread {
       color: #fff !important;
+    }
+
+    .leftbar-mark-unread {
+      top: 6px;
+      right: 10px;
+    }
+
+    .leftbar-tab {
+      height: 56px;
+      color: var(--N80);
+
+      &,
+      &:before {
+        @include transition-all();
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 4px;
+        left: 8px;
+
+        width: calc(100% - 16px);
+        height: calc(100% - 8px);
+        border-radius: 8px;
+
+        opacity: 0;
+        background-color: var(--layer-background-leftmenu-hover);
+      }
+
+      &:hover {
+        background-color: transparent;
+        color: var(--text-primary);
+
+        &:before {
+          opacity: 1;
+        }
+      }
+
+      &.chat-message.first-selected,
+      &.chat-message.last-selected,
+      &.selected {
+        background-color: transparent;
+        color: var(--text-primary);
+
+        &:before {
+          opacity: 1;
+        }
+
+        .leftbar-mark-unread {
+          top: 2px;
+          right: 6px;
+
+          width: 8px;
+          height: 8px;
+
+          box-shadow: 0 0 0 3px var(--layer-background-leftmenu);
+        }
+      }
     }
 
     .user-status-footer {
@@ -678,10 +749,7 @@ html[data-zadark-theme="dark"] {
         background-color: var(--WA100);
         color: var(--text-primary);
 
-        -webkit-transition: all 250ms ease-in-out;
-        -moz-transition: all 250ms ease-in-out;
-        -o-transition: all 250ms ease-in-out;
-        transition: all 250ms ease-in-out;
+        @include transition-all();
 
         &:hover {
           color: #fff;
@@ -1360,7 +1428,6 @@ html[data-zadark-theme="dark"] {
 
       .chat-onboard {
         > div:nth-child(1) {
-          // background-color: red;
           width: 480px !important;
         }
       }

@@ -1,11 +1,16 @@
 # Changelog
 
 ## ZaDark v23.1.1
-> PC v7.3
+> PC v7.3 && Web v8.1
 
 ### Fixed
+- Button: Cập nhật bảng màu theo cập nhật của Zalo
+
 #### PC specific (macOS)
 - Sửa lỗi khoảng cách Avatar và macOS TitleBar ở Zalo Tabs quá lớn
+
+### Changed
+- LeftTab: Thay đổi giao diện khi Hover, Selected TabItem
 
 ## ZaDark v22.12.5
 > PC v7.2
