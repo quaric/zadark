@@ -296,7 +296,7 @@
   --surface-alt: var(--WA100);
 
   --layer-background: var(--WA100);
-  --layer-background-subtle: var(--N10);
+  --layer-background-subtle: var(--WA10);
   --layer-background-hover: var(--NG10);
   --layer-background-disabled: var(--NG25);
   --layer-background-selected: var(--NG10);
@@ -1009,10 +1009,7 @@ html[data-zadark-theme="dark"] {
     }
 
     .conv-item {
-      -webkit-transition: all 250ms ease-in-out;
-      -moz-transition: all 250ms ease-in-out;
-      -o-transition: all 250ms ease-in-out;
-      transition: all 250ms ease-in-out;
+      @include transition-all();
 
       .conv-message {
         &.progress-bar {
@@ -1692,6 +1689,12 @@ html[data-zadark-theme="dark"] {
       &__action-button-wrapper {
         color: var(--B60);
       }
+    }
+
+    .quote-line {
+      width: 4px;
+      min-width: 4px;
+      border-radius: 2px;
     }
   }
 }

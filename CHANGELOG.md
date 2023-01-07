@@ -5,12 +5,14 @@
 
 ### Fixed
 - Button: Cập nhật bảng màu theo cập nhật của Zalo
+- Settings: Cập nhật màu nền MenuLeft
 
 #### PC specific (macOS)
 - Sửa lỗi khoảng cách Avatar và macOS TitleBar ở Zalo Tabs quá lớn
 
 ### Changed
 - LeftTab: Thay đổi giao diện khi Hover, Selected TabItem
+- QuoteLine: Thay đổi chiều rộng và bo tròn của trích dẫn tin nhắn
 
 ## ZaDark v22.12.5
 > PC v7.2
