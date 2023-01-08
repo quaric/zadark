@@ -47,34 +47,38 @@ const writeIndexFile = (zaloDir, { isSyncWithSystem }) => {
   const headElement = root.getElementsByTagName('head')[0]
   const bodyElement = root.getElementsByTagName('body')[0]
 
-  // Required font
-  const zaDarkFont = root.querySelectorAll('link[href="zadark-fonts.css"]')
-  if (!zaDarkFont.length) {
-    headElement.insertAdjacentHTML(
-      'beforeend',
-      '<link rel="stylesheet" href="zadark-fonts.css">'
-    )
-  }
+  // Required fonts, styles and scripts
 
-  // Required stylesheet
-  const zaDarkCSS = root.querySelectorAll('link[href="zadark.css"]')
-  if (!zaDarkCSS.length) {
-    headElement.insertAdjacentHTML(
-      'beforeend',
-      '<link rel="stylesheet" href="zadark.css">'
-    )
-  }
+  const elements = [
+    {
+      selector: 'link[href="zadark-fonts.css"]',
+      where: 'beforeend',
+      html: '<link rel="stylesheet" href="zadark-fonts.css">',
+      htmlElement: headElement
+    },
+    {
+      selector: 'link[href="zadark.css"]',
+      where: 'beforeend',
+      html: '<link rel="stylesheet" href="zadark.css">',
+      htmlElement: headElement
+    }
+  ]
 
   if (isSyncWithSystem) {
-    // Required script
-    const zaDarkSWSScript = root.querySelectorAll('script[src="zadark-auto.js"]')
-    if (!zaDarkSWSScript.length) {
-      bodyElement.insertAdjacentHTML(
-        'beforeend',
-        '<script src="zadark-auto.js"></script>'
-      )
-    }
+    elements.push({
+      selector: 'script[src="zadark-auto.js"]',
+      where: 'beforeend',
+      html: '<script src="zadark-auto.js"></script>',
+      htmlElement: bodyElement
+    })
   }
+
+  elements.forEach(({ selector, where, html, htmlElement }) => {
+    const elementExists = root.querySelectorAll(selector)
+    if (!elementExists.length) {
+      htmlElement.insertAdjacentHTML(where, html)
+    }
+  })
 
   // Required themeAttributes
   htmlElement.setAttribute('data-zadark-theme', 'dark')
