@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark v23.1.2
+> PC v7.4 && Web v8.2
+
+### Fixed
+- Settings: Cập nhật màu nền MenuLeft
+
 ## ZaDark v23.1.1
 > PC v7.3 && Web v8.1
 

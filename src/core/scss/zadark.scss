@@ -296,7 +296,7 @@
   --surface-alt: var(--WA100);
 
   --layer-background: var(--WA100);
-  --layer-background-subtle: var(--WA10);
+  --layer-background-subtle: var(--N10);
   --layer-background-hover: var(--NG10);
   --layer-background-disabled: var(--NG25);
   --layer-background-selected: var(--NG10);
@@ -1695,6 +1695,12 @@ html[data-zadark-theme="dark"] {
       width: 4px;
       min-width: 4px;
       border-radius: 2px;
+    }
+
+    .setting-menu__item.chat-message.first-selected,
+    .setting-menu__item.chat-message.last-selected,
+    .setting-menu__item.selected {
+      background-color: var(--NG30);
     }
   }
 }
