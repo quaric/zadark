@@ -708,15 +708,23 @@ html[data-zadark-theme="dark"] {
       height: 100vh;
     }
 
+    .chat-onboard {
+      background: var(--message-view-gradient);
+    }
+
     .chips--choice.--active {
       color: #fff;
     }
 
     .chat-date {
-      color: var(--N300);
+      color: var(--text-secondary);
       > span {
-        background: var(--WA50);
+        background: var(--WA100);
       }
+    }
+
+    .chat-date .line {
+      border-top: 1px solid var(--NG10);
     }
 
     #contact-search-input {
@@ -826,7 +834,7 @@ html[data-zadark-theme="dark"] {
     }
 
     .message-view__guide__item__sign {
-      color: var(--N300);
+      color: var(--text-primary);
     }
 
     .card-send-time {
@@ -1184,16 +1192,6 @@ html[data-zadark-theme="dark"] {
       color: var(--neutral-500) !important;
     }
 
-    // .zl-avatar {
-    //   --WA100: #fff;
-    //   --NG50: #000;
-    //   box-shadow: 0 0 0 1px var(--bg-default);
-    // }
-
-    // .zl-avatar__badge {
-    //   --WA100: #232526;
-    // }
-
     .zavatar {
       --WA100: #fff;
       --NG50: #000;
@@ -1203,8 +1201,16 @@ html[data-zadark-theme="dark"] {
       }
     }
 
-    .chat-date .line {
-      border-top: 1px solid var(--NG10);
+    .zavatar-online {
+      --width: 14px;
+
+      width: var(--width);
+      height: var(--width);
+      min-width: var(--width);
+      min-height: var(--width);
+
+      right: 0;
+      bottom: 0;
     }
 
     // Zavi Meeting
@@ -1333,6 +1339,7 @@ html[data-zadark-theme="dark"] {
     }
 
     // App Lock
+
     .app-lock__main__input {
       display: flex;
       align-items: center;
@@ -1341,6 +1348,7 @@ html[data-zadark-theme="dark"] {
         height: 40px;
         padding: 0px 16px;
         border-right: 0;
+        background: var(--field-bg-filled);
         color: var(--text-primary);
       }
 
@@ -1353,7 +1361,24 @@ html[data-zadark-theme="dark"] {
 
         border: 1px solid var(--B60);
         background: var(--button-primary-normal);
-        color: var(--text-primary);
+        color: #fff;
+      }
+    }
+
+    .app-lock__main .username {
+      font-size: 1.25rem;
+      font-weight: var(--medium);
+    }
+
+    .app-lock__logout {
+      padding-bottom: 32px;
+
+      a {
+        padding: 8px 16px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text-secondary);
+        text-decoration: none;
       }
     }
 
@@ -1421,6 +1446,9 @@ html[data-zadark-theme="dark"] {
       }
       .slideshow__bottom {
         margin-top: 50px;
+      }
+      .slideshow__btn {
+        color: var(--text-secondary);
       }
 
       .chat-onboard {
@@ -1697,10 +1725,35 @@ html[data-zadark-theme="dark"] {
       border-radius: 2px;
     }
 
+    .setting-menu__item,
+    .zmenu-item {
+      @include transition-all();
+    }
+
     .setting-menu__item.chat-message.first-selected,
     .setting-menu__item.chat-message.last-selected,
     .setting-menu__item.selected {
       background-color: var(--NG30);
+    }
+
+    .message-view__guide,
+    .tds-bubble-info-ecard__container {
+      background-color: var(--white-message);
+    }
+
+    .event-message > div,
+    .onboard-message > div {
+      background: var(--white-message);
+    }
+
+    .e2ee-event-info {
+      background-color: var(--white-message) !important;
+    }
+
+    .conv--unreadMark {
+      font-size: 0.5rem;
+      width: 0.5rem;
+      height: 0.5rem;
     }
   }
 }

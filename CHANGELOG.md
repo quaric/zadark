@@ -4,7 +4,18 @@
 > PC v7.4 && Web v8.2
 
 ### Fixed
-- Settings: Cập nhật màu nền MenuLeft
+- Settings : Sửa lỗi màu nền MenuLeft không tương phản tốt
+- `.conv--unreadMark` : Làm gọn kích thước biểu tượng chưa đọc tin nhắn (Dấu chấm đỏ)
+- `.zavatar-online` : Tăng kích thước biểu tượng Trực tuyến (Dấu chấm xanh lá)
+
+### Changed
+- Welcome : Cập nhật màu nền Trang chào mừng
+- Welcome : Cập nhật Tiêu đề chào mừng
+- Welcome : Cập nhật màu chữ Nút chuyển slide (`<`, `>`)
+- App Lock : Cập nhật fontSize, textColor
+- `.chat-date` : Cập nhật màu nền và màu chữ
+- `.message-view__guide, .tds-bubble-info-ecard__container` : Cập nhật màu nền
+- `.event-message, .onboard-message` : Cập nhật màu nền
 
 ## ZaDark v23.1.1
 > PC v7.3 && Web v8.1
