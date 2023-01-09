@@ -268,10 +268,11 @@ const loadWelcomeScreen = () => {
   welcomeScreenTitleEl.parent().html(`
     <span-22 data-translate-inner="STR_WELCOME_SCREEN_MAIN_TITLE" style="color: var(--N80);">${welcomeScreenTitleEl.text()}</span-22>
     <div style="display: flex; align-items: center; justify-content: center; margin-top: 4px;">
-      <span-b32>Zalo PC</span-b32>
-      <span-24 style="margin-left: 8px; margin-right: 8px; color: var(--N40);">x</span-24>
       <span-b32>ZaDark</span-b32>
-      <span-32>!</span-32>
+      <span-24 style="margin-left: 8px; margin-right: 8px; color: var(--N40);">=</span-24>
+      <span-b32>Zalo</span-b32>
+      <span-24 style="margin-left: 8px; margin-right: 8px; color: var(--N40);">+</span-24>
+      <span-b32>Dark Mode</span-b32>
     </div>
   `)
 
