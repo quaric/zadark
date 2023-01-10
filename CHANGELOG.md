@@ -1,6 +1,12 @@
 # Changelog
 
 ## ZaDark v23.1.2
+> PC v7.5 && Web v8.3
+
+### Fixed
+- `.leftbar-unread` : Làm gọn kích thước nhãn chưa đọc tin nhắn
+
+## ZaDark v23.1.2
 > PC v7.4 && Web v8.2
 
 ### Fixed
