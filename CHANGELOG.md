@@ -3,8 +3,13 @@
 ## ZaDark v23.1.3
 > PC v7.5 && Web v8.3
 
+### Added
+#### PC specific (Windows)
+- Notification : Hỗ trợ Dark Mode cho Hộp thoại thông báo ở góc phải dưới trên Windows
+
 ### Fixed
 - `.leftbar-unread` : Làm gọn kích thước nhãn chưa đọc tin nhắn
+- `.conv-action__unread` : Thay đổi màu nền (xanh dương thành đỏ)
 
 ## ZaDark v23.1.2
 > PC v7.4 && Web v8.2

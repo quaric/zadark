@@ -4,6 +4,17 @@
   "version": "7.5",
   "main": "index.js",
   "repository": "https://github.com/quaric/zadark.git",
-  "author": "Dai Nguyen <ncdai3651408@gmail.com>",
+  "author": {
+    "name": "Quaric",
+    "email": "contact@quaric.com",
+    "url": "https://zadark.quaric.com"
+  },
+  "contributors": [
+    {
+      "name": "Nguyen Chanh Dai",
+      "email": "ncdai@penphy.edu.vn",
+      "url": "https://github.com/iamncdai"
+    }
+  ],
   "license": "MIT"
 }
