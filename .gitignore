@@ -18,3 +18,5 @@ src/web/vendor/safari/ZaDark Extension/Resources/*
 !src/web/vendor/safari/ZaDark Extension/Resources/.gitkeep
 
 tools/**/config.ini
+
+.env

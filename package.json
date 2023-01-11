@@ -23,19 +23,27 @@
     "pc:dev": "NODE_ENV=development node build/pc",
     "pc:start": "NODE_ENV=production node build/pc",
     "codesign:macos": "node tools/macos/codesign tools/macos/config.ini",
-    "safari": "xed src/browser-ext/vendor/safari/ZaDark.xcodeproj"
+    "safari": "xed src/browser-ext/vendor/safari/ZaDark.xcodeproj",
+    "publish:chrome": "node tools/publish-api/chrome",
+    "publish:edge": "node tools/publish-api/edge",
+    "publish:firefox": "node publish-api/firefox"
   },
   "devDependencies": {
+    "axios": "^1.2.2",
     "babel-eslint": "^10.1.0",
     "config-ini-parser": "^1.5.9",
+    "dotenv": "^16.0.3",
+    "form-data": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-minify": "^3.1.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-zip": "^5.1.0",
+    "jsonwebtoken": "^9.0.0",
     "merge-stream": "^2.0.0",
     "nodemon": "^2.0.15",
     "pkg": "5.5.2",
+    "qs": "^6.11.0",
     "sass": "^1.49.8",
     "standard": "^16.0.4"
   },

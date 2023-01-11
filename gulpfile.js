@@ -9,11 +9,7 @@ const del = require('del')
 const minify = require('gulp-minify')
 const rename = require('gulp-rename')
 
-const chromeManifest = require('./src/web/vendor/chrome/manifest.json')
-const firefoxManifest = require('./src/web/vendor/firefox/manifest.json')
-const operaManifest = require('./src/web/vendor/opera/manifest.json')
-const edgeManifest = require('./src/web/vendor/edge/manifest.json')
-const pcPackageJSON = require('./src/pc/package.json')
+const distUtils = require('./dist-utils')
 
 const CORE_PATH = './src/core'
 const WEB_PATH = './src/web'
@@ -22,17 +18,6 @@ const PC_PATH = './src/pc'
 const getCorePath = (p) => path.join(CORE_PATH, p)
 const getWebPath = (p) => path.join(WEB_PATH, p)
 const getPCPath = (p) => path.join(PC_PATH, p)
-
-const dot2Underscore = (v = '') => v.replace(/\./g, '_')
-
-const DIST_FILE_NAME = {
-  CHROME: `ZaDark-Chrome-${dot2Underscore(chromeManifest.version)}`,
-  FIREFOX: `ZaDark-Firefox-${dot2Underscore(firefoxManifest.version)}`,
-  OPERA: `ZaDark-Opera-${dot2Underscore(operaManifest.version)}`,
-  EDGE: `ZaDark-Edge-${dot2Underscore(edgeManifest.version)}`,
-  MACOS: `ZaDark-macOS-${dot2Underscore(pcPackageJSON.version)}`,
-  WINDOWS: `ZaDark-Windows-${dot2Underscore(pcPackageJSON.version)}`
-}
 
 const SAFARI_RESOURCES = getWebPath('./vendor/safari/ZaDark Extension/Resources')
 
@@ -216,7 +201,7 @@ const pkgMacOS = () => {
       './build/pc/index.js',
       '--config', './pkg.config.json',
       '--targets', 'node14-macos-x64',
-      '--output', `./dist/macos/${DIST_FILE_NAME.MACOS}`
+      '--output', distUtils.getFilePath('MACOS', true)
     ]).then(() => {
       resolve(true)
     }).catch((error) => {
@@ -231,7 +216,7 @@ const pkgWindows = () => {
       './build/pc/index.js',
       '--config', './pkg.config.json',
       '--targets', 'node14-win-x64',
-      '--output', `./dist/windows/${DIST_FILE_NAME.WINDOWS}`
+      '--output', distUtils.getFilePath('WINDOWS', true)
     ]).then(() => {
       resolve(true)
     }).catch((error) => {
@@ -243,41 +228,41 @@ const pkgWindows = () => {
 // Zip
 
 const zipMacOS = () => {
-  return src(`./dist/macOS/${DIST_FILE_NAME.MACOS}`)
-    .pipe(gulpZip(`${DIST_FILE_NAME.MACOS}.zip`))
-    .pipe(dest('./dist/macOS'))
+  return src(distUtils.getFilePath('MACOS', true))
+    .pipe(gulpZip(distUtils.getFileNameZip('MACOS')))
+    .pipe(dest(distUtils.getFileDir('MACOS')))
 }
 
 const zipWindows = () => {
-  return src(`./dist/Windows/${DIST_FILE_NAME.WINDOWS}.exe`)
-    .pipe(gulpZip(`${DIST_FILE_NAME.WINDOWS}.zip`))
-    .pipe(dest('./dist/Windows'))
+  return src(distUtils.getFilePath('WINDOWS', true))
+    .pipe(gulpZip(distUtils.getFileNameZip('WINDOWS')))
+    .pipe(dest(distUtils.getFileDir('WINDOWS')))
 }
 
 // Dist
 
 const chromeDist = () => {
   return src('./build/chrome/**')
-    .pipe(gulpZip(`${DIST_FILE_NAME.CHROME}.zip`))
-    .pipe(dest('./dist/chrome'))
+    .pipe(gulpZip(distUtils.getFileNameZip('CHROME')))
+    .pipe(dest(distUtils.getFileDir('CHROME')))
 }
 
 const firefoxDist = () => {
   return src('./build/firefox/**')
-    .pipe(gulpZip(`${DIST_FILE_NAME.FIREFOX}.zip`))
-    .pipe(dest('./dist/firefox'))
+    .pipe(gulpZip(distUtils.getFileNameZip('FIREFOX')))
+    .pipe(dest(distUtils.getFileDir('FIREFOX')))
 }
 
 const operaDist = () => {
   return src('./build/opera/**')
-    .pipe(gulpZip(`${DIST_FILE_NAME.OPERA}.zip`))
-    .pipe(dest('./dist/opera'))
+    .pipe(gulpZip(distUtils.getFileNameZip('OPERA')))
+    .pipe(dest(distUtils.getFileDir('OPERA')))
 }
 
 const edgeDist = () => {
   return src('./build/edge/**')
-    .pipe(gulpZip(`${DIST_FILE_NAME.EDGE}.zip`))
-    .pipe(dest('./dist/edge'))
+    .pipe(gulpZip(distUtils.getFileNameZip('EDGE')))
+    .pipe(dest(distUtils.getFileDir('EDGE')))
 }
 
 const pcDist = series(
