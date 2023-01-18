@@ -109,6 +109,53 @@ const writeIndexFile = (zaloDir) => {
   logDebug('- writeIndexFile', srcPath)
 }
 
+const writeZNotificationFile = (zaloDir) => {
+  const src = 'pc-dist/znotification.html'
+  const srcPath = path.join(zaloDir, `app/${src}`)
+
+  if (!fs.existsSync(srcPath)) {
+    throw new Error(srcPath + ' khong ton tai.')
+  }
+
+  const indexHTMLContent = fs.readFileSync(srcPath, 'utf8')
+  const root = HTMLParser.parse(indexHTMLContent)
+
+  const headElement = root.getElementsByTagName('head')[0]
+  const bodyElement = root.getElementsByTagName('body')[0]
+
+  // Required fonts, stylesheets
+  const elements = [
+    {
+      selector: 'link[href="zadark-fonts.min.css"]',
+      where: 'beforeend',
+      html: '<link rel="stylesheet" href="zadark-fonts.min.css">',
+      htmlElement: headElement
+    },
+    {
+      selector: 'link[href="zadark-znotification.min.css"]',
+      where: 'beforeend',
+      html: '<link rel="stylesheet" href="zadark-znotification.min.css">',
+      htmlElement: headElement
+    }
+  ]
+  elements.forEach((element) => {
+    const { selector, where, html, htmlElement } = element
+    const elementExists = root.querySelectorAll(selector)
+    if (!elementExists.length) {
+      htmlElement.insertAdjacentHTML(where, html)
+    }
+  })
+
+  // Required classNames
+  const zaDarkClassNames = ['zadark', 'zadark-pc', `zadark-${PLATFORM}`]
+  zaDarkClassNames.forEach((className) => {
+    bodyElement.classList.add(className)
+  })
+
+  fs.writeFileSync(srcPath, root.toString())
+  logDebug('- writeZNotificationFile', srcPath)
+}
+
 const copyAssetDir = (zaloDir, { dest, src }) => {
   const srcPath = path.join(__dirname, `./assets/${src}`)
   const destPath = path.join(zaloDir, `app/${dest}`)
@@ -184,8 +231,11 @@ const installDarkTheme = async (zaloDir) => {
     copyAssetDir(zaloDir, asset)
   })
 
-  // Add "themeAttributes, classNames, font, stylesheet" to "resources/app/pc-dist/index.html"
+  // Add "themeAttributes, classNames, fonts, stylesheets" to "resources/app/pc-dist/index.html"
   writeIndexFile(zaloDir)
+
+  // Add fonts, stylesheets" to "resources/app/pc-dist/znotification.html"
+  writeZNotificationFile(zaloDir)
 
   // Create package "resources/app.asar" from "resources/app" -> Delete "resources/app"
   await asar.createPackage(appDirPath, appAsarPath)

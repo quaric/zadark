@@ -336,7 +336,7 @@
   --icon-success: var(--G60);
   --icon-warning: var(--OR60);
   --icon-information: var(--B60);
-  --icon-count-noti-enable-bg: var(--B60);
+  --icon-count-noti-enable-bg: var(--R60);
   --icon-count-noti-disable-bg: var(--N60);
 
   --border: var(--NG30);
@@ -607,12 +607,22 @@ html[data-zadark-theme="dark"] {
     }
 
     .leftbar-unread {
+      top: 6px;
+      right: 10px;
+      min-width: 22px;
+      box-shadow: 0 0 0 3px var(--layer-background-leftmenu);
       color: #fff !important;
+      font-size: 9px;
     }
 
     .leftbar-mark-unread {
       top: 6px;
       right: 10px;
+
+      width: 8px;
+      height: 8px;
+
+      box-shadow: 0 0 0 3px var(--layer-background-leftmenu);
     }
 
     .leftbar-tab {
@@ -658,14 +668,14 @@ html[data-zadark-theme="dark"] {
           opacity: 1;
         }
 
+        .leftbar-unread {
+          top: 4px;
+          right: 8px;
+        }
+
         .leftbar-mark-unread {
           top: 2px;
           right: 6px;
-
-          width: 8px;
-          height: 8px;
-
-          box-shadow: 0 0 0 3px var(--layer-background-leftmenu);
         }
       }
     }
