@@ -93,3 +93,6 @@ https://zadark.quaric.com/awards
 - https://dev.opera.com/extensions/basics/
 - https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/
 - https://developer.apple.com/documentation/safariservices/safari_web_extensions/blocking_content_with_your_safari_web_extension
+
+---
+Sponsored by [1Password for Open Source Projects](https://github.com/1Password/1password-teams-open-source)
