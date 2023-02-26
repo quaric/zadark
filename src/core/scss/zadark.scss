@@ -502,6 +502,15 @@
   --selection-text: #fff;
 
   --popper-shadow: 4px 4px 12px var(--BA50);
+
+  --black: 900;
+  --extrabold: 800;
+  --bold: 600;
+  --semibold: 500;
+  --medium: 500;
+  --regular: 400;
+  --thin: 300;
+  --light: 200;
 }
 
 html[data-zadark-theme="light"] {
@@ -511,10 +520,10 @@ html[data-zadark-theme="light"] {
 }
 
 @mixin transition-all {
-  -webkit-transition: all 250ms ease-in-out;
-  -moz-transition: all 250ms ease-in-out;
-  -o-transition: all 250ms ease-in-out;
-  transition: all 250ms ease-in-out;
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  -o-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 html[data-zadark-theme="dark"] {
@@ -991,6 +1000,19 @@ html[data-zadark-theme="dark"] {
     // Contact Card (Self)
     .bubble-contact-card-container > .me.bubble-contact-card > .footer {
       border-color: var(--blue-message-border);
+
+      > .footer__left.has--right {
+        border-right: 1px solid var(--blue-message-border);
+      }
+    }
+
+    // Contact Card (Other)
+    .bubble-contact-card-container > .bubble-contact-card > .footer {
+      border-top: 1px solid var(--border);
+
+      > .footer__left.has--right {
+        border-right: 1px solid var(--border);
+      }
     }
 
     // Reactions (Self)
@@ -1045,6 +1067,10 @@ html[data-zadark-theme="dark"] {
         &:hover {
           background-color: var(--layer-background-hover);
         }
+      }
+
+      &-title__name {
+        font-weight: 500;
       }
     }
 
@@ -1447,12 +1473,13 @@ html[data-zadark-theme="dark"] {
       .slideshow__page__image {
         padding: 16px;
         background-color: #fff !important;
-        border-radius: 64px 8px 64px 8px;
+        border-radius: 16px;
         border: 1px solid var(--BA20);
         filter: invert(0.9);
       }
       .slideshow__page__text__title {
         margin-top: 50px;
+        font-weight: var(--bold);
       }
       .slideshow__bottom {
         margin-top: 50px;
@@ -1765,6 +1792,32 @@ html[data-zadark-theme="dark"] {
       width: 0.5rem;
       height: 0.5rem;
     }
+
+    .disk-usage-chart > .another-app-usage {
+      background: var(--N30);
+    }
+
+    .disk-usage-desc-another {
+      background: var(--N30);
+    }
+
+    .setting-section:has(> .setting-section-content__theme) {
+      display: none;
+    }
+
+    .main-title-container .lock-icon {
+      color: var(--text-secondary);
+    }
+
+    .sticker-sorter__body__item {
+      @include transition-all();
+
+      background-color: var(--layer-background) !important;
+
+      &:hover {
+        background-color: var(--layer-background-hover) !important;
+      }
+    }
   }
 }
 
@@ -1837,7 +1890,7 @@ body.zadark {
     max-height: 600px;
 
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 8px;
     box-shadow: var(--popper-shadow);
 
     &[data-visible] {
