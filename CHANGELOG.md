@@ -1,5 +1,20 @@
 # Changelog
 
+## ZaDark v23.2.1
+> PC v7.6 && Web v8.4
+
+### Changed
+- `.disk-usage-chart > .another-app-usage` : Thay đổi màu nền
+- `.setting-section-content__theme` : Ẩn cài đặt giao diện của Zalo vì chỉ có 1 lựa chọn giao diện Mặc định
+- `.bubble-contact-card` : Cập nhật màu sắc của viền (border-color)
+- `.slideshow__page__text__title` : Cập nhật chữ đậm hơn (500)
+- `.conv-item-title__name` : Cập nhật chữ đậm hơn (500)
+- `.lock-icon` : Cập nhật màu của Biểu tượng mã hoá đầu cuối (E2EE) nhạt hơn
+- `.slideshow__page__image` : Thay đổi độ bo tròn góc (16px)
+- `ZaDark Settings` : Tăng độ bo tròn góc (8px)
+- `ZaDark Settings` : Làm gọn nhãn "ZaDark from Quaric"
+- `ZaDark Settings` : Bỏ Menu Website và Donate trên Header (Mục đích loại bỏ nội dung không cần thiết với người dùng)
+
 ## ZaDark v23.1.3
 > PC v7.5 && Web v8.3
 
