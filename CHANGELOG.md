@@ -1,5 +1,10 @@
 # Changelog
 
+## ZaDark v23.3.1
+
+### Changed
+- Thay thế dấu `.` thành `_` ở tên phiên bản trong tên của tập tin cài đặt (Giải quyết vấn đề macOS không xác định được định dạng của tập tin cài đặt là `Unix Executable File`)
+
 ## ZaDark v23.2.1
 > PC v7.6 && Web v8.4
 
