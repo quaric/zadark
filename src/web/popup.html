@@ -54,13 +54,22 @@
             <input type="radio" name="theme" value="auto" class="zadark-radio__input">
             <span class="zadark-radio__checkmark"></span>
             <span class="zadark-radio__label">
-              <span>Tự động</span>
-              <span>Giao diện Zalo Web sẽ thay đổi theo Hệ điều hành</span>
+              <span>Theo hệ thống</span>
             </span>
           </label>
         </div>
       </div>
     </div>
+
+    <label class="zadark-form__label">Phông chữ</label>
+
+    <select id="js-select-font" class="zadark-select">
+      <option value="default">Mặc định</option>
+      <option value="open-sans">Open Sans</option>
+      <option value="inter">Inter</option>
+      <option value="roboto">Roboto</option>
+      <option value="lato">Lato</option>
+    </select>
 
     <div id="js-panel-privacy">
       <label class="zadark-form__label">Riêng tư</label>
@@ -69,7 +78,7 @@
         <div class="zadark-panel__body">
           <div class="zadark-switch__list">
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn" trên Zalo Web</label>
+              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn ..."</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
                 <span class="zadark-switch__slider"></span>
@@ -77,7 +86,7 @@
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái "Đã nhận" tin nhắn trên Zalo Web</label>
+              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái "Đã nhận" tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
                 <span class="zadark-switch__slider"></span>
@@ -85,7 +94,7 @@
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái "Đã xem" tin nhắn trên Zalo Web</label>
+              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái "Đã xem" tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
                 <span class="zadark-switch__slider"></span>

@@ -6,13 +6,16 @@
 
 const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
+const selectFontElName = '#js-select-font'
 const manifestData = window.zadark.browser.getManifest()
 
 $(versionElName).html(`Phiên bản ${manifestData.version}`)
 
 window.zadark.utils.refreshPageTheme()
-window.zadark.browser.getExtensionSettings().then(({ theme }) => {
+window.zadark.utils.refreshPageFont()
+window.zadark.browser.getExtensionSettings().then(({ theme, font }) => {
   $(selectThemeElName).filter(`[value="${theme}"]`).attr('checked', true)
+  $(selectFontElName).val(font)
 })
 
 $(selectThemeElName).on('change', async function () {
@@ -25,6 +28,15 @@ $(selectThemeElName).on('change', async function () {
 
   // Set page theme for all Zalo tabs
   window.zadark.browser.sendMessage2ZaloTabs('@ZaDark:CHANGE_THEME', { theme })
+})
+
+$(selectFontElName).on('change', async function () {
+  const font = $(this).val()
+
+  await window.zadark.browser.saveExtensionSettings({ font })
+
+  // Set page font for all Zalo tabs
+  window.zadark.browser.sendMessage2ZaloTabs('@ZaDark:CHANGE_FONT', { font })
 })
 
 // Privacy

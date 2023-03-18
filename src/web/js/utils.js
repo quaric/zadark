@@ -14,6 +14,10 @@
       document.documentElement.setAttribute('data-zadark-theme', themeMode)
     },
 
+    setFontAttr: (font) => {
+      document.documentElement.setAttribute('data-zadark-font', font)
+    },
+
     setPageTheme: function (theme) {
       switch (theme) {
         case 'light':
@@ -37,6 +41,12 @@
     refreshPageTheme: function () {
       window.zadark.browser.getExtensionSettings().then(({ theme }) => {
         this.setPageTheme(theme)
+      })
+    },
+
+    refreshPageFont: function () {
+      window.zadark.browser.getExtensionSettings().then(({ font }) => {
+        this.setFontAttr(font)
       })
     },
 

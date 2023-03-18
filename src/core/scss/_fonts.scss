@@ -1,4 +1,6 @@
-@mixin opensans-font($fontsPath) {
+@mixin zadark-fonts($fontsPath) {
+  // Open Sans
+
   @font-face {
     font-family: "Open Sans";
     src: url("#{$fontsPath}/OpenSans-Regular.ttf") format("truetype");
@@ -16,6 +18,75 @@
   @font-face {
     font-family: "Open Sans";
     src: url("#{$fontsPath}/OpenSans-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  // Inter
+
+  @font-face {
+    font-family: "Inter";
+    src: url("#{$fontsPath}/Inter-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Inter";
+    src: url("#{$fontsPath}/Inter-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Inter";
+    src: url("#{$fontsPath}/Inter-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  // Roboto
+
+  @font-face {
+    font-family: "Roboto";
+    src: url("#{$fontsPath}/Roboto-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Roboto";
+    src: url("#{$fontsPath}/Roboto-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Roboto";
+    src: url("#{$fontsPath}/Roboto-Bold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  // Lato
+
+  @font-face {
+    font-family: "Lato";
+    src: url("#{$fontsPath}/Lato-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Lato";
+    src: url("#{$fontsPath}/Lato-Bold.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Lato";
+    src: url("#{$fontsPath}/Lato-Bold.ttf") format("truetype");
     font-weight: 600;
     font-style: normal;
   }
