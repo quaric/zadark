@@ -1,5 +1,20 @@
 # Changelog
 
+## ZaDark v23.3.2
+> PC v7.7 && Web v8.5
+
+### Added
+- Tuỳ chỉnh Phông chữ:
+  - Mặc định (Phông chữ gốc của Zalo)
+  - Open Sans (Phông chữ gốc của ZaDark)
+  - Inter
+  - Roboto
+  - Lato
+
+### Changed
+- Làm gọn giao diện Tuỳ chỉnh ZaDark (ZaDark Popup)
+- Đổi tên giao diện "Tự động" thành "Theo hệ thống" và bỏ giải thích "Giao diện Zalo sẽ thay đổi theo Hệ điều hành"
+
 ## ZaDark v23.3.1
 
 ### Changed

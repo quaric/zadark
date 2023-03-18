@@ -77,6 +77,7 @@ html[data-zadark-theme="dark"] #zadark-popup {
   --zadark-primary-dark: #035bdc;
 
   --zadark-border-base: var(--zadark-grey-300);
+  --zadark-border-light: var(--zadark-grey-600);
   --zadark-border-radius-base: 8px;
 
   --zadark-font-extrabold: 800;
@@ -143,7 +144,7 @@ html[data-zadark-theme="dark"] #zadark-popup {
     top: 0;
     z-index: 9999;
 
-    padding: 16px;
+    padding: 12px 16px;
     border-bottom: 1px solid var(--zadark-border-base);
     background-color: var(--zadark-grey-700);
 
@@ -162,7 +163,7 @@ html[data-zadark-theme="dark"] #zadark-popup {
 
     &__logo-img {
       width: auto;
-      height: 20px;
+      height: 18px;
     }
 
     &__menu-list {
@@ -187,13 +188,13 @@ html[data-zadark-theme="dark"] #zadark-popup {
   }
 
   .zadark-popup__main {
-    padding: 16px 16px 0 16px;
+    padding: 12px 16px 0 16px;
   }
 
   .zadark-popup__footer {
     display: flex;
     justify-content: center;
-    padding: 0 16px 16px;
+    padding: 0 16px 12px;
   }
 
   .zadark-publisher {
@@ -223,8 +224,8 @@ html[data-zadark-theme="dark"] #zadark-popup {
 
   .zadark-radio {
     &__list {
-      margin-top: -16px;
-      margin-bottom: -16px;
+      margin-top: -8px;
+      margin-bottom: -8px;
     }
 
     position: relative;
@@ -253,9 +254,9 @@ html[data-zadark-theme="dark"] #zadark-popup {
 
     &__checkmark {
       position: relative;
-      height: 20px;
-      width: 20px;
-      margin-right: 16px;
+      height: 16px;
+      width: 16px;
+      margin-right: 12px;
 
       border: 2px solid var(--zadark-border-base);
       border-radius: 50rem;
@@ -263,12 +264,12 @@ html[data-zadark-theme="dark"] #zadark-popup {
       &:after {
         content: "";
         position: absolute;
-        top: 3px;
-        left: 3px;
+        top: 2px;
+        left: 2px;
 
-        width: 10px;
-        height: 10px;
-        border-radius: 6px;
+        width: 8px;
+        height: 8px;
+        border-radius: 4px;
         background: var(--zadark-primary-base);
 
         opacity: 0;
@@ -278,13 +279,16 @@ html[data-zadark-theme="dark"] #zadark-popup {
     &__label {
       flex: 1;
       display: flex;
-      flex-direction: column;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--zadark-border-base);
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--zadark-border-light);
+
+      span:nth-child(1) {
+        flex: 1;
+      }
 
       // Description
       span:nth-child(2) {
-        margin-top: 4px;
         font-size: 12px;
         color: var(--zadark-neutral-500);
       }
@@ -301,12 +305,12 @@ html[data-zadark-theme="dark"] #zadark-popup {
     display: flex;
     align-items: center;
 
-    padding: 16px 0;
-    border-bottom: 1px solid var(--zadark-border-base);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--zadark-border-light);
 
     &__list {
-      margin-top: -16px;
-      margin-bottom: -16px;
+      margin-top: -8px;
+      margin-bottom: -8px;
     }
 
     &__label {
@@ -318,8 +322,8 @@ html[data-zadark-theme="dark"] #zadark-popup {
     &__checkbox {
       position: relative;
       display: inline-block;
-      width: 48px;
-      height: 24px;
+      width: 28px;
+      height: 16px;
     }
 
     &__input {
@@ -344,8 +348,8 @@ html[data-zadark-theme="dark"] #zadark-popup {
       &:before {
         position: absolute;
         content: "";
-        height: 20px;
-        width: 20px;
+        height: 12px;
+        width: 12px;
         left: 2px;
         bottom: 2px;
         background-color: white;
@@ -360,14 +364,38 @@ html[data-zadark-theme="dark"] #zadark-popup {
     }
 
     &__input:checked + .zadark-switch__slider:before {
-      -webkit-transform: translateX(24px);
-      -ms-transform: translateX(24px);
-      transform: translateX(24px);
+      -webkit-transform: translateX(12px);
+      -ms-transform: translateX(12px);
+      transform: translateX(12px);
     }
 
     &:last-child {
       border-bottom: 0;
     }
+  }
+
+  .zadark-select {
+    display: block;
+    max-width: 100%;
+    height: 32px;
+    padding: 0 28px 0 12px;
+
+    border: 1px solid var(--zadark-border-base);
+    border-radius: var(--zadark-border-radius-base);
+
+    background-color: var(--zadark-grey-700);
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0iIzU4NjA2OSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNC40MjcgOS40MjdsMy4zOTYgMy4zOTZhLjI1MS4yNTEgMCAwMC4zNTQgMGwzLjM5Ni0zLjM5NkEuMjUuMjUgMCAwMDExLjM5NiA5SDQuNjA0YS4yNS4yNSAwIDAwLS4xNzcuNDI3ek00LjQyMyA2LjQ3TDcuODIgMy4wNzJhLjI1LjI1IDAgMDEuMzU0IDBMMTEuNTcgNi40N2EuMjUuMjUgMCAwMS0uMTc3LjQyN0g0LjZhLjI1LjI1IDAgMDEtLjE3Ny0uNDI3eiIgLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    background-size: 16px;
+
+    color: var(--zadark-neutral-base);
+    font-size: 14px;
+    outline: none;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 
   .zadark-panel {
@@ -377,24 +405,21 @@ html[data-zadark-theme="dark"] #zadark-popup {
     border-radius: var(--zadark-border-radius-base);
 
     &:not(:last-child) {
-      margin-bottom: 16px;
-    }
-
-    &__heading {
-      display: flex;
-      align-items: center;
-      padding: 16px;
-      border-bottom: 1px solid var(--zadark-border-base);
-      background-color: var(--zadark-grey-700);
+      margin-bottom: 12px;
     }
 
     &__body {
-      padding: 16px;
+      padding: 8px 12px;
     }
+  }
+
+  #js-select-font {
+    min-width: 50%;
+    margin-bottom: 12px;
   }
 
   #js-panel-privacy {
     display: block;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 }

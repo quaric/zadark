@@ -23,7 +23,8 @@
     getExtensionSettings: () => {
       return new Promise((resolve, reject) => {
         chrome.storage.sync.get({
-          theme: 'dark'
+          theme: 'dark',
+          font: 'open-sans'
         }, (items) => {
           resolve(items)
         })

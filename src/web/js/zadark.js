@@ -6,9 +6,11 @@
 
 window.zadark.browser.initClassNames()
 window.zadark.utils.refreshPageTheme()
+window.zadark.utils.refreshPageFont()
 
 const MSG_ACTIONS = {
   CHANGE_THEME: '@ZaDark:CHANGE_THEME',
+  CHANGE_FONT: '@ZaDark:CHANGE_FONT',
   GET_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:GET_ENABLED_BLOCKING_RULE_IDS',
   UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS'
 }
@@ -33,10 +35,17 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     setSelectTheme(message.payload.theme)
     sendResponse({ received: true })
   }
+
+  if (message.action === MSG_ACTIONS.CHANGE_FONT) {
+    window.zadark.utils.refreshPageFont()
+    setSelectFont(message.payload.font)
+    sendResponse({ received: true })
+  }
 })
 
 const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
+const selectFontElName = '#js-select-font'
 
 const panelPrivacyElName = '#js-panel-privacy'
 const switchBlockTypingElName = '#js-switch-block-typing'
@@ -50,11 +59,21 @@ const setSelectTheme = (theme) => {
   })
 }
 
+const setSelectFont = (font) => {
+  $(selectFontElName).val(font)
+}
+
 async function handleSelectThemeChange () {
   const theme = $(this).val()
   await window.zadark.browser.saveExtensionSettings({ theme })
   window.zadark.utils.refreshPageTheme()
   setSelectTheme(theme)
+}
+
+async function handleSelectFontChange () {
+  const font = $(this).val()
+  await window.zadark.browser.saveExtensionSettings({ font })
+  window.zadark.utils.refreshPageFont()
 }
 
 const handleBlockingRuleChange = (elName, ruleId) => {
@@ -123,13 +142,22 @@ const popupMainHTML = `
             <input type="radio" name="theme" value="auto" class="zadark-radio__input">
             <span class="zadark-radio__checkmark"></span>
             <span class="zadark-radio__label">
-              <span>Tự động</span>
-              <span>Giao diện Zalo Web sẽ thay đổi theo Hệ điều hành</span>
+              <span>Theo hệ thống</span>
             </span>
           </label>
         </div>
       </div>
     </div>
+
+    <label class="zadark-form__label">Phông chữ</label>
+
+    <select id="js-select-font" class="zadark-select">
+      <option value="default">Mặc định</option>
+      <option value="open-sans">Open Sans</option>
+      <option value="inter">Inter</option>
+      <option value="roboto">Roboto</option>
+      <option value="lato">Lato</option>
+    </select>
 
     <div id="js-panel-privacy">
       <label class="zadark-form__label">Riêng tư</label>
@@ -138,7 +166,7 @@ const popupMainHTML = `
         <div class="zadark-panel__body">
           <div class="zadark-switch__list">
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn" trên Zalo Web</label>
+              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn ..."</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
                 <span class="zadark-switch__slider"></span>
@@ -146,7 +174,7 @@ const popupMainHTML = `
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái "Đã nhận" tin nhắn trên Zalo Web</label>
+              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái "Đã nhận" tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
                 <span class="zadark-switch__slider"></span>
@@ -154,7 +182,7 @@ const popupMainHTML = `
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái "Đã xem" tin nhắn trên Zalo Web</label>
+              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái "Đã xem" tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
                 <span class="zadark-switch__slider"></span>
@@ -186,8 +214,9 @@ const zadarkPopupHTML = `
 `
 
 const loadPopupState = async () => {
-  const { theme } = await window.zadark.browser.getExtensionSettings()
+  const { theme, font } = await window.zadark.browser.getExtensionSettings()
   setSelectTheme(theme)
+  setSelectFont(font)
 
   const isSupportPrivacy = window.zadark.utils.getIsSupportPrivacy()
 
@@ -257,6 +286,7 @@ const loadZaDarkPopup = () => {
   const zadarkVersion = window.zadark.browser.getManifest().version
   $(versionElName).html(`Phiên bản ${zadarkVersion}`)
   $(selectThemeElName).on('change', handleSelectThemeChange)
+  $(selectFontElName).on('change', handleSelectFontChange)
   $(switchBlockTypingElName).on('change', handleBlockingRuleChange(switchBlockTypingElName, 'rules_block_typing'))
   $(switchBlockSeenElName).on('change', handleBlockingRuleChange(switchBlockSeenElName, 'rules_block_seen'))
   $(switchBlockDeliveredElName).on('change', handleBlockingRuleChange(switchBlockDeliveredElName, 'rules_block_delivered'))

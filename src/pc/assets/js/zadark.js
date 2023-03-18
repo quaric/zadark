@@ -8,12 +8,35 @@
 const $ = jQuery = module.exports // Ref: https://github.com/electron/electron/issues/345#issuecomment-43894441
 
 const ZADARK_THEME_KEY = '@ZaDark:THEME'
+const ZADARK_FONT_KEY = '@ZaDark:FONT'
 
 window.zadark = window.zadark || {}
+
+window.zadark.storage = {
+  getTheme: () => {
+    return localStorage.getItem(ZADARK_THEME_KEY) || 'dark'
+  },
+
+  saveTheme: (theme) => {
+    return localStorage.setItem(ZADARK_THEME_KEY, theme)
+  },
+
+  getFont: () => {
+    return localStorage.getItem(ZADARK_FONT_KEY) || 'open-sans'
+  },
+
+  saveFont: (font) => {
+    return localStorage.setItem(ZADARK_FONT_KEY, font)
+  }
+}
 
 window.zadark.utils = {
   setThemeAttr: (themeMode) => {
     document.documentElement.setAttribute('data-zadark-theme', themeMode)
+  },
+
+  setFontAttr: (font) => {
+    document.documentElement.setAttribute('data-zadark-font', font)
   },
 
   setPageTheme: function (theme) {
@@ -37,22 +60,18 @@ window.zadark.utils = {
   },
 
   refreshPageTheme: function () {
-    const theme = localStorage.getItem(ZADARK_THEME_KEY)
+    const theme = window.zadark.storage.getTheme()
     this.setPageTheme(theme)
-  }
-}
-
-window.zadark.storage = {
-  getTheme: () => {
-    return localStorage.getItem(ZADARK_THEME_KEY) || 'dark'
   },
 
-  saveTheme: (theme) => {
-    return localStorage.setItem(ZADARK_THEME_KEY, theme)
+  refreshPageFont: function () {
+    const font = window.zadark.storage.getFont()
+    this.setFontAttr(font)
   }
 }
 
 window.zadark.utils.refreshPageTheme()
+window.zadark.utils.refreshPageFont()
 
 window.matchMedia('(prefers-color-scheme: dark)').addListener((event) => {
   const theme = window.zadark.storage.getTheme()
@@ -77,6 +96,7 @@ observer.observe(document.querySelector('#app'), { subtree: false, childList: tr
 
 const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
+const selectFontElName = '#js-select-font'
 
 const setSelectTheme = (theme) => {
   const options = ['light', 'dark', 'auto']
@@ -85,11 +105,21 @@ const setSelectTheme = (theme) => {
   })
 }
 
+const setSelectFont = (font) => {
+  $(selectFontElName).val(font)
+}
+
 async function handleThemeChange () {
   const theme = $(this).val()
   window.zadark.storage.saveTheme(theme)
   window.zadark.utils.refreshPageTheme()
   setSelectTheme(theme)
+}
+
+async function handleFontChange () {
+  const font = $(this).val()
+  window.zadark.storage.saveFont(font)
+  window.zadark.utils.refreshPageFont()
 }
 
 const zadarkButtonHTML = `
@@ -123,7 +153,7 @@ const popupMainHTML = `
   <div class="zadark-popup__main">
     <label class="zadark-form__label">Giao diện</label>
 
-    <div class="zadark-panel" style="margin-bottom: 16px;">
+    <div class="zadark-panel">
       <div class="zadark-panel__body">
         <div id="js-select-theme" class="zadark-radio__list">
           <label class="zadark-radio">
@@ -146,13 +176,22 @@ const popupMainHTML = `
             <input type="radio" name="theme" value="auto" class="zadark-radio__input">
             <span class="zadark-radio__checkmark"></span>
             <span class="zadark-radio__label">
-              <span>Tự động</span>
-              <span>Giao diện Zalo PC sẽ thay đổi theo Hệ điều hành</span>
+              <span>Theo hệ thống</span>
             </span>
           </label>
         </div>
       </div>
     </div>
+
+    <label class="zadark-form__label">Phông chữ</label>
+
+    <select id="js-select-font" class="zadark-select">
+      <option value="default">Mặc định</option>
+      <option value="open-sans">Open Sans</option>
+      <option value="inter">Inter</option>
+      <option value="roboto">Roboto</option>
+      <option value="lato">Lato</option>
+    </select>
   </div>
 `
 
@@ -177,6 +216,9 @@ const zadarkPopupHTML = `
 const loadPopupState = async () => {
   const theme = window.zadark.storage.getTheme()
   setSelectTheme(theme)
+
+  const font = window.zadark.storage.getFont()
+  setSelectFont(font)
 }
 
 const openZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
@@ -235,6 +277,7 @@ const loadZaDarkPopup = () => {
   const zadarkVersion = $('html').data('zadark-version')
   $(versionElName).html(`Phiên bản ${zadarkVersion}`)
   $(selectThemeElName).on('change', handleThemeChange)
+  $(selectFontElName).on('change', handleFontChange)
 
   const popupEl = document.querySelector('#zadark-popup')
   const buttonEl = document.getElementById('div_Main_TabZaDark')

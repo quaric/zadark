@@ -513,6 +513,27 @@
   --light: 200;
 }
 
+$FONTS: (
+  "default":
+    "SegoeuiPc, Segoe UI, San Francisco, Helvetica Neue, Helvetica, Lucida Grande, Roboto, Ubuntu, Tahoma, Microsoft Sans Serif, Arial, sans-serif",
+  "open-sans": '"Open Sans", sans-serif',
+  "inter": "Inter, sans-serif",
+  "roboto": "Roboto, sans-serif",
+  "lato": "Lato, sans-serif",
+);
+
+@mixin zadark-fonts() {
+  @each $name, $value in $FONTS {
+    html[data-zadark-font="#{$name}"] {
+      &:root {
+        --zadark-font-family: #{$value};
+      }
+    }
+  }
+}
+
+@include zadark-fonts();
+
 html[data-zadark-theme="light"] {
   &:root {
     --popper-shadow: 0 0 10px 0 var(--BA20);
@@ -1069,9 +1090,9 @@ html[data-zadark-theme="dark"] {
         }
       }
 
-      &-title__name {
-        font-weight: 500;
-      }
+      // &-title__name {
+      //   font-weight: 500;
+      // }
     }
 
     .msg-info-popup {
@@ -1801,9 +1822,9 @@ html[data-zadark-theme="dark"] {
       background: var(--N30);
     }
 
-    .setting-section:has(> .setting-section-content__theme) {
-      display: none;
-    }
+    // .setting-section:has(> .setting-section-content__theme) {
+    //   display: none;
+    // }
 
     .main-title-container .lock-icon {
       color: var(--text-secondary);
@@ -1822,7 +1843,7 @@ html[data-zadark-theme="dark"] {
 }
 
 body.zadark {
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--zadark-font-family);
 
   &.zadark-web,
   &.zadark-win32 {
@@ -1869,7 +1890,7 @@ body.zadark {
   }
 
   .message-view {
-    font-family: "Open Sans", sans-serif;
+    font-family: var(--zadark-font-family);
     letter-spacing: normal;
   }
 
@@ -1885,9 +1906,7 @@ body.zadark {
     overflow: auto;
 
     display: none;
-    width: 512px;
-    min-height: 256px;
-    max-height: 600px;
+    width: 480px;
 
     border: 1px solid var(--border);
     border-radius: 8px;
