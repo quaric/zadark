@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark v23.3.3
+> PC v7.8 && Web v8.6
+
+### Changed
+- Làm gọn nhãn `Business` ở tên cuộc trò chuyện
+
 ## ZaDark v23.3.2
 > PC v7.7 && Web v8.5
 

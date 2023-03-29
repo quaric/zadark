@@ -1882,6 +1882,13 @@ body.zadark {
     font-size: 10px;
   }
 
+  .threadChat__title .z-business-label {
+    background: transparent !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    color: var(--text-secondary) !important;
+  }
+
   .leftbar-mark-unread {
     width: 8px;
     height: 8px;
