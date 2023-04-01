@@ -183,15 +183,51 @@ const popupMainHTML = `
       </div>
     </div>
 
-    <label class="zadark-form__label">Phông chữ</label>
+    <div class="select-font">
+      <label class="zadark-form__label">Phông chữ</label>
 
-    <select id="js-select-font" class="zadark-select">
-      <option value="default">Mặc định</option>
-      <option value="open-sans">Open Sans</option>
-      <option value="inter">Inter</option>
-      <option value="roboto">Roboto</option>
-      <option value="lato">Lato</option>
-    </select>
+      <select id="js-select-font" class="zadark-select">
+        <option value="default">Mặc định</option>
+        <option value="open-sans">Open Sans</option>
+        <option value="inter">Inter</option>
+        <option value="roboto">Roboto</option>
+        <option value="lato">Lato</option>
+      </select>
+    </div>
+
+    <div id="js-panel-privacy" class="not-available">
+      <label class="zadark-form__label">Riêng tư<span class="not-available__label">Chưa hỗ trợ trên Zalo PC</span></label>
+
+      <div class="zadark-panel">
+        <div class="zadark-panel__body">
+          <div class="zadark-switch__list">
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn ..."</label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
+
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái "Đã nhận" tin nhắn</label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
+
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái "Đã xem" tin nhắn</label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 `
 
@@ -300,7 +336,7 @@ const loadZaDarkPopup = () => {
 
 const loadWelcomeScreen = () => {
   const welcomeScreenTitleEl = $('[data-translate-inner="STR_WELCOME_SCREEN_MAIN_TITLE"]')
-  welcomeScreenTitleEl.parent().html(`
+  welcomeScreenTitleEl && welcomeScreenTitleEl.parent().html(`
     <span-22 data-translate-inner="STR_WELCOME_SCREEN_MAIN_TITLE" style="color: var(--N80);">${welcomeScreenTitleEl.text()}</span-22>
     <div style="display: flex; align-items: center; justify-content: center; margin-top: 4px;">
       <span-b32>ZaDark</span-b32>
@@ -310,7 +346,4 @@ const loadWelcomeScreen = () => {
       <span-b32>Dark Mode</span-b32>
     </div>
   `)
-
-  const welcomeScreenSubTitleEl = $('[data-translate-inner="STR_WELCOME_SCREEN_MAIN_SUBTITLE"]')
-  welcomeScreenSubTitleEl.html(`ZaDark là tiện ích giúp kích hoạt Dark Mode cho Zalo PC và Web.</br>${welcomeScreenSubTitleEl.text()}`)
 }
