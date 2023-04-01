@@ -96,13 +96,6 @@ const writeIndexFile = (zaloDir) => {
     }
   })
 
-  elements.forEach(({ selector, where, html, htmlElement }) => {
-    const elementExists = root.querySelectorAll(selector)
-    if (!elementExists.length) {
-      htmlElement.insertAdjacentHTML(where, html)
-    }
-  })
-
   // Required themeAttributes
   htmlElement.setAttribute('data-zadark-version', ZADARK_VERSION)
 
