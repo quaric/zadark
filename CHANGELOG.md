@@ -1,6 +1,6 @@
 # Changelog
 
-## ZaDark v23.3.3
+## ZaDark v23.4.1
 > PC v7.8 && Web v8.6
 
 ### Added
