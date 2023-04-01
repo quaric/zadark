@@ -413,9 +413,58 @@ html[data-zadark-theme="dark"] #zadark-popup {
     }
   }
 
-  #js-select-font {
-    min-width: 50%;
+  .not-available__label {
+    display: none;
+  }
+
+  .not-available {
+    .not-available__label {
+      position: relative;
+      top: -0.5px;
+
+      display: inline-block;
+
+      margin-left: 8px;
+      padding: 1px 8px;
+      border-radius: 50rem;
+      user-select: none;
+
+      color: var(--zadark-neutral-500);
+      background-color: var(--zadark-grey-600);
+
+      font-size: 12px;
+      font-weight: var(--zadark-font-regular);
+    }
+
+    .zadark-panel {
+      position: relative;
+
+      ::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+
+        width: 100%;
+        height: 100%;
+        cursor: not-allowed;
+      }
+
+      .zadark-panel__body {
+        opacity: 0.25;
+      }
+    }
+  }
+
+  .select-font {
+    display: flex;
+    align-items: center;
     margin-bottom: 12px;
+
+    .zadark-form__label {
+      margin: 0 12px 0 0;
+    }
   }
 
   #js-panel-privacy {

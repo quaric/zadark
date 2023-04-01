@@ -39,16 +39,31 @@ $(selectFontElName).on('change', async function () {
   window.zadark.browser.sendMessage2ZaloTabs('@ZaDark:CHANGE_FONT', { font })
 })
 
-// Privacy
+const handleBlockingRuleChange = function (elName, ruleId) {
+  return function () {
+    const isChecked = $(elName).is(':checked')
+    window.zadark.browser.updateEnabledBlockingRuleIds(isChecked
+      ? { enableRuleIds: [ruleId] }
+      : { disableRuleIds: [ruleId] }
+    )
+  }
+}
 
-const panelPrivacyElName = '#js-panel-privacy'
+const initPrivacy = () => {
+  const isSupportPrivacy = window.zadark.utils.getIsSupportPrivacy()
 
-const isSupportPrivacy = window.zadark.utils.getIsSupportPrivacy()
+  const panelPrivacyElName = '#js-panel-privacy'
+  const panelPrivacyNotAvailableElName = '#js-privacy-not-available'
 
-if (isSupportPrivacy) {
   const switchBlockTypingElName = '#js-switch-block-typing'
   const switchBlockSeenElName = '#js-switch-block-seen'
   const switchBlockDeliveredElName = '#js-switch-block-delivered'
+
+  if (!isSupportPrivacy) {
+    $(panelPrivacyNotAvailableElName).html(`Chưa hỗ trợ trên ${window.zadark.browser.name}`)
+    $(panelPrivacyElName).addClass('not-available')
+    return
+  }
 
   window.zadark.browser.getEnabledBlockingRuleIds().then((ruleIds) => {
     $(switchBlockTypingElName).prop('checked', ruleIds.includes('rules_block_typing'))
@@ -56,19 +71,9 @@ if (isSupportPrivacy) {
     $(switchBlockDeliveredElName).prop('checked', ruleIds.includes('rules_block_delivered'))
   })
 
-  const handleBlockingRuleChange = function (elName, ruleId) {
-    return function () {
-      const isChecked = $(elName).is(':checked')
-      window.zadark.browser.updateEnabledBlockingRuleIds(isChecked
-        ? { enableRuleIds: [ruleId] }
-        : { disableRuleIds: [ruleId] }
-      )
-    }
-  }
-
   $(switchBlockTypingElName).on('change', handleBlockingRuleChange(switchBlockTypingElName, 'rules_block_typing'))
   $(switchBlockSeenElName).on('change', handleBlockingRuleChange(switchBlockSeenElName, 'rules_block_seen'))
   $(switchBlockDeliveredElName).on('change', handleBlockingRuleChange(switchBlockDeliveredElName, 'rules_block_delivered'))
-} else {
-  $(panelPrivacyElName).hide()
 }
+
+initPrivacy()

@@ -48,6 +48,7 @@ const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
 
 const panelPrivacyElName = '#js-panel-privacy'
+const panelPrivacyNotAvailableElName = '#js-privacy-not-available'
 const switchBlockTypingElName = '#js-switch-block-typing'
 const switchBlockSeenElName = '#js-switch-block-seen'
 const switchBlockDeliveredElName = '#js-switch-block-delivered'
@@ -149,18 +150,20 @@ const popupMainHTML = `
       </div>
     </div>
 
-    <label class="zadark-form__label">Phông chữ</label>
+    <div class="select-font">
+      <label class="zadark-form__label">Phông chữ</label>
 
-    <select id="js-select-font" class="zadark-select">
-      <option value="default">Mặc định</option>
-      <option value="open-sans">Open Sans</option>
-      <option value="inter">Inter</option>
-      <option value="roboto">Roboto</option>
-      <option value="lato">Lato</option>
-    </select>
+      <select id="js-select-font" class="zadark-select">
+        <option value="default">Mặc định</option>
+        <option value="open-sans">Open Sans</option>
+        <option value="inter">Inter</option>
+        <option value="roboto">Roboto</option>
+        <option value="lato">Lato</option>
+      </select>
+    </div>
 
     <div id="js-panel-privacy">
-      <label class="zadark-form__label">Riêng tư</label>
+      <label class="zadark-form__label">Riêng tư<span class="not-available__label" id="js-privacy-not-available"></span></label>
 
       <div class="zadark-panel">
         <div class="zadark-panel__body">
@@ -226,7 +229,8 @@ const loadPopupState = async () => {
     $(switchBlockSeenElName).prop('checked', ruleIds.includes('rules_block_seen'))
     $(switchBlockDeliveredElName).prop('checked', ruleIds.includes('rules_block_delivered'))
   } else {
-    $(panelPrivacyElName).hide()
+    $(panelPrivacyNotAvailableElName).html(`Chưa hỗ trợ trên ${window.zadark.browser.name}`)
+    $(panelPrivacyElName).addClass('not-available')
   }
 }
 
@@ -312,7 +316,7 @@ const loadZaDarkPopup = () => {
 
 const loadWelcomeScreen = () => {
   const welcomeScreenTitleEl = $('[data-translate-inner="STR_WELCOME_SCREEN_MAIN_TITLE"]')
-  welcomeScreenTitleEl.parent().html(`
+  welcomeScreenTitleEl && welcomeScreenTitleEl.parent().html(`
     <span-22 data-translate-inner="STR_WELCOME_SCREEN_MAIN_TITLE" style="color: var(--N80);">${welcomeScreenTitleEl.text()}</span-22>
     <div style="display: flex; align-items: center; justify-content: center; margin-top: 4px;">
       <span-b32>ZaDark</span-b32>
@@ -322,7 +326,4 @@ const loadWelcomeScreen = () => {
       <span-b32>Dark Mode</span-b32>
     </div>
   `)
-
-  const welcomeScreenSubTitleEl = $('[data-translate-inner="STR_WELCOME_SCREEN_MAIN_SUBTITLE"]')
-  welcomeScreenSubTitleEl.html(`ZaDark là tiện ích giúp kích hoạt Dark Mode cho Zalo PC và Web.</br>${welcomeScreenSubTitleEl.text()}`)
 }
