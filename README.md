@@ -21,6 +21,7 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
+    <li><a href="#archived">Archived</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#install">Install</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
