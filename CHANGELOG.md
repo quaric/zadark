@@ -1,5 +1,13 @@
 # Changelog
 
+## ZaDark v23.4.2
+> PC v7.9 && Web v8.7
+
+### Changed
+- Thay đổi màu sắc của Tab chính hiện tại (chuyển xanh dương thành trắng)
+- Bo tròn ô tìm kiếm
+- Thay đổi màu nền khi double-click vào tin nhắn (highlighted)
+
 ## ZaDark v23.4.1
 > PC v7.8 && Web v8.6
 

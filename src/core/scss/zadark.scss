@@ -850,6 +850,10 @@ html[data-zadark-theme="dark"] {
         background: var(--blue-message-selected);
       }
     }
+    .chat-message.highlighted {
+      --G20: var(--blue-message-selected);
+      --G30: var(--blue-message-selected);
+    }
 
     .sticker-selector__menu {
       height: 48px;
@@ -1838,6 +1842,24 @@ html[data-zadark-theme="dark"] {
       &:hover {
         background-color: var(--layer-background-hover) !important;
       }
+    }
+
+    .tab-main .tab-item.chat-message.first-selected,
+    .tab-main .tab-item.chat-message.last-selected,
+    .tab-main .tab-item.selected,
+    .tab-main .tab-item:hover {
+      color: var(--text-primary);
+    }
+    .tab-main .tab-indicator {
+      background: #fff;
+    }
+
+    #contact-search-input {
+      border-radius: 50rem;
+      border-color: var(--border);
+    }
+    #contact-search-input:focus {
+      border-color: var(--border-focused);
     }
   }
 }
