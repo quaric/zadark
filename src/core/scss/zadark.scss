@@ -1861,6 +1861,14 @@ html[data-zadark-theme="dark"] {
     #contact-search-input:focus {
       border-color: var(--border-focused);
     }
+
+    .file-cloud-indicator {
+      filter: brightness(2.5);
+
+      & ~ span[data-translate-inner="STR_CLOUD_SAVED"] {
+        filter: brightness(2.5);
+      }
+    }
   }
 }
 

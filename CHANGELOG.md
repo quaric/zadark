@@ -8,6 +8,9 @@
 - Bo tròn ô tìm kiếm
 - Thay đổi màu nền khi double-click vào tin nhắn (highlighted)
 
+### Fixed
+- Sửa lỗi màu icon và chữ của trạng thái tập tin "Lưu bền cloud (Cloud saved)" bị mờ khó đọc
+
 ## ZaDark v23.4.1
 > PC v7.8 && Web v8.6
 
