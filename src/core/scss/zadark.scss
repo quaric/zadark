@@ -1862,12 +1862,17 @@ html[data-zadark-theme="dark"] {
       border-color: var(--border-focused);
     }
 
-    .file-cloud-indicator {
-      filter: brightness(2.5);
+    .file-progress-row__end-text,
+    .file-progress-row__start-text {
+      color: var(--text-secondary);
+    }
 
-      & ~ span[data-translate-inner="STR_CLOUD_SAVED"] {
-        filter: brightness(2.5);
-      }
+    // Conversation Info > Files
+    .file-cloud-indicator[style*="assets/on-cloud"] {
+      filter: brightness(2.4);
+    }
+    span[data-translate-inner="STR_CLOUD_SAVED"][style*="rgb(0, 55, 138)"] {
+      color: var(--B60) !important;
     }
   }
 }
