@@ -24,7 +24,10 @@
       return new Promise((resolve, reject) => {
         chrome.storage.sync.get({
           theme: 'dark',
-          font: 'open-sans'
+          font: 'open-sans',
+          enabledBlockTyping: false,
+          enabledBlockDelivered: false,
+          enabledBlockSeen: false
         }, (items) => {
           resolve(items)
         })
@@ -49,6 +52,26 @@
     },
 
     updateEnabledBlockingRuleIds: ({ enableRuleIds = [], disableRuleIds = [] }) => {
+      const SETTINGS_RULE_KEYS = {
+        rules_block_typing: 'enabledBlockTyping',
+        rules_block_delivered: 'enabledBlockDelivered',
+        rules_block_seen: 'enabledBlockSeen'
+      }
+
+      const settings = {}
+
+      Array.isArray(enableRuleIds) && enableRuleIds.forEach((ruleId) => {
+        const key = SETTINGS_RULE_KEYS[ruleId]
+        settings[key] = true
+      })
+
+      Array.isArray(disableRuleIds) && disableRuleIds.forEach((ruleId) => {
+        const key = SETTINGS_RULE_KEYS[ruleId]
+        settings[key] = false
+      })
+
+      chrome.storage.sync.set(settings)
+
       return chrome.declarativeNetRequest.updateEnabledRulesets({
         enableRulesetIds: enableRuleIds,
         disableRulesetIds: disableRuleIds

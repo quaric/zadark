@@ -218,20 +218,27 @@ const zadarkPopupHTML = `
 
 const loadPopupState = async () => {
   const { theme, font } = await window.zadark.browser.getExtensionSettings()
+
   setSelectTheme(theme)
   setSelectFont(font)
 
   const isSupportPrivacy = window.zadark.utils.getIsSupportPrivacy()
 
-  if (isSupportPrivacy) {
-    const ruleIds = await chrome.runtime.sendMessage({ action: MSG_ACTIONS.GET_ENABLED_BLOCKING_RULE_IDS })
-    $(switchBlockTypingElName).prop('checked', ruleIds.includes('rules_block_typing'))
-    $(switchBlockSeenElName).prop('checked', ruleIds.includes('rules_block_seen'))
-    $(switchBlockDeliveredElName).prop('checked', ruleIds.includes('rules_block_delivered'))
-  } else {
+  if (!isSupportPrivacy) {
     $(panelPrivacyNotAvailableElName).html(`Chưa hỗ trợ trên ${window.zadark.browser.name}`)
     $(panelPrivacyElName).addClass('not-available')
+    return
   }
+
+  const ruleIds = await chrome.runtime.sendMessage({ action: MSG_ACTIONS.GET_ENABLED_BLOCKING_RULE_IDS })
+
+  if (!Array.isArray(ruleIds)) {
+    return
+  }
+
+  $(switchBlockTypingElName).prop('checked', ruleIds.includes('rules_block_typing'))
+  $(switchBlockSeenElName).prop('checked', ruleIds.includes('rules_block_seen'))
+  $(switchBlockDeliveredElName).prop('checked', ruleIds.includes('rules_block_delivered'))
 }
 
 const openZaDarkPopup = (popupInstance, buttonEl, popupEl) => {

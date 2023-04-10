@@ -66,6 +66,10 @@ const initPrivacy = () => {
   }
 
   window.zadark.browser.getEnabledBlockingRuleIds().then((ruleIds) => {
+    if (!Array.isArray(ruleIds)) {
+      return
+    }
+
     $(switchBlockTypingElName).prop('checked', ruleIds.includes('rules_block_typing'))
     $(switchBlockSeenElName).prop('checked', ruleIds.includes('rules_block_seen'))
     $(switchBlockDeliveredElName).prop('checked', ruleIds.includes('rules_block_delivered'))

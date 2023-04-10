@@ -11,6 +11,10 @@
 ### Fixed
 - Sửa lỗi màu icon và chữ của trạng thái tập tin "Lưu bền cloud (Cloud saved)" bị mờ khó đọc
 
+#### Web specific
+- Sửa lỗi cài đặt riêng tư trở về mặc định sau khi cập nhật phiên bản mới
+- Sửa lỗi không thể ẩn trạng thái "Đã nhận" tin nhắn trong cuộc trò chuyện mã hoá đầu cuối (E2EE)
+
 ## ZaDark v23.4.1
 > PC v7.8 && Web v8.6
 
