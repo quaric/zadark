@@ -1851,7 +1851,7 @@ html[data-zadark-theme="dark"] {
       color: var(--text-primary);
     }
     .tab-main .tab-indicator {
-      background: #fff;
+      background: var(--text-primary);
     }
 
     #contact-search-input {
