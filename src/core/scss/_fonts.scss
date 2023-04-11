@@ -90,4 +90,27 @@
     font-weight: 600;
     font-style: normal;
   }
+
+  // Source Sans Pro
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    src: url("#{$fontsPath}/SourceSansPro-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    src: url("#{$fontsPath}/SourceSansPro-SemiBold.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Source Sans Pro";
+    src: url("#{$fontsPath}/SourceSansPro-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+  }
 }

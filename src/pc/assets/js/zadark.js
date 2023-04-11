@@ -192,6 +192,7 @@ const popupMainHTML = `
         <option value="inter">Inter</option>
         <option value="roboto">Roboto</option>
         <option value="lato">Lato</option>
+        <option value="source-sans-pro">Source Sans Pro</option>
       </select>
     </div>
 

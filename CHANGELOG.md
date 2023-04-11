@@ -3,6 +3,9 @@
 ## ZaDark v23.4.2
 > PC v7.9 && Web v8.7
 
+### Added
+- Thêm phông chữ : Source Sans Pro
+
 ### Changed
 - Thay đổi màu sắc chữ và viền của "Tab trò chuyện", "Tab Sticker", "Tab Kho lưu trữ" : Chuyển từ xanh dương sang trắng
 - Bo tròn ô tìm kiếm
