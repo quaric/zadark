@@ -9,6 +9,11 @@ const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
 const manifestData = window.zadark.browser.getManifest()
 
+const MSG_ACTIONS = {
+  GET_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:GET_ENABLED_BLOCKING_RULE_IDS',
+  UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS'
+}
+
 $(versionElName).html(`Phiên bản ${manifestData.version}`)
 
 window.zadark.utils.refreshPageTheme()
@@ -39,13 +44,15 @@ $(selectFontElName).on('change', async function () {
   window.zadark.browser.sendMessage2ZaloTabs('@ZaDark:CHANGE_FONT', { font })
 })
 
-const handleBlockingRuleChange = function (elName, ruleId) {
-  return function () {
+const handleBlockingRuleChange = (elName, ruleId) => {
+  return () => {
     const isChecked = $(elName).is(':checked')
-    window.zadark.browser.updateEnabledBlockingRuleIds(isChecked
-      ? { enableRuleIds: [ruleId] }
-      : { disableRuleIds: [ruleId] }
-    )
+
+    const payload = isChecked
+      ? { enableRulesetIds: [ruleId] }
+      : { disableRulesetIds: [ruleId] }
+
+    chrome.runtime.sendMessage({ action: MSG_ACTIONS.UPDATE_ENABLED_BLOCKING_RULE_IDS, payload })
   }
 }
 
@@ -65,7 +72,7 @@ const initPrivacy = () => {
     return
   }
 
-  window.zadark.browser.getEnabledBlockingRuleIds().then((ruleIds) => {
+  chrome.runtime.sendMessage({ action: MSG_ACTIONS.GET_ENABLED_BLOCKING_RULE_IDS }).then((ruleIds) => {
     if (!Array.isArray(ruleIds)) {
       return
     }

@@ -4,16 +4,18 @@
 > PC v7.9 && Web v8.7
 
 ### Changed
-- Thay đổi màu sắc của Tab chính hiện tại (chuyển xanh dương thành trắng)
+- Thay đổi màu sắc chữ và viền của "Tab trò chuyện", "Tab Sticker", "Tab Kho lưu trữ" : Chuyển từ xanh dương sang trắng
 - Bo tròn ô tìm kiếm
 - Thay đổi màu nền khi double-click vào tin nhắn (highlighted)
 
 ### Fixed
 - Sửa lỗi màu icon và chữ của trạng thái tập tin "Lưu bền cloud (Cloud saved)" bị mờ khó đọc
+- Sửa lỗi Tab Kho lưu trữ bị lệch nội dung
 
 #### Web specific
 - Sửa lỗi cài đặt riêng tư trở về mặc định sau khi cập nhật phiên bản mới
 - Sửa lỗi không thể ẩn trạng thái "Đã nhận" tin nhắn trong cuộc trò chuyện mã hoá đầu cuối (E2EE)
+- Cập nhật logic cài đặt riêng tư : Gửi yêu cầu cập nhật đến "Service Worker" của tiện ích để xử lý
 
 ## ZaDark v23.4.1
 > PC v7.8 && Web v8.6

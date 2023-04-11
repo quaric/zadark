@@ -78,12 +78,12 @@ async function handleSelectFontChange () {
 }
 
 const handleBlockingRuleChange = (elName, ruleId) => {
-  return async () => {
+  return () => {
     const isChecked = $(elName).is(':checked')
 
     const payload = isChecked
-      ? { enableRuleIds: [ruleId] }
-      : { disableRuleIds: [ruleId] }
+      ? { enableRulesetIds: [ruleId] }
+      : { disableRulesetIds: [ruleId] }
 
     chrome.runtime.sendMessage({ action: MSG_ACTIONS.UPDATE_ENABLED_BLOCKING_RULE_IDS, payload })
   }
@@ -296,8 +296,10 @@ const loadZaDarkPopup = () => {
 
   const zadarkVersion = window.zadark.browser.getManifest().version
   $(versionElName).html(`Phiên bản ${zadarkVersion}`)
+
   $(selectThemeElName).on('change', handleSelectThemeChange)
   $(selectFontElName).on('change', handleSelectFontChange)
+
   $(switchBlockTypingElName).on('change', handleBlockingRuleChange(switchBlockTypingElName, 'rules_block_typing'))
   $(switchBlockSeenElName).on('change', handleBlockingRuleChange(switchBlockSeenElName, 'rules_block_seen'))
   $(switchBlockDeliveredElName).on('change', handleBlockingRuleChange(switchBlockDeliveredElName, 'rules_block_delivered'))

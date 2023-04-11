@@ -17,7 +17,7 @@ const SETTINGS_RULE_KEYS = {
   rules_block_seen: 'enabledBlockSeen'
 }
 
-const handleInitRulesets = async () => {
+const handleLoadRulesets = async () => {
   const settings = await chrome.storage.sync.get({
     enabledBlockTyping: false,
     enabledBlockDelivered: false,
@@ -29,6 +29,9 @@ const handleInitRulesets = async () => {
 
   RULE_IDS.forEach((ruleId) => {
     const key = SETTINGS_RULE_KEYS[ruleId]
+
+    if (!key) return
+
     if (settings[key]) {
       enableRulesetIds.push(ruleId)
     } else {
@@ -45,11 +48,11 @@ const handleInitRulesets = async () => {
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
     chrome.tabs.create({ url: 'https://zadark.quaric.com/web/chrome' })
-    handleInitRulesets()
+    handleLoadRulesets()
   }
 
   if (details.reason === 'update') {
-    handleInitRulesets()
+    handleLoadRulesets()
   }
 })
 
@@ -64,24 +67,25 @@ chrome.runtime.onMessage.addListener(
     }
 
     if (action === MSG_ACTIONS.UPDATE_ENABLED_BLOCKING_RULE_IDS) {
-      const { enableRuleIds, disableRuleIds } = payload
+      const { enableRulesetIds, disableRulesetIds } = payload
+
       const settings = {}
 
-      Array.isArray(enableRuleIds) && enableRuleIds.forEach((ruleId) => {
+      Array.isArray(enableRulesetIds) && enableRulesetIds.forEach((ruleId) => {
         const key = SETTINGS_RULE_KEYS[ruleId]
-        settings[key] = true
+        if (key) settings[key] = true
       })
 
-      Array.isArray(disableRuleIds) && disableRuleIds.forEach((ruleId) => {
+      Array.isArray(disableRulesetIds) && disableRulesetIds.forEach((ruleId) => {
         const key = SETTINGS_RULE_KEYS[ruleId]
-        settings[key] = false
+        if (key) settings[key] = false
       })
 
       chrome.storage.sync.set(settings)
 
       chrome.declarativeNetRequest.updateEnabledRulesets({
-        enableRulesetIds: payload.enableRuleIds,
-        disableRulesetIds: payload.disableRuleIds
+        enableRulesetIds,
+        disableRulesetIds
       })
     }
 

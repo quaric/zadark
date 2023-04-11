@@ -24,7 +24,10 @@
       return new Promise((resolve, reject) => {
         browser.storage.sync.get({
           theme: 'dark',
-          font: 'open-sans'
+          font: 'open-sans',
+          enabledBlockTyping: false,
+          enabledBlockDelivered: false,
+          enabledBlockSeen: false
         }, (items) => {
           resolve(items)
         })
@@ -41,18 +44,6 @@
         currentWindow: true
       })
       return tabs
-    },
-
-    getEnabledBlockingRuleIds: async () => {
-      const rulesetIds = await browser.declarativeNetRequest.getEnabledRulesets()
-      return rulesetIds
-    },
-
-    updateEnabledBlockingRuleIds: ({ enableRuleIds = [], disableRuleIds = [] }) => {
-      return browser.declarativeNetRequest.updateEnabledRulesets({
-        enableRulesetIds: enableRuleIds,
-        disableRulesetIds: disableRuleIds
-      })
     },
 
     sendMessage2Tab: async function (tabId, action, payload) {
