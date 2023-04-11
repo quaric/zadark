@@ -14,6 +14,7 @@
 ### Fixed
 - Sửa lỗi màu icon và chữ của trạng thái tập tin "Lưu bền cloud (Cloud saved)" bị mờ khó đọc
 - Sửa lỗi Tab Kho lưu trữ bị lệch nội dung
+- Sửa lỗi tiêu đề "Kho lưu trữ, Danh sách nhắc hẹn" và các nút ở chi tiết cuộc trò chuyện bị lệch
 
 #### Web specific
 - Sửa lỗi cài đặt riêng tư trở về mặc định sau khi cập nhật phiên bản mới

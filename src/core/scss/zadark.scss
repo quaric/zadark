@@ -1940,6 +1940,17 @@ html[data-zadark-theme="dark"] {
     .tab-bar-item__content {
       padding: 0;
     }
+
+    .gb-menu-multi-select {
+      top: 21px;
+    }
+    .chat-info__header__title [data-id="btn_MutualGrp_Back"] {
+      position: relative;
+      top: -3px;
+    }
+    .group-board-sidebar-title > .gbsb-ic-add {
+      top: 24px;
+    }
   }
 }
 
