@@ -24,7 +24,8 @@
       return new Promise((resolve, reject) => {
         browser.storage.sync.get({
           theme: 'dark',
-          font: 'open-sans'
+          font: 'open-sans',
+          knownVersion: ''
         }, (items) => {
           resolve(items)
         })

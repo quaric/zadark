@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark v23.4.3
+> PC v7.10 && Web v8.8
+
+### Added
+- Thêm dấu hiệu nhận biết khi ZaDark cập nhật phiên bản mới (Dấu chấm đỏ ở Menu ZaDark trên Zalo)
+
 ## ZaDark v23.4.2
 > PC v7.9 && Web v8.7
 

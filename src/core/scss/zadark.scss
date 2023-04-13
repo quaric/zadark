@@ -2018,6 +2018,21 @@ body.zadark {
       width: 28px;
       height: 28px;
     }
+
+    &.zadark-known-version {
+      &::after {
+        content: "";
+        position: absolute;
+        top: 12px;
+        right: 16px;
+
+        width: 8px;
+        height: 8px;
+        border-radius: 4px;
+        background: var(--red-dot);
+        box-shadow: 0 0 0 2px var(--layer-background-leftmenu);
+      }
+    }
   }
 
   .zadark-popper {

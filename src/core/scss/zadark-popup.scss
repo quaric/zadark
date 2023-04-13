@@ -76,6 +76,8 @@ html[data-zadark-theme="dark"] #zadark-popup {
   --zadark-primary-base: #0e70ff;
   --zadark-primary-dark: #035bdc;
 
+  // --zadark-red-dot: #f5222d;
+
   --zadark-border-base: var(--zadark-grey-300);
   --zadark-border-light: var(--zadark-grey-600);
   --zadark-border-radius-base: 8px;
@@ -472,4 +474,20 @@ html[data-zadark-theme="dark"] #zadark-popup {
     display: block;
     margin-bottom: 12px;
   }
+
+  // #js-ext-version.zadark-known-version {
+  //   &::before {
+  //     content: "";
+  //     position: relative;
+  //     top: -1px;
+
+  //     display: inline-flex;
+  //     width: 6px;
+  //     height: 6px;
+  //     margin-right: 8px;
+
+  //     border-radius: 3px;
+  //     background-color: var(--zadark-red-dot);
+  //   }
+  // }
 }

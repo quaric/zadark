@@ -9,6 +9,7 @@ const $ = jQuery = module.exports // Ref: https://github.com/electron/electron/i
 
 const ZADARK_THEME_KEY = '@ZaDark:THEME'
 const ZADARK_FONT_KEY = '@ZaDark:FONT'
+const ZADARK_KNOWN_VERSION_KEY = '@ZaDark:KNOWN_VERSION'
 
 window.zadark = window.zadark || {}
 
@@ -27,6 +28,14 @@ window.zadark.storage = {
 
   saveFont: (font) => {
     return localStorage.setItem(ZADARK_FONT_KEY, font)
+  },
+
+  getKnownVersion: () => {
+    return localStorage.getItem(ZADARK_KNOWN_VERSION_KEY) || '0.0'
+  },
+
+  saveKnownVersion: (version) => {
+    return localStorage.setItem(ZADARK_KNOWN_VERSION_KEY, version)
   }
 }
 
@@ -256,12 +265,17 @@ const loadPopupState = async () => {
 
   const font = window.zadark.storage.getFont()
   setSelectFont(font)
+
+  const zadarkVersion = $('html').data('zadark-version')
+  console.log('zadarkVersion: ' + zadarkVersion)
+  window.zadark.storage.saveKnownVersion(zadarkVersion)
 }
 
 const openZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
   return () => {
     loadPopupState()
 
+    buttonEl.classList.remove('zadark-known-version')
     buttonEl.classList.add('selected')
     popupEl.setAttribute('data-visible', '')
 
@@ -333,6 +347,11 @@ const loadZaDarkPopup = () => {
       true
     )
   })
+
+  const knownVersion = window.zadark.storage.getKnownVersion()
+  if (`${knownVersion}` !== `${zadarkVersion}`) {
+    buttonEl.classList.add('zadark-known-version')
+  }
 }
 
 const loadWelcomeScreen = () => {

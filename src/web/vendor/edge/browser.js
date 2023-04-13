@@ -27,7 +27,8 @@
           font: 'open-sans',
           enabledBlockTyping: false,
           enabledBlockDelivered: false,
-          enabledBlockSeen: false
+          enabledBlockSeen: false,
+          knownVersion: ''
         }, (items) => {
           resolve(items)
         })

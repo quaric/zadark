@@ -223,6 +223,9 @@ const loadPopupState = async () => {
   setSelectTheme(theme)
   setSelectFont(font)
 
+  const zadarkVersion = window.zadark.browser.getManifest().version
+  window.zadark.browser.saveExtensionSettings({ knownVersion: zadarkVersion })
+
   const isSupportPrivacy = window.zadark.utils.getIsSupportPrivacy()
 
   if (!isSupportPrivacy) {
@@ -246,6 +249,7 @@ const openZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
   return () => {
     loadPopupState()
 
+    buttonEl.classList.remove('zadark-known-version')
     buttonEl.classList.add('selected')
     popupEl.setAttribute('data-visible', '')
 
@@ -321,6 +325,12 @@ const loadZaDarkPopup = () => {
       hideZaDarkPopup(popupInstance, buttonEl, popupEl),
       true
     )
+  })
+
+  window.zadark.browser.getExtensionSettings().then(({ knownVersion }) => {
+    if (knownVersion !== zadarkVersion) {
+      buttonEl.classList.add('zadark-known-version')
+    }
   })
 }
 
