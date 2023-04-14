@@ -9,6 +9,7 @@ const $ = jQuery = module.exports // Ref: https://github.com/electron/electron/i
 
 const ZADARK_THEME_KEY = '@ZaDark:THEME'
 const ZADARK_FONT_KEY = '@ZaDark:FONT'
+const ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_LATEST_MESSAGE'
 const ZADARK_KNOWN_VERSION_KEY = '@ZaDark:KNOWN_VERSION'
 
 window.zadark = window.zadark || {}
@@ -28,6 +29,14 @@ window.zadark.storage = {
 
   saveFont: (font) => {
     return localStorage.setItem(ZADARK_FONT_KEY, font)
+  },
+
+  saveEnabledHideLatestMessage: (enabled) => {
+    return localStorage.setItem(ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY, enabled)
+  },
+
+  getEnabledHideLatestMessage: () => {
+    return localStorage.getItem(ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY) === 'true'
   },
 
   getKnownVersion: () => {
@@ -76,11 +85,21 @@ window.zadark.utils = {
   refreshPageFont: function () {
     const font = window.zadark.storage.getFont()
     this.setFontAttr(font)
+  },
+
+  refreshHideLatestMessage: function () {
+    const enabledHideLatestMessage = window.zadark.storage.getEnabledHideLatestMessage()
+    if (enabledHideLatestMessage) {
+      document.body.classList.add('zadark-privacy__hide-latest-message')
+    } else {
+      document.body.classList.remove('zadark-privacy__hide-latest-message')
+    }
   }
 }
 
 window.zadark.utils.refreshPageTheme()
 window.zadark.utils.refreshPageFont()
+window.zadark.utils.refreshHideLatestMessage()
 
 window.matchMedia('(prefers-color-scheme: dark)').addListener((event) => {
   const theme = window.zadark.storage.getTheme()
@@ -94,7 +113,6 @@ const observer = new MutationObserver((mutationsList) => {
     mutation.addedNodes.forEach((addedNode) => {
       if (addedNode.id === 'app-page') {
         loadZaDarkPopup()
-        loadWelcomeScreen()
         observer.disconnect()
       }
     })
@@ -106,6 +124,7 @@ observer.observe(document.querySelector('#app'), { subtree: false, childList: tr
 const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
+const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
 
 const setSelectTheme = (theme) => {
   const options = ['light', 'dark', 'auto']
@@ -116,6 +135,10 @@ const setSelectTheme = (theme) => {
 
 const setSelectFont = (font) => {
   $(selectFontElName).val(font)
+}
+
+const setSwitchHideLatestMessage = (enabled) => {
+  $(switchHideLatestMessageElName).prop('checked', enabled)
 }
 
 async function handleThemeChange () {
@@ -129,6 +152,12 @@ async function handleFontChange () {
   const font = $(this).val()
   window.zadark.storage.saveFont(font)
   window.zadark.utils.refreshPageFont()
+}
+
+async function handleHideLatestMessageChange () {
+  const isEnabled = $(this).is(':checked')
+  window.zadark.storage.saveEnabledHideLatestMessage(isEnabled)
+  window.zadark.utils.refreshHideLatestMessage()
 }
 
 const zadarkButtonHTML = `
@@ -206,12 +235,20 @@ const popupMainHTML = `
     </div>
 
     <div id="js-panel-privacy" class="not-available">
-      <label class="zadark-form__label">Riêng tư<span class="not-available__label">Chưa hỗ trợ trên Zalo PC</span></label>
+      <label class="zadark-form__label">Riêng tư</label>
 
       <div class="zadark-panel">
         <div class="zadark-panel__body">
           <div class="zadark-switch__list">
             <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-hide-latest-message">Ẩn "Tin nhắn gần nhất" ở Danh sách trò chuyện</label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
+
+            <div class="zadark-switch zadark-switch__disabled">
               <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn ..."</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
@@ -219,7 +256,7 @@ const popupMainHTML = `
               </label>
             </div>
 
-            <div class="zadark-switch">
+            <div class="zadark-switch zadark-switch__disabled">
               <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái "Đã nhận" tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
@@ -227,7 +264,7 @@ const popupMainHTML = `
               </label>
             </div>
 
-            <div class="zadark-switch">
+            <div class="zadark-switch zadark-switch__disabled">
               <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái "Đã xem" tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
@@ -259,23 +296,38 @@ const zadarkPopupHTML = `
   </div>
 `
 
-const loadPopupState = async () => {
+const loadPopupState = () => {
   const theme = window.zadark.storage.getTheme()
   setSelectTheme(theme)
 
   const font = window.zadark.storage.getFont()
   setSelectFont(font)
 
+  const enabledHideLatestMessage = window.zadark.storage.getEnabledHideLatestMessage()
+  setSwitchHideLatestMessage(enabledHideLatestMessage)
+}
+
+const loadKnownVersionState = (buttonEl) => {
+  const knownVersion = window.zadark.storage.getKnownVersion()
   const zadarkVersion = $('html').data('zadark-version')
-  console.log('zadarkVersion: ' + zadarkVersion)
+
+  if (`${knownVersion}` !== `${zadarkVersion}`) {
+    buttonEl.classList.add('zadark-known-version')
+  }
+}
+
+const updateKnownVersionState = (buttonEl) => {
+  const zadarkVersion = $('html').data('zadark-version')
   window.zadark.storage.saveKnownVersion(zadarkVersion)
+
+  buttonEl.classList.remove('zadark-known-version')
 }
 
 const openZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
   return () => {
     loadPopupState()
+    updateKnownVersionState(buttonEl)
 
-    buttonEl.classList.remove('zadark-known-version')
     buttonEl.classList.add('selected')
     popupEl.setAttribute('data-visible', '')
 
@@ -327,8 +379,10 @@ const loadZaDarkPopup = () => {
 
   const zadarkVersion = $('html').data('zadark-version')
   $(versionElName).html(`Phiên bản ${zadarkVersion}`)
+
   $(selectThemeElName).on('change', handleThemeChange)
   $(selectFontElName).on('change', handleFontChange)
+  $(switchHideLatestMessageElName).on('change', handleHideLatestMessageChange)
 
   const popupEl = document.querySelector('#zadark-popup')
   const buttonEl = document.getElementById('div_Main_TabZaDark')
@@ -348,22 +402,6 @@ const loadZaDarkPopup = () => {
     )
   })
 
-  const knownVersion = window.zadark.storage.getKnownVersion()
-  if (`${knownVersion}` !== `${zadarkVersion}`) {
-    buttonEl.classList.add('zadark-known-version')
-  }
-}
-
-const loadWelcomeScreen = () => {
-  const welcomeScreenTitleEl = $('[data-translate-inner="STR_WELCOME_SCREEN_MAIN_TITLE"]')
-  welcomeScreenTitleEl && welcomeScreenTitleEl.parent().html(`
-    <span-22 data-translate-inner="STR_WELCOME_SCREEN_MAIN_TITLE" style="color: var(--N80);">${welcomeScreenTitleEl.text()}</span-22>
-    <div style="display: flex; align-items: center; justify-content: center; margin-top: 4px;">
-      <span-b32>ZaDark</span-b32>
-      <span-24 style="margin-left: 8px; margin-right: 8px; color: var(--N40);">=</span-24>
-      <span-b32>Zalo</span-b32>
-      <span-24 style="margin-left: 8px; margin-right: 8px; color: var(--N40);">+</span-24>
-      <span-b32>Dark Mode</span-b32>
-    </div>
-  `)
+  loadPopupState()
+  loadKnownVersionState(buttonEl)
 }

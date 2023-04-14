@@ -50,7 +50,17 @@
       })
     },
 
-    getIsSupportPrivacy: () => {
+    refreshHideLatestMessage: function () {
+      window.zadark.browser.getExtensionSettings().then(({ enabledHideLatestMessage }) => {
+        if (enabledHideLatestMessage) {
+          document.body.classList.add('zadark-privacy__hide-latest-message')
+        } else {
+          document.body.classList.remove('zadark-privacy__hide-latest-message')
+        }
+      })
+    },
+
+    getIsSupportBlocking: () => {
       const { parsedResult: { browser } } = bowser.getParser(window.navigator.userAgent)
 
       const browserName = browser.name

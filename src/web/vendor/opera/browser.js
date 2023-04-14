@@ -25,6 +25,7 @@
         chrome.storage.sync.get({
           theme: 'dark',
           font: 'open-sans',
+          enabledHideLatestMessage: false,
           enabledBlockTyping: false,
           enabledBlockDelivered: false,
           enabledBlockSeen: false,

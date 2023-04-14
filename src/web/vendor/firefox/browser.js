@@ -25,6 +25,7 @@
         browser.storage.sync.get({
           theme: 'dark',
           font: 'open-sans',
+          enabledHideLatestMessage: false,
           knownVersion: ''
         }, (items) => {
           resolve(items)

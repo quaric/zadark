@@ -1551,11 +1551,12 @@ html[data-zadark-theme="dark"] {
         filter: invert(0.9);
       }
       .slideshow__page__text__title {
-        margin-top: 50px;
+        margin-top: 24px;
+        margin-bottom: 8px;
         font-weight: var(--bold);
       }
       .slideshow__bottom {
-        margin-top: 50px;
+        margin-top: 24px;
       }
       .slideshow__btn {
         color: var(--text-secondary);
@@ -1564,6 +1565,7 @@ html[data-zadark-theme="dark"] {
       .chat-onboard {
         > div:nth-child(1) {
           width: 480px !important;
+          margin-bottom: 32px !important;
         }
       }
     }
@@ -2048,6 +2050,56 @@ body.zadark {
 
     &[data-visible] {
       display: block;
+    }
+  }
+
+  &.zadark-privacy__hide-latest-message {
+    @mixin transition-opacity-400 {
+      -webkit-transition: opacity 400ms ease-in-out;
+      -moz-transition: opacity 400ms ease-in-out;
+      -o-transition: opacity 400ms ease-in-out;
+      transition: opacity 400ms ease-in-out;
+    }
+
+    .conv-item .conv-item-body__main .conv-message {
+      position: relative;
+
+      &::after {
+        content: "••••••";
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        color: var(--text-secondary);
+        font-size: 16px;
+        letter-spacing: 1px;
+        opacity: 1;
+
+        @include transition-opacity-400();
+      }
+
+      * {
+        opacity: 0;
+        @include transition-opacity-400();
+      }
+    }
+
+    .conv-item:hover,
+    .conv-item.selected {
+      .conv-item-body__main .conv-message {
+        &::after {
+          opacity: 0;
+        }
+
+        * {
+          opacity: 1;
+        }
+      }
     }
   }
 }

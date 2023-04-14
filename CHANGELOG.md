@@ -5,6 +5,12 @@
 
 ### Added
 - Thêm dấu hiệu nhận biết khi ZaDark cập nhật phiên bản mới (Dấu chấm đỏ ở Menu ZaDark trên Zalo)
+  - Tính năng giúp bạn biết được ZaDark đã thay đổi những gì ở mỗi bản cập nhật
+  - Nhấn vào Menu ZaDark > Tên phiên bản để xem thay đổi trong bản cập nhật
+- Thêm cài đặt Riêng tư : Ẩn "Tin nhắn gần nhất" ở Danh sách trò chuyện (Bên trái)
+  - Tính năng hạn chế người khác nhìn lén nội dung tin nhắn gần nhất của bạn với bạn bè ở Danh sách trò chuyện (Bên trái)
+  - Tin nhắn sẽ hiển thị khi bạn rê chuột vào cuộc trò chuyện
+  - Tin nhắn của cuộc trò chuyện hiện tại sẽ không bị ẩn
 
 ## ZaDark v23.4.2
 > PC v7.9 && Web v8.7

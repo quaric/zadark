@@ -7,10 +7,12 @@
 window.zadark.browser.initClassNames()
 window.zadark.utils.refreshPageTheme()
 window.zadark.utils.refreshPageFont()
+window.zadark.utils.refreshHideLatestMessage()
 
 const MSG_ACTIONS = {
   CHANGE_THEME: '@ZaDark:CHANGE_THEME',
   CHANGE_FONT: '@ZaDark:CHANGE_FONT',
+  CHANGE_HIDE_LATEST_MESSAGE: '@ZaDark:CHANGE_HIDE_LATEST_MESSAGE',
   GET_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:GET_ENABLED_BLOCKING_RULE_IDS',
   UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS'
 }
@@ -20,7 +22,6 @@ const observer = new MutationObserver((mutationsList) => {
     mutation.addedNodes.forEach((addedNode) => {
       if (addedNode.id === 'app-page') {
         loadZaDarkPopup()
-        loadWelcomeScreen()
         observer.disconnect()
       }
     })
@@ -41,14 +42,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     setSelectFont(message.payload.font)
     sendResponse({ received: true })
   }
+
+  if (message.action === MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE) {
+    window.zadark.utils.refreshHideLatestMessage()
+    setSwitchHideLatestMessage(message.payload.enabledHideLatestMessage)
+    sendResponse({ received: true })
+  }
 })
 
 const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
 
-const panelPrivacyElName = '#js-panel-privacy'
-const panelPrivacyNotAvailableElName = '#js-privacy-not-available'
+const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
 const switchBlockTypingElName = '#js-switch-block-typing'
 const switchBlockSeenElName = '#js-switch-block-seen'
 const switchBlockDeliveredElName = '#js-switch-block-delivered'
@@ -64,6 +70,10 @@ const setSelectFont = (font) => {
   $(selectFontElName).val(font)
 }
 
+const setSwitchHideLatestMessage = (enabled) => {
+  $(switchHideLatestMessageElName).prop('checked', enabled)
+}
+
 async function handleSelectThemeChange () {
   const theme = $(this).val()
   await window.zadark.browser.saveExtensionSettings({ theme })
@@ -75,6 +85,12 @@ async function handleSelectFontChange () {
   const font = $(this).val()
   await window.zadark.browser.saveExtensionSettings({ font })
   window.zadark.utils.refreshPageFont()
+}
+
+async function handleHideLastestMessageChange () {
+  const enabledHideLatestMessage = $(this).is(':checked')
+  await window.zadark.browser.saveExtensionSettings({ enabledHideLatestMessage })
+  window.zadark.utils.refreshHideLatestMessage()
 }
 
 const handleBlockingRuleChange = (elName, ruleId) => {
@@ -164,11 +180,19 @@ const popupMainHTML = `
     </div>
 
     <div id="js-panel-privacy">
-      <label class="zadark-form__label">Riêng tư<span class="not-available__label" id="js-privacy-not-available"></span></label>
+      <label class="zadark-form__label">Riêng tư</label>
 
       <div class="zadark-panel">
         <div class="zadark-panel__body">
           <div class="zadark-switch__list">
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-hide-latest-message">Ẩn "Tin nhắn gần nhất" ở Danh sách trò chuyện</label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
+
             <div class="zadark-switch">
               <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn ..."</label>
               <label class="zadark-switch__checkbox">
@@ -217,23 +241,7 @@ const zadarkPopupHTML = `
   </div>
 `
 
-const loadPopupState = async () => {
-  const { theme, font } = await window.zadark.browser.getExtensionSettings()
-
-  setSelectTheme(theme)
-  setSelectFont(font)
-
-  const zadarkVersion = window.zadark.browser.getManifest().version
-  window.zadark.browser.saveExtensionSettings({ knownVersion: zadarkVersion })
-
-  const isSupportPrivacy = window.zadark.utils.getIsSupportPrivacy()
-
-  if (!isSupportPrivacy) {
-    $(panelPrivacyNotAvailableElName).html(`Chưa hỗ trợ trên ${window.zadark.browser.name}`)
-    $(panelPrivacyElName).addClass('not-available')
-    return
-  }
-
+const enableBlocking = async () => {
   const ruleIds = await chrome.runtime.sendMessage({ action: MSG_ACTIONS.GET_ENABLED_BLOCKING_RULE_IDS })
 
   if (!Array.isArray(ruleIds)) {
@@ -245,11 +253,50 @@ const loadPopupState = async () => {
   $(switchBlockDeliveredElName).prop('checked', ruleIds.includes('rules_block_delivered'))
 }
 
+const disableBlocking = () => {
+  const disabledList = [switchBlockTypingElName, switchBlockSeenElName, switchBlockDeliveredElName]
+
+  disabledList.forEach((elName) => {
+    $(elName).parent().parent().addClass('zadark-switch__disabled')
+  })
+}
+
+const loadPopupState = async () => {
+  const { theme, font, enabledHideLatestMessage } = await window.zadark.browser.getExtensionSettings()
+
+  setSelectTheme(theme)
+  setSelectFont(font)
+  setSwitchHideLatestMessage(enabledHideLatestMessage)
+
+  const isSupportBlocking = window.zadark.utils.getIsSupportBlocking()
+  if (isSupportBlocking) {
+    enableBlocking()
+  } else {
+    disableBlocking()
+  }
+}
+
+const loadKnownVersionState = async (buttonEl) => {
+  const { knownVersion } = await window.zadark.browser.getExtensionSettings()
+  const zadarkVersion = window.zadark.browser.getManifest().version
+
+  if (knownVersion !== zadarkVersion) {
+    buttonEl.classList.add('zadark-known-version')
+  }
+}
+
+const updateKnownVersionState = (buttonEl) => {
+  const zadarkVersion = window.zadark.browser.getManifest().version
+  window.zadark.browser.saveExtensionSettings({ knownVersion: zadarkVersion })
+
+  buttonEl.classList.remove('zadark-known-version')
+}
+
 const openZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
   return () => {
     loadPopupState()
+    updateKnownVersionState(buttonEl)
 
-    buttonEl.classList.remove('zadark-known-version')
     buttonEl.classList.add('selected')
     popupEl.setAttribute('data-visible', '')
 
@@ -305,6 +352,7 @@ const loadZaDarkPopup = () => {
   $(selectThemeElName).on('change', handleSelectThemeChange)
   $(selectFontElName).on('change', handleSelectFontChange)
 
+  $(switchHideLatestMessageElName).on('change', handleHideLastestMessageChange)
   $(switchBlockTypingElName).on('change', handleBlockingRuleChange(switchBlockTypingElName, 'rules_block_typing'))
   $(switchBlockSeenElName).on('change', handleBlockingRuleChange(switchBlockSeenElName, 'rules_block_seen'))
   $(switchBlockDeliveredElName).on('change', handleBlockingRuleChange(switchBlockDeliveredElName, 'rules_block_delivered'))
@@ -327,23 +375,6 @@ const loadZaDarkPopup = () => {
     )
   })
 
-  window.zadark.browser.getExtensionSettings().then(({ knownVersion }) => {
-    if (knownVersion !== zadarkVersion) {
-      buttonEl.classList.add('zadark-known-version')
-    }
-  })
-}
-
-const loadWelcomeScreen = () => {
-  const welcomeScreenTitleEl = $('[data-translate-inner="STR_WELCOME_SCREEN_MAIN_TITLE"]')
-  welcomeScreenTitleEl && welcomeScreenTitleEl.parent().html(`
-    <span-22 data-translate-inner="STR_WELCOME_SCREEN_MAIN_TITLE" style="color: var(--N80);">${welcomeScreenTitleEl.text()}</span-22>
-    <div style="display: flex; align-items: center; justify-content: center; margin-top: 4px;">
-      <span-b32>ZaDark</span-b32>
-      <span-24 style="margin-left: 8px; margin-right: 8px; color: var(--N40);">=</span-24>
-      <span-b32>Zalo</span-b32>
-      <span-24 style="margin-left: 8px; margin-right: 8px; color: var(--N40);">+</span-24>
-      <span-b32>Dark Mode</span-b32>
-    </div>
-  `)
+  loadPopupState()
+  loadKnownVersionState(buttonEl)
 }
