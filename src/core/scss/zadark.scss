@@ -1618,8 +1618,9 @@ html[data-zadark-theme="dark"] {
     // END: Zalo Business
 
     .zl-modal {
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      transform: translateZ(0);
     }
 
     #filter-tags-sb .filter-tag-item.--activated {
@@ -2074,6 +2075,7 @@ body.zadark {
         height: 100%;
         display: flex;
         align-items: center;
+        padding-top: 1px;
 
         color: var(--text-secondary);
         font-size: 16px;

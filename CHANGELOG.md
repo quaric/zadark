@@ -1,5 +1,14 @@
 # Changelog
 
+## ZaDark v23.4.4
+> PC v7.11 && Web v8.9
+
+### Changed
+- Giảm độ mờ (blur) và tối ưu Modal Backdrop
+
+### Fixed
+- Canh giữa theo chiều dọc của tin nhắn được ẩn (••••••)
+
 ## ZaDark v23.4.3
 > PC v7.10 && Web v8.8
 
