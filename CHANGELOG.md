@@ -8,6 +8,7 @@
 
 ### Fixed
 - Canh giữa theo chiều dọc của tin nhắn được ẩn (••••••)
+- Khắc phục lỗi biểu tượng "Play" tin nhắn audio bị mất
 
 ## ZaDark v23.4.3
 > PC v7.10 && Web v8.8
