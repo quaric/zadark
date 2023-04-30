@@ -167,6 +167,8 @@ html[data-zadark-theme="dark"] #zadark-popup {
     }
 
     &__menu-list {
+      display: flex;
+      align-items: center;
       color: var(--zadark-neutral-500);
     }
 
@@ -181,8 +183,9 @@ html[data-zadark-theme="dark"] #zadark-popup {
 
     &__menu-divider {
       &::after {
-        content: "·";
-        margin: 0 4px;
+        content: "";
+        display: inline-block;
+        width: 12px;
       }
     }
   }
@@ -398,19 +401,16 @@ html[data-zadark-theme="dark"] #zadark-popup {
   .zadark-select {
     display: block;
     max-width: 100%;
-    height: 32px;
-    padding: 0 28px 0 12px;
 
-    border: 1px solid var(--zadark-border-base);
-    border-radius: var(--zadark-border-radius-base);
-
-    background-color: var(--zadark-grey-700);
+    background-color: transparent;
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0iIzU4NjA2OSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNC40MjcgOS40MjdsMy4zOTYgMy4zOTZhLjI1MS4yNTEgMCAwMC4zNTQgMGwzLjM5Ni0zLjM5NkEuMjUuMjUgMCAwMDExLjM5NiA5SDQuNjA0YS4yNS4yNSAwIDAwLS4xNzcuNDI3ek00LjQyMyA2LjQ3TDcuODIgMy4wNzJhLjI1LjI1IDAgMDEuMzU0IDBMMTEuNTcgNi40N2EuMjUuMjUgMCAwMS0uMTc3LjQyN0g0LjZhLjI1LjI1IDAgMDEtLjE3Ny0uNDI3eiIgLz48L3N2Zz4=);
     background-repeat: no-repeat;
-    background-position: right 6px center;
+    background-position: right center;
     background-size: 16px;
 
+    border: 0;
     color: var(--zadark-neutral-base);
+    font-family: "Open Sans", sans-serif;
     font-size: 14px;
     line-height: 20px;
     outline: none;
@@ -418,6 +418,24 @@ html[data-zadark-theme="dark"] #zadark-popup {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+
+    &--bordered {
+      height: 32px;
+      padding: 0 28px 0 12px;
+
+      border: 1px solid var(--zadark-border-base);
+      border-radius: var(--zadark-border-radius-base);
+
+      background-color: var(--zadark-grey-700);
+      background-position: right 6px center;
+    }
+
+    &--text-right {
+      height: auto;
+      padding: 0 24px 0 0;
+      text-align: right;
+      text-align-last: right;
+    }
   }
 
   .zadark-panel {
@@ -482,10 +500,14 @@ html[data-zadark-theme="dark"] #zadark-popup {
   .select-font {
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
+    margin-top: 12px;
+    padding-top: 8px;
 
-    .zadark-form__label {
-      margin: 0 12px 0 0;
+    border-top: 1px solid var(--zadark-border-light);
+
+    .select-font__label {
+      flex: 1;
+      font-weight: var(--zadark-font-regular);
     }
   }
 

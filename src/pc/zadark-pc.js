@@ -98,6 +98,7 @@ const writeIndexFile = (zaloDir) => {
 
   // Required themeAttributes
   htmlElement.setAttribute('data-zadark-version', ZADARK_VERSION)
+  htmlElement.setAttribute('data-zadark-platform', PLATFORM)
 
   // Required classNames
   const zaDarkClassNames = ['zadark', 'zadark-pc', `zadark-${PLATFORM}`]
@@ -122,6 +123,8 @@ const writeZNotificationFile = (zaloDir) => {
 
   const headElement = root.getElementsByTagName('head')[0]
   const bodyElement = root.getElementsByTagName('body')[0]
+
+  // root.setAttribute("data-zadark-platform", ZADARK_VERSION)
 
   // Required fonts, stylesheets
   const elements = [

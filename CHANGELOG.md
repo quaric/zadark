@@ -1,5 +1,14 @@
 # Changelog
 
+## ZaDark v24.5.1
+> PC v7.12 && Web v8.10
+
+### Added
+- ZaDark Popup: Thêm Menu Bình chọn, Phản hồi
+
+### Changed
+- ZaDark Popup: Làm gọn lựa chọn Phông chữ
+
 ## ZaDark v23.4.4
 > PC v7.11 && Web v8.9
 

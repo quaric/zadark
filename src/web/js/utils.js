@@ -77,6 +77,34 @@
       }
 
       return false
+    },
+
+    getRatingURL: (platformName = 'Chrome') => {
+      switch (platformName) {
+        case 'Chrome': {
+          return 'https://chrome.google.com/webstore/detail/llfhpkkeljlgnjgkholeppfnepmjppob/reviews'
+        }
+
+        case 'Edge': {
+          return 'https://microsoftedge.microsoft.com/addons/detail/nbcljbcabjegmmogkcegephdkhckegcf'
+        }
+
+        case 'Opera': {
+          return 'https://addons.opera.com/en/extensions/details/zadark-best-dark-theme-for-zalo'
+        }
+
+        case 'Firefox': {
+          return 'https://addons.mozilla.org/en-US/firefox/addon/zadark/reviews'
+        }
+
+        default: {
+          return 'https://chrome.google.com/webstore/detail/llfhpkkeljlgnjgkholeppfnepmjppob/reviews'
+        }
+      }
+    },
+
+    getFeedbackURL: (platformName = 'Chrome') => {
+      return `https://docs.google.com/forms/d/e/1FAIpQLSfy8AXwBO-myPPkbXboq5ubeMa0MCMWJTl0Ke66qCyCAiWG9g/viewform?usp=pp_url&entry.454875478=${platformName}`
     }
   }
 

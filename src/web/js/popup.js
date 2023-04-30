@@ -4,6 +4,8 @@
   Made by Quaric
 */
 
+const ratingElName = '#js-ext-rating'
+const feedbackElName = '#js-ext-feedback'
 const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
@@ -22,6 +24,8 @@ const MSG_ACTIONS = {
   UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS'
 }
 
+$(ratingElName).attr('href', window.zadark.utils.getRatingURL(window.zadark.browser.name))
+$(feedbackElName).attr('href', window.zadark.utils.getFeedbackURL(window.zadark.browser.name))
 $(versionElName).html(`Phiên bản ${manifestData.version}`)
 
 // Init popup theme

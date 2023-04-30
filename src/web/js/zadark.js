@@ -50,7 +50,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 })
 
-const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
 
@@ -125,8 +124,16 @@ const popupHeaderHTML = `
     </div>
 
     <div class="zadark-popup__header__menu-list">
+      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+        <a href="${window.zadark.utils.getRatingURL(window.zadark.browser.name)}" title="Bình chọn" target="_blank">Bình chọn</a>
+      </span>
+
+      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+        <a href="${window.zadark.utils.getFeedbackURL(window.zadark.browser.name)}" title="Phản hồi" target="_blank">Phản hồi</a>
+      </span>
+
       <span class="zadark-popup__header__menu-item">
-        <a href="https://zadark.quaric.com/blog/changelog" id="js-ext-version" title="Có gì mới trong phiên bản này?" target="_blank"></a>
+        <a href="https://zadark.quaric.com/blog/changelog" title="Có gì mới trong phiên bản này?" target="_blank">Phiên bản ${window.zadark.browser.getManifest().version}</a>
       </span>
     </div>
   </div>
@@ -163,20 +170,20 @@ const popupMainHTML = `
             </span>
           </label>
         </div>
+
+        <div class="select-font">
+          <label class="select-font__label">Thay đổi phông chữ</label>
+
+          <select id="js-select-font" class="zadark-select zadark-select--text-right" dir="rtl">
+            <option value="default">Mặc định</option>
+            <option value="open-sans">Open Sans</option>
+            <option value="inter">Inter</option>
+            <option value="roboto">Roboto</option>
+            <option value="lato">Lato</option>
+            <option value="source-sans-pro">Source Sans Pro</option>
+          </select>
+        </div>
       </div>
-    </div>
-
-    <div class="select-font">
-      <label class="zadark-form__label">Phông chữ</label>
-
-      <select id="js-select-font" class="zadark-select">
-        <option value="default">Mặc định</option>
-        <option value="open-sans">Open Sans</option>
-        <option value="inter">Inter</option>
-        <option value="roboto">Roboto</option>
-        <option value="lato">Lato</option>
-        <option value="source-sans-pro">Source Sans Pro</option>
-      </select>
     </div>
 
     <div id="js-panel-privacy">
@@ -345,9 +352,6 @@ const loadZaDarkPopup = () => {
 
   const zaloAppBody = document.body
   zaloAppBody.insertAdjacentHTML('beforeend', zadarkPopupHTML)
-
-  const zadarkVersion = window.zadark.browser.getManifest().version
-  $(versionElName).html(`Phiên bản ${zadarkVersion}`)
 
   $(selectThemeElName).on('change', handleSelectThemeChange)
   $(selectFontElName).on('change', handleSelectFontChange)

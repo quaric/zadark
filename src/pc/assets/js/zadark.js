@@ -94,6 +94,15 @@ window.zadark.utils = {
     } else {
       document.body.classList.remove('zadark-privacy__hide-latest-message')
     }
+  },
+
+  getRatingURL: function () {
+    return 'https://sourceforge.net/projects/zadark/reviews/new?stars=5'
+  },
+
+  getFeedbackURL: function (platformKey = 'win32') {
+    const platformName = platformKey === 'darwin' ? 'macOS' : 'Windows'
+    return `https://docs.google.com/forms/d/e/1FAIpQLSfy8AXwBO-myPPkbXboq5ubeMa0MCMWJTl0Ke66qCyCAiWG9g/viewform?usp=pp_url&entry.454875478=${platformName}`
   }
 }
 
@@ -180,6 +189,14 @@ const popupHeaderHTML = `
     </div>
 
     <div class="zadark-popup__header__menu-list">
+      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+        <a href="${window.zadark.utils.getRatingURL()}" title="Bình chọn" target="_blank">Bình chọn</a>
+      </span>
+
+      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+        <a href="${window.zadark.utils.getFeedbackURL(document.documentElement.getAttribute('data-zadark-platform'))}" title="Phản hồi" target="_blank">Phản hồi</a>
+      </span>
+
       <span class="zadark-popup__header__menu-item">
         <a href="https://zadark.quaric.com/blog/changelog" id="js-ext-version" title="Có gì mới trong phiên bản này?" target="_blank"></a>
       </span>
@@ -218,20 +235,20 @@ const popupMainHTML = `
             </span>
           </label>
         </div>
+
+        <div class="select-font">
+          <label class="select-font__label">Thay đổi phông chữ</label>
+
+          <select id="js-select-font" class="zadark-select zadark-select--text-right">
+            <option value="default">Mặc định</option>
+            <option value="open-sans">Open Sans</option>
+            <option value="inter">Inter</option>
+            <option value="roboto">Roboto</option>
+            <option value="lato">Lato</option>
+            <option value="source-sans-pro">Source Sans Pro</option>
+          </select>
+        </div>
       </div>
-    </div>
-
-    <div class="select-font">
-      <label class="zadark-form__label">Phông chữ</label>
-
-      <select id="js-select-font" class="zadark-select">
-        <option value="default">Mặc định</option>
-        <option value="open-sans">Open Sans</option>
-        <option value="inter">Inter</option>
-        <option value="roboto">Roboto</option>
-        <option value="lato">Lato</option>
-        <option value="source-sans-pro">Source Sans Pro</option>
-      </select>
     </div>
 
     <div id="js-panel-privacy" class="not-available">

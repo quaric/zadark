@@ -22,6 +22,14 @@
     </div>
 
     <div class="zadark-popup__header__menu-list">
+      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+        <a href="#rating" id="js-ext-rating" title="Bình chọn" target="_blank">Bình chọn</a>
+      </span>
+
+      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+        <a href="#feedback" id="js-ext-feedback" title="Phản hồi" target="_blank">Phản hồi</a>
+      </span>
+
       <span class="zadark-popup__header__menu-item">
         <a href="https://zadark.quaric.com/blog/changelog" id="js-ext-version" title="Có gì mới trong phiên bản này?" target="_blank"></a>
       </span>
@@ -58,20 +66,20 @@
             </span>
           </label>
         </div>
+
+        <div class="select-font">
+          <label class="select-font__label">Thay đổi phông chữ</label>
+
+          <select id="js-select-font" class="zadark-select zadark-select--text-right">
+            <option value="default">Mặc định</option>
+            <option value="open-sans">Open Sans</option>
+            <option value="inter">Inter</option>
+            <option value="roboto">Roboto</option>
+            <option value="lato">Lato</option>
+            <option value="source-sans-pro">Source Sans Pro</option>
+          </select>
+        </div>
       </div>
-    </div>
-
-    <div class="select-font">
-      <label class="zadark-form__label">Phông chữ</label>
-
-      <select id="js-select-font" class="zadark-select">
-        <option value="default">Mặc định</option>
-        <option value="open-sans">Open Sans</option>
-        <option value="inter">Inter</option>
-        <option value="roboto">Roboto</option>
-        <option value="lato">Lato</option>
-        <option value="source-sans-pro">Source Sans Pro</option>
-      </select>
     </div>
 
     <div id="js-panel-privacy">
