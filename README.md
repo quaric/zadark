@@ -63,7 +63,7 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 ## License
 
-The source code is freely available for use, modification and distribution under the permissions, limitations and conditions listed in the [Mozilla Public License 2.0](./LICENSE).
+ZaDark's source code is freely available for use, modification and distribution under the permissions, limitations and conditions listed in the [Mozilla Public License 2.0](./LICENSE).
 
 ## Contact
 
