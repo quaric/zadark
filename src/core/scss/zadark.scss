@@ -1617,12 +1617,6 @@ html[data-zadark-theme="dark"] {
 
     // END: Zalo Business
 
-    .zl-modal {
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      transform: translateZ(0);
-    }
-
     #filter-tags-sb .filter-tag-item.--activated {
       color: #fff;
     }

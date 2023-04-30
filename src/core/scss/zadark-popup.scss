@@ -435,6 +435,10 @@ html[data-zadark-theme="dark"] #zadark-popup {
       padding: 0 24px 0 0;
       text-align: right;
       text-align-last: right;
+
+      option {
+        background-color: var(--zadark-white-300);
+      }
     }
   }
 
