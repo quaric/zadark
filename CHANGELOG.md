@@ -6,6 +6,7 @@
 ### Fixed
 - Modal: Bỏ hiệu ứng mờ khi mờ nền (Hiệu ứng mờ nền có thể làm Zalo bị dựt khi mở Modal ở những máy tính có cấu hình thấp)
 - ZaDark Popup: Bỏ định dạng rtl (right to left) ở lựa chọn Phông chữ
+- ZaDark Popup: Sửa lỗi màu nền của danh sách lựa chọn Phông chữ
 
 ## ZaDark v24.5.1
 > PC v7.12 && Web v8.10
