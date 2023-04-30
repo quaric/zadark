@@ -23,20 +23,6 @@ ZaDark's source code before 17:00 on April 30, 2023 is still subject to the **MI
 
 ---
 
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#about">About</a></li>
-    <li><a href="#install">Install</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#awards">Awards</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
 ## About
 
 ZaDark is an extension that helps you enable Dark Mode for Zalo PC and Web.
