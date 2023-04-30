@@ -239,7 +239,7 @@ const popupMainHTML = `
         <div class="select-font">
           <label class="select-font__label">Thay đổi phông chữ</label>
 
-          <select id="js-select-font" class="zadark-select zadark-select--text-right">
+          <select id="js-select-font" class="zadark-select zadark-select--text-right" dir="rtl">
             <option value="default">Mặc định</option>
             <option value="open-sans">Open Sans</option>
             <option value="inter">Inter</option>
