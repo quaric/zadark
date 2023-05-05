@@ -8,11 +8,13 @@ window.zadark.browser.initClassNames()
 window.zadark.utils.refreshPageTheme()
 window.zadark.utils.refreshPageFont()
 window.zadark.utils.refreshHideLatestMessage()
+window.zadark.utils.refreshHideThreadChatMessage()
 
 const MSG_ACTIONS = {
   CHANGE_THEME: '@ZaDark:CHANGE_THEME',
   CHANGE_FONT: '@ZaDark:CHANGE_FONT',
   CHANGE_HIDE_LATEST_MESSAGE: '@ZaDark:CHANGE_HIDE_LATEST_MESSAGE',
+  CHANGE_HIDE_THREAD_CHAT_MESSAGE: '@ZaDark:CHANGE_HIDE_THREAD_CHAT_MESSAGE',
   GET_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:GET_ENABLED_BLOCKING_RULE_IDS',
   UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS'
 }
@@ -48,12 +50,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     setSwitchHideLatestMessage(message.payload.enabledHideLatestMessage)
     sendResponse({ received: true })
   }
+
+  if (message.action === MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE) {
+    window.zadark.utils.refreshHideThreadChatMessage()
+    setSwitchHideThreadChatMessage(message.payload.enabledHideThreadChatMessage)
+    sendResponse({ received: true })
+  }
 })
 
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
 
 const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
+const switchHideThreadChatMessageElName = '#js-switch-hide-thread-chat-message'
 const switchBlockTypingElName = '#js-switch-block-typing'
 const switchBlockSeenElName = '#js-switch-block-seen'
 const switchBlockDeliveredElName = '#js-switch-block-delivered'
@@ -73,6 +82,10 @@ const setSwitchHideLatestMessage = (enabled) => {
   $(switchHideLatestMessageElName).prop('checked', enabled)
 }
 
+const setSwitchHideThreadChatMessage = (enabled) => {
+  $(switchHideThreadChatMessageElName).prop('checked', enabled)
+}
+
 async function handleSelectThemeChange () {
   const theme = $(this).val()
   await window.zadark.browser.saveExtensionSettings({ theme })
@@ -90,6 +103,12 @@ async function handleHideLastestMessageChange () {
   const enabledHideLatestMessage = $(this).is(':checked')
   await window.zadark.browser.saveExtensionSettings({ enabledHideLatestMessage })
   window.zadark.utils.refreshHideLatestMessage()
+}
+
+async function handleHideThreadChatMessageChange () {
+  const enabledHideThreadChatMessage = $(this).is(':checked')
+  await window.zadark.browser.saveExtensionSettings({ enabledHideThreadChatMessage })
+  window.zadark.utils.refreshHideThreadChatMessage()
 }
 
 const handleBlockingRuleChange = (elName, ruleId) => {
@@ -193,9 +212,17 @@ const popupMainHTML = `
         <div class="zadark-panel__body">
           <div class="zadark-switch__list">
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-hide-latest-message">Ẩn "Tin nhắn gần nhất" ở Danh sách trò chuyện</label>
+              <label class="zadark-switch__label" for="js-switch-hide-latest-message">Ẩn "Tin nhắn gần nhất" trong Danh sách trò chuyện</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
+
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-hide-thread-chat-message">Ẩn "Tin nhắn" trong Cuộc trò chuyện</label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
                 <span class="zadark-switch__slider"></span>
               </label>
             </div>
@@ -269,11 +296,12 @@ const disableBlocking = () => {
 }
 
 const loadPopupState = async () => {
-  const { theme, font, enabledHideLatestMessage } = await window.zadark.browser.getExtensionSettings()
+  const { theme, font, enabledHideLatestMessage, enabledHideThreadChatMessage } = await window.zadark.browser.getExtensionSettings()
 
   setSelectTheme(theme)
   setSelectFont(font)
   setSwitchHideLatestMessage(enabledHideLatestMessage)
+  setSwitchHideThreadChatMessage(enabledHideThreadChatMessage)
 
   const isSupportBlocking = window.zadark.utils.getIsSupportBlocking()
   if (isSupportBlocking) {
@@ -357,6 +385,7 @@ const loadZaDarkPopup = () => {
   $(selectFontElName).on('change', handleSelectFontChange)
 
   $(switchHideLatestMessageElName).on('change', handleHideLastestMessageChange)
+  $(switchHideThreadChatMessageElName).on('change', handleHideThreadChatMessageChange)
   $(switchBlockTypingElName).on('change', handleBlockingRuleChange(switchBlockTypingElName, 'rules_block_typing'))
   $(switchBlockSeenElName).on('change', handleBlockingRuleChange(switchBlockSeenElName, 'rules_block_seen'))
   $(switchBlockDeliveredElName).on('change', handleBlockingRuleChange(switchBlockDeliveredElName, 'rules_block_delivered'))

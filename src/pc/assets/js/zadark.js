@@ -10,6 +10,7 @@ const $ = jQuery = module.exports // Ref: https://github.com/electron/electron/i
 const ZADARK_THEME_KEY = '@ZaDark:THEME'
 const ZADARK_FONT_KEY = '@ZaDark:FONT'
 const ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_LATEST_MESSAGE'
+const ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_THREAD_CHAT_MESSAGE'
 const ZADARK_KNOWN_VERSION_KEY = '@ZaDark:KNOWN_VERSION'
 
 window.zadark = window.zadark || {}
@@ -37,6 +38,14 @@ window.zadark.storage = {
 
   getEnabledHideLatestMessage: () => {
     return localStorage.getItem(ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY) === 'true'
+  },
+
+  saveEnabledHideThreadChatMessage: (enabled) => {
+    return localStorage.setItem(ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY, enabled)
+  },
+
+  getEnabledHideThreadChatMessage: () => {
+    return localStorage.getItem(ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY) === 'true'
   },
 
   getKnownVersion: () => {
@@ -90,9 +99,18 @@ window.zadark.utils = {
   refreshHideLatestMessage: function () {
     const enabledHideLatestMessage = window.zadark.storage.getEnabledHideLatestMessage()
     if (enabledHideLatestMessage) {
-      document.body.classList.add('zadark-privacy__hide-latest-message')
+      document.body.classList.add('zadark-prv--latest-message')
     } else {
-      document.body.classList.remove('zadark-privacy__hide-latest-message')
+      document.body.classList.remove('zadark-prv--latest-message')
+    }
+  },
+
+  refreshHideThreadChatMessage: function () {
+    const enabledHideThreadChatMessage = window.zadark.storage.getEnabledHideThreadChatMessage()
+    if (enabledHideThreadChatMessage) {
+      document.body.classList.add('zadark-prv--thread-chat-message')
+    } else {
+      document.body.classList.remove('zadark-prv--thread-chat-message')
     }
   },
 
@@ -109,6 +127,7 @@ window.zadark.utils = {
 window.zadark.utils.refreshPageTheme()
 window.zadark.utils.refreshPageFont()
 window.zadark.utils.refreshHideLatestMessage()
+window.zadark.utils.refreshHideThreadChatMessage()
 
 window.matchMedia('(prefers-color-scheme: dark)').addListener((event) => {
   const theme = window.zadark.storage.getTheme()
@@ -134,6 +153,7 @@ const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
 const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
+const switchHideThreadChatMessageElName = '#js-switch-hide-thread-chat-message'
 
 const setSelectTheme = (theme) => {
   const options = ['light', 'dark', 'auto']
@@ -148,6 +168,10 @@ const setSelectFont = (font) => {
 
 const setSwitchHideLatestMessage = (enabled) => {
   $(switchHideLatestMessageElName).prop('checked', enabled)
+}
+
+const setSwitchHideThreadChatMessage = (enabled) => {
+  $(switchHideThreadChatMessageElName).prop('checked', enabled)
 }
 
 async function handleThemeChange () {
@@ -167,6 +191,12 @@ async function handleHideLatestMessageChange () {
   const isEnabled = $(this).is(':checked')
   window.zadark.storage.saveEnabledHideLatestMessage(isEnabled)
   window.zadark.utils.refreshHideLatestMessage()
+}
+
+async function handleHideThreadChatMessageChange () {
+  const isEnabled = $(this).is(':checked')
+  window.zadark.storage.saveEnabledHideThreadChatMessage(isEnabled)
+  window.zadark.utils.refreshHideThreadChatMessage()
 }
 
 const zadarkButtonHTML = `
@@ -258,9 +288,17 @@ const popupMainHTML = `
         <div class="zadark-panel__body">
           <div class="zadark-switch__list">
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-hide-latest-message">Ẩn "Tin nhắn gần nhất" ở Danh sách trò chuyện</label>
+              <label class="zadark-switch__label" for="js-switch-hide-latest-message">Ẩn "Tin nhắn gần nhất" trong Danh sách trò chuyện</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
+
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-hide-thread-chat-message">Ẩn "Tin nhắn" trong Cuộc trò chuyện</label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
                 <span class="zadark-switch__slider"></span>
               </label>
             </div>
@@ -322,6 +360,9 @@ const loadPopupState = () => {
 
   const enabledHideLatestMessage = window.zadark.storage.getEnabledHideLatestMessage()
   setSwitchHideLatestMessage(enabledHideLatestMessage)
+
+  const enabledHideThreadChatMessage = window.zadark.storage.getEnabledHideThreadChatMessage()
+  setSwitchHideThreadChatMessage(enabledHideThreadChatMessage)
 }
 
 const loadKnownVersionState = (buttonEl) => {
@@ -400,6 +441,7 @@ const loadZaDarkPopup = () => {
   $(selectThemeElName).on('change', handleThemeChange)
   $(selectFontElName).on('change', handleFontChange)
   $(switchHideLatestMessageElName).on('change', handleHideLatestMessageChange)
+  $(switchHideThreadChatMessageElName).on('change', handleHideThreadChatMessageChange)
 
   const popupEl = document.querySelector('#zadark-popup')
   const buttonEl = document.getElementById('div_Main_TabZaDark')

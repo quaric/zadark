@@ -2052,7 +2052,7 @@ body.zadark {
     }
   }
 
-  &.zadark-privacy__hide-latest-message {
+  &.zadark-prv--latest-message {
     @mixin transition-opacity-400 {
       -webkit-transition: opacity 400ms ease-in-out;
       -moz-transition: opacity 400ms ease-in-out;
@@ -2090,7 +2090,7 @@ body.zadark {
     }
 
     .conv-item:hover,
-    .conv-item.selected {
+    &:not(.zadark-prv--thread-chat-message) .conv-item.selected {
       .conv-item-body__main .conv-message {
         &::after {
           opacity: 0;
@@ -2099,6 +2099,21 @@ body.zadark {
         * {
           opacity: 1;
         }
+      }
+    }
+  }
+
+  &.zadark-prv--thread-chat-message #chatView {
+    .reminder-info-v2,
+    .chat-message:not(.multi-select-mode) {
+      opacity: 0.5;
+      filter: blur(2px);
+      transform: translateZ(0);
+      transition: opacity 200ms ease-in-out, filter 200ms ease-in-out;
+
+      &:hover {
+        opacity: 1;
+        filter: none;
       }
     }
   }

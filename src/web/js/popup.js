@@ -12,6 +12,7 @@ const selectFontElName = '#js-select-font'
 const manifestData = window.zadark.browser.getManifest()
 
 const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
+const switchHideThreadChatMessageElName = '#js-switch-hide-thread-chat-message'
 const switchBlockTypingElName = '#js-switch-block-typing'
 const switchBlockSeenElName = '#js-switch-block-seen'
 const switchBlockDeliveredElName = '#js-switch-block-delivered'
@@ -20,6 +21,7 @@ const MSG_ACTIONS = {
   CHANGE_THEME: '@ZaDark:CHANGE_THEME',
   CHANGE_FONT: '@ZaDark:CHANGE_FONT',
   CHANGE_HIDE_LATEST_MESSAGE: '@ZaDark:CHANGE_HIDE_LATEST_MESSAGE',
+  CHANGE_HIDE_THREAD_CHAT_MESSAGE: '@ZaDark:CHANGE_HIDE_THREAD_CHAT_MESSAGE',
   GET_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:GET_ENABLED_BLOCKING_RULE_IDS',
   UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS'
 }
@@ -31,10 +33,11 @@ $(versionElName).html(`Phiên bản ${manifestData.version}`)
 // Init popup theme
 window.zadark.utils.refreshPageTheme()
 
-window.zadark.browser.getExtensionSettings().then(({ theme, font, enabledHideLatestMessage }) => {
+window.zadark.browser.getExtensionSettings().then(({ theme, font, enabledHideLatestMessage, enabledHideThreadChatMessage }) => {
   $(selectThemeElName).filter(`[value="${theme}"]`).attr('checked', true)
   $(selectFontElName).val(font)
   $(switchHideLatestMessageElName).prop('checked', enabledHideLatestMessage)
+  $(switchHideThreadChatMessageElName).prop('checked', enabledHideThreadChatMessage)
 })
 
 $(selectThemeElName).on('change', async function () {
@@ -64,6 +67,14 @@ $(switchHideLatestMessageElName).on('change', async function () {
 
   // Set enabledHideLatestMessage for all Zalo tabs
   window.zadark.browser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE, { enabledHideLatestMessage })
+})
+
+$(switchHideThreadChatMessageElName).on('change', async function () {
+  const enabledHideThreadChatMessage = $(this).is(':checked')
+  await window.zadark.browser.saveExtensionSettings({ enabledHideThreadChatMessage })
+
+  // Set enabledHideThreadChatMessage for all Zalo tabs
+  window.zadark.browser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE, { enabledHideThreadChatMessage })
 })
 
 const handleBlockingRuleChange = (elName, ruleId) => {
