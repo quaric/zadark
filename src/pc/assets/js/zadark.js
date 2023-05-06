@@ -315,7 +315,7 @@ const popupMainHTML = `
               </label>
             </div>
 
-            <div class="zadark-switch">
+            <div class="zadark-switch zadark-switch--disabled">
               <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin nhắn ...</strong></label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
@@ -323,7 +323,7 @@ const popupMainHTML = `
               </label>
             </div>
 
-            <div class="zadark-switch">
+            <div class="zadark-switch zadark-switch--disabled">
               <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận</strong> tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
@@ -331,7 +331,7 @@ const popupMainHTML = `
               </label>
             </div>
 
-            <div class="zadark-switch">
+            <div class="zadark-switch zadark-switch--disabled">
               <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem</strong> tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">

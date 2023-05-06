@@ -398,7 +398,7 @@ html[data-zadark-theme="dark"] #zadark-popup {
       border-bottom: 0;
     }
 
-    &__disabled {
+    &--disabled {
       position: relative;
 
       &:after {
