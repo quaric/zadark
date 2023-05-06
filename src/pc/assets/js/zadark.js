@@ -10,6 +10,7 @@ const $ = jQuery = module.exports // Ref: https://github.com/electron/electron/i
 const ZADARK_THEME_KEY = '@ZaDark:THEME'
 const ZADARK_FONT_KEY = '@ZaDark:FONT'
 const ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_LATEST_MESSAGE'
+const ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_THREAD_CHAT_MESSAGE'
 const ZADARK_KNOWN_VERSION_KEY = '@ZaDark:KNOWN_VERSION'
 
 window.zadark = window.zadark || {}
@@ -37,6 +38,14 @@ window.zadark.storage = {
 
   getEnabledHideLatestMessage: () => {
     return localStorage.getItem(ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY) === 'true'
+  },
+
+  saveEnabledHideThreadChatMessage: (enabled) => {
+    return localStorage.setItem(ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY, enabled)
+  },
+
+  getEnabledHideThreadChatMessage: () => {
+    return localStorage.getItem(ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY) === 'true'
   },
 
   getKnownVersion: () => {
@@ -90,9 +99,18 @@ window.zadark.utils = {
   refreshHideLatestMessage: function () {
     const enabledHideLatestMessage = window.zadark.storage.getEnabledHideLatestMessage()
     if (enabledHideLatestMessage) {
-      document.body.classList.add('zadark-privacy__hide-latest-message')
+      document.body.classList.add('zadark-prv--latest-message')
     } else {
-      document.body.classList.remove('zadark-privacy__hide-latest-message')
+      document.body.classList.remove('zadark-prv--latest-message')
+    }
+  },
+
+  refreshHideThreadChatMessage: function () {
+    const enabledHideThreadChatMessage = window.zadark.storage.getEnabledHideThreadChatMessage()
+    if (enabledHideThreadChatMessage) {
+      document.body.classList.add('zadark-prv--thread-chat-message')
+    } else {
+      document.body.classList.remove('zadark-prv--thread-chat-message')
     }
   },
 
@@ -109,6 +127,7 @@ window.zadark.utils = {
 window.zadark.utils.refreshPageTheme()
 window.zadark.utils.refreshPageFont()
 window.zadark.utils.refreshHideLatestMessage()
+window.zadark.utils.refreshHideThreadChatMessage()
 
 window.matchMedia('(prefers-color-scheme: dark)').addListener((event) => {
   const theme = window.zadark.storage.getTheme()
@@ -134,6 +153,7 @@ const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
 const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
+const switchHideThreadChatMessageElName = '#js-switch-hide-thread-chat-message'
 
 const setSelectTheme = (theme) => {
   const options = ['light', 'dark', 'auto']
@@ -148,6 +168,10 @@ const setSelectFont = (font) => {
 
 const setSwitchHideLatestMessage = (enabled) => {
   $(switchHideLatestMessageElName).prop('checked', enabled)
+}
+
+const setSwitchHideThreadChatMessage = (enabled) => {
+  $(switchHideThreadChatMessageElName).prop('checked', enabled)
 }
 
 async function handleThemeChange () {
@@ -168,6 +192,18 @@ async function handleHideLatestMessageChange () {
   window.zadark.storage.saveEnabledHideLatestMessage(isEnabled)
   window.zadark.utils.refreshHideLatestMessage()
 }
+
+async function handleHideThreadChatMessageChange () {
+  const isEnabled = $(this).is(':checked')
+  window.zadark.storage.saveEnabledHideThreadChatMessage(isEnabled)
+  window.zadark.utils.refreshHideThreadChatMessage()
+}
+
+const iconQuestionSVG = `
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="14" height="14">
+    <path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z" fill="currentColor" />
+  </svg>
+`
 
 const zadarkButtonHTML = `
   <div id="div_Main_TabZaDark" class="clickable leftbar-tab flx flx-col flx-al-c flx-center rel" data-id="div_Main_TabZaDark" data-translate-title="STR_MENU_ZADARK" title="ZaDark">
@@ -258,31 +294,45 @@ const popupMainHTML = `
         <div class="zadark-panel__body">
           <div class="zadark-switch__list">
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-hide-latest-message">Ẩn "Tin nhắn gần nhất" ở Danh sách trò chuyện</label>
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
+                Ẩn&nbsp;<strong>Tin nhắn gần nhất</strong>&nbsp;trong Danh sách trò chuyện
+                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn gần nhất trong Danh sách trò chuyện (bên trái) sẽ được ẩn để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột hoặc nhấn vào Cuộc trò chuyện.</p>"></span>
+              </label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
                 <span class="zadark-switch__slider"></span>
               </label>
             </div>
 
-            <div class="zadark-switch zadark-switch__disabled">
-              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn ..."</label>
+            <div class="zadark-switch">
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
+                Ẩn&nbsp;<strong>Tin nhắn</strong>&nbsp;trong Cuộc trò chuyện
+                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn trong Cuộc trò chuyện sẽ được làm mờ để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột vào Vùng hiển thị tin nhắn. Di chuyển chuột khỏi Vùng hiển thị tin nhắn để ẩn tin nhắn.</p>"></span>
+              </label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
+
+            <div class="zadark-switch zadark-switch--disabled">
+              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin nhắn ...</strong></label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
                 <span class="zadark-switch__slider"></span>
               </label>
             </div>
 
-            <div class="zadark-switch zadark-switch__disabled">
-              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái "Đã nhận" tin nhắn</label>
+            <div class="zadark-switch zadark-switch--disabled">
+              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận</strong> tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
                 <span class="zadark-switch__slider"></span>
               </label>
             </div>
 
-            <div class="zadark-switch zadark-switch__disabled">
-              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái "Đã xem" tin nhắn</label>
+            <div class="zadark-switch zadark-switch--disabled">
+              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem</strong> tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
                 <span class="zadark-switch__slider"></span>
@@ -322,6 +372,9 @@ const loadPopupState = () => {
 
   const enabledHideLatestMessage = window.zadark.storage.getEnabledHideLatestMessage()
   setSwitchHideLatestMessage(enabledHideLatestMessage)
+
+  const enabledHideThreadChatMessage = window.zadark.storage.getEnabledHideThreadChatMessage()
+  setSwitchHideThreadChatMessage(enabledHideThreadChatMessage)
 }
 
 const loadKnownVersionState = (buttonEl) => {
@@ -400,6 +453,7 @@ const loadZaDarkPopup = () => {
   $(selectThemeElName).on('change', handleThemeChange)
   $(selectFontElName).on('change', handleFontChange)
   $(switchHideLatestMessageElName).on('change', handleHideLatestMessageChange)
+  $(switchHideThreadChatMessageElName).on('change', handleHideThreadChatMessageChange)
 
   const popupEl = document.querySelector('#zadark-popup')
   const buttonEl = document.getElementById('div_Main_TabZaDark')
@@ -421,4 +475,11 @@ const loadZaDarkPopup = () => {
 
   loadPopupState()
   loadKnownVersionState(buttonEl)
+
+  $('[data-tippy-content]').html(iconQuestionSVG)
+
+  tippy('[data-tippy-content]', {
+    theme: 'zadark',
+    allowHTML: true
+  })
 }

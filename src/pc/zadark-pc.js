@@ -82,6 +82,12 @@ const writeIndexFile = (zaloDir) => {
       htmlElement: bodyElement
     },
     {
+      selector: 'script[src="zadark-tippy.min.js"]',
+      where: 'beforeend',
+      html: '<script src="zadark-tippy.min.js"></script>',
+      htmlElement: bodyElement
+    },
+    {
       selector: 'script[src="zadark.min.js"]',
       where: 'beforeend',
       html: '<script src="zadark.min.js"></script>',

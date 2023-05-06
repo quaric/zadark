@@ -53,9 +53,19 @@
     refreshHideLatestMessage: function () {
       window.zadark.browser.getExtensionSettings().then(({ enabledHideLatestMessage }) => {
         if (enabledHideLatestMessage) {
-          document.body.classList.add('zadark-privacy__hide-latest-message')
+          document.body.classList.add('zadark-prv--latest-message')
         } else {
-          document.body.classList.remove('zadark-privacy__hide-latest-message')
+          document.body.classList.remove('zadark-prv--latest-message')
+        }
+      })
+    },
+
+    refreshHideThreadChatMessage: function () {
+      window.zadark.browser.getExtensionSettings().then(({ enabledHideThreadChatMessage }) => {
+        if (enabledHideThreadChatMessage) {
+          document.body.classList.add('zadark-prv--thread-chat-message')
+        } else {
+          document.body.classList.remove('zadark-prv--thread-chat-message')
         }
       })
     },

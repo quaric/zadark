@@ -1,5 +1,17 @@
 # Changelog
 
+## ZaDark v24.5.3
+> PC v7.14 && Web v8.12
+
+### Added
+- Thêm cài đặt Riêng tư : Ẩn "Tin nhắn" trong Cuộc trò chuyện
+  - Chức năng giúp ngăn chặn người khác nhìn trộm tin nhắn của bạn
+  - Di chuyển chuột vào Vùng hiển thị tin nhắn xem tin nhắn
+- Thêm Tooltip giải thích cho các cài đặt Riêng tư
+
+### Fixed
+- `.zadark-select`: cursor pointer
+
 ## ZaDark v24.5.2
 > PC v7.13 && Web v8.11
 
