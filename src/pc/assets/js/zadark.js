@@ -295,8 +295,8 @@ const popupMainHTML = `
           <div class="zadark-switch__list">
             <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
-                Ẩn "Tin nhắn gần nhất" trong Danh sách trò chuyện
-                <span class="zadark-switch__label--helper-icon" data-tippy-content="Khi kích hoạt, nội dung tin nhắn gần nhất trong danh sách trò chuyện (bên trái) sẽ được ẩn để ngăn chặn người khác nhìn trộm tin nhắn. Để xem nội dung, bạn rê chuột hoặc nhấn vào cuộc trò chuyện."></span>
+                Ẩn&nbsp;<strong>Tin nhắn gần nhất</strong>&nbsp;trong Danh sách trò chuyện
+                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn gần nhất trong Danh sách trò chuyện (bên trái) sẽ được ẩn để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột hoặc nhấn vào Cuộc trò chuyện.</p>"></span>
               </label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
@@ -306,8 +306,8 @@ const popupMainHTML = `
 
             <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
-                Ẩn "Tin nhắn" trong Cuộc trò chuyện
-                <span class="zadark-switch__label--helper-icon" data-tippy-content="Khi kích hoạt, nội dung tin nhắn trong cuộc trò chuyện sẽ được làm mờ để ngăn chặn người khác nhìn trộm tin nhắn. Để xem nội dung, bạn rê chuột vào các tin nhắn hoặc ảnh đại diện trong cuộc trò chuyện."></span>
+                Ẩn&nbsp;<strong>Tin nhắn</strong>&nbsp;trong Cuộc trò chuyện
+                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn trong Cuộc trò chuyện sẽ được làm mờ để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột vào Vùng hiển thị tin nhắn. Di chuyển chuột khỏi Vùng hiển thị tin nhắn để ẩn tin nhắn.</p>"></span>
               </label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
@@ -315,24 +315,24 @@ const popupMainHTML = `
               </label>
             </div>
 
-            <div class="zadark-switch zadark-switch__disabled">
-              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái "Đang soạn tin nhắn ..."</label>
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin nhắn ...</strong></label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
                 <span class="zadark-switch__slider"></span>
               </label>
             </div>
 
-            <div class="zadark-switch zadark-switch__disabled">
-              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái "Đã nhận" tin nhắn</label>
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận</strong> tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
                 <span class="zadark-switch__slider"></span>
               </label>
             </div>
 
-            <div class="zadark-switch zadark-switch__disabled">
-              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái "Đã xem" tin nhắn</label>
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem</strong> tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
                 <span class="zadark-switch__slider"></span>
@@ -479,6 +479,7 @@ const loadZaDarkPopup = () => {
   $('[data-tippy-content]').html(iconQuestionSVG)
 
   tippy('[data-tippy-content]', {
-    theme: 'zadark'
+    theme: 'zadark',
+    allowHTML: true
   })
 }

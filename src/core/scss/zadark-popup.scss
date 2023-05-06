@@ -143,6 +143,10 @@ html[data-zadark-theme="dark"] #zadark-popup {
     border-radius: 4px;
     background: var(--zadark-grey-500);
   }
+
+  strong {
+    font-weight: var(--zadark-font-semibold);
+  }
 }
 
 #zadark-popup {
@@ -522,8 +526,16 @@ html[data-zadark-theme="dark"] #zadark-popup {
   }
 
   .tippy-content {
-    padding: 12px 16px;
+    padding: 12px 16px !important;
     font-size: 0.8125rem;
     line-height: 1.5;
+
+    p {
+      margin: 0;
+
+      &:not(:last-child) {
+        margin-bottom: 8px !important;
+      }
+    }
   }
 }

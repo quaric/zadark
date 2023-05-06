@@ -73,12 +73,12 @@
         @include transition-opacity-200-filter-200();
       }
 
-      &:hover {
-        > * {
-          opacity: 1;
-          filter: none;
-        }
-      }
+      // &:hover {
+      //   > * {
+      //     opacity: 1;
+      //     filter: none;
+      //   }
+      // }
     }
 
     .img-msg-v2 {
@@ -88,22 +88,22 @@
         @include transition-opacity-200();
       }
 
-      .img-msg-v2__ft > *:not(.img-msg-v2__rct) {
+      .img-msg-v2__ft > *:not(.img-msg-v2__rct):not(.img-msg-v2__st) {
         opacity: 0.1;
         filter: blur(1px);
 
         @include transition-opacity-200-filter-200();
       }
 
-      &:hover {
-        .img-msg-v2__th,
-        .img-msg-v2__ft {
-          > * {
-            opacity: 1;
-            filter: none;
-          }
-        }
-      }
+      // &:hover {
+      //   .img-msg-v2__th,
+      //   .img-msg-v2__ft {
+      //     > * {
+      //       opacity: 1;
+      //       filter: none;
+      //     }
+      //   }
+      // }
     }
 
     .card--sticker .card--group-sticker__row__item {
@@ -112,14 +112,14 @@
 
       @include transition-opacity-200-filter-200();
 
-      &:hover {
-        opacity: 1;
-        filter: none;
-      }
+      // &:hover {
+      //   opacity: 1;
+      //   filter: none;
+      // }
     }
   }
 
-  .chat-item .avatar--overlay:hover + .chat-content {
+  #messageView:hover {
     .chat-message:not(.multi-select-mode) {
       .card:not(.card--oa):not(.card--sticker) {
         > * {
