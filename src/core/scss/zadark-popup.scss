@@ -1,3 +1,10 @@
+:root {
+  --zadark-tippy: #2c2e2f;
+  --zadark-tippy-text: #fff;
+  --zadark-tippy-border: #3d3f40;
+  --zadark-tippy-shadow: rgba(0, 0, 0, 0.5);
+}
+
 html[data-zadark-theme="light"] #zadark-popup {
   --zadark-white-700: hsla(0, 0%, 100%, 0.1);
   --zadark-white-600: hsla(0, 0%, 100%, 0.25);
@@ -320,6 +327,17 @@ html[data-zadark-theme="dark"] #zadark-popup {
       flex: 1;
       cursor: pointer;
       user-select: none;
+
+      &--helper {
+        display: flex;
+        align-items: center;
+
+        &-icon {
+          display: inline-flex;
+          margin-left: 6px;
+          color: var(--zadark-neutral-500);
+        }
+      }
     }
 
     &__checkbox {
@@ -475,5 +493,37 @@ html[data-zadark-theme="dark"] #zadark-popup {
   #js-panel-privacy {
     display: block;
     margin-bottom: 12px;
+  }
+}
+
+.tippy-box[data-theme~="zadark"] {
+  border: 1px solid var(--zadark-tippy-border);
+  border-radius: 4px;
+
+  background-color: var(--zadark-tippy);
+  color: var(--zadark-tippy-text);
+
+  filter: drop-shadow(var(--zadark-tippy-shadow) 0 3px 6px);
+
+  &[data-placement^="top"] > .tippy-arrow::before {
+    border-top-color: var(--zadark-tippy);
+  }
+
+  &[data-placement^="bottom"] > .tippy-arrow::before {
+    border-bottom-color: var(--zadark-tippy);
+  }
+
+  &[data-placement^="left"] > .tippy-arrow::before {
+    border-left-color: var(--zadark-tippy);
+  }
+
+  &[data-placement^="right"] > .tippy-arrow::before {
+    border-right-color: var(--zadark-tippy);
+  }
+
+  .tippy-content {
+    padding: 12px 16px;
+    font-size: 0.8125rem;
+    line-height: 1.5;
   }
 }

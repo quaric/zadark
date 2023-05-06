@@ -89,7 +89,10 @@
         <div class="zadark-panel__body">
           <div class="zadark-switch__list">
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-hide-latest-message">Ẩn "Tin nhắn gần nhất" trong Danh sách trò chuyện</label>
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
+                Ẩn "Tin nhắn gần nhất" trong Danh sách trò chuyện
+                <span class="zadark-switch__label--helper-icon" data-tippy-content="Khi kích hoạt, nội dung tin nhắn gần nhất trong danh sách trò chuyện (bên trái) sẽ được ẩn để ngăn chặn người khác nhìn trộm tin nhắn. Để xem nội dung, bạn rê chuột hoặc nhấn vào cuộc trò chuyện."></span>
+              </label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
                 <span class="zadark-switch__slider"></span>
@@ -97,7 +100,10 @@
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-hide-thread-chat-message">Ẩn "Tin nhắn" trong Cuộc trò chuyện</label>
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
+                Ẩn "Tin nhắn" trong Cuộc trò chuyện
+                <span class="zadark-switch__label--helper-icon" data-tippy-content="Khi kích hoạt, nội dung tin nhắn trong cuộc trò chuyện sẽ được làm mờ để ngăn chặn người khác nhìn trộm tin nhắn. Để xem nội dung, bạn rê chuột vào các tin nhắn hoặc ảnh đại diện trong cuộc trò chuyện."></span>
+              </label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
                 <span class="zadark-switch__slider"></span>
@@ -143,6 +149,8 @@
 
   <script src="libs/jquery.min.js"></script>
   <script src="libs/bowser-es5.min.js"></script>
+  <script src="libs/popper.min.js"></script>
+  <script src="libs/tippy.min.js"></script>
   <script src="js/browser.min.js"></script>
   <script src="js/utils.min.js"></script>
   <script src="js/popup.min.js"></script>

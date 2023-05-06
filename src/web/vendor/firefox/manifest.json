@@ -27,6 +27,7 @@
         "libs/jquery.min.js",
         "libs/bowser-es5.min.js",
         "libs/popper.min.js",
+        "libs/tippy.min.js",
         "js/browser.min.js",
         "js/utils.min.js",
         "js/zadark.min.js"
