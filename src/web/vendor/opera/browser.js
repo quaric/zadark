@@ -30,6 +30,7 @@
           enabledBlockTyping: false,
           enabledBlockDelivered: false,
           enabledBlockSeen: false,
+          enabledBlockOnline: false,
           knownVersion: ''
         }, (items) => {
           resolve(items)

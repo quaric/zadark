@@ -1,0 +1,8 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {"urlFilter": "||chat.zalo.me/api/social/profile/ping", "resourceTypes": ["xmlhttprequest"] }
+  }
+]

@@ -82,7 +82,10 @@ https://zadark.quaric.com/awards
 - https://popper.js.org/
 - https://usefulangle.com/post/356/javascript-detect-element-added-to-dom
 - https://developer.chrome.com/docs/extensions/mv3/messaging/
-
+- https://www.electronjs.org/docs/latest/api/web-request
+- https://www.electronjs.org/docs/latest/api/ipc-renderer
+- https://www.electronjs.org/docs/latest/api/ipc-renderer#ipcrenderersendchannel-args
+- https://www.electronjs.org/docs/latest/api/ipc-main#ipcmainonchannel-listener
 ---
 
 [![DMCA.com Protection Status](https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=85a452ca-06aa-4352-bfeb-7cb563dbd2b9)](https://www.dmca.com/Protection/Status.aspx?ID=85a452ca-06aa-4352-bfeb-7cb563dbd2b9&refurl=https://zadark.quaric.com/)

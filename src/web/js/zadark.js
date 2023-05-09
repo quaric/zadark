@@ -66,6 +66,7 @@ const switchHideThreadChatMessageElName = '#js-switch-hide-thread-chat-message'
 const switchBlockTypingElName = '#js-switch-block-typing'
 const switchBlockSeenElName = '#js-switch-block-seen'
 const switchBlockDeliveredElName = '#js-switch-block-delivered'
+// const switchBlockOnlineElName = '#js-switch-block-online'
 
 const setSelectTheme = (theme) => {
   const options = ['light', 'dark', 'auto']
@@ -297,6 +298,7 @@ const enableBlocking = async () => {
   $(switchBlockTypingElName).prop('checked', ruleIds.includes('rules_block_typing'))
   $(switchBlockSeenElName).prop('checked', ruleIds.includes('rules_block_seen'))
   $(switchBlockDeliveredElName).prop('checked', ruleIds.includes('rules_block_delivered'))
+  // $(switchBlockOnlineElName).prop('checked', ruleIds.includes('rules_block_online'))
 }
 
 const disableBlocking = () => {
@@ -398,9 +400,11 @@ const loadZaDarkPopup = () => {
 
   $(switchHideLatestMessageElName).on('change', handleHideLastestMessageChange)
   $(switchHideThreadChatMessageElName).on('change', handleHideThreadChatMessageChange)
+
   $(switchBlockTypingElName).on('change', handleBlockingRuleChange(switchBlockTypingElName, 'rules_block_typing'))
   $(switchBlockSeenElName).on('change', handleBlockingRuleChange(switchBlockSeenElName, 'rules_block_seen'))
   $(switchBlockDeliveredElName).on('change', handleBlockingRuleChange(switchBlockDeliveredElName, 'rules_block_delivered'))
+  // $(switchBlockOnlineElName).on('change', handleBlockingRuleChange(switchBlockOnlineElName, 'rules_block_online'))
 
   const popupEl = document.querySelector('#zadark-popup')
   const buttonEl = document.getElementById('div_Main_TabZaDark')
@@ -423,7 +427,7 @@ const loadZaDarkPopup = () => {
   loadPopupState()
   loadKnownVersionState(buttonEl)
 
-  $('[data-tippy-content]').html(iconQuestionSVG)
+  $('.zadark-switch__label--helper-icon[data-tippy-content]').html(iconQuestionSVG)
 
   tippy('[data-tippy-content]', {
     theme: 'zadark',

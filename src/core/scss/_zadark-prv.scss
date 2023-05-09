@@ -65,11 +65,11 @@
 
 @mixin prv-thread-chat-message {
   .chat-message:not(.multi-select-mode) {
-    .card:not(.card--oa):not(.card--sticker) {
+    .card:not(.card--oa):not(.card--sticker):not(.card--group-photo),
+    .call-msg {
       > * {
         opacity: 0.1;
         filter: blur(1px);
-
         @include transition-opacity-200-filter-200();
       }
 
@@ -84,14 +84,12 @@
     .img-msg-v2 {
       .img-msg-v2__th > * {
         opacity: 0;
-
         @include transition-opacity-200();
       }
 
       .img-msg-v2__ft > *:not(.img-msg-v2__rct):not(.img-msg-v2__st) {
         opacity: 0.1;
         filter: blur(1px);
-
         @include transition-opacity-200-filter-200();
       }
 
@@ -109,7 +107,6 @@
     .card--sticker .card--group-sticker__row__item {
       opacity: 0.5;
       filter: var(--prv-sticker-filter);
-
       @include transition-opacity-200-filter-200();
 
       // &:hover {
@@ -117,11 +114,36 @@
       //   filter: none;
       // }
     }
+
+    .card--group-photo .card--group-photo__row__item .img-g-v2 {
+      opacity: 0;
+      @include transition-opacity-200();
+    }
+  }
+
+  .td-msg-v3,
+  .message-info_content,
+  .event-message__content,
+  .e2ee-event-info,
+  .reminder-info-v2 {
+    > * {
+      opacity: 0.1;
+      filter: blur(1px);
+      @include transition-opacity-200-filter-200();
+    }
+  }
+
+  // Pin message
+  .chat-group-topic__item .info-container > .content-container {
+    opacity: 0.1;
+    filter: blur(1px);
+    @include transition-opacity-200-filter-200();
   }
 
   #messageView:hover {
     .chat-message:not(.multi-select-mode) {
-      .card:not(.card--oa):not(.card--sticker) {
+      .card:not(.card--oa):not(.card--sticker):not(.card--group-photo),
+      .call-msg {
         > * {
           opacity: 1;
           filter: none;
@@ -142,6 +164,27 @@
         opacity: 1;
         filter: none;
       }
+
+      .card--group-photo .card--group-photo__row__item .img-g-v2 {
+        opacity: 1;
+      }
+    }
+
+    .td-msg-v3,
+    .message-info_content,
+    .event-message__content,
+    .e2ee-event-info,
+    .reminder-info-v2 {
+      > * {
+        opacity: 1;
+        filter: none;
+      }
+    }
+
+    // Pin message
+    .chat-group-topic__item .info-container > .content-container {
+      opacity: 1;
+      filter: none;
     }
   }
 }

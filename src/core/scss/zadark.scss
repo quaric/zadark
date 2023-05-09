@@ -1961,6 +1961,10 @@ html[data-zadark-theme="dark"] {
     .sound-container__play {
       color: #fff !important;
     }
+
+    .sticker-download-button {
+      filter: invert(0.8);
+    }
   }
 }
 

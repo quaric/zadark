@@ -31,6 +31,26 @@ const getZaloResDirList = (customZaloPath) => {
   return resources.sort()
 }
 
+const removeZaDarkCSSAndJS = ({ headElement, bodyElement }) => {
+  const elementsToRemove = [
+    {
+      selector: 'link[href^="zadark"]',
+      htmlElement: headElement
+    },
+    {
+      selector: 'script[src^="zadark"]',
+      htmlElement: bodyElement
+    }
+  ]
+
+  elementsToRemove.forEach(({ selector, htmlElement }) => {
+    const elements = htmlElement.querySelectorAll(selector)
+    elements.forEach((element) => {
+      element.remove()
+    })
+  })
+}
+
 const writeIndexFile = (zaloDir) => {
   const src = 'pc-dist/index.html'
   const srcPath = path.join(zaloDir, `app/${src}`)
@@ -45,6 +65,8 @@ const writeIndexFile = (zaloDir) => {
   const htmlElement = root.getElementsByTagName('html')[0]
   const headElement = root.getElementsByTagName('head')[0]
   const bodyElement = root.getElementsByTagName('body')[0]
+
+  removeZaDarkCSSAndJS({ headElement, bodyElement })
 
   // Required fonts, stylesheets and scripts
   const elements = [
@@ -94,6 +116,8 @@ const writeIndexFile = (zaloDir) => {
       htmlElement: bodyElement
     }
   ]
+
+  // Insert new elements
   elements.forEach((element) => {
     const { selector, where, html, htmlElement } = element
     const elementExists = root.querySelectorAll(selector)
@@ -116,6 +140,30 @@ const writeIndexFile = (zaloDir) => {
   logDebug('- writeIndexFile', srcPath)
 }
 
+const writeBootstrapFile = (zaloDir) => {
+  const src = 'bootstrap.js'
+  const srcPath = path.join(zaloDir, `app/${src}`)
+
+  if (!fs.existsSync(srcPath)) {
+    throw new Error(srcPath + ' khong ton tai.')
+  }
+
+  const bootstrapContent = fs.readFileSync(srcPath, 'utf8')
+  const contentToInsert = "require('./pc-dist/zadark-main.min');"
+
+  if (bootstrapContent.includes(contentToInsert)) {
+    logDebug('- writeBootstrapFile', 'skip: contentToInsert already exists.')
+    return
+  }
+
+  const contentToFind = "require('./main-dist/main');"
+  const insertionIndex = bootstrapContent.indexOf(contentToFind) + contentToFind.length
+  const insertedContent = `${bootstrapContent.slice(0, insertionIndex)}\n    ${contentToInsert}${bootstrapContent.slice(insertionIndex)}`
+
+  fs.writeFileSync(srcPath, insertedContent)
+  logDebug('- writeBootstrapFile', srcPath)
+}
+
 const writeZNotificationFile = (zaloDir) => {
   const src = 'pc-dist/znotification.html'
   const srcPath = path.join(zaloDir, `app/${src}`)
@@ -130,7 +178,7 @@ const writeZNotificationFile = (zaloDir) => {
   const headElement = root.getElementsByTagName('head')[0]
   const bodyElement = root.getElementsByTagName('body')[0]
 
-  // root.setAttribute("data-zadark-platform", ZADARK_VERSION)
+  removeZaDarkCSSAndJS({ headElement, bodyElement })
 
   // Required fonts, stylesheets
   const elements = [
@@ -242,6 +290,9 @@ const installDarkTheme = async (zaloDir) => {
 
   // Add "themeAttributes, classNames, fonts, stylesheets" to "resources/app/pc-dist/index.html"
   writeIndexFile(zaloDir)
+
+  // Add zadark-main to "resources/app/bootstrap.js"
+  writeBootstrapFile(zaloDir)
 
   // Add fonts, stylesheets" to "resources/app/pc-dist/znotification.html"
   writeZNotificationFile(zaloDir)

@@ -9,19 +9,21 @@ const MSG_ACTIONS = {
   UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS'
 }
 
-const RULE_IDS = ['rules_block_typing', 'rules_block_delivered', 'rules_block_seen']
+const RULE_IDS = ['rules_block_typing', 'rules_block_delivered', 'rules_block_seen', 'rules_block_online']
 
 const SETTINGS_RULE_KEYS = {
   rules_block_typing: 'enabledBlockTyping',
   rules_block_delivered: 'enabledBlockDelivered',
-  rules_block_seen: 'enabledBlockSeen'
+  rules_block_seen: 'enabledBlockSeen',
+  rules_block_online: 'enabledBlockOnline'
 }
 
 const handleLoadRulesets = async () => {
   const settings = await chrome.storage.sync.get({
     enabledBlockTyping: false,
     enabledBlockDelivered: false,
-    enabledBlockSeen: false
+    enabledBlockSeen: false,
+    enabledBlockOnline: false
   })
 
   const enableRulesetIds = []

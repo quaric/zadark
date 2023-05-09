@@ -1,11 +1,11 @@
 {
   "name": "zadark",
   "description": "Dark Mode tốt nhất cho Zalo",
-  "version": "23.5.3",
+  "version": "23.5.4",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
     "name": "Quaric",
-    "email": "contact@quaric.com",
+    "email": "info@quaric.com",
     "url": "https://zadark.quaric.com"
   },
   "contributors": [
@@ -15,10 +15,10 @@
       "url": "https://github.com/iamncdai"
     }
   ],
-  "license": "MIT",
+  "license": "MPL-2.0",
   "scripts": {
     "watch": "gulp watch",
-    "build": "gulp build",
+    "build": "NODE_ENV=development gulp build",
     "dist": "gulp dist",
     "pc:dev": "NODE_ENV=development node build/pc",
     "pc:start": "NODE_ENV=production node build/pc",
@@ -68,7 +68,8 @@
       "Popper",
       "tippy",
       "MutationObserver",
-      "localStorage"
+      "localStorage",
+      "DEBUG"
     ],
     "ignore": [
       "./src/web/libs/**/*"

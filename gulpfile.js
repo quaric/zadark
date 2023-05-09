@@ -21,6 +21,19 @@ const getPCPath = (p) => path.join(PC_PATH, p)
 
 const SAFARI_RESOURCES = getWebPath('./vendor/safari/ZaDark Extension/Resources')
 
+const minifyOptions = {
+  ext: {
+    min: '.min.js'
+  },
+  ignoreFiles: ['.min.js'],
+  noSource: true,
+  compress: {
+    global_defs: {
+      DEBUG: process.env.NODE_ENV === 'development'
+    }
+  }
+}
+
 const buildSass = (_src, _dest) => {
   return src(_src)
     .pipe(yupSass({ outputStyle: 'compressed', outFile: '.min.css' }).on('error', yupSass.logError))
@@ -87,20 +100,11 @@ const buildWeb = (browser) => {
     src(getWebPath(`./vendor/${browser}/manifest.json`)).pipe(dest(rootDir)),
     src(getWebPath('./*.html')).pipe(dest(rootDir)),
 
-    // src(getWebPath(`./vendor/${browser}/browser.js`)).pipe(dest(jsDir)),
-    // src(getWebPath(`./vendor/${browser}/service-worker.js`)).pipe(dest(jsDir)),
-    // src(getWebPath('./js/**/*')).pipe(dest(jsDir)),
     src([
       getWebPath(`./vendor/${browser}/browser.js`),
       getWebPath(`./vendor/${browser}/service-worker.js`),
       getWebPath('./js/**/*')
-    ]).pipe(minify({
-      ext: {
-        min: '.min.js'
-      },
-      ignoreFiles: ['.min.js'],
-      noSource: true
-    })).pipe(dest(jsDir)),
+    ]).pipe(minify(minifyOptions)).pipe(dest(jsDir)),
     buildSass(getWebPath(`./vendor/${browser}/*.scss`), cssDir),
 
     src(getWebPath('./_locales/**/*')).pipe(dest(localesDir)),
@@ -148,20 +152,11 @@ const buildSafari = () => {
     src(getWebPath('./vendor/safari/manifest.json')).pipe(dest(SAFARI_RESOURCES)),
     src(getWebPath('./*.html')).pipe(dest(SAFARI_RESOURCES)),
 
-    // src(getWebPath('./vendor/safari/browser.js')).pipe(dest(jsDir)),
-    // src(getWebPath('./vendor/safari/service-worker.js')).pipe(dest(jsDir)),
-    // src(getWebPath('./js/**/*')).pipe(dest(jsDir)),
     src([
       getWebPath('./vendor/safari/browser.js'),
       getWebPath('./vendor/safari/service-worker.js'),
       getWebPath('./js/**/*')
-    ]).pipe(minify({
-      ext: {
-        min: '.min.js'
-      },
-      ignoreFiles: ['.min.js'],
-      noSource: true
-    })).pipe(dest(jsDir)),
+    ]).pipe(minify(minifyOptions)).pipe(dest(jsDir)),
 
     buildSass(getWebPath('./vendor/safari/*.scss'), cssDir),
 
@@ -180,13 +175,7 @@ const buildPC = () => {
       `!${getPCPath('./assets/js/**')}`
     ]).pipe(dest('./build/pc')),
 
-    src(getPCPath('./assets/js/*.js')).pipe(minify({
-      ext: {
-        min: '.min.js'
-      },
-      ignoreFiles: ['.min.js'],
-      noSource: true
-    })).pipe(dest('./build/pc/assets/js')),
+    src(getPCPath('./assets/js/*.js')).pipe(minify(minifyOptions)).pipe(dest('./build/pc/assets/js')),
 
     src(getCorePath('./fonts/**/*')).pipe(dest('./build/pc/assets/fonts')),
     buildSass(getPCPath('./assets/scss/*.scss'), './build/pc/assets/css')

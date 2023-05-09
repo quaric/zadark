@@ -1,6 +1,22 @@
 # Changelog
 
-## ZaDark v24.5.3
+## ZaDark v23.5.4
+> PC v8.0 && Web v8.13
+
+### Added
+- Bổ sung cho chức năng: Ẩn "Tin nhắn" trong Cuộc trò chuyện
+  - Hỗ trợ ẩn tin nhắn có 2 ảnh trở lên (photo group)
+  - Hỗ trợ ẩn cuộc gọi
+  - Hỗ trợ ẩn nhắc nhở
+  - Hỗ trợ ẩn các sự kiện (thành viên rời nhóm, hoàn thành công việc,...)
+  - Hỗ trợ ẩn tin nhắn được ghim
+
+#### PC specific
+- Thêm chức năng: Ẩn trạng thái "Đang soạn tin nhắn ..."
+- Thêm chức năng: Ẩn trạng thái "Đã nhận" tin nhắn
+- Thêm chức năng: Ẩn trạng thái "Đã xem" tin nhắn
+
+## ZaDark v23.5.3
 > PC v7.14 && Web v8.12
 
 ### Added
@@ -12,7 +28,7 @@
 ### Fixed
 - `.zadark-select`: cursor pointer
 
-## ZaDark v24.5.2
+## ZaDark v23.5.2
 > PC v7.13 && Web v8.11
 
 ### Fixed
@@ -20,7 +36,7 @@
 - ZaDark Popup: Bỏ định dạng rtl (right to left) ở lựa chọn Phông chữ
 - ZaDark Popup: Sửa lỗi màu nền của danh sách lựa chọn Phông chữ
 
-## ZaDark v24.5.1
+## ZaDark v23.5.1
 > PC v7.12 && Web v8.10
 
 ### Added

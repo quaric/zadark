@@ -6,12 +6,28 @@
 
 // eslint-disable-next-line no-global-assign
 const $ = jQuery = module.exports // Ref: https://github.com/electron/electron/issues/345#issuecomment-43894441
+const { ipcRenderer } = require('electron')
 
 const ZADARK_THEME_KEY = '@ZaDark:THEME'
 const ZADARK_FONT_KEY = '@ZaDark:FONT'
+
 const ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_LATEST_MESSAGE'
 const ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_THREAD_CHAT_MESSAGE'
+
+const ZADARK_ENABLED_BLOCK_TYPING_KEY = '@ZaDark:ENABLED_BLOCK_TYPING'
+const ZADARK_ENABLED_BLOCK_DELIVERED_KEY = '@ZaDark:ENABLED_BLOCK_DELIVERED'
+const ZADARK_ENABLED_BLOCK_SEEN_KEY = '@ZaDark:ENABLED_BLOCK_SEEN'
+const ZADARK_ENABLED_BLOCK_ONLINE_KEY = '@ZaDark:ENABLED_BLOCK_ONLINE'
+
 const ZADARK_KNOWN_VERSION_KEY = '@ZaDark:KNOWN_VERSION'
+
+const BLOCK_IDS = ['block_typing', 'block_delivered', 'block_seen', 'block_online']
+const BLOCK_STORAGE_KEYS = {
+  block_typing: ZADARK_ENABLED_BLOCK_TYPING_KEY,
+  block_delivered: ZADARK_ENABLED_BLOCK_DELIVERED_KEY,
+  block_seen: ZADARK_ENABLED_BLOCK_SEEN_KEY,
+  block_online: ZADARK_ENABLED_BLOCK_ONLINE_KEY
+}
 
 window.zadark = window.zadark || {}
 
@@ -32,20 +48,36 @@ window.zadark.storage = {
     return localStorage.setItem(ZADARK_FONT_KEY, font)
   },
 
-  saveEnabledHideLatestMessage: (enabled) => {
-    return localStorage.setItem(ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY, enabled)
+  saveEnabledHideLatestMessage: (isEnabled) => {
+    return localStorage.setItem(ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY, isEnabled)
   },
 
   getEnabledHideLatestMessage: () => {
     return localStorage.getItem(ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY) === 'true'
   },
 
-  saveEnabledHideThreadChatMessage: (enabled) => {
-    return localStorage.setItem(ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY, enabled)
+  saveEnabledHideThreadChatMessage: (isEnabled) => {
+    return localStorage.setItem(ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY, isEnabled)
   },
 
   getEnabledHideThreadChatMessage: () => {
     return localStorage.getItem(ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY) === 'true'
+  },
+
+  saveBlockSettings: (blockId, isEnabled) => {
+    const key = BLOCK_STORAGE_KEYS[blockId]
+    if (key) {
+      return localStorage.setItem(key, isEnabled)
+    }
+  },
+
+  getBlockSettings: () => {
+    return {
+      block_typing: localStorage.getItem(ZADARK_ENABLED_BLOCK_TYPING_KEY) === 'true',
+      block_delivered: localStorage.getItem(ZADARK_ENABLED_BLOCK_DELIVERED_KEY) === 'true',
+      block_seen: localStorage.getItem(ZADARK_ENABLED_BLOCK_SEEN_KEY) === 'true',
+      block_online: localStorage.getItem(ZADARK_ENABLED_BLOCK_ONLINE_KEY) === 'true'
+    }
   },
 
   getKnownVersion: () => {
@@ -97,8 +129,8 @@ window.zadark.utils = {
   },
 
   refreshHideLatestMessage: function () {
-    const enabledHideLatestMessage = window.zadark.storage.getEnabledHideLatestMessage()
-    if (enabledHideLatestMessage) {
+    const isEnabled = window.zadark.storage.getEnabledHideLatestMessage()
+    if (isEnabled) {
       document.body.classList.add('zadark-prv--latest-message')
     } else {
       document.body.classList.remove('zadark-prv--latest-message')
@@ -106,12 +138,32 @@ window.zadark.utils = {
   },
 
   refreshHideThreadChatMessage: function () {
-    const enabledHideThreadChatMessage = window.zadark.storage.getEnabledHideThreadChatMessage()
-    if (enabledHideThreadChatMessage) {
+    const isEnabled = window.zadark.storage.getEnabledHideThreadChatMessage()
+    if (isEnabled) {
       document.body.classList.add('zadark-prv--thread-chat-message')
     } else {
       document.body.classList.remove('zadark-prv--thread-chat-message')
     }
+  },
+
+  loadBlockSettings: function () {
+    const settings = window.zadark.storage.getBlockSettings()
+
+    const enableBlockIds = []
+    const disableBlockIds = []
+
+    BLOCK_IDS.forEach((blockId) => {
+      if (settings[blockId]) {
+        enableBlockIds.push(blockId)
+      } else {
+        disableBlockIds.push(blockId)
+      }
+    })
+
+    ipcRenderer.send('@ZaDark:UPDATE_BLOCK_SETTINGS', {
+      enableBlockIds,
+      disableBlockIds
+    })
   },
 
   getRatingURL: function () {
@@ -128,6 +180,7 @@ window.zadark.utils.refreshPageTheme()
 window.zadark.utils.refreshPageFont()
 window.zadark.utils.refreshHideLatestMessage()
 window.zadark.utils.refreshHideThreadChatMessage()
+window.zadark.utils.loadBlockSettings()
 
 window.matchMedia('(prefers-color-scheme: dark)').addListener((event) => {
   const theme = window.zadark.storage.getTheme()
@@ -152,8 +205,14 @@ observer.observe(document.querySelector('#app'), { subtree: false, childList: tr
 const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
+
 const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
 const switchHideThreadChatMessageElName = '#js-switch-hide-thread-chat-message'
+
+const switchBlockTypingElName = '#js-switch-block-typing'
+const switchBlockSeenElName = '#js-switch-block-seen'
+const switchBlockDeliveredElName = '#js-switch-block-delivered'
+// const switchBlockOnlineElName = '#js-switch-block-online'
 
 const setSelectTheme = (theme) => {
   const options = ['light', 'dark', 'auto']
@@ -166,37 +225,46 @@ const setSelectFont = (font) => {
   $(selectFontElName).val(font)
 }
 
-const setSwitchHideLatestMessage = (enabled) => {
-  $(switchHideLatestMessageElName).prop('checked', enabled)
+const setSwitch = (elName, enabled) => {
+  $(elName).prop('checked', enabled)
 }
 
-const setSwitchHideThreadChatMessage = (enabled) => {
-  $(switchHideThreadChatMessageElName).prop('checked', enabled)
-}
-
-async function handleThemeChange () {
+function handleThemeChange () {
   const theme = $(this).val()
   window.zadark.storage.saveTheme(theme)
   window.zadark.utils.refreshPageTheme()
   setSelectTheme(theme)
 }
 
-async function handleFontChange () {
+function handleFontChange () {
   const font = $(this).val()
   window.zadark.storage.saveFont(font)
   window.zadark.utils.refreshPageFont()
 }
 
-async function handleHideLatestMessageChange () {
+function handleHideLatestMessageChange () {
   const isEnabled = $(this).is(':checked')
   window.zadark.storage.saveEnabledHideLatestMessage(isEnabled)
   window.zadark.utils.refreshHideLatestMessage()
 }
 
-async function handleHideThreadChatMessageChange () {
+function handleHideThreadChatMessageChange () {
   const isEnabled = $(this).is(':checked')
   window.zadark.storage.saveEnabledHideThreadChatMessage(isEnabled)
   window.zadark.utils.refreshHideThreadChatMessage()
+}
+
+const handleBlockSettingsChange = (elName, blockId) => {
+  return () => {
+    const isEnabled = $(elName).is(':checked')
+
+    const payload = isEnabled
+      ? { enableBlockIds: [blockId] }
+      : { disableBlockIds: [blockId] }
+
+    window.zadark.storage.saveBlockSettings(blockId, isEnabled)
+    ipcRenderer.send('@ZaDark:UPDATE_BLOCK_SETTINGS', payload)
+  }
 }
 
 const iconQuestionSVG = `
@@ -315,7 +383,7 @@ const popupMainHTML = `
               </label>
             </div>
 
-            <div class="zadark-switch zadark-switch--disabled">
+            <div class="zadark-switch">
               <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin nhắn ...</strong></label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
@@ -323,7 +391,7 @@ const popupMainHTML = `
               </label>
             </div>
 
-            <div class="zadark-switch zadark-switch--disabled">
+            <div class="zadark-switch">
               <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận</strong> tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
@@ -331,7 +399,7 @@ const popupMainHTML = `
               </label>
             </div>
 
-            <div class="zadark-switch zadark-switch--disabled">
+            <div class="zadark-switch">
               <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem</strong> tin nhắn</label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
@@ -371,10 +439,16 @@ const loadPopupState = () => {
   setSelectFont(font)
 
   const enabledHideLatestMessage = window.zadark.storage.getEnabledHideLatestMessage()
-  setSwitchHideLatestMessage(enabledHideLatestMessage)
+  setSwitch(switchHideLatestMessageElName, enabledHideLatestMessage)
 
   const enabledHideThreadChatMessage = window.zadark.storage.getEnabledHideThreadChatMessage()
-  setSwitchHideThreadChatMessage(enabledHideThreadChatMessage)
+  setSwitch(switchHideThreadChatMessageElName, enabledHideThreadChatMessage)
+
+  const blockSettings = window.zadark.storage.getBlockSettings()
+  setSwitch(switchBlockTypingElName, blockSettings.block_typing)
+  setSwitch(switchBlockDeliveredElName, blockSettings.block_delivered)
+  setSwitch(switchBlockSeenElName, blockSettings.block_seen)
+  // setSwitch(switchBlockOnlineElName, blockSettings.block_online)
 }
 
 const loadKnownVersionState = (buttonEl) => {
@@ -452,8 +526,14 @@ const loadZaDarkPopup = () => {
 
   $(selectThemeElName).on('change', handleThemeChange)
   $(selectFontElName).on('change', handleFontChange)
+
   $(switchHideLatestMessageElName).on('change', handleHideLatestMessageChange)
   $(switchHideThreadChatMessageElName).on('change', handleHideThreadChatMessageChange)
+
+  $(switchBlockTypingElName).on('change', handleBlockSettingsChange(switchBlockTypingElName, 'block_typing'))
+  $(switchBlockSeenElName).on('change', handleBlockSettingsChange(switchBlockSeenElName, 'block_seen'))
+  $(switchBlockDeliveredElName).on('change', handleBlockSettingsChange(switchBlockDeliveredElName, 'block_delivered'))
+  // $(switchBlockOnlineElName).on('change', handleBlockSettingsChange(switchBlockOnlineElName, 'block_online'))
 
   const popupEl = document.querySelector('#zadark-popup')
   const buttonEl = document.getElementById('div_Main_TabZaDark')
@@ -476,7 +556,7 @@ const loadZaDarkPopup = () => {
   loadPopupState()
   loadKnownVersionState(buttonEl)
 
-  $('[data-tippy-content]').html(iconQuestionSVG)
+  $('.zadark-switch__label--helper-icon[data-tippy-content]').html(iconQuestionSVG)
 
   tippy('[data-tippy-content]', {
     theme: 'zadark',
