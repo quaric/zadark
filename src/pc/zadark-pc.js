@@ -180,7 +180,7 @@ const writeZNotificationFile = (zaloDir) => {
 
   removeZaDarkCSSAndJS({ headElement, bodyElement })
 
-  // Required fonts, stylesheets
+  // Required fonts, stylesheets and scripts
   const elements = [
     {
       selector: 'link[href="zadark-fonts.min.css"]',
@@ -193,6 +193,12 @@ const writeZNotificationFile = (zaloDir) => {
       where: 'beforeend',
       html: '<link rel="stylesheet" href="zadark-znotification.min.css">',
       htmlElement: headElement
+    },
+    {
+      selector: 'script[src="zadark-znotification.min.js"]',
+      where: 'beforeend',
+      html: '<script src="zadark-znotification.min.js"></script>',
+      htmlElement: bodyElement
     }
   ]
   elements.forEach((element) => {
@@ -288,14 +294,16 @@ const installDarkTheme = async (zaloDir) => {
     copyAssetDir(zaloDir, asset)
   })
 
-  // Add "themeAttributes, classNames, fonts, stylesheets" to "resources/app/pc-dist/index.html"
+  // Add "themeAttributes, classNames, fonts, stylesheets and scripts" to "resources/app/pc-dist/index.html"
   writeIndexFile(zaloDir)
 
   // Add zadark-main to "resources/app/bootstrap.js"
   writeBootstrapFile(zaloDir)
 
-  // Add fonts, stylesheets" to "resources/app/pc-dist/znotification.html"
-  writeZNotificationFile(zaloDir)
+  if (PLATFORM !== 'darwin') {
+    // Add fonts, stylesheets and scripts" to "resources/app/pc-dist/znotification.html"
+    writeZNotificationFile(zaloDir)
+  }
 
   // Create package "resources/app.asar" from "resources/app" -> Delete "resources/app"
   await asar.createPackage(appDirPath, appAsarPath)

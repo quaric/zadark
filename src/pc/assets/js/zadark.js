@@ -121,6 +121,11 @@ window.zadark.utils = {
   refreshPageTheme: function () {
     const theme = window.zadark.storage.getTheme()
     this.setPageTheme(theme)
+
+    const platformKey = document.documentElement.getAttribute('data-zadark-platform')
+    if (platformKey !== 'darwin') {
+      ipcRenderer.send('@ZaDark:UPDATE_THEME', { theme })
+    }
   },
 
   refreshPageFont: function () {

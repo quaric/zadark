@@ -1,37 +1,46 @@
+html[data-zadark-theme="dark"] {
+  .zadark {
+    font-family: "Open Sans", sans-serif;
+
+    #zbg {
+      border: 1px solid #3d3f40; // --NG30
+      background-color: #232526; // --WA100
+    }
+
+    #zbody {
+      font-family: "Open Sans", sans-serif;
+      color: #9e9f9f; // --text-secondary
+    }
+
+    #ztitle {
+      font-family: "Open Sans", sans-serif;
+    }
+
+    #zname {
+      color: #e5e5e5; // --text-primary
+    }
+
+    #znbutton-left {
+      border: 1px solid #0f2345; // --B15
+      background: #0f2345; // --B15
+      color: #0068ff; // --B55
+    }
+
+    #znbutton-right {
+      border: 1px solid #353637; // --N25
+      background: #353637; // --N25
+      color: #e5e5e5; // --text-primary
+    }
+
+    #closebtn {
+      color: #696b6b; // --N40
+    }
+  }
+}
+
 .zadark {
-  font-family: "Open Sans", sans-serif;
-
-  #zbg {
-    border: 1px solid #3d3f40; // --NG30
-    background-color: #232526; // --WA100
-  }
-
+  #zbg,
   #zbody {
-    font-family: "Open Sans", sans-serif;
-    color: #9e9f9f; // --text-secondary
-  }
-
-  #ztitle {
-    font-family: "Open Sans", sans-serif;
-  }
-
-  #zname {
-    color: #e5e5e5; // --text-primary
-  }
-
-  #znbutton-left {
-    border: 1px solid #0f2345; // --B15
-    background: #0f2345; // --B15
-    color: #0068ff; // --B55
-  }
-
-  #znbutton-right {
-    border: 1px solid #353637; // --N25
-    background: #353637; // --N25
-    color: #e5e5e5; // --text-primary
-  }
-
-  #closebtn {
-    color: #696b6b; // --N40
+    transition: all 0.3s ease-in-out;
   }
 }

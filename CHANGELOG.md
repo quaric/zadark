@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark v23.5.5
+> PC v8.1
+
+### Fixed
+#### PC specific (Windows)
+- Sửa lỗi: Giao diện của Hộp thoại thông báo không thay đổi khi chuyển sang Light Mode (luôn ở Dark Mode)
+
 ## ZaDark v23.5.4
 > PC v8.0 && Web v8.13
 
