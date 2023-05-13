@@ -1,17 +1,23 @@
+/*
+  ZaDark – Zalo Dark Mode
+  Made by Quaric
+*/
+
 /* eslint-disable node/no-callback-literal  */
 
 const { app, session, ipcMain } = require('electron')
 
 app.whenReady().then(() => {
-  if (DEBUG) {
-    console.log('ZaDarkPC: Debug mode is ON')
-  }
-
-  const blockSettings = {
+  const _blockSettings = {
     block_typing: false,
     block_delivered: false,
     block_seen: false,
     block_online: false
+  }
+
+  const _settings = {
+    theme: 'dark',
+    hideThreadChatMessage: false
   }
 
   const filter = {
@@ -36,44 +42,59 @@ app.whenReady().then(() => {
 
   session.fromPartition('persist:zalo').webRequest.onBeforeRequest(filter, (details, callback) => {
     // Typing
-    if (blockSettings.block_typing && (details.url.includes('api/message/typing') || details.url.includes('api/group/typing'))) {
+    if (_blockSettings.block_typing && (details.url.includes('api/message/typing') || details.url.includes('api/group/typing'))) {
       if (DEBUG) console.log('ZaDarkPC: block_typing', details.url)
       callback({ cancel: true })
     }
 
     // Delivered
-    if (blockSettings.block_delivered && (details.url.includes('api/message/deliveredv2') || details.url.includes('api/e2ee/pc/t/message/delivered') || details.url.includes('api/group/deliveredv2'))) {
+    if (_blockSettings.block_delivered && (details.url.includes('api/message/deliveredv2') || details.url.includes('api/e2ee/pc/t/message/delivered') || details.url.includes('api/group/deliveredv2'))) {
       if (DEBUG) console.log('ZaDarkPC: block_delivered', details.url)
       callback({ cancel: true })
     }
 
     // Seen
-    if (blockSettings.block_seen && (details.url.includes('api/message/seenv2') || details.url.includes('api/group/seenv2'))) {
+    if (_blockSettings.block_seen && (details.url.includes('api/message/seenv2') || details.url.includes('api/group/seenv2'))) {
       if (DEBUG) console.log('ZaDarkPC: block_seen', details.url)
       callback({ cancel: true })
     }
 
     // Online
-    // if (blockSettings.block_online && details.url.includes('api/social/profile/ping')) {
+    // if (_blockSettings.block_online && details.url.includes('api/social/profile/ping')) {
     //   if (DEBUG) console.log('ZaDarkPC: block_online', details.url)
     //   callback({ cancel: true })
     // }
 
-    // Allow
     callback({ cancel: false })
   })
 
   ipcMain.on('@ZaDark:UPDATE_BLOCK_SETTINGS', (event, payload) => {
-    if (DEBUG) console.log('ZaDarkPC: @ZaDark:UPDATE_BLOCK_SETTINGS', payload)
-
     const { enableBlockIds, disableBlockIds } = payload
 
-    Array.isArray(enableBlockIds) && enableBlockIds.forEach((rule) => {
-      blockSettings[rule] = true
+    Array.isArray(enableBlockIds) && enableBlockIds.forEach((blockId) => {
+      _blockSettings[blockId] = true
     })
 
-    Array.isArray(disableBlockIds) && disableBlockIds.forEach((rule) => {
-      blockSettings[rule] = false
+    Array.isArray(disableBlockIds) && disableBlockIds.forEach((blockId) => {
+      _blockSettings[blockId] = false
     })
+
+    if (DEBUG) console.log('ZaDarkPC: @ZaDark:UPDATE_BLOCK_SETTINGS', { payload, _blockSettings })
+  })
+
+  ipcMain.on('@ZaDark:UPDATE_SETTINGS', (event, payload) => {
+    const validKeys = Object.keys(_settings)
+
+    Object.keys(payload).forEach((key) => {
+      if (!validKeys.includes(key)) return
+      _settings[key] = payload[key]
+    })
+
+    if (DEBUG) console.log('ZaDarkPC: @ZaDark:UPDATE_SETTINGS', { payload, _settings })
+  })
+
+  ipcMain.handle('@ZaDark:GET_SETTINGS', () => {
+    if (DEBUG) console.log('ZaDarkPC: @ZaDark:GET_SETTINGS', _settings)
+    return _settings
   })
 })

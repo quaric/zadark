@@ -1,37 +1,92 @@
+:root {
+  --text-primary: #001a33;
+  --text-secondary: #767676;
+}
+
+html[data-zadark-theme="dark"] {
+  &:root {
+    --text-primary: #e5e5e5;
+    --text-secondary: #9e9f9f;
+
+    --NG30: #3d3f40;
+    --WA100: #232526;
+
+    --B15: #0f2345;
+    --B55: #0068ff;
+
+    --N25: #353637;
+    --N40: #696b6b;
+  }
+
+  .zadark {
+    font-family: "Open Sans", sans-serif;
+
+    #zbg {
+      border: 1px solid var(--NG30);
+      background-color: var(--WA100);
+    }
+
+    #zbody {
+      font-family: "Open Sans", sans-serif;
+      color: var(--text-secondary);
+    }
+
+    #ztitle {
+      font-family: "Open Sans", sans-serif;
+    }
+
+    #zname {
+      color: var(--text-primary);
+    }
+
+    #znbutton-left {
+      border: 1px solid var(--B15);
+      background: var(--B15);
+      color: var(--B55);
+    }
+
+    #znbutton-right {
+      border: 1px solid var(--N25);
+      background: var(--N25);
+      color: var(--text-primary);
+    }
+
+    #closebtn {
+      color: var(--N40);
+    }
+  }
+}
+
 .zadark {
-  font-family: "Open Sans", sans-serif;
-
-  #zbg {
-    border: 1px solid #3d3f40; // --NG30
-    background-color: #232526; // --WA100
-  }
-
+  #zbg,
   #zbody {
-    font-family: "Open Sans", sans-serif;
-    color: #9e9f9f; // --text-secondary
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
   }
 
-  #ztitle {
-    font-family: "Open Sans", sans-serif;
-  }
+  &.zadark-prv--thread-chat-message {
+    #zbody {
+      position: relative;
+      color: transparent !important;
 
-  #zname {
-    color: #e5e5e5; // --text-primary
-  }
+      &::after {
+        content: "••••••";
+        position: absolute;
+        top: 0;
+        left: 0;
 
-  #znbutton-left {
-    border: 1px solid #0f2345; // --B15
-    background: #0f2345; // --B15
-    color: #0068ff; // --B55
-  }
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
 
-  #znbutton-right {
-    border: 1px solid #353637; // --N25
-    background: #353637; // --N25
-    color: #e5e5e5; // --text-primary
-  }
-
-  #closebtn {
-    color: #696b6b; // --N40
+        color: var(--text-secondary);
+        font-size: 16px;
+        letter-spacing: 1px;
+        opacity: 1;
+      }
+    }
   }
 }

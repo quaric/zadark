@@ -1,5 +1,19 @@
 # Changelog
 
+## ZaDark v23.5.5
+> PC v8.1
+
+### Added
+#### PC specific
+- Giao diện của Hộp thoại thông báo thay đổi theo cài đặt ZaDark (Ưindows)
+- Ẩn tin nhắn trong Hộp thoại thông báo khi bật Ẩn "Tin nhắn" trong Cuộc trò chuyện & Thông báo (Windows)
+- Tự động thoát Zalo PC trước khi cài đặt, gỡ cài đặt ZaDark
+
+### Changed
+#### PC specific
+- Giảm thông tin trên giao diện
+- Giảm số lần nhấn phím khi sử dụng
+
 ## ZaDark v23.5.4
 > PC v8.0 && Web v8.13
 

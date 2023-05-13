@@ -1,7 +1,7 @@
 {
   "name": "zadark",
   "description": "Dark Mode tốt nhất cho Zalo",
-  "version": "23.5.4",
+  "version": "23.5.5",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
     "name": "Quaric",
@@ -33,6 +33,7 @@
     "babel-eslint": "^10.1.0",
     "config-ini-parser": "^1.5.9",
     "dotenv": "^16.0.3",
+    "esbuild": "^0.17.19",
     "form-data": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-minify": "^3.1.0",
@@ -42,19 +43,20 @@
     "jsonwebtoken": "^9.0.0",
     "merge-stream": "^2.0.0",
     "nodemon": "^2.0.15",
-    "pkg": "5.5.2",
+    "pkg": "^5.8.1",
     "qs": "^6.11.0",
     "sass": "^1.49.8",
     "standard": "^16.0.4"
   },
   "dependencies": {
     "@electron/asar": "^3.2.2",
-    "asar": "^3.1.0",
     "chalk": "4.1.2",
+    "cross-spawn": "^7.0.3",
     "del": "^6.0.0",
     "glob": "^7.2.0",
     "node-html-parser": "^5.2.0",
-    "prompt-sync": "^4.2.0"
+    "prompt-sync": "^4.2.0",
+    "remove": "^0.1.5"
   },
   "standard": {
     "parser": "babel-eslint",
@@ -72,7 +74,8 @@
       "DEBUG"
     ],
     "ignore": [
-      "./src/web/libs/**/*"
+      "./src/web/libs/**/*",
+      "./pc/pc/**/*"
     ]
   },
   "engines": {
