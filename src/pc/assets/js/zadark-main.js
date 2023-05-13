@@ -1,3 +1,8 @@
+/*
+  ZaDark – Zalo Dark Mode
+  Made by Quaric
+*/
+
 /* eslint-disable node/no-callback-literal  */
 
 const { app, session, ipcMain } = require('electron')
@@ -9,7 +14,11 @@ app.whenReady().then(() => {
     block_seen: false,
     block_online: false
   }
-  let _theme = null
+
+  const _settings = {
+    theme: 'dark',
+    hideThreadChatMessage: false
+  }
 
   const filter = {
     urls: [
@@ -56,38 +65,36 @@ app.whenReady().then(() => {
     //   callback({ cancel: true })
     // }
 
-    // Allow
     callback({ cancel: false })
   })
 
   ipcMain.on('@ZaDark:UPDATE_BLOCK_SETTINGS', (event, payload) => {
-    if (DEBUG) console.log('ZaDarkPC: @ZaDark:UPDATE_BLOCK_SETTINGS', payload)
-
     const { enableBlockIds, disableBlockIds } = payload
 
-    Array.isArray(enableBlockIds) && enableBlockIds.forEach((rule) => {
-      _blockSettings[rule] = true
+    Array.isArray(enableBlockIds) && enableBlockIds.forEach((blockId) => {
+      _blockSettings[blockId] = true
     })
 
-    Array.isArray(disableBlockIds) && disableBlockIds.forEach((rule) => {
-      _blockSettings[rule] = false
+    Array.isArray(disableBlockIds) && disableBlockIds.forEach((blockId) => {
+      _blockSettings[blockId] = false
     })
+
+    if (DEBUG) console.log('ZaDarkPC: @ZaDark:UPDATE_BLOCK_SETTINGS', { payload, _blockSettings })
   })
 
-  ipcMain.on('@ZaDark:UPDATE_THEME', (event, payload) => {
-    if (DEBUG) console.log('ZaDarkPC: @ZaDark:UPDATE_THEME', payload)
+  ipcMain.on('@ZaDark:UPDATE_SETTINGS', (event, payload) => {
+    const validKeys = Object.keys(_settings)
 
-    const { theme } = payload
+    Object.keys(payload).forEach((key) => {
+      if (!validKeys.includes(key)) return
+      _settings[key] = payload[key]
+    })
 
-    if (!['light', 'dark', 'auto'].includes(theme)) {
-      return
-    }
-
-    _theme = theme
+    if (DEBUG) console.log('ZaDarkPC: @ZaDark:UPDATE_SETTINGS', { payload, _settings })
   })
 
-  ipcMain.handle('@ZaDark:GET_THEME', () => {
-    if (DEBUG) console.log('ZaDarkPC: @ZaDark:GET_THEME', _theme)
-    return _theme
+  ipcMain.handle('@ZaDark:GET_SETTINGS', () => {
+    if (DEBUG) console.log('ZaDarkPC: @ZaDark:GET_SETTINGS', _settings)
+    return _settings
   })
 })

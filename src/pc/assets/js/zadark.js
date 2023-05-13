@@ -1,6 +1,5 @@
 /*
   ZaDark – Zalo Dark Mode
-  Browser Extension
   Made by Quaric
 */
 
@@ -90,6 +89,10 @@ window.zadark.storage = {
 }
 
 window.zadark.utils = {
+  isMac: () => {
+    return document.documentElement.getAttribute('data-zadark-platform') === 'darwin'
+  },
+
   setThemeAttr: (themeMode) => {
     document.documentElement.setAttribute('data-zadark-theme', themeMode)
   },
@@ -122,9 +125,8 @@ window.zadark.utils = {
     const theme = window.zadark.storage.getTheme()
     this.setPageTheme(theme)
 
-    const platformKey = document.documentElement.getAttribute('data-zadark-platform')
-    if (platformKey !== 'darwin') {
-      ipcRenderer.send('@ZaDark:UPDATE_THEME', { theme })
+    if (!this.isMac()) {
+      ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { theme })
     }
   },
 
@@ -148,6 +150,10 @@ window.zadark.utils = {
       document.body.classList.add('zadark-prv--thread-chat-message')
     } else {
       document.body.classList.remove('zadark-prv--thread-chat-message')
+    }
+
+    if (!this.isMac()) {
+      ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { hideThreadChatMessage: isEnabled })
     }
   },
 
@@ -379,8 +385,8 @@ const popupMainHTML = `
 
             <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
-                Ẩn&nbsp;<strong>Tin nhắn</strong>&nbsp;trong Cuộc trò chuyện
-                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn trong Cuộc trò chuyện sẽ được làm mờ để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột vào Vùng hiển thị tin nhắn. Di chuyển chuột khỏi Vùng hiển thị tin nhắn để ẩn tin nhắn.</p>"></span>
+                Ẩn&nbsp;<strong>Tin nhắn</strong>&nbsp;trong Cuộc trò chuyện${!window.zadark.utils.isMac() ? ' & Thông báo' : ''}
+                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn trong Cuộc trò chuyện${!window.zadark.utils.isMac() ? ' & Thông báo' : ''} sẽ được làm mờ để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột vào Vùng hiển thị tin nhắn. Di chuyển chuột khỏi Vùng hiển thị tin nhắn để ẩn tin nhắn.</p>"></span>
               </label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">

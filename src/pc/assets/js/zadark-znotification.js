@@ -1,3 +1,8 @@
+/*
+  ZaDark – Zalo Dark Mode
+  Made by Quaric
+*/
+
 const { ipcRenderer } = require('electron')
 
 window.zadark = window.zadark || {}
@@ -27,41 +32,26 @@ window.zadark.utils = {
     }
   },
 
-  initTheme: function () {
-    let count = 0
-
-    const interval = setInterval(() => {
-      ipcRenderer.invoke('@ZaDark:GET_THEME').then((theme) => {
-        if (DEBUG) console.log('initTheme -> success', theme)
-
-        if (theme !== null) {
-          clearInterval(interval)
-          this.setPageTheme(theme)
-          return
-        }
-
-        ++count
-        if (count >= 10) {
-          clearInterval(interval)
-        }
-      }).catch((error) => {
-        if (DEBUG) console.error('initTheme -> error', error)
-        clearInterval(interval)
-      })
-    }, 1000)
+  setHideThreadChatMessage: function (isEnabled) {
+    if (isEnabled) {
+      document.body.classList.add('zadark-prv--thread-chat-message')
+    } else {
+      document.body.classList.remove('zadark-prv--thread-chat-message')
+    }
   },
 
-  refreshTheme: async function () {
+  handleContentChange: async function () {
     if (DEBUG) console.log('contentChanged')
-    const theme = await ipcRenderer.invoke('@ZaDark:GET_THEME')
+    const { theme, hideThreadChatMessage } = await ipcRenderer.invoke('@ZaDark:GET_SETTINGS')
     this.setPageTheme(theme)
+    this.setHideThreadChatMessage(hideThreadChatMessage)
   },
 
   initMutationObserver: function () {
     const observer = new MutationObserver((mutationsList) => {
       const contentChanged = mutationsList.some((mutation) => mutation.type === 'childList' && mutation.addedNodes.length > 0)
       if (contentChanged) {
-        this.refreshTheme()
+        this.handleContentChange()
       }
     })
 
@@ -73,5 +63,4 @@ window.zadark.utils = {
   }
 }
 
-window.zadark.utils.initTheme()
 window.zadark.utils.initMutationObserver()

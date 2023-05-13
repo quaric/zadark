@@ -10,15 +10,16 @@ const asar = require('@electron/asar')
 const HTMLParser = require('node-html-parser')
 const glob = require('glob')
 
-const { logDebug, copyRecursiveSync } = require('./utils')
-const { PLATFORM, ZADARK_VERSION } = require('./constants')
+const { logDebug, copyRecursiveSync, getProcessIdByName } = require('./utils')
+
+const { PLATFORM, ZADARK_VERSION, IS_MAC } = require('./constants')
 
 const getZaloResDirList = (customZaloPath) => {
   if (!['darwin', 'win32'].includes(PLATFORM)) {
     throw new Error(`Khong ho tro he dieu hanh "${PLATFORM}".`)
   }
 
-  const resourcesPath = PLATFORM === 'darwin'
+  const resourcesPath = IS_MAC
     ? path.join(customZaloPath, './Contents/Resources')
     : path.join(customZaloPath, './Zalo-*/resources')
 
@@ -300,7 +301,7 @@ const installDarkTheme = async (zaloDir) => {
   // Add zadark-main to "resources/app/bootstrap.js"
   writeBootstrapFile(zaloDir)
 
-  if (PLATFORM !== 'darwin') {
+  if (!IS_MAC) {
     // Add fonts, stylesheets and scripts" to "resources/app/pc-dist/znotification.html"
     writeZNotificationFile(zaloDir)
   }
@@ -314,16 +315,27 @@ const uninstallDarkTheme = async (zaloDir) => {
   const appAsarPath = path.join(zaloDir, 'app.asar')
   const appAsarBakPath = path.join(zaloDir, 'app.asar.bak')
 
+  // Delete "resources/app.asar"
   // Rename "resources/app.asar.bak" to "resources/app.asar"
   if (fs.existsSync(appAsarBakPath)) {
+    logDebug('- deleteFile', appAsarPath)
+    await del(appAsarPath, { force: true })
     fs.renameSync(appAsarBakPath, appAsarPath)
     logDebug('- renameFile', appAsarBakPath)
   }
+}
+
+const getZaloProcessId = async () => {
+  const zaloProcessName = IS_MAC ? 'Zalo' : 'Zalo.exe'
+  const zaloProcessId = await getProcessIdByName(zaloProcessName)
+  return zaloProcessId
 }
 
 module.exports = {
   getZaloResDirList,
 
   installDarkTheme,
-  uninstallDarkTheme
+  uninstallDarkTheme,
+
+  getZaloProcessId
 }

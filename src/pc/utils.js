@@ -1,7 +1,14 @@
+/*
+  ZaDark – Zalo Dark Mode
+  Made by Quaric
+*/
+
 const chalk = require('chalk')
 const childProcess = require('child_process')
 const fs = require('fs')
 const path = require('path')
+const crossSpawn = require('cross-spawn')
+const psList = require('./ps-list')
 
 const { PLATFORM } = require('./constants')
 
@@ -42,11 +49,37 @@ const isRoot = () => {
   return PLATFORM === 'darwin' ? process.getuid && process.getuid() === 0 : false
 }
 
+const getProcessIdByName = async (processName) => {
+  const processes = await psList()
+  const process = processes.find((process) => process.name.toLowerCase() === processName.toLowerCase())
+  return process?.pid ?? null
+}
+
+const killProcess = (processId) => {
+  return new Promise((resolve, reject) => {
+    const isWindows = PLATFORM === 'win32'
+    const args = isWindows ? ['/F', '/PID', processId.toString()] : [processId.toString()]
+    const child = crossSpawn(isWindows ? 'taskkill' : 'kill', args)
+
+    child.on('close', (code) => {
+      resolve(code)
+    })
+
+    child.on('error', (error) => {
+      reject(error)
+    })
+  })
+}
+
 module.exports = {
   log,
   logDebug,
   logError,
+
   open,
   copyRecursiveSync,
-  isRoot
+  isRoot,
+
+  getProcessIdByName,
+  killProcess
 }
