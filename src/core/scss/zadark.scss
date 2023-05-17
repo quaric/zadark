@@ -1965,6 +1965,11 @@ html[data-zadark-theme="dark"] {
     .sticker-download-button {
       filter: invert(0.8);
     }
+
+    #text-color-indicator[style*="rgb(5, 10, 25)"],
+    .text-color-menu-container .text-color-menu[style*="rgb(5, 10, 25)"] {
+      background-color: var(--text-primary) !important;
+    }
   }
 }
 
