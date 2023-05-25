@@ -1,7 +1,35 @@
 # Changelog
 
-## ZaDark v23.5.5
-> PC v8.1
+## ZaDark 23.5.6
+> PC 8.2 && Web 8.14
+
+### Fixed
+- **[Search]** Sửa lỗi màu nền của từ khoá trùng khớp có màu vàng
+- **[Format message]** Sửa lỗi menu tuỳ chọn màu chữ ở chế độ "Định dạng tin nhắn" (Format message)
+
+### Changed
+- **[ZaDark Settings]** Cập nhật biểu tượng ZaDark trên menu trái
+
+#### PC specific
+- **[CLI]** Thay đổi giao diện chọn chức năng : Người dùng sử dụng mũi tên lên/xuống để chọn chức năng
+- **[CLI]** Thêm menu "Hướng dẫn"
+- **[Windows specific]** Thêm biểu tượng ZaDark cho tập tin cài đặt
+- **[macOS specific]** Tự động tắt ứng dụng Terminal sau khi cài đặt ZaDark thành công
+- **[macOS specific]** Cải thiện trải nghiệm (UX) cài đặt ZaDark
+  - Không cần tắt GateKeeper
+    - ZaDark đã thực hiện việc ký và xác nhận ứng dụng trên macOS với Apple
+    - Tài liệu kỹ thuật : https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution
+  - Không yêu cầu quyền Root
+    - Trong một vài trường hợp ZaDark báo lỗi "EACCES: permission denied, ...", bạn cần mở Terminal nhập lệnh "sudo /Applications/ZaDark" để sử dụng
+  - Đóng gói ZaDark dưới dạng "pkg"
+    - Khi chạy tập tin pkg, ZaDark for macOS sẽ được giải nén vào "Finder > Applications > ZaDark"
+    - Hệ thống sẽ tự khởi động ZaDark khi giải nén thành công
+    - Để chạy lại ZaDark, truy cập "Finder > Applications > ZaDark"
+- **[Source code]** : Nâng cấp công cụ ký và xác nhận ứng dụng macOS (notarytool)
+- **[Source code]** : Tối ưu mã nguồn
+
+## ZaDark 23.5.5
+> PC 8.1
 
 ### Added
 #### PC specific
@@ -14,8 +42,8 @@
 - Giảm thông tin trên giao diện
 - Giảm số lần nhấn phím khi sử dụng
 
-## ZaDark v23.5.4
-> PC v8.0 && Web v8.13
+## ZaDark 23.5.4
+> PC 8.0 && Web 8.13
 
 ### Added
 - Bổ sung cho chức năng: Ẩn "Tin nhắn" trong Cuộc trò chuyện
@@ -30,8 +58,8 @@
 - Thêm chức năng: Ẩn trạng thái "Đã nhận" tin nhắn
 - Thêm chức năng: Ẩn trạng thái "Đã xem" tin nhắn
 
-## ZaDark v23.5.3
-> PC v7.14 && Web v8.12
+## ZaDark 23.5.3
+> PC 7.14 && Web 8.12
 
 ### Added
 - Thêm cài đặt Riêng tư : Ẩn "Tin nhắn" trong Cuộc trò chuyện
@@ -42,16 +70,16 @@
 ### Fixed
 - `.zadark-select`: cursor pointer
 
-## ZaDark v23.5.2
-> PC v7.13 && Web v8.11
+## ZaDark 23.5.2
+> PC 7.13 && Web 8.11
 
 ### Fixed
 - Modal: Bỏ hiệu ứng mờ khi mờ nền (Hiệu ứng mờ nền có thể làm Zalo bị dựt khi mở Modal ở những máy tính có cấu hình thấp)
 - ZaDark Popup: Bỏ định dạng rtl (right to left) ở lựa chọn Phông chữ
 - ZaDark Popup: Sửa lỗi màu nền của danh sách lựa chọn Phông chữ
 
-## ZaDark v23.5.1
-> PC v7.12 && Web v8.10
+## ZaDark 23.5.1
+> PC 7.12 && Web 8.10
 
 ### Added
 - ZaDark Popup: Thêm Menu Bình chọn, Phản hồi
@@ -59,8 +87,8 @@
 ### Changed
 - ZaDark Popup: Làm gọn lựa chọn Phông chữ
 
-## ZaDark v23.4.4
-> PC v7.11 && Web v8.9
+## ZaDark 23.4.4
+> PC 7.11 && Web 8.9
 
 ### Changed
 - Giảm độ mờ (blur) và tối ưu Modal Backdrop
@@ -69,8 +97,8 @@
 - Canh giữa theo chiều dọc của tin nhắn được ẩn (••••••)
 - Khắc phục lỗi biểu tượng "Play" tin nhắn audio bị mất
 
-## ZaDark v23.4.3
-> PC v7.10 && Web v8.8
+## ZaDark 23.4.3
+> PC 7.10 && Web 8.8
 
 ### Added
 - Thêm dấu hiệu nhận biết khi ZaDark cập nhật phiên bản mới (Dấu chấm đỏ ở Menu ZaDark trên Zalo)
@@ -81,8 +109,8 @@
   - Tin nhắn sẽ hiển thị khi bạn rê chuột vào cuộc trò chuyện
   - Tin nhắn của cuộc trò chuyện hiện tại sẽ không bị ẩn
 
-## ZaDark v23.4.2
-> PC v7.9 && Web v8.7
+## ZaDark 23.4.2
+> PC 7.9 && Web 8.7
 
 ### Added
 - Thêm phông chữ : Source Sans Pro
@@ -102,8 +130,8 @@
 - Sửa lỗi không thể ẩn trạng thái "Đã nhận" tin nhắn trong cuộc trò chuyện mã hoá đầu cuối (E2EE)
 - Cập nhật logic cài đặt riêng tư : Gửi yêu cầu cập nhật đến "Service Worker" của tiện ích để xử lý
 
-## ZaDark v23.4.1
-> PC v7.8 && Web v8.6
+## ZaDark 23.4.1
+> PC 7.8 && Web 8.6
 
 ### Added
 - Thêm nhãn `Chưa hỗ trợ trên [Zalo PC, Firefox]` cho tính năng Riêng tư
@@ -113,8 +141,8 @@
 - Làm gọn Cài đặt phông chữ
 - Bỏ nội dung giới thiệu ZaDark ở màn hình Chào mừng
 
-## ZaDark v23.3.2
-> PC v7.7 && Web v8.5
+## ZaDark 23.3.2
+> PC 7.7 && Web 8.5
 
 ### Added
 - Tuỳ chỉnh Phông chữ:
@@ -128,13 +156,13 @@
 - Làm gọn giao diện Tuỳ chỉnh ZaDark (ZaDark Popup)
 - Đổi tên giao diện "Tự động" thành "Theo hệ thống" và bỏ giải thích "Giao diện Zalo sẽ thay đổi theo Hệ điều hành"
 
-## ZaDark v23.3.1
+## ZaDark 23.3.1
 
 ### Changed
 - Thay thế dấu `.` thành `_` ở tên phiên bản trong tên của tập tin cài đặt (Giải quyết vấn đề macOS không xác định được định dạng của tập tin cài đặt là `Unix Executable File`)
 
-## ZaDark v23.2.1
-> PC v7.6 && Web v8.4
+## ZaDark 23.2.1
+> PC 7.6 && Web 8.4
 
 ### Changed
 - `.disk-usage-chart > .another-app-usage` : Thay đổi màu nền
@@ -148,8 +176,8 @@
 - `ZaDark Settings` : Làm gọn nhãn "ZaDark from Quaric"
 - `ZaDark Settings` : Bỏ Menu Website và Donate trên Header (Mục đích loại bỏ nội dung không cần thiết với người dùng)
 
-## ZaDark v23.1.3
-> PC v7.5 && Web v8.3
+## ZaDark 23.1.3
+> PC 7.5 && Web 8.3
 
 ### Added
 #### PC specific (Windows)
@@ -159,8 +187,8 @@
 - `.leftbar-unread` : Làm gọn kích thước nhãn chưa đọc tin nhắn
 - `.conv-action__unread` : Thay đổi màu nền (xanh dương thành đỏ)
 
-## ZaDark v23.1.2
-> PC v7.4 && Web v8.2
+## ZaDark 23.1.2
+> PC 7.4 && Web 8.2
 
 ### Fixed
 - Settings : Sửa lỗi màu nền MenuLeft không tương phản tốt
@@ -176,8 +204,8 @@
 - `.message-view__guide, .tds-bubble-info-ecard__container` : Cập nhật màu nền
 - `.event-message, .onboard-message` : Cập nhật màu nền
 
-## ZaDark v23.1.1
-> PC v7.3 && Web v8.1
+## ZaDark 23.1.1
+> PC 7.3 && Web 8.1
 
 ### Fixed
 - Button: Cập nhật bảng màu theo cập nhật của Zalo
@@ -190,32 +218,32 @@
 - LeftTab: Thay đổi giao diện khi Hover, Selected TabItem
 - QuoteLine: Thay đổi chiều rộng và bo tròn của trích dẫn tin nhắn
 
-## ZaDark v22.12.5
-> PC v7.2
+## ZaDark 22.12.5
+> PC 7.2
 
 ### Fixed
 #### PC specific
 - Sửa lỗi khoảng cách giữa phần "Giao diện" và "ZaDark from Quaric" ở ZaDark Popup
 - Cập nhật mô tả cho "Giao diện tự động"
 
-## ZaDark v22.12.4
+## ZaDark 22.12.4
 
 ### Changed
 #### PC (macOS) specific
 - Thay đổi cách đóng gói ZaDark PC (macOS)
 
-## ZaDark v22.12.3
-> PC v7.1
+## ZaDark 22.12.3
+> PC 7.1
 
 ### Fixed
 #### PC specific
 - Sửa lỗi hiển thị sai phần Cài đặt riêng tư. Cài đặt riêng tư chỉ có trên ZaDark Web
 
-## ZaDark v22.12.2
-> PC v7.0 && Web v8.0
+## ZaDark 22.12.2
+> PC 7.0 && Web 8.0
 
 ### Added
-- Thêm Menu tuỳ chỉnh ZaDark vào Menu bên trái của Zalo. Kể từ PC v7.0, Web 8.0 người dùng có thể tuỳ chỉnh ZaDark ngay trên Zalo
+- Thêm Menu tuỳ chỉnh ZaDark ào Menu bên trái của Zalo. Kể từ PC 7.0, Web 8.0 người dùng có thể tuỳ chỉnh ZaDark ngay trên Zalo
 
 ### Changed
 #### PC specific
@@ -236,16 +264,16 @@
 - Xoá Menu GitHub
 - Xoá giao diện xem lịch sử thay đổi trên Extension khi click vào Tên phiên bản. Kể từ v8.0 người dùng có thể xem lịch sử thay đổi trên Website chính thức bằng cách click vào Tên phiên bản
 
-## ZaDark v22.12.1
-> PC v6.1 && Web v7.1
+## ZaDark 22.12.1
+> PC 6.1 && Web 7.1
 
 ### Changed
 - Thêm nhận diện thương hiệu của Nhà phát hành
 - Cập nhật địa chỉ Website chính thức sang https://zadark.quaric.com
 - Thêm Menu "Donate"
 
-## ZaDark v22.11.2
-> PC v6.0 && Web v7.0
+## ZaDark 22.11.2
+> PC 6.0 && Web 7.0
 
 ### Fixed
 - Sửa lỗi hiển thị sai màu sắc do Zalo Web có sự thay đổi lớn lần 2 về bảng màu (Colors CSS Variables) từ ngày 22/11/2022
@@ -253,16 +281,16 @@
 - `.quote-line`
 - `.card a`
 
-## ZaDark v22.11.1
-> PC v5.6 && Web v.6.6
+## ZaDark 22.11.1
+> PC 5.6 && Web .6.6
 
 ### Fixed
 - `.item-calendar-preview > .date` : Sửa lỗi màu sắc của "Ngày" trong Calendar Preview
 - `.message-view` : Sửa lỗi Font chữ của nội dung tin nhắn không phải là Font "Open Sans"
 - `.reminder-info-v2 > .wd-time__txt` : Sửa lỗi màu sắc của "Ngày" của Calendar trong Reminder
 
-## ZaDark v22.9.6
-> PC v5.5 && Web v6.5
+## ZaDark 22.9.6
+> PC 5.5 && Web 6.5
 
 ### Changed
 - `.card--undo` : Bỏ hiệu ứng mờ cho tin nhắn được thu hồi
@@ -275,7 +303,7 @@
 #### Web specific
 - `.nav__tabs__zalo` (Safari)
 
-## PC v5.4 && Web v6.4
+## PC 5.4 && Web 6.4
 ### Changed
 - `scrollbar` : Cập nhật màu nền nhạt hơn cho thanh cuộn
 - `self-bubble-chat` : Cập nhật màu nền tin nhắn của tôi (Màu sắc giống trên Zalo Mobile)
@@ -287,27 +315,27 @@
 - `.zl-avatar__badge` : Sửa lỗi màu sắc của biểu tượng "Đang trực tuyến" ở Avatar
 - `tab-bar-item` : Sửa lỗi Tab Bar Item không nằm giữa ở mục "Thông tin hội thoại"
 
-## PC v5.3
+## PC 5.3
 ### Added
-- ZaDark PC v5.x
+- ZaDark PC 5.x
 ### Fixed
 - `.zl-avatar__badge` : Sửa lỗi màu sắc của biểu tượng "Đang trực tuyến" ở Avatar
 - `.title-name.unfocus` : Sửa lỗi tiêu đề TitleBar hiển thị màu đen khi Unfocus Zalo
 ### Removed
 - ZaDark PC <= v4.x
 
-## PC v4.14 && PC v5.2 && Web v6.3
+## PC 4.14 && PC 5.2 && Web 6.3
 ### Changed
 - `.leftbar-mark-unread` : Thay đổi kích thước và vị trí đẹp hơn
 
-## PC v4.12
+## PC 4.12
 ### Changed
 - macOS : Mở trang hướng dẫn [ZaDark for macOS](https://zadark.ncdaistudio.com/pc/macos) sau khi giải nén tập tin pkg
 ### Fixed
 - Sửa lỗi màu sắc cho giao diện "Đặt mã PIN" ẩn cuộc trò chuyện
 - macOS : Sửa lỗi các chức năng không hoạt động khi không chạy ZaDark for macOS với quyền Root
 
-## PC v5.1 && Browser v6.2
+## PC 5.1 && Browser v6.2
 ### Added
 #### Browser specific (Safari)
 - Thêm "ZaDark Website" vào Menu Help
@@ -329,15 +357,15 @@
 ### Removed
 - Dark dimmed
 
-## PC v4.11 && Browser v5.6
+## PC 4.11 && Browser v5.6
 ### Changed
 - `.zl-modal` : Thêm hiệu ứng mờ cho nền.
 
-## PC v4.10 && Browser v5.5
+## PC 4.10 && Browser v5.5
 ### Fixed
 - Zalo Business
 
-## PC v4.9 & Browser v5.4
+## PC 4.9 & Browser v5.4
 ### Fixed
 - `.setting-menu` : Sửa lỗi chữ "Resource management" xuống dòng.
 - `.cb-info-file-item__actions-container` : Sửa lỗi màu nền sai khi rê chuột vào File (Media Store Preview).
@@ -349,13 +377,13 @@
 #### Browser specific (Edge)
 - Upgrade manifest `v2` to `v3`
 
-## PC v4.8 & Browser v5.3
+## PC 4.8 & Browser v5.3
 ### Fixed
 - Chat Onboard : `.slideshow__page__image` `.slideshow__page__text__title` `.slideshow__bottom`
 #### PC specific
 - Fixed a bug that sometimes needed sudo privileges to install ZaDark for macOS
 
-## PC v4.7 & Browser v5.2
+## PC 4.7 & Browser v5.2
 ### Fixed
 - Button Add friend : `.user-profile-button.rg`
 - Button Secondary : `.z--btn--fill--secondary`
@@ -369,7 +397,7 @@
   - Step 2. Inject CSS to `resources/app`
   - Step 3. Create package `resources/app.asar` from `resources/app`
 
-## PC v4.6 & Browser v5.1
+## PC 4.6 & Browser v5.1
 
 ### Added
 #### Browser specific (Chrome, Safari, Edge, Opera)
@@ -407,13 +435,13 @@
 #### Browser specific
 - Convert English to Vietnamese
 
-## PC v4.5
+## PC 4.5
 
 ### Changed
 #### PC specific
 - Convert English to Vietnamese
 
-## PC v4.4 & Browser v4.2
+## PC 4.4 & Browser v4.2
 
 ### Changed
 - `zadark brand` : change "ZaDark – Best Dark Theme for Zalo" to "ZaDark – Zalo Dark Mode"
@@ -423,7 +451,7 @@
 ### Fixed
 - `font` : update font files
 
-## PC v4.3 & Browser v4.1
+## PC 4.3 & Browser v4.1
 
 > 2022-03-24
 
@@ -439,7 +467,7 @@
 ### Removed
 - `@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap");`
 
-## PC v4.2 & Browser v4.0
+## PC 4.2 & Browser v4.0
 
 > 2022-03-22
 
@@ -461,7 +489,7 @@
 #### PC specific
 - macOS codesign and notarize
 
-## PC v4.1 & Browser v3.9
+## PC 4.1 & Browser v3.9
 
 > 2022-03-18
 
@@ -472,7 +500,7 @@
 - `.z-toggle > div`
 - `.todo-filter-input`
 
-## PC v4.0
+## PC 4.0
 
 > 2022-03-11
 

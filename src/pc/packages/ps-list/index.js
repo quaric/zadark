@@ -20,11 +20,11 @@ const windows = async () => {
       bin = 'fastlist-0.3.0-x86.exe'
       break
     default:
-      throw new Error(`Unsupported architecture: ${process.arch}`)
+      throw new Error(`Khong ho tro kien truc : ${process.arch}`)
   }
 
   const zadarkPath = path.join(process.env.USERPROFILE, '/.zadark-cli')
-  const srcPath = path.join(__dirname, './assets/bin', bin)
+  const srcPath = path.join(__dirname, './vendor', bin)
   const destPath = path.join(zadarkPath, bin)
 
   if (!fs.existsSync(destPath)) {

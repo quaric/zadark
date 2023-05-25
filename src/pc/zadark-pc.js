@@ -1,8 +1,3 @@
-/*
-  ZaDark – Zalo Dark Mode
-  Made by Quaric
-*/
-
 const fs = require('fs')
 const path = require('path')
 const del = require('del')
@@ -10,9 +5,10 @@ const asar = require('@electron/asar')
 const HTMLParser = require('node-html-parser')
 const glob = require('glob')
 
-const { logDebug, copyRecursiveSync, getProcessIdByName } = require('./utils')
+const { printDebug, copyRecursiveSync } = require('./utils')
 
 const { PLATFORM, ZADARK_VERSION, IS_MAC } = require('./constants')
+const psList = require('./packages/ps-list')
 
 const getZaloResDirList = (customZaloPath) => {
   if (!['darwin', 'win32'].includes(PLATFORM)) {
@@ -30,6 +26,17 @@ const getZaloResDirList = (customZaloPath) => {
   }
 
   return resources.sort()
+}
+
+const getZaloProcessId = async () => {
+  const processes = await psList()
+
+  const processName = IS_MAC
+    ? ['zalo', '/applications/za']
+    : ['zalo.exe']
+
+  const process = processes.find((process) => processName.includes(process.name.toLowerCase()))
+  return process?.pid ?? null
 }
 
 const removeZaDarkCSSAndJS = ({ headElement, bodyElement }) => {
@@ -138,7 +145,7 @@ const writeIndexFile = (zaloDir) => {
   })
 
   fs.writeFileSync(srcPath, root.toString())
-  logDebug('- writeIndexFile', srcPath)
+  printDebug('- writeIndexFile', srcPath)
 }
 
 const writeBootstrapFile = (zaloDir) => {
@@ -153,7 +160,7 @@ const writeBootstrapFile = (zaloDir) => {
   const contentToInsert = "require('./pc-dist/zadark-main.min');"
 
   if (bootstrapContent.includes(contentToInsert)) {
-    logDebug('- writeBootstrapFile', 'skip: contentToInsert already exists.')
+    printDebug('- writeBootstrapFile', 'skip: contentToInsert already exists.')
     return
   }
 
@@ -162,7 +169,7 @@ const writeBootstrapFile = (zaloDir) => {
   const insertedContent = `${bootstrapContent.slice(0, insertionIndex)}\n    ${contentToInsert}${bootstrapContent.slice(insertionIndex)}`
 
   fs.writeFileSync(srcPath, insertedContent)
-  logDebug('- writeBootstrapFile', srcPath)
+  printDebug('- writeBootstrapFile', srcPath)
 }
 
 const writeZNotificationFile = (zaloDir) => {
@@ -217,7 +224,7 @@ const writeZNotificationFile = (zaloDir) => {
   })
 
   fs.writeFileSync(srcPath, root.toString())
-  logDebug('- writeZNotificationFile', srcPath)
+  printDebug('- writeZNotificationFile', srcPath)
 }
 
 const copyAssetDir = (zaloDir, { dest, src }) => {
@@ -230,10 +237,10 @@ const copyAssetDir = (zaloDir, { dest, src }) => {
 
   copyRecursiveSync(srcPath, destPath)
 
-  logDebug('- copyAssetDir', src, '➜', destPath)
+  printDebug('- copyAssetDir', src, '➜', destPath)
 }
 
-const installDarkTheme = async (zaloDir) => {
+const installZaDark = async (zaloDir) => {
   if (!fs.existsSync(zaloDir)) {
     throw new Error(zaloDir + ' khong ton tai.')
   }
@@ -248,18 +255,18 @@ const installDarkTheme = async (zaloDir) => {
 
   // Delete "resources/app"
   if (fs.existsSync(appDirPath)) {
-    logDebug('- deleteDir', appDirPath)
+    printDebug('- deleteDir', appDirPath)
     await del(appDirPath, { force: true })
   }
 
   // Extract "resources/app.asar" to "resources/app"
-  logDebug('- extractAsar', appAsarPath)
+  printDebug('- extractAsar', appAsarPath)
   asar.extractAll(appAsarPath, appDirPath)
 
   // Backup "app.asar"
   // Rename "resources/app.asar" to "resources/app.asar.bak"
   if (!fs.existsSync(appAsarBakPath)) {
-    logDebug('- backupFile', appAsarPath)
+    printDebug('- backupFile', appAsarPath)
     fs.renameSync(appAsarPath, appAsarBakPath)
   }
 
@@ -311,31 +318,24 @@ const installDarkTheme = async (zaloDir) => {
   await del(appDirPath, { force: true })
 }
 
-const uninstallDarkTheme = async (zaloDir) => {
+const uninstallZaDark = async (zaloDir) => {
   const appAsarPath = path.join(zaloDir, 'app.asar')
   const appAsarBakPath = path.join(zaloDir, 'app.asar.bak')
 
   // Delete "resources/app.asar"
   // Rename "resources/app.asar.bak" to "resources/app.asar"
   if (fs.existsSync(appAsarBakPath)) {
-    logDebug('- deleteFile', appAsarPath)
+    printDebug('- deleteFile', appAsarPath)
     await del(appAsarPath, { force: true })
     fs.renameSync(appAsarBakPath, appAsarPath)
-    logDebug('- renameFile', appAsarBakPath)
+    printDebug('- renameFile', appAsarBakPath)
   }
-}
-
-const getZaloProcessId = async () => {
-  const zaloProcessName = IS_MAC ? 'Zalo' : 'Zalo.exe'
-  const zaloProcessId = await getProcessIdByName(zaloProcessName)
-  return zaloProcessId
 }
 
 module.exports = {
   getZaloResDirList,
+  getZaloProcessId,
 
-  installDarkTheme,
-  uninstallDarkTheme,
-
-  getZaloProcessId
+  installZaDark,
+  uninstallZaDark
 }

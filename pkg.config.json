@@ -1,3 +1,6 @@
 {
-  "assets": "./build/pc/assets/**/*"
+  "assets": [
+    "./build/pc/assets/**/*",
+    "./build/pc/packages/ps-list/vendor/*"
+  ]
 }

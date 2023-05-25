@@ -1,115 +1,163 @@
-/*
-  ZaDark – Zalo Dark Mode
-  Made by Quaric
-*/
-
 const prompt = require('prompt-sync')()
 const chalk = require('chalk')
+const inquirer = require('inquirer')
+const crossSpawn = require('cross-spawn')
 
 const zadarkPC = require('./zadark-pc')
-const { log, logError, open, isRoot, killProcess } = require('./utils')
+const { print, printError, open, killProcess, clearScreen } = require('./utils')
 
-const { ZADARK_VERSION, IS_MAC } = require('./constants')
+const {
+  ZADARK_VERSION,
+  IS_MAC,
+  IS_DEV,
+  COMMON_ERRORS_URL,
+  DEFAULT_ZALO_PATH,
+  EXAMPLE_CUSTOM_ZALO_PATH,
+  DOWNLOAD_ZADARK_URL,
+  CONTACT_URL
+} = require('./constants')
 
-const renderHeader = () => {
-  log('')
-  log(chalk.blueBright.bold(`ZaDark for ${IS_MAC ? 'macOS' : 'Windows'} ${ZADARK_VERSION}`))
-  log(chalk.blueBright(chalk.underline('https://zadark.quaric.com')))
-  log('')
+const promptFeatureIndex = async () => {
+  const { featureIndex } = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'featureIndex',
+      message: chalk.magentaBright('[CHON CHUC NANG]'),
+      prefix: ' ',
+      choices: [
+        new inquirer.Separator(' '),
+        {
+          name: 'Cai dat ZaDark',
+          value: '1'
+        },
+        {
+          name: 'Go cai dat ZaDark',
+          value: '2'
+        },
+        new inquirer.Separator('─────────────────'),
+        {
+          name: 'Huong dan',
+          value: '3'
+        },
+        {
+          name: 'Thoat',
+          value: '4'
+        }
+      ]
+    }
+  ])
+  return featureIndex
 }
 
-const quitZalo = async () => {
+const handlePromptCustomZaloPath = () => {
+  print(chalk.magentaBright.bold('[TUY CHINH DUONG DAN ZALO]'))
+  print('')
+
+  print(`Khong tim thay Zalo PC tai duong dan mac dinh (${DEFAULT_ZALO_PATH}).`)
+  print('')
+
+  const customZaloPath = prompt(chalk.yellowBright(`> Nhap duong dan Zalo PC (VD: ${EXAMPLE_CUSTOM_ZALO_PATH}) va nhan phim`, chalk.bold('[enter]'), ': '))
+  return customZaloPath
+}
+
+const renderHeader = () => {
+  print('')
+  print(chalk.blueBright.bold(`ZaDark for ${IS_MAC ? 'macOS' : 'Windows'} ${ZADARK_VERSION}`))
+  print(chalk.blueBright(chalk.underline('https://zadark.quaric.com')))
+  print('')
+}
+
+const renderNotes = () => {
+  print(chalk.redBright('- DE DAM BAO AN TOAN, vui long tai ZaDark tai :'))
+  print(' ', chalk.underline.redBright(DOWNLOAD_ZADARK_URL))
+  print(chalk.redBright('- Vui long cai dat lai ZaDark sau khi cap nhat Zalo PC.'))
+  print('')
+}
+
+const handleQuitZalo = async () => {
   const zaloPID = await zadarkPC.getZaloProcessId()
-  if (zaloPID) {
-    log('')
-    log(chalk('>> Dang thoat Zalo PC ...'))
-    await killProcess(zaloPID)
+
+  if (zaloPID === null) {
+    return
+  }
+
+  print('')
+  print(chalk('>> Dang thoat Zalo PC ...'))
+
+  const success = killProcess(zaloPID)
+  if (!success) {
+    throw new Error('Khong the thoat Zalo PC. Vui long thoat Zalo PC truoc khi cai dat ZaDark.' + zaloPID)
   }
 }
 
 const handleInstall = async (zaloResDirList) => {
-  log(chalk.magentaBright.bold('[CAI DAT ZADARK]'))
+  print(chalk.magentaBright.bold('[CAI DAT ZADARK]'))
 
-  await quitZalo()
+  await handleQuitZalo()
 
   for (const zaloResDir of zaloResDirList) {
-    log('')
-    log(chalk('>> Dang cai dat', chalk.bold(zaloResDir)))
-    await zadarkPC.installDarkTheme(zaloResDir)
+    print('')
+    print(chalk('>> Dang cai dat', chalk.bold(zaloResDir)))
+    await zadarkPC.installZaDark(zaloResDir)
   }
 
-  log('')
-  log(chalk.green('>> Da cai dat ZaDark. Vui long khoi dong lai Zalo PC.'))
+  print('')
+  print(chalk.greenBright('>> Da cai dat ZaDark. Vui long khoi dong lai Zalo PC.'))
 }
 
 const handleUninstall = async (zaloResDirList) => {
-  log(chalk.magentaBright.bold('[GO CAI DAT ZADARK]'))
+  print(chalk.magentaBright.bold('[GO CAI DAT ZADARK]'))
 
-  await quitZalo()
+  await handleQuitZalo()
 
   for (const zaloResDir of zaloResDirList) {
-    log('')
-    log(chalk('>> Dang go cai dat', chalk.bold(zaloResDir)))
-    await zadarkPC.uninstallDarkTheme(zaloResDir)
+    print('')
+    print(chalk('>> Dang go cai dat', chalk.bold(zaloResDir)))
+    await zadarkPC.uninstallZaDark(zaloResDir)
   }
 
-  log('')
-  log(chalk.green('>> Da go cai dat ZaDark. Vui long khoi dong lai Zalo PC.'))
+  print('')
+  print(chalk.greenBright('>> Da go cai dat ZaDark. Vui long khoi dong lai Zalo PC.'))
+}
+
+const requestQuitTermProgram = () => {
+  if (!IS_MAC || IS_DEV) {
+    return
+  }
+
+  crossSpawn('osascript', ['-e', 'tell application "Terminal" to quit'], {
+    stdio: 'ignore',
+    detached: true
+  }).unref()
 }
 
 (async () => {
-  let featureIndex
-
   try {
-    if (IS_MAC && !isRoot()) {
-      const supportUrl = 'https://zadark.quaric.com/pc/macos#run-zadark-as-root'
-      open(supportUrl)
-      throw new Error(`Vui long chay ZaDark voi quyen Root (${supportUrl}).`)
-    }
-
-    const defaultZaloPath = IS_MAC
-      ? '/Applications/Zalo.app' // ! Can't be changed
-      : process.env.USERPROFILE + '/AppData/Local/Programs/Zalo' // ! Can't be changed
-
-    let zaloResDirList = zadarkPC.getZaloResDirList(defaultZaloPath)
+    let zaloResDirList = zadarkPC.getZaloResDirList(DEFAULT_ZALO_PATH)
 
     if (!zaloResDirList.length) {
-      log('')
-      log(chalk.redBright(`Khong tim thay Zalo PC tai duong dan mac dinh (${defaultZaloPath}).`))
-      log('')
+      clearScreen()
+      renderHeader()
+      renderNotes()
 
-      log(chalk.magentaBright.bold('[TUY CHINH DUONG DAN ZALO]'))
-      log('')
-
-      const examplePath = IS_MAC ? '/ThuMucDaCaiZalo/Zalo.app' : 'D:\\ThuMucDaCaiZalo\\Zalo'
-      const customZaloPath = prompt(chalk.yellowBright(`> Nhap duong dan Zalo PC cua ban (VD: ${examplePath}) : `))
-
+      const customZaloPath = handlePromptCustomZaloPath()
       zaloResDirList = zadarkPC.getZaloResDirList(customZaloPath)
 
       if (!zaloResDirList.length) {
-        throw new Error('Khong tim thay Zalo PC. Vui long tai va cai dat Zalo PC tai "https://zalo.me/pc".')
+        throw new Error(`Khong tim thay Zalo PC (${customZaloPath}).\nVui long cai dat Zalo PC : https://zalo.me/pc`)
       }
     }
 
-    console.clear()
+    clearScreen()
     renderHeader()
+    renderNotes()
 
-    log(chalk.redBright('- DE DAM BAO AN TOAN, vui long tai ZaDark tai:'))
-    log(' ', chalk.underline.redBright('https://sourceforge.net/projects/zadark/files/zadarkPC'))
-    log(chalk.redBright('- Vui long cai dat lai ZaDark sau khi cap nhat Zalo PC.'))
-    log('')
+    const featureIndex = await promptFeatureIndex()
 
-    log(chalk.magentaBright.bold('[CHUC NANG]'))
-    log('')
-    log('1. Cai dat ZaDark')
-    log('2. Go cai dat ZaDark')
-    log('3. Thoat')
-    log('')
-
-    featureIndex = prompt(chalk.yellowBright('> Nhap STT chuc nang', chalk.bold('[1-3]'), 'va nhan', chalk.bold('[enter]'), ': '))
-
-    console.clear()
-    renderHeader()
+    clearScreen()
+    if (['1', '2', '3'].includes(featureIndex)) {
+      renderHeader()
+    }
 
     switch (featureIndex) {
       case '1': {
@@ -122,22 +170,45 @@ const handleUninstall = async (zaloResDirList) => {
         break
       }
 
-      default: {
-        log(chalk.magentaBright.bold('[THOAT]'))
+      case '3': {
+        print(chalk.magentaBright.bold('[HUONG DAN]'))
+        print('')
+        print('>> Truy cap :', chalk.underline(CONTACT_URL))
+        open(CONTACT_URL)
         break
+      }
+
+      default: {
+        requestQuitTermProgram()
+        process.exit(0)
       }
     }
   } catch (error) {
-    log('')
-    logError('Xay ra loi :', error.message)
-  } finally {
-    log('')
-    log('Cam on ban da su dung ZaDark, chuc ban lam viec hieu qua!')
-    log('Goodbye.')
-    log('')
+    clearScreen()
+    renderHeader()
 
-    if (['1', '2'].includes(featureIndex)) {
-      prompt(chalk.yellowBright('> Nhan', chalk.bold('[enter]'), 'de thoat chuong trinh ...'))
+    print(chalk.magentaBright.bold('[XAY RA LOI]'))
+    print('')
+    printError(error.message)
+
+    open(COMMON_ERRORS_URL)
+    print(`Xem huong dan : ${COMMON_ERRORS_URL}`)
+    //
+  } finally {
+    print('')
+
+    if (IS_MAC) {
+      print(chalk.cyanBright('Neu ban muon chay lai ZaDark for macOS, truy cap :'))
+      print(chalk.bold.cyanBright('Finder > Applications > ZaDark'))
+      print('')
     }
+
+    print('Cam on ban da su dung ZaDark, chuc ban lam viec hieu qua!')
+    print('')
+
+    prompt(chalk.yellowBright('> Nhan phim', chalk.bold('[Enter]'), 'de thoat ... '))
+
+    requestQuitTermProgram()
+    process.exit(0)
   }
 })()

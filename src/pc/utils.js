@@ -1,24 +1,18 @@
-/*
-  ZaDark – Zalo Dark Mode
-  Made by Quaric
-*/
-
 const chalk = require('chalk')
-const childProcess = require('child_process')
 const fs = require('fs')
 const path = require('path')
 const crossSpawn = require('cross-spawn')
-const psList = require('./ps-list')
 
-const { PLATFORM } = require('./constants')
+const { IS_MAC, IS_WIN, IS_DEV } = require('./constants')
 
-const log = (...args) => console.log(args.join(' '))
-const logDebug = (...args) => process.env.NODE_ENV === 'development' ? log(chalk.gray(...args)) : null
-const logError = (...args) => console.log(chalk.redBright(args.join(' ')))
+const print = (...args) => console.log(args.join(' '))
+const printDebug = (...args) => IS_DEV ? print(chalk.gray(...args)) : null
+const printError = (...args) => console.log(chalk.redBright(args.join(' ')))
+const clearScreen = () => console.clear()
 
 const open = (url) => {
-  const start = (PLATFORM === 'darwin' ? 'open' : PLATFORM === 'win32' ? 'start' : 'xdg-open')
-  childProcess.exec(start + ' ' + url)
+  const start = (IS_MAC ? 'open' : IS_WIN ? 'start' : 'xdg-open')
+  crossSpawn(start, [url])
 }
 
 const copyRecursiveSync = (src, dest) => {
@@ -34,52 +28,37 @@ const copyRecursiveSync = (src, dest) => {
         path.join(dest, childItemName)
       )
     })
-  } else {
-    const destDir = path.dirname(dest)
-    if (!fs.existsSync(destDir)) {
-      fs.mkdirSync(destDir, { recursive: true })
-    }
-    // https://github.com/vercel/pkg/issues/639
-    const fileContent = fs.readFileSync(src)
-    fs.writeFileSync(dest, fileContent)
+    return
   }
+
+  const destDir = path.dirname(dest)
+  if (!fs.existsSync(destDir)) {
+    fs.mkdirSync(destDir, { recursive: true })
+  }
+  // https://github.com/vercel/pkg/issues/639
+  const fileContent = fs.readFileSync(src)
+  fs.writeFileSync(dest, fileContent)
 }
 
 const isRoot = () => {
-  return PLATFORM === 'darwin' ? process.getuid && process.getuid() === 0 : false
-}
-
-const getProcessIdByName = async (processName) => {
-  const processes = await psList()
-  const process = processes.find((process) => process.name.toLowerCase() === processName.toLowerCase())
-  return process?.pid ?? null
+  return IS_MAC ? process.getuid && process.getuid() === 0 : false
 }
 
 const killProcess = (processId) => {
-  return new Promise((resolve, reject) => {
-    const isWindows = PLATFORM === 'win32'
-    const args = isWindows ? ['/F', '/PID', processId.toString()] : [processId.toString()]
-    const child = crossSpawn(isWindows ? 'taskkill' : 'kill', args)
-
-    child.on('close', (code) => {
-      resolve(code)
-    })
-
-    child.on('error', (error) => {
-      reject(error)
-    })
-  })
+  const args = IS_MAC ? [processId.toString()] : ['/F', '/PID', processId.toString()]
+  const result = crossSpawn.sync(IS_MAC ? 'kill' : 'taskkill', args)
+  return result?.status === 0
 }
 
 module.exports = {
-  log,
-  logDebug,
-  logError,
+  print,
+  printDebug,
+  printError,
+  clearScreen,
 
   open,
   copyRecursiveSync,
   isRoot,
 
-  getProcessIdByName,
   killProcess
 }
