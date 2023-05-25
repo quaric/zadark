@@ -24,7 +24,7 @@
   - Đóng gói ZaDark dưới dạng "pkg"
     - Khi chạy tập tin pkg, ZaDark for macOS sẽ được giải nén vào "Finder > Applications > ZaDark"
     - Hệ thống sẽ tự khởi động ZaDark khi giải nén thành công
-    - Để chạy lại ZaDark, truy cập "Finder > Applications > ZaDark
+    - Để chạy lại ZaDark, truy cập "Finder > Applications > ZaDark"
 - **[Source code]** : Nâng cấp công cụ ký và xác nhận ứng dụng macOS (notarytool)
 - **[Source code]** : Tối ưu mã nguồn
 
