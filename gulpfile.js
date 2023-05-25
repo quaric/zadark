@@ -8,6 +8,8 @@ const path = require('path')
 const del = require('del')
 const minify = require('gulp-minify')
 const rename = require('gulp-rename')
+const resedit = require('resedit/cjs')
+const fs = require('fs')
 
 const distUtils = require('./dist-utils')
 
@@ -49,9 +51,9 @@ const cleanBuild = () => {
   return del('build')
 }
 
-const cleanDist = () => {
-  return del('dist')
-}
+// const cleanDist = () => {
+//   return del('dist')
+// }
 
 // Build
 
@@ -192,6 +194,7 @@ const pkgMacOS = () => {
       '--targets', 'node14-macos-x64',
       '--output', distUtils.getFilePath('MACOS', true)
     ]).then(() => {
+      //
       resolve(true)
     }).catch((error) => {
       reject(error)
@@ -214,13 +217,66 @@ const pkgWindows = () => {
   })
 }
 
+const setWindowsExeInfo = async () => {
+  const ResEdit = await resedit.load()
+
+  const srcPath = distUtils.getFilePath('WINDOWS', true)
+  const destPath = distUtils.getFilePath('WINDOWS', true)
+
+  const iconFilePath = path.join(__dirname, './zadark.ico')
+  const iconFileData = ResEdit.Data.IconFile.from(fs.readFileSync(iconFilePath))
+
+  const language = {
+    lang: 1033, // English - United States (en-US)
+    codepage: 1200 // Unicode UTF-16
+  }
+
+  const data = fs.readFileSync(srcPath)
+  const executable = ResEdit.NtExecutable.from(data)
+  const res = ResEdit.NtExecutableResource.from(executable)
+  const ver = ResEdit.Resource.VersionInfo.fromEntries(res.entries)[0]
+
+  const versionStr = distUtils.getVersion('WINDOWS')
+  const versionArr = versionStr
+    .split('.')
+    .map((e) => Number(e) || 0)
+    .slice(0, 3)
+
+  ver.removeStringValue(language, 'OriginalFilename')
+  ver.removeStringValue(language, 'InternalName')
+
+  ver.setProductVersion(...versionArr)
+  ver.setFileVersion(...versionArr)
+
+  ver.setStringValues(language, {
+    ProductName: 'ZaDark – Zalo Dark Mode',
+    FileDescription: `ZaDark for Windows ${versionStr}`,
+    LegalCopyright: 'ZaDark from Quaric. MPL-2.0 license.',
+    OriginalFilename: distUtils.getFileNameOriginal('WINDOWS')
+  })
+
+  ver.outputToResourceEntries(res.entries)
+
+  ResEdit.Resource.IconGroupEntry.replaceIconsForResource(
+    res.entries,
+    1,
+    language.lang,
+    iconFileData.icons.map(item => item.data)
+  )
+
+  res.outputResource(executable)
+  fs.writeFileSync(destPath, Buffer.from(executable.generate()))
+
+  return true
+}
+
 // Zip
 
-const zipMacOS = () => {
-  return src(distUtils.getFilePath('MACOS', true))
-    .pipe(gulpZip(distUtils.getFileNameZip('MACOS')))
-    .pipe(dest(distUtils.getFileDir('MACOS')))
-}
+// const zipMacOS = () => {
+//   return src(distUtils.getFilePath('MACOS', true))
+//     .pipe(gulpZip(distUtils.getFileNameZip('MACOS')))
+//     .pipe(dest(distUtils.getFileDir('MACOS')))
+// }
 
 const zipWindows = () => {
   return src(distUtils.getFilePath('WINDOWS', true))
@@ -257,7 +313,8 @@ const edgeDist = () => {
 const pcDist = series(
   pkgMacOS,
   pkgWindows,
-  zipMacOS,
+  setWindowsExeInfo,
+  // zipMacOS,
   zipWindows
 )
 
@@ -279,7 +336,7 @@ const buildAll = series(
 
 const distAll = series(
   buildAll,
-  cleanDist,
+  // cleanDist,
   parallel(
     chromeDist,
     firefoxDist,

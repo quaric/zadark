@@ -101,7 +101,7 @@ yarn dist
 #
 #   macos/
 #     ZaDark-macOS-[VERSION]
-#     ZaDark-macOS-[VERSION].zip
+#     ZaDark-macOS-[VERSION].pkg
 #
 #   windows/
 #     ZaDark-Windows-[VERSION].exe
@@ -112,13 +112,18 @@ yarn dist
 - For Windows: Distribute `dist/windows/ZaDark-Windows-[VERSION].zip` directly to users
 - For macOS: Let's see the [Codesign macOS Application](#codesign-macos-application)
 
-### Codesign macOS Application
+### Codesign && Notarize macOS Application
 
-1. Create the configuration file `tools/macos/config.ini` with content from `tools/macos/example.config.ini`
-2. Run `yarn codesign:macos` to begin the signing and notarization process
-3. Enter your `username` and `password` as needed to unlock your keychain
-4. Once the package is submitted to Apple, `codesign:macos` will check to see if the process is complete
-5. Rejoyce in your signed `dist/macos/ZaDark-macOS-[VERSION].pkg` file
-6. Distribute `dist/macos/ZaDark-macOS-[VERSION].pkg` directly to users
+1. Create the configuration file `.env` with the content from `.env.example`.
+2. Run the command `yarn macos:pkgbuild` to perform the signing and package building process:
+   - This command will automatically sign the application.
+   - After signing, it will generate an installer package named `dist/macos/ZaDark-macOS-[VERSION].pkg`.
+3. If the previous command succeeds, run the command `yarn macos:notarize` to notarize the installer package:
+   - This command will submit the package for notarization to Apple's notary service.
+   - It will wait for the notarization process to complete.
+4. Once notarization is complete, run the command `yarn macos:staple` to staple the notary ticket to the installer package:
+   - This step ensures that the notarization information is attached to the package.
+5. Congratulations! You now have a signed and notarized installer package located at `dist/macos/ZaDark-macOS-[VERSION].pkg`.
+6. Distribute the `ZaDark-macOS-[VERSION].pkg` package directly to users for installation.
 
-> `codesign:macos` script is converted from Python (https://github.com/txoof/codesign) to Node. Thanks @txoof.
+> Read more about notarization here: https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution

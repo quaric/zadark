@@ -1,7 +1,7 @@
 {
   "name": "zadark",
   "description": "Dark Mode tốt nhất cho Zalo",
-  "version": "23.5.5",
+  "version": "23.5.6",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
     "name": "Quaric",
@@ -22,11 +22,14 @@
     "dist": "gulp dist",
     "pc:dev": "NODE_ENV=development node build/pc",
     "pc:start": "NODE_ENV=production node build/pc",
-    "codesign:macos": "node tools/macos/codesign tools/macos/config.ini",
-    "safari": "xed src/browser-ext/vendor/safari/ZaDark.xcodeproj",
+    "safari": "xed src/web/vendor/safari/ZaDark.xcodeproj",
     "publish:chrome": "node tools/publish-api/chrome",
     "publish:edge": "node tools/publish-api/edge",
-    "publish:firefox": "node publish-api/firefox"
+    "publish:firefox": "node publish-api/firefox",
+    "macos:pkgbuild": "tools/macos/pkgbuild.sh",
+    "macos:notarize": "tools/macos/notarize.sh",
+    "macos:notarytool_log": "tools/macos/notarytool_log.sh",
+    "macos:staple": "tools/macos/staple.sh"
   },
   "devDependencies": {
     "axios": "^1.2.2",
@@ -45,6 +48,7 @@
     "nodemon": "^2.0.15",
     "pkg": "^5.8.1",
     "qs": "^6.11.0",
+    "resedit": "^2.0.0",
     "sass": "^1.49.8",
     "standard": "^16.0.4"
   },
@@ -54,6 +58,7 @@
     "cross-spawn": "^7.0.3",
     "del": "^6.0.0",
     "glob": "^7.2.0",
+    "inquirer": "^8.0.0",
     "node-html-parser": "^5.2.0",
     "prompt-sync": "^4.2.0",
     "remove": "^0.1.5"

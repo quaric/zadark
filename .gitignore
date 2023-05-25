@@ -4,6 +4,9 @@ node_modules/
 # ZaDark
 build/
 dist/
+.zadark
+.env
+tools/macos/notarytool_log.json
 
 # Xcode
 ## User settings
@@ -16,7 +19,3 @@ xcuserdata/
 src/web/vendor/safari/ZaDark Extension/Resources/*
 !src/web/vendor/safari/ZaDark Extension/Resources/images
 !src/web/vendor/safari/ZaDark Extension/Resources/.gitkeep
-
-tools/**/config.ini
-
-.env

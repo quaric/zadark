@@ -881,6 +881,9 @@ html[data-zadark-theme="dark"] {
       --G20: var(--blue-message-selected);
       --G30: var(--blue-message-selected);
     }
+    .chat-message.highlighted .text-match {
+      background-color: var(--selection);
+    }
 
     .img-msg-v2:not(.-caption).-highlight {
       background-color: transparent;
@@ -2033,17 +2036,12 @@ body.zadark {
   }
 
   #div_Main_TabZaDark {
-    svg {
-      width: 28px;
-      height: 28px;
-    }
-
     &.zadark-known-version {
       &::after {
         content: "";
         position: absolute;
-        top: 12px;
-        right: 16px;
+        top: 10px;
+        right: 14px;
 
         width: 8px;
         height: 8px;
