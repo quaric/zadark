@@ -25,6 +25,7 @@
         chrome.storage.sync.get({
           theme: 'dark',
           font: 'open-sans',
+          fontSize: 'medium',
           enabledHideLatestMessage: false,
           enabledHideThreadChatMessage: false,
           enabledBlockTyping: false,

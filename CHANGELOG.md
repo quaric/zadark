@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 23.5.7
+> PC 8.3 && Web 8.15
+
+### Added
+- Tuỳ chỉnh cỡ chữ trong Tin nhắn
+
 ## ZaDark 23.5.6
 > PC 8.2 && Web 8.14
 

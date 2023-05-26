@@ -540,6 +540,31 @@ $FONTS: (
 
 @include zadark-fonts();
 
+$FONT_SIZES: (
+  // 13px
+  "small": "0.8125rem",
+  // 16px
+  "big": "1rem",
+  // 18px
+  "very-big": "1.125rem"
+);
+
+@mixin zadark-font-sizes() {
+  @each $name, $value in $FONT_SIZES {
+    html[data-zadark-font-size="#{$name}"] {
+      &:root {
+        --zadark-cnv-font-size: #{$value};
+      }
+    }
+  }
+}
+
+:root {
+  --zadark-cnv-font-size: inherit;
+}
+
+@include zadark-font-sizes();
+
 html[data-zadark-theme="light"] {
   &:root {
     --popper-shadow: 0 0 10px 0 var(--BA20);
@@ -2074,5 +2099,15 @@ body.zadark {
 
   &.zadark-prv--thread-chat-message #chatView {
     @include prv.prv-thread-chat-message();
+  }
+
+  // Conv font size
+  .card--text,
+  .msg-info-popup {
+    a,
+    .text,
+    .editor-input {
+      font-size: var(--zadark-cnv-font-size);
+    }
   }
 }

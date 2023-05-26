@@ -9,6 +9,7 @@ const { ipcRenderer } = require('electron')
 
 const ZADARK_THEME_KEY = '@ZaDark:THEME'
 const ZADARK_FONT_KEY = '@ZaDark:FONT'
+const ZADARK_FONT_SIZE_KEY = '@ZaDark:FONT_SIZE'
 
 const ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_LATEST_MESSAGE'
 const ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_THREAD_CHAT_MESSAGE'
@@ -45,6 +46,14 @@ window.zadark.storage = {
 
   saveFont: (font) => {
     return localStorage.setItem(ZADARK_FONT_KEY, font)
+  },
+
+  getFontSize: () => {
+    return localStorage.getItem(ZADARK_FONT_SIZE_KEY) || 'medium'
+  },
+
+  saveFontSize: (fontSize) => {
+    return localStorage.setItem(ZADARK_FONT_SIZE_KEY, fontSize)
   },
 
   saveEnabledHideLatestMessage: (isEnabled) => {
@@ -101,6 +110,10 @@ window.zadark.utils = {
     document.documentElement.setAttribute('data-zadark-font', font)
   },
 
+  setFontSizeAttr: (fontSize) => {
+    document.documentElement.setAttribute('data-zadark-font-size', fontSize)
+  },
+
   setPageTheme: function (theme) {
     switch (theme) {
       case 'light':
@@ -133,6 +146,11 @@ window.zadark.utils = {
   refreshPageFont: function () {
     const font = window.zadark.storage.getFont()
     this.setFontAttr(font)
+  },
+
+  refreshPageFontSize: function () {
+    const fontSize = window.zadark.storage.getFontSize()
+    this.setFontSizeAttr(fontSize)
   },
 
   refreshHideLatestMessage: function () {
@@ -189,6 +207,7 @@ window.zadark.utils = {
 
 window.zadark.utils.refreshPageTheme()
 window.zadark.utils.refreshPageFont()
+window.zadark.utils.refreshPageFontSize()
 window.zadark.utils.refreshHideLatestMessage()
 window.zadark.utils.refreshHideThreadChatMessage()
 window.zadark.utils.loadBlockSettings()
@@ -216,6 +235,7 @@ observer.observe(document.querySelector('#app'), { subtree: false, childList: tr
 const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
+const selectFontSizeElName = '#js-select-font-size'
 
 const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
 const switchHideThreadChatMessageElName = '#js-switch-hide-thread-chat-message'
@@ -236,6 +256,10 @@ const setSelectFont = (font) => {
   $(selectFontElName).val(font)
 }
 
+const setSelectFontSize = (fontSize) => {
+  $(selectFontSizeElName).val(fontSize)
+}
+
 const setSwitch = (elName, enabled) => {
   $(elName).prop('checked', enabled)
 }
@@ -251,6 +275,12 @@ function handleFontChange () {
   const font = $(this).val()
   window.zadark.storage.saveFont(font)
   window.zadark.utils.refreshPageFont()
+}
+
+function handleFontSizeChange () {
+  const fontSize = $(this).val()
+  window.zadark.storage.saveFontSize(fontSize)
+  window.zadark.utils.refreshPageFontSize()
 }
 
 function handleHideLatestMessageChange () {
@@ -362,6 +392,17 @@ const popupMainHTML = `
             <option value="source-sans-pro">Source Sans Pro</option>
           </select>
         </div>
+
+        <div class="select-font">
+          <label class="select-font__label">Thay đổi cỡ chữ trong Trò chuyện</label>
+
+          <select id="js-select-font-size" class="zadark-select zadark-select--text-right">
+            <option value="small">Nhỏ</option>
+            <option value="medium">Trung bình</option>
+            <option value="big">Lớn</option>
+            <option value="very-big">Rất lớn</option>
+          </select>
+        </div>
       </div>
     </div>
 
@@ -384,8 +425,8 @@ const popupMainHTML = `
 
             <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
-                Ẩn&nbsp;<strong>Tin nhắn</strong>&nbsp;trong Cuộc trò chuyện${!window.zadark.utils.isMac() ? ' & Thông báo' : ''}
-                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn trong Cuộc trò chuyện${!window.zadark.utils.isMac() ? ' & Thông báo' : ''} sẽ được làm mờ để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột vào Vùng hiển thị tin nhắn. Di chuyển chuột khỏi Vùng hiển thị tin nhắn để ẩn tin nhắn.</p>"></span>
+                Ẩn&nbsp;<strong>Tin nhắn</strong>&nbsp;trong Trò chuyện${!window.zadark.utils.isMac() ? ' & Thông báo' : ''}
+                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn trong Trò chuyện${!window.zadark.utils.isMac() ? ' & Thông báo' : ''} sẽ được làm mờ để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột vào Vùng hiển thị tin nhắn. Di chuyển chuột khỏi Vùng hiển thị tin nhắn để ẩn tin nhắn.</p>"></span>
               </label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
@@ -447,6 +488,9 @@ const loadPopupState = () => {
 
   const font = window.zadark.storage.getFont()
   setSelectFont(font)
+
+  const fontSize = window.zadark.storage.getFontSize()
+  setSelectFontSize(fontSize)
 
   const enabledHideLatestMessage = window.zadark.storage.getEnabledHideLatestMessage()
   setSwitch(switchHideLatestMessageElName, enabledHideLatestMessage)
@@ -536,6 +580,7 @@ const loadZaDarkPopup = () => {
 
   $(selectThemeElName).on('change', handleThemeChange)
   $(selectFontElName).on('change', handleFontChange)
+  $(selectFontSizeElName).on('change', handleFontSizeChange)
 
   $(switchHideLatestMessageElName).on('change', handleHideLatestMessageChange)
   $(switchHideThreadChatMessageElName).on('change', handleHideThreadChatMessageChange)

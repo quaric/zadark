@@ -18,6 +18,10 @@
       document.documentElement.setAttribute('data-zadark-font', font)
     },
 
+    setFontSizeAttr: (fontSize) => {
+      document.documentElement.setAttribute('data-zadark-font-size', fontSize)
+    },
+
     setPageTheme: function (theme) {
       switch (theme) {
         case 'light':
@@ -44,24 +48,24 @@
       })
     },
 
-    refreshPageFont: function () {
-      window.zadark.browser.getExtensionSettings().then(({ font }) => {
+    refreshPageSettings: function () {
+      window.zadark.browser.getExtensionSettings().then(({
+        theme,
+        font,
+        fontSize,
+        enabledHideLatestMessage,
+        enabledHideThreadChatMessage
+      }) => {
+        this.setPageTheme(theme)
         this.setFontAttr(font)
-      })
-    },
+        this.setFontSizeAttr(fontSize)
 
-    refreshHideLatestMessage: function () {
-      window.zadark.browser.getExtensionSettings().then(({ enabledHideLatestMessage }) => {
         if (enabledHideLatestMessage) {
           document.body.classList.add('zadark-prv--latest-message')
         } else {
           document.body.classList.remove('zadark-prv--latest-message')
         }
-      })
-    },
 
-    refreshHideThreadChatMessage: function () {
-      window.zadark.browser.getExtensionSettings().then(({ enabledHideThreadChatMessage }) => {
         if (enabledHideThreadChatMessage) {
           document.body.classList.add('zadark-prv--thread-chat-message')
         } else {
