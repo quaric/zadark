@@ -5,14 +5,12 @@
 */
 
 window.zadark.browser.initClassNames()
-window.zadark.utils.refreshPageTheme()
-window.zadark.utils.refreshPageFont()
-window.zadark.utils.refreshHideLatestMessage()
-window.zadark.utils.refreshHideThreadChatMessage()
+window.zadark.utils.refreshPageSettings()
 
 const MSG_ACTIONS = {
   CHANGE_THEME: '@ZaDark:CHANGE_THEME',
   CHANGE_FONT: '@ZaDark:CHANGE_FONT',
+  CHANGE_FONT_SIZE: '@ZaDark:CHANGE_FONT_SIZE',
   CHANGE_HIDE_LATEST_MESSAGE: '@ZaDark:CHANGE_HIDE_LATEST_MESSAGE',
   CHANGE_HIDE_THREAD_CHAT_MESSAGE: '@ZaDark:CHANGE_HIDE_THREAD_CHAT_MESSAGE',
   GET_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:GET_ENABLED_BLOCKING_RULE_IDS',
@@ -34,25 +32,31 @@ observer.observe(document.querySelector('#app'), { subtree: false, childList: tr
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === MSG_ACTIONS.CHANGE_THEME) {
-    window.zadark.utils.refreshPageTheme()
+    window.zadark.utils.refreshPageSettings()
     setSelectTheme(message.payload.theme)
     sendResponse({ received: true })
   }
 
   if (message.action === MSG_ACTIONS.CHANGE_FONT) {
-    window.zadark.utils.refreshPageFont()
+    window.zadark.utils.refreshPageSettings()
     setSelectFont(message.payload.font)
     sendResponse({ received: true })
   }
 
+  if (message.action === MSG_ACTIONS.CHANGE_FONT_SIZE) {
+    window.zadark.utils.refreshPageSettings()
+    setSelectFontSize(message.payload.fontSize)
+    sendResponse({ received: true })
+  }
+
   if (message.action === MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE) {
-    window.zadark.utils.refreshHideLatestMessage()
+    window.zadark.utils.refreshPageSettings()
     setSwitchHideLatestMessage(message.payload.enabledHideLatestMessage)
     sendResponse({ received: true })
   }
 
   if (message.action === MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE) {
-    window.zadark.utils.refreshHideThreadChatMessage()
+    window.zadark.utils.refreshPageSettings()
     setSwitchHideThreadChatMessage(message.payload.enabledHideThreadChatMessage)
     sendResponse({ received: true })
   }
@@ -60,6 +64,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
+const selectFontSizeElName = '#js-select-font-size'
 
 const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
 const switchHideThreadChatMessageElName = '#js-switch-hide-thread-chat-message'
@@ -79,6 +84,10 @@ const setSelectFont = (font) => {
   $(selectFontElName).val(font)
 }
 
+const setSelectFontSize = (fontSize) => {
+  $(selectFontSizeElName).val(fontSize)
+}
+
 const setSwitchHideLatestMessage = (enabled) => {
   $(switchHideLatestMessageElName).prop('checked', enabled)
 }
@@ -90,26 +99,32 @@ const setSwitchHideThreadChatMessage = (enabled) => {
 async function handleSelectThemeChange () {
   const theme = $(this).val()
   await window.zadark.browser.saveExtensionSettings({ theme })
-  window.zadark.utils.refreshPageTheme()
+  window.zadark.utils.refreshPageSettings()
   setSelectTheme(theme)
 }
 
 async function handleSelectFontChange () {
   const font = $(this).val()
   await window.zadark.browser.saveExtensionSettings({ font })
-  window.zadark.utils.refreshPageFont()
+  window.zadark.utils.refreshPageSettings()
+}
+
+async function handleSelectFontSizeChange () {
+  const fontSize = $(this).val()
+  await window.zadark.browser.saveExtensionSettings({ fontSize })
+  window.zadark.utils.refreshPageSettings()
 }
 
 async function handleHideLastestMessageChange () {
   const enabledHideLatestMessage = $(this).is(':checked')
   await window.zadark.browser.saveExtensionSettings({ enabledHideLatestMessage })
-  window.zadark.utils.refreshHideLatestMessage()
+  window.zadark.utils.refreshPageSettings()
 }
 
 async function handleHideThreadChatMessageChange () {
   const enabledHideThreadChatMessage = $(this).is(':checked')
   await window.zadark.browser.saveExtensionSettings({ enabledHideThreadChatMessage })
-  window.zadark.utils.refreshHideThreadChatMessage()
+  window.zadark.utils.refreshPageSettings()
 }
 
 const handleBlockingRuleChange = (elName, ruleId) => {
@@ -208,6 +223,17 @@ const popupMainHTML = `
             <option value="source-sans-pro">Source Sans Pro</option>
           </select>
         </div>
+
+        <div class="select-font">
+          <label class="select-font__label">Thay đổi cỡ chữ trong Trò chuyện</label>
+
+          <select id="js-select-font-size" class="zadark-select zadark-select--text-right">
+            <option value="small">Nhỏ</option>
+            <option value="medium">Trung bình</option>
+            <option value="big">Lớn</option>
+            <option value="very-big">Rất lớn</option>
+          </select>
+        </div>
       </div>
     </div>
 
@@ -230,8 +256,8 @@ const popupMainHTML = `
 
             <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
-                Ẩn&nbsp;<strong>Tin nhắn</strong>&nbsp;trong Cuộc trò chuyện
-                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn trong Cuộc trò chuyện sẽ được làm mờ để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột vào Vùng hiển thị tin nhắn. Di chuyển chuột khỏi Vùng hiển thị tin nhắn để ẩn tin nhắn.</p>"></span>
+                Ẩn&nbsp;<strong>Tin nhắn</strong>&nbsp;trong Trò chuyện
+                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn trong Trò chuyện sẽ được làm mờ để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột vào Vùng hiển thị tin nhắn. Di chuyển chuột khỏi Vùng hiển thị tin nhắn để ẩn tin nhắn.</p>"></span>
               </label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
@@ -309,10 +335,17 @@ const disableBlocking = () => {
 }
 
 const loadPopupState = async () => {
-  const { theme, font, enabledHideLatestMessage, enabledHideThreadChatMessage } = await window.zadark.browser.getExtensionSettings()
+  const {
+    theme,
+    font,
+    fontSize,
+    enabledHideLatestMessage,
+    enabledHideThreadChatMessage
+  } = await window.zadark.browser.getExtensionSettings()
 
   setSelectTheme(theme)
   setSelectFont(font)
+  setSelectFontSize(fontSize)
   setSwitchHideLatestMessage(enabledHideLatestMessage)
   setSwitchHideThreadChatMessage(enabledHideThreadChatMessage)
 
@@ -396,6 +429,7 @@ const loadZaDarkPopup = () => {
 
   $(selectThemeElName).on('change', handleSelectThemeChange)
   $(selectFontElName).on('change', handleSelectFontChange)
+  $(selectFontSizeElName).on('change', handleSelectFontSizeChange)
 
   $(switchHideLatestMessageElName).on('change', handleHideLastestMessageChange)
   $(switchHideThreadChatMessageElName).on('change', handleHideThreadChatMessageChange)
@@ -409,8 +443,15 @@ const loadZaDarkPopup = () => {
   const buttonEl = document.getElementById('div_Main_TabZaDark')
 
   const popupInstance = Popper.createPopper(buttonEl, popupEl, {
-    placement: 'auto-end',
-    modifiers: []
+    placement: 'right-start',
+    modifiers: [
+      {
+        name: 'offset',
+        options: {
+          offset: [112, 0]
+        }
+      }
+    ]
   })
 
   const hideEvents = ['click', 'contextmenu']

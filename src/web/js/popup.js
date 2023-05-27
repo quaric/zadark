@@ -9,6 +9,7 @@ const feedbackElName = '#js-ext-feedback'
 const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
+const selectFontSizeElName = '#js-select-font-size'
 const manifestData = window.zadark.browser.getManifest()
 
 const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
@@ -21,6 +22,7 @@ const switchBlockDeliveredElName = '#js-switch-block-delivered'
 const MSG_ACTIONS = {
   CHANGE_THEME: '@ZaDark:CHANGE_THEME',
   CHANGE_FONT: '@ZaDark:CHANGE_FONT',
+  CHANGE_FONT_SIZE: '@ZaDark:CHANGE_FONT_SIZE',
   CHANGE_HIDE_LATEST_MESSAGE: '@ZaDark:CHANGE_HIDE_LATEST_MESSAGE',
   CHANGE_HIDE_THREAD_CHAT_MESSAGE: '@ZaDark:CHANGE_HIDE_THREAD_CHAT_MESSAGE',
   GET_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:GET_ENABLED_BLOCKING_RULE_IDS',
@@ -42,9 +44,10 @@ tippy('[data-tippy-content]', {
 // Init popup theme
 window.zadark.utils.refreshPageTheme()
 
-window.zadark.browser.getExtensionSettings().then(({ theme, font, enabledHideLatestMessage, enabledHideThreadChatMessage }) => {
+window.zadark.browser.getExtensionSettings().then(({ theme, font, fontSize, enabledHideLatestMessage, enabledHideThreadChatMessage }) => {
   $(selectThemeElName).filter(`[value="${theme}"]`).attr('checked', true)
   $(selectFontElName).val(font)
+  $(selectFontSizeElName).val(fontSize)
   $(switchHideLatestMessageElName).prop('checked', enabledHideLatestMessage)
   $(switchHideThreadChatMessageElName).prop('checked', enabledHideThreadChatMessage)
 })
@@ -68,6 +71,15 @@ $(selectFontElName).on('change', async function () {
 
   // Set font for all Zalo tabs
   window.zadark.browser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_FONT, { font })
+})
+
+$(selectFontSizeElName).on('change', async function () {
+  const fontSize = $(this).val()
+
+  await window.zadark.browser.saveExtensionSettings({ fontSize })
+
+  // Set fontSize for all Zalo tabs
+  window.zadark.browser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_FONT_SIZE, { fontSize })
 })
 
 $(switchHideLatestMessageElName).on('change', async function () {
