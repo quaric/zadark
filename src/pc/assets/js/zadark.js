@@ -594,8 +594,15 @@ const loadZaDarkPopup = () => {
   const buttonEl = document.getElementById('div_Main_TabZaDark')
 
   const popupInstance = Popper.createPopper(buttonEl, popupEl, {
-    placement: 'auto-end',
-    modifiers: []
+    placement: 'right-start',
+    modifiers: [
+      {
+        name: 'offset',
+        options: {
+          offset: [112, 0]
+        }
+      }
+    ]
   })
 
   const hideEvents = ['click', 'contextmenu']
