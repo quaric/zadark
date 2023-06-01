@@ -10,10 +10,10 @@ source .env
 version=$(grep -o '"version": *"[^"]*"' src/pc/package.json | awk -F'"' '{print $4}')
 
 # Construct the file path of the package (pkg) file using the version number
-pkgFilePath=dist/macos/ZaDark-macOS-${version//./_}.pkg
+pkgFilePath=dist/macos/ZaDark\ ${version}.pkg
 
 echo "[Prepare]"
-echo $pkgFilePath
+echo "$pkgFilePath"
 
 echo ""
 echo "[Staple notarization to pkg]"
@@ -23,4 +23,4 @@ xcrun stapler staple "$pkgFilePath"
 
 echo ""
 echo "[Done]"
-echo $pkgFilePath
+echo "$pkgFilePath"

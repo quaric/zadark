@@ -4,7 +4,7 @@ const inquirer = require('inquirer')
 const crossSpawn = require('cross-spawn')
 
 const zadarkPC = require('./zadark-pc')
-const { print, printError, open, killProcess, clearScreen } = require('./utils')
+const { print, printError, openWebsite, clearScreen, killProcesses } = require('./utils')
 
 const {
   ZADARK_VERSION,
@@ -75,19 +75,15 @@ const renderNotes = () => {
 }
 
 const handleQuitZalo = async () => {
-  const zaloPID = await zadarkPC.getZaloProcessId()
+  const zaloPIDs = await zadarkPC.getZaloProcessIds()
 
-  if (zaloPID === null) {
+  if (!Array.isArray(zaloPIDs) || !zaloPIDs?.length) {
     return
   }
 
   print('')
   print(chalk('>> Dang thoat Zalo PC ...'))
-
-  const success = killProcess(zaloPID)
-  if (!success) {
-    throw new Error('Khong the thoat Zalo PC. Vui long thoat Zalo PC truoc khi cai dat ZaDark.' + zaloPID)
-  }
+  killProcesses(zaloPIDs)
 }
 
 const handleInstall = async (zaloResDirList) => {
@@ -102,7 +98,7 @@ const handleInstall = async (zaloResDirList) => {
   }
 
   print('')
-  print(chalk.greenBright('>> Da cai dat ZaDark. Vui long khoi dong lai Zalo PC.'))
+  print(chalk.greenBright('>> Da cai dat ZaDark. Vui long mo lai Zalo PC.'))
 }
 
 const handleUninstall = async (zaloResDirList) => {
@@ -117,7 +113,14 @@ const handleUninstall = async (zaloResDirList) => {
   }
 
   print('')
-  print(chalk.greenBright('>> Da go cai dat ZaDark. Vui long khoi dong lai Zalo PC.'))
+  print(chalk.greenBright('>> Da go cai dat ZaDark. Vui long mo lai Zalo PC.'))
+}
+
+const handleOpenDocs = () => {
+  print(chalk.magentaBright.bold('[HUONG DAN]'))
+  print('')
+  print('>> Truy cap :', chalk.underline(CONTACT_URL))
+  openWebsite(CONTACT_URL)
 }
 
 const requestQuitTermProgram = () => {
@@ -171,10 +174,7 @@ const requestQuitTermProgram = () => {
       }
 
       case '3': {
-        print(chalk.magentaBright.bold('[HUONG DAN]'))
-        print('')
-        print('>> Truy cap :', chalk.underline(CONTACT_URL))
-        open(CONTACT_URL)
+        handleOpenDocs()
         break
       }
 
@@ -191,7 +191,7 @@ const requestQuitTermProgram = () => {
     print('')
     printError(error.message)
 
-    open(COMMON_ERRORS_URL)
+    openWebsite(COMMON_ERRORS_URL)
     print(`Xem huong dan : ${COMMON_ERRORS_URL}`)
     //
   } finally {

@@ -35,16 +35,13 @@
     }
   }
 
-  .conv-item:hover,
-  &:not(.zadark-prv--thread-chat-message) .conv-item.selected {
-    .conv-item-body__main .conv-message {
-      &::after {
-        opacity: 0;
-      }
+  .conv-item:hover .conv-item-body__main .conv-message {
+    &::after {
+      opacity: 0;
+    }
 
-      * {
-        opacity: 1;
-      }
+    * {
+      opacity: 1;
     }
   }
 }

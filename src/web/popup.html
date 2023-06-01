@@ -27,7 +27,7 @@
       </span>
 
       <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
-        <a href="#feedback" id="js-ext-feedback" title="Phản hồi" target="_blank">Phản hồi</a>
+        <a href="https://zadark.canny.io" title="Phản hồi" target="_blank">Phản hồi</a>
       </span>
 
       <span class="zadark-popup__header__menu-item">
@@ -81,7 +81,7 @@
         </div>
 
         <div class="select-font">
-          <label class="select-font__label">Thay đổi cỡ chữ trong Trò chuyện</label>
+          <label class="select-font__label">Thay đổi cỡ chữ của tin nhắn</label>
 
           <select id="js-select-font-size" class="zadark-select zadark-select--text-right">
             <option value="small">Nhỏ</option>
@@ -100,20 +100,9 @@
         <div class="zadark-panel__body">
           <div class="zadark-switch__list">
             <div class="zadark-switch">
-              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
-                Ẩn&nbsp;<strong>Tin nhắn gần nhất</strong>&nbsp;trong Danh sách trò chuyện
-                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn gần nhất trong Danh sách trò chuyện (bên trái) sẽ được ẩn để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột hoặc nhấn vào Cuộc trò chuyện.</p>"></span>
-              </label>
-              <label class="zadark-switch__checkbox">
-                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
-                <span class="zadark-switch__slider"></span>
-              </label>
-            </div>
-
-            <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
-                Ẩn&nbsp;<strong>Tin nhắn</strong>&nbsp;trong Cuộc trò chuyện
-                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn trong Cuộc trò chuyện sẽ được làm mờ để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột vào Vùng hiển thị tin nhắn. Di chuyển chuột khỏi Vùng hiển thị tin nhắn để ẩn tin nhắn.</p>"></span>
+                Chống nhìn trộm tin nhắn
+                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Danh sách trò chuyện sẽ ẩn đi các tin nhắn gần nhất để ngăn người khác xem trộm. Để xem nội dung tin nhắn, bạn chỉ cần di chuột vào cuộc trò chuyện tương ứng.</p><p>Tin nhắn trong trò chuyện cũng sẽ được làm mờ để bảo vệ quyền riêng tư của bạn. Để xem nội dung tin nhắn, hãy di chuột vào vùng hiển thị tin nhắn. Khi bạn di chuột ra khỏi vùng này, tin nhắn sẽ được ẩn đi.</p>"></span>
               </label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
@@ -122,7 +111,7 @@
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin nhắn ...</strong></label>
+              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin (Typing) ...</strong></label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
                 <span class="zadark-switch__slider"></span>
@@ -130,7 +119,7 @@
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận</strong> tin nhắn</label>
+              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận (Received)</strong></label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
                 <span class="zadark-switch__slider"></span>
@@ -138,7 +127,7 @@
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem</strong> tin nhắn</label>
+              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem (Seen)</strong></label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
                 <span class="zadark-switch__slider"></span>

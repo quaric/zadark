@@ -1,5 +1,21 @@
 # Changelog
 
+## ZaDark 23.6.1
+> PC 8.4 && Web 8.16
+
+### Added
+- **[Core]** Bổ sung cho chức năng "Thay đổi cỡ chữ của tin nhắn" : Áp dụng cho tin nhắn có hình ảnh
+
+### Changed
+- **[ZaDark Settings]**
+  - Giảm sáng cho biểu tượng màu trắng của công tắc (switch)
+  - Thay đổi địa chỉ Phản hồi (sử dụng Canny thay Google Forms)
+  - Hợp nhất tính năng "Ẩn Tin nhắn gần nhất ở Danh sách trò chuyện" và "Ẩn Tin nhắn trong Cuộc trò chuyện" thành "Chống nhìn trộm tin nhắn" (Rê chuột vào dấu chấm hỏi để xem giải thích chi tiết)
+  - Cập nhật một số chi tiết nhỏ khác
+- **[Source code]**
+  - Thay đổi flow thoát Zalo PC
+  - Thay đổi cấu trúc đặt tên cho tập tin cài đặt ngắn gọn hơn
+
 ## ZaDark 23.5.7
 > PC 8.3 && Web 8.15
 

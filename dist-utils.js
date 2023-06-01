@@ -6,15 +6,13 @@ const operaManifest = require('./src/web/vendor/opera/manifest.json')
 const edgeManifest = require('./src/web/vendor/edge/manifest.json')
 const pcPackageJSON = require('./src/pc/package.json')
 
-const dot2Underscore = (v = '') => v.replace(/\./g, '_')
-
 const FILE_NAME = {
-  CHROME: `ZaDark-Chrome-${dot2Underscore(chromeManifest.version)}`,
-  FIREFOX: `ZaDark-Firefox-${dot2Underscore(firefoxManifest.version)}`,
-  OPERA: `ZaDark-Opera-${dot2Underscore(operaManifest.version)}`,
-  EDGE: `ZaDark-Edge-${dot2Underscore(edgeManifest.version)}`,
-  MACOS: `ZaDark-macOS-${dot2Underscore(pcPackageJSON.version)}`,
-  WINDOWS: `ZaDark-Windows-${dot2Underscore(pcPackageJSON.version)}`
+  CHROME: `ZaDark Chrome ${chromeManifest.version}`,
+  FIREFOX: `ZaDark Firefox ${firefoxManifest.version}`,
+  OPERA: `ZaDark Opera ${operaManifest.version}`,
+  EDGE: `ZaDark Edge ${edgeManifest.version}`,
+  MACOS: `ZaDark ${pcPackageJSON.version} exec`,
+  WINDOWS: `ZaDark ${pcPackageJSON.version}`
 }
 
 const FILE_EXT_ORIGINAL = {

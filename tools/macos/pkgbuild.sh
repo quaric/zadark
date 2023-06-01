@@ -30,25 +30,25 @@ tmpPath=.zadark
 version=$(grep -o '"version": *"[^"]*"' src/pc/package.json | awk -F'"' '{print $4}')
 
 # Set original file path and package file path based on the version number
-originalFilePath=dist/macos/ZaDark-macOS-${version//./_}
-pkgFilePath=dist/macos/ZaDark-macOS-${version//./_}.pkg
+originalFilePath=dist/macos/ZaDark\ ${version}\ exec
+pkgFilePath=dist/macos/ZaDark\ ${version}.pkg
 
 echo "[Prepare]"
 
 # Clean up the temporary path
-rm -rf $tmpPath
+rm -rf "$tmpPath"
 
 # Create the temporary path
-mkdir $tmpPath
+mkdir "$tmpPath"
 
 # Copy the original file to the temporary path
-ditto $originalFilePath $tmpPath/ZaDark
+ditto "$originalFilePath" "$tmpPath/ZaDark"
 
 echo ""
 echo "[Sign the executable]"
 
 # Sign the ZaDark file in the temporary path
-codesign --deep --force --options=runtime --entitlements tools/macos/assets/entitlements.plist --sign "$hash_dev_id_application" --timestamp $tmpPath/ZaDark
+codesign --deep --force --options=runtime --entitlements tools/macos/assets/entitlements.plist --sign "$hash_dev_id_application" --timestamp "$tmpPath/ZaDark"
 
 echo ""
 echo "[Package as a pkg for installation]"
@@ -65,7 +65,7 @@ pkgbuild \
 
 echo ""
 echo "[Done]"
-echo $pkgFilePath
+echo "$pkgFilePath"
 
 # Clean up the temporary path
-rm -rf $tmpPath
+rm -rf "$tmpPath"

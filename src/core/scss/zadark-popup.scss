@@ -37,6 +37,8 @@ html[data-zadark-theme="light"] #zadark-popup {
   --zadark-blue-300: #0068ff;
   --zadark-blue-base: #0068ff;
 
+  --zadark-switch-slider: #fff;
+
   .zadark-publisher__lockup--dark {
     display: inline-block;
   }
@@ -73,6 +75,8 @@ html[data-zadark-theme="dark"] #zadark-popup {
   --zadark-blue-400: #035bdc;
   --zadark-blue-300: #3989ff;
   --zadark-blue-base: #3989ff;
+
+  --zadark-switch-slider: var(--zadark-neutral-300);
 
   .zadark-publisher__lockup--light {
     display: inline-block;
@@ -333,12 +337,10 @@ html[data-zadark-theme="dark"] #zadark-popup {
       user-select: none;
 
       &--helper {
-        display: flex;
-        align-items: center;
-
         &-icon {
+          position: relative;
+          bottom: -2px;
           display: inline-flex;
-          margin-left: 6px;
           color: var(--zadark-neutral-500);
         }
       }
@@ -377,7 +379,7 @@ html[data-zadark-theme="dark"] #zadark-popup {
         width: 12px;
         left: 2px;
         bottom: 2px;
-        background-color: white;
+        background-color: var(--zadark-switch-slider);
         -webkit-transition: 0.25s;
         transition: 0.25s;
         border-radius: 50rem;
