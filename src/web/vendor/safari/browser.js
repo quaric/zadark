@@ -26,7 +26,6 @@
           theme: 'dark',
           font: 'open-sans',
           fontSize: 'medium',
-          enabledHideLatestMessage: false,
           enabledHideThreadChatMessage: false,
           enabledBlockTyping: false,
           enabledBlockDelivered: false,

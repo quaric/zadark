@@ -11,7 +11,6 @@ const MSG_ACTIONS = {
   CHANGE_THEME: '@ZaDark:CHANGE_THEME',
   CHANGE_FONT: '@ZaDark:CHANGE_FONT',
   CHANGE_FONT_SIZE: '@ZaDark:CHANGE_FONT_SIZE',
-  CHANGE_HIDE_LATEST_MESSAGE: '@ZaDark:CHANGE_HIDE_LATEST_MESSAGE',
   CHANGE_HIDE_THREAD_CHAT_MESSAGE: '@ZaDark:CHANGE_HIDE_THREAD_CHAT_MESSAGE',
   GET_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:GET_ENABLED_BLOCKING_RULE_IDS',
   UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS'
@@ -49,12 +48,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     sendResponse({ received: true })
   }
 
-  if (message.action === MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE) {
-    window.zadark.utils.refreshPageSettings()
-    setSwitchHideLatestMessage(message.payload.enabledHideLatestMessage)
-    sendResponse({ received: true })
-  }
-
   if (message.action === MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE) {
     window.zadark.utils.refreshPageSettings()
     setSwitchHideThreadChatMessage(message.payload.enabledHideThreadChatMessage)
@@ -66,7 +59,6 @@ const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
 const selectFontSizeElName = '#js-select-font-size'
 
-const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
 const switchHideThreadChatMessageElName = '#js-switch-hide-thread-chat-message'
 const switchBlockTypingElName = '#js-switch-block-typing'
 const switchBlockSeenElName = '#js-switch-block-seen'
@@ -86,10 +78,6 @@ const setSelectFont = (font) => {
 
 const setSelectFontSize = (fontSize) => {
   $(selectFontSizeElName).val(fontSize)
-}
-
-const setSwitchHideLatestMessage = (enabled) => {
-  $(switchHideLatestMessageElName).prop('checked', enabled)
 }
 
 const setSwitchHideThreadChatMessage = (enabled) => {
@@ -112,12 +100,6 @@ async function handleSelectFontChange () {
 async function handleSelectFontSizeChange () {
   const fontSize = $(this).val()
   await window.zadark.browser.saveExtensionSettings({ fontSize })
-  window.zadark.utils.refreshPageSettings()
-}
-
-async function handleHideLastestMessageChange () {
-  const enabledHideLatestMessage = $(this).is(':checked')
-  await window.zadark.browser.saveExtensionSettings({ enabledHideLatestMessage })
   window.zadark.utils.refreshPageSettings()
 }
 
@@ -146,7 +128,7 @@ const iconQuestionSVG = `
 `
 
 const zadarkButtonHTML = `
-  <div id="div_Main_TabZaDark" class="clickable leftbar-tab flx flx-col flx-al-c flx-center rel" data-id="div_Main_TabZaDark" data-translate-title="STR_MENU_ZADARK" title="ZaDark">
+  <div id="div_Main_TabZaDark" class="clickable leftbar-tab flx flx-col flx-al-c flx-center rel" data-id="div_Main_TabZaDark" data-translate-title="STR_MENU_ZADARK" title="ZaDark Settings">
     <svg width="24" height="24" viewBox="0 0 336 336" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0.000806072 167.484C0.284527 74.7006 75.3948 -0.284182 167.764 0.000809684C181.016 0.0416946 193.907 1.63028 206.268 4.59743C208.09 5.03469 209.381 6.66172 209.399 8.5429C209.417 10.4241 208.158 12.076 206.345 12.5488C151.203 26.9302 110.418 77.1876 110.235 137.092C110.017 208.377 167.37 266.343 238.337 266.562C263.059 266.638 286.161 259.7 305.789 247.614C307.386 246.631 309.444 246.867 310.78 248.185C312.116 249.504 312.386 251.568 311.435 253.188C282.267 302.895 228.343 336.189 166.737 335.999C74.3674 335.714 -0.282915 260.267 0.000806072 167.484Z" fill="currentColor"/>
       <path d="M284.255 176.183C286.752 166.785 288 159.507 288 154.35C288 152.974 286.315 151.37 282.944 149.536C279.698 147.702 277.513 146.785 276.389 146.785C275.391 146.785 274.891 146.9 274.891 147.129C273.768 150.109 271.458 154.063 267.963 158.991C264.467 163.92 261.72 167.186 259.723 168.791C256.477 170.625 249.61 171.542 239.124 171.542C228.762 171.542 223.581 171.14 223.581 170.338C223.581 167.817 231.633 156.069 247.738 135.095C263.968 114.12 275.953 99.6218 283.693 91.5989C284.692 90.682 285.191 90.0516 285.191 89.7077C285.191 86.2693 284.504 83.1748 283.131 80.4241C281.883 77.6733 280.759 75.8968 279.76 75.0946C277.513 74.4069 269.398 74.063 255.416 74.063C241.558 74.063 229.011 74.808 217.775 76.298C217.526 76.298 215.591 75.6103 211.97 74.235C208.35 72.745 204.792 72 201.296 72C200.797 72 199.735 74.1777 198.112 78.533C196.614 82.8882 195.179 87.8166 193.805 93.3181C192.557 98.8195 191.933 102.946 191.933 105.696C191.933 106.613 193.493 107.931 196.614 109.65C199.86 111.37 202.357 112.229 204.105 112.229L206.539 108.447C211.533 100.424 214.904 96.1261 216.652 95.553C220.397 93.8338 226.889 92.9742 236.127 92.9742C245.491 92.9742 250.172 93.318 250.172 94.0057C250.172 95.2665 245.553 101.628 236.315 113.089C227.076 124.436 217.213 136.585 206.727 149.536C196.365 162.487 190.185 170.911 188.187 174.808C188.062 175.266 188 176.47 188 178.418C188 180.367 188.687 182.946 190.06 186.155C191.558 189.364 192.931 190.968 194.18 190.968L252.794 189.421C256.914 189.421 259.473 189.479 260.472 189.593L263.281 190.281C269.149 191.427 273.456 192 276.202 192C277.576 192 278.449 191.828 278.824 191.484C279.948 190.567 281.758 185.467 284.255 176.183Z" fill="currentColor"/>
@@ -169,7 +151,7 @@ const popupHeaderHTML = `
       </span>
 
       <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
-        <a href="${window.zadark.utils.getFeedbackURL(window.zadark.browser.name)}" title="Phản hồi" target="_blank">Phản hồi</a>
+        <a href="https://zadark.canny.io" title="Phản hồi" target="_blank">Phản hồi</a>
       </span>
 
       <span class="zadark-popup__header__menu-item">
@@ -225,7 +207,7 @@ const popupMainHTML = `
         </div>
 
         <div class="select-font">
-          <label class="select-font__label">Thay đổi cỡ chữ trong Trò chuyện</label>
+          <label class="select-font__label">Thay đổi cỡ chữ của tin nhắn</label>
 
           <select id="js-select-font-size" class="zadark-select zadark-select--text-right">
             <option value="small">Nhỏ</option>
@@ -244,20 +226,9 @@ const popupMainHTML = `
         <div class="zadark-panel__body">
           <div class="zadark-switch__list">
             <div class="zadark-switch">
-              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
-                Ẩn&nbsp;<strong>Tin nhắn gần nhất</strong>&nbsp;trong Danh sách trò chuyện
-                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn gần nhất trong Danh sách trò chuyện (bên trái) sẽ được ẩn để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột hoặc nhấn vào Cuộc trò chuyện.</p>"></span>
-              </label>
-              <label class="zadark-switch__checkbox">
-                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
-                <span class="zadark-switch__slider"></span>
-              </label>
-            </div>
-
-            <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
-                Ẩn&nbsp;<strong>Tin nhắn</strong>&nbsp;trong Trò chuyện
-                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Tin nhắn trong Trò chuyện sẽ được làm mờ để hạn chế người khác nhìn trộm tin nhắn.</p><p>Để xem nội dung, bạn di chuyển chuột vào Vùng hiển thị tin nhắn. Di chuyển chuột khỏi Vùng hiển thị tin nhắn để ẩn tin nhắn.</p>"></span>
+                Chống nhìn trộm tin nhắn
+                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Danh sách trò chuyện sẽ ẩn đi các tin nhắn gần nhất để ngăn người khác xem trộm. Để xem nội dung tin nhắn, bạn chỉ cần di chuột vào cuộc trò chuyện tương ứng.</p><p>Tin nhắn trong trò chuyện cũng sẽ được làm mờ để bảo vệ quyền riêng tư của bạn. Để xem nội dung tin nhắn, hãy di chuột vào vùng hiển thị tin nhắn. Khi bạn di chuột ra khỏi vùng này, tin nhắn sẽ được ẩn đi.</p>"></span>
               </label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
@@ -266,7 +237,7 @@ const popupMainHTML = `
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin nhắn ...</strong></label>
+              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin (Typing) ...</strong></label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
                 <span class="zadark-switch__slider"></span>
@@ -274,7 +245,7 @@ const popupMainHTML = `
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận</strong> tin nhắn</label>
+              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận (Received)</strong></label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
                 <span class="zadark-switch__slider"></span>
@@ -282,7 +253,7 @@ const popupMainHTML = `
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem</strong> tin nhắn</label>
+              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem (Seen)</strong></label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
                 <span class="zadark-switch__slider"></span>
@@ -339,14 +310,12 @@ const loadPopupState = async () => {
     theme,
     font,
     fontSize,
-    enabledHideLatestMessage,
     enabledHideThreadChatMessage
   } = await window.zadark.browser.getExtensionSettings()
 
   setSelectTheme(theme)
   setSelectFont(font)
   setSelectFontSize(fontSize)
-  setSwitchHideLatestMessage(enabledHideLatestMessage)
   setSwitchHideThreadChatMessage(enabledHideThreadChatMessage)
 
   const isSupportBlocking = window.zadark.utils.getIsSupportBlocking()
@@ -431,7 +400,6 @@ const loadZaDarkPopup = () => {
   $(selectFontElName).on('change', handleSelectFontChange)
   $(selectFontSizeElName).on('change', handleSelectFontSizeChange)
 
-  $(switchHideLatestMessageElName).on('change', handleHideLastestMessageChange)
   $(switchHideThreadChatMessageElName).on('change', handleHideThreadChatMessageChange)
 
   $(switchBlockTypingElName).on('change', handleBlockingRuleChange(switchBlockTypingElName, 'rules_block_typing'))

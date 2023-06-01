@@ -2093,17 +2093,18 @@ body.zadark {
     }
   }
 
-  &.zadark-prv--latest-message {
+  &.zadark-prv--thread-chat-message {
     @include prv.prv-lastest-message();
-  }
 
-  &.zadark-prv--thread-chat-message #chatView {
-    @include prv.prv-thread-chat-message();
+    #chatView {
+      @include prv.prv-thread-chat-message();
+    }
   }
 
   // Conv font size
   .card--text,
-  .msg-info-popup {
+  .msg-info-popup,
+  .img-msg-v2__cap {
     a,
     .text,
     .editor-input {

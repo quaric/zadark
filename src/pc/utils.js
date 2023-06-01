@@ -10,9 +10,9 @@ const printDebug = (...args) => IS_DEV ? print(chalk.gray(...args)) : null
 const printError = (...args) => console.log(chalk.redBright(args.join(' ')))
 const clearScreen = () => console.clear()
 
-const open = (url) => {
-  const start = (IS_MAC ? 'open' : IS_WIN ? 'start' : 'xdg-open')
-  crossSpawn(start, [url])
+const openWebsite = (url) => {
+  const cmd = (IS_MAC ? 'open' : IS_WIN ? 'start' : 'xdg-open')
+  crossSpawn(cmd, [url], { shell: true })
 }
 
 const copyRecursiveSync = (src, dest) => {
@@ -44,10 +44,14 @@ const isRoot = () => {
   return IS_MAC ? process.getuid && process.getuid() === 0 : false
 }
 
-const killProcess = (processId) => {
-  const args = IS_MAC ? [processId.toString()] : ['/F', '/PID', processId.toString()]
+const killProcess = (pid) => {
+  const args = IS_MAC ? [pid.toString()] : ['/F', '/PID', pid.toString()]
   const result = crossSpawn.sync(IS_MAC ? 'kill' : 'taskkill', args)
   return result?.status === 0
+}
+
+const killProcesses = (processIds = []) => {
+  processIds.forEach((pid) => killProcess(pid))
 }
 
 module.exports = {
@@ -56,9 +60,10 @@ module.exports = {
   printError,
   clearScreen,
 
-  open,
+  openWebsite,
   copyRecursiveSync,
   isRoot,
 
-  killProcess
+  killProcess,
+  killProcesses
 }

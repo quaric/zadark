@@ -28,15 +28,18 @@ const getZaloResDirList = (customZaloPath) => {
   return resources.sort()
 }
 
-const getZaloProcessId = async () => {
+const getZaloProcessIds = async () => {
   const processes = await psList()
 
   const processName = IS_MAC
     ? ['zalo', '/applications/za']
     : ['zalo.exe']
 
-  const process = processes.find((process) => processName.includes(process.name.toLowerCase()))
-  return process?.pid ?? null
+  const pids = processes
+    .filter((process) => processName.includes(process.name.toLowerCase()))
+    .map((process) => process.pid)
+
+  return pids
 }
 
 const removeZaDarkCSSAndJS = ({ headElement, bodyElement }) => {
@@ -334,7 +337,7 @@ const uninstallZaDark = async (zaloDir) => {
 
 module.exports = {
   getZaloResDirList,
-  getZaloProcessId,
+  getZaloProcessIds,
 
   installZaDark,
   uninstallZaDark

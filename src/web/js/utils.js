@@ -53,18 +53,11 @@
         theme,
         font,
         fontSize,
-        enabledHideLatestMessage,
         enabledHideThreadChatMessage
       }) => {
         this.setPageTheme(theme)
         this.setFontAttr(font)
         this.setFontSizeAttr(fontSize)
-
-        if (enabledHideLatestMessage) {
-          document.body.classList.add('zadark-prv--latest-message')
-        } else {
-          document.body.classList.remove('zadark-prv--latest-message')
-        }
 
         if (enabledHideThreadChatMessage) {
           document.body.classList.add('zadark-prv--thread-chat-message')
@@ -115,10 +108,6 @@
           return 'https://chrome.google.com/webstore/detail/llfhpkkeljlgnjgkholeppfnepmjppob/reviews'
         }
       }
-    },
-
-    getFeedbackURL: (platformName = 'Chrome') => {
-      return `https://docs.google.com/forms/d/e/1FAIpQLSfy8AXwBO-myPPkbXboq5ubeMa0MCMWJTl0Ke66qCyCAiWG9g/viewform?usp=pp_url&entry.454875478=${platformName}`
     }
   }
 

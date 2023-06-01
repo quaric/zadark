@@ -31,10 +31,10 @@ source .env
 version=$(grep -o '"version": *"[^"]*"' src/pc/package.json | awk -F'"' '{print $4}')
 
 # Set the package file path based on the version number
-pkgFilePath=dist/macos/ZaDark-macOS-${version//./_}.pkg
+pkgFilePath=dist/macos/ZaDark\ ${version}.pkg
 
 echo "[Prepare]"
-echo $pkgFilePath
+echo "$pkgFilePath"
 
 echo ""
 echo "[Notarize]"
