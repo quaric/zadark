@@ -67,7 +67,7 @@
       })
     },
 
-    getIsSupportBlocking: () => {
+    isSupportDeclarativeNetRequest: () => {
       const { parsedResult: { browser } } = bowser.getParser(window.navigator.userAgent)
 
       const browserName = browser.name
@@ -80,6 +80,10 @@
 
       // Safari 15+ supports Declarative Net Request WebExtensions API
       if (browserName === 'Safari' && browserVersion >= 15) {
+        return true
+      }
+
+      if (browserName === 'Firefox' && browserVersion >= 113) {
         return true
       }
 

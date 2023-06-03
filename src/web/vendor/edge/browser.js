@@ -20,6 +20,10 @@
       return chrome.runtime.getManifest()
     },
 
+    getURL: (path) => {
+      return chrome.runtime.getURL(path)
+    },
+
     getExtensionSettings: () => {
       return new Promise((resolve, reject) => {
         chrome.storage.sync.get({
@@ -50,6 +54,10 @@
       return tabs
     },
 
+    sendMessage: (params) => {
+      return chrome.runtime.sendMessage(params)
+    },
+
     sendMessage2Tab: async function (tabId, action, payload) {
       if (!tabId) {
         return
@@ -66,6 +74,10 @@
       tabs.forEach((tab) => {
         this.sendMessage2Tab(tab.id, action, payload)
       })
+    },
+
+    addMessageListener: (callback) => {
+      chrome.runtime.onMessage.addListener(callback)
     }
   }
 })(window)

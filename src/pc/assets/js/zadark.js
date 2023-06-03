@@ -194,19 +194,6 @@ window.matchMedia('(prefers-color-scheme: dark)').addListener((event) => {
   }
 })
 
-const observer = new MutationObserver((mutationsList) => {
-  mutationsList.forEach((mutation) => {
-    mutation.addedNodes.forEach((addedNode) => {
-      if (addedNode.id === 'app-page') {
-        loadZaDarkPopup()
-        observer.disconnect()
-      }
-    })
-  })
-})
-
-observer.observe(document.querySelector('#app'), { subtree: false, childList: true })
-
 const versionElName = '#js-ext-version'
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
@@ -308,8 +295,14 @@ const popupHeaderHTML = `
         <a href="https://zadark.canny.io" title="Phản hồi" target="_blank">Phản hồi</a>
       </span>
 
-      <span class="zadark-popup__header__menu-item">
+      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
         <a href="https://zadark.quaric.com/blog/changelog" id="js-ext-version" title="Có gì mới trong phiên bản này?" target="_blank"></a>
+      </span>
+
+      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-coffee">
+        <a href="https://zadark.quaric.com/donate" title="Donate" target="_blank">
+          <img src="zadark-coffee.png" alt="Donate" />
+        </a>
       </span>
     </div>
   </div>
@@ -576,3 +569,16 @@ const loadZaDarkPopup = () => {
     allowHTML: true
   })
 }
+
+const observer = new MutationObserver((mutationsList) => {
+  mutationsList.forEach((mutation) => {
+    mutation.addedNodes.forEach((addedNode) => {
+      if (addedNode.id === 'app-page') {
+        loadZaDarkPopup()
+        observer.disconnect()
+      }
+    })
+  })
+})
+
+observer.observe(document.querySelector('#app'), { subtree: false, childList: true })

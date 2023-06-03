@@ -33,6 +33,9 @@ const minifyOptions = {
     global_defs: {
       DEBUG: process.env.NODE_ENV === 'development'
     }
+  },
+  output: {
+    beautify: process.env.NODE_ENV === 'development'
   }
 }
 
@@ -94,10 +97,6 @@ const buildWeb = (browser) => {
   const fontsDir = `./build/${browser}/fonts`
   const rulesDir = `./build/${browser}/rules`
 
-  const copyRulesJSON = browser !== 'firefox'
-    ? [src(getWebPath('./rules/**/*')).pipe(dest(rulesDir))]
-    : []
-
   return mergeStream(
     src(getWebPath(`./vendor/${browser}/manifest.json`)).pipe(dest(rootDir)),
     src(getWebPath('./*.html')).pipe(dest(rootDir)),
@@ -113,7 +112,7 @@ const buildWeb = (browser) => {
     src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
     src(getWebPath('./images/**/*')).pipe(dest(imagesDir)),
     src(getCorePath('./fonts/**/*')).pipe(dest(fontsDir)),
-    ...copyRulesJSON
+    src(getWebPath('./rules/**/*')).pipe(dest(rulesDir))
   )
 }
 

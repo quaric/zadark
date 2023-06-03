@@ -16,45 +16,6 @@ const MSG_ACTIONS = {
   UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS'
 }
 
-const observer = new MutationObserver((mutationsList) => {
-  mutationsList.forEach((mutation) => {
-    mutation.addedNodes.forEach((addedNode) => {
-      if (addedNode.id === 'app-page') {
-        loadZaDarkPopup()
-        observer.disconnect()
-      }
-    })
-  })
-})
-
-observer.observe(document.querySelector('#app'), { subtree: false, childList: true })
-
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === MSG_ACTIONS.CHANGE_THEME) {
-    window.zadark.utils.refreshPageSettings()
-    setSelectTheme(message.payload.theme)
-    sendResponse({ received: true })
-  }
-
-  if (message.action === MSG_ACTIONS.CHANGE_FONT) {
-    window.zadark.utils.refreshPageSettings()
-    setSelectFont(message.payload.font)
-    sendResponse({ received: true })
-  }
-
-  if (message.action === MSG_ACTIONS.CHANGE_FONT_SIZE) {
-    window.zadark.utils.refreshPageSettings()
-    setSelectFontSize(message.payload.fontSize)
-    sendResponse({ received: true })
-  }
-
-  if (message.action === MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE) {
-    window.zadark.utils.refreshPageSettings()
-    setSwitchHideThreadChatMessage(message.payload.enabledHideThreadChatMessage)
-    sendResponse({ received: true })
-  }
-})
-
 const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
 const selectFontSizeElName = '#js-select-font-size'
@@ -117,7 +78,7 @@ const handleBlockingRuleChange = (elName, ruleId) => {
       ? { enableRulesetIds: [ruleId] }
       : { disableRulesetIds: [ruleId] }
 
-    chrome.runtime.sendMessage({ action: MSG_ACTIONS.UPDATE_ENABLED_BLOCKING_RULE_IDS, payload })
+    window.zadark.browser.sendMessage({ action: MSG_ACTIONS.UPDATE_ENABLED_BLOCKING_RULE_IDS, payload })
   }
 }
 
@@ -141,7 +102,7 @@ const popupHeaderHTML = `
   <div class="zadark-popup__header">
     <div class="zadark-popup__header__logo">
       <a href="https://zadark.quaric.com" title="ZaDark – Zalo Dark Mode" target="_blank" class="zadark-popup__header__logo-link">
-        <img src="${chrome.runtime.getURL('images/zadark-lockup.svg')}" alt="ZaDark" class="zadark-popup__header__logo-img" />
+        <img src="${window.zadark.browser.getURL('images/zadark-lockup.svg')}" alt="ZaDark" class="zadark-popup__header__logo-img" />
       </a>
     </div>
 
@@ -154,8 +115,14 @@ const popupHeaderHTML = `
         <a href="https://zadark.canny.io" title="Phản hồi" target="_blank">Phản hồi</a>
       </span>
 
-      <span class="zadark-popup__header__menu-item">
+      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
         <a href="https://zadark.quaric.com/blog/changelog" title="Có gì mới trong phiên bản này?" target="_blank">Phiên bản ${window.zadark.browser.getManifest().version}</a>
+      </span>
+
+      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-coffee">
+        <a href="https://zadark.quaric.com/donate" title="Donate" target="_blank">
+          <img src="${window.zadark.browser.getURL('images/zadark-coffee.png')}" alt="Donate" />
+        </a>
       </span>
     </div>
   </div>
@@ -270,8 +237,8 @@ const popupFooterHTML = `
   <div class="zadark-popup__footer">
     <div class="zadark-publisher">
       <span class="zadark-publisher__from">ZaDark from</span>
-      <img src="${chrome.runtime.getURL('images/quaric-lockup-dark.svg')}" class="zadark-publisher__lockup zadark-publisher__lockup--dark">
-      <img src="${chrome.runtime.getURL('images/quaric-lockup-light.svg')}" class="zadark-publisher__lockup zadark-publisher__lockup--light">
+      <img src="${window.zadark.browser.getURL('images/quaric-lockup-dark.svg')}" class="zadark-publisher__lockup zadark-publisher__lockup--dark">
+      <img src="${window.zadark.browser.getURL('images/quaric-lockup-light.svg')}" class="zadark-publisher__lockup zadark-publisher__lockup--light">
     </div>
   </div>
 `
@@ -285,7 +252,7 @@ const zadarkPopupHTML = `
 `
 
 const enableBlocking = async () => {
-  const ruleIds = await chrome.runtime.sendMessage({ action: MSG_ACTIONS.GET_ENABLED_BLOCKING_RULE_IDS })
+  const ruleIds = await window.zadark.browser.sendMessage({ action: MSG_ACTIONS.GET_ENABLED_BLOCKING_RULE_IDS })
 
   if (!Array.isArray(ruleIds)) {
     return
@@ -301,7 +268,7 @@ const disableBlocking = () => {
   const disabledList = [switchBlockTypingElName, switchBlockSeenElName, switchBlockDeliveredElName]
 
   disabledList.forEach((elName) => {
-    $(elName).parent().parent().addClass('zadark-switch__disabled')
+    $(elName).parent().parent().addClass('zadark-switch--disabled')
   })
 }
 
@@ -318,8 +285,7 @@ const loadPopupState = async () => {
   setSelectFontSize(fontSize)
   setSwitchHideThreadChatMessage(enabledHideThreadChatMessage)
 
-  const isSupportBlocking = window.zadark.utils.getIsSupportBlocking()
-  if (isSupportBlocking) {
+  if (window.zadark.utils.isSupportDeclarativeNetRequest()) {
     enableBlocking()
   } else {
     disableBlocking()
@@ -442,3 +408,42 @@ const loadZaDarkPopup = () => {
     allowHTML: true
   })
 }
+
+const observer = new MutationObserver((mutationsList) => {
+  mutationsList.forEach((mutation) => {
+    mutation.addedNodes.forEach((addedNode) => {
+      if (addedNode.id === 'app-page') {
+        loadZaDarkPopup()
+        observer.disconnect()
+      }
+    })
+  })
+})
+
+observer.observe(document.querySelector('#app'), { subtree: false, childList: true })
+
+window.zadark.browser.addMessageListener((message, sender, sendResponse) => {
+  if (message.action === MSG_ACTIONS.CHANGE_THEME) {
+    window.zadark.utils.refreshPageSettings()
+    setSelectTheme(message.payload.theme)
+    sendResponse({ received: true })
+  }
+
+  if (message.action === MSG_ACTIONS.CHANGE_FONT) {
+    window.zadark.utils.refreshPageSettings()
+    setSelectFont(message.payload.font)
+    sendResponse({ received: true })
+  }
+
+  if (message.action === MSG_ACTIONS.CHANGE_FONT_SIZE) {
+    window.zadark.utils.refreshPageSettings()
+    setSelectFontSize(message.payload.fontSize)
+    sendResponse({ received: true })
+  }
+
+  if (message.action === MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE) {
+    window.zadark.utils.refreshPageSettings()
+    setSwitchHideThreadChatMessage(message.payload.enabledHideThreadChatMessage)
+    sendResponse({ received: true })
+  }
+})

@@ -85,12 +85,12 @@ const handleBlockingRuleChange = (elName, ruleId) => {
       ? { enableRulesetIds: [ruleId] }
       : { disableRulesetIds: [ruleId] }
 
-    chrome.runtime.sendMessage({ action: MSG_ACTIONS.UPDATE_ENABLED_BLOCKING_RULE_IDS, payload })
+    window.zadark.browser.sendMessage({ action: MSG_ACTIONS.UPDATE_ENABLED_BLOCKING_RULE_IDS, payload })
   }
 }
 
 const enableBlocking = () => {
-  chrome.runtime.sendMessage({ action: MSG_ACTIONS.GET_ENABLED_BLOCKING_RULE_IDS }).then((ruleIds) => {
+  window.zadark.browser.sendMessage({ action: MSG_ACTIONS.GET_ENABLED_BLOCKING_RULE_IDS }).then((ruleIds) => {
     if (!Array.isArray(ruleIds)) {
       return
     }
@@ -111,14 +111,12 @@ const disableBlocking = () => {
   const disabledList = [switchBlockTypingElName, switchBlockSeenElName, switchBlockDeliveredElName]
 
   disabledList.forEach((elName) => {
-    $(elName).parent().parent().addClass('zadark-switch__disabled')
+    $(elName).parent().parent().addClass('zadark-switch--disabled')
   })
 }
 
 const initBlocking = () => {
-  const isSupportBlocking = window.zadark.utils.getIsSupportBlocking()
-
-  if (isSupportBlocking) {
+  if (window.zadark.utils.isSupportDeclarativeNetRequest()) {
     enableBlocking()
   } else {
     disableBlocking()

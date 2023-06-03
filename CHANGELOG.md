@@ -1,5 +1,20 @@
 # Changelog
 
+## ZaDark 23.6.2
+> PC 8.5 && Web 8.17
+
+### Added
+#### Web specific
+- Mở form "Phản hồi ZaDark (Uninstall)" sau khi gỡ tiện ích
+- **[Firefox specific]** Thêm chức năng cho Firefox 113 trở lên
+  - Ẩn trạng thái Đang soạn tin (Typing) ...
+  - Ẩn trạng thái Đã nhận (Received)
+  - Ẩn trạng thái Đã xem (Seen)
+
+### Changed
+- **[ZaDark Settings]** Thêm "Ly Café" (Donate)
+- **[Source code]** Tối ưu mã nguồn
+
 ## ZaDark 23.6.1
 > PC 8.4 && Web 8.16
 

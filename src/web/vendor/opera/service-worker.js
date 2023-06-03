@@ -18,6 +18,8 @@ const SETTINGS_RULE_KEYS = {
   rules_block_online: 'enabledBlockOnline'
 }
 
+const UNINSTALL_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdLonVbx-IavimDRneKuUhtMox4vDbyu35tB6uzQG8FGJFbUg/viewform?usp=pp_url&entry.454875478=Opera'
+
 const handleLoadRulesets = async () => {
   const settings = await chrome.storage.sync.get({
     enabledBlockTyping: false,
@@ -50,10 +52,12 @@ const handleLoadRulesets = async () => {
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
     chrome.tabs.create({ url: 'https://zadark.quaric.com/web/opera' })
+    chrome.runtime.setUninstallURL(UNINSTALL_URL)
     handleLoadRulesets()
   }
 
   if (details.reason === 'update') {
+    chrome.runtime.setUninstallURL(UNINSTALL_URL)
     handleLoadRulesets()
   }
 })

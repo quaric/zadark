@@ -50,12 +50,16 @@
       return tabs
     },
 
+    sendMessage: (params) => {
+      return browser.runtime.sendMessage(params)
+    },
+
     sendMessage2Tab: async function (tabId, action, payload) {
       if (!tabId) {
         return
       }
 
-      await chrome.tabs.sendMessage(tabId, {
+      await browser.tabs.sendMessage(tabId, {
         action,
         payload
       })
@@ -66,6 +70,10 @@
       tabs.forEach((tab) => {
         this.sendMessage2Tab(tab.id, action, payload)
       })
+    },
+
+    addMessageListener: (callback) => {
+      browser.runtime.onMessage.addListener(callback)
     }
   }
 })(window)
