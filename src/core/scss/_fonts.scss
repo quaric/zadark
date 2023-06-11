@@ -1,3 +1,5 @@
+@import "zadark-icons";
+
 @mixin zadark-fonts($fontsPath) {
   // Open Sans
 
@@ -113,4 +115,7 @@
     font-weight: 600;
     font-style: normal;
   }
+
+  // ZaDark Icons
+  @include zadark-icons($fontsPath);
 }

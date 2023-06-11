@@ -572,13 +572,6 @@ html[data-zadark-theme="light"] {
   }
 }
 
-@mixin transition-all {
-  -webkit-transition: all 200ms ease-in-out;
-  -moz-transition: all 200ms ease-in-out;
-  -o-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
-}
-
 html[data-zadark-theme="dark"] {
   &:root {
     @include zadark-colors();
@@ -713,7 +706,7 @@ html[data-zadark-theme="dark"] {
 
       &,
       &:before {
-        @include transition-all();
+        transition: background-color 100ms ease-in-out;
       }
 
       &:before {
@@ -849,7 +842,7 @@ html[data-zadark-theme="dark"] {
         background-color: var(--WA100);
         color: var(--text-primary);
 
-        @include transition-all();
+        transition: background-color 100ms ease-in-out;
 
         &:hover {
           color: #fff;
@@ -1159,7 +1152,7 @@ html[data-zadark-theme="dark"] {
     }
 
     .conv-item {
-      @include transition-all();
+      transition: background-color 100ms ease-in-out;
 
       .conv-message {
         &.progress-bar {
@@ -1178,10 +1171,6 @@ html[data-zadark-theme="dark"] {
           background-color: var(--layer-background-hover);
         }
       }
-
-      // &-title__name {
-      //   font-weight: 500;
-      // }
     }
 
     .msg-info-popup {
@@ -1871,7 +1860,7 @@ html[data-zadark-theme="dark"] {
 
     .setting-menu__item,
     .zmenu-item {
-      @include transition-all();
+      transition: background-color 100ms ease-in-out;
     }
 
     .setting-menu__item.chat-message.first-selected,
@@ -1917,9 +1906,8 @@ html[data-zadark-theme="dark"] {
     }
 
     .sticker-sorter__body__item {
-      @include transition-all();
-
       background-color: var(--layer-background) !important;
+      transition: background-color 100ms ease-in-out;
 
       &:hover {
         background-color: var(--layer-background-hover) !important;
@@ -2075,6 +2063,10 @@ body.zadark {
         box-shadow: 0 0 0 2px var(--layer-background-leftmenu);
       }
     }
+
+    .zadark-icon--zadark {
+      font-size: 24px;
+    }
   }
 
   .zadark-popper {
@@ -2093,12 +2085,16 @@ body.zadark {
     }
   }
 
-  &.zadark-prv--thread-chat-message {
+  &.zadark-prv--latest-message {
     @include prv.prv-lastest-message();
+  }
 
-    #chatView {
-      @include prv.prv-thread-chat-message();
-    }
+  &.zadark-prv--thread-chat-message #chatView {
+    @include prv.prv-thread-chat-message();
+  }
+
+  &.zadark-prv--conv-avatar-name {
+    @include prv.prv-conv-avatar-name();
   }
 
   // Conv font size

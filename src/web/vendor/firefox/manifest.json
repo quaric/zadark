@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "ZaDark – Zalo Dark Mode",
-  "version": "8.16",
+  "version": "8.17",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
   "author": "Quaric",
@@ -42,8 +42,28 @@
   "permissions": [
     "storage",
     "tabs",
+    "declarativeNetRequest",
     "*://chat.zalo.me/*"
   ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "rules_block_typing",
+        "enabled": false,
+        "path": "rules/rules_block_typing.json"
+      },
+      {
+        "id": "rules_block_seen",
+        "enabled": false,
+        "path": "rules/rules_block_seen.json"
+      },
+      {
+        "id": "rules_block_delivered",
+        "enabled": false,
+        "path": "rules/rules_block_delivered.json"
+      }
+    ]
+  },
   "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {

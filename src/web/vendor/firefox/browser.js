@@ -20,13 +20,25 @@
       return browser.runtime.getManifest()
     },
 
+    getURL: (path) => {
+      return browser.runtime.getURL(path)
+    },
+
     getExtensionSettings: () => {
       return new Promise((resolve, reject) => {
         browser.storage.sync.get({
           theme: 'dark',
           font: 'open-sans',
           fontSize: 'medium',
+
+          enabledHideLatestMessage: false,
+          enabledHideConvAvatarName: false,
           enabledHideThreadChatMessage: false,
+
+          enabledBlockTyping: false,
+          enabledBlockDelivered: false,
+          enabledBlockSeen: false,
+
           knownVersion: ''
         }, (items) => {
           resolve(items)
@@ -46,6 +58,10 @@
       return tabs
     },
 
+    sendMessage: (params) => {
+      return browser.runtime.sendMessage(params)
+    },
+
     sendMessage2Tab: async function (tabId, action, payload) {
       if (!tabId) {
         return
@@ -62,6 +78,10 @@
       tabs.forEach((tab) => {
         this.sendMessage2Tab(tab.id, action, payload)
       })
+    },
+
+    addMessageListener: (callback) => {
+      browser.runtime.onMessage.addListener(callback)
     }
   }
 })(window)

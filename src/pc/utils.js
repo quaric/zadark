@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const crossSpawn = require('cross-spawn')
 
-const { IS_MAC, IS_WIN, IS_DEV } = require('./constants')
+const { IS_MAC, IS_DEV } = require('./constants')
 
 const print = (...args) => console.log(args.join(' '))
 const printDebug = (...args) => IS_DEV ? print(chalk.gray(...args)) : null
@@ -11,8 +11,10 @@ const printError = (...args) => console.log(chalk.redBright(args.join(' ')))
 const clearScreen = () => console.clear()
 
 const openWebsite = (url) => {
-  const cmd = (IS_MAC ? 'open' : IS_WIN ? 'start' : 'xdg-open')
-  crossSpawn(cmd, [url], { shell: true })
+  const cmd = IS_MAC ? 'open' : 'start'
+  const _url = `"${url}"`
+  const args = IS_MAC ? [_url] : ['""', _url]
+  crossSpawn(cmd, args, { shell: true })
 }
 
 const copyRecursiveSync = (src, dest) => {

@@ -26,6 +26,8 @@ const COMMON_ERRORS_URL = IS_MAC
 
 const CONTACT_URL = 'https://zadark.quaric.com/contact'
 
+const FEEDBACK_UNINSTALL_URL = `https://docs.google.com/forms/d/e/1FAIpQLSdLonVbx-IavimDRneKuUhtMox4vDbyu35tB6uzQG8FGJFbUg/viewform?usp=pp_url&entry.454875478=${IS_MAC ? 'macOS' : 'Windows'}`
+
 module.exports = {
   PLATFORM,
   IS_MAC,
@@ -39,5 +41,6 @@ module.exports = {
 
   DOWNLOAD_ZADARK_URL,
   COMMON_ERRORS_URL,
-  CONTACT_URL
+  CONTACT_URL,
+  FEEDBACK_UNINSTALL_URL
 }

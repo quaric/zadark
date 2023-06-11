@@ -32,19 +32,20 @@ window.zadark.utils = {
     }
   },
 
-  setHideThreadChatMessage: function (isEnabled) {
+  toggleBodyClassName: (className, isEnabled) => {
     if (isEnabled) {
-      document.body.classList.add('zadark-prv--thread-chat-message')
+      document.body.classList.add(className)
     } else {
-      document.body.classList.remove('zadark-prv--thread-chat-message')
+      document.body.classList.remove(className)
     }
   },
 
   handleContentChange: async function () {
     if (DEBUG) console.log('contentChanged')
-    const { theme, hideThreadChatMessage } = await ipcRenderer.invoke('@ZaDark:GET_SETTINGS')
+    const { theme, hideLatestMessage, hideConvAvatarName } = await ipcRenderer.invoke('@ZaDark:GET_SETTINGS')
     this.setPageTheme(theme)
-    this.setHideThreadChatMessage(hideThreadChatMessage)
+    this.toggleBodyClassName('zadark-prv--latest-message', hideLatestMessage)
+    this.toggleBodyClassName('zadark-prv--conv-avatar-name', hideConvAvatarName)
   },
 
   initMutationObserver: function () {

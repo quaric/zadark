@@ -42,6 +42,14 @@
       }
     },
 
+    toggleBodyClassName: (className, isEnabled) => {
+      if (isEnabled) {
+        document.body.classList.add(className)
+      } else {
+        document.body.classList.remove(className)
+      }
+    },
+
     refreshPageTheme: function () {
       window.zadark.browser.getExtensionSettings().then(({ theme }) => {
         this.setPageTheme(theme)
@@ -53,21 +61,21 @@
         theme,
         font,
         fontSize,
+        enabledHideLatestMessage,
+        enabledHideConvAvatarName,
         enabledHideThreadChatMessage
       }) => {
         this.setPageTheme(theme)
         this.setFontAttr(font)
         this.setFontSizeAttr(fontSize)
 
-        if (enabledHideThreadChatMessage) {
-          document.body.classList.add('zadark-prv--thread-chat-message')
-        } else {
-          document.body.classList.remove('zadark-prv--thread-chat-message')
-        }
+        this.toggleBodyClassName('zadark-prv--latest-message', enabledHideLatestMessage)
+        this.toggleBodyClassName('zadark-prv--conv-avatar-name', enabledHideConvAvatarName)
+        this.toggleBodyClassName('zadark-prv--thread-chat-message', enabledHideThreadChatMessage)
       })
     },
 
-    getIsSupportBlocking: () => {
+    isSupportDeclarativeNetRequest: () => {
       const { parsedResult: { browser } } = bowser.getParser(window.navigator.userAgent)
 
       const browserName = browser.name
@@ -80,6 +88,11 @@
 
       // Safari 15+ supports Declarative Net Request WebExtensions API
       if (browserName === 'Safari' && browserVersion >= 15) {
+        return true
+      }
+
+      // Firefox 113+ supports Declarative Net Request WebExtensions API
+      if (browserName === 'Firefox' && browserVersion >= 113) {
         return true
       }
 
