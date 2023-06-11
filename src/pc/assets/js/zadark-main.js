@@ -11,13 +11,13 @@ app.whenReady().then(() => {
   const _blockSettings = {
     block_typing: false,
     block_delivered: false,
-    block_seen: false,
-    block_online: false
+    block_seen: false
   }
 
   const _settings = {
     theme: 'dark',
-    hideThreadChatMessage: false
+    hideLatestMessage: false,
+    hideConvAvatarName: false
   }
 
   const filter = {
@@ -34,9 +34,6 @@ app.whenReady().then(() => {
       // Seen
       '*://*.zalo.me/api/message/seenv2?*',
       '*://*.zalo.me/api/group/seenv2?*'
-
-      // Online
-      // '*://*.zalo.me/api/social/profile/ping?*'
     ]
   }
 
@@ -58,12 +55,6 @@ app.whenReady().then(() => {
       if (DEBUG) console.log('ZaDarkPC: block_seen', details.url)
       callback({ cancel: true })
     }
-
-    // Online
-    // if (_blockSettings.block_online && details.url.includes('api/social/profile/ping')) {
-    //   if (DEBUG) console.log('ZaDarkPC: block_online', details.url)
-    //   callback({ cancel: true })
-    // }
 
     callback({ cancel: false })
   })

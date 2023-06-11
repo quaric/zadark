@@ -30,11 +30,15 @@
           theme: 'dark',
           font: 'open-sans',
           fontSize: 'medium',
+
+          enabledHideLatestMessage: false,
+          enabledHideConvAvatarName: false,
           enabledHideThreadChatMessage: false,
+
           enabledBlockTyping: false,
           enabledBlockDelivered: false,
           enabledBlockSeen: false,
-          enabledBlockOnline: false,
+
           knownVersion: ''
         }, (items) => {
           resolve(items)

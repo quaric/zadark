@@ -1,6 +1,8 @@
 :root {
   --text-primary: #001a33;
   --text-secondary: #767676;
+
+  --N20: #eaedf0;
 }
 
 html[data-zadark-theme="dark"] {
@@ -14,6 +16,7 @@ html[data-zadark-theme="dark"] {
     --B15: #0f2345;
     --B55: #0068ff;
 
+    --N20: #353637;
     --N25: #353637;
     --N40: #696b6b;
   }
@@ -59,14 +62,13 @@ html[data-zadark-theme="dark"] {
 
 .zadark {
   #zbg,
-  #zbody {
-    -webkit-transition: all 300ms ease-in-out;
-    -moz-transition: all 300ms ease-in-out;
-    -o-transition: all 300ms ease-in-out;
-    transition: all 300ms ease-in-out;
+  #zbody,
+  #title,
+  #zavatar {
+    transition: all 100ms ease-in-out;
   }
 
-  &.zadark-prv--thread-chat-message {
+  &.zadark-prv--latest-message {
     #zbody {
       position: relative;
       color: transparent !important;
@@ -83,6 +85,50 @@ html[data-zadark-theme="dark"] {
         align-items: center;
 
         color: var(--text-secondary);
+        font-size: 16px;
+        letter-spacing: 1px;
+        opacity: 1;
+      }
+    }
+  }
+
+  &.zadark-prv--conv-avatar-name {
+    #zavatar {
+      position: relative;
+      background: var(--N20) !important;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+
+      &::after {
+        content: "\e901";
+        color: var(--text-secondary);
+        font-family: "ZaDarkIcons";
+      }
+    }
+
+    #ztitle {
+      position: relative;
+      color: transparent !important;
+
+      * {
+        opacity: 0;
+      }
+
+      &::after {
+        content: "••••••";
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        color: var(--text-primary);
         font-size: 16px;
         letter-spacing: 1px;
         opacity: 1;

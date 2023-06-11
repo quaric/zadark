@@ -14,7 +14,8 @@ const {
   DEFAULT_ZALO_PATH,
   EXAMPLE_CUSTOM_ZALO_PATH,
   DOWNLOAD_ZADARK_URL,
-  CONTACT_URL
+  CONTACT_URL,
+  FEEDBACK_UNINSTALL_URL
 } = require('./constants')
 
 const promptFeatureIndex = async () => {
@@ -114,6 +115,8 @@ const handleUninstall = async (zaloResDirList) => {
 
   print('')
   print(chalk.greenBright('>> Da go cai dat ZaDark. Vui long mo lai Zalo PC.'))
+
+  openWebsite(FEEDBACK_UNINSTALL_URL)
 }
 
 const handleOpenDocs = () => {

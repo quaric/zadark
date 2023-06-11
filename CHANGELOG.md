@@ -4,8 +4,11 @@
 > PC 8.5 && Web 8.17
 
 ### Added
+
+- **[Core]** Thêm chức năng "Ẩn Ảnh đại diện & Tên cuộc trò chuyện"
+- **[Core]** Mở Google Forms "Phản hồi ZaDark (Uninstall)" sau khi gỡ ZaDark
+
 #### Web specific
-- Mở form "Phản hồi ZaDark (Uninstall)" sau khi gỡ tiện ích
 - **[Firefox specific]** Thêm chức năng cho Firefox 113 trở lên
   - Ẩn trạng thái Đang soạn tin (Typing) ...
   - Ẩn trạng thái Đã nhận (Received)
@@ -14,6 +17,11 @@
 ### Changed
 - **[ZaDark Settings]** Thêm "Ly Café" (Donate)
 - **[Source code]** Tối ưu mã nguồn
+- **[UX]** Tách tính năng "Chống nhìn trộm tin nhắn" thành (quay về phiên bản trước)
+  - Ẩn Tin nhắn gần nhất trong danh sách trò chuyện
+  - Ẩn Tin nhắn trong cuộc trò chuyện
+- **[UX]** Giảm hiệu ứng (transition duration) chuyển màu khi rê chuột (hover) vào các nội dung
+- **[UX]** Bỏ tất cả hiệu ứng mờ (filter blur)
 
 ## ZaDark 23.6.1
 > PC 8.4 && Web 8.16

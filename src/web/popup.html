@@ -73,7 +73,7 @@
           </label>
         </div>
 
-        <div class="select-font">
+        <div class="select-font select-font--border-default">
           <label class="select-font__label">Thay đổi phông chữ</label>
 
           <select id="js-select-font" class="zadark-select zadark-select--text-right">
@@ -106,12 +106,34 @@
         <div class="zadark-panel__body">
           <div class="zadark-switch__list">
             <div class="zadark-switch">
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
+                Ẩn <strong>Tin nhắn gần nhất</strong> trong danh sách trò chuyện
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
+              </label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
+
+            <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
-                Chống nhìn trộm tin nhắn
-                <span class="zadark-switch__label--helper-icon" data-tippy-content="<p>Danh sách trò chuyện sẽ ẩn đi các tin nhắn gần nhất để ngăn người khác xem trộm. Để xem nội dung tin nhắn, bạn chỉ cần di chuột vào cuộc trò chuyện tương ứng.</p><p>Tin nhắn trong trò chuyện cũng sẽ được làm mờ để bảo vệ quyền riêng tư của bạn. Để xem nội dung tin nhắn, hãy di chuột vào vùng hiển thị tin nhắn. Khi bạn di chuột ra khỏi vùng này, tin nhắn sẽ được ẩn đi.</p>"></span>
+                Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Vùng hiển thị tin nhắn</strong>". Khi bạn di chuột ra khỏi vùng này, tin nhắn sẽ được ẩn đi.</p>'></i>
               </label>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
+
+            <div class="zadark-switch zadark-switch--border-default">
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-avatar-name">
+                Ẩn <strong>Ảnh đại diện & Tên</strong> cuộc trò chuyện
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Ảnh đại diện & Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
+              </label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-avatar-name">
                 <span class="zadark-switch__slider"></span>
               </label>
             </div>

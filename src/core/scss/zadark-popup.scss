@@ -339,6 +339,10 @@ html[data-zadark-theme="dark"] #zadark-popup {
     padding: 8px 0;
     border-bottom: 1px solid var(--zadark-border-light);
 
+    &--border-default {
+      border-color: var(--zadark-border-base);
+    }
+
     &__list {
       margin-top: -8px;
       margin-bottom: -8px;
@@ -349,13 +353,12 @@ html[data-zadark-theme="dark"] #zadark-popup {
       cursor: pointer;
       user-select: none;
 
-      &--helper {
-        &-icon {
-          position: relative;
-          bottom: -2px;
-          display: inline-flex;
-          color: var(--zadark-neutral-500);
-        }
+      .zadark-icon {
+        position: relative;
+        bottom: -1px;
+        margin-left: 2px;
+        color: var(--zadark-neutral-500);
+        font-size: 0.875rem;
       }
     }
 
@@ -502,6 +505,10 @@ html[data-zadark-theme="dark"] #zadark-popup {
     padding-top: 8px;
 
     border-top: 1px solid var(--zadark-border-light);
+
+    &--border-default {
+      border-color: var(--zadark-border-base);
+    }
 
     .select-font__label {
       flex: 1;

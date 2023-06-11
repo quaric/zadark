@@ -1,0 +1,30 @@
+@mixin zadark-icons($fontsPath) {
+  @font-face {
+    font-family: "ZaDarkIcons";
+    src: url("#{$fontsPath}/ZaDarkIcons.ttf?f3j12x") format("truetype"),
+      url("#{$fontsPath}/ZaDarkIcons.woff?f3j12x") format("woff"),
+      url("#{$fontsPath}/ZaDarkIcons.svg?f3j12x#icomoon") format("svg");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .zadark-icon {
+    font: normal normal normal 14px/1 ZaDarkIcons;
+
+    &--zadark::before {
+      content: "\e903";
+    }
+
+    &--user:before {
+      content: "\e901";
+    }
+
+    &--group:before {
+      content: "\e900";
+    }
+
+    &--question:before {
+      content: "\e902";
+    }
+  }
+}

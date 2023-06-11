@@ -1,10 +1,3 @@
-@mixin transition-opacity-400 {
-  -webkit-transition: opacity 400ms ease-in-out;
-  -moz-transition: opacity 400ms ease-in-out;
-  -o-transition: opacity 400ms ease-in-out;
-  transition: opacity 400ms ease-in-out;
-}
-
 @mixin prv-lastest-message {
   .conv-item .conv-item-body__main .conv-message {
     position: relative;
@@ -26,12 +19,12 @@
       letter-spacing: 1px;
       opacity: 1;
 
-      @include transition-opacity-400();
+      transition: opacity 100ms ease-in-out;
     }
 
     * {
       opacity: 0;
-      @include transition-opacity-400();
+      transition: opacity 100ms ease-in-out;
     }
   }
 
@@ -46,75 +39,37 @@
   }
 }
 
-@mixin transition-opacity-200 {
-  -webkit-transition: opacity 200ms ease-in-out;
-  -moz-transition: opacity 200ms ease-in-out;
-  -o-transition: opacity 200ms ease-in-out;
-  transition: opacity 200ms ease-in-out;
-}
-
-@mixin transition-opacity-200-filter-200 {
-  -webkit-transition: opacity 200ms ease-in-out, filter 200ms ease-in-out;
-  -moz-transition: opacity 200ms ease-in-out, filter 200ms ease-in-out;
-  -o-transition: opacity 200ms ease-in-out, filter 200ms ease-in-out;
-  transition: opacity 200ms ease-in-out, filter 200ms ease-in-out;
-}
-
 @mixin prv-thread-chat-message {
   .chat-message:not(.multi-select-mode) {
     .card:not(.card--oa):not(.card--sticker):not(.card--group-photo),
     .call-msg {
       > * {
         opacity: 0.1;
-        filter: blur(1px);
-        @include transition-opacity-200-filter-200();
+        transition: opacity 100ms ease-in-out;
       }
-
-      // &:hover {
-      //   > * {
-      //     opacity: 1;
-      //     filter: none;
-      //   }
-      // }
     }
 
     .img-msg-v2 {
       .img-msg-v2__th > * {
         opacity: 0;
-        @include transition-opacity-200();
+        transition: opacity 100ms ease-in-out;
       }
 
       .img-msg-v2__ft > *:not(.img-msg-v2__rct):not(.img-msg-v2__st) {
         opacity: 0.1;
-        filter: blur(1px);
-        @include transition-opacity-200-filter-200();
+        transition: opacity 100ms ease-in-out;
       }
-
-      // &:hover {
-      //   .img-msg-v2__th,
-      //   .img-msg-v2__ft {
-      //     > * {
-      //       opacity: 1;
-      //       filter: none;
-      //     }
-      //   }
-      // }
     }
 
     .card--sticker .card--group-sticker__row__item {
       opacity: 0.5;
       filter: var(--prv-sticker-filter);
-      @include transition-opacity-200-filter-200();
-
-      // &:hover {
-      //   opacity: 1;
-      //   filter: none;
-      // }
+      transition: opacity 100ms ease-in-out, filter 100ms ease-in-out;
     }
 
     .card--group-photo .card--group-photo__row__item .img-g-v2 {
       opacity: 0;
-      @include transition-opacity-200();
+      transition: opacity 100ms ease-in-out;
     }
   }
 
@@ -125,16 +80,14 @@
   .reminder-info-v2 {
     > * {
       opacity: 0.1;
-      filter: blur(1px);
-      @include transition-opacity-200-filter-200();
+      transition: opacity 100ms ease-in-out;
     }
   }
 
   // Pin message
   .chat-group-topic__item .info-container > .content-container {
     opacity: 0.1;
-    filter: blur(1px);
-    @include transition-opacity-200-filter-200();
+    transition: opacity 100ms ease-in-out;
   }
 
   #messageView:hover {
@@ -143,7 +96,6 @@
       .call-msg {
         > * {
           opacity: 1;
-          filter: none;
         }
       }
 
@@ -152,7 +104,6 @@
         .img-msg-v2__ft {
           > * {
             opacity: 1;
-            filter: none;
           }
         }
       }
@@ -174,14 +125,195 @@
     .reminder-info-v2 {
       > * {
         opacity: 1;
-        filter: none;
       }
     }
 
     // Pin message
     .chat-group-topic__item .info-container > .content-container {
       opacity: 1;
-      filter: none;
+    }
+  }
+}
+
+@mixin prv-conv-avatar-name {
+  // Conv Name
+
+  #conversationListId {
+    .conv-item .conv-item-title__name {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: "••••••";
+        top: 0;
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding-top: 1px;
+
+        font-size: 16px;
+        letter-spacing: 1px;
+
+        transition: opacity 100ms ease-in-out;
+      }
+
+      .truncate {
+        opacity: 0;
+        transition: opacity 100ms ease-in-out;
+      }
+    }
+  }
+
+  #conversationListId:hover {
+    .conv-item-title__name {
+      &::after {
+        opacity: 0;
+      }
+
+      .truncate {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Thread Chat Header
+  .threadChat__title .header-title {
+    position: relative;
+    min-width: 64px;
+    color: var(--bg-default);
+    text-align: center;
+    transition: color 100ms ease-in-out;
+
+    &::after {
+      content: "••••••";
+      position: absolute;
+
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding-top: 1px;
+
+      background-color: var(--bg-default);
+      color: var(--text-primary);
+      font-size: 16px;
+      letter-spacing: 1px;
+
+      transition: opacity 100ms ease-in-out;
+    }
+  }
+
+  #header:hover {
+    .threadChat__title .header-title {
+      color: var(--text-primary);
+
+      &::after {
+        opacity: 0;
+      }
+    }
+  }
+
+  // Conv Info
+  .chat-info-general__section .header-info__name .truncate {
+    position: relative;
+    min-width: 64px;
+    color: var(--bg-default);
+    text-align: center;
+    transition: color 100ms ease-in-out;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      content: "••••••";
+
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 1px;
+
+      color: var(--text-primary);
+      background-color: var(--bg-default);
+      font-size: 16px;
+      letter-spacing: 1px;
+
+      transition: opacity 100ms ease-in-out;
+    }
+  }
+
+  #chatInfoGeneral:hover {
+    .chat-info-general__section .header-info__name .truncate {
+      color: var(--text-primary);
+
+      &::after {
+        opacity: 0;
+      }
+    }
+  }
+
+  // Conv Avatar
+
+  .conv-item,
+  .chat-item:not(.me),
+  .threadChat__avatar,
+  div[keys="avt-list-conv-media_box"] {
+    .zavatar {
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "\e901";
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50rem;
+
+        background-color: var(--N20);
+        color: var(--N70);
+        font-family: "ZaDarkIcons";
+
+        transition: opacity 100ms ease-in-out;
+      }
+
+      &.zavatar-multi::after {
+        content: "\e900";
+      }
+
+      &.zavatar-m::after {
+        font-size: 1rem;
+      }
+      &.zavatar-l::after {
+        font-size: 1.25rem;
+      }
+      &.zavatar-xl::after {
+        font-size: 1.5rem;
+      }
+
+      .a-child {
+        opacity: 0;
+        transition: opacity 100ms ease-in-out;
+      }
+    }
+  }
+
+  #conversationListId:hover,
+  #header:hover,
+  #messageView:hover,
+  #chatInfoGeneral:hover {
+    .zavatar {
+      &::after {
+        opacity: 0;
+      }
+
+      .a-child {
+        opacity: 1;
+      }
     }
   }
 }

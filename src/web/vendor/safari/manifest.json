@@ -62,11 +62,6 @@
         "id": "rules_block_delivered",
         "enabled": false,
         "path": "rules/rules_block_delivered.json"
-      },
-      {
-        "id": "rules_block_online",
-        "enabled": false,
-        "path": "rules/rules_block_online.json"
       }
     ]
   },
