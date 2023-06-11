@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 23.6.3
+> PC 8.6 && Web 8.18
+
+### Changed
+- Bổ sung cho chức năng: Ẩn Ảnh đại diện & Tên cuộc trò chuyện
+  - Hỗ trợ danh sách tìm kiếm gần đây
+
 ## ZaDark 23.6.2
 > PC 8.5 && Web 8.17
 
