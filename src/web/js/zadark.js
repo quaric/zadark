@@ -5,6 +5,7 @@
 */
 
 window.zadark.browser.initClassNames()
+window.zadark.utils.initOSName()
 window.zadark.utils.refreshPageSettings()
 
 const MSG_ACTIONS = {
@@ -39,24 +40,12 @@ const setSelectTheme = (theme) => {
   })
 }
 
-const setSelectFont = (font) => {
-  $(selectFontElName).val(font)
+const setSelect = (elName, value) => {
+  $(elName).val(value)
 }
 
-const setSelectFontSize = (fontSize) => {
-  $(selectFontSizeElName).val(fontSize)
-}
-
-const setSwitchHideLatestMessage = (enabled) => {
-  $(switchHideLatestMessageElName).prop('checked', enabled)
-}
-
-const setSwitchHideConvAvatarName = (enabled) => {
-  $(switchHideConvAvatarNameElName).prop('checked', enabled)
-}
-
-const setSwitchHideThreadChatMessage = (enabled) => {
-  $(switchHideThreadChatMessageElName).prop('checked', enabled)
+const setSwitch = (elName, enabled) => {
+  $(elName).prop('checked', enabled)
 }
 
 async function handleSelectThemeChange () {
@@ -190,8 +179,12 @@ const popupMainHTML = `
           </select>
         </div>
 
-        <div class="select-font">
+        <div class="select-font select-font--hotkeys">
           <label class="select-font__label">Thay đổi cỡ chữ của tin nhắn</label>
+
+          <span class="select-font__hotkeys">
+            <span class="zadark-hotkeys" data-keys-win="Alt+- / Alt+=" data-keys-mac="⌥- / ⌥="></span>
+          </span>
 
           <select id="js-select-font-size" class="zadark-select zadark-select--text-right">
             <option value="small">Nhỏ</option>
@@ -211,9 +204,12 @@ const popupMainHTML = `
           <div class="zadark-switch__list">
             <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
-                Ẩn <strong>Tin nhắn gần nhất</strong> trong danh sách trò chuyện
+                Ẩn <strong>Tin nhắn gần nhất</strong>
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
               </label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+1" data-keys-mac="⌘1"></span>
+              </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
                 <span class="zadark-switch__slider"></span>
@@ -225,6 +221,9 @@ const popupMainHTML = `
                 Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Vùng hiển thị tin nhắn</strong>". Khi bạn di chuột ra khỏi vùng này, tin nhắn sẽ được ẩn đi.</p>'></i>
               </label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+2" data-keys-mac="⌘2"></span>
+              </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
                 <span class="zadark-switch__slider"></span>
@@ -236,6 +235,9 @@ const popupMainHTML = `
                 Ẩn <strong>Ảnh đại diện & Tên</strong> cuộc trò chuyện
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Ảnh đại diện & Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
               </label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+3" data-keys-mac="⌘3"></span>
+              </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-avatar-name">
                 <span class="zadark-switch__slider"></span>
@@ -244,6 +246,9 @@ const popupMainHTML = `
 
             <div class="zadark-switch">
               <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin (Typing) ...</strong></label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+4" data-keys-mac="⌘4"></span>
+              </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
                 <span class="zadark-switch__slider"></span>
@@ -252,6 +257,9 @@ const popupMainHTML = `
 
             <div class="zadark-switch">
               <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận (Received)</strong></label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+5" data-keys-mac="⌘5"></span>
+              </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
                 <span class="zadark-switch__slider"></span>
@@ -260,6 +268,9 @@ const popupMainHTML = `
 
             <div class="zadark-switch">
               <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem (Seen)</strong></label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+6" data-keys-mac="⌘6"></span>
+              </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
                 <span class="zadark-switch__slider"></span>
@@ -321,11 +332,12 @@ const loadPopupState = async () => {
   } = await window.zadark.browser.getExtensionSettings()
 
   setSelectTheme(theme)
-  setSelectFont(font)
-  setSelectFontSize(fontSize)
-  setSwitchHideLatestMessage(enabledHideLatestMessage)
-  setSwitchHideConvAvatarName(enabledHideConvAvatarName)
-  setSwitchHideThreadChatMessage(enabledHideThreadChatMessage)
+  setSelect(selectFontElName, font)
+  setSelect(selectFontSizeElName, fontSize)
+
+  setSwitch(switchHideLatestMessageElName, enabledHideLatestMessage)
+  setSwitch(switchHideConvAvatarNameElName, enabledHideConvAvatarName)
+  setSwitch(switchHideThreadChatMessageElName, enabledHideThreadChatMessage)
 
   if (window.zadark.utils.isSupportDeclarativeNetRequest()) {
     enableBlocking()
@@ -392,6 +404,146 @@ const hideZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
   }
 }
 
+const handleNextFontSize = async (count) => {
+  const {
+    fontSize
+  } = await window.zadark.browser.getExtensionSettings()
+
+  const fontSizes = ['small', 'medium', 'big', 'very-big']
+
+  const nextIndex = count > 0
+    ? Math.min(fontSizes.indexOf(fontSize) + 1, fontSizes.length - 1)
+    : Math.max(fontSizes.indexOf(fontSize) - 1, 0)
+
+  const nextFontSize = fontSizes[nextIndex]
+
+  setSelect(selectFontSizeElName, nextFontSize)
+  handleSelectFontSizeChange.bind($(selectFontSizeElName))()
+}
+
+const loadHotkeys = () => {
+  hotkeys.filter = function (event) {
+    const target = event.target || event.srcElement
+    const tagName = target.tagName
+    let flag = true // ignore: <input> and <textarea> when readOnly state is false, <select>
+
+    if ((tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName === 'SELECT') && !target.readOnly) {
+      flag = false
+    }
+
+    return flag
+  }
+
+  const keys = [
+    // Mac
+    'command+1',
+    'command+2',
+    'command+3',
+    'command+4',
+    'command+5',
+    'command+6',
+    'option+z',
+    'option+=',
+    'option+-',
+
+    // Windows
+    'ctrl+1',
+    'ctrl+2',
+    'ctrl+3',
+    'ctrl+4',
+    'ctrl+5',
+    'ctrl+6',
+    'alt+z',
+    'alt+=',
+    'alt+-'
+  ].join(',')
+
+  hotkeys(keys, async function (event, handler) {
+    event.preventDefault()
+
+    const {
+      enabledHideLatestMessage,
+      enabledHideThreadChatMessage,
+      enabledHideConvAvatarName,
+
+      enabledBlockTyping,
+      enabledBlockSeen,
+      enabledBlockDelivered
+    } = await window.zadark.browser.getExtensionSettings()
+
+    switch (handler.key) {
+      // Hide latest message
+      case 'command+1':
+      case 'ctrl+1': {
+        setSwitch(switchHideLatestMessageElName, !enabledHideLatestMessage)
+        handleHideLastestMessageChange.bind($(switchHideLatestMessageElName))()
+        return
+      }
+
+      // Hide thread chat message
+      case 'command+2':
+      case 'ctrl+2': {
+        setSwitch(switchHideThreadChatMessageElName, !enabledHideThreadChatMessage)
+        handleHideThreadChatMessageChange.bind($(switchHideThreadChatMessageElName))()
+        return
+      }
+
+      // Hide conversation avatar & name
+      case 'command+3':
+      case 'ctrl+3': {
+        setSwitch(switchHideConvAvatarNameElName, !enabledHideConvAvatarName)
+        handleHideConvAvatarNameChange.bind($(switchHideConvAvatarNameElName))()
+        return
+      }
+
+      // Block typing
+      case 'command+4':
+      case 'ctrl+4': {
+        setSwitch(switchBlockTypingElName, !enabledBlockTyping)
+        handleBlockingRuleChange(switchBlockTypingElName, 'rules_block_typing').bind($(switchBlockTypingElName))()
+        return
+      }
+
+      // Block delivered
+      case 'command+5':
+      case 'ctrl+5': {
+        setSwitch(switchBlockDeliveredElName, !enabledBlockDelivered)
+        handleBlockingRuleChange(switchBlockDeliveredElName, 'rules_block_delivered').bind($(switchBlockDeliveredElName))()
+        return
+      }
+
+      // Block seen
+      case 'command+6':
+      case 'ctrl+6': {
+        setSwitch(switchBlockSeenElName, !enabledBlockSeen)
+        handleBlockingRuleChange(switchBlockSeenElName, 'rules_block_seen').bind($(switchBlockSeenElName))()
+        return
+      }
+
+      // Open ZaDark Settings
+      case 'option+z':
+      case 'alt+z': {
+        const buttonEl = document.getElementById('div_Main_TabZaDark')
+        buttonEl.click()
+        return
+      }
+
+      // Increase font size
+      case 'option+=':
+      case 'alt+=': {
+        handleNextFontSize(1)
+        return
+      }
+
+      // Decrease font size
+      case 'option+-':
+      case 'alt+-': {
+        handleNextFontSize(-1)
+      }
+    }
+  })
+}
+
 const loadZaDarkPopup = () => {
   const [zaloTabsBottomEl] = document.querySelectorAll('.nav__tabs__bottom')
 
@@ -443,6 +595,7 @@ const loadZaDarkPopup = () => {
 
   loadPopupState()
   loadKnownVersionState(buttonEl)
+  loadHotkeys()
 
   tippy('[data-tippy-content]', {
     theme: 'zadark',
@@ -472,31 +625,31 @@ window.zadark.browser.addMessageListener((message, sender, sendResponse) => {
 
   if (message.action === MSG_ACTIONS.CHANGE_FONT) {
     window.zadark.utils.refreshPageSettings()
-    setSelectFont(message.payload.font)
+    setSelect(selectFontElName, message.payload.font)
     sendResponse({ received: true })
   }
 
   if (message.action === MSG_ACTIONS.CHANGE_FONT_SIZE) {
     window.zadark.utils.refreshPageSettings()
-    setSelectFontSize(message.payload.fontSize)
+    setSelect(selectFontSizeElName, message.payload.fontSize)
     sendResponse({ received: true })
   }
 
   if (message.action === MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE) {
     window.zadark.utils.refreshPageSettings()
-    setSwitchHideLatestMessage(message.payload.enabledHideLatestMessage)
+    setSwitch(switchHideLatestMessageElName, message.payload.enabledHideLatestMessage)
     sendResponse({ received: true })
   }
 
   if (message.action === MSG_ACTIONS.CHANGE_HIDE_CONV_AVATAR_NAME) {
     window.zadark.utils.refreshPageSettings()
-    setSwitchHideConvAvatarName(message.payload.enabledHideConvAvatarName)
+    setSwitch(switchHideConvAvatarNameElName, message.payload.enabledHideConvAvatarName)
     sendResponse({ received: true })
   }
 
   if (message.action === MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE) {
     window.zadark.utils.refreshPageSettings()
-    setSwitchHideThreadChatMessage(message.payload.enabledHideThreadChatMessage)
+    setSwitch(switchHideThreadChatMessageElName, message.payload.enabledHideThreadChatMessage)
     sendResponse({ received: true })
   }
 })

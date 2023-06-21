@@ -76,7 +76,8 @@
       "tippy",
       "MutationObserver",
       "localStorage",
-      "DEBUG"
+      "DEBUG",
+      "hotkeys"
     ],
     "ignore": [
       "./src/web/libs/**/*",

@@ -22,6 +22,10 @@
       document.documentElement.setAttribute('data-zadark-font-size', fontSize)
     },
 
+    setOSAttr: (os) => {
+      document.documentElement.setAttribute('data-zadark-os', os)
+    },
+
     setPageTheme: function (theme) {
       switch (theme) {
         case 'light':
@@ -76,7 +80,8 @@
     },
 
     isSupportDeclarativeNetRequest: () => {
-      const { parsedResult: { browser } } = bowser.getParser(window.navigator.userAgent)
+      const { parsedResult: { browser, os } } = bowser.getParser(window.navigator.userAgent)
+      console.log(os)
 
       const browserName = browser.name
       const browserVersion = parseFloat(browser.version)
@@ -121,6 +126,11 @@
           return 'https://chrome.google.com/webstore/detail/llfhpkkeljlgnjgkholeppfnepmjppob/reviews'
         }
       }
+    },
+
+    initOSName: function () {
+      const { parsedResult: { os } } = bowser.getParser(window.navigator.userAgent)
+      this.setOSAttr(os.name)
     }
   }
 

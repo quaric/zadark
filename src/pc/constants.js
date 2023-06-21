@@ -2,6 +2,7 @@ const os = require('os')
 const packageJSON = require('./package.json')
 
 const PLATFORM = os.platform()
+const OS_NAME = PLATFORM === 'darwin' ? 'macOS' : 'Windows'
 const IS_MAC = PLATFORM === 'darwin'
 const IS_WIN = PLATFORM === 'win32'
 const IS_DEV = process.env === 'development'
@@ -30,6 +31,7 @@ const FEEDBACK_UNINSTALL_URL = `https://docs.google.com/forms/d/e/1FAIpQLSdLonVb
 
 module.exports = {
   PLATFORM,
+  OS_NAME,
   IS_MAC,
   IS_WIN,
   IS_DEV,

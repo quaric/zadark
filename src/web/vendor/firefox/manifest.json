@@ -28,6 +28,7 @@
         "libs/bowser-es5.min.js",
         "libs/popper.min.js",
         "libs/tippy.min.js",
+        "libs/hotkeys-js.min.js",
         "js/browser.min.js",
         "js/utils.min.js",
         "js/zadark.min.js"

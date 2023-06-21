@@ -3,9 +3,26 @@
 ## ZaDark 23.6.3
 > PC 8.6 && Web 8.18
 
+### Added
+
+Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
+
+| Tên chức năng                            | Windows           | macOS         |
+| ---------------------------------------- | ----------------- | ------------- |
+| Tuỳ chỉnh cỡ chữ của tin nhắn            | `Alt+-` / `Alt+=` | `⌥+-` / `⌥+=` |
+| Ẩn Tin nhắn gần nhất                     | `Ctrl+1`          | `⌘1`          |
+| Ẩn Tin nhắn trong cuộc trò chuyện        | `Ctrl+2`          | `⌘2`          |
+| Ẩn Ảnh đại diện & Tên cuộc trò chuyện    | `Ctrl+3`          | `⌘3`          |
+| Ẩn trạng thái Đang soạn tin (Typing) ... | `Ctrl+4`          | `⌘4`          |
+| Ẩn trạng thái Đã nhận (Received)         | `Ctrl+5`          | `⌘5`          |
+| Ẩn trạng thái Đã xem (Seen)              | `Ctrl+6`          | `⌘6`          |
+| Mở cài đặt ZaDark                        | `Alt+Z`           | `⌥Z`          |
+
 ### Changed
-- Bổ sung cho chức năng: Ẩn Ảnh đại diện & Tên cuộc trò chuyện
+- Cập nhật chức năng: Ẩn Ảnh đại diện & Tên cuộc trò chuyện
   - Hỗ trợ danh sách tìm kiếm gần đây
+  - Hỗ trợ danh sách kết quả tìm kiếm
+  - Ẩn tên trong ô nhập tin nhắn (placeholder)
 
 ## ZaDark 23.6.2
 > PC 8.5 && Web 8.17

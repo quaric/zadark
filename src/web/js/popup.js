@@ -40,7 +40,7 @@ tippy('[data-tippy-content]', {
   allowHTML: true
 })
 
-// Init popup theme
+window.zadark.utils.initOSName()
 window.zadark.utils.refreshPageTheme()
 
 window.zadark.browser.getExtensionSettings().then(({ theme, font, fontSize, enabledHideLatestMessage, enabledHideConvAvatarName, enabledHideThreadChatMessage }) => {
