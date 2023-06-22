@@ -362,9 +362,9 @@
   }
 
   const zadarkButtonHTML = `
-    <div id="div_Main_TabZaDark" class="clickable leftbar-tab flx flx-col flx-al-c flx-center rel" data-id="div_Main_TabZaDark" data-translate-title="STR_MENU_ZADARK" title="ZaDark Settings">
+    <div id="div_Main_TabZaDark" class="clickable leftbar-tab flx flx-col flx-al-c flx-center rel" data-id="div_Main_TabZaDark">
       <i class="zadark-icon zadark-icon--zadark"></i>
-      <div class="lb-tab-title truncate" data-translate-inner="STR_MENU_ZADARK">ZaDark</div>
+      <div class="lb-tab-title truncate">ZaDark</div>
     </div>
   `
 

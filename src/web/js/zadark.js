@@ -136,208 +136,208 @@
   }
 
   const zadarkButtonHTML = `
-  <div id="div_Main_TabZaDark" class="clickable leftbar-tab flx flx-col flx-al-c flx-center rel" data-id="div_Main_TabZaDark" data-translate-title="STR_MENU_ZADARK">
-    <i class="zadark-icon zadark-icon--zadark"></i>
-    <div class="lb-tab-title truncate" data-translate-inner="STR_MENU_ZADARK">ZaDark</div>
-  </div>
-`
+    <div id="div_Main_TabZaDark" class="clickable leftbar-tab flx flx-col flx-al-c flx-center rel" data-id="div_Main_TabZaDark">
+      <i class="zadark-icon zadark-icon--zadark"></i>
+      <div class="lb-tab-title truncate">ZaDark</div>
+    </div>
+  `
 
   const popupHeaderHTML = `
-  <div class="zadark-popup__header">
-    <div class="zadark-popup__header__logo">
-      <a href="https://zadark.quaric.com" title="ZaDark – Zalo Dark Mode" target="_blank" class="zadark-popup__header__logo-link">
-        <img src="${ZaDarkBrowser.getURL('images/zadark-lockup.svg')}" alt="ZaDark" class="zadark-popup__header__logo-img" />
-      </a>
-    </div>
-
-    <div class="zadark-popup__header__menu-list">
-      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
-        <a href="${ZaDarkUtils.getRatingURL(ZaDarkBrowser.name)}" title="Bình chọn" target="_blank">Bình chọn</a>
-      </span>
-
-      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
-        <a href="https://zadark.canny.io" title="Phản hồi" target="_blank">Phản hồi</a>
-      </span>
-
-      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
-        <a href="https://zadark.quaric.com/blog/changelog" title="Có gì mới trong phiên bản này?" target="_blank">Phiên bản ${ZaDarkBrowser.getManifest().version}</a>
-      </span>
-
-      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-coffee">
-        <a href="https://zadark.quaric.com/donate" title="Donate" target="_blank">
-          <img src="${ZaDarkBrowser.getURL('images/zadark-coffee.png')}" alt="Donate" />
+    <div class="zadark-popup__header">
+      <div class="zadark-popup__header__logo">
+        <a href="https://zadark.quaric.com" title="ZaDark – Zalo Dark Mode" target="_blank" class="zadark-popup__header__logo-link">
+          <img src="${ZaDarkBrowser.getURL('images/zadark-lockup.svg')}" alt="ZaDark" class="zadark-popup__header__logo-img" />
         </a>
-      </span>
-    </div>
-  </div>
-`
+      </div>
 
-  const popupMainHTML = `
-  <div class="zadark-popup__main">
-    <label class="zadark-form__label">Giao diện</label>
+      <div class="zadark-popup__header__menu-list">
+        <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+          <a href="${ZaDarkUtils.getRatingURL(ZaDarkBrowser.name)}" title="Bình chọn" target="_blank">Bình chọn</a>
+        </span>
 
-    <div class="zadark-panel">
-      <div class="zadark-panel__body">
-        <div id="js-radio-input-theme" class="zadark-radio__list">
-          <label class="zadark-radio">
-            <input type="radio" name="theme" value="light" class="zadark-radio__input">
-            <span class="zadark-radio__checkmark"></span>
-            <span class="zadark-radio__label">
-              <span>Sáng</span>
-            </span>
-          </label>
+        <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+          <a href="https://zadark.canny.io" title="Phản hồi" target="_blank">Phản hồi</a>
+        </span>
 
-          <label class="zadark-radio">
-            <input type="radio" name="theme" value="dark" class="zadark-radio__input">
-            <span class="zadark-radio__checkmark"></span>
-            <span class="zadark-radio__label">
-              <span>Tối</span>
-            </span>
-          </label>
+        <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+          <a href="https://zadark.quaric.com/blog/changelog" title="Có gì mới trong phiên bản này?" target="_blank">Phiên bản ${ZaDarkBrowser.getManifest().version}</a>
+        </span>
 
-          <label class="zadark-radio">
-            <input type="radio" name="theme" value="auto" class="zadark-radio__input">
-            <span class="zadark-radio__checkmark"></span>
-            <span class="zadark-radio__label">
-              <span>Theo hệ thống</span>
-            </span>
-          </label>
-        </div>
-
-        <div class="select-font select-font--border-default">
-          <label class="select-font__label">Thay đổi phông chữ</label>
-
-          <select id="js-select-font" class="zadark-select zadark-select--text-right">
-            <option value="default">Mặc định</option>
-            <option value="open-sans">Open Sans</option>
-            <option value="inter">Inter</option>
-            <option value="roboto">Roboto</option>
-            <option value="lato">Lato</option>
-            <option value="source-sans-pro">Source Sans Pro</option>
-          </select>
-        </div>
-
-        <div class="select-font select-font--hotkeys">
-          <label class="select-font__label">Thay đổi cỡ chữ của tin nhắn</label>
-
-          <span class="select-font__hotkeys">
-            <span class="zadark-hotkeys" data-keys-win="Alt+= / Alt+−" data-keys-mac="⌥= / ⌥−"></span>
-          </span>
-
-          <select id="js-select-font-size" class="zadark-select zadark-select--text-right">
-            <option value="small">Nhỏ</option>
-            <option value="medium">Trung bình</option>
-            <option value="big">Lớn</option>
-            <option value="very-big">Rất lớn</option>
-          </select>
-        </div>
+        <span class="zadark-popup__header__menu-item zadark-popup__header__menu-coffee">
+          <a href="https://zadark.quaric.com/donate" title="Donate" target="_blank">
+            <img src="${ZaDarkBrowser.getURL('images/zadark-coffee.png')}" alt="Donate" />
+          </a>
+        </span>
       </div>
     </div>
+  `
 
-    <div id="js-panel-privacy">
-      <label class="zadark-form__label" id="privacy">Riêng tư</label>
+  const popupMainHTML = `
+    <div class="zadark-popup__main">
+      <label class="zadark-form__label">Giao diện</label>
 
       <div class="zadark-panel">
         <div class="zadark-panel__body">
-          <div class="zadark-switch__list">
-            <div class="zadark-switch">
-              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
-                Ẩn <strong>Tin nhắn gần nhất</strong>
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
-              </label>
-              <span class="zadark-switch__hotkeys">
-                <span class="zadark-hotkeys" data-keys-win="Ctrl+1" data-keys-mac="⌘1"></span>
+          <div id="js-radio-input-theme" class="zadark-radio__list">
+            <label class="zadark-radio">
+              <input type="radio" name="theme" value="light" class="zadark-radio__input">
+              <span class="zadark-radio__checkmark"></span>
+              <span class="zadark-radio__label">
+                <span>Sáng</span>
               </span>
-              <label class="zadark-switch__checkbox">
-                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
-                <span class="zadark-switch__slider"></span>
-              </label>
-            </div>
+            </label>
 
-            <div class="zadark-switch">
-              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
-                Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Vùng hiển thị tin nhắn</strong>". Khi bạn di chuột ra khỏi vùng này, tin nhắn sẽ được ẩn đi.</p>'></i>
-              </label>
-              <span class="zadark-switch__hotkeys">
-                <span class="zadark-hotkeys" data-keys-win="Ctrl+2" data-keys-mac="⌘2"></span>
+            <label class="zadark-radio">
+              <input type="radio" name="theme" value="dark" class="zadark-radio__input">
+              <span class="zadark-radio__checkmark"></span>
+              <span class="zadark-radio__label">
+                <span>Tối</span>
               </span>
-              <label class="zadark-switch__checkbox">
-                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
-                <span class="zadark-switch__slider"></span>
-              </label>
-            </div>
+            </label>
 
-            <div class="zadark-switch zadark-switch--border-default">
-              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-avatar-name">
-                Ẩn <strong>Ảnh đại diện & Tên</strong> cuộc trò chuyện
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Ảnh đại diện & Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
-              </label>
-              <span class="zadark-switch__hotkeys">
-                <span class="zadark-hotkeys" data-keys-win="Ctrl+3" data-keys-mac="⌘3"></span>
+            <label class="zadark-radio">
+              <input type="radio" name="theme" value="auto" class="zadark-radio__input">
+              <span class="zadark-radio__checkmark"></span>
+              <span class="zadark-radio__label">
+                <span>Theo hệ thống</span>
               </span>
-              <label class="zadark-switch__checkbox">
-                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-avatar-name">
-                <span class="zadark-switch__slider"></span>
-              </label>
-            </div>
+            </label>
+          </div>
 
-            <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin (Typing) ...</strong></label>
-              <span class="zadark-switch__hotkeys">
-                <span class="zadark-hotkeys" data-keys-win="Ctrl+4" data-keys-mac="⌘4"></span>
-              </span>
-              <label class="zadark-switch__checkbox">
-                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
-                <span class="zadark-switch__slider"></span>
-              </label>
-            </div>
+          <div class="select-font select-font--border-default">
+            <label class="select-font__label">Thay đổi phông chữ</label>
 
-            <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận (Received)</strong></label>
-              <span class="zadark-switch__hotkeys">
-                <span class="zadark-hotkeys" data-keys-win="Ctrl+5" data-keys-mac="⌘5"></span>
-              </span>
-              <label class="zadark-switch__checkbox">
-                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
-                <span class="zadark-switch__slider"></span>
-              </label>
-            </div>
+            <select id="js-select-font" class="zadark-select zadark-select--text-right">
+              <option value="default">Mặc định</option>
+              <option value="open-sans">Open Sans</option>
+              <option value="inter">Inter</option>
+              <option value="roboto">Roboto</option>
+              <option value="lato">Lato</option>
+              <option value="source-sans-pro">Source Sans Pro</option>
+            </select>
+          </div>
 
-            <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem (Seen)</strong></label>
-              <span class="zadark-switch__hotkeys">
-                <span class="zadark-hotkeys" data-keys-win="Ctrl+6" data-keys-mac="⌘6"></span>
-              </span>
-              <label class="zadark-switch__checkbox">
-                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
-                <span class="zadark-switch__slider"></span>
-              </label>
+          <div class="select-font select-font--hotkeys">
+            <label class="select-font__label">Thay đổi cỡ chữ của tin nhắn</label>
+
+            <span class="select-font__hotkeys">
+              <span class="zadark-hotkeys" data-keys-win="Alt+= / Alt+−" data-keys-mac="⌥= / ⌥−"></span>
+            </span>
+
+            <select id="js-select-font-size" class="zadark-select zadark-select--text-right">
+              <option value="small">Nhỏ</option>
+              <option value="medium">Trung bình</option>
+              <option value="big">Lớn</option>
+              <option value="very-big">Rất lớn</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="js-panel-privacy">
+        <label class="zadark-form__label" id="privacy">Riêng tư</label>
+
+        <div class="zadark-panel">
+          <div class="zadark-panel__body">
+            <div class="zadark-switch__list">
+              <div class="zadark-switch">
+                <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
+                  Ẩn <strong>Tin nhắn gần nhất</strong>
+                  <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
+                </label>
+                <span class="zadark-switch__hotkeys">
+                  <span class="zadark-hotkeys" data-keys-win="Ctrl+1" data-keys-mac="⌘1"></span>
+                </span>
+                <label class="zadark-switch__checkbox">
+                  <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
+                  <span class="zadark-switch__slider"></span>
+                </label>
+              </div>
+
+              <div class="zadark-switch">
+                <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
+                  Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
+                  <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Vùng hiển thị tin nhắn</strong>". Khi bạn di chuột ra khỏi vùng này, tin nhắn sẽ được ẩn đi.</p>'></i>
+                </label>
+                <span class="zadark-switch__hotkeys">
+                  <span class="zadark-hotkeys" data-keys-win="Ctrl+2" data-keys-mac="⌘2"></span>
+                </span>
+                <label class="zadark-switch__checkbox">
+                  <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
+                  <span class="zadark-switch__slider"></span>
+                </label>
+              </div>
+
+              <div class="zadark-switch zadark-switch--border-default">
+                <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-avatar-name">
+                  Ẩn <strong>Ảnh đại diện & Tên</strong> cuộc trò chuyện
+                  <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Ảnh đại diện & Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
+                </label>
+                <span class="zadark-switch__hotkeys">
+                  <span class="zadark-hotkeys" data-keys-win="Ctrl+3" data-keys-mac="⌘3"></span>
+                </span>
+                <label class="zadark-switch__checkbox">
+                  <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-avatar-name">
+                  <span class="zadark-switch__slider"></span>
+                </label>
+              </div>
+
+              <div class="zadark-switch">
+                <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin (Typing) ...</strong></label>
+                <span class="zadark-switch__hotkeys">
+                  <span class="zadark-hotkeys" data-keys-win="Ctrl+4" data-keys-mac="⌘4"></span>
+                </span>
+                <label class="zadark-switch__checkbox">
+                  <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
+                  <span class="zadark-switch__slider"></span>
+                </label>
+              </div>
+
+              <div class="zadark-switch">
+                <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận (Received)</strong></label>
+                <span class="zadark-switch__hotkeys">
+                  <span class="zadark-hotkeys" data-keys-win="Ctrl+5" data-keys-mac="⌘5"></span>
+                </span>
+                <label class="zadark-switch__checkbox">
+                  <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
+                  <span class="zadark-switch__slider"></span>
+                </label>
+              </div>
+
+              <div class="zadark-switch">
+                <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem (Seen)</strong></label>
+                <span class="zadark-switch__hotkeys">
+                  <span class="zadark-hotkeys" data-keys-win="Ctrl+6" data-keys-mac="⌘6"></span>
+                </span>
+                <label class="zadark-switch__checkbox">
+                  <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
+                  <span class="zadark-switch__slider"></span>
+                </label>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-`
+  `
 
   const popupFooterHTML = `
-  <div class="zadark-popup__footer">
-    <div class="zadark-publisher">
-      <span class="zadark-publisher__from">ZaDark from</span>
-      <img src="${ZaDarkBrowser.getURL('images/quaric-lockup-dark.svg')}" class="zadark-publisher__lockup zadark-publisher__lockup--dark">
-      <img src="${ZaDarkBrowser.getURL('images/quaric-lockup-light.svg')}" class="zadark-publisher__lockup zadark-publisher__lockup--light">
+    <div class="zadark-popup__footer">
+      <div class="zadark-publisher">
+        <span class="zadark-publisher__from">ZaDark from</span>
+        <img src="${ZaDarkBrowser.getURL('images/quaric-lockup-dark.svg')}" class="zadark-publisher__lockup zadark-publisher__lockup--dark">
+        <img src="${ZaDarkBrowser.getURL('images/quaric-lockup-light.svg')}" class="zadark-publisher__lockup zadark-publisher__lockup--light">
+      </div>
     </div>
-  </div>
-`
+  `
 
   const zadarkPopupHTML = `
-  <div id="zadark-popup" class="zadark-popper">
-    ${popupHeaderHTML}
-    ${popupMainHTML}
-    ${popupFooterHTML}
-  </div>
-`
+    <div id="zadark-popup" class="zadark-popper">
+      ${popupHeaderHTML}
+      ${popupMainHTML}
+      ${popupFooterHTML}
+    </div>
+  `
 
   const enableBlocking = async () => {
     const ruleIds = await ZaDarkBrowser.sendMessage({ action: MSG_ACTIONS.GET_ENABLED_BLOCKING_RULE_IDS })
