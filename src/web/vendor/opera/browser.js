@@ -6,10 +6,8 @@
   ! This file must use VanillaJS
 */
 
-;(function (window) {
-  window.zadark = window.zadark || {}
-
-  window.zadark.browser = {
+(function (global) {
+  const ZaDarkBrowser = {
     name: 'Opera',
 
     initClassNames: () => {
@@ -84,4 +82,6 @@
       chrome.runtime.onMessage.addListener(callback)
     }
   }
-})(window)
+
+  global.ZaDarkBrowser = ZaDarkBrowser
+})(this)

@@ -1,11 +1,25 @@
 :root {
+  --zadark-primary-base: #0e70ff;
+  --zadark-primary-dark: #035bdc;
+
+  --zadark-border-base: var(--zadark-grey-300);
+  --zadark-border-light: var(--zadark-grey-600);
+  --zadark-border-radius-base: 8px;
+
+  --zadark-font-extrabold: 800;
+  --zadark-font-bold: 700;
+  --zadark-font-semibold: 600;
+  --zadark-font-medium: 500;
+  --zadark-font-regular: 400;
+
+  // Tippy
   --zadark-tippy: #2c2e2f;
   --zadark-tippy-text: #fff;
   --zadark-tippy-border: #3d3f40;
   --zadark-tippy-shadow: rgba(0, 0, 0, 0.5);
 }
 
-html[data-zadark-theme="light"] #zadark-popup {
+html[data-zadark-theme="light"] {
   --zadark-white-700: hsla(0, 0%, 100%, 0.1);
   --zadark-white-600: hsla(0, 0%, 100%, 0.25);
   --zadark-white-500: hsla(0, 0%, 100%, 0.5);
@@ -39,12 +53,12 @@ html[data-zadark-theme="light"] #zadark-popup {
 
   --zadark-switch-slider: #fff;
 
-  .zadark-publisher__lockup--dark {
+  #zadark-popup .zadark-publisher__lockup--dark {
     display: inline-block;
   }
 }
 
-html[data-zadark-theme="dark"] #zadark-popup {
+html[data-zadark-theme="dark"] {
   --zadark-white-700: hsla(0, 0%, 27%, 0.1);
   --zadark-white-600: hsla(0, 0%, 27%, 0.25);
   --zadark-white-500: hsla(0, 0%, 27%, 0.5);
@@ -78,44 +92,33 @@ html[data-zadark-theme="dark"] #zadark-popup {
 
   --zadark-switch-slider: var(--zadark-neutral-300);
 
-  .zadark-publisher__lockup--light {
+  #zadark-popup .zadark-publisher__lockup--light {
     display: inline-block;
   }
 }
 
-html[data-zadark-os="macOS"] {
-  --zadark-hotkeys-option-sym: "⌥";
-  --zadark-hotkeys-option-text: "option";
-
-  --zadark-hotkeys-shift-sym: "⇧";
-  --zadark-hotkeys-shift-text: "shift";
-
-  --zadark-hotkeys-size: 16px;
-}
-
 html[data-zadark-os="Windows"] {
-  --zadark-hotkeys-option-sym: "Alt";
-  --zadark-hotkeys-option-text: "Alt";
-
-  --zadark-hotkeys-shift-sym: "Shift";
-  --zadark-hotkeys-shift-text: "Shift";
-
-  --zadark-hotkeys-size: 12px;
+  .zadark-hotkeys {
+    &::before {
+      content: attr(data-keys-win);
+      font-size: 14px;
+    }
+  }
 }
 
-#zadark-popup {
-  --zadark-primary-base: #0e70ff;
-  --zadark-primary-dark: #035bdc;
+html[data-zadark-os="macOS"] {
+  .zadark-hotkeys {
+    &::before {
+      content: attr(data-keys-mac);
+      font-size: 14px;
+    }
+  }
+}
 
-  --zadark-border-base: var(--zadark-grey-300);
-  --zadark-border-light: var(--zadark-grey-600);
-  --zadark-border-radius-base: 8px;
-
-  --zadark-font-extrabold: 800;
-  --zadark-font-bold: 700;
-  --zadark-font-semibold: 600;
-  --zadark-font-medium: 500;
-  --zadark-font-regular: 400;
+.zadark-hotkeys {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  color: var(--zadark-neutral-500);
 }
 
 #zadark-popup {
@@ -131,35 +134,16 @@ html[data-zadark-os="Windows"] {
 
   a {
     color: var(--zadark-primary-base);
-  }
-
-  a,
-  a:hover {
     text-decoration: none;
   }
 
   a:hover {
     color: var(--zadark-primary-dark);
-  }
-
-  h1,
-  h2,
-  h3,
-  h4 {
-    margin: 0;
+    text-decoration: none;
   }
 
   p {
     margin: 0;
-  }
-
-  ul {
-    list-style-position: inside;
-    padding-left: 16px;
-
-    li {
-      line-height: 1.6;
-    }
   }
 
   code {
@@ -377,7 +361,7 @@ html[data-zadark-os="Windows"] {
         position: relative;
         bottom: -1px;
         margin-left: 2px;
-        color: var(--zadark-neutral-500);
+        color: var(--zadark-neutral-600);
         font-size: 0.875rem;
       }
     }
@@ -551,32 +535,9 @@ html[data-zadark-os="Windows"] {
     }
   }
 
-  .zadark-hotkeys {
-    font-weight: 400;
-    color: var(--zadark-neutral-500);
-  }
-
   #js-panel-privacy {
     display: block;
     margin-bottom: 12px;
-  }
-}
-
-html[data-zadark-os="Windows"] #zadark-popup {
-  .zadark-hotkeys {
-    &::before {
-      content: attr(data-keys-win);
-      font-size: 14px;
-    }
-  }
-}
-
-html[data-zadark-os="macOS"] #zadark-popup {
-  .zadark-hotkeys {
-    &::before {
-      content: attr(data-keys-mac);
-      font-size: 14px;
-    }
   }
 }
 
@@ -607,6 +568,7 @@ html[data-zadark-os="macOS"] #zadark-popup {
 
   .tippy-content {
     padding: 12px 16px !important;
+    font-family: "Open Sans", sans-serif;
     font-size: 0.8125rem;
     line-height: 1.5;
 
@@ -618,4 +580,64 @@ html[data-zadark-os="macOS"] #zadark-popup {
       }
     }
   }
+}
+
+/*!
+ * Toastify js 1.12.0
+ * https://github.com/apvarun/toastify-js
+ * @license MIT licensed
+ *
+ * Copyright (C) 2018 Varun A P
+ */
+
+.toastify {
+  position: fixed;
+  z-index: 2147483647;
+
+  display: inline-block;
+  width: fit-content;
+  width: -moz-fit-content;
+  max-width: calc(50% - 20px);
+  padding: 12px 16px;
+  border: 1px solid var(--zadark-tippy-border);
+  border-radius: 4px;
+
+  background-color: var(--zadark-tippy);
+  color: var(--zadark-tippy-text);
+  filter: drop-shadow(var(--zadark-tippy-shadow) 0 3px 6px);
+  opacity: 0;
+
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.toastify.on {
+  opacity: 1;
+}
+
+.toastify-right {
+  right: 15px;
+}
+
+.toastify-left {
+  left: 15px;
+}
+
+.toastify-top {
+  top: -150px;
+}
+
+.toastify-bottom {
+  bottom: -150px;
+}
+
+.toastify-center {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: fit-content;
+  width: -moz-fit-content;
+  max-width: 100%;
 }

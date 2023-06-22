@@ -1,7 +1,7 @@
 # Changelog
 
 ## ZaDark 23.6.3
-> PC 8.6 && Web 8.18
+> PC 9.0 && Web 9.0
 
 ### Added
 
@@ -23,6 +23,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
   - Hỗ trợ danh sách tìm kiếm gần đây
   - Hỗ trợ danh sách kết quả tìm kiếm
   - Ẩn tên trong ô nhập tin nhắn (placeholder)
+- Tối ưu mã nguồn
 
 ## ZaDark 23.6.2
 > PC 8.5 && Web 8.17

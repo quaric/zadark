@@ -66,22 +66,23 @@
   "standard": {
     "parser": "babel-eslint",
     "global": [
+      "ZaDarkBrowser",
+      "ZaDarkUtils",
       "$",
-      "jQuery",
       "chrome",
       "browser",
-      "zadark",
       "bowser",
       "Popper",
       "tippy",
-      "MutationObserver",
+      "hotkeys",
+      "Toastify",
       "localStorage",
-      "DEBUG",
-      "hotkeys"
+      "MutationObserver",
+      "DEBUG"
     ],
     "ignore": [
       "./src/web/libs/**/*",
-      "./pc/pc/**/*"
+      "./src/pc/assets/libs/**/*"
     ]
   },
   "engines": {

@@ -264,6 +264,9 @@
   .chat-item:not(.me),
   .threadChat__avatar,
   div[keys="avt-list-conv-media_box"] {
+    --zadark-avatar-color: var(--N30);
+    --zadark-avatar-bg: var(--N10);
+
     .zavatar {
       &::after {
         position: absolute;
@@ -278,8 +281,8 @@
         justify-content: center;
         border-radius: 50rem;
 
-        color: var(--N30);
-        background: var(--N10);
+        color: var(--zadark-avatar-color);
+        background: var(--zadark-avatar-bg);
         font-family: "ZaDarkIcons";
 
         transition: opacity 100ms ease-in-out;
@@ -306,6 +309,11 @@
     }
   }
 
+  .conv-item.selected {
+    --zadark-avatar-color: var(--N40);
+    --zadark-avatar-bg: var(--N20);
+  }
+
   #conversationListId:hover,
   #header:hover,
   #messageView:hover,
@@ -326,12 +334,12 @@
   // Rich Input
 
   // vi
-  .rich-input.empty[placeholder*="tin nhắn"]:before {
+  .rich-input.empty[placeholder*="tin nhắn"]::before {
     content: "Nhập @, tin nhắn tới ••••••";
   }
 
   // en
-  .rich-input.empty[placeholder*="Message"]:before {
+  .rich-input.empty[placeholder*="Message"]::before {
     content: "@, Message ••••••";
   }
 }

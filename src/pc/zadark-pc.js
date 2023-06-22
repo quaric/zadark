@@ -103,12 +103,6 @@ const writeIndexFile = (zaloDir) => {
     },
     // Required scripts
     {
-      selector: 'script[src="zadark-jquery.min.js"]',
-      where: 'beforeend',
-      html: '<script src="zadark-jquery.min.js"></script>',
-      htmlElement: bodyElement
-    },
-    {
       selector: 'script[src="zadark-popper.min.js"]',
       where: 'beforeend',
       html: '<script src="zadark-popper.min.js"></script>',
@@ -118,12 +112,6 @@ const writeIndexFile = (zaloDir) => {
       selector: 'script[src="zadark-tippy.min.js"]',
       where: 'beforeend',
       html: '<script src="zadark-tippy.min.js"></script>',
-      htmlElement: bodyElement
-    },
-    {
-      selector: 'script[src="zadark-hotkeys-js.min.js"]',
-      where: 'beforeend',
-      html: '<script src="zadark-hotkeys-js.min.js"></script>',
       htmlElement: bodyElement
     },
     {
