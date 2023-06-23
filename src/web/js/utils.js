@@ -133,6 +133,7 @@
     showToast: function (message) {
       const toast = Toastify({
         text: message,
+        duration: 1408,
         gravity: 'bottom',
         position: 'center',
         offset: {
