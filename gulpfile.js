@@ -357,4 +357,4 @@ const watchAll = () => {
 
 exports.build = buildAll
 exports.dist = distAll
-exports.watch = watchAll
+exports.dev = watchAll
