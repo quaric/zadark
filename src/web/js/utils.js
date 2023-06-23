@@ -6,10 +6,8 @@
   ! This file must use VanillaJS
 */
 
-;(function (window) {
-  window.zadark = window.zadark || {}
-
-  window.zadark.utils = {
+(function (global) {
+  const ZaDarkUtils = {
     setThemeAttr: (themeMode) => {
       document.documentElement.setAttribute('data-zadark-theme', themeMode)
     },
@@ -20,6 +18,10 @@
 
     setFontSizeAttr: (fontSize) => {
       document.documentElement.setAttribute('data-zadark-font-size', fontSize)
+    },
+
+    setOSAttr: (os) => {
+      document.documentElement.setAttribute('data-zadark-os', os)
     },
 
     setPageTheme: function (theme) {
@@ -51,13 +53,13 @@
     },
 
     refreshPageTheme: function () {
-      window.zadark.browser.getExtensionSettings().then(({ theme }) => {
+      ZaDarkBrowser.getExtensionSettings().then(({ theme }) => {
         this.setPageTheme(theme)
       })
     },
 
     refreshPageSettings: function () {
-      window.zadark.browser.getExtensionSettings().then(({
+      ZaDarkBrowser.getExtensionSettings().then(({
         theme,
         font,
         fontSize,
@@ -121,14 +123,38 @@
           return 'https://chrome.google.com/webstore/detail/llfhpkkeljlgnjgkholeppfnepmjppob/reviews'
         }
       }
+    },
+
+    initOSName: function () {
+      const { parsedResult: { os } } = bowser.getParser(window.navigator.userAgent)
+      this.setOSAttr(os.name)
+    },
+
+    showToast: function (message) {
+      const toast = Toastify({
+        text: message,
+        duration: 1408,
+        gravity: 'bottom',
+        position: 'center',
+        offset: {
+          x: 15,
+          y: 15
+        },
+        onClick: function () {
+          toast.hideToast()
+        }
+      })
+      toast.showToast()
     }
   }
 
   window.matchMedia('(prefers-color-scheme: dark)').addListener(function (event) {
-    window.zadark.browser.getExtensionSettings().then(({ theme }) => {
+    ZaDarkBrowser.getExtensionSettings().then(({ theme }) => {
       if (theme === 'auto') {
-        window.zadark.utils.setThemeAttr(event.matches ? 'dark' : 'light')
+        ZaDarkUtils.setThemeAttr(event.matches ? 'dark' : 'light')
       }
     })
   })
-})(window)
+
+  global.ZaDarkUtils = ZaDarkUtils
+})(this)

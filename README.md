@@ -91,6 +91,10 @@ https://zadark.quaric.com/awards
 - https://github.com/AngaBlue/exe
 - https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow
 - https://gist.github.com/txoof/0636835d3cc65245c6288b2374799c43
+- https://github.com/atomiks/tippyjs
+- https://github.com/apvarun/toastify-js
+- https://github.com/jaywcjlove/hotkeys-js
+
 ---
 
 [![DMCA.com Protection Status](https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=85a452ca-06aa-4352-bfeb-7cb563dbd2b9)](https://www.dmca.com/Protection/Status.aspx?ID=85a452ca-06aa-4352-bfeb-7cb563dbd2b9&refurl=https://zadark.quaric.com/)

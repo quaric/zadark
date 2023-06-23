@@ -4,12 +4,20 @@
   Made by Quaric
 */
 
+ZaDarkUtils.initOSName()
+ZaDarkUtils.refreshPageTheme()
+
+tippy('[data-tippy-content]', {
+  theme: 'zadark',
+  allowHTML: true
+})
+
 const ratingElName = '#js-ext-rating'
 const versionElName = '#js-ext-version'
-const selectThemeElName = '#js-select-theme input:radio[name="theme"]'
+const radioInputThemeElName = '#js-radio-input-theme input:radio[name="theme"]'
 const selectFontElName = '#js-select-font'
 const selectFontSizeElName = '#js-select-font-size'
-const manifestData = window.zadark.browser.getManifest()
+const manifestData = ZaDarkBrowser.getManifest()
 
 const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
 const switchHideConvAvatarNameElName = '#js-switch-hide-conv-avatar-name'
@@ -32,19 +40,11 @@ const MSG_ACTIONS = {
   UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS'
 }
 
-$(ratingElName).attr('href', window.zadark.utils.getRatingURL(window.zadark.browser.name))
+$(ratingElName).attr('href', ZaDarkUtils.getRatingURL(ZaDarkBrowser.name))
 $(versionElName).html(`Phiên bản ${manifestData.version}`)
 
-tippy('[data-tippy-content]', {
-  theme: 'zadark',
-  allowHTML: true
-})
-
-// Init popup theme
-window.zadark.utils.refreshPageTheme()
-
-window.zadark.browser.getExtensionSettings().then(({ theme, font, fontSize, enabledHideLatestMessage, enabledHideConvAvatarName, enabledHideThreadChatMessage }) => {
-  $(selectThemeElName).filter(`[value="${theme}"]`).attr('checked', true)
+ZaDarkBrowser.getExtensionSettings().then(({ theme, font, fontSize, enabledHideLatestMessage, enabledHideConvAvatarName, enabledHideThreadChatMessage }) => {
+  $(radioInputThemeElName).filter(`[value="${theme}"]`).attr('checked', true)
   $(selectFontElName).val(font)
   $(selectFontSizeElName).val(fontSize)
 
@@ -53,48 +53,48 @@ window.zadark.browser.getExtensionSettings().then(({ theme, font, fontSize, enab
   $(switchHideThreadChatMessageElName).prop('checked', enabledHideThreadChatMessage)
 })
 
-$(selectThemeElName).on('change', async function () {
+$(radioInputThemeElName).on('change', async function () {
   const theme = $(this).val()
-  await window.zadark.browser.saveExtensionSettings({ theme })
+  await ZaDarkBrowser.saveExtensionSettings({ theme })
   // Set popup theme
-  window.zadark.utils.refreshPageTheme()
+  ZaDarkUtils.refreshPageTheme()
   // Set theme for all Zalo tabs
-  window.zadark.browser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_THEME, { theme })
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_THEME, { theme })
 })
 
 $(selectFontElName).on('change', async function () {
   const font = $(this).val()
-  await window.zadark.browser.saveExtensionSettings({ font })
+  await ZaDarkBrowser.saveExtensionSettings({ font })
   // Set font for all Zalo tabs
-  window.zadark.browser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_FONT, { font })
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_FONT, { font })
 })
 
 $(selectFontSizeElName).on('change', async function () {
   const fontSize = $(this).val()
-  await window.zadark.browser.saveExtensionSettings({ fontSize })
+  await ZaDarkBrowser.saveExtensionSettings({ fontSize })
   // Set fontSize for all Zalo tabs
-  window.zadark.browser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_FONT_SIZE, { fontSize })
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_FONT_SIZE, { fontSize })
 })
 
 $(switchHideLatestMessageElName).on('change', async function () {
   const enabledHideLatestMessage = $(this).is(':checked')
-  await window.zadark.browser.saveExtensionSettings({ enabledHideLatestMessage })
+  await ZaDarkBrowser.saveExtensionSettings({ enabledHideLatestMessage })
   // Set enabledHideLatestMessage for all Zalo tabs
-  window.zadark.browser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE, { enabledHideLatestMessage })
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE, { enabledHideLatestMessage })
 })
 
 $(switchHideConvAvatarNameElName).on('change', async function () {
   const enabledHideConvAvatarName = $(this).is(':checked')
-  await window.zadark.browser.saveExtensionSettings({ enabledHideConvAvatarName })
+  await ZaDarkBrowser.saveExtensionSettings({ enabledHideConvAvatarName })
   // Set enabledHideConvAvatarName for all Zalo tabs
-  window.zadark.browser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_CONV_AVATAR_NAME, { enabledHideConvAvatarName })
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_CONV_AVATAR_NAME, { enabledHideConvAvatarName })
 })
 
 $(switchHideThreadChatMessageElName).on('change', async function () {
   const enabledHideThreadChatMessage = $(this).is(':checked')
-  await window.zadark.browser.saveExtensionSettings({ enabledHideThreadChatMessage })
+  await ZaDarkBrowser.saveExtensionSettings({ enabledHideThreadChatMessage })
   // Set enabledHideThreadChatMessage for all Zalo tabs
-  window.zadark.browser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE, { enabledHideThreadChatMessage })
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE, { enabledHideThreadChatMessage })
 })
 
 const handleBlockingRuleChange = (elName, ruleId) => {
@@ -105,12 +105,12 @@ const handleBlockingRuleChange = (elName, ruleId) => {
       ? { enableRulesetIds: [ruleId] }
       : { disableRulesetIds: [ruleId] }
 
-    window.zadark.browser.sendMessage({ action: MSG_ACTIONS.UPDATE_ENABLED_BLOCKING_RULE_IDS, payload })
+    ZaDarkBrowser.sendMessage({ action: MSG_ACTIONS.UPDATE_ENABLED_BLOCKING_RULE_IDS, payload })
   }
 }
 
 const enableBlocking = () => {
-  window.zadark.browser.sendMessage({ action: MSG_ACTIONS.GET_ENABLED_BLOCKING_RULE_IDS }).then((ruleIds) => {
+  ZaDarkBrowser.sendMessage({ action: MSG_ACTIONS.GET_ENABLED_BLOCKING_RULE_IDS }).then((ruleIds) => {
     if (!Array.isArray(ruleIds)) {
       return
     }
@@ -133,12 +133,8 @@ const disableBlocking = () => {
   })
 }
 
-const initBlocking = () => {
-  if (window.zadark.utils.isSupportDeclarativeNetRequest()) {
-    enableBlocking()
-  } else {
-    disableBlocking()
-  }
+if (ZaDarkUtils.isSupportDeclarativeNetRequest()) {
+  enableBlocking()
+} else {
+  disableBlocking()
 }
-
-initBlocking()

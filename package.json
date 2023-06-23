@@ -1,7 +1,7 @@
 {
   "name": "zadark",
   "description": "Dark Mode tốt nhất cho Zalo",
-  "version": "23.6.2",
+  "version": "23.6.3",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
     "name": "Quaric",
@@ -17,11 +17,13 @@
   ],
   "license": "MPL-2.0",
   "scripts": {
-    "watch": "gulp watch",
+    "dev": "gulp dev",
     "build": "NODE_ENV=development gulp build",
     "dist": "gulp dist",
     "pc:dev": "NODE_ENV=development node build/pc",
     "pc:start": "NODE_ENV=production node build/pc",
+    "prepare": "husky install",
+    "standard:fix": "standard --fix ./src/**/*.js ./*.js",
     "safari": "xed src/web/vendor/safari/ZaDark.xcodeproj",
     "publish:chrome": "node tools/publish-api/chrome",
     "publish:edge": "node tools/publish-api/edge",
@@ -30,6 +32,9 @@
     "macos:notarize": "tools/macos/notarize.sh",
     "macos:notarytool_log": "tools/macos/notarytool_log.sh",
     "macos:staple": "tools/macos/staple.sh"
+  },
+  "lint-staged": {
+    "*.js": "yarn standard:fix"
   },
   "devDependencies": {
     "axios": "^1.2.2",
@@ -43,7 +48,9 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-zip": "^5.1.0",
+    "husky": "^8.0.3",
     "jsonwebtoken": "^9.0.0",
+    "lint-staged": "^13.2.2",
     "merge-stream": "^2.0.0",
     "nodemon": "^2.0.15",
     "pkg": "^5.8.1",
@@ -66,21 +73,26 @@
   "standard": {
     "parser": "babel-eslint",
     "global": [
+      "ZaDarkBrowser",
+      "ZaDarkUtils",
       "$",
-      "jQuery",
       "chrome",
       "browser",
-      "zadark",
       "bowser",
       "Popper",
       "tippy",
-      "MutationObserver",
+      "hotkeys",
+      "Toastify",
       "localStorage",
+      "MutationObserver",
       "DEBUG"
     ],
     "ignore": [
-      "./src/web/libs/**/*",
-      "./pc/pc/**/*"
+      "src/web/libs/**/*.js",
+      "src/pc/assets/libs/**/*.js",
+      "src/web/vendor/safari/ZaDark/**/*.js",
+      "src/web/vendor/safari/ZaDark Extension/**/*.js",
+      "src/web/vendor/safari/ZaDark.xcodeproj/**/*.js"
     ]
   },
   "engines": {

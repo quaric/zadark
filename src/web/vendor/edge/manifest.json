@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ZaDark – Zalo Dark Mode",
-  "version": "8.17",
+  "version": "9.0",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
   "author": "Quaric",
@@ -28,6 +28,8 @@
         "libs/bowser-es5.min.js",
         "libs/popper.min.js",
         "libs/tippy.min.js",
+        "libs/hotkeys-js.min.js",
+        "libs/toastify.min.js",
         "js/browser.min.js",
         "js/utils.min.js",
         "js/zadark.min.js"

@@ -47,7 +47,7 @@
 
     <div class="zadark-panel">
       <div class="zadark-panel__body">
-        <div id="js-select-theme" class="zadark-radio__list">
+        <div id="js-radio-input-theme" class="zadark-radio__list">
           <label class="zadark-radio">
             <input type="radio" name="theme" value="light" class="zadark-radio__input">
             <span class="zadark-radio__checkmark"></span>
@@ -86,8 +86,14 @@
           </select>
         </div>
 
-        <div class="select-font">
-          <label class="select-font__label">Thay đổi cỡ chữ của tin nhắn</label>
+        <div class="select-font select-font--hotkeys">
+          <label class="select-font__label">
+            Thay đổi cỡ chữ của tin nhắn
+          </label>
+
+          <span class="select-font__hotkeys">
+            <span class="zadark-hotkeys" data-keys-win="Alt+= / Alt+−" data-keys-mac="⌥= / ⌥−"></span>
+          </span>
 
           <select id="js-select-font-size" class="zadark-select zadark-select--text-right">
             <option value="small">Nhỏ</option>
@@ -107,9 +113,12 @@
           <div class="zadark-switch__list">
             <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
-                Ẩn <strong>Tin nhắn gần nhất</strong> trong danh sách trò chuyện
+                Ẩn <strong>Tin nhắn gần nhất</strong>
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
               </label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+1" data-keys-mac="⌘1"></span>
+              </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
                 <span class="zadark-switch__slider"></span>
@@ -121,6 +130,9 @@
                 Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Vùng hiển thị tin nhắn</strong>". Khi bạn di chuột ra khỏi vùng này, tin nhắn sẽ được ẩn đi.</p>'></i>
               </label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+2" data-keys-mac="⌘2"></span>
+              </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
                 <span class="zadark-switch__slider"></span>
@@ -132,6 +144,9 @@
                 Ẩn <strong>Ảnh đại diện & Tên</strong> cuộc trò chuyện
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Ảnh đại diện & Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
               </label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+3" data-keys-mac="⌘3"></span>
+              </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-avatar-name">
                 <span class="zadark-switch__slider"></span>
@@ -140,6 +155,9 @@
 
             <div class="zadark-switch">
               <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin (Typing) ...</strong></label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+4" data-keys-mac="⌘4"></span>
+              </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
                 <span class="zadark-switch__slider"></span>
@@ -148,6 +166,9 @@
 
             <div class="zadark-switch">
               <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận (Received)</strong></label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+5" data-keys-mac="⌘5"></span>
+              </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
                 <span class="zadark-switch__slider"></span>
@@ -156,6 +177,9 @@
 
             <div class="zadark-switch">
               <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem (Seen)</strong></label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+6" data-keys-mac="⌘6"></span>
+              </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
                 <span class="zadark-switch__slider"></span>

@@ -7,7 +7,7 @@ const glob = require('glob')
 
 const { printDebug, copyRecursiveSync } = require('./utils')
 
-const { PLATFORM, ZADARK_VERSION, IS_MAC } = require('./constants')
+const { PLATFORM, ZADARK_VERSION, IS_MAC, OS_NAME } = require('./constants')
 const psList = require('./packages/ps-list')
 
 const getZaloResDirList = (customZaloPath) => {
@@ -103,12 +103,6 @@ const writeIndexFile = (zaloDir) => {
     },
     // Required scripts
     {
-      selector: 'script[src="zadark-jquery.min.js"]',
-      where: 'beforeend',
-      html: '<script src="zadark-jquery.min.js"></script>',
-      htmlElement: bodyElement
-    },
-    {
       selector: 'script[src="zadark-popper.min.js"]',
       where: 'beforeend',
       html: '<script src="zadark-popper.min.js"></script>',
@@ -139,7 +133,7 @@ const writeIndexFile = (zaloDir) => {
 
   // Required themeAttributes
   htmlElement.setAttribute('data-zadark-version', ZADARK_VERSION)
-  htmlElement.setAttribute('data-zadark-platform', PLATFORM)
+  htmlElement.setAttribute('data-zadark-os', OS_NAME)
 
   // Required classNames
   const zaDarkClassNames = ['zadark', 'zadark-pc', `zadark-${PLATFORM}`]
