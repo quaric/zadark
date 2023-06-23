@@ -355,6 +355,8 @@ const watchAll = () => {
   ], buildAll)
 }
 
+const dev = series(buildAll, watchAll)
+
 exports.build = buildAll
 exports.dist = distAll
-exports.dev = watchAll
+exports.dev = dev
