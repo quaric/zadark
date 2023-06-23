@@ -561,6 +561,7 @@ $FONT_SIZES: (
 
 :root {
   --zadark-cnv-font-size: inherit;
+  --zadark-rounded-base: 8px;
 }
 
 @include zadark-font-sizes();
@@ -1925,7 +1926,8 @@ html[data-zadark-theme="dark"] {
     }
 
     #contact-search-input {
-      border-radius: 50rem;
+      // border-radius: 50rem;
+      border-radius: var(--zadark-rounded-base);
       border-color: var(--border);
     }
     #contact-search-input:focus {
@@ -2106,5 +2108,39 @@ body.zadark {
     .editor-input {
       font-size: var(--zadark-cnv-font-size);
     }
+  }
+
+  .popover-v2,
+  .popover-v3,
+  .zmenu-body.content-only,
+  .zl-dlg-paper,
+  .zl-fl-dlg > .zl-fl-dlg__paper,
+  .zl-modal__dialog,
+  .z--btn--v2,
+  .ar-manage-list,
+  .zl-compose,
+  .zl-group-input:not(.zl-group-input__appearance--rounded),
+  .cal-preview-v3,
+  .contact-pages.page-container .contact-filter-wrapper > .filter > .search-contact,
+  .contact-pages.page-container .contact-filter-wrapper > .filter > .filter-contact .sort__title,
+  .contact-pages.page-container .contact-filter-wrapper > .filter > .filter-contact .filter__title,
+  .at-suggestion-hint,
+  .popover,
+  .sticker-suggestion__hint,
+  .todo-filter-input,
+  .base_item_photo,
+  .item_add_photo,
+  .link-thumb,
+  .link-thumb.default,
+  .img-media,
+  .img-media > .img-media__th,
+  .composer-container > .main,
+  .pin-input__item,
+  .z-tooltip,
+  .share-message__text-preview,
+  .share-message__thumb,
+  .z-dropdown-preview.--square,
+  .label-item-main {
+    border-radius: var(--zadark-rounded-base);
   }
 }

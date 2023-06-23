@@ -23,6 +23,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
   - Hỗ trợ danh sách tìm kiếm gần đây
   - Hỗ trợ danh sách kết quả tìm kiếm
   - Ẩn tên trong ô nhập tin nhắn (placeholder)
+- Bo tròn góc (8px) giúp tạo cảm giác dễ chịu hơn
 - Tối ưu mã nguồn
 
 ## ZaDark 23.6.2

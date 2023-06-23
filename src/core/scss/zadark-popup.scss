@@ -543,7 +543,7 @@ html[data-zadark-os="macOS"] {
 
 .tippy-box[data-theme~="zadark"] {
   border: 1px solid var(--zadark-tippy-border);
-  border-radius: 4px;
+  border-radius: 8px;
 
   background-color: var(--zadark-tippy);
   color: var(--zadark-tippy-text);
@@ -600,7 +600,7 @@ html[data-zadark-os="macOS"] {
   max-width: calc(50% - 20px);
   padding: 12px 16px;
   border: 1px solid var(--zadark-tippy-border);
-  border-radius: 4px;
+  border-radius: 8px;
 
   background-color: var(--zadark-tippy);
   color: var(--zadark-tippy-text);
