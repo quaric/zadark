@@ -17,8 +17,7 @@ This document describes the process for running this application on your local c
 
 3. Start development
     ```bash
-    # Watching files
-    yarn watch
+    yarn dev
 
     # or build
     yarn build
