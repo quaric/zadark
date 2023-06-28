@@ -4,8 +4,9 @@
 > PC 9.1 && Web 9.1
 
 ### Changed
-- Hỗ trợ Dark Mode nhãn trạng thái "Đã nhận", "Đã gửi"
-- Hỗ trợ Ẩn ảnh đại diện ở nhãn trạng thái "Đã xem"
+- Hỗ trợ Dark Mode nhãn trạng thái "Đã nhận", "Đã gửi" (`.bubble-message-status`)
+- Hỗ trợ Ẩn ảnh đại diện ở nhãn trạng thái "Đã xem" (`.seen-msg-stt`)
+- Sửa lỗi Dark Mode nhãn tin nhắn chưa đọc (`.conv-action__unread-v2 .conv-unread`)
 
 ## ZaDark 23.6.3
 > PC 9.0 && Web 9.0
