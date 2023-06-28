@@ -1988,6 +1988,12 @@ html[data-zadark-theme="dark"] {
     .text-color-menu-container .text-color-menu[style*="rgb(5, 10, 25)"] {
       background-color: var(--text-primary) !important;
     }
+
+    .bubble-message-status {
+      padding: 0 8px 0 6px;
+      background-color: var(--NG10);
+      color: var(--text-secondary);
+    }
   }
 }
 
