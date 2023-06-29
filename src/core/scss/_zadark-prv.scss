@@ -263,6 +263,7 @@
   .conv-item,
   .chat-item:not(.me),
   .threadChat__avatar,
+  .seen-msg-stt,
   div[keys="avt-list-conv-media_box"] {
     --zadark-avatar-color: var(--N30);
     --zadark-avatar-bg: var(--N10);
@@ -292,6 +293,9 @@
         content: "\e900";
       }
 
+      &.zavatar-xxs::after {
+        font-size: 0.5rem;
+      }
       &.zavatar-m::after {
         font-size: 1rem;
       }
