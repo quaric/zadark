@@ -1,5 +1,26 @@
 # Changelog
 
+## ZaDark 23.7.1
+> PC 9.2 && Web 9.2
+
+### Fixed
+- Sửa lỗi collapse/expand các session ở mục Thông tin hội thoại ([#60](https://github.com/quaric/zadark/issues/60))
+
+### Added
+- Tuỳ chỉnh phông chữ từ Google Fonts (BETA) ([#55](https://github.com/quaric/zadark/issues/55), [#52](https://github.com/quaric/zadark/issues/52))
+
+### Changed
+- Làm nổi bật phím tắt tin nhắn nhanh (VD: /hello) ([#59](https://github.com/quaric/zadark/issues/59))
+- Sửa lỗi Dark Mode nhãn thời gian của tin nhắn
+- Thay đổi phím tắt tuỳ chỉnh cỡ chữ ([#58](https://github.com/quaric/zadark/issues/58))
+
+| Tên chức năng                            | Windows             | macOS         |
+| ---------------------------------------- | ------------------- | ------------- |
+| Tuỳ chỉnh cỡ chữ của tin nhắn            | `Ctrl+9` / `Ctrl+0` | `⌘9` / `⌘0`   |
+| Mở cài đặt ZaDark                        | `Ctrl+D`            | `⌘D`          |
+
+- Tối ưu mã nguồn
+
 ## ZaDark 23.6.4
 > PC 9.1 && Web 9.1
 

@@ -73,29 +73,25 @@
           </label>
         </div>
 
-        <div class="select-font select-font--border-default">
-          <label class="select-font__label">Thay đổi phông chữ</label>
-
-          <select id="js-select-font" class="zadark-select zadark-select--text-right">
-            <option value="default">Mặc định</option>
-            <option value="open-sans">Open Sans</option>
-            <option value="inter">Inter</option>
-            <option value="roboto">Roboto</option>
-            <option value="lato">Lato</option>
-            <option value="source-sans-pro">Source Sans Pro</option>
-          </select>
-        </div>
-
-        <div class="select-font select-font--hotkeys">
-          <label class="select-font__label">
-            Thay đổi cỡ chữ của tin nhắn
+        <div class="font-settings font-settings--border-default">
+          <label class="font-settings__label">
+            Phông chữ từ <a href="https://zadark.quaric.com/blog/use-google-fonts" target="_blank">Google Fonts</a>
+            <span class="zadark-beta"></span>
           </label>
 
-          <span class="select-font__hotkeys">
-            <span class="zadark-hotkeys" data-keys-win="Alt+= / Alt+−" data-keys-mac="⌥= / ⌥−"></span>
+          <input id="js-input-font-family" class="zadark-input" placeholder="Mặc định">
+        </div>
+
+        <div class="font-settings font-settings--hotkeys">
+          <label class="font-settings__label">
+            Cỡ chữ của tin nhắn
+          </label>
+
+          <span class="font-settings__hotkeys">
+            <span class="zadark-hotkeys" data-keys-win="Ctrl+9 / Ctrl+0" data-keys-mac="⌘9 / ⌘0"></span>
           </span>
 
-          <select id="js-select-font-size" class="zadark-select zadark-select--text-right">
+          <select id="js-select-font-size" class="zadark-select">
             <option value="small">Nhỏ</option>
             <option value="medium">Trung bình</option>
             <option value="big">Lớn</option>
@@ -203,6 +199,7 @@
   <script src="libs/bowser-es5.min.js"></script>
   <script src="libs/popper.min.js"></script>
   <script src="libs/tippy.min.js"></script>
+  <script src="libs/toastify.min.js"></script>
   <script src="js/browser.min.js"></script>
   <script src="js/utils.min.js"></script>
   <script src="js/popup.min.js"></script>

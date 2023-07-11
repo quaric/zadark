@@ -52,6 +52,10 @@ const removeZaDarkCSSAndJS = ({ headElement, bodyElement }) => {
       selector: 'script[src^="zadark"]',
       htmlElement: bodyElement
     }
+    // {
+    //   selector: 'meta[http-equiv="Content-Security-Policy"]',
+    //   htmlElement: headElement
+    // }
   ]
 
   elementsToRemove.forEach(({ selector, htmlElement }) => {
@@ -60,6 +64,25 @@ const removeZaDarkCSSAndJS = ({ headElement, bodyElement }) => {
       element.remove()
     })
   })
+}
+
+const updateMetaContentSecurityPolicyTag = (htmlElement) => {
+  const metaTag = htmlElement.querySelector('meta[http-equiv="Content-Security-Policy"]')
+
+  if (!metaTag) {
+    return
+  }
+
+  const contentValue = metaTag.getAttribute('content')
+
+  if (contentValue.indexOf('https://fonts.googleapis.com') !== -1) {
+    return
+  }
+
+  const regex = /style-src[^;]*/
+  const newContentValue = contentValue.replace(regex, '$& https://fonts.googleapis.com')
+
+  metaTag.setAttribute('content', newContentValue)
 }
 
 const writeIndexFile = (zaloDir) => {
@@ -134,6 +157,8 @@ const writeIndexFile = (zaloDir) => {
   // Required themeAttributes
   htmlElement.setAttribute('data-zadark-version', ZADARK_VERSION)
   htmlElement.setAttribute('data-zadark-os', OS_NAME)
+
+  updateMetaContentSecurityPolicyTag(headElement)
 
   // Required classNames
   const zaDarkClassNames = ['zadark', 'zadark-pc', `zadark-${PLATFORM}`]
