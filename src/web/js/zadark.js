@@ -6,57 +6,10 @@
 
 (function () {
   ZaDarkBrowser.initClassNames()
-  ZaDarkUtils.initOSName()
-  ZaDarkUtils.refreshPageSettings()
-
-  const MSG_ACTIONS = {
-    CHANGE_THEME: '@ZaDark:CHANGE_THEME',
-    CHANGE_FONT: '@ZaDark:CHANGE_FONT',
-    CHANGE_FONT_SIZE: '@ZaDark:CHANGE_FONT_SIZE',
-
-    CHANGE_HIDE_LATEST_MESSAGE: '@ZaDark:CHANGE_HIDE_LATEST_MESSAGE',
-    CHANGE_HIDE_CONV_AVATAR_NAME: '@ZaDark:CHANGE_HIDE_CONV_AVATAR_NAME',
-    CHANGE_HIDE_THREAD_CHAT_MESSAGE: '@ZaDark:CHANGE_HIDE_THREAD_CHAT_MESSAGE',
-
-    GET_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:GET_ENABLED_BLOCKING_RULE_IDS',
-    UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS'
-  }
-
-  const HOTKEYS_TOAST_MESSAGE = {
-    fontSize: {
-      small: 'Cỡ chữ : Nhỏ',
-      medium: 'Cỡ chữ : Trung bình',
-      big: 'Cỡ chữ : Lớn',
-      'very-big': 'Cỡ chữ : Rất lớn'
-    },
-    hideLatestMessage: {
-      true: 'BẬT : Ẩn Tin nhắn gần nhất',
-      false: 'TẮT : Ẩn Tin nhắn gần nhất'
-    },
-    hideThreadChatMessage: {
-      true: 'BẬT : Ẩn Tin nhắn trong cuộc trò chuyện',
-      false: 'TẮT : Ẩn Tin nhắn trong cuộc trò chuyện'
-    },
-    HideConvAvatarName: {
-      true: 'BẬT : Ẩn Ảnh đại diện & Tên cuộc trò chuyện',
-      false: 'TẮT : Ẩn Ảnh đại diện & Tên cuộc trò chuyện'
-    },
-    rules_block_typing: {
-      true: 'BẬT : Ẩn trạng thái Đang soạn tin (Typing) ...',
-      false: 'TẮT : Ẩn trạng thái Đang soạn tin (Typing) ...'
-    },
-    rules_block_delivered: {
-      true: 'BẬT : Ẩn trạng thái Đã nhận (Received)',
-      false: 'TẮT : Ẩn trạng thái Đã nhận (Received)'
-    },
-    rules_block_seen: {
-      true: 'BẬT : Ẩn trạng thái Đã xem (Seen)',
-      false: 'TẮT : Ẩn trạng thái Đã xem (Seen)'
-    }
-  }
+  ZaDarkUtils.initPageSettings()
 
   const radioInputThemeElName = '#js-radio-input-theme input:radio[name="theme"]'
-  const selectFontElName = '#js-select-font'
+  const inputFontFamilyElName = '#js-input-font-family'
   const selectFontSizeElName = '#js-select-font-size'
 
   const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
@@ -82,56 +35,56 @@
     $(elName).prop('checked', enabled)
   }
 
-  async function handleSelectThemeChange () {
+  function handleSelectThemeChange () {
     const theme = $(this).val()
-    await ZaDarkBrowser.saveExtensionSettings({ theme })
-    ZaDarkUtils.refreshPageSettings()
-    setSelectTheme(theme)
+    ZaDarkUtils.updateTheme(theme)
   }
 
-  async function handleSelectFontChange () {
-    const font = $(this).val()
-    await ZaDarkBrowser.saveExtensionSettings({ font })
-    ZaDarkUtils.refreshPageSettings()
+  async function handleInputFontFamilyKeyPress (event) {
+    const isEnter = Number(event.keyCode ? event.keyCode : event.which) - 1 === 12
+
+    if (!isEnter) {
+      return
+    }
+
+    const fontFamily = $(this).val()
+    const success = await ZaDarkUtils.updateFontFamily(fontFamily)
+
+    if (!success) {
+      $(this).val('')
+    }
   }
 
-  async function handleSelectFontSizeChange () {
+  function handleSelectFontSizeChange () {
     const fontSize = $(this).val()
-    await ZaDarkBrowser.saveExtensionSettings({ fontSize })
-    ZaDarkUtils.refreshPageSettings()
+    ZaDarkUtils.updateFontSize(fontSize)
   }
 
-  async function handleHideLastestMessageChange () {
+  function handleHideLatestMessageChange () {
     const enabledHideLatestMessage = $(this).is(':checked')
-    await ZaDarkBrowser.saveExtensionSettings({ enabledHideLatestMessage })
-    ZaDarkUtils.refreshPageSettings()
-    ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.hideLatestMessage[enabledHideLatestMessage])
+    ZaDarkUtils.updateHideLatestMessage(enabledHideLatestMessage)
   }
 
-  async function handleHideConvAvatarNameChange () {
+  function handleHideConvAvatarNameChange () {
     const enabledHideConvAvatarName = $(this).is(':checked')
-    await ZaDarkBrowser.saveExtensionSettings({ enabledHideConvAvatarName })
-    ZaDarkUtils.refreshPageSettings()
-    ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.HideConvAvatarName[enabledHideConvAvatarName])
+    ZaDarkUtils.updateHideConvAvatarName(enabledHideConvAvatarName)
   }
 
-  async function handleHideThreadChatMessageChange () {
+  function handleHideThreadChatMessageChange () {
     const enabledHideThreadChatMessage = $(this).is(':checked')
-    await ZaDarkBrowser.saveExtensionSettings({ enabledHideThreadChatMessage })
-    ZaDarkUtils.refreshPageSettings()
-    ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.hideThreadChatMessage[enabledHideThreadChatMessage])
+    ZaDarkUtils.updateHideThreadChatMessage(enabledHideThreadChatMessage)
   }
 
-  const handleBlockingRuleChange = (elName, ruleId) => {
-    return () => {
-      const isEnabled = $(elName).is(':checked')
+  const handleBlockingRuleChange = (ruleId) => {
+    return function () {
+      const isEnabled = $(this).is(':checked')
 
       const payload = isEnabled
         ? { enableRulesetIds: [ruleId] }
         : { disableRulesetIds: [ruleId] }
 
       ZaDarkBrowser.sendMessage({ action: MSG_ACTIONS.UPDATE_ENABLED_BLOCKING_RULE_IDS, payload })
-      ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE[ruleId][isEnabled])
+      ZaDarkUtils.showToast(ZaDarkUtils.HOTKEYS_TOAST_MESSAGE[ruleId][isEnabled])
     }
   }
 
@@ -204,27 +157,23 @@
             </label>
           </div>
 
-          <div class="select-font select-font--border-default">
-            <label class="select-font__label">Thay đổi phông chữ</label>
+          <div class="font-settings font-settings--border-default">
+            <label class="font-settings__label">
+              Phông chữ từ <a href="https://zadark.quaric.com/blog/use-google-fonts" target="_blank">Google Fonts</a>
+              <span class="zadark-beta"></span>
+            </label>
 
-            <select id="js-select-font" class="zadark-select zadark-select--text-right">
-              <option value="default">Mặc định</option>
-              <option value="open-sans">Open Sans</option>
-              <option value="inter">Inter</option>
-              <option value="roboto">Roboto</option>
-              <option value="lato">Lato</option>
-              <option value="source-sans-pro">Source Sans Pro</option>
-            </select>
+            <input id="js-input-font-family" class="zadark-input" placeholder="Mặc định">
           </div>
 
-          <div class="select-font select-font--hotkeys">
-            <label class="select-font__label">Thay đổi cỡ chữ của tin nhắn</label>
+          <div class="font-settings font-settings--hotkeys">
+            <label class="select-font__label">Cỡ chữ của tin nhắn</label>
 
-            <span class="select-font__hotkeys">
-              <span class="zadark-hotkeys" data-keys-win="Alt+= / Alt+−" data-keys-mac="⌥= / ⌥−"></span>
+            <span class="font-settings__hotkeys">
+              <span class="zadark-hotkeys" data-keys-win="Ctrl+9 / Ctrl+0" data-keys-mac="⌘9 / ⌘0"></span>
             </span>
 
-            <select id="js-select-font-size" class="zadark-select zadark-select--text-right">
+            <select id="js-select-font-size" class="zadark-select">
               <option value="small">Nhỏ</option>
               <option value="medium">Trung bình</option>
               <option value="big">Lớn</option>
@@ -362,7 +311,7 @@
   const loadPopupState = async () => {
     const {
       theme,
-      font,
+      fontFamily,
       fontSize,
       enabledHideLatestMessage,
       enabledHideConvAvatarName,
@@ -370,7 +319,7 @@
     } = await ZaDarkBrowser.getExtensionSettings()
 
     setSelectTheme(theme)
-    setSelect(selectFontElName, font)
+    setSelect(inputFontFamilyElName, fontFamily)
     setSelect(selectFontSizeElName, fontSize)
 
     setSwitch(switchHideLatestMessageElName, enabledHideLatestMessage)
@@ -457,7 +406,6 @@
 
     setSelect(selectFontSizeElName, nextFontSize)
     handleSelectFontSizeChange.bind($(selectFontSizeElName))()
-    ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.fontSize[nextFontSize])
   }
 
   const loadHotkeys = () => {
@@ -474,13 +422,16 @@
     }
 
     const keys = [
-    // Mac
+      // Mac
       'command+1',
       'command+2',
       'command+3',
       'command+4',
       'command+5',
       'command+6',
+      'command+0',
+      'command+9',
+      'command+d',
 
       // Windows
       'ctrl+1',
@@ -489,11 +440,9 @@
       'ctrl+4',
       'ctrl+5',
       'ctrl+6',
-
-      // Both
-      'option+z',
-      'option+=',
-      'option+-'
+      'ctrl+0',
+      'ctrl+9',
+      'ctrl+d'
     ].join(',')
 
     hotkeys(keys, async function (event, handler) {
@@ -510,11 +459,11 @@
       } = await ZaDarkBrowser.getExtensionSettings()
 
       switch (handler.key) {
-      // Hide latest message
+        // Hide latest message
         case 'command+1':
         case 'ctrl+1': {
           setSwitch(switchHideLatestMessageElName, !enabledHideLatestMessage)
-          handleHideLastestMessageChange.bind($(switchHideLatestMessageElName))()
+          handleHideLatestMessageChange.bind($(switchHideLatestMessageElName))()
           return
         }
 
@@ -538,7 +487,7 @@
         case 'command+4':
         case 'ctrl+4': {
           setSwitch(switchBlockTypingElName, !enabledBlockTyping)
-          handleBlockingRuleChange(switchBlockTypingElName, 'rules_block_typing').bind($(switchBlockTypingElName))()
+          handleBlockingRuleChange('rules_block_typing').bind($(switchBlockTypingElName))()
           return
         }
 
@@ -546,7 +495,7 @@
         case 'command+5':
         case 'ctrl+5': {
           setSwitch(switchBlockDeliveredElName, !enabledBlockDelivered)
-          handleBlockingRuleChange(switchBlockDeliveredElName, 'rules_block_delivered').bind($(switchBlockDeliveredElName))()
+          handleBlockingRuleChange('rules_block_delivered').bind($(switchBlockDeliveredElName))()
           return
         }
 
@@ -554,24 +503,27 @@
         case 'command+6':
         case 'ctrl+6': {
           setSwitch(switchBlockSeenElName, !enabledBlockSeen)
-          handleBlockingRuleChange(switchBlockSeenElName, 'rules_block_seen').bind($(switchBlockSeenElName))()
+          handleBlockingRuleChange('rules_block_seen').bind($(switchBlockSeenElName))()
           return
         }
 
         // Increase font size
-        case 'option+=': {
+        case 'command+0':
+        case 'ctrl+0': {
           handleNextFontSize(1)
           return
         }
 
         // Decrease font size
-        case 'option+-': {
+        case 'command+9':
+        case 'ctrl+9': {
           handleNextFontSize(-1)
           return
         }
 
         // Open ZaDark Settings
-        case 'option+z': {
+        case 'command+d':
+        case 'ctrl+d': {
           const buttonEl = document.getElementById('div_Main_TabZaDark')
           buttonEl.click()
         }
@@ -592,16 +544,16 @@
     zaloAppBody.insertAdjacentHTML('beforeend', zadarkPopupHTML)
 
     $(radioInputThemeElName).on('change', handleSelectThemeChange)
-    $(selectFontElName).on('change', handleSelectFontChange)
+    $(inputFontFamilyElName).keypress(handleInputFontFamilyKeyPress)
     $(selectFontSizeElName).on('change', handleSelectFontSizeChange)
 
-    $(switchHideLatestMessageElName).on('change', handleHideLastestMessageChange)
+    $(switchHideLatestMessageElName).on('change', handleHideLatestMessageChange)
     $(switchHideConvAvatarNameElName).on('change', handleHideConvAvatarNameChange)
     $(switchHideThreadChatMessageElName).on('change', handleHideThreadChatMessageChange)
 
-    $(switchBlockTypingElName).on('change', handleBlockingRuleChange(switchBlockTypingElName, 'rules_block_typing'))
-    $(switchBlockSeenElName).on('change', handleBlockingRuleChange(switchBlockSeenElName, 'rules_block_seen'))
-    $(switchBlockDeliveredElName).on('change', handleBlockingRuleChange(switchBlockDeliveredElName, 'rules_block_delivered'))
+    $(switchBlockTypingElName).on('change', handleBlockingRuleChange('rules_block_typing'))
+    $(switchBlockSeenElName).on('change', handleBlockingRuleChange('rules_block_seen'))
+    $(switchBlockDeliveredElName).on('change', handleBlockingRuleChange('rules_block_delivered'))
 
     const popupEl = document.querySelector('#zadark-popup')
     const buttonEl = document.getElementById('div_Main_TabZaDark')
@@ -632,17 +584,7 @@
     loadKnownVersionState(buttonEl)
     loadHotkeys()
 
-    tippy('[data-tippy-content]', {
-      theme: 'zadark',
-      allowHTML: true
-    })
-
-    tippy('#div_Main_TabZaDark', {
-      theme: 'zadark',
-      allowHTML: true,
-      content: '<span>ZaDark <span class="zadark-hotkeys" data-keys-win="Alt+Z" data-keys-mac="⌥Z"></span></span>',
-      placement: 'right'
-    })
+    ZaDarkUtils.initTippy()
   }
 
   const observer = new MutationObserver((mutationsList) => {
@@ -658,40 +600,51 @@
 
   observer.observe(document.querySelector('#app'), { subtree: false, childList: true })
 
+  const MSG_ACTIONS = ZaDarkUtils.MSG_ACTIONS
+
   ZaDarkBrowser.addMessageListener((message, sender, sendResponse) => {
     if (message.action === MSG_ACTIONS.CHANGE_THEME) {
-      ZaDarkUtils.refreshPageSettings()
-      setSelectTheme(message.payload.theme)
-      sendResponse({ received: true })
-    }
+      const theme = message.payload.theme
+      setSelectTheme(theme)
+      ZaDarkUtils.setPageTheme(theme)
 
-    if (message.action === MSG_ACTIONS.CHANGE_FONT) {
-      ZaDarkUtils.refreshPageSettings()
-      setSelect(selectFontElName, message.payload.font)
       sendResponse({ received: true })
     }
 
     if (message.action === MSG_ACTIONS.CHANGE_FONT_SIZE) {
-      ZaDarkUtils.refreshPageSettings()
-      setSelect(selectFontSizeElName, message.payload.fontSize)
+      const fontSize = message.payload.fontSize
+      setSelect(selectFontSizeElName, fontSize)
+      ZaDarkUtils.setFontSizeAttr(fontSize)
+
       sendResponse({ received: true })
     }
 
     if (message.action === MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE) {
-      ZaDarkUtils.refreshPageSettings()
-      setSwitch(switchHideLatestMessageElName, message.payload.enabledHideLatestMessage)
+      const isEnabled = message.payload.enabledHideLatestMessage
+      setSwitch(switchHideLatestMessageElName, isEnabled)
+      ZaDarkUtils.setHideLatestMessageAttr(isEnabled)
+
       sendResponse({ received: true })
     }
 
     if (message.action === MSG_ACTIONS.CHANGE_HIDE_CONV_AVATAR_NAME) {
-      ZaDarkUtils.refreshPageSettings()
-      setSwitch(switchHideConvAvatarNameElName, message.payload.enabledHideConvAvatarName)
+      const isEnabled = message.payload.enabledHideConvAvatarName
+      setSwitch(switchHideConvAvatarNameElName, isEnabled)
+      ZaDarkUtils.setHideConvAvatarNameAttr(isEnabled)
+
       sendResponse({ received: true })
     }
 
     if (message.action === MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE) {
-      ZaDarkUtils.refreshPageSettings()
-      setSwitch(switchHideThreadChatMessageElName, message.payload.enabledHideThreadChatMessage)
+      const isEnabled = message.payload.enabledHideThreadChatMessage
+      setSwitch(switchHideThreadChatMessageElName, isEnabled)
+      ZaDarkUtils.setHideThreadChatMessageAttr(isEnabled)
+
+      sendResponse({ received: true })
+    }
+
+    if (message.action === MSG_ACTIONS.REFRESH_ZALO_TABS) {
+      window.location.reload()
       sendResponse({ received: true })
     }
   })

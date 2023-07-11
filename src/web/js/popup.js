@@ -5,17 +5,27 @@
 */
 
 ZaDarkUtils.initOSName()
-ZaDarkUtils.refreshPageTheme()
+ZaDarkUtils.initTippy()
 
-tippy('[data-tippy-content]', {
-  theme: 'zadark',
-  allowHTML: true
-})
+const MSG_ACTIONS = ZaDarkUtils.MSG_ACTIONS
+
+window.WebFontConfig = {
+  google: {
+    families: ['Open Sans:400,600']
+  }
+};
+
+(function (d) {
+  const wf = d.createElement('script'); const s = d.scripts[0]
+  wf.src = 'libs/webfont.min.js'
+  wf.async = true
+  s.parentNode.insertBefore(wf, s)
+})(document)
 
 const ratingElName = '#js-ext-rating'
 const versionElName = '#js-ext-version'
 const radioInputThemeElName = '#js-radio-input-theme input:radio[name="theme"]'
-const selectFontElName = '#js-select-font'
+const inputFontFamilyElName = '#js-input-font-family'
 const selectFontSizeElName = '#js-select-font-size'
 const manifestData = ZaDarkBrowser.getManifest()
 
@@ -27,25 +37,14 @@ const switchBlockTypingElName = '#js-switch-block-typing'
 const switchBlockSeenElName = '#js-switch-block-seen'
 const switchBlockDeliveredElName = '#js-switch-block-delivered'
 
-const MSG_ACTIONS = {
-  CHANGE_THEME: '@ZaDark:CHANGE_THEME',
-  CHANGE_FONT: '@ZaDark:CHANGE_FONT',
-  CHANGE_FONT_SIZE: '@ZaDark:CHANGE_FONT_SIZE',
-
-  CHANGE_HIDE_LATEST_MESSAGE: '@ZaDark:CHANGE_HIDE_LATEST_MESSAGE',
-  CHANGE_HIDE_CONV_AVATAR_NAME: '@ZaDark:CHANGE_HIDE_CONV_AVATAR_NAME',
-  CHANGE_HIDE_THREAD_CHAT_MESSAGE: '@ZaDark:CHANGE_HIDE_THREAD_CHAT_MESSAGE',
-
-  GET_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:GET_ENABLED_BLOCKING_RULE_IDS',
-  UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS'
-}
-
 $(ratingElName).attr('href', ZaDarkUtils.getRatingURL(ZaDarkBrowser.name))
 $(versionElName).html(`Phiên bản ${manifestData.version}`)
 
-ZaDarkBrowser.getExtensionSettings().then(({ theme, font, fontSize, enabledHideLatestMessage, enabledHideConvAvatarName, enabledHideThreadChatMessage }) => {
+ZaDarkBrowser.getExtensionSettings().then(({ theme, fontFamily, fontSize, enabledHideLatestMessage, enabledHideConvAvatarName, enabledHideThreadChatMessage }) => {
+  ZaDarkUtils.setPageTheme(theme)
+
   $(radioInputThemeElName).filter(`[value="${theme}"]`).attr('checked', true)
-  $(selectFontElName).val(font)
+  $(inputFontFamilyElName).val(fontFamily)
   $(selectFontSizeElName).val(fontSize)
 
   $(switchHideLatestMessageElName).prop('checked', enabledHideLatestMessage)
@@ -55,45 +54,48 @@ ZaDarkBrowser.getExtensionSettings().then(({ theme, font, fontSize, enabledHideL
 
 $(radioInputThemeElName).on('change', async function () {
   const theme = $(this).val()
-  await ZaDarkBrowser.saveExtensionSettings({ theme })
-  // Set popup theme
-  ZaDarkUtils.refreshPageTheme()
-  // Set theme for all Zalo tabs
+  await ZaDarkUtils.updateTheme(theme)
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_THEME, { theme })
 })
 
-$(selectFontElName).on('change', async function () {
-  const font = $(this).val()
-  await ZaDarkBrowser.saveExtensionSettings({ font })
-  // Set font for all Zalo tabs
-  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_FONT, { font })
+$(inputFontFamilyElName).keypress(async function (event) {
+  const isEnter = Number(event.keyCode ? event.keyCode : event.which) - 1 === 12
+
+  if (!isEnter) {
+    return
+  }
+
+  const fontFamily = $(this).val()
+  const success = await ZaDarkUtils.updateFontFamily(fontFamily)
+
+  if (success) {
+    ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.REFRESH_ZALO_TABS)
+  } else {
+    $(this).val('')
+  }
 })
 
 $(selectFontSizeElName).on('change', async function () {
   const fontSize = $(this).val()
-  await ZaDarkBrowser.saveExtensionSettings({ fontSize })
-  // Set fontSize for all Zalo tabs
+  await ZaDarkUtils.updateFontSize(fontSize)
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_FONT_SIZE, { fontSize })
 })
 
 $(switchHideLatestMessageElName).on('change', async function () {
   const enabledHideLatestMessage = $(this).is(':checked')
-  await ZaDarkBrowser.saveExtensionSettings({ enabledHideLatestMessage })
-  // Set enabledHideLatestMessage for all Zalo tabs
+  await ZaDarkUtils.updateHideLatestMessage(enabledHideLatestMessage)
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE, { enabledHideLatestMessage })
 })
 
 $(switchHideConvAvatarNameElName).on('change', async function () {
   const enabledHideConvAvatarName = $(this).is(':checked')
-  await ZaDarkBrowser.saveExtensionSettings({ enabledHideConvAvatarName })
-  // Set enabledHideConvAvatarName for all Zalo tabs
+  await ZaDarkUtils.updateHideConvAvatarName(enabledHideConvAvatarName)
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_CONV_AVATAR_NAME, { enabledHideConvAvatarName })
 })
 
 $(switchHideThreadChatMessageElName).on('change', async function () {
   const enabledHideThreadChatMessage = $(this).is(':checked')
-  await ZaDarkBrowser.saveExtensionSettings({ enabledHideThreadChatMessage })
-  // Set enabledHideThreadChatMessage for all Zalo tabs
+  await ZaDarkUtils.updateHideThreadChatMessage(enabledHideThreadChatMessage)
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE, { enabledHideThreadChatMessage })
 })
 

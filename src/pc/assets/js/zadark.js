@@ -8,9 +8,10 @@
   const $ = require('./zadark-jquery.min.js')
   const Hotkeys = require('./zadark-hotkeys-js.min.js')
   const Toastify = require('./zadark-toastify.min.js')
+  const WebFont = require('./zadark-webfont.min.js')
 
   const ZADARK_THEME_KEY = '@ZaDark:THEME'
-  const ZADARK_FONT_KEY = '@ZaDark:FONT'
+  const ZADARK_FONT_FAMILY_KEY = '@ZaDark:FONT_FAMILY'
   const ZADARK_FONT_SIZE_KEY = '@ZaDark:FONT_SIZE'
 
   const ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_LATEST_MESSAGE'
@@ -71,12 +72,18 @@
       return localStorage.setItem(ZADARK_THEME_KEY, theme)
     },
 
-    getFont: () => {
-      return localStorage.getItem(ZADARK_FONT_KEY) || 'open-sans'
+    getFontFamily: () => {
+      const value = localStorage.getItem(ZADARK_FONT_FAMILY_KEY)
+
+      if (value === null) {
+        return 'Open Sans'
+      }
+
+      return value
     },
 
-    saveFont: (font) => {
-      return localStorage.setItem(ZADARK_FONT_KEY, font)
+    saveFontFamily: (font) => {
+      return localStorage.setItem(ZADARK_FONT_FAMILY_KEY, font)
     },
 
     getFontSize: () => {
@@ -136,6 +143,39 @@
   }
 
   const ZaDarkUtils = {
+    HOTKEYS_TOAST_MESSAGE: {
+      fontSize: {
+        small: 'Cỡ chữ : Nhỏ',
+        medium: 'Cỡ chữ : Trung bình',
+        big: 'Cỡ chữ : Lớn',
+        'very-big': 'Cỡ chữ : Rất lớn'
+      },
+      hideLatestMessage: {
+        true: 'BẬT : Ẩn Tin nhắn gần nhất',
+        false: 'TẮT : Ẩn Tin nhắn gần nhất'
+      },
+      hideThreadChatMessage: {
+        true: 'BẬT : Ẩn Tin nhắn trong cuộc trò chuyện',
+        false: 'TẮT : Ẩn Tin nhắn trong cuộc trò chuyện'
+      },
+      HideConvAvatarName: {
+        true: 'BẬT : Ẩn Ảnh đại diện & Tên cuộc trò chuyện',
+        false: 'TẮT : Ẩn Ảnh đại diện & Tên cuộc trò chuyện'
+      },
+      rules_block_typing: {
+        true: 'BẬT : Ẩn trạng thái Đang soạn tin (Typing) ...',
+        false: 'TẮT : Ẩn trạng thái Đang soạn tin (Typing) ...'
+      },
+      rules_block_delivered: {
+        true: 'BẬT : Ẩn trạng thái Đã nhận (Received)',
+        false: 'TẮT : Ẩn trạng thái Đã nhận (Received)'
+      },
+      rules_block_seen: {
+        true: 'BẬT : Ẩn trạng thái Đã xem (Seen)',
+        false: 'TẮT : Ẩn trạng thái Đã xem (Seen)'
+      }
+    },
+
     isMac: () => {
       return document.documentElement.getAttribute('data-zadark-os') === 'macOS'
     },
@@ -144,12 +184,39 @@
       document.documentElement.setAttribute('data-zadark-theme', themeMode)
     },
 
-    setFontAttr: (font) => {
-      document.documentElement.setAttribute('data-zadark-font', font)
+    setFontFamilyAttr: (fontFamily) => {
+      if (!fontFamily) {
+        document.querySelector(':root').style.removeProperty('--zadark-font-family')
+        document.documentElement.removeAttribute('data-zadark-use-font')
+        return
+      }
+
+      document.querySelector(':root').style.setProperty('--zadark-font-family', fontFamily)
+      document.documentElement.setAttribute('data-zadark-use-font', 'true')
     },
 
     setFontSizeAttr: (fontSize) => {
       document.documentElement.setAttribute('data-zadark-font-size', fontSize)
+    },
+
+    toggleBodyClassName: (className, isEnabled) => {
+      if (isEnabled) {
+        document.body.classList.add(className)
+      } else {
+        document.body.classList.remove(className)
+      }
+    },
+
+    setHideLatestMessageAttr: function (isEnabled) {
+      this.toggleBodyClassName('zadark-prv--latest-message', isEnabled)
+    },
+
+    setHideConvAvatarNameAttr: function (isEnabled) {
+      this.toggleBodyClassName('zadark-prv--conv-avatar-name', isEnabled)
+    },
+
+    setHideThreadChatMessageAttr: function (isEnabled) {
+      this.toggleBodyClassName('zadark-prv--thread-chat-message', isEnabled)
     },
 
     setPageTheme: function (theme) {
@@ -172,57 +239,7 @@
       }
     },
 
-    refreshPageTheme: function () {
-      const theme = ZaDarkStorage.getTheme()
-      this.setPageTheme(theme)
-
-      if (!this.isMac()) {
-        ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { theme })
-      }
-    },
-
-    refreshPageFont: function () {
-      const font = ZaDarkStorage.getFont()
-      this.setFontAttr(font)
-    },
-
-    refreshPageFontSize: function () {
-      const fontSize = ZaDarkStorage.getFontSize()
-      this.setFontSizeAttr(fontSize)
-    },
-
-    toggleBodyClassName: (className, isEnabled) => {
-      if (isEnabled) {
-        document.body.classList.add(className)
-      } else {
-        document.body.classList.remove(className)
-      }
-    },
-
-    refreshHideLatestMessage: function () {
-      const isEnabled = ZaDarkStorage.getEnabledHideLatestMessage()
-      this.toggleBodyClassName('zadark-prv--latest-message', isEnabled)
-
-      if (!this.isMac()) {
-        ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { hideLatestMessage: isEnabled })
-      }
-    },
-
-    refreshHideConvAvatarName: function () {
-      const isEnabled = ZaDarkStorage.getEnabledHideConvAvatarName()
-      this.toggleBodyClassName('zadark-prv--conv-avatar-name', isEnabled)
-
-      if (!this.isMac()) {
-        ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { hideConvAvatarName: isEnabled })
-      }
-    },
-
-    refreshHideThreadChatMessage: function () {
-      const isEnabled = ZaDarkStorage.getEnabledHideThreadChatMessage()
-      this.toggleBodyClassName('zadark-prv--thread-chat-message', isEnabled)
-    },
-
-    loadBlockSettings: function () {
+    initBlockSettings: function () {
       const settings = ZaDarkStorage.getBlockSettings()
 
       const enableBlockIds = []
@@ -246,21 +263,25 @@
       return 'https://sourceforge.net/projects/zadark/reviews/new?stars=5'
     },
 
-    showToast: function (message) {
+    showToast: function (message, options = {}) {
       const toast = Toastify({
         text: message,
         duration: 1408,
         gravity: 'bottom',
         position: 'center',
+        escapeMarkup: false,
         offset: {
           x: 15,
           y: 15
         },
+        ...options,
         onClick: function () {
           toast.hideToast()
         }
       })
       toast.showToast()
+
+      return toast
     },
 
     setSelect: (elName, value) => {
@@ -269,16 +290,151 @@
 
     setSwitch: (elName, enabled) => {
       $(elName).prop('checked', enabled)
+    },
+
+    installFontFamily: (fontFamilies = [], classes = true) => {
+      if (!fontFamilies.length) {
+        return Promise.resolve(false)
+      }
+
+      return new Promise((resolve) => {
+        WebFont.load({
+          google: {
+            families: fontFamilies
+            // text: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZẮắẰằẲẳẴẵẶặĂăÂâĐđÊêÔôƠơƯưỨứỪừỬửỮữỰự'
+          },
+          loading: () => {
+            console.log('Fonts are being loaded', fontFamilies)
+          },
+          active: () => {
+            console.log('Fonts have been rendered', fontFamilies)
+            resolve(true)
+          },
+          inactive: () => {
+            console.log('Fonts failed to load', fontFamilies)
+            resolve(false)
+          },
+          classes,
+          timeout: 1408
+        })
+      })
+    },
+
+    initFontFamily: async function () {
+      const fontFamily = ZaDarkStorage.getFontFamily()
+      console.log('🚀 ~ file: zadark.js:319 ~ fontFamily:', fontFamily)
+
+      if (!fontFamily) {
+        this.installFontFamily(['Open Sans:400,600:latin,vietnamese'], false)
+        return
+      }
+
+      await this.installFontFamily([`${fontFamily}:400,500:latin,vietnamese`, 'Open Sans:400,600:latin,vietnamese'], false)
+      this.setFontFamilyAttr(fontFamily)
+    },
+
+    initPageSettings: async function () {
+      this.initFontFamily()
+      this.initBlockSettings()
+
+      const theme = ZaDarkStorage.getTheme()
+      this.setPageTheme(theme)
+
+      const fontSize = ZaDarkStorage.getFontSize()
+      this.setFontSizeAttr(fontSize)
+
+      const enabledHideLatestMessage = ZaDarkStorage.getEnabledHideLatestMessage()
+      this.setHideLatestMessageAttr(enabledHideLatestMessage)
+
+      const enabledHideConvAvatarName = ZaDarkStorage.getEnabledHideConvAvatarName()
+      this.setHideConvAvatarNameAttr(enabledHideConvAvatarName)
+
+      const enabledHideThreadChatMessage = ZaDarkStorage.getEnabledHideThreadChatMessage()
+      this.setHideThreadChatMessageAttr(enabledHideThreadChatMessage)
+    },
+
+    updateTheme: function (theme) {
+      ZaDarkStorage.saveTheme(theme)
+      this.setPageTheme(theme)
+
+      if (!this.isMac()) {
+        ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { theme })
+      }
+    },
+
+    updateFontFamily: async function (fontFamily) {
+      if (!fontFamily) {
+        // Use default font
+        ZaDarkStorage.saveFontFamily('')
+        this.setFontFamilyAttr('')
+        this.showToast('Đã thay đổi phông chữ')
+        return true
+      }
+
+      const toast = this.showToast('Đang tải phông chữ...', { duration: -1 })
+
+      const success = await this.installFontFamily([`${fontFamily}:400,500:latin,vietnamese`], false)
+
+      toast.hideToast()
+
+      if (!success) {
+        this.showToast('Không thể tải phông chữ')
+        return false
+      }
+
+      ZaDarkStorage.saveFontFamily(fontFamily)
+
+      this.setFontFamilyAttr(fontFamily)
+      this.showToast('Đã thay đổi phông chữ')
+
+      return true
+    },
+
+    updateFontSize: function (fontSize) {
+      ZaDarkStorage.saveFontSize(fontSize)
+      this.setFontSizeAttr(fontSize)
+      ZaDarkUtils.showToast(ZaDarkUtils.HOTKEYS_TOAST_MESSAGE.fontSize[fontSize])
+    },
+
+    updateHideLatestMessage: function (isEnabled) {
+      ZaDarkStorage.saveEnabledHideLatestMessage(isEnabled)
+      this.toggleBodyClassName('zadark-prv--latest-message', isEnabled)
+      this.showToast(this.HOTKEYS_TOAST_MESSAGE.hideLatestMessage[isEnabled])
+
+      if (!this.isMac()) {
+        ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { hideLatestMessage: isEnabled })
+      }
+    },
+
+    updateHideConvAvatarName: function (isEnabled) {
+      ZaDarkStorage.saveEnabledHideConvAvatarName(isEnabled)
+      this.toggleBodyClassName('zadark-prv--conv-avatar-name', isEnabled)
+      this.showToast(this.HOTKEYS_TOAST_MESSAGE.HideConvAvatarName[isEnabled])
+
+      if (!this.isMac()) {
+        ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { hideConvAvatarName: isEnabled })
+      }
+    },
+
+    updateHideThreadChatMessage: function (isEnabled) {
+      ZaDarkStorage.saveEnabledHideThreadChatMessage(isEnabled)
+      this.toggleBodyClassName('zadark-prv--thread-chat-message', isEnabled)
+      this.showToast(this.HOTKEYS_TOAST_MESSAGE.hideThreadChatMessage[isEnabled])
+    },
+
+    updateBlockSettings: function (blockId, isEnabled) {
+      const payload = isEnabled
+        ? { enableBlockIds: [blockId] }
+        : { disableBlockIds: [blockId] }
+
+      ZaDarkStorage.saveBlockSettings(blockId, isEnabled)
+      ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE[blockId][isEnabled])
+
+      ipcRenderer.send('@ZaDark:UPDATE_BLOCK_SETTINGS', payload)
     }
   }
 
-  ZaDarkUtils.refreshPageTheme()
-  ZaDarkUtils.refreshPageFont()
-  ZaDarkUtils.refreshPageFontSize()
-  ZaDarkUtils.refreshHideLatestMessage()
-  ZaDarkUtils.refreshHideConvAvatarName()
-  ZaDarkUtils.refreshHideThreadChatMessage()
-  ZaDarkUtils.loadBlockSettings()
+  ZaDarkUtils.initPageSettings()
 
   window.matchMedia('(prefers-color-scheme: dark)').addListener((event) => {
     const theme = ZaDarkStorage.getTheme()
@@ -289,7 +445,7 @@
 
   const versionElName = '#js-ext-version'
   const radioInputThemeElName = '#js-radio-input-theme input:radio[name="theme"]'
-  const selectFontElName = '#js-select-font'
+  const inputFontFamilyElName = '#js-input-font-family'
   const selectFontSizeElName = '#js-select-font-size'
 
   const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
@@ -300,7 +456,7 @@
   const switchBlockSeenElName = '#js-switch-block-seen'
   const switchBlockDeliveredElName = '#js-switch-block-delivered'
 
-  const setSelectTheme = (theme) => {
+  const setRadioInputTheme = (theme) => {
     const options = ['light', 'dark', 'auto']
     options.forEach((option) => {
       $(radioInputThemeElName).filter(`[value="${option}"]`).prop('checked', option === theme)
@@ -309,56 +465,48 @@
 
   function handleThemeChange () {
     const theme = $(this).val()
-    ZaDarkStorage.saveTheme(theme)
-    ZaDarkUtils.refreshPageTheme()
-    setSelectTheme(theme)
+    ZaDarkUtils.updateTheme(theme)
   }
 
-  function handleFontChange () {
-    const font = $(this).val()
-    ZaDarkStorage.saveFont(font)
-    ZaDarkUtils.refreshPageFont()
+  async function handleInputFontFamilyKeyPress (event) {
+    const isEnter = Number(event.keyCode ? event.keyCode : event.which) - 1 === 12
+
+    if (!isEnter) {
+      return
+    }
+
+    const fontFamily = $(this).val()
+    const success = await ZaDarkUtils.updateFontFamily(fontFamily)
+
+    if (!success) {
+      $(this).val('')
+    }
   }
 
   function handleFontSizeChange () {
     const fontSize = $(this).val()
-    ZaDarkStorage.saveFontSize(fontSize)
-    ZaDarkUtils.refreshPageFontSize()
+    ZaDarkUtils.updateFontSize(fontSize)
   }
 
   function handleHideLastestMessageChange () {
     const isEnabled = $(this).is(':checked')
-    ZaDarkStorage.saveEnabledHideLatestMessage(isEnabled)
-    ZaDarkUtils.refreshHideLatestMessage()
-    ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.hideLatestMessage[isEnabled])
+    ZaDarkUtils.updateHideLatestMessage(isEnabled)
   }
 
   function handleHideConvAvatarNameChange () {
     const isEnabled = $(this).is(':checked')
-    ZaDarkStorage.saveEnabledHideConvAvatarName(isEnabled)
-    ZaDarkUtils.refreshHideConvAvatarName()
-    ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.HideConvAvatarName[isEnabled])
+    ZaDarkUtils.updateHideConvAvatarName(isEnabled)
   }
 
   function handleHideThreadChatMessageChange () {
     const isEnabled = $(this).is(':checked')
-    ZaDarkStorage.saveEnabledHideThreadChatMessage(isEnabled)
-    ZaDarkUtils.refreshHideThreadChatMessage()
-    ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.hideThreadChatMessage[isEnabled])
+    ZaDarkUtils.updateHideThreadChatMessage(isEnabled)
   }
 
-  const handleBlockSettingsChange = (elName, blockId) => {
+  const handleBlockSettingsChange = (blockId) => {
     return () => {
-      const isEnabled = $(elName).is(':checked')
-
-      const payload = isEnabled
-        ? { enableBlockIds: [blockId] }
-        : { disableBlockIds: [blockId] }
-
-      ZaDarkStorage.saveBlockSettings(blockId, isEnabled)
-      ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE[blockId][isEnabled])
-
-      ipcRenderer.send('@ZaDark:UPDATE_BLOCK_SETTINGS', payload)
+      const isEnabled = $(this).is(':checked')
+      ZaDarkUtils.updateBlockSettings(blockId, isEnabled)
     }
   }
 
@@ -431,27 +579,23 @@
             </label>
           </div>
 
-          <div class="select-font select-font--border-default">
-            <label class="select-font__label">Thay đổi phông chữ</label>
+          <div class="font-settings font-settings--border-default">
+            <label class="font-settings__label">
+              Phông chữ từ <a href="https://zadark.quaric.com/blog/use-google-fonts" target="_blank">Google Fonts</a>
+              <span class="zadark-beta"></span>
+            </label>
 
-            <select id="js-select-font" class="zadark-select zadark-select--text-right">
-              <option value="default">Mặc định</option>
-              <option value="open-sans">Open Sans</option>
-              <option value="inter">Inter</option>
-              <option value="roboto">Roboto</option>
-              <option value="lato">Lato</option>
-              <option value="source-sans-pro">Source Sans Pro</option>
-            </select>
+            <input id="js-input-font-family" class="zadark-input" placeholder="Mặc định">
           </div>
 
-          <div class="select-font select-font--hotkeys">
-            <label class="select-font__label">Thay đổi cỡ chữ của tin nhắn</label>
+          <div class="font-settings font-settings--hotkeys">
+            <label class="select-font__label">Cỡ chữ của tin nhắn</label>
 
-            <span class="select-font__hotkeys">
-              <span class="zadark-hotkeys" data-keys-win="Alt+= / Alt+−" data-keys-mac="⌥= / ⌥−"></span>
+            <span class="font-settings__hotkeys">
+              <span class="zadark-hotkeys" data-keys-win="Ctrl+9 / Ctrl+0" data-keys-mac="⌘9 / ⌘0"></span>
             </span>
 
-            <select id="js-select-font-size" class="zadark-select zadark-select--text-right">
+            <select id="js-select-font-size" class="zadark-select">
               <option value="small">Nhỏ</option>
               <option value="medium">Trung bình</option>
               <option value="big">Lớn</option>
@@ -568,10 +712,10 @@
 
   const loadPopupState = () => {
     const theme = ZaDarkStorage.getTheme()
-    setSelectTheme(theme)
+    setRadioInputTheme(theme)
 
-    const font = ZaDarkStorage.getFont()
-    ZaDarkUtils.setSelect(selectFontElName, font)
+    const fontFamily = ZaDarkStorage.getFontFamily()
+    ZaDarkUtils.setSelect(inputFontFamilyElName, fontFamily)
 
     const fontSize = ZaDarkStorage.getFontSize()
     ZaDarkUtils.setSelect(selectFontSizeElName, fontSize)
@@ -662,7 +806,6 @@
 
     ZaDarkUtils.setSelect(selectFontSizeElName, nextFontSize)
     handleFontSizeChange.bind($(selectFontSizeElName))()
-    ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.fontSize[nextFontSize])
   }
 
   const loadHotkeys = () => {
@@ -679,13 +822,16 @@
     }
 
     const keys = [
-    // Mac
+      // Mac
       'command+1',
       'command+2',
       'command+3',
       'command+4',
       'command+5',
       'command+6',
+      'command+0',
+      'command+9',
+      'command+d',
 
       // Windows
       'ctrl+1',
@@ -694,11 +840,9 @@
       'ctrl+4',
       'ctrl+5',
       'ctrl+6',
-
-      // Both
-      'option+z',
-      'option+=',
-      'option+-'
+      'ctrl+0',
+      'ctrl+9',
+      'ctrl+d'
     ].join(',')
 
     Hotkeys(keys, function (event, handler) {
@@ -710,7 +854,7 @@
       const blockSettings = ZaDarkStorage.getBlockSettings()
 
       switch (handler.key) {
-      // Hide latest message
+        // Hide latest message
         case 'command+1':
         case 'ctrl+1': {
           ZaDarkUtils.setSwitch(switchHideLatestMessageElName, !enabledHideLatestMessage)
@@ -738,7 +882,7 @@
         case 'command+4':
         case 'ctrl+4': {
           ZaDarkUtils.setSwitch(switchBlockTypingElName, !blockSettings.block_typing)
-          handleBlockSettingsChange(switchBlockTypingElName, 'block_typing').bind($(switchBlockTypingElName))()
+          handleBlockSettingsChange('block_typing').bind($(switchBlockTypingElName))()
           return
         }
 
@@ -746,7 +890,7 @@
         case 'command+5':
         case 'ctrl+5': {
           ZaDarkUtils.setSwitch(switchBlockDeliveredElName, !blockSettings.block_delivered)
-          handleBlockSettingsChange(switchBlockDeliveredElName, 'block_delivered').bind($(switchBlockDeliveredElName))()
+          handleBlockSettingsChange('block_delivered').bind($(switchBlockDeliveredElName))()
           return
         }
 
@@ -754,24 +898,27 @@
         case 'command+6':
         case 'ctrl+6': {
           ZaDarkUtils.setSwitch(switchBlockSeenElName, !blockSettings.block_seen)
-          handleBlockSettingsChange(switchBlockSeenElName, 'block_seen').bind($(switchBlockSeenElName))()
+          handleBlockSettingsChange('block_seen').bind($(switchBlockSeenElName))()
           return
         }
 
         // Increase font size
-        case 'option+=': {
+        case 'command+0':
+        case 'ctrl+0': {
           handleNextFontSize(1)
           return
         }
 
         // Decrease font size
-        case 'option+-': {
+        case 'command+9':
+        case 'ctrl+9': {
           handleNextFontSize(-1)
           return
         }
 
         // Open ZaDark Settings
-        case 'option+z': {
+        case 'command+d':
+        case 'ctrl+d': {
           const buttonEl = document.getElementById('div_Main_TabZaDark')
           buttonEl.click()
         }
@@ -788,8 +935,15 @@
     tippy('#div_Main_TabZaDark', {
       theme: 'zadark',
       allowHTML: true,
-      content: '<span>ZaDark <span class="zadark-hotkeys" data-keys-win="Alt+Z" data-keys-mac="⌥Z"></span></span>',
+      content: '<span>ZaDark <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D"></span></span>',
       placement: 'right'
+    })
+
+    tippy('#js-input-font-family', {
+      theme: 'zadark',
+      allowHTML: true,
+      content: '<p>Nhập tên phông chữ từ <strong>Google Fonts</strong><br>(Lưu ý kí tự in hoa, khoảng cách).</p><p>Bỏ trống nếu dùng phông mặc định.</p><p>Nhấn <strong>Enter</strong> để lưu lại.</p>',
+      trigger: 'focus'
     })
   }
 
@@ -809,16 +963,16 @@
     $(versionElName).html(`Phiên bản ${zadarkVersion}`)
 
     $(radioInputThemeElName).on('change', handleThemeChange)
-    $(selectFontElName).on('change', handleFontChange)
+    $(inputFontFamilyElName).keypress(handleInputFontFamilyKeyPress)
     $(selectFontSizeElName).on('change', handleFontSizeChange)
 
     $(switchHideLatestMessageElName).on('change', handleHideLastestMessageChange)
     $(switchHideConvAvatarNameElName).on('change', handleHideConvAvatarNameChange)
     $(switchHideThreadChatMessageElName).on('change', handleHideThreadChatMessageChange)
 
-    $(switchBlockTypingElName).on('change', handleBlockSettingsChange(switchBlockTypingElName, 'block_typing'))
-    $(switchBlockSeenElName).on('change', handleBlockSettingsChange(switchBlockSeenElName, 'block_seen'))
-    $(switchBlockDeliveredElName).on('change', handleBlockSettingsChange(switchBlockDeliveredElName, 'block_delivered'))
+    $(switchBlockTypingElName).on('change', handleBlockSettingsChange('block_typing'))
+    $(switchBlockSeenElName).on('change', handleBlockSettingsChange('block_seen'))
+    $(switchBlockDeliveredElName).on('change', handleBlockSettingsChange('block_delivered'))
 
     const popupEl = document.querySelector('#zadark-popup')
     const buttonEl = document.getElementById('div_Main_TabZaDark')

@@ -22,7 +22,7 @@
       return new Promise((resolve, reject) => {
         browser.storage.sync.get({
           theme: 'dark',
-          font: 'open-sans',
+          fontFamily: 'Open Sans',
           fontSize: 'medium',
 
           enabledHideLatestMessage: false,

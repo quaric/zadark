@@ -28,4 +28,18 @@ body {
   margin: 0;
   padding: 0;
   min-width: 480px;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+html {
+  background: var(--zadark-white-300);
+
+  &.wf-loading body {
+    opacity: 0;
+  }
+
+  &.wf-active body {
+    opacity: 1;
+  }
 }
