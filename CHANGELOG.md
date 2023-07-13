@@ -1,5 +1,15 @@
 # Changelog
 
+## ZaDark 23.7.2
+> PC 9.3
+
+### Fixed
+#### Windows specific
+  - Sửa lỗi hộp thoại thông báo (góc phải dưới)
+    - Lỗi Dark Mode
+    - Lỗi ẩn tin nhắn gần nhất
+    - Lỗi ẩn ảnh đại diện & tên cuộc trò chuyện
+
 ## ZaDark 23.7.1
 > PC 9.2 && Web 9.2
 

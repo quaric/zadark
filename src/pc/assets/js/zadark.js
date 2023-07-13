@@ -322,7 +322,6 @@
 
     initFontFamily: async function () {
       const fontFamily = ZaDarkStorage.getFontFamily()
-      console.log('🚀 ~ file: zadark.js:319 ~ fontFamily:', fontFamily)
 
       if (!fontFamily) {
         this.installFontFamily(['Open Sans:400,600:latin,vietnamese'], false)
@@ -351,6 +350,14 @@
 
       const enabledHideThreadChatMessage = ZaDarkStorage.getEnabledHideThreadChatMessage()
       this.setHideThreadChatMessageAttr(enabledHideThreadChatMessage)
+
+      if (!this.isMac()) {
+        ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', {
+          theme,
+          hideLatestMessage: enabledHideLatestMessage,
+          hideConvAvatarName: enabledHideConvAvatarName
+        })
+      }
     },
 
     updateTheme: function (theme) {
