@@ -13,7 +13,8 @@
   const selectFontSizeElName = '#js-select-font-size'
 
   const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
-  const switchHideConvAvatarNameElName = '#js-switch-hide-conv-avatar-name'
+  const switchHideConvAvatarElName = '#js-switch-hide-conv-avatar'
+  const switchHideConvNameElName = '#js-switch-hide-conv-name'
   const switchHideThreadChatMessageElName = '#js-switch-hide-thread-chat-message'
 
   const switchBlockTypingElName = '#js-switch-block-typing'
@@ -65,9 +66,14 @@
     ZaDarkUtils.updateHideLatestMessage(enabledHideLatestMessage)
   }
 
-  function handleHideConvAvatarNameChange () {
-    const enabledHideConvAvatarName = $(this).is(':checked')
-    ZaDarkUtils.updateHideConvAvatarName(enabledHideConvAvatarName)
+  function handleHideConvAvatarChange () {
+    const enabledHideConvAvatar = $(this).is(':checked')
+    ZaDarkUtils.updateHideConvAvatar(enabledHideConvAvatar)
+  }
+
+  function handleHideConvNameChange () {
+    const enabledHideConvName = $(this).is(':checked')
+    ZaDarkUtils.updateHideConvName(enabledHideConvName)
   }
 
   function handleHideThreadChatMessageChange () {
@@ -170,7 +176,7 @@
             <label class="select-font__label">Cỡ chữ của tin nhắn</label>
 
             <span class="font-settings__hotkeys">
-              <span class="zadark-hotkeys" data-keys-win="Ctrl+9 / Ctrl+0" data-keys-mac="⌘9 / ⌘0"></span>
+              <span class="zadark-hotkeys" data-keys-win="Ctrl+9 Ctrl+0" data-keys-mac="⌘9 ⌘0"></span>
             </span>
 
             <select id="js-select-font-size" class="zadark-select">
@@ -203,7 +209,7 @@
                 </label>
               </div>
 
-              <div class="zadark-switch">
+              <div class="zadark-switch zadark-switch--border-default">
                 <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
                   Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
                   <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Vùng hiển thị tin nhắn</strong>". Khi bạn di chuột ra khỏi vùng này, tin nhắn sẽ được ẩn đi.</p>'></i>
@@ -217,16 +223,30 @@
                 </label>
               </div>
 
-              <div class="zadark-switch zadark-switch--border-default">
-                <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-avatar-name">
-                  Ẩn <strong>Ảnh đại diện & Tên</strong> cuộc trò chuyện
-                  <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Ảnh đại diện & Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
+              <div class="zadark-switch">
+                <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-avatar">
+                  Ẩn <strong>Ảnh đại diện</strong> cuộc trò chuyện
+                  <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Ảnh đại diện, bạn di chuyển chuột vào "<strong>Ảnh đại diện</strong>" cần xem.</p>'></i>
                 </label>
                 <span class="zadark-switch__hotkeys">
                   <span class="zadark-hotkeys" data-keys-win="Ctrl+3" data-keys-mac="⌘3"></span>
                 </span>
                 <label class="zadark-switch__checkbox">
-                  <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-avatar-name">
+                  <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-avatar">
+                  <span class="zadark-switch__slider"></span>
+                </label>
+              </div>
+
+              <div class="zadark-switch zadark-switch--border-default">
+                <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-name">
+                  Ẩn <strong>Tên</strong> cuộc trò chuyện
+                  <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
+                </label>
+                <span class="zadark-switch__hotkeys">
+                  <span class="zadark-hotkeys" data-keys-win="Ctrl+7" data-keys-mac="⌘7"></span>
+                </span>
+                <label class="zadark-switch__checkbox">
+                  <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-name">
                   <span class="zadark-switch__slider"></span>
                 </label>
               </div>
@@ -314,7 +334,8 @@
       fontFamily,
       fontSize,
       enabledHideLatestMessage,
-      enabledHideConvAvatarName,
+      enabledHideConvAvatar,
+      enabledHideConvName,
       enabledHideThreadChatMessage
     } = await ZaDarkBrowser.getExtensionSettings()
 
@@ -323,7 +344,8 @@
     setSelect(selectFontSizeElName, fontSize)
 
     setSwitch(switchHideLatestMessageElName, enabledHideLatestMessage)
-    setSwitch(switchHideConvAvatarNameElName, enabledHideConvAvatarName)
+    setSwitch(switchHideConvAvatarElName, enabledHideConvAvatar)
+    setSwitch(switchHideConvNameElName, enabledHideConvName)
     setSwitch(switchHideThreadChatMessageElName, enabledHideThreadChatMessage)
 
     if (ZaDarkUtils.isSupportDeclarativeNetRequest()) {
@@ -426,6 +448,7 @@
       'command+1',
       'command+2',
       'command+3',
+      'command+7',
       'command+4',
       'command+5',
       'command+6',
@@ -437,6 +460,7 @@
       'ctrl+1',
       'ctrl+2',
       'ctrl+3',
+      'ctrl+7',
       'ctrl+4',
       'ctrl+5',
       'ctrl+6',
@@ -451,7 +475,8 @@
       const {
         enabledHideLatestMessage,
         enabledHideThreadChatMessage,
-        enabledHideConvAvatarName,
+        enabledHideConvAvatar,
+        enabledHideConvName,
 
         enabledBlockTyping,
         enabledBlockSeen,
@@ -475,11 +500,19 @@
           return
         }
 
-        // Hide conversation avatar & name
+        // Hide conversation avatar
         case 'command+3':
         case 'ctrl+3': {
-          setSwitch(switchHideConvAvatarNameElName, !enabledHideConvAvatarName)
-          handleHideConvAvatarNameChange.bind($(switchHideConvAvatarNameElName))()
+          setSwitch(switchHideConvAvatarElName, !enabledHideConvAvatar)
+          handleHideConvAvatarChange.bind($(switchHideConvAvatarElName))()
+          return
+        }
+
+        // Hide conversation name
+        case 'command+7':
+        case 'ctrl+7': {
+          setSwitch(switchHideConvNameElName, !enabledHideConvName)
+          handleHideConvNameChange.bind($(switchHideConvNameElName))()
           return
         }
 
@@ -548,7 +581,8 @@
     $(selectFontSizeElName).on('change', handleSelectFontSizeChange)
 
     $(switchHideLatestMessageElName).on('change', handleHideLatestMessageChange)
-    $(switchHideConvAvatarNameElName).on('change', handleHideConvAvatarNameChange)
+    $(switchHideConvAvatarElName).on('change', handleHideConvAvatarChange)
+    $(switchHideConvNameElName).on('change', handleHideConvNameChange)
     $(switchHideThreadChatMessageElName).on('change', handleHideThreadChatMessageChange)
 
     $(switchBlockTypingElName).on('change', handleBlockingRuleChange('rules_block_typing'))
@@ -627,10 +661,18 @@
       sendResponse({ received: true })
     }
 
-    if (message.action === MSG_ACTIONS.CHANGE_HIDE_CONV_AVATAR_NAME) {
-      const isEnabled = message.payload.enabledHideConvAvatarName
-      setSwitch(switchHideConvAvatarNameElName, isEnabled)
-      ZaDarkUtils.setHideConvAvatarNameAttr(isEnabled)
+    if (message.action === MSG_ACTIONS.CHANGE_HIDE_CONV_AVATAR) {
+      const isEnabled = message.payload.enabledHideConvAvatar
+      setSwitch(switchHideConvAvatarElName, isEnabled)
+      ZaDarkUtils.setHideConvAvatarAttr(isEnabled)
+
+      sendResponse({ received: true })
+    }
+
+    if (message.action === MSG_ACTIONS.CHANGE_HIDE_CONV_NAME) {
+      const isEnabled = message.payload.enabledHideConvName
+      setSwitch(switchHideConvNameElName, isEnabled)
+      ZaDarkUtils.setHideConvNameAttr(isEnabled)
 
       sendResponse({ received: true })
     }

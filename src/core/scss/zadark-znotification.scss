@@ -92,7 +92,7 @@ html[data-zadark-theme="dark"] {
     }
   }
 
-  &.zadark-prv--conv-avatar-name {
+  &.zadark-prv--conv-avatar {
     #zavatar {
       position: relative;
       background: var(--N20) !important;
@@ -108,7 +108,9 @@ html[data-zadark-theme="dark"] {
         font-family: "ZaDarkIcons";
       }
     }
+  }
 
+  &.zadark-prv--conv-name {
     #ztitle {
       position: relative;
       color: transparent !important;

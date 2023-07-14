@@ -398,8 +398,7 @@ html[data-zadark-os="macOS"] {
       right: 0;
       bottom: 0;
       background-color: var(--zadark-grey-base);
-      -webkit-transition: 0.25s;
-      transition: 0.25s;
+      transition: all 0.25s ease-in-out;
 
       border-radius: 50rem;
 

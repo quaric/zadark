@@ -17,7 +17,8 @@ app.whenReady().then(() => {
   const _settings = {
     theme: 'dark',
     hideLatestMessage: false,
-    hideConvAvatarName: false
+    hideConvAvatar: false,
+    hideConvName: false
   }
 
   const filter = {

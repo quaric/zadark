@@ -30,7 +30,8 @@ const selectFontSizeElName = '#js-select-font-size'
 const manifestData = ZaDarkBrowser.getManifest()
 
 const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
-const switchHideConvAvatarNameElName = '#js-switch-hide-conv-avatar-name'
+const switchHideConvAvatarElName = '#js-switch-hide-conv-avatar'
+const switchHideConvNameElName = '#js-switch-hide-conv-name'
 const switchHideThreadChatMessageElName = '#js-switch-hide-thread-chat-message'
 
 const switchBlockTypingElName = '#js-switch-block-typing'
@@ -40,7 +41,7 @@ const switchBlockDeliveredElName = '#js-switch-block-delivered'
 $(ratingElName).attr('href', ZaDarkUtils.getRatingURL(ZaDarkBrowser.name))
 $(versionElName).html(`Phiên bản ${manifestData.version}`)
 
-ZaDarkBrowser.getExtensionSettings().then(({ theme, fontFamily, fontSize, enabledHideLatestMessage, enabledHideConvAvatarName, enabledHideThreadChatMessage }) => {
+ZaDarkBrowser.getExtensionSettings().then(({ theme, fontFamily, fontSize, enabledHideLatestMessage, enabledHideConvAvatar, enabledHideConvName, enabledHideThreadChatMessage }) => {
   ZaDarkUtils.setPageTheme(theme)
 
   $(radioInputThemeElName).filter(`[value="${theme}"]`).attr('checked', true)
@@ -48,7 +49,8 @@ ZaDarkBrowser.getExtensionSettings().then(({ theme, fontFamily, fontSize, enable
   $(selectFontSizeElName).val(fontSize)
 
   $(switchHideLatestMessageElName).prop('checked', enabledHideLatestMessage)
-  $(switchHideConvAvatarNameElName).prop('checked', enabledHideConvAvatarName)
+  $(switchHideConvAvatarElName).prop('checked', enabledHideConvAvatar)
+  $(switchHideConvNameElName).prop('checked', enabledHideConvName)
   $(switchHideThreadChatMessageElName).prop('checked', enabledHideThreadChatMessage)
 })
 
@@ -87,10 +89,16 @@ $(switchHideLatestMessageElName).on('change', async function () {
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE, { enabledHideLatestMessage })
 })
 
-$(switchHideConvAvatarNameElName).on('change', async function () {
-  const enabledHideConvAvatarName = $(this).is(':checked')
-  await ZaDarkUtils.updateHideConvAvatarName(enabledHideConvAvatarName)
-  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_CONV_AVATAR_NAME, { enabledHideConvAvatarName })
+$(switchHideConvAvatarElName).on('change', async function () {
+  const enabledHideConvAvatar = $(this).is(':checked')
+  await ZaDarkUtils.updateHideConvAvatar(enabledHideConvAvatar)
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_CONV_AVATAR, { enabledHideConvAvatar })
+})
+
+$(switchHideConvNameElName).on('change', async function () {
+  const enabledHideConvName = $(this).is(':checked')
+  await ZaDarkUtils.updateHideConvName(enabledHideConvName)
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_CONV_NAME, { enabledHideConvName })
 })
 
 $(switchHideThreadChatMessageElName).on('change', async function () {

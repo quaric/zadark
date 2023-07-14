@@ -26,7 +26,8 @@
           fontSize: 'medium',
 
           enabledHideLatestMessage: false,
-          enabledHideConvAvatarName: false,
+          enabledHideConvAvatar: false,
+          enabledHideConvName: false,
           enabledHideThreadChatMessage: false,
 
           enabledBlockTyping: false,

@@ -63,7 +63,9 @@
     .card--sticker .card--group-sticker__row__item {
       opacity: 0.5;
       filter: var(--prv-sticker-filter);
-      transition: opacity 100ms ease-in-out, filter 100ms ease-in-out;
+      transition:
+        opacity 100ms ease-in-out,
+        filter 100ms ease-in-out;
     }
 
     .card--group-photo .card--group-photo__row__item .img-g-v2 {
@@ -134,7 +136,86 @@
   }
 }
 
-@mixin prv-conv-avatar-name {
+@mixin prv-conv-avatar {
+  // Conv Avatar
+
+  .conv-item,
+  .chat-item:not(.me),
+  .threadChat__avatar,
+  .seen-msg-stt,
+  div[keys="avt-list-conv-media_box"] {
+    --zadark-avatar-color: var(--N30);
+    --zadark-avatar-bg: var(--N10);
+
+    .zavatar {
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "\e901";
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50rem;
+
+        color: var(--zadark-avatar-color);
+        background: var(--zadark-avatar-bg);
+        font-family: "ZaDarkIcons";
+
+        transition: opacity 100ms ease-in-out;
+      }
+
+      &.zavatar-multi::after {
+        content: "\e900";
+      }
+
+      &.zavatar-xxs::after {
+        font-size: 0.5rem;
+      }
+      &.zavatar-m::after {
+        font-size: 1rem;
+      }
+      &.zavatar-l::after {
+        font-size: 1.25rem;
+      }
+      &.zavatar-xl::after {
+        font-size: 1.5rem;
+      }
+
+      .a-child {
+        opacity: 0;
+        transition: opacity 100ms ease-in-out;
+      }
+    }
+  }
+
+  .conv-item.selected {
+    --zadark-avatar-color: var(--N40);
+    --zadark-avatar-bg: var(--N20);
+  }
+
+  #conversationListId:hover,
+  #header:hover,
+  #messageView:hover,
+  #chatInfoGeneral:hover,
+  #recent-search-list:hover,
+  #searchResultList:hover {
+    .zavatar {
+      &::after {
+        opacity: 0;
+      }
+
+      .a-child {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@mixin prv-conv-name {
   // Conv Name
   #conversationListId,
   #recent-search-list,
@@ -257,85 +338,6 @@
       }
     }
   }
-
-  // Conv Avatar
-
-  .conv-item,
-  .chat-item:not(.me),
-  .threadChat__avatar,
-  .seen-msg-stt,
-  div[keys="avt-list-conv-media_box"] {
-    --zadark-avatar-color: var(--N30);
-    --zadark-avatar-bg: var(--N10);
-
-    .zavatar {
-      &::after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        content: "\e901";
-
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50rem;
-
-        color: var(--zadark-avatar-color);
-        background: var(--zadark-avatar-bg);
-        font-family: "ZaDarkIcons";
-
-        transition: opacity 100ms ease-in-out;
-      }
-
-      &.zavatar-multi::after {
-        content: "\e900";
-      }
-
-      &.zavatar-xxs::after {
-        font-size: 0.5rem;
-      }
-      &.zavatar-m::after {
-        font-size: 1rem;
-      }
-      &.zavatar-l::after {
-        font-size: 1.25rem;
-      }
-      &.zavatar-xl::after {
-        font-size: 1.5rem;
-      }
-
-      .a-child {
-        opacity: 0;
-        transition: opacity 100ms ease-in-out;
-      }
-    }
-  }
-
-  .conv-item.selected {
-    --zadark-avatar-color: var(--N40);
-    --zadark-avatar-bg: var(--N20);
-  }
-
-  #conversationListId:hover,
-  #header:hover,
-  #messageView:hover,
-  #chatInfoGeneral:hover,
-  #recent-search-list:hover,
-  #searchResultList:hover {
-    .zavatar {
-      &::after {
-        opacity: 0;
-      }
-
-      .a-child {
-        opacity: 1;
-      }
-    }
-  }
-
-  // Rich Input
 
   // vi
   .rich-input.empty[placeholder*="tin nhắn"]::before {

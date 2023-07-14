@@ -1,5 +1,23 @@
 # Changelog
 
+## ZaDark 23.7.2
+> PC 9.3 && Web 9.3
+
+### Fixed
+
+#### Windows specific
+  - Sửa lỗi tính năng Ẩn trạng thái "Đang soạn tin...", "Đã nhận", "Đã xem" không hoạt động
+  - Sửa lỗi hộp thoại thông báo (góc phải dưới)
+    - Lỗi Dark Mode
+    - Lỗi ẩn tin nhắn gần nhất
+    - Lỗi ẩn ảnh đại diện & tên cuộc trò chuyện
+
+#### Web specific
+- **[Opera, Edge, Firefox]** Sửa lỗi không thể tuỳ chỉnh phông chữ
+
+### Changed
+- Tách tính năng Ẩn Ảnh đại diện & Tên cuộc trò chuyện ra 2 mục cài đặt
+
 ## ZaDark 23.7.1
 > PC 9.2 && Web 9.2
 
