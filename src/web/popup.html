@@ -88,7 +88,7 @@
           </label>
 
           <span class="font-settings__hotkeys">
-            <span class="zadark-hotkeys" data-keys-win="Ctrl+9 / Ctrl+0" data-keys-mac="⌘9 / ⌘0"></span>
+            <span class="zadark-hotkeys" data-keys-win="Ctrl+9 Ctrl+0" data-keys-mac="⌘9 ⌘0"></span>
           </span>
 
           <select id="js-select-font-size" class="zadark-select">
@@ -121,7 +121,7 @@
               </label>
             </div>
 
-            <div class="zadark-switch">
+            <div class="zadark-switch zadark-switch--border-default">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
                 Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Vùng hiển thị tin nhắn</strong>". Khi bạn di chuột ra khỏi vùng này, tin nhắn sẽ được ẩn đi.</p>'></i>
@@ -135,16 +135,30 @@
               </label>
             </div>
 
-            <div class="zadark-switch zadark-switch--border-default">
-              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-avatar-name">
-                Ẩn <strong>Ảnh đại diện & Tên</strong> cuộc trò chuyện
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Ảnh đại diện & Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
+            <div class="zadark-switch">
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-avatar">
+                Ẩn <strong>Ảnh đại diện</strong> cuộc trò chuyện
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Ảnh đại diện, bạn di chuyển chuột vào "<strong>Ảnh đại diện</strong>" cần xem.</p>'></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+3" data-keys-mac="⌘3"></span>
               </span>
               <label class="zadark-switch__checkbox">
-                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-avatar-name">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-avatar">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
+
+            <div class="zadark-switch zadark-switch--border-default">
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-name">
+                Ẩn <strong>Tên</strong> cuộc trò chuyện
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
+              </label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+7" data-keys-mac="⌘7"></span>
+              </span>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-name">
                 <span class="zadark-switch__slider"></span>
               </label>
             </div>

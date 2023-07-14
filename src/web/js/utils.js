@@ -11,7 +11,8 @@
       CHANGE_FONT_SIZE: '@ZaDark:CHANGE_FONT_SIZE',
 
       CHANGE_HIDE_LATEST_MESSAGE: '@ZaDark:CHANGE_HIDE_LATEST_MESSAGE',
-      CHANGE_HIDE_CONV_AVATAR_NAME: '@ZaDark:CHANGE_HIDE_CONV_AVATAR_NAME',
+      CHANGE_HIDE_CONV_AVATAR: '@ZaDark:CHANGE_HIDE_CONV_AVATAR',
+      CHANGE_HIDE_CONV_NAME: '@ZaDark:CHANGE_HIDE_CONV_NAME',
       CHANGE_HIDE_THREAD_CHAT_MESSAGE: '@ZaDark:CHANGE_HIDE_THREAD_CHAT_MESSAGE',
 
       GET_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:GET_ENABLED_BLOCKING_RULE_IDS',
@@ -35,9 +36,13 @@
         true: 'BẬT : Ẩn Tin nhắn trong cuộc trò chuyện',
         false: 'TẮT : Ẩn Tin nhắn trong cuộc trò chuyện'
       },
-      HideConvAvatarName: {
-        true: 'BẬT : Ẩn Ảnh đại diện & Tên cuộc trò chuyện',
-        false: 'TẮT : Ẩn Ảnh đại diện & Tên cuộc trò chuyện'
+      hideConvAvatar: {
+        true: 'BẬT : Ẩn Ảnh đại diện',
+        false: 'TẮT : Ẩn Ảnh đại diện'
+      },
+      hideConvName: {
+        true: 'BẬT : Ẩn Tên cuộc trò chuyện',
+        false: 'TẮT : Ẩn Tên cuộc trò chuyện'
       },
       rules_block_typing: {
         true: 'BẬT : Ẩn trạng thái Đang soạn tin (Typing) ...',
@@ -80,8 +85,12 @@
       this.toggleBodyClassName('zadark-prv--latest-message', isEnabled)
     },
 
-    setHideConvAvatarNameAttr: function (isEnabled) {
-      this.toggleBodyClassName('zadark-prv--conv-avatar-name', isEnabled)
+    setHideConvAvatarAttr: function (isEnabled) {
+      this.toggleBodyClassName('zadark-prv--conv-avatar', isEnabled)
+    },
+
+    setHideConvNameAttr: function (isEnabled) {
+      this.toggleBodyClassName('zadark-prv--conv-name', isEnabled)
     },
 
     setHideThreadChatMessageAttr: function (isEnabled) {
@@ -211,7 +220,8 @@
         fontSize,
 
         enabledHideLatestMessage,
-        enabledHideConvAvatarName,
+        enabledHideConvAvatar,
+        enabledHideConvName,
         enabledHideThreadChatMessage
       } = await ZaDarkBrowser.getExtensionSettings()
 
@@ -219,7 +229,8 @@
       this.setFontSizeAttr(fontSize)
 
       this.setHideLatestMessageAttr(enabledHideLatestMessage)
-      this.setHideConvAvatarNameAttr(enabledHideConvAvatarName)
+      this.setHideConvAvatarAttr(enabledHideConvAvatar)
+      this.setHideConvNameAttr(enabledHideConvName)
       this.setHideThreadChatMessageAttr(enabledHideThreadChatMessage)
     },
 
@@ -316,10 +327,16 @@
       this.showToast(this.HOTKEYS_TOAST_MESSAGE.hideLatestMessage[enabledHideLatestMessage])
     },
 
-    updateHideConvAvatarName: async function (enabledHideConvAvatarName) {
-      await ZaDarkBrowser.saveExtensionSettings({ enabledHideConvAvatarName })
-      this.toggleBodyClassName('zadark-prv--conv-avatar-name', enabledHideConvAvatarName)
-      this.showToast(this.HOTKEYS_TOAST_MESSAGE.HideConvAvatarName[enabledHideConvAvatarName])
+    updateHideConvAvatar: async function (enabledHideConvAvatar) {
+      await ZaDarkBrowser.saveExtensionSettings({ enabledHideConvAvatar })
+      this.toggleBodyClassName('zadark-prv--conv-avatar', enabledHideConvAvatar)
+      this.showToast(this.HOTKEYS_TOAST_MESSAGE.hideConvAvatar[enabledHideConvAvatar])
+    },
+
+    updateHideConvName: async function (enabledHideConvName) {
+      await ZaDarkBrowser.saveExtensionSettings({ enabledHideConvName })
+      this.toggleBodyClassName('zadark-prv--conv-name', enabledHideConvName)
+      this.showToast(this.HOTKEYS_TOAST_MESSAGE.hideConvName[enabledHideConvName])
     },
 
     updateHideThreadChatMessage: async function (enabledHideThreadChatMessage) {

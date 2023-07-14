@@ -41,10 +41,13 @@
 
     handleContentChange: async function () {
       if (DEBUG) console.log('contentChanged')
-      const { theme, hideLatestMessage, hideConvAvatarName } = await ipcRenderer.invoke('@ZaDark:GET_SETTINGS')
+
+      const { theme, hideLatestMessage, hideConvAvatar, hideConvName } = await ipcRenderer.invoke('@ZaDark:GET_SETTINGS')
+
       this.setPageTheme(theme)
       this.toggleBodyClassName('zadark-prv--latest-message', hideLatestMessage)
-      this.toggleBodyClassName('zadark-prv--conv-avatar-name', hideConvAvatarName)
+      this.toggleBodyClassName('zadark-prv--conv-avatar', hideConvAvatar)
+      this.toggleBodyClassName('zadark-prv--conv-name', hideConvName)
     },
 
     initMutationObserver: function () {

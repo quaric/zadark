@@ -2086,10 +2086,18 @@ body.zadark {
 
     display: none;
     width: 480px;
+    max-height: 100%;
 
     border: 1px solid var(--border);
     border-radius: 8px;
     box-shadow: var(--popper-shadow);
+
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+      width: 0 !important;
+    }
 
     &[data-visible] {
       display: block;
@@ -2104,8 +2112,12 @@ body.zadark {
     @include prv.prv-thread-chat-message();
   }
 
-  &.zadark-prv--conv-avatar-name {
-    @include prv.prv-conv-avatar-name();
+  &.zadark-prv--conv-avatar {
+    @include prv.prv-conv-avatar();
+  }
+
+  &.zadark-prv--conv-name {
+    @include prv.prv-conv-name();
   }
 
   // Conv font size
