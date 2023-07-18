@@ -707,7 +707,7 @@
                   <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
                 </label>
                 <span class="zadark-switch__hotkeys">
-                  <span class="zadark-hotkeys" data-keys-win="Ctrl+3" data-keys-mac="⌘3"></span>
+                  <span class="zadark-hotkeys" data-keys-win="Ctrl+7" data-keys-mac="⌘7"></span>
                 </span>
                 <label class="zadark-switch__checkbox">
                   <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-name">

@@ -1129,6 +1129,16 @@ html[data-zadark-theme="dark"] {
     }
     .qri {
       background-color: var(--WA100);
+
+      &.active,
+      &.hover:hover {
+        background-color: var(--layer-background-hover);
+        cursor: pointer;
+      }
+    }
+    .qri__left > .qri__keyword {
+      background-color: var(--button-tertiary-primary-text);
+      color: #fff;
     }
 
     .conv-action__unread,
@@ -1985,11 +1995,6 @@ html[data-zadark-theme="dark"] {
       padding: 0 8px;
       background-color: var(--NG10);
       color: var(--text-secondary);
-    }
-
-    .qri__left > .qri__keyword {
-      background-color: var(--button-tertiary-primary-text);
-      color: #fff;
     }
 
     .chat-info-general__section__content {

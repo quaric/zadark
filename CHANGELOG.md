@@ -1,5 +1,15 @@
 # Changelog
 
+## ZaDark 23.7.3
+> PC 9.4 && Web 9.4
+
+### Fixed
+
+- Sửa lỗi màu nền không thay đổi khi rê chuột/lựa chọn tin nhắn nhanh ([#65](https://github.com/quaric/zadark/issues/65))
+
+#### Windows specific
+- Sửa lỗi phím tắt "Ẩn ảnh đại diện, tên cuộc trò chuyện" bị trùng ([#66](https://github.com/quaric/zadark/issues/66))
+
 ## ZaDark 23.7.2
 > PC 9.3 && Web 9.3
 
