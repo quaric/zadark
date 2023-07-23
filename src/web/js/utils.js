@@ -63,6 +63,14 @@
       }
     },
 
+    toggleBodyClassName: (className, isEnabled) => {
+      if (isEnabled) {
+        document.body.classList.add(className)
+      } else {
+        document.body.classList.remove(className)
+      }
+    },
+
     setOSAttr: (os) => {
       document.documentElement.setAttribute('data-zadark-os', os)
     },
@@ -123,14 +131,6 @@
         default: {
           this.setThemeAttr('dark')
         }
-      }
-    },
-
-    toggleBodyClassName: (className, isEnabled) => {
-      if (isEnabled) {
-        document.body.classList.add(className)
-      } else {
-        document.body.classList.remove(className)
       }
     },
 

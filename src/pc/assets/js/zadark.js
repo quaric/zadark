@@ -9,6 +9,7 @@
   const Hotkeys = require('./zadark-hotkeys-js.min.js')
   const Toastify = require('./zadark-toastify.min.js')
   const WebFont = require('./zadark-webfont.min.js')
+  const introJs = require('./zadark-introjs.min.js')
 
   const ZADARK_THEME_KEY = '@ZaDark:THEME'
   const ZADARK_FONT_FAMILY_KEY = '@ZaDark:FONT_FAMILY'
@@ -18,17 +19,18 @@
   const ZADARK_ENABLED_HIDE_CONV_AVATAR_KEY = '@ZaDark:ENABLED_HIDE_CONV_AVATAR'
   const ZADARK_ENABLED_HIDE_CONV_NAME_KEY = '@ZaDark:ENABLED_HIDE_CONV_NAME'
   const ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_THREAD_CHAT_MESSAGE'
+
   const ZADARK_ENABLED_BLOCK_TYPING_KEY = '@ZaDark:ENABLED_BLOCK_TYPING'
   const ZADARK_ENABLED_BLOCK_DELIVERED_KEY = '@ZaDark:ENABLED_BLOCK_DELIVERED'
   const ZADARK_ENABLED_BLOCK_SEEN_KEY = '@ZaDark:ENABLED_BLOCK_SEEN'
-
-  const BLOCK_IDS = ['block_typing', 'block_delivered', 'block_seen', 'block_online']
   const BLOCK_STORAGE_KEYS = {
     block_typing: ZADARK_ENABLED_BLOCK_TYPING_KEY,
     block_delivered: ZADARK_ENABLED_BLOCK_DELIVERED_KEY,
     block_seen: ZADARK_ENABLED_BLOCK_SEEN_KEY
   }
+  const BLOCK_IDS = ['block_typing', 'block_delivered', 'block_seen', 'block_online']
 
+  const ZADARK_USE_HOTKEYS = '@ZaDark:USE_HOTKEYS'
   const ZADARK_KNOWN_VERSION_KEY = '@ZaDark:KNOWN_VERSION'
 
   const HOTKEYS_TOAST_MESSAGE = {
@@ -54,17 +56,21 @@
       true: 'BẬT : Ẩn Tên cuộc trò chuyện',
       false: 'TẮT : Ẩn Tên cuộc trò chuyện'
     },
-    block_typing: {
+    rules_block_typing: {
       true: 'BẬT : Ẩn trạng thái Đang soạn tin (Typing) ...',
       false: 'TẮT : Ẩn trạng thái Đang soạn tin (Typing) ...'
     },
-    block_delivered: {
+    rules_block_delivered: {
       true: 'BẬT : Ẩn trạng thái Đã nhận (Received)',
       false: 'TẮT : Ẩn trạng thái Đã nhận (Received)'
     },
-    block_seen: {
+    rules_block_seen: {
       true: 'BẬT : Ẩn trạng thái Đã xem (Seen)',
       false: 'TẮT : Ẩn trạng thái Đã xem (Seen)'
+    },
+    useHotkeys: {
+      true: 'Đã kích hoạt phím tắt',
+      false: 'Đã vô hiệu hoá phím tắt'
     }
   }
 
@@ -72,7 +78,6 @@
     getTheme: () => {
       return localStorage.getItem(ZADARK_THEME_KEY) || 'dark'
     },
-
     saveTheme: (theme) => {
       return localStorage.setItem(ZADARK_THEME_KEY, theme)
     },
@@ -86,7 +91,6 @@
 
       return value
     },
-
     saveFontFamily: (font) => {
       return localStorage.setItem(ZADARK_FONT_FAMILY_KEY, font)
     },
@@ -94,7 +98,6 @@
     getFontSize: () => {
       return localStorage.getItem(ZADARK_FONT_SIZE_KEY) || 'medium'
     },
-
     saveFontSize: (fontSize) => {
       return localStorage.setItem(ZADARK_FONT_SIZE_KEY, fontSize)
     },
@@ -102,7 +105,6 @@
     saveEnabledHideLatestMessage: (isEnabled) => {
       return localStorage.setItem(ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY, isEnabled)
     },
-
     getEnabledHideLatestMessage: () => {
       return localStorage.getItem(ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY) === 'true'
     },
@@ -110,7 +112,6 @@
     saveEnabledHideConvAvatar: (isEnabled) => {
       return localStorage.setItem(ZADARK_ENABLED_HIDE_CONV_AVATAR_KEY, isEnabled)
     },
-
     getEnabledHideConvAvatar: () => {
       return localStorage.getItem(ZADARK_ENABLED_HIDE_CONV_AVATAR_KEY) === 'true'
     },
@@ -118,7 +119,6 @@
     saveEnabledHideConvName: (isEnabled) => {
       return localStorage.setItem(ZADARK_ENABLED_HIDE_CONV_NAME_KEY, isEnabled)
     },
-
     getEnabledHideConvName: () => {
       return localStorage.getItem(ZADARK_ENABLED_HIDE_CONV_NAME_KEY) === 'true'
     },
@@ -126,7 +126,6 @@
     saveEnabledHideThreadChatMessage: (isEnabled) => {
       return localStorage.setItem(ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY, isEnabled)
     },
-
     getEnabledHideThreadChatMessage: () => {
       return localStorage.getItem(ZADARK_ENABLED_HIDE_THREAD_CHAT_MESSAGE_KEY) === 'true'
     },
@@ -137,7 +136,6 @@
         return localStorage.setItem(key, isEnabled)
       }
     },
-
     getBlockSettings: () => {
       return {
         block_typing: localStorage.getItem(ZADARK_ENABLED_BLOCK_TYPING_KEY) === 'true',
@@ -146,50 +144,28 @@
       }
     },
 
+    saveUseHotkeys: (useHotkeys) => {
+      return localStorage.setItem(ZADARK_USE_HOTKEYS, useHotkeys)
+    },
+    getUseHotkeys: () => {
+      const value = localStorage.getItem(ZADARK_USE_HOTKEYS) || 'true'
+      return value === 'true'
+    },
+
     getKnownVersion: () => {
       return localStorage.getItem(ZADARK_KNOWN_VERSION_KEY) || '0.0'
     },
-
     saveKnownVersion: (version) => {
       return localStorage.setItem(ZADARK_KNOWN_VERSION_KEY, version)
     }
   }
 
   const ZaDarkUtils = {
-    HOTKEYS_TOAST_MESSAGE: {
-      fontSize: {
-        small: 'Cỡ chữ : Nhỏ',
-        medium: 'Cỡ chữ : Trung bình',
-        big: 'Cỡ chữ : Lớn',
-        'very-big': 'Cỡ chữ : Rất lớn'
-      },
-      hideLatestMessage: {
-        true: 'BẬT : Ẩn Tin nhắn gần nhất',
-        false: 'TẮT : Ẩn Tin nhắn gần nhất'
-      },
-      hideThreadChatMessage: {
-        true: 'BẬT : Ẩn Tin nhắn trong cuộc trò chuyện',
-        false: 'TẮT : Ẩn Tin nhắn trong cuộc trò chuyện'
-      },
-      hideConvAvatar: {
-        true: 'BẬT : Ẩn Ảnh đại diện',
-        false: 'TẮT : Ẩn Ảnh đại diện'
-      },
-      hideConvName: {
-        true: 'BẬT : Ẩn Tên cuộc trò chuyện',
-        false: 'TẮT : Ẩn Tên cuộc trò chuyện'
-      },
-      rules_block_typing: {
-        true: 'BẬT : Ẩn trạng thái Đang soạn tin (Typing) ...',
-        false: 'TẮT : Ẩn trạng thái Đang soạn tin (Typing) ...'
-      },
-      rules_block_delivered: {
-        true: 'BẬT : Ẩn trạng thái Đã nhận (Received)',
-        false: 'TẮT : Ẩn trạng thái Đã nhận (Received)'
-      },
-      rules_block_seen: {
-        true: 'BẬT : Ẩn trạng thái Đã xem (Seen)',
-        false: 'TẮT : Ẩn trạng thái Đã xem (Seen)'
+    toggleBodyClassName: (className, isEnabled) => {
+      if (isEnabled) {
+        document.body.classList.add(className)
+      } else {
+        document.body.classList.remove(className)
       }
     },
 
@@ -216,14 +192,6 @@
       document.documentElement.setAttribute('data-zadark-font-size', fontSize)
     },
 
-    toggleBodyClassName: (className, isEnabled) => {
-      if (isEnabled) {
-        document.body.classList.add(className)
-      } else {
-        document.body.classList.remove(className)
-      }
-    },
-
     setHideLatestMessageAttr: function (isEnabled) {
       this.toggleBodyClassName('zadark-prv--latest-message', isEnabled)
     },
@@ -238,6 +206,10 @@
 
     setHideThreadChatMessageAttr: function (isEnabled) {
       this.toggleBodyClassName('zadark-prv--thread-chat-message', isEnabled)
+    },
+
+    setUseHotkeysAttr: function (isEnabled) {
+      this.toggleBodyClassName('zadark--use-hotkeys', isEnabled)
     },
 
     setPageTheme: function (theme) {
@@ -305,6 +277,28 @@
       return toast
     },
 
+    showIntro: ({ steps = [], onExit, onComplete } = {}) => {
+      const intro = introJs().setOptions({
+        steps,
+
+        disableInteraction: false,
+        prevLabel: 'Trước',
+        nextLabel: 'Tiếp',
+        doneLabel: 'Đã hiểu',
+        helperElementPadding: -4
+      })
+
+      if (typeof onExit === 'function') {
+        intro.onexit(onExit)
+      }
+
+      if (typeof onComplete === 'function') {
+        intro.oncomplete(onComplete)
+      }
+
+      intro.start()
+    },
+
     setSelect: (elName, value) => {
       $(elName).val(value)
     },
@@ -322,7 +316,6 @@
         WebFont.load({
           google: {
             families: fontFamilies
-            // text: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZẮắẰằẲẳẴẵẶặĂăÂâĐđÊêÔôƠơƯưỨứỪừỬửỮữỰự'
           },
           loading: () => {
             console.log('Fonts are being loaded', fontFamilies)
@@ -375,6 +368,9 @@
       const enabledHideThreadChatMessage = ZaDarkStorage.getEnabledHideThreadChatMessage()
       this.setHideThreadChatMessageAttr(enabledHideThreadChatMessage)
 
+      const useHotkeys = ZaDarkStorage.getUseHotkeys()
+      this.setUseHotkeysAttr(useHotkeys)
+
       if (!this.isMac()) {
         ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', {
           theme,
@@ -425,13 +421,13 @@
     updateFontSize: function (fontSize) {
       ZaDarkStorage.saveFontSize(fontSize)
       this.setFontSizeAttr(fontSize)
-      ZaDarkUtils.showToast(ZaDarkUtils.HOTKEYS_TOAST_MESSAGE.fontSize[fontSize])
+      ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.fontSize[fontSize])
     },
 
     updateHideLatestMessage: function (isEnabled) {
       ZaDarkStorage.saveEnabledHideLatestMessage(isEnabled)
       this.toggleBodyClassName('zadark-prv--latest-message', isEnabled)
-      this.showToast(this.HOTKEYS_TOAST_MESSAGE.hideLatestMessage[isEnabled])
+      this.showToast(HOTKEYS_TOAST_MESSAGE.hideLatestMessage[isEnabled])
 
       if (!this.isMac()) {
         ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { hideLatestMessage: isEnabled })
@@ -441,7 +437,7 @@
     updateHideConvAvatar: function (isEnabled) {
       ZaDarkStorage.saveEnabledHideConvAvatar(isEnabled)
       this.toggleBodyClassName('zadark-prv--conv-avatar', isEnabled)
-      this.showToast(this.HOTKEYS_TOAST_MESSAGE.hideConvAvatar[isEnabled])
+      this.showToast(HOTKEYS_TOAST_MESSAGE.hideConvAvatar[isEnabled])
 
       if (!this.isMac()) {
         ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { hideConvAvatar: isEnabled })
@@ -451,7 +447,7 @@
     updateHideConvName: function (isEnabled) {
       ZaDarkStorage.saveEnabledHideConvName(isEnabled)
       this.toggleBodyClassName('zadark-prv--conv-name', isEnabled)
-      this.showToast(this.HOTKEYS_TOAST_MESSAGE.hideConvName[isEnabled])
+      this.showToast(HOTKEYS_TOAST_MESSAGE.hideConvName[isEnabled])
 
       if (!this.isMac()) {
         ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { hideConvName: isEnabled })
@@ -461,7 +457,7 @@
     updateHideThreadChatMessage: function (isEnabled) {
       ZaDarkStorage.saveEnabledHideThreadChatMessage(isEnabled)
       this.toggleBodyClassName('zadark-prv--thread-chat-message', isEnabled)
-      this.showToast(this.HOTKEYS_TOAST_MESSAGE.hideThreadChatMessage[isEnabled])
+      this.showToast(HOTKEYS_TOAST_MESSAGE.hideThreadChatMessage[isEnabled])
     },
 
     updateBlockSettings: function (blockId, isEnabled) {
@@ -473,6 +469,48 @@
       ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE[blockId][isEnabled])
 
       ipcRenderer.send('@ZaDark:UPDATE_BLOCK_SETTINGS', payload)
+    },
+
+    updateUseHotkeys: function (useHotkeys) {
+      ZaDarkStorage.saveUseHotkeys(useHotkeys)
+      this.showToast(HOTKEYS_TOAST_MESSAGE.useHotkeys[useHotkeys])
+      this.setUseHotkeysAttr(useHotkeys)
+    },
+
+    updateKnownVersionState: (buttonEl) => {
+      const zadarkVersion = $('html').data('zadark-version')
+      ZaDarkStorage.saveKnownVersion(zadarkVersion)
+
+      buttonEl.classList.remove('zadark-known-version')
+    },
+
+    showIntroHideThreadChatMessage: function ({ onExit, onComplete } = {}) {
+      this.showIntro({
+        steps: [
+          {
+            element: document.querySelector('#messageView'),
+            intro: 'Bạn di chuột vào vùng này để <strong>xem nội dung tin nhắn</strong>.'
+          },
+          {
+            element: document.querySelector('#ztoolbar'),
+            intro: 'Bạn di chuyển chuột vào vùng này để : <strong>Ẩn nội dung khung soạn tin nhắn</strong> (bên dưới), <strong>Ẩn nội dung tin nhắn</strong> (bên trên).'
+          },
+          {
+            element: document.querySelector('.chat-input__content__input'),
+            intro: 'Bạn di chuyển chuột vào vùng này để <strong>xem nội dung khung soạn tin nhắn</strong>.'
+          }
+        ],
+        onExit,
+        onComplete
+      })
+    },
+
+    debounce: (func, delay) => {
+      let timer
+      return () => {
+        clearTimeout(timer)
+        timer = setTimeout(func, delay)
+      }
     }
   }
 
@@ -485,7 +523,10 @@
     }
   })
 
+  const popupScrollableElName = '#js-zadark-popup__scrollable'
+  const btnScrollElName = '#js-btn-scroll'
   const versionElName = '#js-ext-version'
+
   const radioInputThemeElName = '#js-radio-input-theme input:radio[name="theme"]'
   const inputFontFamilyElName = '#js-input-font-family'
   const selectFontSizeElName = '#js-select-font-size'
@@ -498,6 +539,8 @@
   const switchBlockTypingElName = '#js-switch-block-typing'
   const switchBlockSeenElName = '#js-switch-block-seen'
   const switchBlockDeliveredElName = '#js-switch-block-delivered'
+
+  const switchUseHotkeysElName = '#js-switch-use-hotkeys'
 
   const setRadioInputTheme = (theme) => {
     const options = ['light', 'dark', 'auto']
@@ -531,6 +574,21 @@
     ZaDarkUtils.updateFontSize(fontSize)
   }
 
+  const handleNextFontSize = (count) => {
+    const fontSize = ZaDarkStorage.getFontSize()
+
+    const fontSizes = ['small', 'medium', 'big', 'very-big']
+
+    const nextIndex = count > 0
+      ? Math.min(fontSizes.indexOf(fontSize) + 1, fontSizes.length - 1)
+      : Math.max(fontSizes.indexOf(fontSize) - 1, 0)
+
+    const nextFontSize = fontSizes[nextIndex]
+
+    ZaDarkUtils.setSelect(selectFontSizeElName, nextFontSize)
+    handleFontSizeChange.bind($(selectFontSizeElName))()
+  }
+
   function handleHideLastestMessageChange () {
     const isEnabled = $(this).is(':checked')
     ZaDarkUtils.updateHideLatestMessage(isEnabled)
@@ -556,6 +614,12 @@
       const isEnabled = $(this).is(':checked')
       ZaDarkUtils.updateBlockSettings(blockId, isEnabled)
     }
+  }
+
+  function handleUseHotkeysChange () {
+    const useHotkeys = $(this).is(':checked')
+    ZaDarkUtils.updateUseHotkeys(useHotkeys)
+    loadHotkeys(useHotkeys)
   }
 
   const zadarkButtonHTML = `
@@ -653,100 +717,116 @@
         </div>
       </div>
 
-      <div id="js-panel-privacy" class="not-available">
-        <label class="zadark-form__label">Riêng tư</label>
+      <label class="zadark-form__label">Riêng tư</label>
 
-        <div class="zadark-panel">
-          <div class="zadark-panel__body">
-            <div class="zadark-switch__list">
-              <div class="zadark-switch">
-                <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
-                  Ẩn <strong>Tin nhắn gần nhất</strong>
-                  <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
-                </label>
-                <span class="zadark-switch__hotkeys">
-                  <span class="zadark-hotkeys" data-keys-win="Ctrl+1" data-keys-mac="⌘1"></span>
-                </span>
-                <label class="zadark-switch__checkbox">
-                  <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
-                  <span class="zadark-switch__slider"></span>
-                </label>
-              </div>
+      <div class="zadark-panel">
+        <div class="zadark-panel__body">
+          <div class="zadark-switch__list">
+            <div class="zadark-switch">
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
+                Ẩn <strong>Tin nhắn gần nhất</strong>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
+              </label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+1" data-keys-mac="⌘1"></span>
+              </span>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
 
-              <div class="zadark-switch zadark-switch--border-default">
-                <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
-                  Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
-                  <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Vùng hiển thị tin nhắn</strong>". Khi bạn di chuột ra khỏi vùng này, tin nhắn sẽ được ẩn đi.</p>'></i>
-                </label>
-                <span class="zadark-switch__hotkeys">
-                  <span class="zadark-hotkeys" data-keys-win="Ctrl+2" data-keys-mac="⌘2"></span>
-                </span>
-                <label class="zadark-switch__checkbox">
-                  <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
-                  <span class="zadark-switch__slider"></span>
-                </label>
-              </div>
+            <div class="zadark-switch zadark-switch--border-default">
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
+                Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
+                <i class="zadark-icon zadark-icon--play-circle" data-zdk-intro="hideThreadChatMessage" data-tippy-content="Nhấn vào để xem hướng dẫn"></i>
+              </label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+2" data-keys-mac="⌘2"></span>
+              </span>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
 
-              <div class="zadark-switch">
-                <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-avatar">
-                  Ẩn <strong>Ảnh đại diện</strong> cuộc trò chuyện
-                  <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Ảnh đại diện, bạn di chuyển chuột vào "<strong>Ảnh đại diện</strong>" cần xem.</p>'></i>
-                </label>
-                <span class="zadark-switch__hotkeys">
-                  <span class="zadark-hotkeys" data-keys-win="Ctrl+3" data-keys-mac="⌘3"></span>
-                </span>
-                <label class="zadark-switch__checkbox">
-                  <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-avatar">
-                  <span class="zadark-switch__slider"></span>
-                </label>
-              </div>
+            <div class="zadark-switch">
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-avatar">
+                Ẩn <strong>Ảnh đại diện</strong> cuộc trò chuyện
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Ảnh đại diện, bạn di chuyển chuột vào "<strong>Ảnh đại diện</strong>" cần xem.</p>'></i>
+              </label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+3" data-keys-mac="⌘3"></span>
+              </span>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-avatar">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
 
-              <div class="zadark-switch zadark-switch--border-default">
-                <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-name">
-                  Ẩn <strong>Tên</strong> cuộc trò chuyện
-                  <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
-                </label>
-                <span class="zadark-switch__hotkeys">
-                  <span class="zadark-hotkeys" data-keys-win="Ctrl+7" data-keys-mac="⌘7"></span>
-                </span>
-                <label class="zadark-switch__checkbox">
-                  <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-name">
-                  <span class="zadark-switch__slider"></span>
-                </label>
-              </div>
+            <div class="zadark-switch zadark-switch--border-default">
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-name">
+                Ẩn <strong>Tên</strong> cuộc trò chuyện
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
+              </label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+7" data-keys-mac="⌘7"></span>
+              </span>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-name">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
 
-              <div class="zadark-switch">
-                <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin (Typing) ...</strong></label>
-                <span class="zadark-switch__hotkeys">
-                  <span class="zadark-hotkeys" data-keys-win="Ctrl+4" data-keys-mac="⌘4"></span>
-                </span>
-                <label class="zadark-switch__checkbox">
-                  <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
-                  <span class="zadark-switch__slider"></span>
-                </label>
-              </div>
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin (Typing) ...</strong></label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+4" data-keys-mac="⌘4"></span>
+              </span>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
 
-              <div class="zadark-switch">
-                <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận (Received)</strong></label>
-                <span class="zadark-switch__hotkeys">
-                  <span class="zadark-hotkeys" data-keys-win="Ctrl+5" data-keys-mac="⌘5"></span>
-                </span>
-                <label class="zadark-switch__checkbox">
-                  <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
-                  <span class="zadark-switch__slider"></span>
-                </label>
-              </div>
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận (Received)</strong></label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+5" data-keys-mac="⌘5"></span>
+              </span>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
 
-              <div class="zadark-switch">
-                <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem (Seen)</strong></label>
-                <span class="zadark-switch__hotkeys">
-                  <span class="zadark-hotkeys" data-keys-win="Ctrl+6" data-keys-mac="⌘6"></span>
-                </span>
-                <label class="zadark-switch__checkbox">
-                  <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
-                  <span class="zadark-switch__slider"></span>
-                </label>
-              </div>
+            <div class="zadark-switch">
+              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem (Seen)</strong></label>
+              <span class="zadark-switch__hotkeys">
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+6" data-keys-mac="⌘6"></span>
+              </span>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">
+                <span class="zadark-switch__slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <label class="zadark-form__label">Khác</label>
+
+      <div class="zadark-panel">
+        <div class="zadark-panel__body">
+          <div class="zadark-switch__list">
+            <div class="zadark-switch">
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-use-hotkeys">
+                Sử dụng phím tắt
+              </label>
+              <label class="zadark-switch__checkbox">
+                <input class="zadark-switch__input" type="checkbox" id="js-switch-use-hotkeys">
+                <span class="zadark-switch__slider"></span>
+              </label>
             </div>
           </div>
         </div>
@@ -766,114 +846,24 @@
 
   const zadarkPopupHTML = `
     <div id="zadark-popup" class="zadark-popper">
-      ${popupHeaderHTML}
-      ${popupMainHTML}
-      ${popupFooterHTML}
+      <div id="js-zadark-popup__scrollable" class="zadark-popup__scrollable">
+        ${popupHeaderHTML}
+        ${popupMainHTML}
+        ${popupFooterHTML}
+
+        <button id="js-btn-scroll" data-tippy-content="Cuộn xuống">
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z" fill="currentColor" /></svg>
+        </button>
+      </div>
     </div>
   `
 
-  const loadPopupState = () => {
-    const theme = ZaDarkStorage.getTheme()
-    setRadioInputTheme(theme)
-
-    const fontFamily = ZaDarkStorage.getFontFamily()
-    ZaDarkUtils.setSelect(inputFontFamilyElName, fontFamily)
-
-    const fontSize = ZaDarkStorage.getFontSize()
-    ZaDarkUtils.setSelect(selectFontSizeElName, fontSize)
-
-    const enabledHideLatestMessage = ZaDarkStorage.getEnabledHideLatestMessage()
-    ZaDarkUtils.setSwitch(switchHideLatestMessageElName, enabledHideLatestMessage)
-
-    const enabledHideConvAvatar = ZaDarkStorage.getEnabledHideConvAvatar()
-    ZaDarkUtils.setSwitch(switchHideConvAvatarElName, enabledHideConvAvatar)
-
-    const enabledHideConvName = ZaDarkStorage.getEnabledHideConvName()
-    ZaDarkUtils.setSwitch(switchHideConvNameElName, enabledHideConvName)
-
-    const enabledHideThreadChatMessage = ZaDarkStorage.getEnabledHideThreadChatMessage()
-    ZaDarkUtils.setSwitch(switchHideThreadChatMessageElName, enabledHideThreadChatMessage)
-
-    const blockSettings = ZaDarkStorage.getBlockSettings()
-    ZaDarkUtils.setSwitch(switchBlockTypingElName, blockSettings.block_typing)
-    ZaDarkUtils.setSwitch(switchBlockDeliveredElName, blockSettings.block_delivered)
-    ZaDarkUtils.setSwitch(switchBlockSeenElName, blockSettings.block_seen)
-  }
-
-  const loadKnownVersionState = (buttonEl) => {
-    const knownVersion = ZaDarkStorage.getKnownVersion()
-    const zadarkVersion = $('html').data('zadark-version')
-
-    if (`${knownVersion}` !== `${zadarkVersion}`) {
-      buttonEl.classList.add('zadark-known-version')
+  const loadHotkeys = (isEnabled = true) => {
+    if (!isEnabled) {
+      hotkeys.unbind()
+      return
     }
-  }
 
-  const updateKnownVersionState = (buttonEl) => {
-    const zadarkVersion = $('html').data('zadark-version')
-    ZaDarkStorage.saveKnownVersion(zadarkVersion)
-
-    buttonEl.classList.remove('zadark-known-version')
-  }
-
-  const openZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
-    return () => {
-      loadPopupState()
-      updateKnownVersionState(buttonEl)
-
-      buttonEl.classList.add('selected')
-      popupEl.setAttribute('data-visible', '')
-
-      popupInstance.setOptions((options) => ({
-        ...options,
-        modifiers: [
-          ...options.modifiers,
-          { name: 'eventListeners', enabled: true }
-        ]
-      }))
-
-      popupInstance.update()
-    }
-  }
-
-  const hideZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
-    return (event) => {
-      const isOpen = popupEl.getAttribute('data-visible') !== null
-      const isClickOutside = isOpen && !popupEl.contains(event.target) && !buttonEl.contains(event.target)
-
-      if (!isClickOutside) {
-        return
-      }
-
-      buttonEl.classList.remove('selected')
-      popupEl.removeAttribute('data-visible')
-
-      popupInstance.setOptions((options) => ({
-        ...options,
-        modifiers: [
-          ...options.modifiers,
-          { name: 'eventListeners', enabled: false }
-        ]
-      }))
-    }
-  }
-
-  const handleNextFontSize = (count) => {
-    const fontSize = ZaDarkStorage.getFontSize()
-
-    const fontSizes = ['small', 'medium', 'big', 'very-big']
-
-    const nextIndex = count > 0
-      ? Math.min(fontSizes.indexOf(fontSize) + 1, fontSizes.length - 1)
-      : Math.max(fontSizes.indexOf(fontSize) - 1, 0)
-
-    const nextFontSize = fontSizes[nextIndex]
-
-    ZaDarkUtils.setSelect(selectFontSizeElName, nextFontSize)
-    handleFontSizeChange.bind($(selectFontSizeElName))()
-  }
-
-  const loadHotkeys = () => {
     Hotkeys.filter = function (event) {
       const target = event.target || event.srcElement
       const tagName = target.tagName
@@ -1002,6 +992,117 @@
     })
   }
 
+  const loadPopupState = () => {
+    const theme = ZaDarkStorage.getTheme()
+    setRadioInputTheme(theme)
+
+    const fontFamily = ZaDarkStorage.getFontFamily()
+    ZaDarkUtils.setSelect(inputFontFamilyElName, fontFamily)
+
+    const fontSize = ZaDarkStorage.getFontSize()
+    ZaDarkUtils.setSelect(selectFontSizeElName, fontSize)
+
+    const enabledHideLatestMessage = ZaDarkStorage.getEnabledHideLatestMessage()
+    ZaDarkUtils.setSwitch(switchHideLatestMessageElName, enabledHideLatestMessage)
+
+    const enabledHideConvAvatar = ZaDarkStorage.getEnabledHideConvAvatar()
+    ZaDarkUtils.setSwitch(switchHideConvAvatarElName, enabledHideConvAvatar)
+
+    const enabledHideConvName = ZaDarkStorage.getEnabledHideConvName()
+    ZaDarkUtils.setSwitch(switchHideConvNameElName, enabledHideConvName)
+
+    const enabledHideThreadChatMessage = ZaDarkStorage.getEnabledHideThreadChatMessage()
+    ZaDarkUtils.setSwitch(switchHideThreadChatMessageElName, enabledHideThreadChatMessage)
+
+    const blockSettings = ZaDarkStorage.getBlockSettings()
+    ZaDarkUtils.setSwitch(switchBlockTypingElName, blockSettings.block_typing)
+    ZaDarkUtils.setSwitch(switchBlockDeliveredElName, blockSettings.block_delivered)
+    ZaDarkUtils.setSwitch(switchBlockSeenElName, blockSettings.block_seen)
+
+    const useHotkeys = ZaDarkStorage.getUseHotkeys()
+    ZaDarkUtils.setSwitch(switchUseHotkeysElName, useHotkeys)
+  }
+
+  const loadHotkeysState = async () => {
+    const useHotkeys = ZaDarkStorage.getUseHotkeys()
+    loadHotkeys(useHotkeys)
+  }
+
+  const loadKnownVersionState = (buttonEl) => {
+    const knownVersion = ZaDarkStorage.getKnownVersion()
+    const zadarkVersion = $('html').data('zadark-version')
+
+    if (`${knownVersion}` !== `${zadarkVersion}`) {
+      buttonEl.classList.add('zadark-known-version')
+    }
+  }
+
+  const calcPopupScroll = () => {
+    const $element = $(popupScrollableElName)
+    const scrolledFromTop = $element.scrollTop()
+    const scrollable = $element.prop('scrollHeight') > $element.innerHeight()
+
+    if (!scrollable || scrolledFromTop >= 24) {
+      $(btnScrollElName).fadeOut(150)
+    } else {
+      $(btnScrollElName).fadeIn(150)
+    }
+  }
+
+  const loadPopupScrollEvent = () => {
+    calcPopupScroll()
+
+    $(popupScrollableElName).on('scroll', ZaDarkUtils.debounce(calcPopupScroll, 150))
+    $(window).on('resize', ZaDarkUtils.debounce(calcPopupScroll, 250))
+
+    $(btnScrollElName).on('click', () => {
+      $(popupScrollableElName).animate({ scrollTop: $(popupScrollableElName).height() }, 1000)
+    })
+  }
+
+  const setZaDarkPopupVisible = (popupInstance, buttonEl, popupEl, visible = true) => {
+    if (visible) {
+      buttonEl.classList.add('selected')
+      popupEl.setAttribute('data-visible', '')
+    } else {
+      buttonEl.classList.remove('selected')
+      popupEl.removeAttribute('data-visible')
+    }
+
+    popupInstance.setOptions((options) => ({
+      ...options,
+      modifiers: [
+        ...options.modifiers,
+        { name: 'eventListeners', enabled: visible }
+      ]
+    }))
+
+    popupInstance.update()
+  }
+
+  const handleOpenZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
+    return () => {
+      loadPopupState()
+      ZaDarkUtils.updateKnownVersionState(buttonEl)
+
+      setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, true)
+      calcPopupScroll()
+    }
+  }
+
+  const handleCloseZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
+    return (event) => {
+      const isOpen = popupEl.getAttribute('data-visible') !== null
+      const isClickOutside = isOpen && !popupEl.contains(event.target) && !buttonEl.contains(event.target)
+
+      if (!isClickOutside) {
+        return
+      }
+
+      setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, false)
+    }
+  }
+
   const loadTippy = () => {
     tippy('[data-tippy-content]', {
       theme: 'zadark',
@@ -1011,7 +1112,7 @@
     tippy('#div_Main_TabZaDark', {
       theme: 'zadark',
       allowHTML: true,
-      content: '<span>ZaDark <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D"></span></span>',
+      content: '<span>Cài đặt ZaDark <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D"></span></span>',
       placement: 'right'
     })
 
@@ -1051,35 +1152,59 @@
     $(switchBlockSeenElName).on('change', handleBlockSettingsChange('block_seen'))
     $(switchBlockDeliveredElName).on('change', handleBlockSettingsChange('block_delivered'))
 
+    $(switchUseHotkeysElName).on('change', handleUseHotkeysChange)
+
     const popupEl = document.querySelector('#zadark-popup')
     const buttonEl = document.getElementById('div_Main_TabZaDark')
 
     const popupInstance = Popper.createPopper(buttonEl, popupEl, {
-      placement: 'right-start',
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [112, 0]
-          }
-        }
-      ]
+      placement: 'right-start'
     })
 
-    const hideEvents = ['click', 'contextmenu']
-    buttonEl.addEventListener('click', openZaDarkPopup(popupInstance, buttonEl, popupEl))
-    hideEvents.forEach((eventName) => {
+    buttonEl.addEventListener('click', handleOpenZaDarkPopup(popupInstance, buttonEl, popupEl))
+
+    const closeEventNames = ['click', 'contextmenu']
+    closeEventNames.forEach((eventName) => {
       window.addEventListener(
         eventName,
-        hideZaDarkPopup(popupInstance, buttonEl, popupEl),
+        handleCloseZaDarkPopup(popupInstance, buttonEl, popupEl),
         true
       )
     })
 
     loadPopupState()
+    loadHotkeysState()
     loadKnownVersionState(buttonEl)
-    loadHotkeys()
+    loadPopupScrollEvent()
     loadTippy()
+
+    $('[data-zdk-intro]').on('click', function (e) {
+      e.preventDefault()
+      e.stopPropagation()
+
+      const introId = $(this).data('zdk-intro')
+      const isInThreadChat = $('#chatViewContainer').length > 0
+
+      const REQUIRED_IN_THREAD_CHAT = [
+        'hideThreadChatMessage'
+      ]
+
+      if (REQUIRED_IN_THREAD_CHAT.includes(introId) && !isInThreadChat) {
+        ZaDarkUtils.showToast('Chọn một cuộc trò chuyện để xem hướng dẫn')
+        return
+      }
+
+      setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, false)
+
+      const introOptions = {
+        onExit: () => setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, true),
+        onComplete: () => setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, true)
+      }
+
+      if (introId === 'hideThreadChatMessage') {
+        ZaDarkUtils.showIntroHideThreadChatMessage(introOptions)
+      }
+    })
   }
 
   const observer = new MutationObserver((mutationsList) => {
