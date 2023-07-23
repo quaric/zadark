@@ -1,5 +1,17 @@
 # Changelog
 
+## ZaDark 23.7.4
+> PC 9.5 && Web 9.5
+
+### Added
+- Cập nhật chức năng: Ẩn Tin nhắn trong cuộc trò chuyện
+  - Hỗ trợ Ẩn nội dung khung soạn tin nhắn ([#62](https://github.com/quaric/zadark/issues/62))
+  - Thêm minh hoạ cách sử dụng (Thay thế Tooltip khó hiểu)
+- Kích hoạt/Vô hiệu hoá sử dụng phím tắt ([#68](https://github.com/quaric/zadark/issues/68))
+
+### Changed
+- Thay đổi màu của Logo nhà phát hành Quaric
+
 ## ZaDark 23.7.3
 > PC 9.4 && Web 9.4
 

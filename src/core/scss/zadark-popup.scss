@@ -14,6 +14,22 @@
   --zadark-tippy-text: #fff;
   --zadark-tippy-border: #3d3f40;
   --zadark-tippy-shadow: rgba(0, 0, 0, 0.5);
+
+  --zadark-intro-tooltip: #2c2e2f;
+  --zadark-intro-tooltip-text: #fff;
+  --zadark-intro-tooltip-shadow: rgba(0, 0, 0, 0.5);
+  --zadark-intro-tooltip-border: #3d3f40;
+  --zadark-intro-tooltip-btn: #464849;
+  --zadark-intro-tooltip-btn-text: #fff;
+  --zadark-intro-tooltip-btn-hover: #424444;
+  --zadark-intro-tooltip-btn-focus: #58595a;
+  --zadark-intro-skipbutton-text: #7b7c7d;
+  --zadark-intro-skipbutton-hover: #9e9f9f;
+  --zadark-intro-disabled: #464849;
+  --zadark-intro-bullets: #58595a;
+  --zadark-intro-bullets-hover: #7b7c7d;
+  --zadark-intro-helperlayer-border: #3989ff;
+  --zadark-intro-helperlayer-overlay: rgba(0, 0, 0, 0.5);
 }
 
 html[data-zadark-theme="light"] {
@@ -50,6 +66,12 @@ html[data-zadark-theme="light"] {
 
   --zadark-switch-slider: #fff;
   --zadark-input-bg: #f4f5f7;
+
+  --zadark-intro-helperlayer-border: #2c2e2f;
+
+  --zadark-btn-floating: #fff;
+  --zadark-btn-floating-text: #abb4bc;
+  --zadark-btn-floating-shadow: rgba(0, 0, 0, 0.16);
 
   #zadark-popup .zadark-publisher__lockup--dark {
     display: inline-block;
@@ -91,6 +113,10 @@ html[data-zadark-theme="dark"] {
   --zadark-switch-slider: var(--zadark-neutral-300);
   --zadark-input-bg: var(--zadark-grey-700);
 
+  --zadark-btn-floating: var(--zadark-grey-300);
+  --zadark-btn-floating-text: var(--zadark-neutral-500);
+  --zadark-btn-floating-shadow: rgba(0, 0, 0, 0.25);
+
   #zadark-popup .zadark-publisher__lockup--light {
     display: inline-block;
   }
@@ -114,6 +140,12 @@ html[data-zadark-os="macOS"] {
   }
 }
 
+body:not(.zadark--use-hotkeys) {
+  .zadark-hotkeys {
+    display: none;
+  }
+}
+
 .zadark-hotkeys {
   font-family: var(--zadark-popup-font-family);
   font-weight: 400;
@@ -121,6 +153,9 @@ html[data-zadark-os="macOS"] {
 }
 
 #zadark-popup {
+  // position: absolute;
+  // overflow: auto;
+
   font-family: var(--zadark-popup-font-family);
   font-size: 14px;
 
@@ -157,6 +192,20 @@ html[data-zadark-os="macOS"] {
 }
 
 #zadark-popup {
+  .zadark-popup__scrollable {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    max-height: calc(100vh - 16px);
+
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+      width: 0 !important;
+    }
+  }
+
   .zadark-popup__header {
     position: sticky;
     top: 0;
@@ -516,10 +565,7 @@ html[data-zadark-os="macOS"] {
     overflow: hidden;
     border: 1px solid var(--zadark-border-base);
     border-radius: var(--zadark-border-radius-base);
-
-    &:not(:last-child) {
-      margin-bottom: 12px;
-    }
+    margin-bottom: 12px;
 
     &__body {
       padding: 8px 12px;
@@ -545,7 +591,6 @@ html[data-zadark-os="macOS"] {
       a {
         color: var(--zadark-neutral-base);
         font-weight: var(--zadark-font-semibold);
-        // text-decoration: underline;
 
         &:hover {
           color: var(--zadark-neutral-400);
@@ -576,9 +621,34 @@ html[data-zadark-os="macOS"] {
     }
   }
 
-  #js-panel-privacy {
-    display: block;
-    margin-bottom: 12px;
+  i[data-zdk-intro] {
+    transition: color 100ms ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--zadark-primary-base);
+    }
+  }
+
+  #js-btn-scroll {
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--zadark-border-base);
+    border-radius: 16px;
+    color: var(--zadark-btn-floating-text);
+    background-color: var(--zadark-btn-floating);
+
+    box-shadow: 0 2px 8px 0 var(--zadark-btn-floating-shadow);
+    transform: translateX(-50%);
+    cursor: pointer;
   }
 }
 
@@ -684,3 +754,400 @@ html[data-zadark-os="macOS"] {
   width: -moz-fit-content;
   max-width: 100%;
 }
+
+/*!
+ * Intro.js v7.0.1
+ * https://introjs.com
+ *
+ * Copyright (C) 2012-2023 Afshin Mehrabani (@afshinmeh).
+ * https://introjs.com
+ *
+ * Date: Sat, 25 Mar 2023 14:24:34 GMT
+ */
+
+.introjs-overlay {
+  position: absolute;
+  box-sizing: content-box;
+  z-index: 999999;
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+.introjs-showElement {
+  z-index: 9999999 !important;
+}
+tr.introjs-showElement > td {
+  z-index: 9999999 !important;
+  position: relative;
+}
+tr.introjs-showElement > th {
+  z-index: 9999999 !important;
+  position: relative;
+}
+.introjs-disableInteraction {
+  z-index: 99999999 !important;
+  position: absolute;
+  background-color: #fff;
+  opacity: 0;
+}
+.introjs-relativePosition {
+  position: relative;
+}
+.introjs-helperLayer {
+  box-sizing: content-box;
+  position: absolute;
+  z-index: 9999998;
+  border-radius: var(--zadark-border-radius-base);
+  transition: all 0.3s ease-out;
+  box-shadow:
+    var(--zadark-intro-helperlayer-border) 0px 0px 0px 2px,
+    var(--zadark-intro-helperlayer-overlay) 0px 0px 0px 5000px !important;
+}
+.introjs-helperLayer * {
+  box-sizing: content-box;
+}
+.introjs-helperLayer :before {
+  box-sizing: content-box;
+}
+.introjs-helperLayer :after {
+  box-sizing: content-box;
+}
+.introjs-tooltipReferenceLayer {
+  font-family: var(--zadark-popup-font-family);
+  box-sizing: content-box;
+  position: absolute;
+  visibility: hidden;
+  z-index: 100000000;
+  background-color: transparent;
+  transition: all 0.3s ease-out;
+}
+.introjs-tooltipReferenceLayer * {
+  font-family: var(--zadark-popup-font-family);
+}
+// .introjs-helperNumberLayer {
+//   font-family: var(--zadark-popup-font-family);
+//   color: #9e9e9e;
+//   text-align: center;
+//   padding-top: 8px;
+//   padding-bottom: 8px;
+// }
+.introjs-arrow {
+  border: 8px solid transparent;
+  content: "";
+  position: absolute;
+}
+.introjs-arrow.top {
+  top: -16px;
+  left: 16px;
+  border-bottom-color: var(--zadark-intro-tooltip);
+}
+.introjs-arrow.top-right {
+  top: -16px;
+  right: 16px;
+  border-bottom-color: var(--zadark-intro-tooltip);
+}
+.introjs-arrow.top-middle {
+  top: -16px;
+  left: 50%;
+  margin-left: -8px;
+  border-bottom-color: var(--zadark-intro-tooltip);
+}
+.introjs-arrow.right {
+  right: -16px;
+  top: 16px;
+  border-left-color: var(--zadark-intro-tooltip);
+}
+.introjs-arrow.right-bottom {
+  bottom: 16px;
+  right: -16px;
+  border-left-color: var(--zadark-intro-tooltip);
+}
+.introjs-arrow.bottom {
+  bottom: -16px;
+  left: 16px;
+  border-top-color: var(--zadark-intro-tooltip);
+}
+.introjs-arrow.bottom-right {
+  bottom: -16px;
+  right: 16px;
+  border-top-color: var(--zadark-intro-tooltip);
+}
+.introjs-arrow.bottom-middle {
+  bottom: -16px;
+  left: 50%;
+  margin-left: -8px;
+  border-top-color: var(--zadark-intro-tooltip);
+}
+.introjs-arrow.left {
+  left: -16px;
+  top: 16px;
+  border-right-color: var(--zadark-intro-tooltip);
+}
+.introjs-arrow.left-bottom {
+  left: -16px;
+  bottom: 16px;
+  border-right-color: var(--zadark-intro-tooltip);
+}
+.introjs-tooltip {
+  box-sizing: content-box;
+  position: absolute;
+  visibility: visible;
+  color: var(--zadark-intro-tooltip-text);
+  background-color: var(--zadark-intro-tooltip);
+  min-width: 248px;
+  max-width: 300px;
+  border: 1px solid var(--zadark-intro-tooltip-border);
+  border-radius: var(--zadark-border-radius-base);
+  filter: drop-shadow(var(--zadark-intro-tooltip-shadow) 0 3px 6px);
+  transition: opacity 0.1s ease-out;
+}
+.introjs-tooltiptext {
+  padding: 16px;
+}
+// .introjs-dontShowAgain {
+//   padding-left: 16px;
+//   padding-right: 16px;
+// }
+// .introjs-dontShowAgain input {
+//   padding: 0;
+//   margin: 0;
+//   margin-bottom: 2px;
+//   display: inline;
+//   width: 10px;
+//   height: 10px;
+// }
+// .introjs-dontShowAgain label {
+//   font-size: 14px;
+//   display: inline-block;
+//   font-weight: 400;
+//   margin: 0 0 0 4px;
+//   padding: 0;
+//   -webkit-user-select: none;
+//   user-select: none;
+// }
+// .introjs-tooltip-title {
+//   font-size: 18px;
+//   width: 90%;
+//   min-height: 1.5em;
+//   margin: 0;
+//   padding: 0;
+//   font-weight: 700;
+//   line-height: 1.5;
+// }
+.introjs-tooltip-header {
+  position: relative;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  min-height: 1.5em;
+}
+.introjs-tooltipbuttons {
+  border-top: 1px solid var(--zadark-intro-tooltip-border);
+  padding: 8px;
+  text-align: right;
+  white-space: nowrap;
+}
+.introjs-tooltipbuttons:after {
+  content: "";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+.introjs-button {
+  box-sizing: content-box;
+  position: relative;
+  overflow: visible;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--zadark-intro-tooltip-btn-text);
+  white-space: nowrap;
+  cursor: pointer;
+  outline: 0;
+  background-color: var(--zadark-intro-tooltip-btn);
+  border-radius: var(--zadark-border-radius-base);
+  display: inline;
+  user-select: none;
+}
+.introjs-button:hover {
+  background-color: var(--zadark-intro-tooltip-btn-hover);
+  color: inherit;
+}
+.introjs-button:focus {
+  box-shadow: 0 0 0 2px var(--zadark-intro-tooltip-btn-focus);
+  color: inherit;
+}
+.introjs-button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+.introjs-skipbutton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  color: var(--zadark-intro-skipbutton-text);
+  font-size: 22px;
+  cursor: pointer;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+.introjs-skipbutton:focus,
+.introjs-skipbutton:hover {
+  color: var(--zadark-intro-skipbutton-hover);
+  outline: 0;
+  text-decoration: none;
+}
+.introjs-prevbutton {
+  float: left;
+}
+.introjs-nextbutton {
+  float: right;
+}
+.introjs-disabled {
+  opacity: 0.25;
+}
+.introjs-disabled,
+.introjs-disabled:focus,
+.introjs-disabled:hover {
+  background-color: var(--zadark-intro-disabled);
+  color: inherit;
+  box-shadow: none;
+  cursor: default;
+}
+.introjs-hidden {
+  display: none;
+}
+.introjs-bullets {
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.introjs-bullets ul {
+  box-sizing: content-box;
+  clear: both;
+  margin: 0 auto 0;
+  padding: 0;
+  display: inline-block;
+}
+.introjs-bullets ul li {
+  box-sizing: content-box;
+  list-style: none;
+  float: left;
+  margin: 0 2px;
+}
+.introjs-bullets ul li a {
+  transition: width 0.1s ease-in;
+  box-sizing: content-box;
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: var(--zadark-intro-bullets);
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.introjs-bullets ul li a:focus,
+.introjs-bullets ul li a:hover {
+  width: 16px;
+  background: var(--zadark-intro-bullets-hover);
+  text-decoration: none;
+  outline: 0;
+}
+.introjs-bullets ul li a.active {
+  width: 16px;
+  background: var(--zadark-intro-bullets-hover);
+}
+// .introjs-progress {
+//   box-sizing: content-box;
+//   overflow: hidden;
+//   height: 10px;
+//   margin: 10px;
+//   border-radius: 4px;
+//   background-color: #e0e0e0;
+// }
+// .introjs-progressbar {
+//   box-sizing: content-box;
+//   float: left;
+//   width: 0%;
+//   height: 100%;
+//   font-size: 10px;
+//   line-height: 10px;
+//   text-align: center;
+//   background-color: #08c;
+// }
+.introjsFloatingElement {
+  position: absolute;
+  height: 0;
+  width: 0;
+  left: 50%;
+  top: 50%;
+}
+.introjs-fixedTooltip {
+  position: fixed;
+}
+// .introjs-hint {
+//   box-sizing: content-box;
+//   position: absolute;
+//   background: 0 0;
+//   width: 20px;
+//   height: 15px;
+//   cursor: pointer;
+// }
+// .introjs-hint:focus {
+//   border: 0;
+//   outline: 0;
+// }
+// .introjs-hint:hover > .introjs-hint-pulse {
+//   background-color: rgba(60, 60, 60, 0.57);
+// }
+// .introjs-hidehint {
+//   display: none;
+// }
+// .introjs-fixedhint {
+//   position: fixed;
+// }
+// @keyframes introjspulse {
+//   0% {
+//     transform: scale(0.95);
+//     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+//   }
+//   70% {
+//     transform: scale(1);
+//     box-shadow: 0 0 0 10px transparent;
+//   }
+//   100% {
+//     transform: scale(0.95);
+//     box-shadow: 0 0 0 0 transparent;
+//   }
+// }
+// .introjs-hint-pulse {
+//   box-sizing: content-box;
+//   width: 15px;
+//   height: 15px;
+//   border-radius: 30px;
+//   background-color: rgba(136, 136, 136, 0.24);
+//   z-index: 10;
+//   position: absolute;
+//   transition: all 0.2s ease-out;
+//   animation: introjspulse 2s infinite;
+// }
+// .introjs-hint-no-anim .introjs-hint-pulse {
+//   animation: none;
+// }
+// .introjs-hint-dot {
+//   box-sizing: content-box;
+//   background: 0 0;
+//   border-radius: 60px;
+//   height: 50px;
+//   width: 50px;
+//   position: absolute;
+//   top: -18px;
+//   left: -18px;
+//   z-index: 1;
+//   opacity: 0;
+// }

@@ -1,9 +1,10 @@
 @mixin zadark-icons($fontsPath) {
   @font-face {
     font-family: "ZaDarkIcons";
-    src: url("#{$fontsPath}/ZaDarkIcons.ttf?g71g63") format("truetype"),
-      url("#{$fontsPath}/ZaDarkIcons.woff?g71g63") format("woff"),
-      url("#{$fontsPath}/ZaDarkIcons.svg?g71g63#icomoon") format("svg");
+    src:
+      url("#{$fontsPath}/ZaDarkIcons.ttf?3198rs") format("truetype"),
+      url("#{$fontsPath}/ZaDarkIcons.woff?3198rs") format("woff"),
+      url("#{$fontsPath}/ZaDarkIcons.svg?3198rs#icomoon") format("svg");
     font-weight: 400;
     font-style: normal;
   }
@@ -27,7 +28,7 @@
       content: "\e902";
     }
 
-    &--check:before {
+    &--play-circle:before {
       content: "\e904";
     }
   }

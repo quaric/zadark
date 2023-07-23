@@ -34,6 +34,7 @@
           enabledBlockDelivered: false,
           enabledBlockSeen: false,
 
+          useHotkeys: true,
           knownVersion: ''
         }, (items) => {
           resolve(items)

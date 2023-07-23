@@ -1,7 +1,7 @@
 {
   "name": "zadark",
   "description": "Dark Mode tốt nhất cho Zalo",
-  "version": "23.7.3",
+  "version": "23.7.4",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
     "name": "Quaric",
@@ -84,6 +84,7 @@
       "hotkeys",
       "Toastify",
       "WebFont",
+      "introJs",
       "localStorage",
       "MutationObserver",
       "DEBUG"

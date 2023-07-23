@@ -22,12 +22,15 @@ window.WebFontConfig = {
   s.parentNode.insertBefore(wf, s)
 })(document)
 
+const manifestData = ZaDarkBrowser.getManifest()
+
 const ratingElName = '#js-ext-rating'
 const versionElName = '#js-ext-version'
+const btnScrollElName = '#js-btn-scroll'
+
 const radioInputThemeElName = '#js-radio-input-theme input:radio[name="theme"]'
 const inputFontFamilyElName = '#js-input-font-family'
 const selectFontSizeElName = '#js-select-font-size'
-const manifestData = ZaDarkBrowser.getManifest()
 
 const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
 const switchHideConvAvatarElName = '#js-switch-hide-conv-avatar'
@@ -38,11 +41,23 @@ const switchBlockTypingElName = '#js-switch-block-typing'
 const switchBlockSeenElName = '#js-switch-block-seen'
 const switchBlockDeliveredElName = '#js-switch-block-delivered'
 
+const switchUseHotkeysElName = '#js-switch-use-hotkeys'
+
 $(ratingElName).attr('href', ZaDarkUtils.getRatingURL(ZaDarkBrowser.name))
 $(versionElName).html(`Phiên bản ${manifestData.version}`)
 
-ZaDarkBrowser.getExtensionSettings().then(({ theme, fontFamily, fontSize, enabledHideLatestMessage, enabledHideConvAvatar, enabledHideConvName, enabledHideThreadChatMessage }) => {
+ZaDarkBrowser.getExtensionSettings().then(({
+  theme,
+  fontFamily,
+  fontSize,
+  enabledHideLatestMessage,
+  enabledHideConvAvatar,
+  enabledHideConvName,
+  enabledHideThreadChatMessage,
+  useHotkeys
+}) => {
   ZaDarkUtils.setPageTheme(theme)
+  ZaDarkUtils.setUseHotkeysAttr(useHotkeys)
 
   $(radioInputThemeElName).filter(`[value="${theme}"]`).attr('checked', true)
   $(inputFontFamilyElName).val(fontFamily)
@@ -52,6 +67,8 @@ ZaDarkBrowser.getExtensionSettings().then(({ theme, fontFamily, fontSize, enable
   $(switchHideConvAvatarElName).prop('checked', enabledHideConvAvatar)
   $(switchHideConvNameElName).prop('checked', enabledHideConvName)
   $(switchHideThreadChatMessageElName).prop('checked', enabledHideThreadChatMessage)
+
+  $(switchUseHotkeysElName).prop('checked', useHotkeys)
 })
 
 $(radioInputThemeElName).on('change', async function () {
@@ -107,6 +124,12 @@ $(switchHideThreadChatMessageElName).on('change', async function () {
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE, { enabledHideThreadChatMessage })
 })
 
+$(switchUseHotkeysElName).on('change', async function () {
+  const useHotkeys = $(this).is(':checked')
+  await ZaDarkUtils.updateUseHotkeys(useHotkeys)
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_USE_HOTKEYS, { useHotkeys })
+})
+
 const handleBlockingRuleChange = (elName, ruleId) => {
   return () => {
     const isChecked = $(elName).is(':checked')
@@ -119,7 +142,19 @@ const handleBlockingRuleChange = (elName, ruleId) => {
   }
 }
 
-const enableBlocking = () => {
+const loadBlocking = () => {
+  const isEnabled = ZaDarkUtils.isSupportDeclarativeNetRequest()
+
+  if (!isEnabled) {
+    const disabledList = [switchBlockTypingElName, switchBlockSeenElName, switchBlockDeliveredElName]
+
+    disabledList.forEach((elName) => {
+      $(elName).parent().parent().addClass('zadark-switch--disabled')
+    })
+
+    return
+  }
+
   ZaDarkBrowser.sendMessage({ action: MSG_ACTIONS.GET_ENABLED_BLOCKING_RULE_IDS }).then((ruleIds) => {
     if (!Array.isArray(ruleIds)) {
       return
@@ -135,16 +170,24 @@ const enableBlocking = () => {
   $(switchBlockDeliveredElName).on('change', handleBlockingRuleChange(switchBlockDeliveredElName, 'rules_block_delivered'))
 }
 
-const disableBlocking = () => {
-  const disabledList = [switchBlockTypingElName, switchBlockSeenElName, switchBlockDeliveredElName]
+loadBlocking()
 
-  disabledList.forEach((elName) => {
-    $(elName).parent().parent().addClass('zadark-switch--disabled')
-  })
+$(btnScrollElName).on('click', () => {
+  const elName = 'html, body'
+  $(elName).animate({ scrollTop: $(elName).height() }, 1000)
+})
+
+const calcPopupScroll = () => {
+  const scrolledFromTop = $(window).scrollTop()
+  const scrollable = $(window).height() < $(document).height()
+
+  if (!scrollable || scrolledFromTop >= 24) {
+    $(btnScrollElName).fadeOut(150)
+  } else {
+    $(btnScrollElName).fadeIn(150)
+  }
 }
 
-if (ZaDarkUtils.isSupportDeclarativeNetRequest()) {
-  enableBlocking()
-} else {
-  disableBlocking()
-}
+calcPopupScroll()
+
+$(window).on('scroll', ZaDarkUtils.debounce(calcPopupScroll, 150))
