@@ -394,12 +394,12 @@
             intro: 'Bạn di chuột vào vùng này để <strong>xem nội dung tin nhắn</strong>.'
           },
           {
-            element: document.querySelector('#ztoolbar'),
-            intro: 'Bạn di chuyển chuột vào vùng này để : <strong>Ẩn nội dung khung soạn tin nhắn</strong> (bên dưới), <strong>Ẩn nội dung tin nhắn</strong> (bên trên).'
-          },
-          {
             element: document.querySelector('.chat-input__content__input'),
             intro: 'Bạn di chuyển chuột vào vùng này để <strong>xem nội dung khung soạn tin nhắn</strong>.'
+          },
+          {
+            element: document.querySelector('#ztoolbar'),
+            intro: 'Bạn di chuyển chuột vào vùng này để : <strong>Ẩn nội dung tin nhắn</strong> (bên trên), <strong>Ẩn nội dung khung soạn tin nhắn</strong> (bên dưới).'
           }
         ],
         onExit,
