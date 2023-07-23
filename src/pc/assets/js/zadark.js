@@ -56,15 +56,15 @@
       true: 'BẬT : Ẩn Tên cuộc trò chuyện',
       false: 'TẮT : Ẩn Tên cuộc trò chuyện'
     },
-    rules_block_typing: {
+    block_typing: {
       true: 'BẬT : Ẩn trạng thái Đang soạn tin (Typing) ...',
       false: 'TẮT : Ẩn trạng thái Đang soạn tin (Typing) ...'
     },
-    rules_block_delivered: {
+    block_delivered: {
       true: 'BẬT : Ẩn trạng thái Đã nhận (Received)',
       false: 'TẮT : Ẩn trạng thái Đã nhận (Received)'
     },
-    rules_block_seen: {
+    block_seen: {
       true: 'BẬT : Ẩn trạng thái Đã xem (Seen)',
       false: 'TẮT : Ẩn trạng thái Đã xem (Seen)'
     },
@@ -480,7 +480,6 @@
     updateKnownVersionState: (buttonEl) => {
       const zadarkVersion = $('html').data('zadark-version')
       ZaDarkStorage.saveKnownVersion(zadarkVersion)
-
       buttonEl.classList.remove('zadark-known-version')
     },
 
