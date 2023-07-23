@@ -353,7 +353,7 @@
     updateFontSize: async function (fontSize) {
       await ZaDarkBrowser.saveExtensionSettings({ fontSize })
       this.setFontSizeAttr(fontSize)
-      ZaDarkUtils.showToast(ZaDarkUtils.HOTKEYS_TOAST_MESSAGE.fontSize[fontSize])
+      ZaDarkUtils.showToast(this.HOTKEYS_TOAST_MESSAGE.fontSize[fontSize])
     },
 
     updateHideLatestMessage: async function (enabledHideLatestMessage) {
