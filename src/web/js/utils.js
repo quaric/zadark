@@ -18,7 +18,8 @@
       GET_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:GET_ENABLED_BLOCKING_RULE_IDS',
       UPDATE_ENABLED_BLOCKING_RULE_IDS: '@ZaDark:UPDATE_ENABLED_BLOCKING_RULE_IDS',
 
-      REFRESH_ZALO_TABS: '@ZaDark:REFRESH_ZALO_TABS'
+      REFRESH_ZALO_TABS: '@ZaDark:REFRESH_ZALO_TABS',
+      CHANGE_USE_HOTKEYS: '@ZaDark:CHANGE_USE_HOTKEYS'
     },
 
     HOTKEYS_TOAST_MESSAGE: {
@@ -55,6 +56,10 @@
       rules_block_seen: {
         true: 'BẬT : Ẩn trạng thái Đã xem (Seen)',
         false: 'TẮT : Ẩn trạng thái Đã xem (Seen)'
+      },
+      useHotkeys: {
+        true: 'Đã kích hoạt phím tắt',
+        false: 'Đã vô hiệu hoá phím tắt'
       }
     },
 
@@ -95,6 +100,10 @@
 
     setHideThreadChatMessageAttr: function (isEnabled) {
       this.toggleBodyClassName('zadark-prv--thread-chat-message', isEnabled)
+    },
+
+    setUseHotkeysAttr: function (isEnabled) {
+      this.toggleBodyClassName('zadark--use-hotkeys', isEnabled)
     },
 
     setPageTheme: function (theme) {
@@ -144,6 +153,28 @@
       toast.showToast()
 
       return toast
+    },
+
+    showIntro: ({ steps = [], onExit, onComplete } = {}) => {
+      const intro = introJs().setOptions({
+        steps,
+
+        disableInteraction: false,
+        prevLabel: 'Trước',
+        nextLabel: 'Tiếp',
+        doneLabel: 'Đã hiểu',
+        helperElementPadding: -4
+      })
+
+      if (typeof onExit === 'function') {
+        intro.onexit(onExit)
+      }
+
+      if (typeof onComplete === 'function') {
+        intro.oncomplete(onComplete)
+      }
+
+      intro.start()
     },
 
     isSupportDeclarativeNetRequest: () => {
@@ -222,7 +253,9 @@
         enabledHideLatestMessage,
         enabledHideConvAvatar,
         enabledHideConvName,
-        enabledHideThreadChatMessage
+        enabledHideThreadChatMessage,
+
+        useHotkeys
       } = await ZaDarkBrowser.getExtensionSettings()
 
       this.setPageTheme(theme)
@@ -232,6 +265,8 @@
       this.setHideConvAvatarAttr(enabledHideConvAvatar)
       this.setHideConvNameAttr(enabledHideConvName)
       this.setHideThreadChatMessageAttr(enabledHideThreadChatMessage)
+
+      this.setUseHotkeysAttr(useHotkeys)
     },
 
     installFontFamily: (fontFamilies = [], classes = true) => {
@@ -270,7 +305,7 @@
       tippy('#div_Main_TabZaDark', {
         theme: 'zadark',
         allowHTML: true,
-        content: '<span>ZaDark <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D"></span></span>',
+        content: '<span>Cài đặt ZaDark <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D"></span></span>',
         placement: 'right'
       })
 
@@ -343,6 +378,41 @@
       await ZaDarkBrowser.saveExtensionSettings({ enabledHideThreadChatMessage })
       this.toggleBodyClassName('zadark-prv--thread-chat-message', enabledHideThreadChatMessage)
       this.showToast(this.HOTKEYS_TOAST_MESSAGE.hideThreadChatMessage[enabledHideThreadChatMessage])
+    },
+
+    updateUseHotkeys: async function (useHotkeys) {
+      await ZaDarkBrowser.saveExtensionSettings({ useHotkeys })
+      this.showToast(this.HOTKEYS_TOAST_MESSAGE.useHotkeys[useHotkeys])
+      this.setUseHotkeysAttr(useHotkeys)
+    },
+
+    showIntroHideThreadChatMessage: function ({ onExit, onComplete } = {}) {
+      this.showIntro({
+        steps: [
+          {
+            element: document.querySelector('#messageView'),
+            intro: 'Bạn di chuột vào vùng này để <strong>xem nội dung tin nhắn</strong>.'
+          },
+          {
+            element: document.querySelector('#ztoolbar'),
+            intro: 'Bạn di chuyển chuột vào vùng này để : <strong>Ẩn nội dung khung soạn tin nhắn</strong> (bên dưới), <strong>Ẩn nội dung tin nhắn</strong> (bên trên).'
+          },
+          {
+            element: document.querySelector('.chat-input__content__input'),
+            intro: 'Bạn di chuyển chuột vào vùng này để <strong>xem nội dung khung soạn tin nhắn</strong>.'
+          }
+        ],
+        onExit,
+        onComplete
+      })
+    },
+
+    debounce: (func, delay) => {
+      let timer
+      return () => {
+        clearTimeout(timer)
+        timer = setTimeout(func, delay)
+      }
     }
   }
 

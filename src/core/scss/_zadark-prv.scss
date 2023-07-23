@@ -134,6 +134,18 @@
       opacity: 1;
     }
   }
+
+  .chat-input__content__input {
+    #richInput,
+    .rich-text-input {
+      opacity: 0.1;
+      transition: opacity 100ms ease-in-out;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 @mixin prv-conv-avatar {

@@ -2087,7 +2087,7 @@ body.zadark {
 
   .zadark-popper {
     z-index: 9999;
-    overflow: auto;
+    overflow: hidden;
 
     display: none;
     width: 480px;
@@ -2096,13 +2096,6 @@ body.zadark {
     border: 1px solid var(--border);
     border-radius: 8px;
     box-shadow: var(--popper-shadow);
-
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-      width: 0 !important;
-    }
 
     &[data-visible] {
       display: block;
