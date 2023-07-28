@@ -12,6 +12,7 @@
 ### Changed
 - Thêm màu nền tối (Overlay) giúp người dùng tập trung vào Popup cài đặt ZaDark hơn
 - Bỏ nhãn BETA của cài đặt phông chữ từ Google Fonts
+- Ẩn Tin nhắn gần nhất: Giữ lại Nhãn (Label) cuộc trò chuyện
 
 ## ZaDark 23.7.4
 > PC 9.5 && Web 9.5

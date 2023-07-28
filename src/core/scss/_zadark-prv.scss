@@ -1,5 +1,5 @@
 @mixin prv-lastest-message {
-  .conv-item .conv-item-body__main {
+  .conv-item .conv-item-body__main .conv-message {
     position: relative;
 
     &::after {
@@ -16,6 +16,7 @@
       color: var(--text-secondary);
       font-size: 16px;
       letter-spacing: 1px;
+      line-height: normal;
       opacity: 1;
 
       transition: opacity 100ms ease-in-out;
@@ -27,7 +28,7 @@
     }
   }
 
-  .conv-item:hover .conv-item-body__main {
+  .conv-item:hover .conv-item-body__main .conv-message {
     &::after {
       opacity: 0;
     }
