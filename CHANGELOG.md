@@ -1,5 +1,18 @@
 # Changelog
 
+## ZaDark 23.7.5
+> PC 9.6 && Web 9.6
+
+### Added
+- Bổ sung giải thích (Tooltip) cho chức năng
+  - Ẩn trạng thái Đang soạn tin (Typing) ...
+  - Ẩn trạng thái Đã nhận (Received)
+  - Ẩn trạng thái Đã xem (Seen)
+
+### Changed
+- Thêm màu nền tối (Overlay) giúp người dùng tập trung vào Popup cài đặt ZaDark hơn
+- Bỏ nhãn BETA của cài đặt phông chữ từ Google Fonts
+
 ## ZaDark 23.7.4
 > PC 9.5 && Web 9.5
 

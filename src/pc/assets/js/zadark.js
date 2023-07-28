@@ -338,11 +338,11 @@
       const fontFamily = ZaDarkStorage.getFontFamily()
 
       if (!fontFamily) {
-        this.installFontFamily(['Open Sans:400,600:latin,vietnamese'], false)
+        this.installFontFamily(['Open Sans:400,500,600:latin,vietnamese'], false)
         return
       }
 
-      await this.installFontFamily([`${fontFamily}:400,500:latin,vietnamese`, 'Open Sans:400,600:latin,vietnamese'], false)
+      await this.installFontFamily([`${fontFamily}:400,500,600:latin,vietnamese`, 'Open Sans:400,500,600:latin,vietnamese'], false)
       this.setFontFamilyAttr(fontFamily)
     },
 
@@ -693,7 +693,6 @@
           <div class="font-settings font-settings--border-default">
             <label class="font-settings__label">
               Phông chữ từ <a href="https://zadark.quaric.com/blog/use-google-fonts" target="_blank">Google Fonts</a>
-              <span class="zadark-beta"></span>
             </label>
 
             <input id="js-input-font-family" class="zadark-input" placeholder="Mặc định">
@@ -724,7 +723,7 @@
             <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
                 Ẩn <strong>Tin nhắn gần nhất</strong>
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem nội dung tin nhắn, bạn di chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem nội dung tin nhắn, bạn di chuột vào<br/>"<strong>Tên cuộc trò chuyện</strong>" cần xem.'></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+1" data-keys-mac="⌘1"></span>
@@ -752,7 +751,7 @@
             <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-avatar">
                 Ẩn <strong>Ảnh đại diện</strong> cuộc trò chuyện
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Ảnh đại diện, bạn di chuyển chuột vào "<strong>Ảnh đại diện</strong>" cần xem.</p>'></i>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem Ảnh đại diện, bạn di chuyển chuột vào<br/>"<strong>Ảnh đại diện</strong>" cần xem.'></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+3" data-keys-mac="⌘3"></span>
@@ -766,7 +765,7 @@
             <div class="zadark-switch zadark-switch--border-default">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-name">
                 Ẩn <strong>Tên</strong> cuộc trò chuyện
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Để xem Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.</p>'></i>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.'></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+7" data-keys-mac="⌘7"></span>
@@ -778,7 +777,10 @@
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-typing">Ẩn trạng thái <strong>Đang soạn tin (Typing) ...</strong></label>
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-block-typing">
+                Ẩn trạng thái <strong>Đang soạn tin (Typing)</strong>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đang soạn tin (Typing) ...</strong> của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.</p>'></i>
+              </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+4" data-keys-mac="⌘4"></span>
               </span>
@@ -789,7 +791,10 @@
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-delivered">Ẩn trạng thái <strong>Đã nhận (Received)</strong></label>
+              <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-block-delivered">
+                Ẩn trạng thái <strong>Đã nhận (Received)</strong>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đã nhận (Received)</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ.</p>'></i>
+              </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+5" data-keys-mac="⌘5"></span>
               </span>
@@ -800,7 +805,10 @@
             </div>
 
             <div class="zadark-switch">
-              <label class="zadark-switch__label" for="js-switch-block-seen">Ẩn trạng thái <strong>Đã xem (Seen)</strong></label>
+              <label class="zadark-switch__label" for="js-switch-block-seen">
+                Ẩn trạng thái <strong>Đã xem (Seen)</strong>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đã xem (Seen)</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ.</p><p style="text-align: justify;">Tuy nhiên, trạng thái của các tin nhắn bạn đã xem trên Zalo PC sẽ <strong>không được đồng bộ</strong> với máy chủ Zalo, bạn cần phải xem lại tin nhắn trên Zalo Mobile để đồng bộ.</p>'></i>
+              </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+6" data-keys-mac="⌘6"></span>
               </span>
@@ -844,15 +852,17 @@
   `
 
   const zadarkPopupHTML = `
-    <div id="zadark-popup" class="zadark-popper">
-      <div id="js-zadark-popup__scrollable" class="zadark-popup__scrollable">
-        ${popupHeaderHTML}
-        ${popupMainHTML}
-        ${popupFooterHTML}
+    <div id="js-zadark-popup" class="zadark-popper">
+      <div id="zadark-popup">
+        <div id="js-zadark-popup__scrollable" class="zadark-popup__scrollable">
+          ${popupHeaderHTML}
+          ${popupMainHTML}
+          ${popupFooterHTML}
 
-        <button id="js-btn-scroll" data-tippy-content="Cuộn xuống">
-          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z" fill="currentColor" /></svg>
-        </button>
+          <button id="js-btn-scroll" data-tippy-content="Cuộn xuống">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z" fill="currentColor" /></svg>
+          </button>
+        </div>
       </div>
     </div>
   `
@@ -1118,7 +1128,7 @@
     tippy('#js-input-font-family', {
       theme: 'zadark',
       allowHTML: true,
-      content: '<p>Nhập tên phông chữ từ <strong>Google Fonts</strong><br>(Lưu ý kí tự in hoa, khoảng cách).</p><p>Bỏ trống nếu dùng phông mặc định.</p><p>Nhấn <strong>Enter</strong> để lưu lại.</p>',
+      content: '<p>Nhập tên phông chữ từ <strong>Google Fonts</strong><br>(Lưu ý kí tự in hoa, khoảng cách).</p><p>Bỏ trống nếu dùng phông mặc định.</p><p>Nhấn <strong>Enter</strong> để áp dụng.</p>',
       trigger: 'focus'
     })
   }
@@ -1153,7 +1163,7 @@
 
     $(switchUseHotkeysElName).on('change', handleUseHotkeysChange)
 
-    const popupEl = document.querySelector('#zadark-popup')
+    const popupEl = document.querySelector('#js-zadark-popup')
     const buttonEl = document.getElementById('div_Main_TabZaDark')
 
     const popupInstance = Popper.createPopper(buttonEl, popupEl, {

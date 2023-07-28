@@ -234,11 +234,11 @@
       const { fontFamily } = await ZaDarkBrowser.getExtensionSettings()
 
       if (!fontFamily) {
-        this.installFontFamily(['Open Sans:400,600:latin,vietnamese'], false)
+        this.installFontFamily(['Open Sans:400,500,600:latin,vietnamese'], false)
         return
       }
 
-      await this.installFontFamily(['Open Sans:400,600:latin,vietnamese', `${fontFamily}:400,500:latin,vietnamese`], false)
+      await this.installFontFamily(['Open Sans:400,500,600:latin,vietnamese', `${fontFamily}:400,500,600:latin,vietnamese`], false)
       this.setFontFamilyAttr(fontFamily)
     },
 
@@ -312,7 +312,7 @@
       tippy('#js-input-font-family', {
         theme: 'zadark',
         allowHTML: true,
-        content: '<p>Nhập tên phông chữ từ <strong>Google Fonts</strong><br>(Lưu ý kí tự in hoa, khoảng cách).</p><p>Bỏ trống nếu dùng phông mặc định.</p><p>Nhấn <strong>Enter</strong> để lưu lại.</p>',
+        content: '<p>Nhập tên phông chữ từ <strong>Google Fonts</strong><br>(Lưu ý kí tự in hoa, khoảng cách).</p><p>Bỏ trống nếu dùng phông mặc định.</p><p>Nhấn <strong>Enter</strong> để áp dụng.</p>',
         trigger: 'focus'
       })
     },

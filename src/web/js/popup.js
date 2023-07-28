@@ -11,7 +11,7 @@ const MSG_ACTIONS = ZaDarkUtils.MSG_ACTIONS
 
 window.WebFontConfig = {
   google: {
-    families: ['Open Sans:400,600']
+    families: ['Open Sans:400,500,600']
   }
 };
 
