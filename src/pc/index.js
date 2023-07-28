@@ -170,8 +170,6 @@ const requestQuitTermProgram = () => {
       print(chalk.magentaBright.bold('[XAY RA LOI]'))
       print('')
       printError(error.message)
-    } finally {
-      print('')
     }
     return
   }
