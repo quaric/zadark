@@ -1,5 +1,49 @@
 # Changelog
 
+## ZaDark 23.7.5
+> PC 9.6 && Web 9.6
+
+### Added
+- Bổ sung giải thích (Tooltip) cho chức năng
+  - Ẩn trạng thái Đang soạn tin (Typing) ...
+  - Ẩn trạng thái Đã nhận (Received)
+  - Ẩn trạng thái Đã xem (Seen)
+
+#### PC specific
+- Thêm chế độ cài đặt / gỡ cài đặt nhanh **bằng câu lệnh**
+  - Windows
+    - Giải nén file `ZaDark.zip`, mở **Terminal** hoặc **Command Prompt**
+    - Nhập cú pháp cài ZaDark
+      - `"\Thu_Muc_Chua_File_ZaDark\ZaDark 9.6.exe" install` hoặc
+      - `"\Thu_Muc_Chua_File_ZaDark\ZaDark 9.6.exe" in`
+    - Nhập cú pháp gỡ ZaDark
+      - `"\Thu_Muc_Chua_File_ZaDark\ZaDark 9.6.exe" uninstall` hoặc
+      - `"\Thu_Muc_Chua_File_ZaDark\ZaDark 9.6.exe" un`
+    - Ví dụ
+      - `"C:\Users\ncdai\Downloads\ZaDark 9.6\ZaDark 9.6.exe" install`
+  - macOS
+    - Sau khi chạy file `ZaDark.pkg`, mở **Terminal**
+    - Nhập cú pháp cài ZaDark
+      - `/Applications/ZaDark install` hoặc
+      - `/Applications/ZaDark in`
+    - Nhập cú pháp gỡ ZaDark
+      - `/Applications/ZaDark uninstall` hoặc
+      - `/Applications/ZaDark un`
+- Chỉ mở Feedback Unsintall khi người dùng gỡ cài đặt ZaDark lần đầu
+- ZaDark lưu cài đặt vào đường dẫn
+  - Windows: `C:\Users\TenNguoiDung\.zadarkconfig`
+  - macOS: `/Users/TenNguoiDung/.zadarkconfig`
+  - Mục đích
+    - Xác định có phải người dùng gỡ cài đặt lần đầu không
+    - Chuẩn bị cho tính năng Auto Update ZaDark, Auto Reinstall ZaDark
+- **[Windows]** Thay thay đổi đường dẫn chứa chương trình [**fastlist**](https://github.com/MarkTiedemann/fastlist) (Chương trình giúp ZaDark xác định Process ID của Zalo để tắt Zalo trước khi cài đặt)
+  - `C:\Users\TenNguoiDung\.zadark\fastlist-0.3.0.exe`
+
+### Changed
+- Thêm màu nền tối (Overlay) giúp người dùng tập trung vào Popup cài đặt ZaDark hơn
+- Bỏ nhãn BETA của cài đặt phông chữ từ Google Fonts
+- Ẩn Tin nhắn gần nhất: Giữ lại Nhãn (Label) cuộc trò chuyện ([#57](https://github.com/quaric/zadark/issues/57))
+
 ## ZaDark 23.7.4
 > PC 9.5 && Web 9.5
 

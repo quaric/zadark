@@ -503,7 +503,7 @@
   --selection: #0068ff;
   --selection-text: #fff;
 
-  --popper-shadow: 4px 4px 12px var(--BA50);
+  --popper-shadow: var(--BA50) 0px 0px 0px 5000px;
 
   --black: 900;
   --extrabold: 800;
@@ -551,7 +551,7 @@ html[data-zadark-use-font="true"] body.zadark {
 
 html[data-zadark-theme="light"] {
   &:root {
-    --popper-shadow: 0 0 10px 0 var(--BA20);
+    --popper-shadow: var(--BA50) 0px 0px 0px 5000px;
     --prv-sticker-filter: invert(0.5) brightness(2);
   }
 }
@@ -2000,6 +2000,10 @@ html[data-zadark-theme="dark"] {
     .chat-info-general__section__content {
       position: relative;
     }
+
+    #zadark-popup {
+      border: 1px solid var(--border);
+    }
   }
 }
 
@@ -2086,19 +2090,26 @@ body.zadark {
   }
 
   .zadark-popper {
+    position: absolute;
     z-index: 9999;
-    overflow: hidden;
 
     display: none;
     width: 480px;
     max-height: 100%;
 
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    box-shadow: var(--popper-shadow);
-
     &[data-visible] {
       display: block;
+    }
+
+    #zadark-popup {
+      overflow: hidden;
+      margin-bottom: 8px;
+      border-radius: var(--zadark-rounded-base);
+      box-shadow: var(--popper-shadow);
+
+      #js-btn-scroll {
+        bottom: 20px; // 8px + 12px
+      }
     }
   }
 

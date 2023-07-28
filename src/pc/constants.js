@@ -1,4 +1,5 @@
 const os = require('os')
+const path = require('path')
 const packageJSON = require('./package.json')
 
 const PLATFORM = os.platform()
@@ -11,7 +12,7 @@ const ZADARK_VERSION = packageJSON.version
 
 const DEFAULT_ZALO_PATH = IS_MAC
   ? '/Applications/Zalo.app' // ! Can't be changed
-  : process.env.USERPROFILE + '/AppData/Local/Programs/Zalo' // ! Can't be changed
+  : os.homedir() + '/AppData/Local/Programs/Zalo' // ! Can't be changed
 
 const EXAMPLE_CUSTOM_ZALO_PATH = IS_MAC
   ? '/ThuMucDaCaiZalo/Zalo.app'
@@ -29,6 +30,8 @@ const CONTACT_URL = 'https://zadark.quaric.com/contact'
 
 const FEEDBACK_UNINSTALL_URL = `https://docs.google.com/forms/d/e/1FAIpQLSdLonVbx-IavimDRneKuUhtMox4vDbyu35tB6uzQG8FGJFbUg/viewform?usp=pp_url&entry.454875478=${IS_MAC ? 'macOS' : 'Windows'}`
 
+const CONFIG_FILE_PATH = path.join(os.homedir(), '.zadarkconfig')
+
 module.exports = {
   PLATFORM,
   OS_NAME,
@@ -44,5 +47,7 @@ module.exports = {
   DOWNLOAD_ZADARK_URL,
   COMMON_ERRORS_URL,
   CONTACT_URL,
-  FEEDBACK_UNINSTALL_URL
+  FEEDBACK_UNINSTALL_URL,
+
+  CONFIG_FILE_PATH
 }
