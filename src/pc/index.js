@@ -152,8 +152,6 @@ const requestQuitTermProgram = () => {
   if (shouldUseCommand) {
     const zaloResDirList = zadarkPC.getZaloResDirList(zaloPath || DEFAULT_ZALO_PATH)
 
-    print('')
-
     try {
       if (!zaloResDirList.length) {
         throw new Error(`Khong tim thay Zalo PC (${zaloPath || DEFAULT_ZALO_PATH}).\nVui long cai dat Zalo PC : https://zalo.me/pc`)
