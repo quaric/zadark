@@ -4,7 +4,7 @@ const inquirer = require('inquirer')
 const crossSpawn = require('cross-spawn')
 
 const zadarkPC = require('./zadark-pc')
-const { print, printError, openWebsite, clearScreen, killProcesses } = require('./utils')
+const { print, printError, openWebsite, clearScreen, killProcesses, loadUserSettings, saveUserSettings } = require('./utils')
 
 const {
   ZADARK_VERSION,
@@ -116,7 +116,15 @@ const handleUninstall = async (zaloResDirList) => {
   print('')
   print(chalk.greenBright('>> Da go cai dat ZaDark. Vui long mo lai Zalo PC.'))
 
-  openWebsite(FEEDBACK_UNINSTALL_URL)
+  const userSettings = {
+    firstUninstall: true,
+    ...loadUserSettings()
+  }
+
+  if (userSettings.firstUninstall) {
+    saveUserSettings({ ...userSettings, firstUninstall: false })
+    openWebsite(FEEDBACK_UNINSTALL_URL)
+  }
 }
 
 const handleOpenDocs = () => {
@@ -138,6 +146,36 @@ const requestQuitTermProgram = () => {
 }
 
 (async () => {
+  const [action, zaloPath] = process.argv.slice(2)
+  const shouldUseCommand = ['install', 'in', 'uninstall', 'un'].includes(action)
+
+  if (shouldUseCommand) {
+    const zaloResDirList = zadarkPC.getZaloResDirList(zaloPath || DEFAULT_ZALO_PATH)
+
+    print('')
+
+    try {
+      if (!zaloResDirList.length) {
+        throw new Error(`Khong tim thay Zalo PC (${zaloPath || DEFAULT_ZALO_PATH}).\nVui long cai dat Zalo PC : https://zalo.me/pc`)
+      }
+
+      if (['install', 'in'].includes(action)) {
+        await handleInstall(zaloResDirList)
+      }
+
+      if (['uninstall', 'un'].includes(action)) {
+        await handleUninstall(zaloResDirList)
+      }
+    } catch (error) {
+      print(chalk.magentaBright.bold('[XAY RA LOI]'))
+      print('')
+      printError(error.message)
+    } finally {
+      print('')
+    }
+    return
+  }
+
   try {
     let zaloResDirList = zadarkPC.getZaloResDirList(DEFAULT_ZALO_PATH)
 

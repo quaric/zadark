@@ -4,6 +4,7 @@ const util = require('util')
 const path = require('path')
 const childProcess = require('child_process')
 const fs = require('fs')
+const os = require('os')
 
 const TEN_MEGABYTES = 1000 * 1000 * 10
 const execFile = util.promisify(childProcess.execFile)
@@ -23,7 +24,7 @@ const windows = async () => {
       throw new Error(`Khong ho tro kien truc : ${process.arch}`)
   }
 
-  const zadarkPath = path.join(process.env.USERPROFILE, '/.zadark-cli')
+  const zadarkPath = path.join(os.homedir(), '/.zadark')
   const srcPath = path.join(__dirname, './vendor', bin)
   const destPath = path.join(zadarkPath, bin)
 

@@ -8,6 +8,16 @@
   - Ẩn trạng thái Đang soạn tin (Typing) ...
   - Ẩn trạng thái Đã nhận (Received)
   - Ẩn trạng thái Đã xem (Seen)
+#### PC specific
+- Chỉ mở Feedback Unsintall khi người dùng gỡ cài đặt ZaDark lần đầu
+- ZaDark lưu cài đặt vào đường dẫn
+  - Windows: `C:\Users\TenNguoiDung\.zadarkconfig`
+  - macOS: `/Users/TenNguoiDung/.zadarkconfig`
+  - Mục đích
+    - Xác định có phải người dùng gỡ cài đặt lần đầu không
+    - Chuẩn bị cho tính năng Auto Update ZaDark, Auto Reinstall ZaDark
+- **[Windows]** Thay thay đổi đường dẫn chứa chương trình [**fastlist**](https://github.com/MarkTiedemann/fastlist) (Chương trình giúp ZaDark xác định Process ID của Zalo để tắt Zalo trước khi cài đặt)
+  - `C:\Users\TenNguoiDung\.zadark\fastlist-0.3.0.exe`
 
 ### Changed
 - Thêm màu nền tối (Overlay) giúp người dùng tập trung vào Popup cài đặt ZaDark hơn
