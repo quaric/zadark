@@ -4,7 +4,20 @@
 */
 
 (function () {
-  const { ipcRenderer } = require('electron')
+  let ipcRenderer = {
+    invoke: () => {
+      return Promise.resolve({
+        theme: 'dark',
+        hideLatestMessage: false,
+        hideConvAvatar: false,
+        hideConvName: false
+      })
+    }
+  }
+
+  if (typeof require === 'function') {
+    ipcRenderer = require('electron').ipcRenderer
+  }
 
   const ZaDarkUtils = {
     setThemeAttr: (themeMode) => {

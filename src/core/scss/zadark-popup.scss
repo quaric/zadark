@@ -492,7 +492,8 @@ body:not(.zadark--use-hotkeys) {
       }
 
       .zadark-switch__label,
-      .zadark-switch__checkbox {
+      .zadark-switch__checkbox,
+      .zadark-switch__hotkeys {
         opacity: 0.25;
       }
     }
@@ -720,6 +721,10 @@ body:not(.zadark--use-hotkeys) {
   cursor: pointer;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  &--error {
+    border-color: #e74c3c;
+  }
 }
 
 .toastify.on {

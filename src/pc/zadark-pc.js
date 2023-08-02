@@ -126,6 +126,12 @@ const writeIndexFile = (zaloDir) => {
     },
     // Required scripts
     {
+      selector: 'script[src="zadark-jquery.min.js"]',
+      where: 'beforeend',
+      html: '<script src="zadark-jquery.min.js"></script>',
+      htmlElement: bodyElement
+    },
+    {
       selector: 'script[src="zadark-popper.min.js"]',
       where: 'beforeend',
       html: '<script src="zadark-popper.min.js"></script>',
@@ -135,6 +141,30 @@ const writeIndexFile = (zaloDir) => {
       selector: 'script[src="zadark-tippy.min.js"]',
       where: 'beforeend',
       html: '<script src="zadark-tippy.min.js"></script>',
+      htmlElement: bodyElement
+    },
+    {
+      selector: 'script[src="zadark-hotkeys-js.min.js"]',
+      where: 'beforeend',
+      html: '<script src="zadark-hotkeys-js.min.js"></script>',
+      htmlElement: bodyElement
+    },
+    {
+      selector: 'script[src="zadark-toastify.min.js"]',
+      where: 'beforeend',
+      html: '<script src="zadark-toastify.min.js"></script>',
+      htmlElement: bodyElement
+    },
+    {
+      selector: 'script[src="zadark-webfont.min.js"]',
+      where: 'beforeend',
+      html: '<script src="zadark-webfont.min.js"></script>',
+      htmlElement: bodyElement
+    },
+    {
+      selector: 'script[src="zadark-introjs.min.js"]',
+      where: 'beforeend',
+      html: '<script src="zadark-introjs.min.js"></script>',
       htmlElement: bodyElement
     },
     {

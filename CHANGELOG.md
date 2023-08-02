@@ -1,5 +1,18 @@
 # Changelog
 
+## ZaDark 23.8.1
+
+> PC 10.0
+
+### Fixed
+
+- **[Windows]** Sửa lỗi ZaDark không hoạt động trên **Zalo PC 23.7.1** trở lên (Vì Zalo nâng cấp mã nguồn)
+
+### Removed
+- Tính năng **Ẩn trạng thái (Đang soạn tin, Đã nhận, Đã xem)** không khả dụng trên **Zalo PC 23.7.1** trở lên
+- **[Windows]** Hộp thoại thông báo chỉ hỗ trợ Dark Mode (Light Mode, ẩn tin nhắn, ảnh đại diện và tên không khả dụng) trên **Zalo PC 23.7.1** trở lên
+> Vì Zalo nâng cấp mã nguồn, ZaDark sẽ cập nhật trong thời gian tới
+
 ## ZaDark 23.7.5
 > PC 9.6 && Web 9.6
 

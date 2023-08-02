@@ -4,12 +4,24 @@
 */
 
 (function () {
-  const { ipcRenderer } = require('electron')
-  const $ = require('./zadark-jquery.min.js')
-  const Hotkeys = require('./zadark-hotkeys-js.min.js')
-  const Toastify = require('./zadark-toastify.min.js')
-  const WebFont = require('./zadark-webfont.min.js')
-  const introJs = require('./zadark-introjs.min.js')
+  let ipcRenderer = {
+    send: (eventName, data) => {
+      console.log('ipcRenderer.send', { eventName, data })
+    }
+  }
+
+  let isSupportFeatureBlock = false
+
+  if (typeof require === 'function') {
+    ipcRenderer = require('electron').ipcRenderer
+    isSupportFeatureBlock = true
+
+    window.$ = require('./zadark-jquery.min.js')
+    window.Hotkeys = require('./zadark-hotkeys-js.min.js')
+    window.Toastify = require('./zadark-toastify.min.js')
+    window.WebFont = require('./zadark-webfont.min.js')
+    window.introJs = require('./zadark-introjs.min.js')
+  }
 
   const ZADARK_THEME_KEY = '@ZaDark:THEME'
   const ZADARK_FONT_FAMILY_KEY = '@ZaDark:FONT_FAMILY'
@@ -32,6 +44,7 @@
 
   const ZADARK_USE_HOTKEYS = '@ZaDark:USE_HOTKEYS'
   const ZADARK_KNOWN_VERSION_KEY = '@ZaDark:KNOWN_VERSION'
+  const ZALO_APP_VERSION_KEY = 'sh_app_ver'
 
   const HOTKEYS_TOAST_MESSAGE = {
     fontSize: {
@@ -157,6 +170,10 @@
     },
     saveKnownVersion: (version) => {
       return localStorage.setItem(ZADARK_KNOWN_VERSION_KEY, version)
+    },
+
+    getZaloAppVersion: () => {
+      return localStorage.getItem(ZALO_APP_VERSION_KEY) || '0.0'
     }
   }
 
@@ -609,7 +626,15 @@
   }
 
   const handleBlockSettingsChange = (blockId) => {
-    return function () {
+    return function (event) {
+      if (!isSupportFeatureBlock) {
+        ZaDarkUtils.setSwitch(this, false)
+        ZaDarkUtils.showToast(`Vì Zalo nâng cấp mã nguồn, nên chức năng này tạm thời không khả dụng trên <strong>Zalo PC ${ZaDarkStorage.getZaloAppVersion()}</strong>.<br/>ZaDark sẽ cập nhật trong thời gian tới.`, {
+          className: 'toastify--error'
+        })
+        return
+      }
+
       const isEnabled = $(this).is(':checked')
       ZaDarkUtils.updateBlockSettings(blockId, isEnabled)
     }
@@ -619,6 +644,19 @@
     const useHotkeys = $(this).is(':checked')
     ZaDarkUtils.updateUseHotkeys(useHotkeys)
     loadHotkeys(useHotkeys)
+  }
+
+  function disableFeatureBlock () {
+    const disabledList = [switchBlockTypingElName, switchBlockSeenElName, switchBlockDeliveredElName]
+    disabledList.forEach((elName) => {
+      $(elName).parent().parent().addClass('zadark-switch--disabled')
+    })
+
+    tippy('.js-switch-block', {
+      theme: 'zadark',
+      allowHTML: true,
+      content: `<p>Vì Zalo nâng cấp mã nguồn, nên chức năng này tạm thời không khả dụng trên <strong>Zalo PC ${ZaDarkStorage.getZaloAppVersion()}</strong>.</p><p>ZaDark sẽ cập nhật trong thời gian tới.</p>`
+    })
   }
 
   const zadarkButtonHTML = `
@@ -776,7 +814,7 @@
               </label>
             </div>
 
-            <div class="zadark-switch">
+            <div class="zadark-switch js-switch-block">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-block-typing">
                 Ẩn trạng thái <strong>Đang soạn tin (Typing)</strong>
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đang soạn tin (Typing) ...</strong> của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.</p>'></i>
@@ -790,7 +828,7 @@
               </label>
             </div>
 
-            <div class="zadark-switch">
+            <div class="zadark-switch js-switch-block">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-block-delivered">
                 Ẩn trạng thái <strong>Đã nhận (Received)</strong>
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đã nhận (Received)</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ.</p>'></i>
@@ -804,7 +842,7 @@
               </label>
             </div>
 
-            <div class="zadark-switch">
+            <div class="zadark-switch js-switch-block">
               <label class="zadark-switch__label" for="js-switch-block-seen">
                 Ẩn trạng thái <strong>Đã xem (Seen)</strong>
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đã xem (Seen)</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ.</p><p style="text-align: justify;">Tuy nhiên, trạng thái của các tin nhắn bạn đã xem trên Zalo PC sẽ <strong>không được đồng bộ</strong> với máy chủ Zalo, bạn cần phải xem lại tin nhắn trên Zalo Mobile để đồng bộ.</p>'></i>
@@ -873,7 +911,7 @@
       return
     }
 
-    Hotkeys.filter = function (event) {
+    hotkeys.filter = function (event) {
       const target = event.target || event.srcElement
       const tagName = target.tagName
       let flag = true // ignore: <input> and <textarea> when readOnly state is false, <select>
@@ -911,7 +949,7 @@
       'ctrl+d'
     ].join(',')
 
-    Hotkeys(keys, function (event, handler) {
+    hotkeys(keys, function (event, handler) {
       event.preventDefault()
 
       const enabledHideLatestMessage = ZaDarkStorage.getEnabledHideLatestMessage()
@@ -1023,10 +1061,14 @@
     const enabledHideThreadChatMessage = ZaDarkStorage.getEnabledHideThreadChatMessage()
     ZaDarkUtils.setSwitch(switchHideThreadChatMessageElName, enabledHideThreadChatMessage)
 
-    const blockSettings = ZaDarkStorage.getBlockSettings()
-    ZaDarkUtils.setSwitch(switchBlockTypingElName, blockSettings.block_typing)
-    ZaDarkUtils.setSwitch(switchBlockDeliveredElName, blockSettings.block_delivered)
-    ZaDarkUtils.setSwitch(switchBlockSeenElName, blockSettings.block_seen)
+    if (isSupportFeatureBlock) {
+      const blockSettings = ZaDarkStorage.getBlockSettings()
+      ZaDarkUtils.setSwitch(switchBlockTypingElName, blockSettings.block_typing)
+      ZaDarkUtils.setSwitch(switchBlockDeliveredElName, blockSettings.block_delivered)
+      ZaDarkUtils.setSwitch(switchBlockSeenElName, blockSettings.block_seen)
+    } else {
+      disableFeatureBlock()
+    }
 
     const useHotkeys = ZaDarkStorage.getUseHotkeys()
     ZaDarkUtils.setSwitch(switchUseHotkeysElName, useHotkeys)
