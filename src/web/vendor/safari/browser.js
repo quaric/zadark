@@ -18,6 +18,10 @@
       return browser.runtime.getManifest()
     },
 
+    getURL: (path) => {
+      return browser.runtime.getURL(path)
+    },
+
     getExtensionSettings: () => {
       return new Promise((resolve, reject) => {
         browser.storage.sync.get({

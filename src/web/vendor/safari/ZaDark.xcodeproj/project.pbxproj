@@ -54,7 +54,7 @@
 
 /* Begin PBXFileReference section */
 		C1482C8F28C9052100909D13 /* ZaDark.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ZaDark.entitlements; sourceTree = "<group>"; };
-		C15875CD27EB09C300E008A0 /* ZaDark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZaDark.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C15875CD27EB09C300E008A0 /* ZaDark Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ZaDark Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C15875D027EB09C300E008A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C15875D427EB09C300E008A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
 		C15875D627EB09C300E008A0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		C15875CE27EB09C300E008A0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C15875CD27EB09C300E008A0 /* ZaDark.app */,
+				C15875CD27EB09C300E008A0 /* ZaDark Pro.app */,
 				C15875E927EB09C400E008A0 /* ZaDark Extension.appex */,
 			);
 			name = Products;
@@ -189,7 +189,7 @@
 			);
 			name = ZaDark;
 			productName = ZaDark;
-			productReference = C15875CD27EB09C300E008A0 /* ZaDark.app */;
+			productReference = C15875CD27EB09C300E008A0 /* ZaDark Pro.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C15875E827EB09C400E008A0 /* ZaDark Extension */ = {
@@ -485,7 +485,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1670545187;
+				CURRENT_PROJECT_VERSION = 1691170392;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -498,7 +498,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 8.0;
+				MARKETING_VERSION = 9.7;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -517,7 +517,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1670545187;
+				CURRENT_PROJECT_VERSION = 1691170392;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -530,7 +530,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 8.0;
+				MARKETING_VERSION = 9.7;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -552,12 +552,12 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1670545187;
+				CURRENT_PROJECT_VERSION = 1691170392;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZaDark/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "ZaDark Dev";
+				INFOPLIST_KEY_CFBundleDisplayName = "ZaDark Pro";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© NCDAi Studio";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -567,7 +567,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 8.0;
+				MARKETING_VERSION = 9.7;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -575,7 +575,7 @@
 					WebKit,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ncdaistudio.ZaDark.BrowserExt;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ZaDark Pro";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -590,12 +590,12 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1670545187;
+				CURRENT_PROJECT_VERSION = 1691170392;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZaDark/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "ZaDark Dev";
+				INFOPLIST_KEY_CFBundleDisplayName = "ZaDark Pro";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© NCDAi Studio";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -605,7 +605,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 8.0;
+				MARKETING_VERSION = 9.7;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -613,7 +613,7 @@
 					WebKit,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ncdaistudio.ZaDark.BrowserExt;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ZaDark Pro";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};

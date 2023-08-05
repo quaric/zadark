@@ -123,20 +123,20 @@ html[data-zadark-theme="dark"] {
 }
 
 html[data-zadark-os="Windows"] {
-  .zadark-hotkeys {
-    &::before {
-      content: attr(data-keys-win);
-      font-size: 14px;
-    }
+  .zadark-hotkeys::before {
+    content: attr(data-keys-win);
+    font-size: 14px;
   }
 }
 
 html[data-zadark-os="macOS"] {
-  .zadark-hotkeys {
-    &::before {
-      content: attr(data-keys-mac);
-      font-size: 14px;
-    }
+  .zadark-hotkeys::before {
+    content: attr(data-keys-mac);
+    font-size: 14px;
+  }
+
+  .zadark-safari .zadark-hotkeys::before {
+    content: attr(data-keys-safari);
   }
 }
 
@@ -221,13 +221,37 @@ body:not(.zadark--use-hotkeys) {
     }
 
     &__logo-link {
-      display: inline-block;
-      margin-top: 4px;
+      position: relative;
+      top: 2px;
+
+      display: inline-flex;
+      align-items: center;
     }
 
     &__logo-img {
       width: auto;
       height: 18px;
+    }
+
+    &__pro {
+      display: flex;
+      align-items: center;
+      height: 18px;
+
+      margin-left: 6px;
+      padding: 0 6px;
+
+      border: 1px solid var(--zadark-blue-base);
+      border-radius: 9px;
+
+      font-size: 12px;
+      font-weight: var(--zadark-font-semibold);
+      line-height: 12px;
+      color: var(--zadark-blue-base);
+
+      &::after {
+        content: "Pro";
+      }
     }
 
     &__menu-list {

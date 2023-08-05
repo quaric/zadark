@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C15875CC27EB09C300E008A0"
-               BuildableName = "ZaDark.app"
+               BuildableName = "ZaDark Pro.app"
                BlueprintName = "ZaDark"
                ReferencedContainer = "container:ZaDark.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C15875CC27EB09C300E008A0"
-            BuildableName = "ZaDark.app"
+            BuildableName = "ZaDark Pro.app"
             BlueprintName = "ZaDark"
             ReferencedContainer = "container:ZaDark.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C15875CC27EB09C300E008A0"
-            BuildableName = "ZaDark.app"
+            BuildableName = "ZaDark Pro.app"
             BlueprintName = "ZaDark"
             ReferencedContainer = "container:ZaDark.xcodeproj">
          </BuildableReference>

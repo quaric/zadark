@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "ZaDark – Zalo Dark Mode",
-  "version": "9.6",
+  "version": "9.7",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
   "author": "Quaric",
@@ -31,8 +31,8 @@
         "libs/tippy.min.js",
         "libs/hotkeys-js.min.js",
         "libs/toastify.min.js",
-        "libs/webfont.min.js",
         "libs/introjs.min.js",
+        "js/fonts.min.js",
         "js/browser.min.js",
         "js/utils.min.js",
         "js/zadark.min.js"

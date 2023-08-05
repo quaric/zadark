@@ -35,11 +35,11 @@ body {
 html {
   background: var(--zadark-white-300);
 
-  &.wf-loading body {
+  &.zdkf-loading body {
     opacity: 0;
   }
 
-  &.wf-active body {
+  &.zdkf-active body {
     opacity: 1;
   }
 }

@@ -207,6 +207,10 @@
           return 'https://chrome.google.com/webstore/detail/llfhpkkeljlgnjgkholeppfnepmjppob/reviews'
         }
 
+        case 'Safari': {
+          return 'https://apps.apple.com/us/app/zadark-zalo-dark-mode/1615941471?action=write-review'
+        }
+
         case 'Edge': {
           return 'https://microsoftedge.microsoft.com/addons/detail/nbcljbcabjegmmogkcegephdkhckegcf'
         }
@@ -220,7 +224,7 @@
         }
 
         default: {
-          return 'https://chrome.google.com/webstore/detail/llfhpkkeljlgnjgkholeppfnepmjppob/reviews'
+          return '#'
         }
       }
     },
@@ -233,13 +237,19 @@
     initFontFamily: async function () {
       const { fontFamily } = await ZaDarkBrowser.getExtensionSettings()
 
-      if (!fontFamily) {
-        this.installFontFamily(['Open Sans:400,500,600:latin,vietnamese'], false)
-        return
+      const isUseDefaultFont = !fontFamily
+
+      const fonts = ['Open Sans:400;500;600']
+
+      if (!isUseDefaultFont && fontFamily !== 'Open Sans') {
+        fonts.push(`${fontFamily}:400;500;600`)
       }
 
-      await this.installFontFamily(['Open Sans:400,500,600:latin,vietnamese', `${fontFamily}:400,500,600:latin,vietnamese`], false)
-      this.setFontFamilyAttr(fontFamily)
+      await this.installFontFamily(fonts, false)
+
+      if (!isUseDefaultFont) {
+        this.setFontFamilyAttr(fontFamily)
+      }
     },
 
     initPageSettings: async function () {
@@ -269,31 +279,17 @@
       this.setUseHotkeysAttr(useHotkeys)
     },
 
-    installFontFamily: (fontFamilies = [], classes = true) => {
+    installFontFamily: async (fontFamilies = [], classes = true) => {
       if (!fontFamilies.length) {
-        return Promise.resolve(false)
+        return false
       }
 
-      return new Promise((resolve) => {
-        WebFont.load({
-          google: {
-            families: fontFamilies
-          },
-          loading: () => {
-            console.log('Fonts are being loaded', fontFamilies)
-          },
-          active: () => {
-            console.log('Fonts have been rendered', fontFamilies)
-            resolve(true)
-          },
-          inactive: () => {
-            console.log('Fonts failed to load', fontFamilies)
-            resolve(false)
-          },
-          classes,
-          timeout: 1408
-        })
-      })
+      try {
+        await ZaDarkFonts.loadGoogleFonts(fontFamilies, classes)
+        return true
+      } catch (error) {
+        return false
+      }
     },
 
     initTippy: () => {
@@ -333,7 +329,7 @@
 
       const toast = this.showToast('Đang tải phông chữ...', { duration: -1 })
 
-      const success = await this.installFontFamily([`${fontFamily}:400,500:latin,vietnamese`], false)
+      const success = await this.installFontFamily([`${fontFamily}:400;500;600`], false)
 
       toast.hideToast()
 

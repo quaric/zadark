@@ -671,6 +671,7 @@
       <div class="zadark-popup__header__logo">
         <a href="https://zadark.quaric.com" title="ZaDark – Zalo Dark Mode" target="_blank" class="zadark-popup__header__logo-link">
           <img src="zadark-lockup.svg" alt="ZaDark" class="zadark-popup__header__logo-img" />
+          <span class="zadark-popup__header__pro"></span>
         </a>
       </div>
 

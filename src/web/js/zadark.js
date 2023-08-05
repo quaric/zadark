@@ -134,6 +134,7 @@
       <div class="zadark-popup__header__logo">
         <a href="https://zadark.quaric.com" title="ZaDark – Zalo Dark Mode" target="_blank" class="zadark-popup__header__logo-link">
           <img src="${ZaDarkBrowser.getURL('images/zadark-lockup.svg')}" alt="ZaDark" class="zadark-popup__header__logo-img" />
+          <span class="zadark-popup__header__pro"></span>
         </a>
       </div>
 
@@ -203,7 +204,7 @@
             <label class="select-font__label">Cỡ chữ của tin nhắn</label>
 
             <span class="font-settings__hotkeys">
-              <span class="zadark-hotkeys" data-keys-win="Ctrl+9 Ctrl+0" data-keys-mac="⌘9 ⌘0"></span>
+              <span class="zadark-hotkeys" data-keys-win="Ctrl+9 Ctrl+0" data-keys-mac="⌘9 ⌘0" data-keys-safari="⌃9 ⌃0"></span>
             </span>
 
             <select id="js-select-font-size" class="zadark-select">
@@ -227,7 +228,7 @@
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem nội dung tin nhắn, bạn di chuột vào<br/>"<strong>Tên cuộc trò chuyện</strong>" cần xem.'></i>
               </label>
               <span class="zadark-switch__hotkeys">
-                <span class="zadark-hotkeys" data-keys-win="Ctrl+1" data-keys-mac="⌘1"></span>
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+1" data-keys-mac="⌘1" data-keys-safari="⌃1"></span>
               </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-latest-message">
@@ -241,7 +242,7 @@
                 <i class="zadark-icon zadark-icon--play-circle" data-zdk-intro="hideThreadChatMessage" data-tippy-content="Nhấn vào để xem hướng dẫn"></i>
               </label>
               <span class="zadark-switch__hotkeys">
-                <span class="zadark-hotkeys" data-keys-win="Ctrl+2" data-keys-mac="⌘2"></span>
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+2" data-keys-mac="⌘2" data-keys-safari="⌃2"></span>
               </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-thread-chat-message">
@@ -255,7 +256,7 @@
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem Ảnh đại diện, bạn di chuyển chuột vào<br/>"<strong>Ảnh đại diện</strong>" cần xem.'></i>
               </label>
               <span class="zadark-switch__hotkeys">
-                <span class="zadark-hotkeys" data-keys-win="Ctrl+3" data-keys-mac="⌘3"></span>
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+3" data-keys-mac="⌘3" data-keys-safari="⌃3"></span>
               </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-avatar">
@@ -269,7 +270,7 @@
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.'></i>
               </label>
               <span class="zadark-switch__hotkeys">
-                <span class="zadark-hotkeys" data-keys-win="Ctrl+7" data-keys-mac="⌘7"></span>
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+7" data-keys-mac="⌘7" data-keys-safari="⌃7"></span>
               </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-hide-conv-name">
@@ -283,7 +284,7 @@
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đang soạn tin (Typing) ...</strong> của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.</p>'></i>
               </label>
               <span class="zadark-switch__hotkeys">
-                <span class="zadark-hotkeys" data-keys-win="Ctrl+4" data-keys-mac="⌘4"></span>
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+4" data-keys-mac="⌘4" data-keys-safari="⌃4"></span>
               </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-typing">
@@ -297,7 +298,7 @@
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đã nhận (Received)</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ.</p>'></i>
               </label>
               <span class="zadark-switch__hotkeys">
-                <span class="zadark-hotkeys" data-keys-win="Ctrl+5" data-keys-mac="⌘5"></span>
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+5" data-keys-mac="⌘5" data-keys-safari="⌃5"></span>
               </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-delivered">
@@ -311,7 +312,7 @@
                 <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đã xem (Seen)</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ.</p><p style="text-align: justify;">Tuy nhiên, trạng thái của các tin nhắn bạn đã xem trên Zalo Web sẽ <strong>không được đồng bộ</strong> với máy chủ Zalo, bạn cần phải xem lại tin nhắn trên Zalo Mobile để đồng bộ.</p>'></i>
               </label>
               <span class="zadark-switch__hotkeys">
-                <span class="zadark-hotkeys" data-keys-win="Ctrl+6" data-keys-mac="⌘6"></span>
+                <span class="zadark-hotkeys" data-keys-win="Ctrl+6" data-keys-mac="⌘6" data-keys-safari="⌃6"></span>
               </span>
               <label class="zadark-switch__checkbox">
                 <input class="zadark-switch__input" type="checkbox" id="js-switch-block-seen">

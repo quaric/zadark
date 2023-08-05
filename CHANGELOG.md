@@ -1,5 +1,19 @@
 # Changelog
 
+## ZaDark 23.8.2
+
+> PC 10.1 && Web 9.7
+
+### Added
+- **[Safari]** Gia hạn tài khoản Apple Developer, mang **ZaDark for Safari** trở lại Mac App Store
+- Thêm nhãn `Pro` giúp nhận diện **ZaDark Pro**
+
+### Changed
+#### Web specific
+- Cải thiện tuỳ chỉnh phông chữ từ Google
+- Sửa lỗi CSP (Content Security Policy) khi tuỳ chỉnh phông chữ từ Google
+- Cập nhật phím tắt tương thích với Safari
+
 ## ZaDark 23.8.1
 
 > PC 10.0

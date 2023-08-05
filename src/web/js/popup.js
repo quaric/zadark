@@ -4,23 +4,12 @@
   Made by Quaric
 */
 
+ZaDarkBrowser.initClassNames()
 ZaDarkUtils.initOSName()
 ZaDarkUtils.initTippy()
+ZaDarkUtils.installFontFamily(['Open Sans:400;500;600'])
 
 const MSG_ACTIONS = ZaDarkUtils.MSG_ACTIONS
-
-window.WebFontConfig = {
-  google: {
-    families: ['Open Sans:400,500,600']
-  }
-};
-
-(function (d) {
-  const wf = d.createElement('script'); const s = d.scripts[0]
-  wf.src = 'libs/webfont.min.js'
-  wf.async = true
-  s.parentNode.insertBefore(wf, s)
-})(document)
 
 const manifestData = ZaDarkBrowser.getManifest()
 
@@ -60,7 +49,7 @@ ZaDarkBrowser.getExtensionSettings().then(({
   ZaDarkUtils.setUseHotkeysAttr(useHotkeys)
 
   $(radioInputThemeElName).filter(`[value="${theme}"]`).attr('checked', true)
-  $(inputFontFamilyElName).val(fontFamily)
+  $(inputFontFamilyElName).val(fontFamily).blur()
   $(selectFontSizeElName).val(fontSize)
 
   $(switchHideLatestMessageElName).prop('checked', enabledHideLatestMessage)
@@ -173,8 +162,7 @@ const loadBlocking = () => {
 loadBlocking()
 
 $(btnScrollElName).on('click', () => {
-  const elName = 'html, body'
-  $(elName).animate({ scrollTop: $(elName).height() }, 1000)
+  window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: 'smooth' })
 })
 
 const calcPopupScroll = () => {
