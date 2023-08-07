@@ -1,5 +1,17 @@
 # Changelog
 
+## ZaDark 23.8.3
+
+> PC 10.2 && Web 9.8
+
+### Fixed
+#### Web specific
+- **[Firefox]** Sửa lỗi không thể cài đặt phông chữ ([#74](https://github.com/quaric/zadark/issues/74))
+
+### Changed
+- Thay đổi màu sắc nhãn "Pro"
+- Thay đổi vị trí Popup Cài đặt ZaDark
+
 ## ZaDark 23.8.2
 
 > PC 10.1 && Web 9.7

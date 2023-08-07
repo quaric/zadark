@@ -239,15 +239,15 @@ body:not(.zadark--use-hotkeys) {
       height: 18px;
 
       margin-left: 6px;
-      padding: 0 6px;
+      padding: 0 4px;
 
-      border: 1px solid var(--zadark-blue-base);
-      border-radius: 9px;
+      border: 1px solid var(--zadark-neutral-700);
+      border-radius: 4px;
 
       font-size: 12px;
       font-weight: var(--zadark-font-semibold);
       line-height: 12px;
-      color: var(--zadark-blue-base);
+      color: var(--zadark-neutral-500);
 
       &::after {
         content: "Pro";
