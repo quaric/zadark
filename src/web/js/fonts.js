@@ -22,7 +22,10 @@
 
         const googleFontsURL = `https://fonts.googleapis.com/css2?${normalizeFonts(fonts)}&display=swap`
 
-        fetch(googleFontsURL)
+        fetch(googleFontsURL, {
+          method: 'GET',
+          mode: 'no-cors'
+        })
           .then((response) => response.text())
           .then((cssContent) => {
             const blob = new Blob([cssContent], { type: 'text/css' })

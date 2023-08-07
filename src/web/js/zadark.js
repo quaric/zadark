@@ -673,7 +673,7 @@
     const buttonEl = document.getElementById('div_Main_TabZaDark')
 
     const popupInstance = Popper.createPopper(buttonEl, popupEl, {
-      placement: 'right-start'
+      placement: 'right'
     })
 
     buttonEl.addEventListener('click', handleOpenZaDarkPopup(popupInstance, buttonEl, popupEl))
