@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "ZaDark – Zalo Dark Mode",
-  "version": "9.8",
+  "version": "9.9",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
   "author": "Quaric",
@@ -47,7 +47,8 @@
     "storage",
     "tabs",
     "declarativeNetRequest",
-    "*://chat.zalo.me/*"
+    "*://chat.zalo.me/*",
+    "*://fonts.googleapis.com/*"
   ],
   "declarative_net_request": {
     "rule_resources": [
