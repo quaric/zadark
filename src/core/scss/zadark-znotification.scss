@@ -60,81 +60,81 @@ html[data-zadark-theme="dark"] {
   }
 }
 
-.zadark {
-  #zbg,
-  #zbody,
-  #title,
-  #zavatar {
-    transition: all 100ms ease-in-out;
-  }
+// .zadark {
+//   #zbg,
+//   #zbody,
+//   #title,
+//   #zavatar {
+//     transition: all 100ms ease-in-out;
+//   }
 
-  &.zadark-prv--latest-message {
-    #zbody {
-      position: relative;
-      color: transparent !important;
+//   &.zadark-prv--latest-message {
+//     #zbody {
+//       position: relative;
+//       color: transparent !important;
 
-      &::after {
-        content: "••••••";
-        position: absolute;
-        top: 0;
-        left: 0;
+//       &::after {
+//         content: "••••••";
+//         position: absolute;
+//         top: 0;
+//         left: 0;
 
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
+//         width: 100%;
+//         height: 100%;
+//         display: flex;
+//         align-items: center;
 
-        color: var(--text-secondary);
-        font-size: 16px;
-        letter-spacing: 1px;
-        opacity: 1;
-      }
-    }
-  }
+//         color: var(--text-secondary);
+//         font-size: 16px;
+//         letter-spacing: 1px;
+//         opacity: 1;
+//       }
+//     }
+//   }
 
-  &.zadark-prv--conv-avatar {
-    #zavatar {
-      position: relative;
-      background: var(--N20) !important;
+//   &.zadark-prv--conv-avatar {
+//     #zavatar {
+//       position: relative;
+//       background: var(--N20) !important;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       font-size: 1.25rem;
 
-      &::after {
-        content: "\e901";
-        color: var(--text-secondary);
-        font-family: "ZaDarkIcons";
-      }
-    }
-  }
+//       &::after {
+//         content: "\e901";
+//         color: var(--text-secondary);
+//         font-family: "ZaDarkIcons";
+//       }
+//     }
+//   }
 
-  &.zadark-prv--conv-name {
-    #ztitle {
-      position: relative;
-      color: transparent !important;
+//   &.zadark-prv--conv-name {
+//     #ztitle {
+//       position: relative;
+//       color: transparent !important;
 
-      * {
-        opacity: 0;
-      }
+//       * {
+//         opacity: 0;
+//       }
 
-      &::after {
-        content: "••••••";
-        position: absolute;
-        top: 0;
-        left: 0;
+//       &::after {
+//         content: "••••••";
+//         position: absolute;
+//         top: 0;
+//         left: 0;
 
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
+//         width: 100%;
+//         height: 100%;
+//         display: flex;
+//         align-items: center;
 
-        color: var(--text-primary);
-        font-size: 16px;
-        letter-spacing: 1px;
-        opacity: 1;
-      }
-    }
-  }
-}
+//         color: var(--text-primary);
+//         font-size: 16px;
+//         letter-spacing: 1px;
+//         opacity: 1;
+//       }
+//     }
+//   }
+// }

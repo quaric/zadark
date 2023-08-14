@@ -1,10 +1,23 @@
 # Changelog
 
 ## ZaDark 23.8.4
-> PC 10.3 và Web 9.10
+> PC 11.0 và Web 9.10
+
+### Added
+#### PC specific
+- Mang tính năng **Ẩn trạng thái (Đang soạn tin, Đã nhận, Đã xem)** trở lại trên **Zalo PC 23.7.1** trở lên.
+  - Thay đổi lớn về Logic xử lí.
+  - Cập nhật `filterUrls`.
+  - **Giới hạn kĩ thuật**: Xem mục Notes bên dưới.
 
 ### Changed
-- Thay đổi màu của Logo nhà phát hành Quaric
+- Thay đổi màu của Logo nhà phát hành Quaric.
+
+### Notes
+- Vì Zalo PC giới hạn quyền sử dụng các [API của Electron](https://www.electronjs.org/docs/latest/api/app) nên các tính năng sau sẽ bị ảnh hưởng:
+  - Bật/Tắt **Ẩn trạng thái (Đang soạn tin, Đã nhận, Đã xem)**: Người dùng phải khởi động lại Zalo PC để áp dụng thay đổi.
+  - **[Windows]** Hộp thoại thông báo chỉ hỗ trợ Dark Mode trên **Zalo PC 23.7.1** trở lên. Light Mode, ẩn tin nhắn, ảnh đại diện và tên không khả dụng.
+  - Mặc dù các tính năng bị ảnh hưởng, nhưng đây là điểm cộng khi Zalo luôn cải tiến mã nguồn trở nên tốt hơn.
 
 ## ZaDark 23.8.3
 

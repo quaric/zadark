@@ -24,38 +24,38 @@
 
     HOTKEYS_TOAST_MESSAGE: {
       fontSize: {
-        small: 'Cỡ chữ : Nhỏ',
-        medium: 'Cỡ chữ : Trung bình',
-        big: 'Cỡ chữ : Lớn',
-        'very-big': 'Cỡ chữ : Rất lớn'
+        small: 'Cỡ chữ Nhỏ',
+        medium: 'Cỡ chữ Trung bình',
+        big: 'Cỡ chữ Lớn',
+        'very-big': 'Cỡ chữ Rất lớn'
       },
       hideLatestMessage: {
-        true: 'BẬT : Ẩn Tin nhắn gần nhất',
-        false: 'TẮT : Ẩn Tin nhắn gần nhất'
+        true: 'Đã bật Ẩn Tin nhắn gần nhất',
+        false: 'Đã tắt Ẩn Tin nhắn gần nhất'
       },
       hideThreadChatMessage: {
-        true: 'BẬT : Ẩn Tin nhắn trong cuộc trò chuyện',
-        false: 'TẮT : Ẩn Tin nhắn trong cuộc trò chuyện'
+        true: 'Đã bật Ẩn Tin nhắn trong cuộc trò chuyện',
+        false: 'Đã tắt Ẩn Tin nhắn trong cuộc trò chuyện'
       },
       hideConvAvatar: {
-        true: 'BẬT : Ẩn Ảnh đại diện',
-        false: 'TẮT : Ẩn Ảnh đại diện'
+        true: 'Đã bật Ẩn Ảnh đại diện',
+        false: 'Đã tắt Ẩn Ảnh đại diện'
       },
       hideConvName: {
-        true: 'BẬT : Ẩn Tên cuộc trò chuyện',
-        false: 'TẮT : Ẩn Tên cuộc trò chuyện'
+        true: 'Đã bật Ẩn Tên cuộc trò chuyện',
+        false: 'Đã tắt Ẩn Tên cuộc trò chuyện'
       },
       rules_block_typing: {
-        true: 'BẬT : Ẩn trạng thái Đang soạn tin (Typing) ...',
-        false: 'TẮT : Ẩn trạng thái Đang soạn tin (Typing) ...'
+        true: 'Đã bật Ẩn trạng thái Đang soạn tin (Typing) ...',
+        false: 'Đã tắt Ẩn trạng thái Đang soạn tin (Typing) ...'
       },
       rules_block_delivered: {
-        true: 'BẬT : Ẩn trạng thái Đã nhận (Received)',
-        false: 'TẮT : Ẩn trạng thái Đã nhận (Received)'
+        true: 'Đã bật Ẩn trạng thái Đã nhận (Received)',
+        false: 'Đã tắt Ẩn trạng thái Đã nhận (Received)'
       },
       rules_block_seen: {
-        true: 'BẬT : Ẩn trạng thái Đã xem (Seen)',
-        false: 'TẮT : Ẩn trạng thái Đã xem (Seen)'
+        true: 'Đã bật Ẩn trạng thái Đã xem (Seen)',
+        false: 'Đã tắt Ẩn trạng thái Đã xem (Seen)'
       },
       useHotkeys: {
         true: 'Đã kích hoạt phím tắt',

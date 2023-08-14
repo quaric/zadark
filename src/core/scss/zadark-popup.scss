@@ -749,6 +749,10 @@ body:not(.zadark--use-hotkeys) {
   &--error {
     border-color: #e74c3c;
   }
+
+  &--warning {
+    border-color: #fa8c16;
+  }
 }
 
 .toastify.on {
