@@ -24,42 +24,42 @@
 
     HOTKEYS_TOAST_MESSAGE: {
       fontSize: {
-        small: 'Cỡ chữ Nhỏ',
-        medium: 'Cỡ chữ Trung bình',
-        big: 'Cỡ chữ Lớn',
-        'very-big': 'Cỡ chữ Rất lớn'
+        small: 'Đã áp dụng cỡ chữ Nhỏ.',
+        medium: 'Đã áp dụng cỡ chữ Trung bình.',
+        big: 'Đã áp dụng cỡ chữ Lớn.',
+        'very-big': 'Đã áp dụng cỡ chữ Rất lớn.'
       },
       hideLatestMessage: {
-        true: 'Đã bật Ẩn Tin nhắn gần nhất',
-        false: 'Đã tắt Ẩn Tin nhắn gần nhất'
+        true: 'Đã bật Ẩn Tin nhắn gần nhất.',
+        false: 'Đã tắt Ẩn Tin nhắn gần nhất.'
       },
       hideThreadChatMessage: {
-        true: 'Đã bật Ẩn Tin nhắn trong cuộc trò chuyện',
-        false: 'Đã tắt Ẩn Tin nhắn trong cuộc trò chuyện'
+        true: 'Đã bật Ẩn Tin nhắn trong cuộc trò chuyện.',
+        false: 'Đã tắt Ẩn Tin nhắn trong cuộc trò chuyện.'
       },
       hideConvAvatar: {
-        true: 'Đã bật Ẩn Ảnh đại diện',
-        false: 'Đã tắt Ẩn Ảnh đại diện'
+        true: 'Đã bật Ẩn Ảnh đại diện.',
+        false: 'Đã tắt Ẩn Ảnh đại diện.'
       },
       hideConvName: {
-        true: 'Đã bật Ẩn Tên cuộc trò chuyện',
-        false: 'Đã tắt Ẩn Tên cuộc trò chuyện'
+        true: 'Đã bật Ẩn Tên cuộc trò chuyện.',
+        false: 'Đã tắt Ẩn Tên cuộc trò chuyện.'
       },
       rules_block_typing: {
-        true: 'Đã bật Ẩn trạng thái Đang soạn tin (Typing) ...',
-        false: 'Đã tắt Ẩn trạng thái Đang soạn tin (Typing) ...'
+        true: 'Đã bật Ẩn trạng thái Đang soạn tin (Typing).',
+        false: 'Đã tắt Ẩn trạng thái Đang soạn tin (Typing).'
       },
       rules_block_delivered: {
-        true: 'Đã bật Ẩn trạng thái Đã nhận (Received)',
-        false: 'Đã tắt Ẩn trạng thái Đã nhận (Received)'
+        true: 'Đã bật Ẩn trạng thái Đã nhận (Received).',
+        false: 'Đã tắt Ẩn trạng thái Đã nhận (Received).'
       },
       rules_block_seen: {
-        true: 'Đã bật Ẩn trạng thái Đã xem (Seen)',
-        false: 'Đã tắt Ẩn trạng thái Đã xem (Seen)'
+        true: 'Đã bật Ẩn trạng thái Đã xem (Seen).',
+        false: 'Đã tắt Ẩn trạng thái Đã xem (Seen).'
       },
       useHotkeys: {
-        true: 'Đã kích hoạt phím tắt',
-        false: 'Đã vô hiệu hoá phím tắt'
+        true: 'Đã kích hoạt phím tắt.',
+        false: 'Đã vô hiệu hoá phím tắt.'
       }
     },
 
@@ -323,7 +323,7 @@
         // Use default font
         await ZaDarkBrowser.saveExtensionSettings({ fontFamily })
         this.setFontFamilyAttr('')
-        this.showToast('Đã thay đổi phông chữ')
+        this.showToast('Đã thay đổi phông chữ.')
         return true
       }
 
@@ -334,14 +334,14 @@
       toast.hideToast()
 
       if (!success) {
-        this.showToast('Không thể tải phông chữ')
+        this.showToast('Không thể tải phông chữ.')
         return false
       }
 
       await ZaDarkBrowser.saveExtensionSettings({ fontFamily })
 
       this.setFontFamilyAttr(fontFamily)
-      this.showToast('Đã thay đổi phông chữ')
+      this.showToast('Đã thay đổi phông chữ.')
 
       return true
     },
@@ -395,7 +395,7 @@
           },
           {
             element: document.querySelector('#ztoolbar'),
-            intro: 'Bạn di chuyển chuột vào vùng này để : <strong>Ẩn nội dung tin nhắn</strong> (bên trên), <strong>Ẩn nội dung khung soạn tin nhắn</strong> (bên dưới).'
+            intro: 'Bạn di chuyển chuột vào vùng này để: <strong>Ẩn nội dung tin nhắn</strong> (bên trên), <strong>Ẩn nội dung khung soạn tin nhắn</strong> (bên dưới).'
           }
         ],
         onExit,

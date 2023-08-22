@@ -1,5 +1,17 @@
 # Changelog
 
+## ZaDark 23.8.5
+> PC 11.1 và Web 9.11
+
+### Changed
+
+- Cập nhật thuật ngữ, nội dung thông báo
+
+#### Web specific
+
+- Cập nhật chức năng **Ẩn trạng thái (Đang soạn tin, Đã nhận, Đã xem)**: `declarative_net_request.rule_resources`
+- **[Safari]** Tối ưu Logo Quaric SVG
+
 ## ZaDark 23.8.4
 > PC 11.0 và Web 9.10
 

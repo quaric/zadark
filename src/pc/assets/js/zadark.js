@@ -40,47 +40,47 @@
 
   const HOTKEYS_TOAST_MESSAGE = {
     fontSize: {
-      small: 'Cỡ chữ : Nhỏ',
-      medium: 'Cỡ chữ : Trung bình',
-      big: 'Cỡ chữ : Lớn',
-      'very-big': 'Cỡ chữ : Rất lớn'
+      small: 'Đã áp dụng cỡ chữ Nhỏ.',
+      medium: 'Đã áp dụng cỡ chữ Trung bình.',
+      big: 'Đã áp dụng cỡ chữ Lớn.',
+      'very-big': 'Đã áp dụng cỡ chữ Rất lớn.'
     },
     hideLatestMessage: {
-      true: 'Đã bật Ẩn Tin nhắn gần nhất',
-      false: 'Đã tắt Ẩn Tin nhắn gần nhất'
+      true: 'Đã bật Ẩn Tin nhắn gần nhất.',
+      false: 'Đã tắt Ẩn Tin nhắn gần nhất.'
     },
     hideThreadChatMessage: {
-      true: 'Đã bật Ẩn Tin nhắn trong cuộc trò chuyện',
-      false: 'Đã tắt Ẩn Tin nhắn trong cuộc trò chuyện'
+      true: 'Đã bật Ẩn Tin nhắn trong cuộc trò chuyện.',
+      false: 'Đã tắt Ẩn Tin nhắn trong cuộc trò chuyện.'
     },
     hideConvAvatar: {
-      true: 'Đã bật Ẩn Ảnh đại diện',
-      false: 'Đã tắt Ẩn Ảnh đại diện'
+      true: 'Đã bật Ẩn Ảnh đại diện.',
+      false: 'Đã tắt Ẩn Ảnh đại diện.'
     },
     hideConvName: {
-      true: 'Đã bật Ẩn Tên cuộc trò chuyện',
-      false: 'Đã tắt Ẩn Tên cuộc trò chuyện'
+      true: 'Đã bật Ẩn Tên cuộc trò chuyện.',
+      false: 'Đã tắt Ẩn Tên cuộc trò chuyện.'
     },
     block_typing: {
-      true: 'Đã bật Ẩn trạng thái Đang soạn tin (Typing)',
-      false: 'Đã tắt Ẩn trạng thái Đang soạn tin (Typing)'
+      true: 'Đã bật Ẩn trạng thái Đang soạn tin (Typing).',
+      false: 'Đã tắt Ẩn trạng thái Đang soạn tin (Typing).'
     },
     block_delivered: {
-      true: 'Đã bật Ẩn trạng thái Đã nhận (Received)',
-      false: 'Đã tắt Ẩn trạng thái Đã nhận (Received)'
+      true: 'Đã bật Ẩn trạng thái Đã nhận (Received).',
+      false: 'Đã tắt Ẩn trạng thái Đã nhận (Received).'
     },
     block_seen: {
-      true: 'Đã bật Ẩn trạng thái Đã xem (Seen)',
-      false: 'Đã tắt Ẩn trạng thái Đã xem (Seen)'
+      true: 'Đã bật Ẩn trạng thái Đã xem (Seen).',
+      false: 'Đã tắt Ẩn trạng thái Đã xem (Seen).'
     },
     useHotkeys: {
-      true: 'Đã kích hoạt phím tắt',
-      false: 'Đã vô hiệu hoá phím tắt'
+      true: 'Đã kích hoạt phím tắt.',
+      false: 'Đã vô hiệu hoá phím tắt.'
     }
   }
 
   const COMMON_TOAST_MESSAGE = {
-    needToRestart: 'Bạn vui lòng tắt & mở lại Zalo PC để áp dụng thay đổi'
+    needToRestart: 'Bạn vui lòng tắt & mở lại Zalo PC để áp dụng thay đổi.'
   }
 
   const ZaDarkCookie = {
@@ -455,14 +455,14 @@
       toast.hideToast()
 
       if (!success) {
-        this.showToast('Không thể tải phông chữ')
+        this.showToast('Không thể tải phông chữ.')
         return false
       }
 
       ZaDarkStorage.saveFontFamily(fontFamily)
 
       this.setFontFamilyAttr(fontFamily)
-      this.showToast('Đã thay đổi phông chữ')
+      this.showToast('Đã thay đổi phông chữ.')
 
       return true
     },
@@ -531,7 +531,7 @@
           },
           {
             element: document.querySelector('#ztoolbar'),
-            intro: 'Bạn di chuyển chuột vào vùng này để : <strong>Ẩn nội dung tin nhắn</strong> (bên trên), <strong>Ẩn nội dung khung soạn tin nhắn</strong> (bên dưới).'
+            intro: 'Bạn di chuyển chuột vào vùng này để: <strong>Ẩn nội dung tin nhắn</strong> (bên trên), <strong>Ẩn nội dung khung soạn tin nhắn</strong> (bên dưới).'
           }
         ],
         onExit,
@@ -819,7 +819,7 @@
             <div class="zadark-switch zadark-switch--border-default">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
                 Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
-                <i class="zadark-icon zadark-icon--play-circle" data-zdk-intro="hideThreadChatMessage" data-tippy-content="Nhấn vào để xem hướng dẫn"></i>
+                <i class="zadark-icon zadark-icon--play-circle" data-zdk-intro="hideThreadChatMessage" data-tippy-content="Nhấn vào để xem hướng dẫn."></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+2" data-keys-mac="⌘2"></span>
@@ -861,7 +861,7 @@
             <div class="zadark-switch js-switch-block">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-block-typing">
                 Ẩn trạng thái <strong>Đang soạn tin (Typing)</strong>
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đang soạn tin (Typing) ...</strong> của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.</p>'></i>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đang soạn tin (Typing)</strong> của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.</p>'></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+4" data-keys-mac="⌘4"></span>
@@ -1287,7 +1287,7 @@
       ]
 
       if (REQUIRED_IN_THREAD_CHAT.includes(introId) && !isInThreadChat) {
-        ZaDarkUtils.showToast('Chọn một cuộc trò chuyện để xem hướng dẫn')
+        ZaDarkUtils.showToast('Chọn một cuộc trò chuyện để xem hướng dẫn.')
         return
       }
 

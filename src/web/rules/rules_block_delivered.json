@@ -16,5 +16,23 @@
     "priority": 3,
     "action": { "type": "block" },
     "condition": {"urlFilter": "||chat.zalo.me/api/group/deliveredv2", "resourceTypes": ["xmlhttprequest"] }
+  },
+  {
+    "id": 4,
+    "priority": 4,
+    "action": { "type": "block" },
+    "condition": {"urlFilter": "||zaloapp.com/api/message/deliveredv2", "resourceTypes": ["xmlhttprequest"] }
+  },
+  {
+    "id": 5,
+    "priority": 5,
+    "action": { "type": "block" },
+    "condition": {"urlFilter": "||zaloapp.com/api/e2ee/pc/t/message/delivered", "resourceTypes": ["xmlhttprequest"] }
+  },
+  {
+    "id": 6,
+    "priority": 6,
+    "action": { "type": "block" },
+    "condition": {"urlFilter": "||zaloapp.com/api/group/deliveredv2", "resourceTypes": ["xmlhttprequest"] }
   }
 ]
