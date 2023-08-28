@@ -3,6 +3,9 @@
 ## ZaDark 23.8.5
 > PC 11.1 và Web 9.11
 
+### Fixed
+- Sửa lỗi Dark Mode trình xem Video (Video Player)
+
 ### Changed
 
 - Cập nhật thuật ngữ, nội dung thông báo

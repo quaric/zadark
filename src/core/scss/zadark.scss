@@ -2004,6 +2004,35 @@ html[data-zadark-theme="dark"] {
     #zadark-popup {
       border: 1px solid var(--border);
     }
+
+    // BEGIN: Video Player
+
+    .videoContainer {
+      background-color: #000 !important;
+    }
+
+    .videoFloatingContainer__videoBackdrop__videoTimer,
+    .videoContainer__videoBackdrop__videoTimer {
+      color: #fff;
+    }
+
+    .videoFloatingContainer__videoBackdrop__progressContainer,
+    .videoContainer__videoBackdrop__progressContainer {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .videoContainer__volume,
+    .videoFloatingContainer__volume {
+      background: #fff;
+    }
+
+    .videoInlineContainerPopup {
+      height: 32px;
+      background-image: linear-gradient(#000, transparent);
+      color: #fff;
+    }
+
+    // END: Video Player
   }
 }
 
