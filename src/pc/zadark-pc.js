@@ -243,16 +243,16 @@ const writeZNotificationFile = (zaloDir) => {
   // Required fonts, stylesheets and scripts
   const elements = [
     {
-      selector: 'link[href="zadark-fonts.min.css"]',
-      where: 'beforeend',
-      html: '<link rel="stylesheet" href="zadark-fonts.min.css">',
-      htmlElement: headElement
-    },
-    {
       selector: 'link[href="zadark-znotification.min.css"]',
       where: 'beforeend',
       html: '<link rel="stylesheet" href="zadark-znotification.min.css">',
       htmlElement: headElement
+    },
+    {
+      selector: 'script[src="zadark-webfont.min.js"]',
+      where: 'beforeend',
+      html: '<script src="zadark-webfont.min.js"></script>',
+      htmlElement: bodyElement
     },
     {
       selector: 'script[src="zadark-znotification.min.js"]',

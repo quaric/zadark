@@ -10,5 +10,17 @@
     "priority": 2,
     "action": { "type": "block" },
     "condition": {"urlFilter": "||chat.zalo.me/api/group/typing", "resourceTypes": ["xmlhttprequest"] }
+  },
+  {
+    "id": 3,
+    "priority": 3,
+    "action": { "type": "block" },
+    "condition": {"urlFilter": "||zaloapp.com/api/message/typing", "resourceTypes": ["xmlhttprequest"] }
+  },
+  {
+    "id": 4,
+    "priority": 4,
+    "action": { "type": "block" },
+    "condition": {"urlFilter": "||zaloapp.com/api/group/typing", "resourceTypes": ["xmlhttprequest"] }
   }
 ]

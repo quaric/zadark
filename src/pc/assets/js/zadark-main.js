@@ -5,7 +5,45 @@
 
 /* eslint-disable node/no-callback-literal  */
 
-const { app, session, ipcMain } = require('electron')
+const { app, session } = require('electron')
+
+const getFilterUrls = (domains = [], paths = []) => {
+  return paths.reduce((prevUrls, path) => {
+    const nextUrls = domains.map((domain) => [domain, path].join(''))
+    return [...prevUrls, ...nextUrls]
+  }, [])
+}
+
+const PARTITION_NAME = 'persist:zalo'
+
+const BLOCK_STORAGE_KEYS = {
+  block_typing: '@ZaDark:ENABLED_BLOCK_TYPING',
+  block_delivered: '@ZaDark:ENABLED_BLOCK_DELIVERED',
+  block_seen: '@ZaDark:ENABLED_BLOCK_SEEN'
+}
+
+const FILTER_DOMAINS = [
+  '*://*.zalo.me',
+  '*://*.zaloapp.com'
+]
+const FILTER_PATHS = [
+  // Typing
+  '/api/message/typing?*',
+  '/api/group/typing?*',
+
+  // Delivered
+  '/api/message/deliveredv2?*',
+  '/api/e2ee/pc/t/message/delivered?*',
+  '/api/group/deliveredv2?*',
+
+  // Seen
+  '/api/message/seenv2?*',
+  '/api/group/seenv2?*'
+]
+
+const BLOCK_FILTER = {
+  urls: getFilterUrls(FILTER_DOMAINS, FILTER_PATHS)
+}
 
 app.whenReady().then(() => {
   const _blockSettings = {
@@ -14,31 +52,7 @@ app.whenReady().then(() => {
     block_seen: false
   }
 
-  const _settings = {
-    theme: 'dark',
-    hideLatestMessage: false,
-    hideConvAvatar: false,
-    hideConvName: false
-  }
-
-  const filter = {
-    urls: [
-      // Typing
-      '*://*.zalo.me/api/message/typing?*',
-      '*://*.zalo.me/api/group/typing?*',
-
-      // Delivered
-      '*://*.zalo.me/api/message/deliveredv2?*',
-      '*://*.zalo.me/api/e2ee/pc/t/message/delivered?*',
-      '*://*.zalo.me/api/group/deliveredv2?*',
-
-      // Seen
-      '*://*.zalo.me/api/message/seenv2?*',
-      '*://*.zalo.me/api/group/seenv2?*'
-    ]
-  }
-
-  session.fromPartition('persist:zalo').webRequest.onBeforeRequest(filter, (details, callback) => {
+  session.fromPartition(PARTITION_NAME).webRequest.onBeforeRequest(BLOCK_FILTER, (details, callback) => {
     // Typing
     if (_blockSettings.block_typing && (details.url.includes('api/message/typing') || details.url.includes('api/group/typing'))) {
       if (DEBUG) console.log('ZaDarkPC: block_typing', details.url)
@@ -60,33 +74,27 @@ app.whenReady().then(() => {
     callback({ cancel: false })
   })
 
-  ipcMain.on('@ZaDark:UPDATE_BLOCK_SETTINGS', (event, payload) => {
-    const { enableBlockIds, disableBlockIds } = payload
+  session.fromPartition(PARTITION_NAME).cookies.get({ domain: 'zadark.quaric.com' })
+    .then((cookies = []) => {
+      if (DEBUG) console.log('ZaDarkPC: Cookies/zadark.quaric.com', cookies)
 
-    Array.isArray(enableBlockIds) && enableBlockIds.forEach((blockId) => {
-      _blockSettings[blockId] = true
+      cookies.forEach((cookie) => {
+        // Typing
+        if (cookie.name === BLOCK_STORAGE_KEYS.block_typing) {
+          _blockSettings.block_typing = cookie.value === 'true'
+        }
+
+        // Delivered
+        if (cookie.name === BLOCK_STORAGE_KEYS.block_delivered) {
+          _blockSettings.block_delivered = cookie.value === 'true'
+        }
+
+        // Seen
+        if (cookie.name === BLOCK_STORAGE_KEYS.block_seen) {
+          _blockSettings.block_seen = cookie.value === 'true'
+        }
+      })
+
+      if (DEBUG) console.log('ZaDarkPC: _blockSettings', _blockSettings)
     })
-
-    Array.isArray(disableBlockIds) && disableBlockIds.forEach((blockId) => {
-      _blockSettings[blockId] = false
-    })
-
-    if (DEBUG) console.log('ZaDarkPC: @ZaDark:UPDATE_BLOCK_SETTINGS', { payload, _blockSettings })
-  })
-
-  ipcMain.on('@ZaDark:UPDATE_SETTINGS', (event, payload) => {
-    const validKeys = Object.keys(_settings)
-
-    Object.keys(payload).forEach((key) => {
-      if (!validKeys.includes(key)) return
-      _settings[key] = payload[key]
-    })
-
-    if (DEBUG) console.log('ZaDarkPC: @ZaDark:UPDATE_SETTINGS', { payload, _settings })
-  })
-
-  ipcMain.handle('@ZaDark:GET_SETTINGS', () => {
-    if (DEBUG) console.log('ZaDarkPC: @ZaDark:GET_SETTINGS', _settings)
-    return _settings
-  })
 })

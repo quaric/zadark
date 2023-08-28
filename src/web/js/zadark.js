@@ -239,7 +239,7 @@
             <div class="zadark-switch zadark-switch--border-default">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
                 Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
-                <i class="zadark-icon zadark-icon--play-circle" data-zdk-intro="hideThreadChatMessage" data-tippy-content="Nhấn vào để xem hướng dẫn"></i>
+                <i class="zadark-icon zadark-icon--play-circle" data-zdk-intro="hideThreadChatMessage" data-tippy-content="Nhấn vào để xem hướng dẫn."></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+2" data-keys-mac="⌘2" data-keys-safari="⌃2"></span>
@@ -281,7 +281,7 @@
             <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-block-typing">
                 Ẩn trạng thái <strong>Đang soạn tin (Typing)</strong>
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đang soạn tin (Typing) ...</strong> của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.</p>'></i>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đang soạn tin (Typing)</strong> của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.</p>'></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+4" data-keys-mac="⌘4" data-keys-safari="⌃4"></span>
@@ -705,7 +705,7 @@
       ]
 
       if (REQUIRED_IN_THREAD_CHAT.includes(introId) && !isInThreadChat) {
-        ZaDarkUtils.showToast('Chọn một cuộc trò chuyện để xem hướng dẫn')
+        ZaDarkUtils.showToast('Chọn một cuộc trò chuyện để xem hướng dẫn.')
         return
       }
 

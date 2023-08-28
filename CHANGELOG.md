@@ -1,8 +1,42 @@
 # Changelog
 
+## ZaDark 23.8.5
+> PC 11.1 và Web 9.11
+
+### Fixed
+- Sửa lỗi Dark Mode trình xem Video (Video Player)
+
+### Changed
+
+- Cập nhật thuật ngữ, nội dung thông báo
+
+#### Web specific
+
+- Cập nhật chức năng **Ẩn trạng thái (Đang soạn tin, Đã nhận, Đã xem)**: `declarative_net_request.rule_resources`
+- **[Safari]** Tối ưu Logo Quaric SVG
+
+## ZaDark 23.8.4
+> PC 11.0 và Web 9.10
+
+### Added
+#### PC specific
+- Mang tính năng **Ẩn trạng thái (Đang soạn tin, Đã nhận, Đã xem)** trở lại trên **Zalo PC 23.7.1** trở lên.
+  - Thay đổi lớn về Logic xử lí.
+  - Cập nhật `filterUrls`.
+  - **Giới hạn kĩ thuật**: Xem mục Notes bên dưới.
+
+### Changed
+- Thay đổi màu của Logo nhà phát hành Quaric.
+
+### Notes
+- Vì Zalo PC giới hạn quyền sử dụng các [API của Electron](https://www.electronjs.org/docs/latest/api/app) nên các tính năng sau sẽ bị ảnh hưởng:
+  - Bật/Tắt **Ẩn trạng thái (Đang soạn tin, Đã nhận, Đã xem)**: Người dùng phải khởi động lại Zalo PC để áp dụng thay đổi.
+  - **[Windows]** Hộp thoại thông báo chỉ hỗ trợ Dark Mode trên **Zalo PC 23.7.1** trở lên. Light Mode, ẩn tin nhắn, ảnh đại diện và tên không khả dụng.
+  - Mặc dù các tính năng bị ảnh hưởng, nhưng đây là điểm cộng khi Zalo luôn cải tiến mã nguồn trở nên tốt hơn.
+
 ## ZaDark 23.8.3
 
-> PC 10.2 && Web 9.8
+> PC 10.2 và Web 9.8
 
 ### Fixed
 #### Web specific
@@ -14,7 +48,7 @@
 
 ## ZaDark 23.8.2
 
-> PC 10.1 && Web 9.7
+> PC 10.1 và Web 9.7
 
 ### Added
 - **[Safari]** Gia hạn tài khoản Apple Developer, mang **ZaDark for Safari** trở lại Mac App Store
@@ -40,7 +74,7 @@
 > Vì Zalo nâng cấp mã nguồn, ZaDark sẽ cập nhật trong thời gian tới
 
 ## ZaDark 23.7.5
-> PC 9.6 && Web 9.6
+> PC 9.6 và Web 9.6
 
 ### Added
 - Bổ sung giải thích (Tooltip) cho chức năng
@@ -84,7 +118,7 @@
 - Ẩn Tin nhắn gần nhất: Giữ lại Nhãn (Label) cuộc trò chuyện ([#57](https://github.com/quaric/zadark/issues/57))
 
 ## ZaDark 23.7.4
-> PC 9.5 && Web 9.5
+> PC 9.5 và Web 9.5
 
 ### Added
 - Cập nhật chức năng: Ẩn Tin nhắn trong cuộc trò chuyện
@@ -96,7 +130,7 @@
 - Thay đổi màu của Logo nhà phát hành Quaric
 
 ## ZaDark 23.7.3
-> PC 9.4 && Web 9.4
+> PC 9.4 và Web 9.4
 
 ### Fixed
 
@@ -106,7 +140,7 @@
 - Sửa lỗi phím tắt "Ẩn ảnh đại diện, tên cuộc trò chuyện" bị trùng ([#66](https://github.com/quaric/zadark/issues/66))
 
 ## ZaDark 23.7.2
-> PC 9.3 && Web 9.3
+> PC 9.3 và Web 9.3
 
 ### Fixed
 
@@ -124,7 +158,7 @@
 - Tách tính năng Ẩn Ảnh đại diện & Tên cuộc trò chuyện ra 2 mục cài đặt
 
 ## ZaDark 23.7.1
-> PC 9.2 && Web 9.2
+> PC 9.2 và Web 9.2
 
 ### Fixed
 - Sửa lỗi collapse/expand các session ở mục Thông tin hội thoại ([#60](https://github.com/quaric/zadark/issues/60))
@@ -145,7 +179,7 @@
 - Tối ưu mã nguồn
 
 ## ZaDark 23.6.4
-> PC 9.1 && Web 9.1
+> PC 9.1 và Web 9.1
 
 ### Changed
 - Hỗ trợ Dark Mode nhãn trạng thái "Đã nhận", "Đã gửi" (`.bubble-message-status`)
@@ -153,7 +187,7 @@
 - Sửa lỗi Dark Mode nhãn tin nhắn chưa đọc (`.conv-action__unread-v2 .conv-unread`)
 
 ## ZaDark 23.6.3
-> PC 9.0 && Web 9.0
+> PC 9.0 và Web 9.0
 
 ### Added
 
@@ -179,7 +213,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - Tối ưu mã nguồn
 
 ## ZaDark 23.6.2
-> PC 8.5 && Web 8.17
+> PC 8.5 và Web 8.17
 
 ### Added
 
@@ -202,7 +236,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - **[UX]** Bỏ tất cả hiệu ứng mờ (filter blur)
 
 ## ZaDark 23.6.1
-> PC 8.4 && Web 8.16
+> PC 8.4 và Web 8.16
 
 ### Added
 - **[Core]** Bổ sung cho chức năng "Thay đổi cỡ chữ của tin nhắn" : Áp dụng cho tin nhắn có hình ảnh
@@ -218,13 +252,13 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
   - Thay đổi cấu trúc đặt tên cho tập tin cài đặt ngắn gọn hơn
 
 ## ZaDark 23.5.7
-> PC 8.3 && Web 8.15
+> PC 8.3 và Web 8.15
 
 ### Added
 - Tuỳ chỉnh cỡ chữ trong Tin nhắn
 
 ## ZaDark 23.5.6
-> PC 8.2 && Web 8.14
+> PC 8.2 và Web 8.14
 
 ### Fixed
 - **[Search]** Sửa lỗi màu nền của từ khoá trùng khớp có màu vàng
@@ -266,7 +300,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - Giảm số lần nhấn phím khi sử dụng
 
 ## ZaDark 23.5.4
-> PC 8.0 && Web 8.13
+> PC 8.0 và Web 8.13
 
 ### Added
 - Bổ sung cho chức năng: Ẩn "Tin nhắn" trong Cuộc trò chuyện
@@ -282,7 +316,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - Thêm chức năng: Ẩn trạng thái "Đã xem" tin nhắn
 
 ## ZaDark 23.5.3
-> PC 7.14 && Web 8.12
+> PC 7.14 và Web 8.12
 
 ### Added
 - Thêm cài đặt Riêng tư : Ẩn "Tin nhắn" trong Cuộc trò chuyện
@@ -294,7 +328,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - `.zadark-select`: cursor pointer
 
 ## ZaDark 23.5.2
-> PC 7.13 && Web 8.11
+> PC 7.13 và Web 8.11
 
 ### Fixed
 - Modal: Bỏ hiệu ứng mờ khi mờ nền (Hiệu ứng mờ nền có thể làm Zalo bị dựt khi mở Modal ở những máy tính có cấu hình thấp)
@@ -302,7 +336,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - ZaDark Popup: Sửa lỗi màu nền của danh sách lựa chọn Phông chữ
 
 ## ZaDark 23.5.1
-> PC 7.12 && Web 8.10
+> PC 7.12 và Web 8.10
 
 ### Added
 - ZaDark Popup: Thêm Menu Bình chọn, Phản hồi
@@ -311,7 +345,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - ZaDark Popup: Làm gọn lựa chọn Phông chữ
 
 ## ZaDark 23.4.4
-> PC 7.11 && Web 8.9
+> PC 7.11 và Web 8.9
 
 ### Changed
 - Giảm độ mờ (blur) và tối ưu Modal Backdrop
@@ -321,7 +355,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - Khắc phục lỗi biểu tượng "Play" tin nhắn audio bị mất
 
 ## ZaDark 23.4.3
-> PC 7.10 && Web 8.8
+> PC 7.10 và Web 8.8
 
 ### Added
 - Thêm dấu hiệu nhận biết khi ZaDark cập nhật phiên bản mới (Dấu chấm đỏ ở Menu ZaDark trên Zalo)
@@ -333,7 +367,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
   - Tin nhắn của cuộc trò chuyện hiện tại sẽ không bị ẩn
 
 ## ZaDark 23.4.2
-> PC 7.9 && Web 8.7
+> PC 7.9 và Web 8.7
 
 ### Added
 - Thêm phông chữ : Source Sans Pro
@@ -354,7 +388,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - Cập nhật logic cài đặt riêng tư : Gửi yêu cầu cập nhật đến "Service Worker" của tiện ích để xử lý
 
 ## ZaDark 23.4.1
-> PC 7.8 && Web 8.6
+> PC 7.8 và Web 8.6
 
 ### Added
 - Thêm nhãn `Chưa hỗ trợ trên [Zalo PC, Firefox]` cho tính năng Riêng tư
@@ -365,7 +399,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - Bỏ nội dung giới thiệu ZaDark ở màn hình Chào mừng
 
 ## ZaDark 23.3.2
-> PC 7.7 && Web 8.5
+> PC 7.7 và Web 8.5
 
 ### Added
 - Tuỳ chỉnh Phông chữ:
@@ -385,7 +419,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - Thay thế dấu `.` thành `_` ở tên phiên bản trong tên của tập tin cài đặt (Giải quyết vấn đề macOS không xác định được định dạng của tập tin cài đặt là `Unix Executable File`)
 
 ## ZaDark 23.2.1
-> PC 7.6 && Web 8.4
+> PC 7.6 và Web 8.4
 
 ### Changed
 - `.disk-usage-chart > .another-app-usage` : Thay đổi màu nền
@@ -400,7 +434,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - `ZaDark Settings` : Bỏ Menu Website và Donate trên Header (Mục đích loại bỏ nội dung không cần thiết với người dùng)
 
 ## ZaDark 23.1.3
-> PC 7.5 && Web 8.3
+> PC 7.5 và Web 8.3
 
 ### Added
 #### PC specific (Windows)
@@ -411,7 +445,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - `.conv-action__unread` : Thay đổi màu nền (xanh dương thành đỏ)
 
 ## ZaDark 23.1.2
-> PC 7.4 && Web 8.2
+> PC 7.4 và Web 8.2
 
 ### Fixed
 - Settings : Sửa lỗi màu nền MenuLeft không tương phản tốt
@@ -428,7 +462,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - `.event-message, .onboard-message` : Cập nhật màu nền
 
 ## ZaDark 23.1.1
-> PC 7.3 && Web 8.1
+> PC 7.3 và Web 8.1
 
 ### Fixed
 - Button: Cập nhật bảng màu theo cập nhật của Zalo
@@ -463,7 +497,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - Sửa lỗi hiển thị sai phần Cài đặt riêng tư. Cài đặt riêng tư chỉ có trên ZaDark Web
 
 ## ZaDark 22.12.2
-> PC 7.0 && Web 8.0
+> PC 7.0 và Web 8.0
 
 ### Added
 - Thêm Menu tuỳ chỉnh ZaDark ào Menu bên trái của Zalo. Kể từ PC 7.0, Web 8.0 người dùng có thể tuỳ chỉnh ZaDark ngay trên Zalo
@@ -488,7 +522,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - Xoá giao diện xem lịch sử thay đổi trên Extension khi click vào Tên phiên bản. Kể từ v8.0 người dùng có thể xem lịch sử thay đổi trên Website chính thức bằng cách click vào Tên phiên bản
 
 ## ZaDark 22.12.1
-> PC 6.1 && Web 7.1
+> PC 6.1 và Web 7.1
 
 ### Changed
 - Thêm nhận diện thương hiệu của Nhà phát hành
@@ -496,7 +530,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - Thêm Menu "Donate"
 
 ## ZaDark 22.11.2
-> PC 6.0 && Web 7.0
+> PC 6.0 và Web 7.0
 
 ### Fixed
 - Sửa lỗi hiển thị sai màu sắc do Zalo Web có sự thay đổi lớn lần 2 về bảng màu (Colors CSS Variables) từ ngày 22/11/2022
@@ -505,7 +539,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - `.card a`
 
 ## ZaDark 22.11.1
-> PC 5.6 && Web .6.6
+> PC 5.6 và Web .6.6
 
 ### Fixed
 - `.item-calendar-preview > .date` : Sửa lỗi màu sắc của "Ngày" trong Calendar Preview
@@ -513,7 +547,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - `.reminder-info-v2 > .wd-time__txt` : Sửa lỗi màu sắc của "Ngày" của Calendar trong Reminder
 
 ## ZaDark 22.9.6
-> PC 5.5 && Web 6.5
+> PC 5.5 và Web 6.5
 
 ### Changed
 - `.card--undo` : Bỏ hiệu ứng mờ cho tin nhắn được thu hồi
@@ -526,7 +560,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 #### Web specific
 - `.nav__tabs__zalo` (Safari)
 
-## PC 5.4 && Web 6.4
+## PC 5.4 và Web 6.4
 ### Changed
 - `scrollbar` : Cập nhật màu nền nhạt hơn cho thanh cuộn
 - `self-bubble-chat` : Cập nhật màu nền tin nhắn của tôi (Màu sắc giống trên Zalo Mobile)
@@ -547,7 +581,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 ### Removed
 - ZaDark PC <= v4.x
 
-## PC 4.14 && PC 5.2 && Web 6.3
+## PC 4.14 và PC 5.2 và Web 6.3
 ### Changed
 - `.leftbar-mark-unread` : Thay đổi kích thước và vị trí đẹp hơn
 
@@ -558,7 +592,7 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 - Sửa lỗi màu sắc cho giao diện "Đặt mã PIN" ẩn cuộc trò chuyện
 - macOS : Sửa lỗi các chức năng không hoạt động khi không chạy ZaDark for macOS với quyền Root
 
-## PC 5.1 && Browser v6.2
+## PC 5.1 và Browser v6.2
 ### Added
 #### Browser specific (Safari)
 - Thêm "ZaDark Website" vào Menu Help
@@ -580,11 +614,11 @@ Hỗ trợ phím tắt để bật/tắt nhanh các chức năng
 ### Removed
 - Dark dimmed
 
-## PC 4.11 && Browser v5.6
+## PC 4.11 và Browser v5.6
 ### Changed
 - `.zl-modal` : Thêm hiệu ứng mờ cho nền.
 
-## PC 4.10 && Browser v5.5
+## PC 4.10 và Browser v5.5
 ### Fixed
 - Zalo Business
 

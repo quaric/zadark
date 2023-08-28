@@ -4,20 +4,9 @@
 */
 
 (function () {
-  let ipcRenderer = {
-    send: (eventName, data) => {
-      console.log('ipcRenderer.send', { eventName, data })
-    }
-  }
-
-  let isSupportFeatureBlock = false
-
   if (typeof require === 'function') {
-    ipcRenderer = require('electron').ipcRenderer
-    isSupportFeatureBlock = true
-
     window.$ = require('./zadark-jquery.min.js')
-    window.Hotkeys = require('./zadark-hotkeys-js.min.js')
+    window.hotkeys = require('./zadark-hotkeys-js.min.js')
     window.Toastify = require('./zadark-toastify.min.js')
     window.WebFont = require('./zadark-webfont.min.js')
     window.introJs = require('./zadark-introjs.min.js')
@@ -46,44 +35,97 @@
   const ZADARK_KNOWN_VERSION_KEY = '@ZaDark:KNOWN_VERSION'
   const ZALO_APP_VERSION_KEY = 'sh_app_ver'
 
+  const ZADARK_MIGRATION_KEY = '@ZaDark:MIGRATION'
+  const ZADARK_MIGRATION_VALUE = 'S2zhgZnVijSf9MSi'
+
   const HOTKEYS_TOAST_MESSAGE = {
     fontSize: {
-      small: 'Cỡ chữ : Nhỏ',
-      medium: 'Cỡ chữ : Trung bình',
-      big: 'Cỡ chữ : Lớn',
-      'very-big': 'Cỡ chữ : Rất lớn'
+      small: 'Đã áp dụng cỡ chữ Nhỏ.',
+      medium: 'Đã áp dụng cỡ chữ Trung bình.',
+      big: 'Đã áp dụng cỡ chữ Lớn.',
+      'very-big': 'Đã áp dụng cỡ chữ Rất lớn.'
     },
     hideLatestMessage: {
-      true: 'BẬT : Ẩn Tin nhắn gần nhất',
-      false: 'TẮT : Ẩn Tin nhắn gần nhất'
+      true: 'Đã bật Ẩn Tin nhắn gần nhất.',
+      false: 'Đã tắt Ẩn Tin nhắn gần nhất.'
     },
     hideThreadChatMessage: {
-      true: 'BẬT : Ẩn Tin nhắn trong cuộc trò chuyện',
-      false: 'TẮT : Ẩn Tin nhắn trong cuộc trò chuyện'
+      true: 'Đã bật Ẩn Tin nhắn trong cuộc trò chuyện.',
+      false: 'Đã tắt Ẩn Tin nhắn trong cuộc trò chuyện.'
     },
     hideConvAvatar: {
-      true: 'BẬT : Ẩn Ảnh đại diện',
-      false: 'TẮT : Ẩn Ảnh đại diện'
+      true: 'Đã bật Ẩn Ảnh đại diện.',
+      false: 'Đã tắt Ẩn Ảnh đại diện.'
     },
     hideConvName: {
-      true: 'BẬT : Ẩn Tên cuộc trò chuyện',
-      false: 'TẮT : Ẩn Tên cuộc trò chuyện'
+      true: 'Đã bật Ẩn Tên cuộc trò chuyện.',
+      false: 'Đã tắt Ẩn Tên cuộc trò chuyện.'
     },
     block_typing: {
-      true: 'BẬT : Ẩn trạng thái Đang soạn tin (Typing) ...',
-      false: 'TẮT : Ẩn trạng thái Đang soạn tin (Typing) ...'
+      true: 'Đã bật Ẩn trạng thái Đang soạn tin (Typing).',
+      false: 'Đã tắt Ẩn trạng thái Đang soạn tin (Typing).'
     },
     block_delivered: {
-      true: 'BẬT : Ẩn trạng thái Đã nhận (Received)',
-      false: 'TẮT : Ẩn trạng thái Đã nhận (Received)'
+      true: 'Đã bật Ẩn trạng thái Đã nhận (Received).',
+      false: 'Đã tắt Ẩn trạng thái Đã nhận (Received).'
     },
     block_seen: {
-      true: 'BẬT : Ẩn trạng thái Đã xem (Seen)',
-      false: 'TẮT : Ẩn trạng thái Đã xem (Seen)'
+      true: 'Đã bật Ẩn trạng thái Đã xem (Seen).',
+      false: 'Đã tắt Ẩn trạng thái Đã xem (Seen).'
     },
     useHotkeys: {
-      true: 'Đã kích hoạt phím tắt',
-      false: 'Đã vô hiệu hoá phím tắt'
+      true: 'Đã kích hoạt phím tắt.',
+      false: 'Đã vô hiệu hoá phím tắt.'
+    }
+  }
+
+  const COMMON_TOAST_MESSAGE = {
+    needToRestart: 'Bạn vui lòng tắt & mở lại Zalo PC để áp dụng thay đổi.'
+  }
+
+  const ZaDarkCookie = {
+    isSupport: () => {
+      if (window.$zelectron && typeof window.$zelectron.setCookie === 'function') {
+        return true
+      }
+
+      if (window.electronAPI && typeof window.electronAPI.setCustomCookie === 'function') {
+        return true
+      }
+
+      return false
+    },
+
+    set: async (name, value) => {
+      try {
+        const url = 'https://zadark.quaric.com/'
+        const domain = 'zadark.quaric.com'
+
+        if (window.$zelectron && typeof window.$zelectron.setCookie === 'function') {
+          await window.$zelectron.setCookie(name, value, url, domain)
+          return true
+        }
+
+        if (window.electronAPI && typeof window.electronAPI.setCustomCookie === 'function') {
+          await window.electronAPI.setCustomCookie(url, domain, {
+            name,
+            value,
+            expirationDate: Date.now() + 31536e6 // 1 year
+          })
+          return true
+        }
+
+        return false
+      } catch (error) {
+        return false
+      }
+
+      // Refs:
+      // Zalo <= 23.6.1
+      // window.electronAPI.setCustomCookie('https://zadark.quaric.com', 'zadark.quaric.com', { name: "@ZaDark:THEME", value: "dark", expirationDate: Date.now() + 31536e6 })
+      //
+      // Zalo >= 23.7.1
+      // window.$zelectron.setCookie('@ZaDark:THEME', 'dark', 'https://zadark.quaric.com', 'zadark.quaric.com')
     }
   }
 
@@ -146,6 +188,7 @@
     saveBlockSettings: (blockId, isEnabled) => {
       const key = BLOCK_STORAGE_KEYS[blockId]
       if (key) {
+        ZaDarkCookie.set(key, isEnabled ? 'true' : 'false')
         return localStorage.setItem(key, isEnabled)
       }
     },
@@ -174,6 +217,13 @@
 
     getZaloAppVersion: () => {
       return localStorage.getItem(ZALO_APP_VERSION_KEY) || '0.0'
+    },
+
+    isMigrationNeeded: () => {
+      return localStorage.getItem(ZADARK_MIGRATION_KEY) !== ZADARK_MIGRATION_VALUE
+    },
+    setMigrationDone: () => {
+      return localStorage.setItem(ZADARK_MIGRATION_KEY, ZADARK_MIGRATION_VALUE)
     }
   }
 
@@ -261,11 +311,6 @@
         } else {
           disableBlockIds.push(blockId)
         }
-      })
-
-      ipcRenderer.send('@ZaDark:UPDATE_BLOCK_SETTINGS', {
-        enableBlockIds,
-        disableBlockIds
       })
     },
 
@@ -387,24 +432,11 @@
 
       const useHotkeys = ZaDarkStorage.getUseHotkeys()
       this.setUseHotkeysAttr(useHotkeys)
-
-      if (!this.isMac()) {
-        ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', {
-          theme,
-          hideLatestMessage: enabledHideLatestMessage,
-          hideConvAvatar: enabledHideConvAvatar,
-          hideConvName: enabledHideConvName
-        })
-      }
     },
 
     updateTheme: function (theme) {
       ZaDarkStorage.saveTheme(theme)
       this.setPageTheme(theme)
-
-      if (!this.isMac()) {
-        ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { theme })
-      }
     },
 
     updateFontFamily: async function (fontFamily) {
@@ -423,14 +455,14 @@
       toast.hideToast()
 
       if (!success) {
-        this.showToast('Không thể tải phông chữ')
+        this.showToast('Không thể tải phông chữ.')
         return false
       }
 
       ZaDarkStorage.saveFontFamily(fontFamily)
 
       this.setFontFamilyAttr(fontFamily)
-      this.showToast('Đã thay đổi phông chữ')
+      this.showToast('Đã thay đổi phông chữ.')
 
       return true
     },
@@ -445,30 +477,18 @@
       ZaDarkStorage.saveEnabledHideLatestMessage(isEnabled)
       this.toggleBodyClassName('zadark-prv--latest-message', isEnabled)
       this.showToast(HOTKEYS_TOAST_MESSAGE.hideLatestMessage[isEnabled])
-
-      if (!this.isMac()) {
-        ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { hideLatestMessage: isEnabled })
-      }
     },
 
     updateHideConvAvatar: function (isEnabled) {
       ZaDarkStorage.saveEnabledHideConvAvatar(isEnabled)
       this.toggleBodyClassName('zadark-prv--conv-avatar', isEnabled)
       this.showToast(HOTKEYS_TOAST_MESSAGE.hideConvAvatar[isEnabled])
-
-      if (!this.isMac()) {
-        ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { hideConvAvatar: isEnabled })
-      }
     },
 
     updateHideConvName: function (isEnabled) {
       ZaDarkStorage.saveEnabledHideConvName(isEnabled)
       this.toggleBodyClassName('zadark-prv--conv-name', isEnabled)
       this.showToast(HOTKEYS_TOAST_MESSAGE.hideConvName[isEnabled])
-
-      if (!this.isMac()) {
-        ipcRenderer.send('@ZaDark:UPDATE_SETTINGS', { hideConvName: isEnabled })
-      }
     },
 
     updateHideThreadChatMessage: function (isEnabled) {
@@ -478,14 +498,12 @@
     },
 
     updateBlockSettings: function (blockId, isEnabled) {
-      const payload = isEnabled
-        ? { enableBlockIds: [blockId] }
-        : { disableBlockIds: [blockId] }
-
       ZaDarkStorage.saveBlockSettings(blockId, isEnabled)
       ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE[blockId][isEnabled])
-
-      ipcRenderer.send('@ZaDark:UPDATE_BLOCK_SETTINGS', payload)
+      ZaDarkUtils.showToast(COMMON_TOAST_MESSAGE.needToRestart, {
+        className: 'toastify--warning',
+        duration: 10000
+      })
     },
 
     updateUseHotkeys: function (useHotkeys) {
@@ -513,7 +531,7 @@
           },
           {
             element: document.querySelector('#ztoolbar'),
-            intro: 'Bạn di chuyển chuột vào vùng này để : <strong>Ẩn nội dung tin nhắn</strong> (bên trên), <strong>Ẩn nội dung khung soạn tin nhắn</strong> (bên dưới).'
+            intro: 'Bạn di chuyển chuột vào vùng này để: <strong>Ẩn nội dung tin nhắn</strong> (bên trên), <strong>Ẩn nội dung khung soạn tin nhắn</strong> (bên dưới).'
           }
         ],
         onExit,
@@ -527,6 +545,29 @@
         clearTimeout(timer)
         timer = setTimeout(func, delay)
       }
+    },
+
+    migrateData: async function () {
+      const isMigrationNeeded = ZaDarkStorage.isMigrationNeeded()
+
+      if (!isMigrationNeeded) {
+        return
+      }
+
+      const blockSettings = ZaDarkStorage.getBlockSettings()
+      await Promise.all([
+        ZaDarkCookie.set(ZADARK_ENABLED_BLOCK_TYPING_KEY, blockSettings.block_typing),
+        ZaDarkCookie.set(ZADARK_ENABLED_BLOCK_DELIVERED_KEY, blockSettings.block_delivered),
+        ZaDarkCookie.set(ZADARK_ENABLED_BLOCK_SEEN_KEY, blockSettings.block_seen)
+      ])
+
+      // Flag migration is done
+      ZaDarkStorage.setMigrationDone()
+
+      this.showToast('ZaDark đã hoàn tất khởi tạo dữ liệu. Bạn vui lòng tắt & mở lại Zalo PC.', {
+        className: 'toastify--warning',
+        duration: 10000
+      })
     }
   }
 
@@ -557,6 +598,8 @@
   const switchBlockDeliveredElName = '#js-switch-block-delivered'
 
   const switchUseHotkeysElName = '#js-switch-use-hotkeys'
+
+  const isSupportFeatureBlock = ZaDarkCookie.isSupport()
 
   const setRadioInputTheme = (theme) => {
     const options = ['light', 'dark', 'auto']
@@ -776,7 +819,7 @@
             <div class="zadark-switch zadark-switch--border-default">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
                 Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
-                <i class="zadark-icon zadark-icon--play-circle" data-zdk-intro="hideThreadChatMessage" data-tippy-content="Nhấn vào để xem hướng dẫn"></i>
+                <i class="zadark-icon zadark-icon--play-circle" data-zdk-intro="hideThreadChatMessage" data-tippy-content="Nhấn vào để xem hướng dẫn."></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+2" data-keys-mac="⌘2"></span>
@@ -818,7 +861,7 @@
             <div class="zadark-switch js-switch-block">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-block-typing">
                 Ẩn trạng thái <strong>Đang soạn tin (Typing)</strong>
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đang soạn tin (Typing) ...</strong> của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.</p>'></i>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đang soạn tin (Typing)</strong> của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.</p>'></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+4" data-keys-mac="⌘4"></span>
@@ -1230,6 +1273,8 @@
     loadPopupScrollEvent()
     loadTippy()
 
+    ZaDarkUtils.migrateData()
+
     $('[data-zdk-intro]').on('click', function (e) {
       e.preventDefault()
       e.stopPropagation()
@@ -1242,7 +1287,7 @@
       ]
 
       if (REQUIRED_IN_THREAD_CHAT.includes(introId) && !isInThreadChat) {
-        ZaDarkUtils.showToast('Chọn một cuộc trò chuyện để xem hướng dẫn')
+        ZaDarkUtils.showToast('Chọn một cuộc trò chuyện để xem hướng dẫn.')
         return
       }
 

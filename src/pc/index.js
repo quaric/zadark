@@ -69,7 +69,7 @@ const renderHeader = () => {
 }
 
 const renderNotes = () => {
-  print(chalk.redBright('- DE DAM BAO AN TOAN, vui long tai ZaDark tai :'))
+  print(chalk.redBright('- DE DAM BAO AN TOAN, vui long tai ZaDark tai:'))
   print(' ', chalk.underline.redBright(DOWNLOAD_ZADARK_URL))
   print(chalk.redBright('- Vui long cai dat lai ZaDark sau khi cap nhat Zalo PC.'))
   print('')
@@ -130,7 +130,7 @@ const handleUninstall = async (zaloResDirList) => {
 const handleOpenDocs = () => {
   print(chalk.magentaBright.bold('[HUONG DAN]'))
   print('')
-  print('>> Truy cap :', chalk.underline(CONTACT_URL))
+  print('>> Truy cap:', chalk.underline(CONTACT_URL))
   openWebsite(CONTACT_URL)
 }
 
@@ -154,7 +154,7 @@ const requestQuitTermProgram = () => {
 
     try {
       if (!zaloResDirList.length) {
-        throw new Error(`Khong tim thay Zalo PC (${zaloPath || DEFAULT_ZALO_PATH}).\nVui long cai dat Zalo PC : https://zalo.me/pc`)
+        throw new Error(`Khong tim thay Zalo PC (${zaloPath || DEFAULT_ZALO_PATH}).\nVui long cai dat Zalo PC: https://zalo.me/pc`)
       }
 
       if (['install', 'in'].includes(action)) {
@@ -184,7 +184,7 @@ const requestQuitTermProgram = () => {
       zaloResDirList = zadarkPC.getZaloResDirList(customZaloPath)
 
       if (!zaloResDirList.length) {
-        throw new Error(`Khong tim thay Zalo PC (${customZaloPath}).\nVui long cai dat Zalo PC : https://zalo.me/pc`)
+        throw new Error(`Khong tim thay Zalo PC (${customZaloPath}).\nVui long cai dat Zalo PC: https://zalo.me/pc`)
       }
     }
 
@@ -229,13 +229,13 @@ const requestQuitTermProgram = () => {
     printError(error.message)
 
     openWebsite(COMMON_ERRORS_URL)
-    print(`Xem huong dan : ${COMMON_ERRORS_URL}`)
+    print(`Xem huong dan: ${COMMON_ERRORS_URL}`)
     //
   } finally {
     print('')
 
     if (IS_MAC) {
-      print(chalk.cyanBright('Neu ban muon chay lai ZaDark for macOS, truy cap :'))
+      print(chalk.cyanBright('Neu ban muon chay lai ZaDark for macOS, truy cap:'))
       print(chalk.bold.cyanBright('Finder > Applications > ZaDark'))
       print('')
     }
