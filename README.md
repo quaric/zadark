@@ -13,7 +13,7 @@
   [![Edge](https://img.shields.io/badge/Edge-00002D.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=3989FF)](https://go.quaric.com/zadark-edge)
   [![Safari](https://img.shields.io/badge/Safari-00002D.svg?&style=for-the-badge&logo=safari&logoColor=3989FF)](https://go.quaric.com/zadark-safari)
 
-  <img src="./.github/zadark-from-quaric.svg" alt="ZaDark from Quaric" />
+  <img src="./.github/zadark-by-quaric.svg" alt="ZaDark by Quaric" />
 </div>
 
 <br />
