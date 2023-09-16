@@ -925,7 +925,7 @@
 
   const popupFooterHTML = `
     <div class="zadark-popup__footer">
-      <a href="https://quaric.com" target="_blank" class="zadark-publisher">
+      <a href="https://quaric.com" target="_blank" title="ZaDark by Quaric" class="zadark-publisher">
         <span class="zadark-publisher__by">ZaDark by</span>
         <img src="quaric-lockup-dark.svg" class="zadark-publisher__lockup zadark-publisher__lockup--dark">
         <img src="quaric-lockup-light.svg" class="zadark-publisher__lockup zadark-publisher__lockup--light">
