@@ -73,6 +73,8 @@ html[data-zadark-theme="light"] {
   --zadark-btn-floating-text: #abb4bc;
   --zadark-btn-floating-shadow: rgba(0, 0, 0, 0.16);
 
+  --zadark-by-quaric: black;
+
   #zadark-popup .zadark-publisher__lockup--dark {
     display: inline-block;
   }
@@ -116,6 +118,8 @@ html[data-zadark-theme="dark"] {
   --zadark-btn-floating: var(--zadark-grey-300);
   --zadark-btn-floating-text: var(--zadark-neutral-500);
   --zadark-btn-floating-shadow: rgba(0, 0, 0, 0.25);
+
+  --zadark-by-quaric: white;
 
   #zadark-popup .zadark-publisher__lockup--light {
     display: inline-block;
@@ -308,8 +312,8 @@ body:not(.zadark--use-hotkeys) {
     padding-bottom: 1px;
     user-select: none;
 
-    &__from {
-      color: var(--zadark-neutral-500);
+    &__by {
+      color: var(--zadark-by-quaric);
     }
 
     &__lockup {

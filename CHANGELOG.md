@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 23.9.1
+> PC 11.2 và Web 9.12
+
+### Changed
+- Cập nhật thông tin nhà phát hành thành "ZaDark by Quaric"
+
 ## ZaDark 23.8.5
 > PC 11.1 và Web 9.11
 
