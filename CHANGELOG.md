@@ -11,7 +11,6 @@
 - Bổ sung phím tắt chuyển chế độ Sáng/Tối ([#79](https://github.com/quaric/zadark/issues/79))
   - Windows: `Alt+D`
   - macOS: `⌘D`
-  - Safari: `⌃D`
 
 ### Removed
 - Bỏ phím tắt mở Cài đặt ZaDark & thay bằng phím tắt chuyển chế độ Sáng/Tối.

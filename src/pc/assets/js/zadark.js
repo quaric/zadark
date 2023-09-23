@@ -765,7 +765,7 @@
               <span class="zadark-radio__label">
                 <span>Sáng</span>
                 <span class="zadark-switch__hotkeys">
-                  <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D" data-keys-safari="⌃D"></span>
+                  <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D"></span>
                 </span>
               </span>
             </label>
@@ -776,7 +776,7 @@
               <span class="zadark-radio__label">
                 <span>Tối</span>
                 <span class="zadark-switch__hotkeys">
-                  <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D" data-keys-safari="⌃D"></span>
+                  <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D"></span>
                 </span>
               </span>
             </label>
