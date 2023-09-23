@@ -2033,6 +2033,15 @@ html[data-zadark-theme="dark"] {
     }
 
     // END: Video Player
+
+    .zavatar-admin {
+      color: var(--text-primary);
+      background: var(--NG30);
+
+      &.zavatar-admin_isOwner {
+        color: var(--Y50);
+      }
+    }
   }
 }
 
