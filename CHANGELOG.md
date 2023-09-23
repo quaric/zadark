@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 23.9.2
+> PC 11.3 và Web 9.13
+
+### Fixed
+- Tăng độ đậm cho nội dung được tô đậm (bold) trong tin nhắn ([#78](https://github.com/quaric/zadark/issues/78))
+
 ## ZaDark 23.9.1
 > PC 11.2 và Web 9.12
 

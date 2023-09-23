@@ -2203,4 +2203,11 @@ body.zadark {
   .qrsc {
     border-radius: var(--zadark-rounded-base);
   }
+
+  .rich-text-input,
+  .editor-input {
+    span[style*="font-weight: 500"] {
+      font-weight: 600 !important;
+    }
+  }
 }
