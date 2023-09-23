@@ -46,6 +46,20 @@
     ZaDarkUtils.updateTheme(theme)
   }
 
+  const handleNextTheme = async () => {
+    const {
+      theme
+    } = await ZaDarkBrowser.getExtensionSettings()
+
+    const themes = ['light', 'dark']
+
+    const nextIndex = themes.indexOf(theme) + 1
+    const nextTheme = themes[nextIndex] || themes[0]
+
+    setRadioInputTheme(nextTheme)
+    ZaDarkUtils.updateTheme(nextTheme)
+  }
+
   async function handleInputFontFamilyKeyPress (event) {
     const isEnter = Number(event.keyCode ? event.keyCode : event.which) - 1 === 12
 
@@ -172,6 +186,9 @@
               <span class="zadark-radio__checkmark"></span>
               <span class="zadark-radio__label">
                 <span>Sáng</span>
+                <span class="zadark-switch__hotkeys">
+                  <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D" data-keys-safari="⌘D"></span>
+                </span>
               </span>
             </label>
 
@@ -180,6 +197,9 @@
               <span class="zadark-radio__checkmark"></span>
               <span class="zadark-radio__label">
                 <span>Tối</span>
+                <span class="zadark-switch__hotkeys">
+                  <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D" data-keys-safari="⌘D"></span>
+                </span>
               </span>
             </label>
 
@@ -520,11 +540,10 @@
           return
         }
 
-        // Open ZaDark Settings
+        // Next theme
         case 'command+d':
         case 'ctrl+d': {
-          const buttonEl = document.getElementById('div_Main_TabZaDark')
-          buttonEl.click()
+          handleNextTheme()
         }
       }
     })

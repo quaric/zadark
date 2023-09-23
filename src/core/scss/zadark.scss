@@ -2033,6 +2033,15 @@ html[data-zadark-theme="dark"] {
     }
 
     // END: Video Player
+
+    .zavatar-admin {
+      color: var(--text-primary);
+      background: var(--NG30);
+
+      &.zavatar-admin_isOwner {
+        color: var(--Y50);
+      }
+    }
   }
 }
 
@@ -2202,5 +2211,12 @@ body.zadark {
   .label-item-main,
   .qrsc {
     border-radius: var(--zadark-rounded-base);
+  }
+
+  .rich-text-input,
+  .editor-input {
+    span[style*="font-weight: 500"] {
+      font-weight: 600 !important;
+    }
   }
 }

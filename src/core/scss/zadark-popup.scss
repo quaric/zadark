@@ -407,10 +407,8 @@ body:not(.zadark--use-hotkeys) {
         flex: 1;
       }
 
-      // Description
-      span:nth-child(2) {
-        font-size: 12px;
-        color: var(--zadark-neutral-500);
+      .zadark-switch__hotkeys {
+        margin-right: 0;
       }
     }
 

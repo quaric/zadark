@@ -301,7 +301,7 @@
       tippy('#div_Main_TabZaDark', {
         theme: 'zadark',
         allowHTML: true,
-        content: '<span>Cài đặt ZaDark <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D"></span></span>',
+        content: 'Cài đặt ZaDark',
         placement: 'right'
       })
 
