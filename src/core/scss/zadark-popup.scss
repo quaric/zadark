@@ -150,6 +150,12 @@ body:not(.zadark--use-hotkeys) {
   }
 }
 
+body.zadark-safari {
+  .zadark-popup__header__menu-coffee {
+    display: none;
+  }
+}
+
 .zadark-hotkeys {
   font-family: var(--zadark-popup-font-family);
   font-weight: 400;
@@ -282,6 +288,8 @@ body:not(.zadark--use-hotkeys) {
     }
 
     &__menu-coffee {
+      margin-left: 12px;
+
       a {
         position: relative;
         top: -3.2px;
