@@ -161,7 +161,7 @@
           <a href="https://zadark.canny.io" title="Phản hồi" target="_blank">Phản hồi</a>
         </span>
 
-        <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+        <span class="zadark-popup__header__menu-item">
           <a href="https://zadark.quaric.com/blog/changelog" title="Có gì mới trong phiên bản này?" target="_blank">Phiên bản ${ZaDarkBrowser.getManifest().version}</a>
         </span>
 
