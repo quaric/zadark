@@ -9,6 +9,7 @@
 (function (global) {
   const ZaDarkBrowser = {
     name: 'Edge',
+    changelogURL: 'https://zadark.quaric.com/blog/changelog',
 
     initClassNames: () => {
       document.body.classList.add('zadark', 'zadark-web', 'zadark-edge')

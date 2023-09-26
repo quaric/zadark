@@ -724,10 +724,8 @@
   const popupHeaderHTML = `
     <div class="zadark-popup__header">
       <div class="zadark-popup__header__logo">
-        <a href="https://zadark.quaric.com" title="ZaDark – Zalo Dark Mode" target="_blank" class="zadark-popup__header__logo-link">
-          <img src="zadark-lockup.svg" alt="ZaDark" class="zadark-popup__header__logo-img" />
-          <span class="zadark-popup__header__pro"></span>
-        </a>
+        <img src="zadark-lockup.svg" alt="ZaDark" class="zadark-popup__header__logo-img" />
+        <span class="zadark-popup__header__pro"></span>
       </div>
 
       <div class="zadark-popup__header__menu-list">

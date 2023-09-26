@@ -228,15 +228,18 @@ body.zadark-safari {
     &__logo {
       flex: 1;
       margin-right: 8px;
-    }
-
-    &__logo-link {
-      position: relative;
-      top: 2px;
 
       display: inline-flex;
       align-items: center;
     }
+
+    // &__logo-link {
+    //   position: relative;
+    //   top: 2px;
+
+    //   display: inline-flex;
+    //   align-items: center;
+    // }
 
     &__logo-img {
       width: auto;
