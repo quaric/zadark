@@ -9,6 +9,7 @@
 (function (global) {
   const ZaDarkBrowser = {
     name: 'Safari',
+    changelogURL: 'https://apps.apple.com/us/app/zadark-zalo-dark-mode/1615941471',
 
     initClassNames: () => {
       document.body.classList.add('zadark', 'zadark-web', 'zadark-safari')

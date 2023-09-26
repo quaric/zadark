@@ -34,6 +34,7 @@ const switchUseHotkeysElName = '#js-switch-use-hotkeys'
 
 $(ratingElName).attr('href', ZaDarkUtils.getRatingURL(ZaDarkBrowser.name))
 $(versionElName).html(`Phiên bản ${manifestData.version}`)
+$(versionElName).attr('href', ZaDarkBrowser.changelogURL)
 
 ZaDarkBrowser.getExtensionSettings().then(({
   theme,
