@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 23.9.3
+> PC 11.4 và Web 9.14
+
+### Changed
+- **[Safari]** Chỉ yêu cầu cấp quyền truy cập nội dung và sửa đổi đối với website chat.zalo.me ([Bảo mật và quyền riêng tư](https://zadark.quaric.com/privacy-policy#bao-mat-va-quyen-rieng-tu)).
+- Cập nhật giao diện Cài đặt ZaDark.
+
 ## ZaDark 23.9.2
 > PC 11.3 và Web 9.13
 

@@ -553,6 +553,7 @@ html[data-zadark-theme="light"] {
   &:root {
     --popper-shadow: var(--BA50) 0px 0px 0px 5000px;
     --prv-sticker-filter: invert(0.5) brightness(2);
+    --zadark-known-version-dot: var(--R50);
   }
 }
 
@@ -561,6 +562,7 @@ html[data-zadark-theme="dark"] {
     @include zadark-colors();
 
     --prv-sticker-filter: invert(0.5);
+    --zadark-known-version-dot: var(--R60);
   }
 
   // Scrollbar
@@ -2117,7 +2119,7 @@ body.zadark {
         width: 8px;
         height: 8px;
         border-radius: 4px;
-        background: var(--red-dot);
+        background: var(--zadark-known-version-dot);
         box-shadow: 0 0 0 2px var(--layer-background-leftmenu);
       }
     }

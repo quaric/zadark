@@ -15,7 +15,7 @@
 		C15875DD27EB09C300E008A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15875DC27EB09C300E008A0 /* ViewController.swift */; };
 		C15875E027EB09C300E008A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C15875DE27EB09C300E008A0 /* Main.storyboard */; };
 		C15875E227EB09C400E008A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15875E127EB09C400E008A0 /* Assets.xcassets */; };
-		C15875EA27EB09C400E008A0 /* ZaDark Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C15875E927EB09C400E008A0 /* ZaDark Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C15875EA27EB09C400E008A0 /* ZaDark Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C15875E927EB09C400E008A0 /* ZaDark Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C15875EF27EB09C400E008A0 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15875EE27EB09C400E008A0 /* SafariWebExtensionHandler.swift */; };
 		C158767127EB671A00E008A0 /* images in Resources */ = {isa = PBXBuildFile; fileRef = C158766A27EB671A00E008A0 /* images */; };
 		C158767227EB671A00E008A0 /* css in Resources */ = {isa = PBXBuildFile; fileRef = C158766B27EB671A00E008A0 /* css */; };
@@ -39,15 +39,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C158760827EB09C400E008A0 /* Embed App Extensions */ = {
+		C158760827EB09C400E008A0 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C15875EA27EB09C400E008A0 /* ZaDark Extension.appex in Embed App Extensions */,
+				C15875EA27EB09C400E008A0 /* ZaDark Extension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -179,7 +179,7 @@
 				C15875C927EB09C300E008A0 /* Sources */,
 				C15875CA27EB09C300E008A0 /* Frameworks */,
 				C15875CB27EB09C300E008A0 /* Resources */,
-				C158760827EB09C400E008A0 /* Embed App Extensions */,
+				C158760827EB09C400E008A0 /* Embed Foundation Extensions */,
 				C1E2CFA427F7EDAB00AACE85 /* Set Build Number */,
 			);
 			buildRules = (
@@ -199,7 +199,6 @@
 				C15875E527EB09C400E008A0 /* Sources */,
 				C15875E627EB09C400E008A0 /* Frameworks */,
 				C15875E727EB09C400E008A0 /* Resources */,
-				C1E2CFA827F8083800AACE85 /* Set Build Number */,
 			);
 			buildRules = (
 			);
@@ -218,7 +217,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					C15875CC27EB09C300E008A0 = {
 						CreatedOnToolsVersion = 13.3;
@@ -283,24 +282,6 @@
 		C1E2CFA427F7EDAB00AACE85 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Set Build Number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Generate the build number using current date and time\n# buildNumber=$(date \"+%s\")\n\n# Set the build number in plist file\n# /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
-		};
-		C1E2CFA827F8083800AACE85 /* Set Build Number */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
@@ -399,9 +380,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -459,9 +442,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -486,6 +471,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1695711956;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -497,7 +483,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 9.13;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -518,6 +504,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1695711956;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -529,7 +516,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 9.13;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -553,6 +540,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1695711956;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -566,8 +554,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 9.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MARKETING_VERSION = 9.14;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -591,6 +579,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1695711956;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -604,8 +593,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 9.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MARKETING_VERSION = 9.14;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
