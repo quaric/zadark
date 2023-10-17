@@ -74,9 +74,9 @@ app.whenReady().then(() => {
     callback({ cancel: false })
   })
 
-  session.fromPartition(PARTITION_NAME).cookies.get({ domain: 'zadark.quaric.com' })
+  session.fromPartition(PARTITION_NAME).cookies.get({ domain: 'zadark.com' })
     .then((cookies = []) => {
-      if (DEBUG) console.log('ZaDarkPC: Cookies/zadark.quaric.com', cookies)
+      if (DEBUG) console.log('ZaDarkPC: Cookies/zadark.com', cookies)
 
       cookies.forEach((cookie) => {
         // Typing

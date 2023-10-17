@@ -23,10 +23,10 @@ const DOWNLOAD_ZADARK_URL = IS_MAC
   : 'https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows'
 
 const COMMON_ERRORS_URL = IS_MAC
-  ? 'https://zadark.quaric.com/pc/macos#common-errors'
-  : 'https://zadark.quaric.com/pc/windows#common-errors'
+  ? 'https://zadark.com/pc/macos#common-errors'
+  : 'https://zadark.com/pc/windows#common-errors'
 
-const CONTACT_URL = 'https://zadark.quaric.com/contact'
+const CONTACT_URL = 'https://zadark.com/contact'
 
 const FEEDBACK_UNINSTALL_URL = `https://docs.google.com/forms/d/e/1FAIpQLSdLonVbx-IavimDRneKuUhtMox4vDbyu35tB6uzQG8FGJFbUg/viewform?usp=pp_url&entry.454875478=${IS_MAC ? 'macOS' : 'Windows'}`
 

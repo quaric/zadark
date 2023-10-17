@@ -160,11 +160,11 @@
         </span>
 
         <span class="zadark-popup__header__menu-item">
-          <a href="https://zadark.quaric.com/blog/changelog" title="Có gì mới trong phiên bản này?" target="_blank">Phiên bản ${ZaDarkBrowser.getManifest().version}</a>
+          <a href="https://zadark.com/blog/changelog" title="Có gì mới trong phiên bản này?" target="_blank">Phiên bản ${ZaDarkBrowser.getManifest().version}</a>
         </span>
 
         <span class="zadark-popup__header__menu-item zadark-popup__header__menu-coffee">
-          <a href="https://zadark.quaric.com/donate" title="Donate" target="_blank">
+          <a href="https://zadark.com/donate" title="Donate" target="_blank">
             <img src="${ZaDarkBrowser.getURL('images/zadark-coffee.png')}" alt="Donate" />
           </a>
         </span>
@@ -212,7 +212,7 @@
 
           <div class="font-settings font-settings--border-default">
             <label class="font-settings__label">
-              Phông chữ từ <a href="https://zadark.quaric.com/blog/use-google-fonts" target="_blank">Google Fonts</a>
+              Phông chữ từ <a href="https://zadark.com/blog/use-google-fonts" target="_blank">Google Fonts</a>
             </label>
 
             <input id="js-input-font-family" class="zadark-input" placeholder="Mặc định">

@@ -1896,9 +1896,9 @@ html[data-zadark-theme="dark"] {
       background: var(--N30);
     }
 
-    // .setting-section:has(> .setting-section-content__theme) {
-    //   display: none;
-    // }
+    .setting-section:has(> .setting-section-content__theme) {
+      display: none;
+    }
 
     .main-title-container .lock-icon {
       color: var(--text-secondary);

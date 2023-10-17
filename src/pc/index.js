@@ -64,7 +64,7 @@ const handlePromptCustomZaloPath = () => {
 const renderHeader = () => {
   print('')
   print(chalk.blueBright.bold(`ZaDark for ${IS_MAC ? 'macOS' : 'Windows'} ${ZADARK_VERSION}`))
-  print(chalk.blueBright(chalk.underline('https://zadark.quaric.com')))
+  print(chalk.blueBright(chalk.underline('https://zadark.com')))
   print('')
 }
 
@@ -95,6 +95,7 @@ const handleInstall = async (zaloResDirList) => {
   for (const zaloResDir of zaloResDirList) {
     print('')
     print(chalk('>> Dang cai dat', chalk.bold(zaloResDir)))
+    print(chalk.cyanBright('>> Vui long cho trong giay lat. Co the se mat vai phut ...'))
     await zadarkPC.installZaDark(zaloResDir)
   }
 
