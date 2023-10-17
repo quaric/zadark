@@ -98,8 +98,8 @@
 
     set: async (name, value) => {
       try {
-        const url = 'https://zadark.quaric.com/'
-        const domain = 'zadark.quaric.com'
+        const url = 'https://zadark.com/'
+        const domain = 'zadark.com'
 
         if (window.$zelectron && typeof window.$zelectron.setCookie === 'function') {
           await window.$zelectron.setCookie(name, value, url, domain)
@@ -122,10 +122,10 @@
 
       // Refs:
       // Zalo <= 23.6.1
-      // window.electronAPI.setCustomCookie('https://zadark.quaric.com', 'zadark.quaric.com', { name: "@ZaDark:THEME", value: "dark", expirationDate: Date.now() + 31536e6 })
+      // window.electronAPI.setCustomCookie('https://zadark.com', 'zadark.com', { name: "@ZaDark:THEME", value: "dark", expirationDate: Date.now() + 31536e6 })
       //
       // Zalo >= 23.7.1
-      // window.$zelectron.setCookie('@ZaDark:THEME', 'dark', 'https://zadark.quaric.com', 'zadark.quaric.com')
+      // window.$zelectron.setCookie('@ZaDark:THEME', 'dark', 'https://zadark.com', 'zadark.com')
     }
   }
 
@@ -738,11 +738,11 @@
         </span>
 
         <span class="zadark-popup__header__menu-item">
-          <a href="https://zadark.quaric.com/blog/changelog" id="js-ext-version" title="Có gì mới trong phiên bản này?" target="_blank"></a>
+          <a href="https://zadark.com/blog/changelog" id="js-ext-version" title="Có gì mới trong phiên bản này?" target="_blank"></a>
         </span>
 
         <span class="zadark-popup__header__menu-item zadark-popup__header__menu-coffee">
-          <a href="https://zadark.quaric.com/donate" title="Donate" target="_blank">
+          <a href="https://zadark.com/donate" title="Donate" target="_blank">
             <img src="zadark-coffee.png" alt="Donate" />
           </a>
         </span>
@@ -790,7 +790,7 @@
 
           <div class="font-settings font-settings--border-default">
             <label class="font-settings__label">
-              Phông chữ từ <a href="https://zadark.quaric.com/blog/use-google-fonts" target="_blank">Google Fonts</a>
+              Phông chữ từ <a href="https://zadark.com/blog/use-google-fonts" target="_blank">Google Fonts</a>
             </label>
 
             <input id="js-input-font-family" class="zadark-input" placeholder="Mặc định">

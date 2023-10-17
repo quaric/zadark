@@ -49,7 +49,7 @@ const handleLoadRulesets = async () => {
 
 browser.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
-    browser.tabs.create({ url: 'https://zadark.quaric.com/web/firefox' })
+    browser.tabs.create({ url: 'https://zadark.com/web/firefox' })
     browser.runtime.setUninstallURL(UNINSTALL_URL)
     handleLoadRulesets()
   }

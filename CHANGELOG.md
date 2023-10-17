@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 23.10.1
+> PC 11.5 và Web 9.15
+
+### Changed
+- Cập nhật địa chỉ Website chính thức sang https://zadark.com
+
 ## ZaDark 23.9.3
 > PC 11.4 và Web 9.14
 

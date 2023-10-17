@@ -49,7 +49,7 @@ const handleLoadRulesets = async () => {
 
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
-    chrome.tabs.create({ url: 'https://zadark.quaric.com/web/opera' })
+    chrome.tabs.create({ url: 'https://zadark.com/web/opera' })
     chrome.runtime.setUninstallURL(UNINSTALL_URL)
     handleLoadRulesets()
   }

@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
   "name": "ZaDark – Zalo Dark Mode",
-  "version": "9.14",
+  "version": "9.15",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
   "author": "Quaric",
-  "homepage_url": "https://zadark.quaric.com",
+  "homepage_url": "https://zadark.com",
   "icons": {
     "16": "images/zadark-icon-16.png",
     "32": "images/zadark-icon-32.png",
