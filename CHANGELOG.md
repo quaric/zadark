@@ -3,8 +3,14 @@
 ## ZaDark 23.10.1
 > PC 11.5 và Web 9.15
 
+### Fixed
+- Sửa lỗi không thể đặt Tên gợi nhớ/Nhãn cho cuộc trò chuyện khi bật **Ẩn Tên cuộc trò chuyện**
+
 ### Changed
 - Cập nhật địa chỉ Website chính thức sang https://zadark.com
+- Ẩn cài đặt giao diện của Zalo vì chỉ có 1 lựa chọn giao diện Mặc định
+#### PC specific
+- Thêm dòng chữ "**Vui long cho trong giay lat. Co the se mat vai phut ...**" để người dùng hiểu quá trình cài đặt có thể kéo dài vài phút.
 
 ## ZaDark 23.9.3
 > PC 11.4 và Web 9.14

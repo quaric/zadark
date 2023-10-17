@@ -306,6 +306,7 @@
     .threadChat__title {
       &::after {
         opacity: 0;
+        z-index: -1;
       }
 
       * {
