@@ -2037,12 +2037,17 @@ html[data-zadark-theme="dark"] {
     // END: Video Player
 
     .zavatar-admin {
-      color: var(--text-primary);
       background: var(--NG30);
+      color: var(--text-primary);
 
       &.zavatar-admin_isOwner {
         color: var(--Y50);
       }
+    }
+
+    .qu-ba {
+      background: #000;
+      color: #fff;
     }
   }
 }
