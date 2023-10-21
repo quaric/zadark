@@ -27,13 +27,13 @@ ZaDark's source code before 17:00 on April 30, 2023 is still subject to the **MI
 
 ZaDark is an extension that helps you enable Dark Mode for Zalo PC and Web.
 
-https://zadark.quaric.com/
+https://zadark.com/
 
 ![ZaDark Wins Many Awards by SourceForge](./.github/sourceforge-awards.png)
 
 ## Install
 
-https://zadark.quaric.com/install
+https://zadark.com/install
 
 ## Contributing
 
@@ -54,11 +54,11 @@ ZaDark's source code is freely available for use, modification and distribution 
 
 ## Contact
 
-https://zadark.quaric.com/contact
+https://zadark.com/contact
 
 ## Awards
 
-https://zadark.quaric.com/awards
+https://zadark.com/awards
 
 ## Acknowledgments
 
@@ -97,4 +97,4 @@ https://zadark.quaric.com/awards
 
 ---
 
-[![DMCA.com Protection Status](https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=85a452ca-06aa-4352-bfeb-7cb563dbd2b9)](https://www.dmca.com/Protection/Status.aspx?ID=85a452ca-06aa-4352-bfeb-7cb563dbd2b9&refurl=https://zadark.quaric.com/)
+[![DMCA.com Protection Status](https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=85a452ca-06aa-4352-bfeb-7cb563dbd2b9)](https://www.dmca.com/Protection/Status.aspx?ID=85a452ca-06aa-4352-bfeb-7cb563dbd2b9&refurl=https://zadark.com/)
