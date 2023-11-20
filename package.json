@@ -1,7 +1,7 @@
 {
   "name": "zadark",
   "description": "Dark Mode tốt nhất cho Zalo",
-  "version": "23.10.1",
+  "version": "23.11.1",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
     "name": "Quaric",
@@ -25,13 +25,11 @@
     "prepare": "husky install",
     "standard:fix": "standard --fix ./src/**/*.js ./*.js",
     "safari": "xed src/web/vendor/safari/ZaDark.xcodeproj",
-    "publish:chrome": "node tools/publish-api/chrome",
-    "publish:edge": "node tools/publish-api/edge",
-    "publish:firefox": "node publish-api/firefox",
     "macos:pkgbuild": "tools/macos/pkgbuild.sh",
     "macos:notarize": "tools/macos/notarize.sh",
     "macos:notarytool_log": "tools/macos/notarytool_log.sh",
-    "macos:staple": "tools/macos/staple.sh"
+    "macos:staple": "tools/macos/staple.sh",
+    "macos:auto": "tools/macos/auto.sh"
   },
   "lint-staged": {
     "*.js": "yarn standard:fix"

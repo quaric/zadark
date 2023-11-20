@@ -587,9 +587,13 @@ html[data-zadark-theme="dark"] {
     background-color: var(--bg-default);
     -webkit-font-smoothing: auto;
 
+    .title-name {
+      opacity: 0;
+    }
+
     .title-name.unfocus {
-      color: var(--text-primary);
-      opacity: 0.5;
+      // color: var(--text-primary);
+      opacity: 0;
     }
 
     #main-tab {
@@ -2037,12 +2041,26 @@ html[data-zadark-theme="dark"] {
     // END: Video Player
 
     .zavatar-admin {
-      color: var(--text-primary);
       background: var(--NG30);
+      color: var(--text-primary);
 
       &.zavatar-admin_isOwner {
         color: var(--Y50);
       }
+    }
+
+    .qu-ba {
+      background: #000;
+      color: #fff;
+    }
+
+    // .seen-msg-stt
+    .avatar-seen-img {
+      background-color: var(--NG10);
+      color: var(--text-secondary);
+    }
+    .seen-msg-stt__preview-item.totalMem {
+      padding: 0 8px;
     }
   }
 }

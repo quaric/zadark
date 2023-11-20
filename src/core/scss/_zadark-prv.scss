@@ -49,16 +49,9 @@
       }
     }
 
-    .img-msg-v2 {
-      .img-msg-v2__th > * {
-        opacity: 0;
-        transition: opacity 100ms ease-in-out;
-      }
-
-      .img-msg-v2__ft > *:not(.img-msg-v2__rct):not(.img-msg-v2__st) {
-        opacity: 0.1;
-        transition: opacity 100ms ease-in-out;
-      }
+    .img-msg-v2 .image-box__image {
+      opacity: 0;
+      transition: opacity 100ms ease-in-out;
     }
 
     .card--sticker .card--group-sticker__row__item {
@@ -69,7 +62,7 @@
         filter 100ms ease-in-out;
     }
 
-    .card--group-photo .card--group-photo__row__item .img-g-v2 {
+    .card--group-photo .card--group-photo__row__item .image-box__image {
       opacity: 0;
       transition: opacity 100ms ease-in-out;
     }
@@ -101,13 +94,8 @@
         }
       }
 
-      .img-msg-v2 {
-        .img-msg-v2__th,
-        .img-msg-v2__ft {
-          > * {
-            opacity: 1;
-          }
-        }
+      .img-msg-v2 .image-box__image {
+        opacity: 1;
       }
 
       .card--sticker .card--group-sticker__row__item {
@@ -115,7 +103,7 @@
         filter: none;
       }
 
-      .card--group-photo .card--group-photo__row__item .img-g-v2 {
+      .card--group-photo .card--group-photo__row__item .image-box__image {
         opacity: 1;
       }
     }

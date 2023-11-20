@@ -1,5 +1,19 @@
 # Changelog
 
+## ZaDark 23.11.1
+> PC 11.6 và Web 9.16
+
+### Fixed
+- Sửa lỗi không ẩn được hình ảnh ([#86](https://github.com/quaric/zadark/issues/86)).
+- Sửa lỗi Dark Mode trạng thái đã xem tin nhắn ([#87](https://github.com/quaric/zadark/issues/87)).
+
+### Added
+- Thêm bản cài đặt **arm64** cho macOS.
+- Thêm Google AdSense vào Website ZaDark.com để tìm kiếm kinh phí phát triển sản phẩm. Chúng tôi xin lỗi nếu quảng cáo làm phiền mọi người khi truy cập Website.
+
+### Changed
+- Ẩn tiêu đề TitleBar ([#88](https://github.com/quaric/zadark/issues/88)).
+
 ## ZaDark 23.10.1
 > PC 11.5 và Web 9.15
 

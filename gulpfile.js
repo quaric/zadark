@@ -190,7 +190,7 @@ const pkgMacOS = () => {
     pkg.exec([
       './build/pc/index.js',
       '--config', './pkg.config.json',
-      '--targets', 'node14-macos-x64',
+      '--targets', 'node14-macos-x64,node14-macos-arm64',
       '--output', distUtils.getFilePath('MACOS', true)
     ]).then(() => {
       //
@@ -250,7 +250,7 @@ const setWindowsExeInfo = async () => {
   ver.setStringValues(language, {
     ProductName: 'ZaDark – Zalo Dark Mode',
     FileDescription: `ZaDark for Windows ${versionStr}`,
-    LegalCopyright: 'ZaDark from Quaric. MPL-2.0 license.',
+    LegalCopyright: 'ZaDark by Quaric. MPL-2.0 license.',
     OriginalFilename: distUtils.getFileNameOriginal('WINDOWS')
   })
 

@@ -23,6 +23,8 @@
 # Source the environment variables from the .env file
 source .env
 
+arch="${1:-x64}"
+
 # Set temporary path
 tmpPath=.zadark
 
@@ -30,8 +32,8 @@ tmpPath=.zadark
 version=$(grep -o '"version": *"[^"]*"' src/pc/package.json | awk -F'"' '{print $4}')
 
 # Set original file path and package file path based on the version number
-originalFilePath=dist/macos/ZaDark\ ${version}\ exec
-pkgFilePath=dist/macos/ZaDark\ ${version}.pkg
+originalFilePath=dist/macos/ZaDark\ ${version}\ exec-${arch}
+pkgFilePath=dist/macos/ZaDark\ ${version}-${arch}.pkg
 
 echo "[Prepare]"
 
