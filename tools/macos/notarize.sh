@@ -27,11 +27,13 @@
 # Source the environment variables from the .env file
 source .env
 
+arch="${1:-x64}"
+
 # Retrieve the version number from the package.json file
 version=$(grep -o '"version": *"[^"]*"' src/pc/package.json | awk -F'"' '{print $4}')
 
 # Set the package file path based on the version number
-pkgFilePath=dist/macos/ZaDark\ ${version}.pkg
+pkgFilePath=dist/macos/ZaDark\ ${version}-${arch}.pkg
 
 echo "[Prepare]"
 echo "$pkgFilePath"
