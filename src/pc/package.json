@@ -1,7 +1,7 @@
 {
   "name": "zadark-pc",
   "description": "Dark Mode tốt nhất cho Zalo",
-  "version": "11.5",
+  "version": "11.6",
   "main": "index.js",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
@@ -12,7 +12,7 @@
   "contributors": [
     {
       "name": "Nguyen Chanh Dai",
-      "email": "info@nguyenchanhdai.com",
+      "email": "hello@chanhdai.com",
       "url": "https://github.com/iamncdai"
     }
   ],
