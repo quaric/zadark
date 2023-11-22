@@ -36,7 +36,7 @@ const getZaloProcessIds = async () => {
     : ['zalo.exe']
 
   const pids = processes
-    .filter((process) => processName.includes(process.name.toLowerCase()))
+    .filter((process) => typeof process.name === 'string' && processName.includes(process.name.toLowerCase()))
     .map((process) => process.pid)
 
   return pids
