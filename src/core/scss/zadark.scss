@@ -1390,57 +1390,16 @@ html[data-zadark-theme="dark"] {
 
     // BEGIN: Image Show
 
-    .image-show__title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 32px;
-      color: var(--text-primary);
-      > .fl-l {
-        margin: 3px 10px 3px 0px !important;
-      }
-    }
+    .media-viewer {
+      --WA80: hsla(0, 0%, 100%, 0.8);
+      --WA100: #fff;
 
-    .image-show__bottom__sender__info {
-      color: var(--text-primary);
-    }
+      --NG85: #2e2e2e;
+      --NG90: #1f1f1f;
+      --NG95: #141414;
 
-    .image-show__bottom__ctrl {
-      > .btn,
-      > a > .btn {
-        color: var(--text-primary);
-      }
-    }
-
-    .image-show__icon-fullscreen {
-      color: var(--text-primary);
-    }
-
-    .image-show .image-show__reaction .msg-reaction-icon {
-      background: var(--text-primary);
-    }
-
-    .image-show__thumb__legend {
-      color: var(--text-primary);
-    }
-
-    .timeline-slider__handle {
-      background: var(--text-primary);
-    }
-
-    .image-show__close {
-      > .fa-close,
-      > .quote-base__close-icon {
-        color: var(--text-primary);
-      }
-    }
-
-    .image-show__thumb-container .btn-play {
-      color: var(--text-primary);
-    }
-
-    .image-show__caption {
-      color: var(--text-primary);
+      --text-on-color: #fff;
+      --icon-on-color: #fff;
     }
 
     // END: Image Show
@@ -2062,6 +2021,11 @@ html[data-zadark-theme="dark"] {
     .seen-msg-stt__preview-item.totalMem {
       padding: 0 8px;
     }
+
+    // Media Viewer
+    // .media-viewer-layout .media-viewer__header {
+
+    // }
   }
 }
 

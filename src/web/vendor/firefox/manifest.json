@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "ZaDark – Zalo Dark Mode",
-  "version": "9.16",
+  "version": "9.17",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
   "author": "Quaric",
