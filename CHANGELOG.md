@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 23.11.2
+> PC 11.7 và Web 9.17
+
+### Fixed
+- Sửa lỗi Dark Mode cho trình xem ảnh/video (Media Viewer)
+
 ## ZaDark 23.11.1
 > PC 11.6 và Web 9.16
 
