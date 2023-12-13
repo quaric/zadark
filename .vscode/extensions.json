@@ -1,3 +1,6 @@
 {
-  "recommendations": ["standard.vscode-standard"]
+  "recommendations": [
+    "standard.vscode-standard",
+    "mgmcdermott.vscode-language-babel"
+  ]
 }
