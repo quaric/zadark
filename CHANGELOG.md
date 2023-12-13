@@ -1,5 +1,19 @@
 # Changelog
 
+## ZaDark 23.12.1
+> PC 11.8
+
+### Added
+- Hiển thị chi tiết các bước cài đặt, gỡ cài đặt ZaDark.
+  - Nâng cao trải nghiệm người dùng.
+  - Nhà phát triển dễ dàng biết được lỗi ở bước nào khi người dùng báo lỗi.
+
+### Changed
+- Cải thiện mã nguồn ZaDark PC.
+- Cập nhật địa chỉ hướng dẫn.
+  - Windows: https://zadark.com/pc/windows
+  - macOS: https://zadark.com/pc/macos
+
 ## ZaDark 23.11.2
 > PC 11.7 và Web 9.17
 

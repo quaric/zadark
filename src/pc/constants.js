@@ -1,12 +1,10 @@
 const os = require('os')
-const path = require('path')
 const packageJSON = require('./package.json')
 
 const PLATFORM = os.platform()
 const OS_NAME = PLATFORM === 'darwin' ? 'macOS' : 'Windows'
 const IS_MAC = PLATFORM === 'darwin'
 const IS_WIN = PLATFORM === 'win32'
-const IS_DEV = process.env === 'development'
 
 const ZADARK_VERSION = packageJSON.version
 
@@ -26,18 +24,17 @@ const COMMON_ERRORS_URL = IS_MAC
   ? 'https://zadark.com/pc/macos#common-errors'
   : 'https://zadark.com/pc/windows#common-errors'
 
+const DOCS_URL = IS_MAC
+  ? 'https://zadark.com/pc/macos'
+  : 'https://zadark.com/pc/windows'
+
 const CONTACT_URL = 'https://zadark.com/contact'
-
-const FEEDBACK_UNINSTALL_URL = `https://docs.google.com/forms/d/e/1FAIpQLSdLonVbx-IavimDRneKuUhtMox4vDbyu35tB6uzQG8FGJFbUg/viewform?usp=pp_url&entry.454875478=${IS_MAC ? 'macOS' : 'Windows'}`
-
-const CONFIG_FILE_PATH = path.join(os.homedir(), '.zadarkconfig')
 
 module.exports = {
   PLATFORM,
   OS_NAME,
   IS_MAC,
   IS_WIN,
-  IS_DEV,
 
   ZADARK_VERSION,
 
@@ -46,8 +43,6 @@ module.exports = {
 
   DOWNLOAD_ZADARK_URL,
   COMMON_ERRORS_URL,
-  CONTACT_URL,
-  FEEDBACK_UNINSTALL_URL,
-
-  CONFIG_FILE_PATH
+  DOCS_URL,
+  CONTACT_URL
 }
