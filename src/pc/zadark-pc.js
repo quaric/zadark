@@ -5,7 +5,7 @@ const asar = require('@electron/asar')
 const HTMLParser = require('node-html-parser')
 const glob = require('glob')
 
-const { printDebug, copyRecursiveSync } = require('./utils')
+const { printDebug, copyRecursiveSync, printError } = require('./utils')
 
 const { PLATFORM, ZADARK_VERSION, IS_MAC, OS_NAME } = require('./constants')
 const psList = require('./packages/ps-list')
@@ -52,10 +52,6 @@ const removeZaDarkCSSAndJS = ({ headElement, bodyElement }) => {
       selector: 'script[src^="zadark"]',
       htmlElement: bodyElement
     }
-    // {
-    //   selector: 'meta[http-equiv="Content-Security-Policy"]',
-    //   htmlElement: headElement
-    // }
   ]
 
   elementsToRemove.forEach(({ selector, htmlElement }) => {
@@ -70,18 +66,21 @@ const updateMetaContentSecurityPolicyTag = (htmlElement) => {
   const metaTag = htmlElement.querySelector('meta[http-equiv="Content-Security-Policy"]')
 
   if (!metaTag) {
+    printDebug('- updateMetaContentSecurityPolicyTag', 'skip: metaTag not found.')
     return
   }
 
   const contentValue = metaTag.getAttribute('content')
 
   if (contentValue.indexOf('https://fonts.googleapis.com') !== -1) {
+    printDebug('- updateMetaContentSecurityPolicyTag', 'skip: https://fonts.googleapis.com already exists.')
     return
   }
 
   const regex = /style-src[^;]*/
   const newContentValue = contentValue.replace(regex, '$& https://fonts.googleapis.com')
 
+  printDebug('- updateMetaContentSecurityPolicyTag')
   metaTag.setAttribute('content', newContentValue)
 }
 
@@ -196,8 +195,8 @@ const writeIndexFile = (zaloDir) => {
     bodyElement.classList.add(className)
   })
 
-  fs.writeFileSync(srcPath, root.toString())
   printDebug('- writeIndexFile', srcPath)
+  fs.writeFileSync(srcPath, root.toString())
 }
 
 const writeBootstrapFile = (zaloDir) => {
@@ -205,7 +204,8 @@ const writeBootstrapFile = (zaloDir) => {
   const srcPath = path.join(zaloDir, `app/${src}`)
 
   if (!fs.existsSync(srcPath)) {
-    throw new Error(srcPath + ' khong ton tai.')
+    printError('- writeBootstrapFile', 'skip: ' + srcPath + ' khong ton tai.')
+    return
   }
 
   const bootstrapContent = fs.readFileSync(srcPath, 'utf8')
@@ -220,8 +220,8 @@ const writeBootstrapFile = (zaloDir) => {
   const insertionIndex = bootstrapContent.indexOf(contentToFind) + contentToFind.length
   const insertedContent = `${bootstrapContent.slice(0, insertionIndex)}\n    ${contentToInsert}${bootstrapContent.slice(insertionIndex)}`
 
-  fs.writeFileSync(srcPath, insertedContent)
   printDebug('- writeBootstrapFile', srcPath)
+  fs.writeFileSync(srcPath, insertedContent)
 }
 
 const writeZNotificationFile = (zaloDir) => {
@@ -229,7 +229,8 @@ const writeZNotificationFile = (zaloDir) => {
   const srcPath = path.join(zaloDir, `app/${src}`)
 
   if (!fs.existsSync(srcPath)) {
-    throw new Error(srcPath + ' khong ton tai.')
+    printError('- writeZNotificationFile', 'skip: ' + srcPath + ' khong ton tai.')
+    return
   }
 
   const indexHTMLContent = fs.readFileSync(srcPath, 'utf8')
@@ -275,8 +276,8 @@ const writeZNotificationFile = (zaloDir) => {
     bodyElement.classList.add(className)
   })
 
-  fs.writeFileSync(srcPath, root.toString())
   printDebug('- writeZNotificationFile', srcPath)
+  fs.writeFileSync(srcPath, root.toString())
 }
 
 const copyAssetDir = (zaloDir, { dest, src }) => {
@@ -287,9 +288,8 @@ const copyAssetDir = (zaloDir, { dest, src }) => {
     throw new Error(srcPath + ' khong ton tai.')
   }
 
+  printDebug('- copyAssetDir', src, '>', destPath)
   copyRecursiveSync(srcPath, destPath)
-
-  printDebug('- copyAssetDir', src, '➜', destPath)
 }
 
 const installZaDark = async (zaloDir) => {
@@ -365,8 +365,12 @@ const installZaDark = async (zaloDir) => {
     writeZNotificationFile(zaloDir)
   }
 
-  // Create package "resources/app.asar" from "resources/app" -> Delete "resources/app"
+  // Create package "resources/app.asar" from "resources/app"
+  printDebug('- createAsar', appAsarPath)
   await asar.createPackage(appDirPath, appAsarPath)
+
+  // Delete "resources/app"
+  printDebug('- deleteDir', appDirPath)
   await del(appDirPath, { force: true })
 }
 
@@ -374,14 +378,17 @@ const uninstallZaDark = async (zaloDir) => {
   const appAsarPath = path.join(zaloDir, 'app.asar')
   const appAsarBakPath = path.join(zaloDir, 'app.asar.bak')
 
-  // Delete "resources/app.asar"
-  // Rename "resources/app.asar.bak" to "resources/app.asar"
-  if (fs.existsSync(appAsarBakPath)) {
-    printDebug('- deleteFile', appAsarPath)
-    await del(appAsarPath, { force: true })
-    fs.renameSync(appAsarBakPath, appAsarPath)
-    printDebug('- renameFile', appAsarBakPath)
+  if (!fs.existsSync(appAsarBakPath)) {
+    return
   }
+
+  // Delete "resources/app.asar"
+  printDebug('- deleteFile', appAsarPath)
+  await del(appAsarPath, { force: true })
+
+  // Rename "resources/app.asar.bak" to "resources/app.asar"
+  printDebug('- renameFile', appAsarBakPath)
+  fs.renameSync(appAsarBakPath, appAsarPath)
 }
 
 module.exports = {

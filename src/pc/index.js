@@ -1,21 +1,18 @@
 const prompt = require('prompt-sync')()
 const chalk = require('chalk')
 const inquirer = require('inquirer')
-const crossSpawn = require('cross-spawn')
 
 const zadarkPC = require('./zadark-pc')
-const { print, printError, openWebsite, clearScreen, killProcesses, loadUserSettings, saveUserSettings } = require('./utils')
+const { print, printError, openWebsite, clearScreen, killProcesses } = require('./utils')
 
 const {
   ZADARK_VERSION,
   IS_MAC,
-  IS_DEV,
   COMMON_ERRORS_URL,
   DEFAULT_ZALO_PATH,
   EXAMPLE_CUSTOM_ZALO_PATH,
   DOWNLOAD_ZADARK_URL,
-  CONTACT_URL,
-  FEEDBACK_UNINSTALL_URL
+  DOCS_URL
 } = require('./constants')
 
 const promptFeatureIndex = async () => {
@@ -116,34 +113,13 @@ const handleUninstall = async (zaloResDirList) => {
 
   print('')
   print(chalk.greenBright('>> Da go cai dat ZaDark. Vui long mo lai Zalo PC.'))
-
-  const userSettings = {
-    firstUninstall: true,
-    ...loadUserSettings()
-  }
-
-  if (userSettings.firstUninstall) {
-    saveUserSettings({ ...userSettings, firstUninstall: false })
-    openWebsite(FEEDBACK_UNINSTALL_URL)
-  }
 }
 
 const handleOpenDocs = () => {
   print(chalk.magentaBright.bold('[HUONG DAN]'))
   print('')
-  print('>> Truy cap:', chalk.underline(CONTACT_URL))
-  openWebsite(CONTACT_URL)
-}
-
-const requestQuitTermProgram = () => {
-  if (!IS_MAC || IS_DEV) {
-    return
-  }
-
-  crossSpawn('osascript', ['-e', 'tell application "Terminal" to quit'], {
-    stdio: 'ignore',
-    detached: true
-  }).unref()
+  print('>> Truy cap:', chalk.underline(DOCS_URL))
+  openWebsite(DOCS_URL)
 }
 
 (async () => {
@@ -215,11 +191,6 @@ const requestQuitTermProgram = () => {
         handleOpenDocs()
         break
       }
-
-      default: {
-        requestQuitTermProgram()
-        process.exit(0)
-      }
     }
   } catch (error) {
     clearScreen()
@@ -245,8 +216,5 @@ const requestQuitTermProgram = () => {
     print('')
 
     prompt(chalk.yellowBright('> Nhan phim', chalk.bold('[Enter]'), 'de thoat ... '))
-
-    requestQuitTermProgram()
-    process.exit(0)
   }
 })()

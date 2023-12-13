@@ -1,7 +1,7 @@
 {
   "name": "zadark",
   "description": "Dark Mode tốt nhất cho Zalo",
-  "version": "23.11.2",
+  "version": "23.12.1",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
     "name": "Quaric",
@@ -11,13 +11,13 @@
   "contributors": [
     {
       "name": "Nguyen Chanh Dai",
-      "email": "info@nguyenchanhdai.com",
+      "email": "hello@chanhdai.com",
       "url": "https://github.com/iamncdai"
     }
   ],
   "license": "MPL-2.0",
   "scripts": {
-    "dev": "gulp dev",
+    "dev": "NODE_ENV=development gulp dev",
     "build": "NODE_ENV=development gulp build",
     "dist": "gulp dist",
     "pc:dev": "NODE_ENV=development node build/pc",
@@ -58,7 +58,7 @@
     "standard": "^16.0.4"
   },
   "dependencies": {
-    "@electron/asar": "^3.2.2",
+    "@electron/asar": "^3.2.8",
     "chalk": "4.1.2",
     "cross-spawn": "^7.0.3",
     "del": "^6.0.0",

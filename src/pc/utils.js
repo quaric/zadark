@@ -3,10 +3,10 @@ const fs = require('fs')
 const path = require('path')
 const crossSpawn = require('cross-spawn')
 
-const { IS_MAC, IS_DEV, CONFIG_FILE_PATH } = require('./constants')
+const { IS_MAC } = require('./constants')
 
 const print = (...args) => console.log(args.join(' '))
-const printDebug = (...args) => IS_DEV ? print(chalk.gray(...args)) : null
+const printDebug = (...args) => print(chalk.gray(...args))
 const printError = (...args) => console.log(chalk.redBright(args.join(' ')))
 const clearScreen = () => console.clear()
 
@@ -56,24 +56,6 @@ const killProcesses = (processIds = []) => {
   processIds.forEach((pid) => killProcess(pid))
 }
 
-const saveUserSettings = (settings) => {
-  try {
-    fs.writeFileSync(CONFIG_FILE_PATH, JSON.stringify(settings))
-    return true
-  } catch (err) {
-    return false
-  }
-}
-
-const loadUserSettings = () => {
-  try {
-    const data = fs.readFileSync(CONFIG_FILE_PATH, 'utf-8')
-    return JSON.parse(data)
-  } catch (err) {
-    return {}
-  }
-}
-
 module.exports = {
   print,
   printDebug,
@@ -85,8 +67,5 @@ module.exports = {
   isRoot,
 
   killProcess,
-  killProcesses,
-
-  saveUserSettings,
-  loadUserSettings
+  killProcesses
 }
