@@ -34,22 +34,24 @@ const copyRecursiveSync = (src, dest) => {
   }
 
   const destDir = path.dirname(dest)
+
   if (!fs.existsSync(destDir)) {
     fs.mkdirSync(destDir, { recursive: true })
   }
+
   // https://github.com/vercel/pkg/issues/639
   const fileContent = fs.readFileSync(src)
   fs.writeFileSync(dest, fileContent)
 }
 
-const isRoot = () => {
-  return IS_MAC ? process.getuid && process.getuid() === 0 : false
-}
-
 const killProcess = (pid) => {
-  const args = IS_MAC ? [pid.toString()] : ['/F', '/PID', pid.toString()]
-  const result = crossSpawn.sync(IS_MAC ? 'kill' : 'taskkill', args)
-  return result?.status === 0
+  try {
+    const args = IS_MAC ? [pid.toString()] : ['/F', '/PID', pid.toString()]
+    const result = crossSpawn.sync(IS_MAC ? 'kill' : 'taskkill', args)
+    return result?.status === 0
+  } catch (error) {
+    return false
+  }
 }
 
 const killProcesses = (processIds = []) => {
@@ -64,7 +66,6 @@ module.exports = {
 
   openWebsite,
   copyRecursiveSync,
-  isRoot,
 
   killProcess,
   killProcesses

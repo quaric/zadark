@@ -271,11 +271,17 @@ const setWindowsExeInfo = async () => {
 
 // Zip
 
-// const zipMacOS = () => {
-//   return src(distUtils.getFilePath('MACOS', true))
-//     .pipe(gulpZip(distUtils.getFileNameZip('MACOS')))
-//     .pipe(dest(distUtils.getFileDir('MACOS')))
-// }
+const zipMacOSX64 = () => {
+  return src(distUtils.getFilePath('MACOS_X64', true))
+    .pipe(gulpZip(distUtils.getFileNameZip('MACOS_X64')))
+    .pipe(dest(distUtils.getFileDir('MACOS_X64')))
+}
+
+const zipMacOSARM64 = () => {
+  return src(distUtils.getFilePath('MACOS_ARM64', true))
+    .pipe(gulpZip(distUtils.getFileNameZip('MACOS_ARM64')))
+    .pipe(dest(distUtils.getFileDir('MACOS_ARM64')))
+}
 
 const zipWindows = () => {
   return src(distUtils.getFilePath('WINDOWS', true))
@@ -313,6 +319,8 @@ const pcDist = series(
   pkgMacOS,
   pkgWindows,
   setWindowsExeInfo,
+  zipMacOSX64,
+  zipMacOSARM64,
   zipWindows
 )
 

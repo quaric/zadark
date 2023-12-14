@@ -7,7 +7,7 @@ const glob = require('glob')
 
 const { printDebug, copyRecursiveSync, printError } = require('./utils')
 
-const { PLATFORM, ZADARK_VERSION, IS_MAC, OS_NAME } = require('./constants')
+const { PLATFORM, IS_MAC, OS_NAME, ZADARK_VERSION, ZADARK_TMP_PATH, ZALO_PROCESS_NAMES } = require('./constants')
 const psList = require('./packages/ps-list')
 
 const getZaloResDirList = (customZaloPath) => {
@@ -29,17 +29,17 @@ const getZaloResDirList = (customZaloPath) => {
 }
 
 const getZaloProcessIds = async () => {
-  const processes = await psList()
+  try {
+    const processes = await psList()
 
-  const processName = IS_MAC
-    ? ['zalo', '/applications/za']
-    : ['zalo.exe']
+    const pids = processes
+      .filter((process) => typeof process.name === 'string' && ZALO_PROCESS_NAMES.includes(process.name.toLowerCase()))
+      .map((process) => process.pid)
 
-  const pids = processes
-    .filter((process) => typeof process.name === 'string' && processName.includes(process.name.toLowerCase()))
-    .map((process) => process.pid)
-
-  return pids
+    return pids
+  } catch (error) {
+    throw new Error('Vui long tat Zalo PC truoc khi cai dat ZaDark.')
+  }
 }
 
 const removeZaDarkCSSAndJS = ({ headElement, bodyElement }) => {
@@ -66,21 +66,21 @@ const updateMetaContentSecurityPolicyTag = (htmlElement) => {
   const metaTag = htmlElement.querySelector('meta[http-equiv="Content-Security-Policy"]')
 
   if (!metaTag) {
-    printDebug('- updateMetaContentSecurityPolicyTag', 'skip: metaTag not found.')
+    printError('- updateContentSecurityPolicy:', 'skip: metaTag not found.')
     return
   }
 
   const contentValue = metaTag.getAttribute('content')
 
   if (contentValue.indexOf('https://fonts.googleapis.com') !== -1) {
-    printDebug('- updateMetaContentSecurityPolicyTag', 'skip: https://fonts.googleapis.com already exists.')
+    printDebug('- updateContentSecurityPolicy:', 'skip: content already exists.')
     return
   }
 
   const regex = /style-src[^;]*/
   const newContentValue = contentValue.replace(regex, '$& https://fonts.googleapis.com')
 
-  printDebug('- updateMetaContentSecurityPolicyTag')
+  printDebug('- updateContentSecurityPolicy')
   metaTag.setAttribute('content', newContentValue)
 }
 
@@ -195,7 +195,7 @@ const writeIndexFile = (zaloDir) => {
     bodyElement.classList.add(className)
   })
 
-  printDebug('- writeIndexFile', srcPath)
+  printDebug('- writeFile:', srcPath)
   fs.writeFileSync(srcPath, root.toString())
 }
 
@@ -204,7 +204,7 @@ const writeBootstrapFile = (zaloDir) => {
   const srcPath = path.join(zaloDir, `app/${src}`)
 
   if (!fs.existsSync(srcPath)) {
-    printError('- writeBootstrapFile', 'skip: ' + srcPath + ' khong ton tai.')
+    printError('- writeFile:', srcPath, 'skip: file does not exist.')
     return
   }
 
@@ -212,7 +212,7 @@ const writeBootstrapFile = (zaloDir) => {
   const contentToInsert = "require('./pc-dist/zadark-main.min');"
 
   if (bootstrapContent.includes(contentToInsert)) {
-    printDebug('- writeBootstrapFile', 'skip: contentToInsert already exists.')
+    printDebug('- writeFile:', srcPath, 'skip: content already exists.')
     return
   }
 
@@ -220,7 +220,7 @@ const writeBootstrapFile = (zaloDir) => {
   const insertionIndex = bootstrapContent.indexOf(contentToFind) + contentToFind.length
   const insertedContent = `${bootstrapContent.slice(0, insertionIndex)}\n    ${contentToInsert}${bootstrapContent.slice(insertionIndex)}`
 
-  printDebug('- writeBootstrapFile', srcPath)
+  printDebug('- writeFile:', srcPath)
   fs.writeFileSync(srcPath, insertedContent)
 }
 
@@ -229,7 +229,7 @@ const writeZNotificationFile = (zaloDir) => {
   const srcPath = path.join(zaloDir, `app/${src}`)
 
   if (!fs.existsSync(srcPath)) {
-    printError('- writeZNotificationFile', 'skip: ' + srcPath + ' khong ton tai.')
+    printError('- writeFile:', srcPath, 'skip: file does not exist.')
     return
   }
 
@@ -276,7 +276,7 @@ const writeZNotificationFile = (zaloDir) => {
     bodyElement.classList.add(className)
   })
 
-  printDebug('- writeZNotificationFile', srcPath)
+  printDebug('- writeFile:', srcPath)
   fs.writeFileSync(srcPath, root.toString())
 }
 
@@ -288,7 +288,7 @@ const copyAssetDir = (zaloDir, { dest, src }) => {
     throw new Error(srcPath + ' khong ton tai.')
   }
 
-  printDebug('- copyAssetDir', src, '>', destPath)
+  printDebug('- copyDir:', src, '>', destPath)
   copyRecursiveSync(srcPath, destPath)
 }
 
@@ -297,81 +297,89 @@ const installZaDark = async (zaloDir) => {
     throw new Error(zaloDir + ' khong ton tai.')
   }
 
-  const appDirPath = path.join(zaloDir, 'app')
   const appAsarPath = path.join(zaloDir, 'app.asar')
   const appAsarBakPath = path.join(zaloDir, 'app.asar.bak')
+
+  const appDirTmpPath = path.join(ZADARK_TMP_PATH, 'app')
+  const appAsarTmpPath = path.join(ZADARK_TMP_PATH, 'app.asar')
 
   if (!fs.existsSync(appAsarPath)) {
     throw new Error(zaloDir + ' khong co tap tin "app.asar".')
   }
 
-  // Delete "resources/app"
-  if (fs.existsSync(appDirPath)) {
-    printDebug('- deleteDir', appDirPath)
-    await del(appDirPath, { force: true })
+  // Delete ZADARK_TMP_PATH
+  if (fs.existsSync(ZADARK_TMP_PATH)) {
+    printDebug('- deleteDir:', ZADARK_TMP_PATH)
+    await del(ZADARK_TMP_PATH, { force: true })
   }
 
-  // Extract "resources/app.asar" to "resources/app"
-  printDebug('- extractAsar', appAsarPath)
-  asar.extractAll(appAsarPath, appDirPath)
+  printDebug('- createDir:', ZADARK_TMP_PATH)
+  fs.mkdirSync(ZADARK_TMP_PATH)
 
-  // Backup "app.asar"
-  // Rename "resources/app.asar" to "resources/app.asar.bak"
-  if (!fs.existsSync(appAsarBakPath)) {
-    printDebug('- backupFile', appAsarPath)
-    fs.renameSync(appAsarPath, appAsarBakPath)
-  }
+  // Extract "resources/app.asar" to "ZADARK_TMP_PATH/app"
+  printDebug('- extractAsar:', appAsarPath, '>', appDirTmpPath)
+  asar.extractAll(appAsarPath, appDirTmpPath)
 
   // Copy assets
   const assets = [
     {
-      // "pc/assets/fonts/*" to "resources/app/pc-dist/fonts"
+      // "pc/assets/fonts/*" to "ZADARK_TMP_PATH/app/pc-dist/fonts"
       src: 'fonts',
       dest: 'pc-dist/fonts'
     },
     {
-      // "pc/assets/images/*" to "resources/app/pc-dist"
+      // "pc/assets/images/*" to "ZADARK_TMP_PATH/app/pc-dist"
       src: 'images',
       dest: 'pc-dist'
     },
     {
-      // "pc/assets/css/*" to "resources/app/pc-dist"
+      // "pc/assets/css/*" to "ZADARK_TMP_PATH/app/pc-dist"
       src: 'css',
       dest: 'pc-dist'
     },
     {
-      // "pc/assets/js/*" to "resources/app/pc-dist"
+      // "pc/assets/js/*" to "ZADARK_TMP_PATH/app/pc-dist"
       src: 'js',
       dest: 'pc-dist'
     },
     {
-      // "pc/assets/libs/*" to "resources/app/pc-dist"
+      // "pc/assets/libs/*" to "ZADARK_TMP_PATH/app/pc-dist"
       src: 'libs',
       dest: 'pc-dist'
     }
   ]
   assets.forEach((asset) => {
-    copyAssetDir(zaloDir, asset)
+    copyAssetDir(ZADARK_TMP_PATH, asset)
   })
 
-  // Add "themeAttributes, classNames, fonts, stylesheets and scripts" to "resources/app/pc-dist/index.html"
-  writeIndexFile(zaloDir)
+  // Add "themeAttributes, classNames, fonts, stylesheets and scripts" to "ZADARK_TMP_PATH/app/pc-dist/index.html"
+  writeIndexFile(ZADARK_TMP_PATH)
 
-  // Add zadark-main to "resources/app/bootstrap.js"
-  writeBootstrapFile(zaloDir)
+  // Add zadark-main to "ZADARK_TMP_PATH/app/bootstrap.js"
+  writeBootstrapFile(ZADARK_TMP_PATH)
 
   if (!IS_MAC) {
-    // Add fonts, stylesheets and scripts" to "resources/app/pc-dist/znotification.html"
-    writeZNotificationFile(zaloDir)
+    // Add fonts, stylesheets and scripts" to "ZADARK_TMP_PATH/app/pc-dist/znotification.html"
+    writeZNotificationFile(ZADARK_TMP_PATH)
   }
 
-  // Create package "resources/app.asar" from "resources/app"
-  printDebug('- createAsar', appAsarPath)
-  await asar.createPackage(appDirPath, appAsarPath)
+  // Create package "ZADARK_TMP_PATH/app.asar" from "ZADARK_TMP_PATH/app"
+  printDebug('- createAsar:', appDirTmpPath, '>', appAsarTmpPath)
+  await asar.createPackage(appDirTmpPath, appAsarTmpPath)
 
-  // Delete "resources/app"
-  printDebug('- deleteDir', appDirPath)
-  await del(appDirPath, { force: true })
+  // Rename "resources/app.asar" to "resources/app.asar.bak"
+  if (!fs.existsSync(appAsarBakPath)) {
+    printDebug('- renameFile:', appAsarPath, '>', appAsarBakPath)
+    fs.renameSync(appAsarPath, appAsarBakPath)
+  }
+
+  // Copy "ZADARK_TMP_PATH/app.asar" to "resources/app.asar"
+  printDebug('- copyFile:', appAsarTmpPath, '>', appAsarPath)
+  fs.copyFileSync(appAsarTmpPath, appAsarPath)
+
+  // Delete "ZADARK_TMP_PATH"
+  printDebug('- deleteDir:', ZADARK_TMP_PATH)
+  await del(ZADARK_TMP_PATH, { force: true })
 }
 
 const uninstallZaDark = async (zaloDir) => {
@@ -379,15 +387,11 @@ const uninstallZaDark = async (zaloDir) => {
   const appAsarBakPath = path.join(zaloDir, 'app.asar.bak')
 
   if (!fs.existsSync(appAsarBakPath)) {
-    return
+    throw new Error('Go cai dat ZaDark khong thanh cong.')
   }
 
-  // Delete "resources/app.asar"
-  printDebug('- deleteFile', appAsarPath)
-  await del(appAsarPath, { force: true })
-
   // Rename "resources/app.asar.bak" to "resources/app.asar"
-  printDebug('- renameFile', appAsarBakPath)
+  printDebug('- renameFile:', appAsarBakPath, '>', appAsarPath)
   fs.renameSync(appAsarBakPath, appAsarPath)
 }
 

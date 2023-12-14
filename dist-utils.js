@@ -11,7 +11,9 @@ const FILE_NAME = {
   FIREFOX: `ZaDark Firefox ${firefoxManifest.version}`,
   OPERA: `ZaDark Opera ${operaManifest.version}`,
   EDGE: `ZaDark Edge ${edgeManifest.version}`,
-  MACOS: `ZaDark ${pcPackageJSON.version} exec`,
+  MACOS: `ZaDark ${pcPackageJSON.version} macOS`,
+  MACOS_X64: `ZaDark ${pcPackageJSON.version} macOS-x64`,
+  MACOS_ARM64: `ZaDark ${pcPackageJSON.version} macOS-arm64`,
   WINDOWS: `ZaDark ${pcPackageJSON.version}`
 }
 
@@ -21,6 +23,8 @@ const FILE_EXT_ORIGINAL = {
   OPERA: '.zip',
   EDGE: '.zip',
   MACOS: '',
+  MACOS_X64: '',
+  MACOS_ARM64: '',
   WINDOWS: '.exe'
 }
 
@@ -30,6 +34,8 @@ const FILE_EXT_ZIP = {
   OPERA: '.zip',
   EDGE: '.zip',
   MACOS: '.zip',
+  MACOS_X64: '.zip',
+  MACOS_ARM64: '.zip',
   WINDOWS: '.zip'
 }
 
@@ -39,6 +45,8 @@ const FILE_DIR = {
   OPERA: './dist/opera',
   EDGE: './dist/edge',
   MACOS: './dist/macos',
+  MACOS_X64: './dist/macos',
+  MACOS_ARM64: './dist/macos',
   WINDOWS: './dist/windows'
 }
 

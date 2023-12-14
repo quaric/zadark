@@ -6,8 +6,8 @@ This document describes the process for running this application on your local c
 
 1. Clone the repo
     ```bash
-    git clone https://github.com/quaric/zadark-legacy.git
-    cd zadark-legacy
+    git clone https://github.com/quaric/zadark.git
+    cd zadark
     ```
 
 2. Install packages
@@ -67,7 +67,7 @@ This document describes the process for running this application on your local c
   - Step 2: Choose `Product > Run`
   - Step 3: Open `Safari > Preferences > Extensions` > Turn on `ZaDark – Zalo Dark Mode`
 - macOS & Windows
-  - `sudo yarn run pc:dev`
+  - `yarn run pc:dev`
 
 ## Creating Built Distributions
 
@@ -99,8 +99,8 @@ yarn dist
 #     ZaDark Edge [VERSION].zip
 #
 #   macos/
-#     ZaDark [VERSION] exec
-#     ZaDark [VERSION].pkg
+#     ZaDark [VERSION] macOS-x64
+#     ZaDark [VERSION] macOS-arm64
 #
 #   windows/
 #     ZaDark [VERSION].exe
@@ -109,20 +109,4 @@ yarn dist
 
 - For Google Chrome, Firefox, Opera and Microsoft Edge: Distribute `dist/[PLATFORM]/ZaDark [PLATFORM] [VERSION].zip` to Store
 - For Windows: Distribute `dist/windows/ZaDark [VERSION].zip` directly to users
-- For macOS: Let's see the [Codesign macOS Application](#codesign-macos-application)
-
-### Codesign && Notarize macOS Application
-
-1. Create the configuration file `.env` with the content from `.env.example`.
-2. Run the command `yarn macos:pkgbuild` to perform the signing and package building process:
-   - This command will automatically sign the application.
-   - After signing, it will generate an installer package named `dist/macos/ZaDark [VERSION].pkg`.
-3. If the previous command succeeds, run the command `yarn macos:notarize` to notarize the installer package:
-   - This command will submit the package for notarization to Apple's notary service.
-   - It will wait for the notarization process to complete.
-4. Once notarization is complete, run the command `yarn macos:staple` to staple the notary ticket to the installer package:
-   - This step ensures that the notarization information is attached to the package.
-5. Congratulations! You now have a signed and notarized installer package located at `dist/macos/ZaDark [VERSION].pkg`.
-6. Distribute the `ZaDark [VERSION].pkg` package directly to users for installation.
-
-> Read more about notarization here: https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution
+- For macOS: Distribute `dist/macos/ZaDark [VERSION] macOS-[TARGET].zip` directly to users

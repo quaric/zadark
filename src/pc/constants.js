@@ -1,4 +1,5 @@
 const os = require('os')
+const path = require('path')
 const packageJSON = require('./package.json')
 
 const PLATFORM = os.platform()
@@ -7,6 +8,12 @@ const IS_MAC = PLATFORM === 'darwin'
 const IS_WIN = PLATFORM === 'win32'
 
 const ZADARK_VERSION = packageJSON.version
+
+const ZADARK_TMP_PATH = path.join(os.homedir(), 'zadark-tmp')
+
+const ZALO_PROCESS_NAMES = IS_MAC
+  ? ['zalo', '/applications/za']
+  : ['zalo.exe']
 
 const DEFAULT_ZALO_PATH = IS_MAC
   ? '/Applications/Zalo.app' // ! Can't be changed
@@ -37,7 +44,9 @@ module.exports = {
   IS_WIN,
 
   ZADARK_VERSION,
+  ZADARK_TMP_PATH,
 
+  ZALO_PROCESS_NAMES,
   DEFAULT_ZALO_PATH,
   EXAMPLE_CUSTOM_ZALO_PATH,
 
