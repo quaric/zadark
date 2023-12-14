@@ -4,12 +4,12 @@
 > PC 12.0
 
 ### Changed
-- Cải thiện quá trình cài đặt ZaDark PC
-- Cải thiện mã nguồn ZaDark PC
 - **[macOS]** Bỏ định dạng tập tin cài đặt ***pkg**, thay thế bằng định dạng gốc **Unix Executable File**
   - Sửa lỗi nghiêm trọng khi cài đặt `zsh: terminated...`
   - Giúp cài đặt ZaDark nhanh hơn
 - **[macOS]** Bỏ thực hiện việc ký (codesign) và xác nhận (notarize) ứng dụng trên macOS với Apple, vì không thể thực hiện với tập tin **Unix Executable File**
+- Cải thiện quá trình cài đặt ZaDark PC
+- Cải thiện mã nguồn ZaDark PC
 
 ## ZaDark 23.12.1
 > PC 11.8
