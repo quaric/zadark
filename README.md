@@ -73,8 +73,6 @@ https://zadark.com/awards
 - https://github.com/vercel/pkg
 - https://github.com/othneildrew/Best-README-Template
 - https://github.com/1Password/1password-teams-open-source
-- https://scriptingosx.com/2019/09/notarize-a-command-line-tool/
-- https://github.com/txoof/codesign#codesign
 - https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/
 - https://dev.opera.com/extensions/basics/
 - https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/
@@ -89,8 +87,6 @@ https://zadark.com/awards
 - https://github.com/SBoudrias/Inquirer.js
 - https://github.com/jet2jet/resedit-js
 - https://github.com/AngaBlue/exe
-- https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow
-- https://gist.github.com/txoof/0636835d3cc65245c6288b2374799c43
 - https://github.com/atomiks/tippyjs
 - https://github.com/apvarun/toastify-js
 - https://github.com/jaywcjlove/hotkeys-js
