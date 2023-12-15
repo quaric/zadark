@@ -54,6 +54,11 @@
       transition: opacity 100ms ease-in-out;
     }
 
+    .img-msg-v2 .img-msg-v2__ft {
+      opacity: 0.1;
+      transition: opacity 100ms ease-in-out;
+    }
+
     .card--sticker .card--group-sticker__row__item {
       opacity: 0.5;
       filter: var(--prv-sticker-filter);
@@ -95,6 +100,10 @@
       }
 
       .img-msg-v2 .image-box__image {
+        opacity: 1;
+      }
+
+      .img-msg-v2 .img-msg-v2__ft {
         opacity: 1;
       }
 

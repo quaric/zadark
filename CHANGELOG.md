@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 23.12.3
+> PC 12.1 và Web 9.18
+
+### Fixed
+- Sửa lỗi không ẩn được nội dung của tin nhắn kèm hình ảnh ([#93](https://github.com/quaric/zadark/issues/93))
+
 ## ZaDark 23.12.2
 > PC 12.0
 
