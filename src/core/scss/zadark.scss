@@ -2022,10 +2022,9 @@ html[data-zadark-theme="dark"] {
       padding: 0 8px;
     }
 
-    // Media Viewer
-    // .media-viewer-layout .media-viewer__header {
-
-    // }
+    .pi-info-layout__primary-info-container {
+      background-color: var(--bg-default);
+    }
   }
 }
 

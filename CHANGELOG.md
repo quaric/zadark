@@ -5,6 +5,7 @@
 
 ### Fixed
 - Sửa lỗi không ẩn được nội dung của tin nhắn kèm hình ảnh ([#93](https://github.com/quaric/zadark/issues/93))
+- Sửa lỗi Dark Mode giao diện "Hồ sơ của bạn"
 
 ## ZaDark 23.12.2
 > PC 12.0
