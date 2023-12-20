@@ -7,6 +7,9 @@
 - Sửa lỗi không ẩn được nội dung của tin nhắn kèm hình ảnh ([#93](https://github.com/quaric/zadark/issues/93))
 - Sửa lỗi Dark Mode giao diện "Hồ sơ của bạn"
 
+### Changed
+- Ẩn ảnh đại diện và Tên cuộc trò chuyện: Khi rê chuột vào cuộc trò chuyện nào thì sẽ hiển thị Ảnh đại diện và Tên cuộc trò chuyện đó (trước đây chỉ cần rê chuột vào Sidebar là sẽ hiển thị tất cả cuộc trò chuyện), thay đổi này giúp chống nhìn trộm tốt hơn
+
 ## ZaDark 23.12.2
 > PC 12.0
 
