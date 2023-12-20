@@ -54,6 +54,11 @@
       transition: opacity 100ms ease-in-out;
     }
 
+    .img-msg-v2 .img-msg-v2__ft {
+      opacity: 0.1;
+      transition: opacity 100ms ease-in-out;
+    }
+
     .card--sticker .card--group-sticker__row__item {
       opacity: 0.5;
       filter: var(--prv-sticker-filter);
@@ -95,6 +100,10 @@
       }
 
       .img-msg-v2 .image-box__image {
+        opacity: 1;
+      }
+
+      .img-msg-v2 .img-msg-v2__ft {
         opacity: 1;
       }
 
@@ -198,12 +207,15 @@
     --zadark-avatar-bg: var(--N20);
   }
 
-  #conversationListId:hover,
+  // #conversationListId:hover,
+  // #header:hover,
+  // #messageView:hover,
+  // #chatInfoGeneral:hover,
+  // #recent-search-list:hover,
+  .conv-item:hover,
   #header:hover,
   #messageView:hover,
-  #chatInfoGeneral:hover,
-  #recent-search-list:hover,
-  #searchResultList:hover {
+  #chatInfoGeneral:hover {
     .zavatar {
       &::after {
         opacity: 0;
@@ -218,46 +230,44 @@
 
 @mixin prv-conv-name {
   // Conv Name
-  #conversationListId,
-  #recent-search-list,
-  #searchResultList {
-    .conv-item .conv-item-title__name {
-      position: relative;
+  // #conversationListId,
+  // #recent-search-list,
+  // #searchResultList
+  .conv-item .conv-item-title__name {
+    position: relative;
 
-      &::after {
-        position: absolute;
-        content: "••••••";
-        top: 0;
+    &::after {
+      position: absolute;
+      content: "••••••";
+      top: 0;
 
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
 
-        font-size: 16px;
-        letter-spacing: 1px;
+      font-size: 16px;
+      letter-spacing: 1px;
 
-        transition: opacity 100ms ease-in-out;
-      }
+      transition: opacity 100ms ease-in-out;
+    }
 
-      .truncate {
-        opacity: 0;
-        transition: opacity 100ms ease-in-out;
-      }
+    .truncate {
+      opacity: 0;
+      transition: opacity 100ms ease-in-out;
     }
   }
 
-  #conversationListId:hover,
-  #recent-search-list:hover,
-  #searchResultList:hover {
-    .conv-item-title__name {
-      &::after {
-        opacity: 0;
-      }
+  // #conversationListId:hover,
+  // #recent-search-list:hover,
+  // #searchResultList:hover
+  .conv-item:hover .conv-item-title__name {
+    &::after {
+      opacity: 0;
+    }
 
-      .truncate {
-        opacity: 1;
-      }
+    .truncate {
+      opacity: 1;
     }
   }
 
