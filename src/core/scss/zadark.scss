@@ -1404,6 +1404,10 @@ html[data-zadark-theme="dark"] {
 
     // END: Image Show
 
+    .friend-profile__addfriend {
+      background-color: var(--WA100) !important;
+    }
+
     .friend-profile__addfriend__msg {
       background: transparent;
     }
