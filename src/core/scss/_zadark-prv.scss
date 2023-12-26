@@ -252,6 +252,7 @@
       transition: opacity 100ms ease-in-out;
     }
 
+    .community__conv-indicator,
     .truncate {
       opacity: 0;
       transition: opacity 100ms ease-in-out;
@@ -266,6 +267,7 @@
       opacity: 0;
     }
 
+    .community__conv-indicator,
     .truncate {
       opacity: 1;
     }
