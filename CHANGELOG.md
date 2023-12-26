@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 23.12.4
+> PC 12.2 và Web 9.19
+
+### Fixed
+- Sửa lỗi Ẩn tên cuộc trò chuyện Cộng đồng
+
 ## ZaDark 23.12.3
 > PC 12.1 và Web 9.18
 
