@@ -582,7 +582,6 @@
 
   const popupScrollableElName = '#js-zadark-popup__scrollable'
   const btnScrollElName = '#js-btn-scroll'
-  const versionElName = '#js-ext-version'
 
   const radioInputThemeElName = '#js-radio-input-theme input:radio[name="theme"]'
   const inputFontFamilyElName = '#js-input-font-family'
@@ -730,21 +729,15 @@
 
       <div class="zadark-popup__header__menu-list">
         <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
-          <a href="${ZaDarkUtils.getRatingURL()}" title="Bình chọn" target="_blank">Bình chọn</a>
+          <a href="https://zadark.com/blog" title="Blog" target="_blank">Blog</a>
         </span>
 
         <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
-          <a href="https://zadark.canny.io" title="Phản hồi" target="_blank">Phản hồi</a>
+          <a href="${ZaDarkUtils.getRatingURL()}" title="Đánh giá" target="_blank">Đánh giá</a>
         </span>
 
         <span class="zadark-popup__header__menu-item">
-          <a href="https://zadark.com/blog/changelog" id="js-ext-version" title="Có gì mới trong phiên bản này?" target="_blank"></a>
-        </span>
-
-        <span class="zadark-popup__header__menu-item zadark-popup__header__menu-coffee">
-          <a href="https://zadark.com/donate" title="Donate" target="_blank">
-            <img src="zadark-coffee.png" alt="Donate" />
-          </a>
+          <a href="https://zadark.canny.io" title="Góp ý" target="_blank">Góp ý</a>
         </span>
       </div>
     </div>
@@ -1245,9 +1238,6 @@
 
     const zaloAppBody = document.body
     zaloAppBody.insertAdjacentHTML('beforeend', zadarkPopupHTML)
-
-    const zadarkVersion = $('html').data('zadark-version')
-    $(versionElName).html(`Phiên bản ${zadarkVersion}`)
 
     $(radioInputThemeElName).on('change', handleThemeChange)
     $(inputFontFamilyElName).keypress(handleInputFontFamilyKeyPress)

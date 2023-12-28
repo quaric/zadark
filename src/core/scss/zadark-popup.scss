@@ -162,6 +162,16 @@ body.zadark-safari {
   color: var(--zadark-neutral-500);
 }
 
+.zadark-text-en {
+  color: var(--zadark-neutral-500);
+
+  &.--block {
+    display: block;
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
+
 #zadark-popup {
   font-family: var(--zadark-popup-font-family);
   font-size: 14px;
@@ -357,6 +367,21 @@ body.zadark-safari {
     &__list {
       margin-top: -8px;
       margin-bottom: -8px;
+
+      &--row {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        .zadark-radio__checkmark {
+          margin-right: 8px;
+        }
+
+        .zadark-radio__label {
+          border-bottom: 0;
+        }
+      }
     }
 
     position: relative;

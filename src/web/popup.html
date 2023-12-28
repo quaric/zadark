@@ -22,21 +22,15 @@
 
     <div class="zadark-popup__header__menu-list">
       <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
-        <a href="#rating" id="js-ext-rating" title="Bình chọn" target="_blank">Bình chọn</a>
+        <a href="https://zadark.com/blog" title="Góp ý" target="_blank">Blog</a>
       </span>
 
       <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
-        <a href="https://zadark.canny.io" title="Phản hồi" target="_blank">Phản hồi</a>
+        <a href="#rating" id="js-ext-rating" title="Đánh giá" target="_blank">Đánh giá</a>
       </span>
 
       <span class="zadark-popup__header__menu-item">
-        <a href="#changelog" id="js-ext-version" title="Có gì mới trong phiên bản này?" target="_blank"></a>
-      </span>
-
-      <span class="zadark-popup__header__menu-item zadark-popup__header__menu-coffee">
-        <a href="https://zadark.com/donate" title="Donate" target="_blank">
-          <img src="/images/zadark-coffee.png" alt="Donate" />
-        </a>
+        <a href="https://zadark.canny.io" title="Góp ý" target="_blank">Góp ý</a>
       </span>
     </div>
   </div>
@@ -46,12 +40,12 @@
 
     <div class="zadark-panel">
       <div class="zadark-panel__body">
-        <div id="js-radio-input-theme" class="zadark-radio__list">
+        <div id="js-radio-input-theme" class="zadark-radio__list zadark-radio__list--row">
           <label class="zadark-radio">
             <input type="radio" name="theme" value="light" class="zadark-radio__input">
             <span class="zadark-radio__checkmark"></span>
             <span class="zadark-radio__label">
-              <span>Sáng</span>
+              <span>Sáng <span class="zadark-text-en --text-base">/ Light</span></span>
             </span>
           </label>
 
@@ -59,7 +53,7 @@
             <input type="radio" name="theme" value="dark" class="zadark-radio__input">
             <span class="zadark-radio__checkmark"></span>
             <span class="zadark-radio__label">
-              <span>Tối</span>
+              <span>Tối <span class="zadark-text-en --text-base">/ Dark</span></span>
             </span>
           </label>
 
@@ -67,7 +61,7 @@
             <input type="radio" name="theme" value="auto" class="zadark-radio__input">
             <span class="zadark-radio__checkmark"></span>
             <span class="zadark-radio__label">
-              <span>Theo hệ thống</span>
+              <span>Hệ thống <span class="zadark-text-en --text-base">/ System</span></span>
             </span>
           </label>
         </div>
@@ -75,6 +69,7 @@
         <div class="font-settings font-settings--border-default">
           <label class="font-settings__label">
             Phông chữ từ <a href="https://zadark.com/blog/use-google-fonts" target="_blank">Google Fonts</a>
+            <span class="zadark-text-en --block">Font from Google Fonts</span>
           </label>
 
           <input id="js-input-font-family" class="zadark-input" placeholder="Mặc định">
@@ -83,13 +78,14 @@
         <div class="font-settings font-settings--hotkeys">
           <label class="font-settings__label" style="flex: 1;">
             Cỡ chữ của tin nhắn
+            <span class="zadark-text-en --block">Message font size</span>
           </label>
 
           <select id="js-select-font-size" class="zadark-select">
-            <option value="small">Nhỏ</option>
-            <option value="medium">Trung bình</option>
-            <option value="big">Lớn</option>
-            <option value="very-big">Rất lớn</option>
+            <option value="small">90%</option>
+            <option value="medium">100%</option>
+            <option value="big">110%</option>
+            <option value="very-big">125%</option>
           </select>
         </div>
       </div>
@@ -103,7 +99,8 @@
           <div class="zadark-switch">
             <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
               Ẩn <strong>Tin nhắn gần nhất</strong>
-              <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem nội dung tin nhắn, bạn di chuột vào<br/>"<strong>Tên cuộc trò chuyện</strong>" cần xem.'></i>
+              <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem nội dung tin nhắn, bạn di chuột vào<br/>"<strong>Tên cuộc trò chuyện</strong>" cần xem <span class="zadark-text-en">/ To view the message content, hover over the "<strong>chat name</strong>" you want to view.</span>'></i>
+              <span class="zadark-text-en --block">Hide recent messages</span>
             </label>
 
             <label class="zadark-switch__checkbox">
@@ -115,7 +112,8 @@
           <div class="zadark-switch zadark-switch--border-default">
             <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
               Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
-              <i class="zadark-icon zadark-icon--question" data-tippy-content='Truy cập <strong>Cài đặt ZaDark</strong> trên Zalo Web<br/>để xem hướng dẫn.'></i>
+              <i class="zadark-icon zadark-icon--question" data-tippy-content='Truy cập <strong>Cài đặt ZaDark</strong> trên Zalo Web<br/>để xem hướng dẫn <span class="zadark-text-en">/ Access <strong>ZaDark Settings</strong> on Zalo Web for instructions.</span>'></i>
+              <span class="zadark-text-en --block">Hide messages in chat</span>
             </label>
 
             <label class="zadark-switch__checkbox">
@@ -127,7 +125,8 @@
           <div class="zadark-switch">
             <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-avatar">
               Ẩn <strong>Ảnh đại diện</strong> cuộc trò chuyện
-              <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem Ảnh đại diện, bạn di chuyển chuột vào<br/>"<strong>Ảnh đại diện</strong>" cần xem.'></i>
+              <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem Ảnh đại diện, bạn di chuyển chuột vào<br/>"<strong>Ảnh đại diện</strong>" cần xem <span class="zadark-text-en">/ To view the chat avatar, hover over the "<strong>chat avatar</strong>" you want to see.</span>'></i>
+              <span class="zadark-text-en --block">Hide chat avatar</span>
             </label>
 
             <label class="zadark-switch__checkbox">
@@ -139,7 +138,8 @@
           <div class="zadark-switch zadark-switch--border-default">
             <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-name">
               Ẩn <strong>Tên</strong> cuộc trò chuyện
-              <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.'></i>
+              <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem <span class="zadark-text-en">/ To view the chat name, hover over "<strong>chat name</strong>" you want to see.</span>'></i>
+              <span class="zadark-text-en --block">Hide chat name</span>
             </label>
 
             <label class="zadark-switch__checkbox">
@@ -150,8 +150,9 @@
 
           <div class="zadark-switch">
             <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-block-typing">
-              Ẩn trạng thái <strong>Đang soạn tin (Typing)</strong>
-              <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đang soạn tin (Typing)</strong> của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.</p>'></i>
+              Ẩn trạng thái <strong>Đang soạn tin</strong>
+              <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Người khác sẽ không thấy trạng thái <strong>Đang soạn tin</strong> của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.</p><p class="zadark-text-en">Others will not see your <strong>typing</strong> status, but you can still see theirs. This is a distinction in settings between ZaDark and Zalo.</p>'></i>
+              <span class="zadark-text-en --block">Hide message typing status</span>
             </label>
 
             <label class="zadark-switch__checkbox">
@@ -162,8 +163,9 @@
 
           <div class="zadark-switch">
             <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-block-delivered">
-              Ẩn trạng thái <strong>Đã nhận (Received)</strong>
-              <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đã nhận (Received)</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ.</p>'></i>
+              Ẩn trạng thái <strong>Đã nhận</strong>
+              <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Người khác sẽ không thấy trạng thái <strong>Đã nhận</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ <span class="zadark-text-en">/ Others will not see your <strong>received</strong> status, but you can still see theirs.</span></p>'></i>
+              <span class="zadark-text-en --block">Hide message received status</span>
             </label>
 
             <label class="zadark-switch__checkbox">
@@ -174,8 +176,9 @@
 
           <div class="zadark-switch">
             <label class="zadark-switch__label" for="js-switch-block-seen">
-              Ẩn trạng thái <strong>Đã xem (Seen)</strong>
-              <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đã xem (Seen)</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ.</p><p style="text-align: justify;">Tuy nhiên, trạng thái của các tin nhắn bạn đã xem trên Zalo Web sẽ <strong>không được đồng bộ</strong> với máy chủ Zalo, bạn cần phải xem lại tin nhắn trên Zalo Mobile để đồng bộ.</p>'></i>
+              Ẩn trạng thái <strong>Đã xem</strong>
+              <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Người khác sẽ không thấy trạng thái <strong>Đã xem</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ. Tuy nhiên, trạng thái của các tin nhắn bạn đã xem trên Zalo Web sẽ <strong>không được đồng bộ</strong> với máy chủ Zalo, bạn cần phải xem lại tin nhắn trên Zalo Mobile để đồng bộ.</p><p class="zadark-text-en">Others will not see your <strong>seen</strong> status, but you can still see theirs. However, the status of the messages you have seen on Zalo Web will <strong>not be synchronized</strong> with the Zalo server. You need to review the messages on Zalo Mobile to synchronize them.</p>'></i>
+              <span class="zadark-text-en --block">Hide message seen status</span>
             </label>
 
             <label class="zadark-switch__checkbox">

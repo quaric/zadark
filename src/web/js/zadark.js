@@ -152,21 +152,15 @@
 
       <div class="zadark-popup__header__menu-list">
         <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
-          <a href="${ZaDarkUtils.getRatingURL(ZaDarkBrowser.name)}" title="Bình chọn" target="_blank">Bình chọn</a>
+          <a href="https://zadark.com/blog" title="Góp ý" target="_blank">Blog</a>
         </span>
 
         <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
-          <a href="https://zadark.canny.io" title="Phản hồi" target="_blank">Phản hồi</a>
+          <a href="${ZaDarkUtils.getRatingURL(ZaDarkBrowser.name)}" title="Đánh giá" target="_blank">Đánh giá</a>
         </span>
 
         <span class="zadark-popup__header__menu-item">
-          <a href="https://zadark.com/blog/changelog" title="Có gì mới trong phiên bản này?" target="_blank">Phiên bản ${ZaDarkBrowser.getManifest().version}</a>
-        </span>
-
-        <span class="zadark-popup__header__menu-item zadark-popup__header__menu-coffee">
-          <a href="https://zadark.com/donate" title="Donate" target="_blank">
-            <img src="${ZaDarkBrowser.getURL('images/zadark-coffee.png')}" alt="Donate" />
-          </a>
+          <a href="https://zadark.canny.io" title="Góp ý" target="_blank">Góp ý</a>
         </span>
       </div>
     </div>
@@ -722,7 +716,7 @@
       ]
 
       if (REQUIRED_IN_THREAD_CHAT.includes(introId) && !isInThreadChat) {
-        ZaDarkUtils.showToast('Chọn một cuộc trò chuyện để xem hướng dẫn.')
+        ZaDarkUtils.showToast('Chọn một cuộc trò chuyện để xem hướng dẫn<br/><span class="zadark-text-en">Select a conversation to view the instructions</span>')
         return
       }
 

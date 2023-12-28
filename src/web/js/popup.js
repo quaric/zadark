@@ -11,10 +11,7 @@ ZaDarkUtils.installFontFamily(['Open Sans:400;500;600'])
 
 const MSG_ACTIONS = ZaDarkUtils.MSG_ACTIONS
 
-const manifestData = ZaDarkBrowser.getManifest()
-
 const ratingElName = '#js-ext-rating'
-const versionElName = '#js-ext-version'
 const btnScrollElName = '#js-btn-scroll'
 
 const radioInputThemeElName = '#js-radio-input-theme input:radio[name="theme"]'
@@ -33,8 +30,6 @@ const switchBlockDeliveredElName = '#js-switch-block-delivered'
 const switchUseHotkeysElName = '#js-switch-use-hotkeys'
 
 $(ratingElName).attr('href', ZaDarkUtils.getRatingURL(ZaDarkBrowser.name))
-$(versionElName).html(`Phiên bản ${manifestData.version}`)
-$(versionElName).attr('href', ZaDarkBrowser.changelogURL)
 
 ZaDarkBrowser.getExtensionSettings().then(({
   theme,

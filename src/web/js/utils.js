@@ -24,42 +24,42 @@
 
     HOTKEYS_TOAST_MESSAGE: {
       fontSize: {
-        small: 'Đã áp dụng cỡ chữ Nhỏ.',
-        medium: 'Đã áp dụng cỡ chữ Trung bình.',
-        big: 'Đã áp dụng cỡ chữ Lớn.',
-        'very-big': 'Đã áp dụng cỡ chữ Rất lớn.'
+        small: 'Đã áp dụng cỡ chữ 90%<br/><span class="zadark-text-en">Applied font size 90%</span>',
+        medium: 'Đã áp dụng cỡ chữ 100%<br/><span class="zadark-text-en">Applied font size 100%</span>',
+        big: 'Đã áp dụng cỡ chữ 110%<br/><span class="zadark-text-en">Applied font size 110%</span>',
+        'very-big': 'Đã áp dụng cỡ chữ 125%<br/><span class="zadark-text-en">Applied font size 125%</span>'
       },
       hideLatestMessage: {
-        true: 'Đã bật Ẩn Tin nhắn gần nhất.',
-        false: 'Đã tắt Ẩn Tin nhắn gần nhất.'
+        true: 'Đã bật Ẩn Tin nhắn gần nhất<br/><span class="zadark-text-en">Activated hide recent messages</span>',
+        false: 'Đã tắt Ẩn Tin nhắn gần nhất<br/><span class="zadark-text-en">Deactivated hide recent messages</span>'
       },
       hideThreadChatMessage: {
-        true: 'Đã bật Ẩn Tin nhắn trong cuộc trò chuyện.',
-        false: 'Đã tắt Ẩn Tin nhắn trong cuộc trò chuyện.'
+        true: 'Đã bật Ẩn Tin nhắn trong cuộc trò chuyện<br/><span class="zadark-text-en">Activated hide messages in chat</span>',
+        false: 'Đã tắt Ẩn Tin nhắn trong cuộc trò chuyện<br/><span class="zadark-text-en">Deactivated hide messages in chat</span>'
       },
       hideConvAvatar: {
-        true: 'Đã bật Ẩn Ảnh đại diện.',
-        false: 'Đã tắt Ẩn Ảnh đại diện.'
+        true: 'Đã bật Ẩn Ảnh đại diện<br/><span class="zadark-text-en">Activated hide chat avatar</span>',
+        false: 'Đã tắt Ẩn Ảnh đại diện<br/><span class="zadark-text-en">Deactivated hide chat avatar</span>'
       },
       hideConvName: {
-        true: 'Đã bật Ẩn Tên cuộc trò chuyện.',
-        false: 'Đã tắt Ẩn Tên cuộc trò chuyện.'
+        true: 'Đã bật Ẩn Tên cuộc trò chuyện<br/><span class="zadark-text-en">Activated hide chat name</span>',
+        false: 'Đã tắt Ẩn Tên cuộc trò chuyện<br/><span class="zadark-text-en">Deactivated hide chat name</span>'
       },
       rules_block_typing: {
-        true: 'Đã bật Ẩn trạng thái Đang soạn tin (Typing).',
-        false: 'Đã tắt Ẩn trạng thái Đang soạn tin (Typing).'
+        true: 'Đã bật Ẩn trạng thái Đang soạn tin<br/><span class="zadark-text-en">Activated hide message typing status</span>',
+        false: 'Đã tắt Ẩn trạng thái Đang soạn tin<br/><span class="zadark-text-en">Deactivated hide message typing status</span>'
       },
       rules_block_delivered: {
-        true: 'Đã bật Ẩn trạng thái Đã nhận (Received).',
-        false: 'Đã tắt Ẩn trạng thái Đã nhận (Received).'
+        true: 'Đã bật Ẩn trạng thái Đã nhận<br/><span class="zadark-text-en">Activated hide message received status</span>',
+        false: 'Đã tắt Ẩn trạng thái Đã nhận<br/><span class="zadark-text-en">Deactivated hide message received status</span>'
       },
       rules_block_seen: {
-        true: 'Đã bật Ẩn trạng thái Đã xem (Seen).',
-        false: 'Đã tắt Ẩn trạng thái Đã xem (Seen).'
+        true: 'Đã bật Ẩn trạng thái Đã xem<br/><span class="zadark-text-en">Activated hide message seen status</span>',
+        false: 'Đã tắt Ẩn trạng thái Đã xem<br/><span class="zadark-text-en">Deactivated hide message seen status</span>'
       },
       useHotkeys: {
-        true: 'Đã kích hoạt phím tắt.',
-        false: 'Đã vô hiệu hoá phím tắt.'
+        true: 'Đã kích hoạt phím tắt<br/><span class="zadark-text-en">Shortcut activated</span>',
+        false: 'Đã vô hiệu hoá phím tắt<br/><span class="zadark-text-en">Shortcut disabled</span>'
       }
     },
 
@@ -160,9 +160,9 @@
         steps,
 
         disableInteraction: false,
-        prevLabel: 'Trước',
-        nextLabel: 'Tiếp',
-        doneLabel: 'Đã hiểu',
+        prevLabel: 'Trước <span class="zadark-text-en">/ Prev</span>',
+        nextLabel: 'Tiếp <span class="zadark-text-en">/ Next</span>',
+        doneLabel: 'Đã hiểu <span class="zadark-text-en">/ Done</span>',
         helperElementPadding: -4
       })
 
@@ -308,7 +308,7 @@
       tippy('#js-input-font-family', {
         theme: 'zadark',
         allowHTML: true,
-        content: '<p>Nhập tên phông chữ từ <strong>Google Fonts</strong><br>(Lưu ý kí tự in hoa, khoảng cách).</p><p>Bỏ trống nếu dùng phông mặc định.</p><p>Nhấn <strong>Enter</strong> để áp dụng.</p>',
+        content: '<p>Nhập tên phông chữ từ <strong>Google Fonts</strong><br>(Lưu ý kí tự in hoa, khoảng cách).</p><p>Bỏ trống nếu dùng phông mặc định.</p><p>Nhấn <strong>Enter</strong> để áp dụng.</p><p class="zadark-text-en">Enter the font name from <strong>Google Fonts</strong><br/>(Note: use uppercase letters, spaces).</p><p class="zadark-text-en">Leave it blank if using the default font.</p><p class="zadark-text-en">Press <strong>Enter</strong> to apply.</p>',
         trigger: 'focus'
       })
     },
@@ -387,15 +387,15 @@
         steps: [
           {
             element: document.querySelector('#messageView'),
-            intro: 'Bạn di chuột vào vùng này để <strong>xem nội dung tin nhắn</strong>.'
+            intro: '<p>Bạn di chuột vào vùng này để <strong>xem nội dung tin nhắn</strong>.</p><p class="zadark-text-en">Hover over this area to <strong>view message content</strong>.</p>'
           },
           {
             element: document.querySelector('.chat-input__content__input'),
-            intro: 'Bạn di chuyển chuột vào vùng này để <strong>xem nội dung khung soạn tin nhắn</strong>.'
+            intro: '<p>Bạn di chuyển chuột vào vùng này để <strong>xem nội dung khung soạn tin nhắn</strong>.</p><p class="zadark-text-en">Hover over this area to <strong>view the message composition box</strong>.</p>'
           },
           {
             element: document.querySelector('#ztoolbar'),
-            intro: 'Bạn di chuyển chuột vào vùng này để: <strong>Ẩn nội dung tin nhắn</strong> (bên trên), <strong>Ẩn nội dung khung soạn tin nhắn</strong> (bên dưới).'
+            intro: '<p>Bạn di chuyển chuột vào vùng này để: <strong>Ẩn nội dung tin nhắn</strong> (bên trên), <strong>Ẩn nội dung khung soạn tin nhắn</strong> (bên dưới).</p><p class="zadark-text-en">Hover over this area to: <strong>Hide message content</strong> (above), <strong>Hide message composition box</strong> (below).</p>'
           }
         ],
         onExit,
