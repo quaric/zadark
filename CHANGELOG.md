@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 23.12.5
+> PC 12.3 và Web 9.20
+
+### Changed
+- Giao diện ZaDark Settings mới
+
 ## ZaDark 23.12.4
 > PC 12.2 và Web 9.19
 

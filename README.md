@@ -90,6 +90,7 @@ https://zadark.com/awards
 - https://github.com/atomiks/tippyjs
 - https://github.com/apvarun/toastify-js
 - https://github.com/jaywcjlove/hotkeys-js
+- https://medium.com/xcblog/agvtool-automating-ios-build-and-version-numbers-454cab6f1bbe
 
 ---
 
