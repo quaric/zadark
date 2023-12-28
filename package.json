@@ -24,7 +24,9 @@
     "pc:start": "NODE_ENV=production node build/pc",
     "prepare": "husky install",
     "standard:fix": "standard --fix ./src/**/*.js ./*.js",
-    "safari": "xed src/web/vendor/safari/ZaDark.xcodeproj"
+    "safari": "xed src/web/vendor/safari/ZaDark.xcodeproj",
+    "safari:what-build-number": "cd src/web/vendor/safari && xcrun agvtool what-version",
+    "safari:next-build-number": "cd src/web/vendor/safari && xcrun agvtool new-version -all $(date '+%s')"
   },
   "lint-staged": {
     "*.js": "yarn standard:fix"

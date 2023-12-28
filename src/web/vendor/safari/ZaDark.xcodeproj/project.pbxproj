@@ -180,7 +180,6 @@
 				C15875CA27EB09C300E008A0 /* Frameworks */,
 				C15875CB27EB09C300E008A0 /* Resources */,
 				C158760827EB09C400E008A0 /* Embed Foundation Extensions */,
-				C1E2CFA427F7EDAB00AACE85 /* Set Build Number */,
 			);
 			buildRules = (
 			);
@@ -277,27 +276,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		C1E2CFA427F7EDAB00AACE85 /* Set Build Number */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Set Build Number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Generate the build number using current date and time\n# buildNumber=$(date \"+%s\")\n\n# Set the build number in plist file\n# /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C15875C927EB09C300E008A0 /* Sources */ = {
@@ -470,7 +448,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1695711956;
+				CURRENT_PROJECT_VERSION = 1703747571;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -484,7 +462,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MARKETING_VERSION = 9.13;
+				MARKETING_VERSION = 9.20;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -503,7 +481,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ZaDark Extension/ZaDark_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1695711956;
+				CURRENT_PROJECT_VERSION = 1703747571;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -517,7 +495,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MARKETING_VERSION = 9.13;
+				MARKETING_VERSION = 9.20;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -539,7 +517,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1703098124;
+				CURRENT_PROJECT_VERSION = 1703747571;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -547,7 +525,7 @@
 				INFOPLIST_FILE = ZaDark/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "ZaDark Pro";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "© NCDAi Studio";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Quaric";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -555,7 +533,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MARKETING_VERSION = 9.18;
+				MARKETING_VERSION = 9.20;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -578,7 +556,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZaDark/ZaDark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1703098124;
+				CURRENT_PROJECT_VERSION = 1703747571;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YN8BK4969T;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -586,7 +564,7 @@
 				INFOPLIST_FILE = ZaDark/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "ZaDark Pro";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "© NCDAi Studio";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Quaric";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -594,7 +572,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MARKETING_VERSION = 9.18;
+				MARKETING_VERSION = 9.20;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,

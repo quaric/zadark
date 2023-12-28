@@ -74,10 +74,6 @@ html[data-zadark-theme="light"] {
   --zadark-btn-floating-shadow: rgba(0, 0, 0, 0.16);
 
   --zadark-by-quaric: black;
-
-  #zadark-popup .zadark-publisher__lockup--dark {
-    display: inline-block;
-  }
 }
 
 html[data-zadark-theme="dark"] {
@@ -119,11 +115,7 @@ html[data-zadark-theme="dark"] {
   --zadark-btn-floating-text: var(--zadark-neutral-500);
   --zadark-btn-floating-shadow: rgba(0, 0, 0, 0.25);
 
-  --zadark-by-quaric: white;
-
-  #zadark-popup .zadark-publisher__lockup--light {
-    display: inline-block;
-  }
+  --zadark-by-quaric: #9e9f9f;
 }
 
 html[data-zadark-os="Windows"] {
@@ -160,16 +152,6 @@ body.zadark-safari {
   font-family: var(--zadark-popup-font-family);
   font-weight: 400;
   color: var(--zadark-neutral-500);
-}
-
-.zadark-text-en {
-  color: var(--zadark-neutral-500);
-
-  &.--block {
-    display: block;
-    font-size: 12px;
-    line-height: 20px;
-  }
 }
 
 #zadark-popup {
@@ -228,9 +210,7 @@ body.zadark-safari {
     top: 0;
     z-index: 9999;
 
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--zadark-border-base);
-    background-color: var(--zadark-grey-700);
+    padding: 16px;
 
     display: flex;
     align-items: center;
@@ -242,14 +222,6 @@ body.zadark-safari {
       display: inline-flex;
       align-items: center;
     }
-
-    // &__logo-link {
-    //   position: relative;
-    //   top: 2px;
-
-    //   display: inline-flex;
-    //   align-items: center;
-    // }
 
     &__logo-img {
       width: auto;
@@ -280,14 +252,15 @@ body.zadark-safari {
     &__menu-list {
       display: flex;
       align-items: center;
-      color: var(--zadark-neutral-500);
     }
 
     &__menu-item {
       a {
-        color: var(--zadark-neutral-base);
+        color: var(--zadark-neutral-500);
+        transition: all 0.25s ease-in-out;
+
         &:hover {
-          color: var(--zadark-neutral-400);
+          color: var(--zadark-neutral-base);
         }
       }
     }
@@ -317,31 +290,31 @@ body.zadark-safari {
   }
 
   .zadark-popup__main {
-    padding: 12px 16px 0 16px;
+    padding: 0 16px;
   }
 
   .zadark-popup__footer {
     display: flex;
     justify-content: center;
-    padding: 0 16px 12px;
+    padding: 0 16px 16px;
   }
 
   .zadark-publisher {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 1px;
     user-select: none;
 
     &__by {
       color: var(--zadark-by-quaric);
+      line-height: 20px;
     }
 
     &__lockup {
       width: auto;
       height: 12px;
-      display: none;
       margin-left: 8px;
+      color: var(--zadark-by-quaric);
     }
   }
 
@@ -625,7 +598,7 @@ body.zadark-safari {
     overflow: hidden;
     border: 1px solid var(--zadark-border-base);
     border-radius: var(--zadark-border-radius-base);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 
     &__body {
       padding: 8px 12px;
@@ -738,7 +711,7 @@ body.zadark-safari {
   }
 
   .tippy-content {
-    padding: 12px 16px !important;
+    padding: 12px !important;
     font-family: var(--zadark-popup-font-family);
     font-size: 0.8125rem;
     line-height: 1.5;

@@ -749,14 +749,14 @@
 
       <div class="zadark-panel">
         <div class="zadark-panel__body">
-          <div id="js-radio-input-theme" class="zadark-radio__list">
+          <div id="js-radio-input-theme" class="zadark-radio__list zadark-radio__list--row">
             <label class="zadark-radio">
               <input type="radio" name="theme" value="light" class="zadark-radio__input">
               <span class="zadark-radio__checkmark"></span>
               <span class="zadark-radio__label">
                 <span>Sáng</span>
                 <span class="zadark-switch__hotkeys">
-                  <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D"></span>
+                  &nbsp;<span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D"></span>
                 </span>
               </span>
             </label>
@@ -767,7 +767,7 @@
               <span class="zadark-radio__label">
                 <span>Tối</span>
                 <span class="zadark-switch__hotkeys">
-                  <span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D"></span>
+                  &nbsp;<span class="zadark-hotkeys" data-keys-win="Ctrl+D" data-keys-mac="⌘D"></span>
                 </span>
               </span>
             </label>
@@ -776,7 +776,7 @@
               <input type="radio" name="theme" value="auto" class="zadark-radio__input">
               <span class="zadark-radio__checkmark"></span>
               <span class="zadark-radio__label">
-                <span>Theo hệ thống</span>
+                <span>Hệ thống</span>
               </span>
             </label>
           </div>
@@ -797,10 +797,10 @@
             </span>
 
             <select id="js-select-font-size" class="zadark-select">
-              <option value="small">Nhỏ</option>
-              <option value="medium">Trung bình</option>
-              <option value="big">Lớn</option>
-              <option value="very-big">Rất lớn</option>
+              <option value="small">90%</option>
+              <option value="medium">100%</option>
+              <option value="big">110%</option>
+              <option value="very-big">125%</option>
             </select>
           </div>
         </div>
@@ -814,7 +814,7 @@
             <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-latest-message">
                 Ẩn <strong>Tin nhắn gần nhất</strong>
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem nội dung tin nhắn, bạn di chuột vào<br/>"<strong>Tên cuộc trò chuyện</strong>" cần xem.'></i>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem nội dung tin nhắn, bạn di chuột vào<br/>"<strong>Tên cuộc trò chuyện</strong>" cần xem'></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+1" data-keys-mac="⌘1"></span>
@@ -828,7 +828,7 @@
             <div class="zadark-switch zadark-switch--border-default">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-thread-chat-message">
                 Ẩn <strong>Tin nhắn</strong> trong cuộc trò chuyện
-                <i class="zadark-icon zadark-icon--play-circle" data-zdk-intro="hideThreadChatMessage" data-tippy-content="Nhấn vào để xem hướng dẫn."></i>
+                <i class="zadark-icon zadark-icon--play-circle" data-zdk-intro="hideThreadChatMessage" data-tippy-content="Nhấn vào để xem hướng dẫn"></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+2" data-keys-mac="⌘2"></span>
@@ -842,7 +842,7 @@
             <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-avatar">
                 Ẩn <strong>Ảnh đại diện</strong> cuộc trò chuyện
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem Ảnh đại diện, bạn di chuyển chuột vào<br/>"<strong>Ảnh đại diện</strong>" cần xem.'></i>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem Ảnh đại diện, bạn di chuyển chuột vào<br/>"<strong>Ảnh đại diện</strong>" cần xem'></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+3" data-keys-mac="⌘3"></span>
@@ -856,7 +856,7 @@
             <div class="zadark-switch zadark-switch--border-default">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-hide-conv-name">
                 Ẩn <strong>Tên</strong> cuộc trò chuyện
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem.'></i>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='Để xem Tên cuộc trò chuyện, bạn di chuyển chuột vào "<strong>Tên cuộc trò chuyện</strong>" cần xem'></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+7" data-keys-mac="⌘7"></span>
@@ -867,10 +867,10 @@
               </label>
             </div>
 
-            <div class="zadark-switch js-switch-block">
+            <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-block-typing">
-                Ẩn trạng thái <strong>Đang soạn tin (Typing)</strong>
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đang soạn tin (Typing)</strong> của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.</p>'></i>
+                Ẩn trạng thái <strong>Đang soạn tin</strong>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='Người khác sẽ không thấy trạng thái <strong>Đang soạn tin</strong> của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.'></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+4" data-keys-mac="⌘4"></span>
@@ -881,10 +881,10 @@
               </label>
             </div>
 
-            <div class="zadark-switch js-switch-block">
+            <div class="zadark-switch">
               <label class="zadark-switch__label zadark-switch__label--helper" for="js-switch-block-delivered">
-                Ẩn trạng thái <strong>Đã nhận (Received)</strong>
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đã nhận (Received)</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ.</p>'></i>
+                Ẩn trạng thái <strong>Đã nhận</strong>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='Người khác sẽ không thấy trạng thái <strong>Đã nhận</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.'></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+5" data-keys-mac="⌘5"></span>
@@ -895,10 +895,10 @@
               </label>
             </div>
 
-            <div class="zadark-switch js-switch-block">
+            <div class="zadark-switch">
               <label class="zadark-switch__label" for="js-switch-block-seen">
-                Ẩn trạng thái <strong>Đã xem (Seen)</strong>
-                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p style="text-align: justify;">Người khác sẽ không thấy trạng thái <strong>Đã xem (Seen)</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ.</p><p style="text-align: justify;">Tuy nhiên, trạng thái của các tin nhắn bạn đã xem trên Zalo PC sẽ <strong>không được đồng bộ</strong> với máy chủ Zalo, bạn cần phải xem lại tin nhắn trên Zalo Mobile để đồng bộ.</p>'></i>
+                Ẩn trạng thái <strong>Đã xem</strong>
+                <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Người khác sẽ không thấy trạng thái <strong>Đã xem</strong> tin nhắn của bạn, nhưng bạn vẫn thấy trạng thái của họ. Đây là điểm khác biệt giữa cài đặt từ ZaDark và Zalo.</p><p>Tuy nhiên, trạng thái của các tin nhắn bạn đã xem trên Zalo Web sẽ <strong>không được đồng bộ</strong> với máy chủ Zalo, bạn cần phải xem lại tin nhắn trên Zalo Mobile để đồng bộ.</p>'></i>
               </label>
               <span class="zadark-switch__hotkeys">
                 <span class="zadark-hotkeys" data-keys-win="Ctrl+6" data-keys-mac="⌘6"></span>
@@ -936,8 +936,7 @@
     <div class="zadark-popup__footer">
       <a href="https://quaric.com" target="_blank" title="ZaDark by Quaric" class="zadark-publisher">
         <span class="zadark-publisher__by">ZaDark by</span>
-        <img src="quaric-lockup-dark.svg" class="zadark-publisher__lockup zadark-publisher__lockup--dark">
-        <img src="quaric-lockup-light.svg" class="zadark-publisher__lockup zadark-publisher__lockup--light">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 64" fill="none" class="zadark-publisher__lockup"><path fill="currentColor" fill-rule="evenodd" d="M264 64V54h-12.998A24.892 24.892 0 0 0 256 39V25c0-13.807-11.193-25-25-25h-46c-13.807 0-25 11.193-25 25v14c0 13.807 11.193 25 25 25h79Zm-79-54c-8.284 0-15 6.716-15 15v14c0 8.284 6.716 15 15 15h46.019C239.294 53.99 246 47.278 246 39V25c0-8.284-6.716-15-15-15h-46Z" clip-rule="evenodd"/><path fill="currentColor" d="M282 0v39c0 8.284 6.716 15 15 15h37V0h10v64h-47c-13.807 0-25-11.193-25-25V0h10Z"/><path fill="currentColor" fill-rule="evenodd" d="M415 0h-39v10h39c7.948 0 14.452 6.182 14.967 14H380c-11.046 0-20 8.954-20 20s8.954 20 20 20h60V25c0-13.807-11.193-25-25-25Zm-35 34h50v20h-50c-5.523 0-10-4.477-10-10s4.477-10 10-10Z" clip-rule="evenodd"/><path fill="currentColor" d="M456 25c0-13.807 11.193-25 25-25h45v10h-45c-8.284 0-15 6.716-15 15v39h-10V25ZM544 64V0h-10v64h10ZM570 25c0-8.284 6.716-15 15-15h55V0h-55c-13.807 0-25 11.193-25 25v14c0 13.807 11.193 25 25 25h55V54h-55c-8.284 0-15-6.716-15-15V25ZM72 0l44.313 15.783c15.583 5.172 15.583 27.263 0 32.434L72 64V53.338l41.161-14.66c6.416-2.13 6.416-11.226 0-13.356L78.518 12.75 56 64 11.687 48.218c-15.583-5.172-15.583-27.263 0-32.435L56 0v10.662l-41.161 14.66c-6.416 2.13-6.416 11.226 0 13.356L49.482 51.25 72 0Z"/></svg>
       </a>
     </div>
   `
