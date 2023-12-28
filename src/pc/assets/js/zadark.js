@@ -745,8 +745,6 @@
 
   const popupMainHTML = `
     <div class="zadark-popup__main">
-      <label class="zadark-form__label">Giao diện</label>
-
       <div class="zadark-panel">
         <div class="zadark-panel__body">
           <div id="js-radio-input-theme" class="zadark-radio__list zadark-radio__list--row">
@@ -805,8 +803,6 @@
           </div>
         </div>
       </div>
-
-      <label class="zadark-form__label">Riêng tư</label>
 
       <div class="zadark-panel">
         <div class="zadark-panel__body">
@@ -911,8 +907,6 @@
           </div>
         </div>
       </div>
-
-      <label class="zadark-form__label">Khác</label>
 
       <div class="zadark-panel">
         <div class="zadark-panel__body">
