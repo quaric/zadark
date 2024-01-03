@@ -142,12 +142,6 @@ body:not(.zadark--use-hotkeys) {
   }
 }
 
-body.zadark-safari {
-  .zadark-popup__header__menu-coffee {
-    display: none;
-  }
-}
-
 .zadark-hotkeys {
   font-family: var(--zadark-popup-font-family);
   font-weight: 400;
@@ -199,6 +193,7 @@ body.zadark-safari {
     max-height: calc(100vh - 16px);
 
     scrollbar-width: none;
+
     &::-webkit-scrollbar {
       display: none;
       width: 0 !important;
@@ -272,21 +267,6 @@ body.zadark-safari {
         width: 12px;
       }
     }
-
-    &__menu-coffee {
-      margin-left: 12px;
-
-      a {
-        position: relative;
-        top: -3.2px;
-        display: flex;
-
-        img {
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
   }
 
   .zadark-popup__main {
@@ -304,9 +284,14 @@ body.zadark-safari {
     align-items: center;
     justify-content: center;
     user-select: none;
+    transition: all 0.25s ease-in-out;
+    color: var(--zadark-by-quaric);
+
+    &:hover {
+      color: var(--zadark-neutral-base);
+    }
 
     &__by {
-      color: var(--zadark-by-quaric);
       line-height: 20px;
     }
 
@@ -314,7 +299,6 @@ body.zadark-safari {
       width: auto;
       height: 12px;
       margin-left: 8px;
-      color: var(--zadark-by-quaric);
     }
   }
 

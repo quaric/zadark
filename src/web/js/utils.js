@@ -323,7 +323,7 @@
         // Use default font
         await ZaDarkBrowser.saveExtensionSettings({ fontFamily })
         this.setFontFamilyAttr('')
-        this.showToast('Đã thay đổi phông chữ.')
+        this.showToast('Đã thay đổi phông chữ')
         return true
       }
 

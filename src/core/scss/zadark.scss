@@ -2029,6 +2029,18 @@ html[data-zadark-theme="dark"] {
     .pi-info-layout__primary-info-container {
       background-color: var(--bg-default);
     }
+
+    .hover-info-container {
+      color: var(--text-primary);
+      background-color: var(--NG10);
+      border: 1px solid var(--NG30);
+      border-radius: var(--zadark-rounded-base);
+      filter: drop-shadow(var(--BA50) 0 3px 6px);
+      opacity: 1;
+    }
+    .hover-info-container:before {
+      background-color: var(--NG10);
+    }
   }
 }
 
@@ -2204,6 +2216,26 @@ body.zadark {
   .editor-input {
     span[style*="font-weight: 500"] {
       font-weight: 600 !important;
+    }
+  }
+
+  .chat-input__content__input {
+    // .chat-input-container > div:first-child {
+    //   align-items: center;
+    // }
+
+    .rich-input {
+      font-size: var(--zadark-cnv-font-size);
+    }
+
+    .chat-input-btns > div:first-child {
+      margin-left: 8px;
+    }
+    .chat-input-btns .input-btn {
+      margin-bottom: 0;
+    }
+    .chat-input-btns .emoji-outer {
+      top: 0 !important;
     }
   }
 }
