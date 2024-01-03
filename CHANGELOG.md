@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.1.1
+> PC 12.4 và Web 9.21
+
+- Sửa lỗi Dark Mode của Popup danh sách đã xem tin nhắn ([#102](https://github.com/quaric/zadark/issues/102))
+- Cập nhật cỡ chữ của khung soạn tin nhắn (không hỗ trợ chế độ định dạng tin nhắn) bằng với cỡ chữ của tin nhắn (Tuỳ chỉnh cỡ chữ trong phần ZaDark Settings)
+
 ## ZaDark 23.12.5
 > PC 12.3 và Web 9.20
 

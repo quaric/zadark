@@ -40,47 +40,47 @@
 
   const HOTKEYS_TOAST_MESSAGE = {
     fontSize: {
-      small: 'Đã áp dụng cỡ chữ Nhỏ.',
-      medium: 'Đã áp dụng cỡ chữ Trung bình.',
-      big: 'Đã áp dụng cỡ chữ Lớn.',
-      'very-big': 'Đã áp dụng cỡ chữ Rất lớn.'
+      small: 'Đã áp dụng cỡ chữ 90%',
+      medium: 'Đã áp dụng cỡ chữ 100%',
+      big: 'Đã áp dụng cỡ chữ 110%',
+      'very-big': 'Đã áp dụng cỡ chữ 125%'
     },
     hideLatestMessage: {
-      true: 'Đã bật Ẩn Tin nhắn gần nhất.',
-      false: 'Đã tắt Ẩn Tin nhắn gần nhất.'
+      true: 'Đã bật Ẩn Tin nhắn gần nhất',
+      false: 'Đã tắt Ẩn Tin nhắn gần nhất'
     },
     hideThreadChatMessage: {
-      true: 'Đã bật Ẩn Tin nhắn trong cuộc trò chuyện.',
-      false: 'Đã tắt Ẩn Tin nhắn trong cuộc trò chuyện.'
+      true: 'Đã bật Ẩn Tin nhắn trong cuộc trò chuyện',
+      false: 'Đã tắt Ẩn Tin nhắn trong cuộc trò chuyện'
     },
     hideConvAvatar: {
-      true: 'Đã bật Ẩn Ảnh đại diện.',
-      false: 'Đã tắt Ẩn Ảnh đại diện.'
+      true: 'Đã bật Ẩn Ảnh đại diện',
+      false: 'Đã tắt Ẩn Ảnh đại diện'
     },
     hideConvName: {
-      true: 'Đã bật Ẩn Tên cuộc trò chuyện.',
-      false: 'Đã tắt Ẩn Tên cuộc trò chuyện.'
+      true: 'Đã bật Ẩn Tên cuộc trò chuyện',
+      false: 'Đã tắt Ẩn Tên cuộc trò chuyện'
     },
-    block_typing: {
-      true: 'Đã bật Ẩn trạng thái Đang soạn tin (Typing).',
-      false: 'Đã tắt Ẩn trạng thái Đang soạn tin (Typing).'
+    rules_block_typing: {
+      true: 'Đã bật Ẩn trạng thái Đang soạn tin',
+      false: 'Đã tắt Ẩn trạng thái Đang soạn tin'
     },
-    block_delivered: {
-      true: 'Đã bật Ẩn trạng thái Đã nhận (Received).',
-      false: 'Đã tắt Ẩn trạng thái Đã nhận (Received).'
+    rules_block_delivered: {
+      true: 'Đã bật Ẩn trạng thái Đã nhận',
+      false: 'Đã tắt Ẩn trạng thái Đã nhận'
     },
-    block_seen: {
-      true: 'Đã bật Ẩn trạng thái Đã xem (Seen).',
-      false: 'Đã tắt Ẩn trạng thái Đã xem (Seen).'
+    rules_block_seen: {
+      true: 'Đã bật Ẩn trạng thái Đã xem',
+      false: 'Đã tắt Ẩn trạng thái Đã xem'
     },
     useHotkeys: {
-      true: 'Đã kích hoạt phím tắt.',
-      false: 'Đã vô hiệu hoá phím tắt.'
+      true: 'Đã kích hoạt phím tắt',
+      false: 'Đã vô hiệu hoá phím tắt'
     }
   }
 
   const COMMON_TOAST_MESSAGE = {
-    needToRestart: 'Bạn vui lòng tắt & mở lại Zalo PC để áp dụng thay đổi.'
+    needToRestart: 'Bạn vui lòng tắt & mở lại Zalo PC để áp dụng thay đổi'
   }
 
   const ZaDarkCookie = {
@@ -1285,7 +1285,7 @@
       ]
 
       if (REQUIRED_IN_THREAD_CHAT.includes(introId) && !isInThreadChat) {
-        ZaDarkUtils.showToast('Chọn một cuộc trò chuyện để xem hướng dẫn.')
+        ZaDarkUtils.showToast('Chọn một cuộc trò chuyện để xem hướng dẫn')
         return
       }
 
