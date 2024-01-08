@@ -646,6 +646,46 @@
     }
   }
 
+  // const injectAppDiv = () => {
+  //   const isRendered = !!document.querySelector('zadark-settings-app')
+
+  //   if (isRendered) {
+  //     return
+  //   }
+
+  //   // Inject app div
+  //   const appContainer = document.createElement('zadark-settings-app')
+  //   document.body.appendChild(appContainer)
+
+  //   // Create shadow dom
+  //   const shadow = document
+  //     .querySelector('zadark-settings-app')
+  //     .attachShadow({ mode: 'open' })
+
+  //   const wrapper = document.createElement('div')
+  //   wrapper.id = 'zadark-settings-wrapper'
+  //   shadow.appendChild(wrapper)
+  // }
+
+  // const getSettingsWrapper = () => {
+  //   const el = document.querySelector('zadark-settings-app').shadowRoot.querySelector('#zadark-settings-wrapper')
+  //   return el
+  // }
+
+  // injectAppDiv()
+  // const settingsWrapper = getSettingsWrapper()
+  // settingsWrapper.innerHTML = `
+  //   <style>
+  //     @import "${ZaDarkBrowser.getURL('css/zadark-fonts.min.css')}";
+  //     @import "${ZaDarkBrowser.getURL('css/zadark-popup.min.css')}";
+  //     @import "${ZaDarkBrowser.getURL('css/popup.min.css')}";
+
+  //     #zadark-popup {
+  //       border: 1px solid var(--zadark-border-base);
+  //     }
+  //   </style>
+  //   `
+
   const loadZaDarkPopup = () => {
     const [zaloTabsBottomEl] = document.querySelectorAll('.nav__tabs__bottom')
 
@@ -657,6 +697,9 @@
 
     const zaloAppBody = document.body
     zaloAppBody.insertAdjacentHTML('beforeend', zadarkPopupHTML)
+
+    // const settingsWrapper = getSettingsWrapper()
+    // settingsWrapper.insertAdjacentHTML('beforeend', zadarkPopupHTML)
 
     $(radioInputThemeElName).on('change', handleSelectThemeChange)
     $(inputFontFamilyElName).keypress(handleInputFontFamilyKeyPress)

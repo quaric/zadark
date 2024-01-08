@@ -210,6 +210,8 @@ body:not(.zadark--use-hotkeys) {
     display: flex;
     align-items: center;
 
+    background-color: var(--zadark-white-300);
+
     &__logo {
       flex: 1;
       margin-right: 8px;

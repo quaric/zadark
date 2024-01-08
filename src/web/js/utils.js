@@ -160,9 +160,9 @@
         steps,
 
         disableInteraction: false,
-        prevLabel: 'Trước <span class="zadark-text-en">/ Prev</span>',
-        nextLabel: 'Tiếp <span class="zadark-text-en">/ Next</span>',
-        doneLabel: 'Đã hiểu <span class="zadark-text-en">/ Done</span>',
+        prevLabel: 'Trước',
+        nextLabel: 'Tiếp',
+        doneLabel: 'Đã hiểu',
         helperElementPadding: -4
       })
 
@@ -230,7 +230,7 @@
     },
 
     initOSName: function () {
-      const { parsedResult: { os } } = bowser.getParser(window.navigator.userAgent)
+      const { parsedResult: { os } } = window.bowser.getParser(window.navigator.userAgent)
       this.setOSAttr(os.name)
     },
 

@@ -27,13 +27,10 @@ This document describes the process for running this application on your local c
     #   chrome/
     #     manifest.json
     #     ...
-    #   firefox/
-    #     manifest.json
-    #     ...
-    #   opera/
-    #     manifest.json
-    #     ...
     #   edge/
+    #     manifest.json
+    #     ...
+    #   firefox/
     #     manifest.json
     #     ...
     #   pc/
@@ -43,31 +40,26 @@ This document describes the process for running this application on your local c
 
 4. Testing
 
+- macOS & Windows
+  - `yarn run pc:dev`
 - Chrome Extension
   - Step 1: Open `chrome://extensions/`
   - Step 2: Turn on `Developer Mode`
   - Step 3: Click `Load unpacked`
   - Step 4: Choose folder `build/chrome/`
-- Firefox Extension
-  - Step 1: Open `about:debugging#/runtime/this-firefox`
-  - Step 2: Click `Load Temporary Add-on...`
-  - Step 3: Choose file `build/firefox/manifest.json`
-- Opera Extension
-  - Step 1: Open `opera://extensions/`
-  - Step 2: Turn on `Developer Mode`
-  - Step 3: Click `Load unpacked`
-  - Step 4: Choose folder `build/opera/`
+- Safari Extension
+  - Step 1: Open `src/web/vendor/safari/ZaDark.xcodeproj` in Xcode
+  - Step 2: Choose `Product > Run`
+  - Step 3: Open `Safari > Preferences > Extensions` > Turn on `ZaDark – Zalo Dark Mode`
 - Edge Extension
   - Step 1: Open `edge://extensions/`
   - Step 2: Turn on `Developer Mode`
   - Step 3: Click `Load unpacked`
   - Step 4: Choose folder `build/edge/`
-- Safari Extension
-  - Step 1: Open `src/web/vendor/safari/ZaDark.xcodeproj` in Xcode
-  - Step 2: Choose `Product > Run`
-  - Step 3: Open `Safari > Preferences > Extensions` > Turn on `ZaDark – Zalo Dark Mode`
-- macOS & Windows
-  - `yarn run pc:dev`
+- Firefox Extension
+  - Step 1: Open `about:debugging#/runtime/this-firefox`
+  - Step 2: Click `Load Temporary Add-on...`
+  - Step 3: Choose file `build/firefox/manifest.json`
 
 ## Creating Built Distributions
 
@@ -89,24 +81,21 @@ yarn dist
 #   chrome/
 #     ZaDark Chrome [VERSION].zip
 #
-#   firefox/
-#     ZaDark Firefox [VERSION].zip
-#
-#   opera/
-#     ZaDark Opera [VERSION].zip
-#
 #   edge/
 #     ZaDark Edge [VERSION].zip
 #
-#   macos/
-#     ZaDark [VERSION] macOS-x64
-#     ZaDark [VERSION] macOS-arm64
+#   firefox/
+#     ZaDark Firefox [VERSION].zip
 #
 #   windows/
 #     ZaDark [VERSION].exe
 #     ZaDark [VERSION].zip
+#
+#   macos/
+#     ZaDark [VERSION] macOS-x64
+#     ZaDark [VERSION] macOS-arm64
 ```
 
-- For Google Chrome, Firefox, Opera and Microsoft Edge: Distribute `dist/[PLATFORM]/ZaDark [PLATFORM] [VERSION].zip` to Store
+- For Chrome Edge and Firefox: Distribute `dist/[PLATFORM]/ZaDark [PLATFORM] [VERSION].zip` to Store
 - For Windows: Distribute `dist/windows/ZaDark [VERSION].zip` directly to users
 - For macOS: Distribute `dist/macos/ZaDark [VERSION] macOS-[TARGET].zip` directly to users

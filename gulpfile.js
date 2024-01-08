@@ -7,6 +7,8 @@ const pkg = require('pkg')
 const path = require('path')
 const del = require('del')
 const minify = require('gulp-minify')
+const concat = require('gulp-concat')
+const sort = require('gulp-sort')
 const rename = require('gulp-rename')
 const resedit = require('resedit/cjs')
 const fs = require('fs')
@@ -109,7 +111,11 @@ const buildWeb = (browser) => {
     buildSass(getWebPath(`./vendor/${browser}/*.scss`), cssDir),
 
     src(getWebPath('./_locales/**/*')).pipe(dest(localesDir)),
-    src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
+    // src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
+    src(getWebPath('./libs/**/*'))
+      .pipe(sort())
+      .pipe(concat('libs.min.js'))
+      .pipe(dest(libsDir)),
     src(getWebPath('./images/**/*')).pipe(dest(imagesDir)),
     src(getCorePath('./fonts/**/*')).pipe(dest(fontsDir)),
     src(getWebPath('./rules/**/*')).pipe(dest(rulesDir))
@@ -162,7 +168,10 @@ const buildSafari = () => {
     buildSass(getWebPath('./vendor/safari/*.scss'), cssDir),
 
     src(getWebPath('./_locales/**/*')).pipe(dest(localesDir)),
-    src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
+    // src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
+    src(getWebPath('./libs/**/*'))
+      .pipe(concat('libs.min.js'))
+      .pipe(dest(libsDir)),
     src(getCorePath('./fonts/**/*')).pipe(dest(fontsDir)),
     src(getWebPath('./rules/**/*')).pipe(dest(rulesDir))
   )
@@ -248,7 +257,7 @@ const setWindowsExeInfo = async () => {
   ver.setFileVersion(...versionArr)
 
   ver.setStringValues(language, {
-    ProductName: 'ZaDark – Zalo Dark Mode',
+    ProductName: 'ZaDark - Zalo Dark Mode',
     FileDescription: `ZaDark for Windows ${versionStr}`,
     LegalCopyright: 'ZaDark by Quaric. MPL-2.0 license.',
     OriginalFilename: distUtils.getFileNameOriginal('WINDOWS')
@@ -359,7 +368,7 @@ const watchAll = () => {
     getPCPath('./**/*'),
     `!${getWebPath('./vendor/safari/ZaDark/**/*')}`,
     `!${getWebPath('./vendor/safari/ZaDark Extension/**/*')}`,
-    `!${getWebPath('./vendor/safari/ZaDark.xcodeproj/**/')}`
+    `!${getWebPath('./vendor/safari/ZaDark.xcodeproj/**/*')}`
   ], buildAll)
 }
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## ZaDark 24.1.2
+> PC 12.5 và Web 9.22
+
+- Tối ưu mã nguồn
+
 ## ZaDark 24.1.1
 > PC 12.4 và Web 9.21
 
