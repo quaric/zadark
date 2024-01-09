@@ -4,6 +4,8 @@
 > PC 12.5 và Web 9.22
 
 - Tối ưu mã nguồn
+- **[Windows, macOS]** Thêm lệnh `-v`, `--version` để xem phiên bản ZaDark
+- **[macOS]** Hỗ trợ cài đặt ZaDark từ **Homebrew** ([Hướng dẫn sử dụng](https://zadark.com/pc/macos)) ([#104](https://github.com/quaric/zadark/issues/104))
 
 ## ZaDark 24.1.1
 > PC 12.4 và Web 9.21

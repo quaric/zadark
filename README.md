@@ -91,6 +91,7 @@ https://zadark.com/awards
 - https://github.com/apvarun/toastify-js
 - https://github.com/jaywcjlove/hotkeys-js
 - https://medium.com/xcblog/agvtool-automating-ios-build-and-version-numbers-454cab6f1bbe
+- https://bharathvaj.me/blog/how-to-publish-your-nodejs-project-on-homebrew
 
 ---
 
