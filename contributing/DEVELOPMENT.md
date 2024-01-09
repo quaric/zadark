@@ -34,6 +34,7 @@ This document describes the process for running this application on your local c
     #     manifest.json
     #     ...
     #   pc/
+    #     package.json
     #     index.js
     #     ...
     ```
@@ -50,7 +51,7 @@ This document describes the process for running this application on your local c
 - Safari Extension
   - Step 1: Open `src/web/vendor/safari/ZaDark.xcodeproj` in Xcode
   - Step 2: Choose `Product > Run`
-  - Step 3: Open `Safari > Preferences > Extensions` > Turn on `ZaDark – Zalo Dark Mode`
+  - Step 3: Open `Safari > Preferences > Extensions` > Turn on `ZaDark for Safari`
 - Edge Extension
   - Step 1: Open `edge://extensions/`
   - Step 2: Turn on `Developer Mode`
@@ -88,14 +89,13 @@ yarn dist
 #     ZaDark Firefox [VERSION].zip
 #
 #   windows/
-#     ZaDark [VERSION].exe
 #     ZaDark [VERSION].zip
 #
 #   macos/
-#     ZaDark [VERSION] macOS-x64
-#     ZaDark [VERSION] macOS-arm64
+#     ZaDark [VERSION] - Intel Chip.zip
+#     ZaDark [VERSION] - Apple Chip.zip
 ```
 
-- For Chrome Edge and Firefox: Distribute `dist/[PLATFORM]/ZaDark [PLATFORM] [VERSION].zip` to Store
+- For Chrome, Edge and Firefox: Distribute `dist/[PLATFORM]/ZaDark [PLATFORM] [VERSION].zip` to Store
 - For Windows: Distribute `dist/windows/ZaDark [VERSION].zip` directly to users
-- For macOS: Distribute `dist/macos/ZaDark [VERSION] macOS-[TARGET].zip` directly to users
+- For macOS: Distribute `dist/macos/ZaDark [VERSION] [TARGET].zip` directly to users
