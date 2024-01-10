@@ -6,50 +6,6 @@ const operaManifest = require('./src/web/vendor/opera/manifest.json')
 const edgeManifest = require('./src/web/vendor/edge/manifest.json')
 const pcPackageJSON = require('./src/pc/package.json')
 
-const FILE_NAME = {
-  CHROME: `ZaDark Chrome ${chromeManifest.version}`,
-  FIREFOX: `ZaDark Firefox ${firefoxManifest.version}`,
-  OPERA: `ZaDark Opera ${operaManifest.version}`,
-  EDGE: `ZaDark Edge ${edgeManifest.version}`,
-  MACOS: `ZaDark ${pcPackageJSON.version} macOS`,
-  MACOS_X64: `ZaDark ${pcPackageJSON.version} macOS-x64`,
-  MACOS_ARM64: `ZaDark ${pcPackageJSON.version} macOS-arm64`,
-  WINDOWS: `ZaDark ${pcPackageJSON.version}`
-}
-
-const FILE_EXT_ORIGINAL = {
-  CHROME: '.zip',
-  FIREFOX: '.zip',
-  OPERA: '.zip',
-  EDGE: '.zip',
-  MACOS: '',
-  MACOS_X64: '',
-  MACOS_ARM64: '',
-  WINDOWS: '.exe'
-}
-
-const FILE_EXT_ZIP = {
-  CHROME: '.zip',
-  FIREFOX: '.zip',
-  OPERA: '.zip',
-  EDGE: '.zip',
-  MACOS: '.zip',
-  MACOS_X64: '.zip',
-  MACOS_ARM64: '.zip',
-  WINDOWS: '.zip'
-}
-
-const FILE_DIR = {
-  CHROME: './dist/chrome',
-  FIREFOX: './dist/firefox',
-  OPERA: './dist/opera',
-  EDGE: './dist/edge',
-  MACOS: './dist/macos',
-  MACOS_X64: './dist/macos',
-  MACOS_ARM64: './dist/macos',
-  WINDOWS: './dist/windows'
-}
-
 const getVersion = (platform) => {
   switch (platform) {
     case 'CHROME':
@@ -69,12 +25,51 @@ const getVersion = (platform) => {
   }
 }
 
+const FILE_DIR = {
+  CHROME: './dist/chrome',
+  FIREFOX: './dist/firefox',
+  OPERA: './dist/opera',
+  EDGE: './dist/edge',
+  MACOS: './dist/macos',
+  MACOS_X64: './dist/macos',
+  MACOS_ARM64: './dist/macos',
+  WINDOWS: './dist/windows'
+}
+
+const FILE_NAME_ORIGINAL = {
+  CHROME: `ZaDark Chrome ${getVersion('CHROME')}.zip`,
+  FIREFOX: `ZaDark Firefox ${getVersion('FIREFOX')}.zip`,
+  OPERA: `ZaDark Opera ${getVersion('OPERA')}.zip`,
+  EDGE: `ZaDark Edge ${getVersion('EDGE')}.zip`,
+  MACOS: `ZaDark ${getVersion('MACOS')}`,
+  MACOS_X64: `ZaDark ${getVersion('MACOS')}-x64`,
+  MACOS_ARM64: `ZaDark ${getVersion('MACOS')}-arm64`,
+  MACOS_X64_FRIENDLY: `ZaDark ${getVersion('MACOS')} - Intel Chip`,
+  MACOS_ARM64_FRIENDLY: `ZaDark ${getVersion('MACOS')} - Apple Chip`,
+  WINDOWS: `ZaDark ${getVersion('WINDOWS')}.exe`
+}
+
+const FILE_NAME_ZIP = {
+  CHROME: `ZaDark Chrome ${getVersion('CHROME')}.zip`,
+  FIREFOX: `ZaDark Firefox ${getVersion('FIREFOX')}.zip`,
+  OPERA: `ZaDark Opera ${getVersion('OPERA')}.zip`,
+  EDGE: `ZaDark Edge ${getVersion('EDGE')}.zip`,
+  MACOS: `ZaDark ${getVersion('MACOS')}.zip`,
+  MACOS_X64: `ZaDark ${getVersion('MACOS')} - Intel Chip.zip`,
+  MACOS_ARM64: `ZaDark ${getVersion('MACOS')} - Apple Chip.zip`,
+  WINDOWS: `ZaDark ${getVersion('WINDOWS')}.zip`
+}
+
 const getFileNameOriginal = (plat) => {
-  return FILE_NAME[plat] + FILE_EXT_ORIGINAL[plat]
+  return FILE_NAME_ORIGINAL[plat]
 }
 
 const getFileNameZip = (plat) => {
-  return FILE_NAME[plat] + FILE_EXT_ZIP[plat]
+  return FILE_NAME_ZIP[plat]
+}
+
+const getFileNameMacOSTar = () => {
+  return `zadark-macos-${pcPackageJSON.version}.tar`
 }
 
 const getFileDir = (platform) => {
@@ -96,6 +91,7 @@ module.exports = {
 
   getFileNameOriginal,
   getFileNameZip,
+  getFileNameMacOSTar,
 
   getFileDir,
   getFilePath

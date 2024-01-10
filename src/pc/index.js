@@ -124,7 +124,7 @@ const handleOpenDocs = () => {
 
 (async () => {
   const [action, zaloPath] = process.argv.slice(2)
-  const shouldUseCommand = ['install', 'in', 'uninstall', 'un'].includes(action)
+  const shouldUseCommand = ['install', 'in', 'uninstall', 'un', '-v', '--version'].includes(action)
 
   if (shouldUseCommand) {
     const zaloResDirList = zadarkPC.getZaloResDirList(zaloPath || DEFAULT_ZALO_PATH)
@@ -140,6 +140,10 @@ const handleOpenDocs = () => {
 
       if (['uninstall', 'un'].includes(action)) {
         await handleUninstall(zaloResDirList)
+      }
+
+      if (['-v', '--version'].includes(action)) {
+        print(`ZaDark ${ZADARK_VERSION}`)
       }
     } catch (error) {
       print(chalk.magentaBright.bold('[XAY RA LOI]'))

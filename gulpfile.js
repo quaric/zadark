@@ -3,11 +3,16 @@ const mergeStream = require('merge-stream')
 const sass = require('sass')
 const yupSass = require('gulp-sass')(sass)
 const gulpZip = require('gulp-zip')
+const tar = require('gulp-tar')
+const gzip = require('gulp-gzip')
 const pkg = require('pkg')
 const path = require('path')
 const del = require('del')
 const minify = require('gulp-minify')
+const concat = require('gulp-concat')
+const sort = require('gulp-sort')
 const rename = require('gulp-rename')
+const hashsum = require('gulp-hashsum')
 const resedit = require('resedit/cjs')
 const fs = require('fs')
 
@@ -109,7 +114,11 @@ const buildWeb = (browser) => {
     buildSass(getWebPath(`./vendor/${browser}/*.scss`), cssDir),
 
     src(getWebPath('./_locales/**/*')).pipe(dest(localesDir)),
-    src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
+    // src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
+    src(getWebPath('./libs/**/*'))
+      .pipe(sort())
+      .pipe(concat('libs.min.js'))
+      .pipe(dest(libsDir)),
     src(getWebPath('./images/**/*')).pipe(dest(imagesDir)),
     src(getCorePath('./fonts/**/*')).pipe(dest(fontsDir)),
     src(getWebPath('./rules/**/*')).pipe(dest(rulesDir))
@@ -162,7 +171,11 @@ const buildSafari = () => {
     buildSass(getWebPath('./vendor/safari/*.scss'), cssDir),
 
     src(getWebPath('./_locales/**/*')).pipe(dest(localesDir)),
-    src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
+    // src(getWebPath('./libs/**/*')).pipe(dest(libsDir)),
+    src(getWebPath('./libs/**/*'))
+      .pipe(sort())
+      .pipe(concat('libs.min.js'))
+      .pipe(dest(libsDir)),
     src(getCorePath('./fonts/**/*')).pipe(dest(fontsDir)),
     src(getWebPath('./rules/**/*')).pipe(dest(rulesDir))
   )
@@ -248,7 +261,7 @@ const setWindowsExeInfo = async () => {
   ver.setFileVersion(...versionArr)
 
   ver.setStringValues(language, {
-    ProductName: 'ZaDark – Zalo Dark Mode',
+    ProductName: 'ZaDark - Zalo Dark Mode',
     FileDescription: `ZaDark for Windows ${versionStr}`,
     LegalCopyright: 'ZaDark by Quaric. MPL-2.0 license.',
     OriginalFilename: distUtils.getFileNameOriginal('WINDOWS')
@@ -273,14 +286,30 @@ const setWindowsExeInfo = async () => {
 
 const zipMacOSX64 = () => {
   return src(distUtils.getFilePath('MACOS_X64', true))
+    .pipe(rename(distUtils.getFileNameOriginal('MACOS_X64_FRIENDLY')))
     .pipe(gulpZip(distUtils.getFileNameZip('MACOS_X64')))
     .pipe(dest(distUtils.getFileDir('MACOS_X64')))
 }
 
 const zipMacOSARM64 = () => {
   return src(distUtils.getFilePath('MACOS_ARM64', true))
+    .pipe(rename(distUtils.getFileNameOriginal('MACOS_ARM64_FRIENDLY')))
     .pipe(gulpZip(distUtils.getFileNameZip('MACOS_ARM64')))
     .pipe(dest(distUtils.getFileDir('MACOS_ARM64')))
+}
+
+const tarGzipMacOSX64 = () => {
+  return src(distUtils.getFilePath('MACOS_X64', true))
+    .pipe(rename('zadark'))
+    .pipe(tar(distUtils.getFileNameMacOSTar()))
+    .pipe(gzip())
+    .pipe(dest(distUtils.getFileDir('MACOS_X64')))
+}
+
+const hashsumMacOS = () => {
+  const inp = path.join(distUtils.getFileDir('MACOS_X64'), distUtils.getFileNameMacOSTar() + '.gz')
+  const out = distUtils.getFileDir('MACOS_X64')
+  return src(inp).pipe(hashsum({ hash: 'sha256', dest: out }))
 }
 
 const zipWindows = () => {
@@ -315,13 +344,26 @@ const edgeDist = () => {
     .pipe(dest(distUtils.getFileDir('EDGE')))
 }
 
+const delTmpFile = (patterns) => {
+  return function delTmpFile () {
+    return del(patterns)
+  }
+}
+
 const pcDist = series(
   pkgMacOS,
   pkgWindows,
   setWindowsExeInfo,
   zipMacOSX64,
   zipMacOSARM64,
-  zipWindows
+  tarGzipMacOSX64,
+  hashsumMacOS,
+  zipWindows,
+  parallel(
+    delTmpFile(distUtils.getFilePath('MACOS_X64', true)),
+    delTmpFile(distUtils.getFilePath('MACOS_ARM64', true)),
+    delTmpFile(distUtils.getFilePath('WINDOWS', true))
+  )
 )
 
 // Exports
@@ -352,6 +394,23 @@ const distAll = series(
   )
 )
 
+const distWeb = series(
+  buildAll,
+  parallel(
+    chromeDist,
+    firefoxDist,
+    operaDist,
+    edgeDist
+  )
+)
+
+const distPC = series(
+  buildAll,
+  parallel(
+    pcDist
+  )
+)
+
 const watchAll = () => {
   watch([
     getCorePath('./**/*'),
@@ -359,7 +418,7 @@ const watchAll = () => {
     getPCPath('./**/*'),
     `!${getWebPath('./vendor/safari/ZaDark/**/*')}`,
     `!${getWebPath('./vendor/safari/ZaDark Extension/**/*')}`,
-    `!${getWebPath('./vendor/safari/ZaDark.xcodeproj/**/')}`
+    `!${getWebPath('./vendor/safari/ZaDark.xcodeproj/**/*')}`
   ], buildAll)
 }
 
@@ -367,4 +426,6 @@ const dev = series(buildAll, watchAll)
 
 exports.build = buildAll
 exports.dist = distAll
+exports.distWeb = distWeb
+exports.distPC = distPC
 exports.dev = dev

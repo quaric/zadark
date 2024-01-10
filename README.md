@@ -8,24 +8,22 @@
   [![Windows](https://img.shields.io/badge/Windows-00002D.svg?&style=for-the-badge&logo=windows&logoColor=3989FF)](https://go.quaric.com/zadark-win)
   [![macOS](https://img.shields.io/badge/macOS-00002D.svg?&style=for-the-badge&logo=apple&logoColor=3989FF)](https://go.quaric.com/zadark-mac)
   [![Chrome](https://img.shields.io/badge/Chrome-00002D.svg?&style=for-the-badge&logo=google-chrome&logoColor=3989FF)](https://go.quaric.com/zadark-chrome)
-  [![Firefox](https://img.shields.io/badge/Firefox-00002D.svg?&style=for-the-badge&logo=firefox&logoColor=3989FF)](https://go.quaric.com/zadark-firefox)
-  [![Opera](https://img.shields.io/badge/Opera-00002D.svg?&style=for-the-badge&logo=opera&logoColor=3989FF)](https://go.quaric.com/zadark-opera)
-  [![Edge](https://img.shields.io/badge/Edge-00002D.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=3989FF)](https://go.quaric.com/zadark-edge)
   [![Safari](https://img.shields.io/badge/Safari-00002D.svg?&style=for-the-badge&logo=safari&logoColor=3989FF)](https://go.quaric.com/zadark-safari)
+  [![Edge](https://img.shields.io/badge/Edge-00002D.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=3989FF)](https://go.quaric.com/zadark-edge)
+  [![Firefox](https://img.shields.io/badge/Firefox-00002D.svg?&style=for-the-badge&logo=firefox&logoColor=3989FF)](https://go.quaric.com/zadark-firefox)
 
   <img src="./.github/zadark-by-quaric.svg" alt="ZaDark by Quaric" />
 </div>
-
-<br />
-
-<mark>ZaDark changes its Open Source License from **MIT** to [**Mozilla Public License Version 2.0**](./LICENSE) from 17:00 on April 30, 2023.
-ZaDark's source code before 17:00 on April 30, 2023 is still subject to the **MIT** License.</mark>
 
 ---
 
 ## About
 
-ZaDark is an extension that helps you enable Dark Mode for Zalo PC and Web.
+<img src=".github/zadark-mascot-1.1.png" width="128" alt="ZaDark Mascot" align="right" />
+
+ZaDark is an extension that helps you enable Dark Mode for Zalo PC and Web. ZaDark is available on Windows, macOS, Chrome, Safari, Edge and Firefox.
+
+> ZaDark là tiện ích giúp kích hoạt Dark Mode (Chế độ tối) cho Zalo PC và Web. ZaDark có mặt trên Windows, macOS, Chrome, Safari, Edge và Firefox.
 
 https://zadark.com/
 
@@ -91,6 +89,10 @@ https://zadark.com/awards
 - https://github.com/apvarun/toastify-js
 - https://github.com/jaywcjlove/hotkeys-js
 - https://medium.com/xcblog/agvtool-automating-ios-build-and-version-numbers-454cab6f1bbe
+- https://bharathvaj.me/blog/how-to-publish-your-nodejs-project-on-homebrew
+- https://docs.brew.sh/Formula-Cookbook
+- https://docs.brew.sh/Taps
+- https://rubydoc.brew.sh/Formula
 
 ---
 

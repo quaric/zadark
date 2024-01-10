@@ -1,7 +1,7 @@
 {
   "name": "zadark",
   "description": "Dark Mode tốt nhất cho Zalo",
-  "version": "24.1.1",
+  "version": "24.1.2",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
     "name": "Quaric",
@@ -20,6 +20,8 @@
     "dev": "NODE_ENV=development gulp dev",
     "build": "NODE_ENV=development gulp build",
     "dist": "gulp dist",
+    "dist:web": "gulp distWeb",
+    "dist:pc": "gulp distPC",
     "pc:dev": "NODE_ENV=development node build/pc",
     "pc:start": "NODE_ENV=production node build/pc",
     "prepare": "husky install",
@@ -34,9 +36,14 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-gzip": "^1.4.2",
+    "gulp-hashsum": "^1.2.0",
     "gulp-minify": "^3.1.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
+    "gulp-sort": "^2.0.0",
+    "gulp-tar": "3.1.0",
     "gulp-zip": "^5.1.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
