@@ -1,5 +1,10 @@
 # Changelog
 
+## ZaDark 24.1.3
+> PC 12.6 và Web 9.23
+
+- Sửa lỗi Dark Mode: My Cloud > "Lưu bền Cloud (Cloud saved)"
+
 ## ZaDark 24.1.2
 > PC 12.5 và Web 9.22
 
