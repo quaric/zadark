@@ -1908,7 +1908,8 @@ html[data-zadark-theme="dark"] {
     .file-cloud-indicator[style*="assets/on-cloud"] {
       filter: brightness(2.4);
     }
-    span[data-translate-inner="STR_CLOUD_SAVED"][style*="rgb(0, 55, 138)"] {
+    span[data-translate-inner="STR_CLOUD_SAVED"][style*="rgb(0, 55, 138)"],
+    span[data-translate-inner="STR_PERSONAL_CLOUDED"][style*="rgb(0, 55, 138)"] {
       color: var(--B60) !important;
     }
 
