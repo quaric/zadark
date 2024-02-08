@@ -9,6 +9,7 @@
     MSG_ACTIONS: {
       CHANGE_THEME: '@ZaDark:CHANGE_THEME',
       CHANGE_FONT_SIZE: '@ZaDark:CHANGE_FONT_SIZE',
+      CHANGE_TRANSLATE_TARGET: '@ZaDark:CHANGE_TRANSLATE_TARGET',
 
       CHANGE_HIDE_LATEST_MESSAGE: '@ZaDark:CHANGE_HIDE_LATEST_MESSAGE',
       CHANGE_HIDE_CONV_AVATAR: '@ZaDark:CHANGE_HIDE_CONV_AVATAR',
@@ -92,6 +93,14 @@
 
     setFontSizeAttr: (fontSize) => {
       document.documentElement.setAttribute('data-zadark-font-size', fontSize)
+    },
+
+    setTranslateTargetAttr: (translateTarget) => {
+      document.documentElement.setAttribute('data-zadark-trans-target', translateTarget)
+    },
+
+    getTranslateTargetAttr: () => {
+      return document.documentElement.getAttribute('data-zadark-trans-target') || 'vi'
     },
 
     setHideLatestMessageAttr: function (isEnabled) {
@@ -259,6 +268,7 @@
       const {
         theme,
         fontSize,
+        translateTarget,
 
         enabledHideLatestMessage,
         enabledHideConvAvatar,
@@ -270,6 +280,7 @@
 
       this.setPageTheme(theme)
       this.setFontSizeAttr(fontSize)
+      this.setTranslateTargetAttr(translateTarget)
 
       this.setHideLatestMessageAttr(enabledHideLatestMessage)
       this.setHideConvAvatarAttr(enabledHideConvAvatar)
@@ -350,6 +361,11 @@
       await ZaDarkBrowser.saveExtensionSettings({ fontSize })
       this.setFontSizeAttr(fontSize)
       ZaDarkUtils.showToast(this.HOTKEYS_TOAST_MESSAGE.fontSize[fontSize])
+    },
+
+    updateTranslateTarget: async function (translateTarget) {
+      await ZaDarkBrowser.saveExtensionSettings({ translateTarget })
+      this.setTranslateTargetAttr(translateTarget)
     },
 
     updateHideLatestMessage: async function (enabledHideLatestMessage) {

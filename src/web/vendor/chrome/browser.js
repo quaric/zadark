@@ -29,6 +29,7 @@
           theme: 'dark',
           fontFamily: 'Open Sans',
           fontSize: 'medium',
+          translateTarget: 'vi',
 
           enabledHideLatestMessage: false,
           enabledHideConvAvatar: false,

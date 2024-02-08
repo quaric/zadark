@@ -17,6 +17,7 @@ const btnScrollElName = '#js-btn-scroll'
 const radioInputThemeElName = '#js-radio-input-theme input:radio[name="theme"]'
 const inputFontFamilyElName = '#js-input-font-family'
 const selectFontSizeElName = '#js-select-font-size'
+const selectTranslateTargetElName = '#js-select-translate-target'
 
 const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
 const switchHideConvAvatarElName = '#js-switch-hide-conv-avatar'
@@ -35,6 +36,7 @@ ZaDarkBrowser.getExtensionSettings().then(({
   theme,
   fontFamily,
   fontSize,
+  translateTarget,
   enabledHideLatestMessage,
   enabledHideConvAvatar,
   enabledHideConvName,
@@ -47,6 +49,7 @@ ZaDarkBrowser.getExtensionSettings().then(({
   $(radioInputThemeElName).filter(`[value="${theme}"]`).attr('checked', true)
   $(inputFontFamilyElName).val(fontFamily).blur()
   $(selectFontSizeElName).val(fontSize)
+  $(selectTranslateTargetElName).setLanguagesOptions(translateTarget)
 
   $(switchHideLatestMessageElName).prop('checked', enabledHideLatestMessage)
   $(switchHideConvAvatarElName).prop('checked', enabledHideConvAvatar)
@@ -83,6 +86,12 @@ $(selectFontSizeElName).on('change', async function () {
   const fontSize = $(this).val()
   await ZaDarkUtils.updateFontSize(fontSize)
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_FONT_SIZE, { fontSize })
+})
+
+$(selectTranslateTargetElName).on('change', async function () {
+  const translateTarget = $(this).val()
+  await ZaDarkUtils.updateTranslateTarget(translateTarget)
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_TRANSLATE_TARGET, { translateTarget })
 })
 
 $(switchHideLatestMessageElName).on('change', async function () {

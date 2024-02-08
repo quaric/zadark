@@ -11,6 +11,10 @@ const ZADARK_VERSION = packageJSON.version
 
 const ZADARK_TMP_PATH = path.join(os.homedir(), 'zadark-tmp')
 
+const ZADARK_API_DOMAIN = process.env.NODE_ENV === 'development'
+  ? 'http://localhost:5555'
+  : 'https://api.zadark.com'
+
 const ZALO_PROCESS_NAMES = IS_MAC
   ? ['zalo', '/applications/za']
   : ['zalo.exe']
@@ -45,6 +49,7 @@ module.exports = {
 
   ZADARK_VERSION,
   ZADARK_TMP_PATH,
+  ZADARK_API_DOMAIN,
 
   ZALO_PROCESS_NAMES,
   DEFAULT_ZALO_PATH,

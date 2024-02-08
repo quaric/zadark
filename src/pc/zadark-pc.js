@@ -7,7 +7,7 @@ const glob = require('glob')
 
 const { printDebug, copyRecursiveSync, printError } = require('./utils')
 
-const { PLATFORM, IS_MAC, OS_NAME, ZADARK_VERSION, ZADARK_TMP_PATH, ZALO_PROCESS_NAMES } = require('./constants')
+const { PLATFORM, IS_MAC, OS_NAME, ZADARK_VERSION, ZADARK_TMP_PATH, ZALO_PROCESS_NAMES, ZADARK_API_DOMAIN } = require('./constants')
 const psList = require('./packages/ps-list')
 
 const getZaloResDirList = (customZaloPath) => {
@@ -72,13 +72,21 @@ const updateMetaContentSecurityPolicyTag = (htmlElement) => {
 
   const contentValue = metaTag.getAttribute('content')
 
-  if (contentValue.indexOf('https://fonts.googleapis.com') !== -1) {
-    printDebug('- updateContentSecurityPolicy:', 'skip: content already exists.')
-    return
+  let newContentValue
+
+  if (contentValue.indexOf('https://fonts.googleapis.com') === -1) {
+    const regex = /style-src[^;]*/
+    newContentValue = contentValue.replace(regex, '$& https://fonts.googleapis.com')
   }
 
-  const regex = /style-src[^;]*/
-  const newContentValue = contentValue.replace(regex, '$& https://fonts.googleapis.com')
+  if (contentValue.indexOf(ZADARK_API_DOMAIN) === -1) {
+    const regexConnect = /connect-src[^;]*/
+    newContentValue = contentValue.replace(regexConnect, `$& ${ZADARK_API_DOMAIN}`)
+  }
+
+  if (!newContentValue) {
+    return
+  }
 
   printDebug('- updateContentSecurityPolicy')
   metaTag.setAttribute('content', newContentValue)
@@ -164,6 +172,12 @@ const writeIndexFile = (zaloDir) => {
       selector: 'script[src="zadark-introjs.min.js"]',
       where: 'beforeend',
       html: '<script src="zadark-introjs.min.js"></script>',
+      htmlElement: bodyElement
+    },
+    {
+      selector: 'script[src="zadark-translate.min.js"]',
+      where: 'beforeend',
+      html: '<script src="zadark-translate.min.js"></script>',
       htmlElement: bodyElement
     },
     {
