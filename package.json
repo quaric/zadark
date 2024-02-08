@@ -1,7 +1,7 @@
 {
   "name": "zadark",
   "description": "Dark Mode tốt nhất cho Zalo",
-  "version": "24.1.2",
+  "version": "24.2.1",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
     "name": "Quaric",
@@ -71,7 +71,9 @@
       "ZaDarkBrowser",
       "ZaDarkUtils",
       "ZaDarkFonts",
+      "ZaDarkTranslate",
       "$",
+      "jQuery",
       "chrome",
       "browser",
       "bowser",
@@ -83,9 +85,11 @@
       "introJs",
       "localStorage",
       "MutationObserver",
-      "DEBUG",
       "fetch",
-      "Blob"
+      "Blob",
+      "DEBUG",
+      "ZADARK_API_DOMAIN",
+      "ZADARK_API_URL"
     ],
     "ignore": [
       "src/web/libs/**/*.js",

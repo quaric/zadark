@@ -2,9 +2,9 @@
   @font-face {
     font-family: "ZaDarkIcons";
     src:
-      url("#{$fontsPath}/ZaDarkIcons.ttf?3198rs") format("truetype"),
-      url("#{$fontsPath}/ZaDarkIcons.woff?3198rs") format("woff"),
-      url("#{$fontsPath}/ZaDarkIcons.svg?3198rs#icomoon") format("svg");
+      url("#{$fontsPath}/ZaDarkIcons.ttf?ox8fuo") format("truetype"),
+      url("#{$fontsPath}/ZaDarkIcons.woff?ox8fuo") format("woff"),
+      url("#{$fontsPath}/ZaDarkIcons.svg?ox8fuo#icomoon") format("svg");
     font-weight: 400;
     font-style: normal;
   }
@@ -30,6 +30,10 @@
 
     &--play-circle:before {
       content: "\e904";
+    }
+
+    &--translate:before {
+      content: "\e906";
     }
   }
 }

@@ -615,6 +615,14 @@ body:not(.zadark--use-hotkeys) {
           color: var(--zadark-neutral-400);
         }
       }
+
+      .zadark-icon {
+        position: relative;
+        bottom: -1px;
+        margin-left: 2px;
+        color: var(--zadark-neutral-600);
+        font-size: 0.875rem;
+      }
     }
 
     &--hotkeys {

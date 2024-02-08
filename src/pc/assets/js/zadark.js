@@ -15,6 +15,7 @@
   const ZADARK_THEME_KEY = '@ZaDark:THEME'
   const ZADARK_FONT_FAMILY_KEY = '@ZaDark:FONT_FAMILY'
   const ZADARK_FONT_SIZE_KEY = '@ZaDark:FONT_SIZE'
+  const ZADARK_TRANSLATE_TARGET_KEY = '@ZaDark:TRANSLATE_TARGET'
 
   const ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_LATEST_MESSAGE'
   const ZADARK_ENABLED_HIDE_CONV_AVATAR_KEY = '@ZaDark:ENABLED_HIDE_CONV_AVATAR'
@@ -157,6 +158,13 @@
       return localStorage.setItem(ZADARK_FONT_SIZE_KEY, fontSize)
     },
 
+    saveTranslateTarget: (translateTarget) => {
+      return localStorage.setItem(ZADARK_TRANSLATE_TARGET_KEY, translateTarget)
+    },
+    getTranslateTarget: () => {
+      return localStorage.getItem(ZADARK_TRANSLATE_TARGET_KEY) || 'vi'
+    },
+
     saveEnabledHideLatestMessage: (isEnabled) => {
       return localStorage.setItem(ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY, isEnabled)
     },
@@ -257,6 +265,14 @@
 
     setFontSizeAttr: (fontSize) => {
       document.documentElement.setAttribute('data-zadark-font-size', fontSize)
+    },
+
+    setTranslateTargetAttr: (translateTarget) => {
+      document.documentElement.setAttribute('data-zadark-trans-target', translateTarget)
+    },
+
+    getTranslateTargetAttr: (translateTarget) => {
+      return document.documentElement.getAttribute('data-zadark-trans-target') || 'vi'
     },
 
     setHideLatestMessageAttr: function (isEnabled) {
@@ -418,6 +434,9 @@
       const fontSize = ZaDarkStorage.getFontSize()
       this.setFontSizeAttr(fontSize)
 
+      const translateTarget = ZaDarkStorage.getTranslateTarget()
+      this.setTranslateTargetAttr(translateTarget)
+
       const enabledHideLatestMessage = ZaDarkStorage.getEnabledHideLatestMessage()
       this.setHideLatestMessageAttr(enabledHideLatestMessage)
 
@@ -471,6 +490,11 @@
       ZaDarkStorage.saveFontSize(fontSize)
       this.setFontSizeAttr(fontSize)
       ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.fontSize[fontSize])
+    },
+
+    updateTranslateTarget: function (translateTarget) {
+      ZaDarkStorage.saveTranslateTarget(translateTarget)
+      this.setTranslateTargetAttr(translateTarget)
     },
 
     updateHideLatestMessage: function (isEnabled) {
@@ -586,6 +610,7 @@
   const radioInputThemeElName = '#js-radio-input-theme input:radio[name="theme"]'
   const inputFontFamilyElName = '#js-input-font-family'
   const selectFontSizeElName = '#js-select-font-size'
+  const selectTranslateTargetElName = '#js-select-translate-target'
 
   const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
   const switchHideConvAvatarElName = '#js-switch-hide-conv-avatar'
@@ -657,6 +682,11 @@
 
     ZaDarkUtils.setSelect(selectFontSizeElName, nextFontSize)
     handleFontSizeChange.bind($(selectFontSizeElName))()
+  }
+
+  function handleTranslateTargetChange () {
+    const translateTarget = $(this).val()
+    ZaDarkUtils.updateTranslateTarget(translateTarget)
   }
 
   function handleHideLastestMessageChange () {
@@ -800,6 +830,16 @@
               <option value="big">110%</option>
               <option value="very-big">125%</option>
             </select>
+          </div>
+
+          <div class="font-settings">
+            <label class="font-settings__label" style="flex: 1;">
+              Dịch tin nhắn
+              <i class="zadark-icon zadark-icon--question" data-tippy-content='Bạn di chuyển chuột vào đoạn tin nhắn<br/>và chọn biểu tượng <i class="zadark-icon zadark-icon--translate" style="position: relative; top: 3px; font-size: 18px;"></i> để dịch tin nhắn.'></i>
+              <span class="zadark-beta"></span>
+            </label>
+
+            <select id="js-select-translate-target" class="zadark-select"></select>
           </div>
         </div>
       </div>
@@ -1094,6 +1134,9 @@
     const fontSize = ZaDarkStorage.getFontSize()
     ZaDarkUtils.setSelect(selectFontSizeElName, fontSize)
 
+    const translateTarget = ZaDarkStorage.getTranslateTarget()
+    $(selectTranslateTargetElName).setLanguagesOptions(translateTarget)
+
     const enabledHideLatestMessage = ZaDarkStorage.getEnabledHideLatestMessage()
     ZaDarkUtils.setSwitch(switchHideLatestMessageElName, enabledHideLatestMessage)
 
@@ -1235,6 +1278,7 @@
     $(radioInputThemeElName).on('change', handleThemeChange)
     $(inputFontFamilyElName).keypress(handleInputFontFamilyKeyPress)
     $(selectFontSizeElName).on('change', handleFontSizeChange)
+    $(selectTranslateTargetElName).on('change', handleTranslateTargetChange)
 
     $(switchHideLatestMessageElName).on('change', handleHideLastestMessageChange)
     $(switchHideConvAvatarElName).on('change', handleHideConvAvatarChange)
@@ -1300,6 +1344,8 @@
         ZaDarkUtils.showIntroHideThreadChatMessage(introOptions)
       }
     })
+
+    $(document).zadarkTranslateMessage(ZaDarkUtils.getTranslateTargetAttr)
   }
 
   const observer = new MutationObserver((mutationsList) => {

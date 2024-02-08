@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 24.1.3
+> PC 12.6 và Web 9.23
+
+- Sửa lỗi Dark Mode: My Cloud > "Lưu bền Cloud (Cloud saved)"
+- Sửa lỗi Dark Mode: Group Chat > Danh thiếp > "Thêm thành viên" ([#106](https://github.com/quaric/zadark/issues/106))
+- Thêm chức năng "Dịch tin nhắn" (Beta) ([#107](https://github.com/quaric/zadark/issues/107))
+
 ## ZaDark 24.1.2
 > PC 12.5 và Web 9.22
 

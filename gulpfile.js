@@ -28,6 +28,8 @@ const getPCPath = (p) => path.join(PC_PATH, p)
 
 const SAFARI_RESOURCES = getWebPath('./vendor/safari/ZaDark Extension/Resources')
 
+const isDevelopment = process.env.NODE_ENV === 'development'
+
 const minifyOptions = {
   ext: {
     min: '.min.js'
@@ -36,11 +38,17 @@ const minifyOptions = {
   noSource: true,
   compress: {
     global_defs: {
-      DEBUG: process.env.NODE_ENV === 'development'
+      DEBUG: isDevelopment,
+      ZADARK_API_DOMAIN: isDevelopment
+        ? 'http://localhost:5555'
+        : 'https://api.zadark.com',
+      ZADARK_API_URL: isDevelopment
+        ? 'http://localhost:5555/v1'
+        : 'https://api.zadark.com/v1'
     }
   },
   output: {
-    beautify: process.env.NODE_ENV === 'development'
+    beautify: isDevelopment
   }
 }
 
@@ -109,7 +117,8 @@ const buildWeb = (browser) => {
     src([
       getWebPath(`./vendor/${browser}/browser.js`),
       getWebPath(`./vendor/${browser}/service-worker.js`),
-      getWebPath('./js/**/*')
+      getWebPath('./js/**/*'),
+      getCorePath('./js/**/*')
     ]).pipe(minify(minifyOptions)).pipe(dest(jsDir)),
     buildSass(getWebPath(`./vendor/${browser}/*.scss`), cssDir),
 
@@ -165,7 +174,8 @@ const buildSafari = () => {
     src([
       getWebPath('./vendor/safari/browser.js'),
       getWebPath('./vendor/safari/service-worker.js'),
-      getWebPath('./js/**/*')
+      getWebPath('./js/**/*'),
+      getCorePath('./js/**/*')
     ]).pipe(minify(minifyOptions)).pipe(dest(jsDir)),
 
     buildSass(getWebPath('./vendor/safari/*.scss'), cssDir),
@@ -189,7 +199,10 @@ const buildPC = () => {
       `!${getPCPath('./assets/js/**')}`
     ]).pipe(dest('./build/pc')),
 
-    src(getPCPath('./assets/js/*.js')).pipe(minify(minifyOptions)).pipe(dest('./build/pc/assets/js')),
+    src([
+      getPCPath('./assets/js/*.js'),
+      getCorePath('./js/**/*')
+    ]).pipe(minify(minifyOptions)).pipe(dest('./build/pc/assets/js')),
 
     src(getCorePath('./fonts/**/*')).pipe(dest('./build/pc/assets/fonts')),
     buildSass(getPCPath('./assets/scss/*.scss'), './build/pc/assets/css')
