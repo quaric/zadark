@@ -61,7 +61,11 @@ ZaDarkBrowser.getExtensionSettings().then(({
 
 $(radioInputThemeElName).on('change', async function () {
   const theme = $(this).val()
-  await ZaDarkUtils.updateTheme(theme)
+
+  // Set theme for popup
+  ZaDarkUtils.setPageTheme(theme)
+
+  // Set theme for Zalo tabs
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_THEME, { theme })
 })
 
@@ -84,44 +88,37 @@ $(inputFontFamilyElName).keypress(async function (event) {
 
 $(selectFontSizeElName).on('change', async function () {
   const fontSize = $(this).val()
-  await ZaDarkUtils.updateFontSize(fontSize)
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_FONT_SIZE, { fontSize })
 })
 
 $(selectTranslateTargetElName).on('change', async function () {
   const translateTarget = $(this).val()
-  await ZaDarkUtils.updateTranslateTarget(translateTarget)
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_TRANSLATE_TARGET, { translateTarget })
 })
 
 $(switchHideLatestMessageElName).on('change', async function () {
-  const enabledHideLatestMessage = $(this).is(':checked')
-  await ZaDarkUtils.updateHideLatestMessage(enabledHideLatestMessage)
-  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE, { enabledHideLatestMessage })
+  const isEnabled = $(this).is(':checked')
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE, { isEnabled })
 })
 
 $(switchHideConvAvatarElName).on('change', async function () {
-  const enabledHideConvAvatar = $(this).is(':checked')
-  await ZaDarkUtils.updateHideConvAvatar(enabledHideConvAvatar)
-  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_CONV_AVATAR, { enabledHideConvAvatar })
+  const isEnabled = $(this).is(':checked')
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_CONV_AVATAR, { isEnabled })
 })
 
 $(switchHideConvNameElName).on('change', async function () {
-  const enabledHideConvName = $(this).is(':checked')
-  await ZaDarkUtils.updateHideConvName(enabledHideConvName)
-  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_CONV_NAME, { enabledHideConvName })
+  const isEnabled = $(this).is(':checked')
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_CONV_NAME, { isEnabled })
 })
 
 $(switchHideThreadChatMessageElName).on('change', async function () {
-  const enabledHideThreadChatMessage = $(this).is(':checked')
-  await ZaDarkUtils.updateHideThreadChatMessage(enabledHideThreadChatMessage)
-  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE, { enabledHideThreadChatMessage })
+  const isEnabled = $(this).is(':checked')
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE, { isEnabled })
 })
 
 $(switchUseHotkeysElName).on('change', async function () {
-  const useHotkeys = $(this).is(':checked')
-  await ZaDarkUtils.updateUseHotkeys(useHotkeys)
-  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_USE_HOTKEYS, { useHotkeys })
+  const isEnabled = $(this).is(':checked')
+  ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_USE_HOTKEYS, { isEnabled })
 })
 
 const handleBlockingRuleChange = (elName, ruleId) => {

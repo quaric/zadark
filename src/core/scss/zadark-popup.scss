@@ -191,7 +191,6 @@ body:not(.zadark--use-hotkeys) {
     overflow-y: auto;
 
     max-height: calc(100vh - 16px);
-
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
@@ -622,6 +621,7 @@ body:not(.zadark--use-hotkeys) {
         margin-left: 2px;
         color: var(--zadark-neutral-600);
         font-size: 0.875rem;
+        cursor: pointer;
       }
     }
 
@@ -659,7 +659,7 @@ body:not(.zadark--use-hotkeys) {
 
   #js-btn-scroll {
     position: fixed;
-    bottom: 12px;
+    bottom: 8px;
     left: 50%;
 
     width: 32px;

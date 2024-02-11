@@ -267,14 +267,6 @@
       document.documentElement.setAttribute('data-zadark-font-size', fontSize)
     },
 
-    setTranslateTargetAttr: (translateTarget) => {
-      document.documentElement.setAttribute('data-zadark-trans-target', translateTarget)
-    },
-
-    getTranslateTargetAttr: (translateTarget) => {
-      return document.documentElement.getAttribute('data-zadark-trans-target') || 'vi'
-    },
-
     setHideLatestMessageAttr: function (isEnabled) {
       this.toggleBodyClassName('zadark-prv--latest-message', isEnabled)
     },
@@ -434,9 +426,6 @@
       const fontSize = ZaDarkStorage.getFontSize()
       this.setFontSizeAttr(fontSize)
 
-      const translateTarget = ZaDarkStorage.getTranslateTarget()
-      this.setTranslateTargetAttr(translateTarget)
-
       const enabledHideLatestMessage = ZaDarkStorage.getEnabledHideLatestMessage()
       this.setHideLatestMessageAttr(enabledHideLatestMessage)
 
@@ -494,7 +483,6 @@
 
     updateTranslateTarget: function (translateTarget) {
       ZaDarkStorage.saveTranslateTarget(translateTarget)
-      this.setTranslateTargetAttr(translateTarget)
     },
 
     updateHideLatestMessage: function (isEnabled) {
@@ -632,11 +620,6 @@
     })
   }
 
-  function handleThemeChange () {
-    const theme = $(this).val()
-    ZaDarkUtils.updateTheme(theme)
-  }
-
   const handleNextTheme = () => {
     const theme = ZaDarkStorage.getTheme()
 
@@ -664,11 +647,6 @@
     }
   }
 
-  function handleFontSizeChange () {
-    const fontSize = $(this).val()
-    ZaDarkUtils.updateFontSize(fontSize)
-  }
-
   const handleNextFontSize = (count) => {
     const fontSize = ZaDarkStorage.getFontSize()
 
@@ -681,32 +659,7 @@
     const nextFontSize = fontSizes[nextIndex]
 
     ZaDarkUtils.setSelect(selectFontSizeElName, nextFontSize)
-    handleFontSizeChange.bind($(selectFontSizeElName))()
-  }
-
-  function handleTranslateTargetChange () {
-    const translateTarget = $(this).val()
-    ZaDarkUtils.updateTranslateTarget(translateTarget)
-  }
-
-  function handleHideLastestMessageChange () {
-    const isEnabled = $(this).is(':checked')
-    ZaDarkUtils.updateHideLatestMessage(isEnabled)
-  }
-
-  function handleHideConvAvatarChange () {
-    const isEnabled = $(this).is(':checked')
-    ZaDarkUtils.updateHideConvAvatar(isEnabled)
-  }
-
-  function handleHideConvNameChange () {
-    const isEnabled = $(this).is(':checked')
-    ZaDarkUtils.updateHideConvName(isEnabled)
-  }
-
-  function handleHideThreadChatMessageChange () {
-    const isEnabled = $(this).is(':checked')
-    ZaDarkUtils.updateHideThreadChatMessage(isEnabled)
+    ZaDarkUtils.updateFontSize(nextFontSize)
   }
 
   const handleBlockSettingsChange = (blockId) => {
@@ -722,12 +675,6 @@
       const isEnabled = $(this).is(':checked')
       ZaDarkUtils.updateBlockSettings(blockId, isEnabled)
     }
-  }
-
-  function handleUseHotkeysChange () {
-    const useHotkeys = $(this).is(':checked')
-    ZaDarkUtils.updateUseHotkeys(useHotkeys)
-    loadHotkeys(useHotkeys)
   }
 
   function disableFeatureBlock () {
@@ -838,6 +785,11 @@
               <i class="zadark-icon zadark-icon--question" data-tippy-content='Bạn di chuyển chuột vào đoạn tin nhắn<br/>và chọn biểu tượng <i class="zadark-icon zadark-icon--translate" style="position: relative; top: 3px; font-size: 18px;"></i> để dịch tin nhắn.'></i>
               <span class="zadark-beta"></span>
             </label>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="margin-right: 8px; color: var(--zadark-neutral-600);">
+              <path d="M0 0h24v24H0V0z" fill="none"></path>
+              <path d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z" fill="currentColor"></path>
+            </svg>
 
             <select id="js-select-translate-target" class="zadark-select"></select>
           </div>
@@ -1049,7 +1001,7 @@
         case 'command+1':
         case 'ctrl+1': {
           ZaDarkUtils.setSwitch(switchHideLatestMessageElName, !enabledHideLatestMessage)
-          handleHideLastestMessageChange.bind($(switchHideLatestMessageElName))()
+          ZaDarkUtils.updateHideLatestMessage(!enabledHideLatestMessage)
           return
         }
 
@@ -1057,7 +1009,7 @@
         case 'command+2':
         case 'ctrl+2': {
           ZaDarkUtils.setSwitch(switchHideThreadChatMessageElName, !enabledHideThreadChatMessage)
-          handleHideThreadChatMessageChange.bind($(switchHideThreadChatMessageElName))()
+          ZaDarkUtils.updateHideThreadChatMessage(!enabledHideThreadChatMessage)
           return
         }
 
@@ -1065,7 +1017,7 @@
         case 'command+3':
         case 'ctrl+3': {
           ZaDarkUtils.setSwitch(switchHideConvAvatarElName, !enabledHideConvAvatar)
-          handleHideConvAvatarChange.bind($(switchHideConvAvatarElName))()
+          ZaDarkUtils.updateHideConvAvatar(!enabledHideConvAvatar)
           return
         }
 
@@ -1073,7 +1025,7 @@
         case 'command+7':
         case 'ctrl+7': {
           ZaDarkUtils.setSwitch(switchHideConvNameElName, !enabledHideConvName)
-          handleHideConvNameChange.bind($(switchHideConvNameElName))()
+          ZaDarkUtils.updateHideConvName(!enabledHideConvName)
           return
         }
 
@@ -1133,9 +1085,6 @@
 
     const fontSize = ZaDarkStorage.getFontSize()
     ZaDarkUtils.setSelect(selectFontSizeElName, fontSize)
-
-    const translateTarget = ZaDarkStorage.getTranslateTarget()
-    $(selectTranslateTargetElName).setLanguagesOptions(translateTarget)
 
     const enabledHideLatestMessage = ZaDarkStorage.getEnabledHideLatestMessage()
     ZaDarkUtils.setSwitch(switchHideLatestMessageElName, enabledHideLatestMessage)
@@ -1199,7 +1148,13 @@
     })
   }
 
-  const setZaDarkPopupVisible = (popupInstance, buttonEl, popupEl, visible = true) => {
+  const loadTranslate = () => {
+    const translateTarget = ZaDarkStorage.getTranslateTarget()
+    $(selectTranslateTargetElName).setLanguagesOptions(translateTarget)
+    $(document).enableTranslateMessage(translateTarget)
+  }
+
+  const setZaDarkPopupVisible = (buttonEl, popupEl, visible = true) => {
     if (visible) {
       buttonEl.classList.add('selected')
       popupEl.setAttribute('data-visible', '')
@@ -1207,29 +1162,19 @@
       buttonEl.classList.remove('selected')
       popupEl.removeAttribute('data-visible')
     }
-
-    popupInstance.setOptions((options) => ({
-      ...options,
-      modifiers: [
-        ...options.modifiers,
-        { name: 'eventListeners', enabled: visible }
-      ]
-    }))
-
-    popupInstance.update()
   }
 
-  const handleOpenZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
+  const handleOpenZaDarkPopup = (buttonEl, popupEl) => {
     return () => {
       loadPopupState()
       ZaDarkUtils.updateKnownVersionState(buttonEl)
 
-      setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, true)
+      setZaDarkPopupVisible(buttonEl, popupEl, true)
       calcPopupScroll()
     }
   }
 
-  const handleCloseZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
+  const handleCloseZaDarkPopup = (buttonEl, popupEl) => {
     return (event) => {
       const isOpen = popupEl.getAttribute('data-visible') !== null
       const isClickOutside = isOpen && !popupEl.contains(event.target) && !buttonEl.contains(event.target)
@@ -1238,7 +1183,7 @@
         return
       }
 
-      setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, false)
+      setZaDarkPopupVisible(buttonEl, popupEl, false)
     }
   }
 
@@ -1275,36 +1220,68 @@
     const zaloAppBody = document.body
     zaloAppBody.insertAdjacentHTML('beforeend', zadarkPopupHTML)
 
-    $(radioInputThemeElName).on('change', handleThemeChange)
-    $(inputFontFamilyElName).keypress(handleInputFontFamilyKeyPress)
-    $(selectFontSizeElName).on('change', handleFontSizeChange)
-    $(selectTranslateTargetElName).on('change', handleTranslateTargetChange)
+    $(radioInputThemeElName).on('change', function () {
+      const theme = $(this).val()
+      ZaDarkUtils.updateTheme(theme)
+    })
 
-    $(switchHideLatestMessageElName).on('change', handleHideLastestMessageChange)
-    $(switchHideConvAvatarElName).on('change', handleHideConvAvatarChange)
-    $(switchHideConvNameElName).on('change', handleHideConvNameChange)
-    $(switchHideThreadChatMessageElName).on('change', handleHideThreadChatMessageChange)
+    $(inputFontFamilyElName).keypress(handleInputFontFamilyKeyPress)
+
+    $(selectFontSizeElName).on('change', function () {
+      const fontSize = $(this).val()
+      ZaDarkUtils.updateFontSize(fontSize)
+    })
+
+    $(selectTranslateTargetElName).on('change', function () {
+      const translateTarget = $(this).val()
+      ZaDarkUtils.updateTranslateTarget(translateTarget)
+
+      $(document).disableTranslateMessage()
+      if (translateTarget !== 'none') {
+        $(document).enableTranslateMessage(translateTarget)
+      }
+    })
+
+    $(switchHideLatestMessageElName).on('change', function () {
+      const isEnabled = $(this).is(':checked')
+      ZaDarkUtils.updateHideLatestMessage(isEnabled)
+    })
+
+    $(switchHideConvAvatarElName).on('change', function () {
+      const isEnabled = $(this).is(':checked')
+      ZaDarkUtils.updateHideConvAvatar(isEnabled)
+    })
+
+    $(switchHideConvNameElName).on('change', function () {
+      const isEnabled = $(this).is(':checked')
+      ZaDarkUtils.updateHideConvName(isEnabled)
+    })
+
+    $(switchHideThreadChatMessageElName).on('change', function () {
+      const isEnabled = $(this).is(':checked')
+      ZaDarkUtils.updateHideThreadChatMessage(isEnabled)
+    })
 
     $(switchBlockTypingElName).on('change', handleBlockSettingsChange('block_typing'))
     $(switchBlockSeenElName).on('change', handleBlockSettingsChange('block_seen'))
     $(switchBlockDeliveredElName).on('change', handleBlockSettingsChange('block_delivered'))
 
-    $(switchUseHotkeysElName).on('change', handleUseHotkeysChange)
+    $(switchUseHotkeysElName).on('change', function () {
+      const isEnabled = $(this).is(':checked')
+      ZaDarkUtils.updateUseHotkeys(isEnabled)
+      loadHotkeys(isEnabled)
+    })
 
     const popupEl = document.querySelector('#js-zadark-popup')
     const buttonEl = document.getElementById('div_Main_TabZaDark')
 
-    const popupInstance = Popper.createPopper(buttonEl, popupEl, {
-      placement: 'right'
-    })
-
-    buttonEl.addEventListener('click', handleOpenZaDarkPopup(popupInstance, buttonEl, popupEl))
+    buttonEl.addEventListener('click', handleOpenZaDarkPopup(buttonEl, popupEl))
 
     const closeEventNames = ['click', 'contextmenu']
     closeEventNames.forEach((eventName) => {
       window.addEventListener(
         eventName,
-        handleCloseZaDarkPopup(popupInstance, buttonEl, popupEl),
+        handleCloseZaDarkPopup(buttonEl, popupEl),
         true
       )
     })
@@ -1313,6 +1290,7 @@
     loadHotkeysState()
     loadKnownVersionState(buttonEl)
     loadPopupScrollEvent()
+    loadTranslate()
     loadTippy()
 
     ZaDarkUtils.migrateData()
@@ -1333,21 +1311,17 @@
         return
       }
 
-      setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, false)
+      setZaDarkPopupVisible(buttonEl, popupEl, false)
 
       const introOptions = {
-        onExit: () => setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, true),
-        onComplete: () => setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, true)
+        onExit: () => setZaDarkPopupVisible(buttonEl, popupEl, true),
+        onComplete: () => setZaDarkPopupVisible(buttonEl, popupEl, true)
       }
 
       if (introId === 'hideThreadChatMessage') {
         ZaDarkUtils.showIntroHideThreadChatMessage(introOptions)
       }
     })
-
-    if (ZaDarkUtils.getTranslateTargetAttr() !== 'none') {
-      $(document).zadarkTranslateMessage(ZaDarkUtils.getTranslateTargetAttr)
-    }
   }
 
   const observer = new MutationObserver((mutationsList) => {

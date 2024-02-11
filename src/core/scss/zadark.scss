@@ -4,6 +4,7 @@
 */
 
 @use "zadark-prv" as prv;
+@use "zadark-translate" as translate;
 
 @mixin zadark-colors {
   // Neutral
@@ -2151,6 +2152,8 @@ body.zadark {
     position: absolute;
     z-index: 9999;
 
+    inset: auto auto 8px 64px;
+
     display: none;
     width: 480px;
     max-height: 100%;
@@ -2161,12 +2164,12 @@ body.zadark {
 
     #zadark-popup {
       overflow: hidden;
-      margin-bottom: 8px;
       border-radius: var(--zadark-rounded-base);
       box-shadow: var(--popper-shadow);
 
       #js-btn-scroll {
-        bottom: 20px; // 8px + 12px
+        bottom: 16px;
+        left: 304px; // 240px + 64px
       }
     }
   }
@@ -2260,78 +2263,5 @@ body.zadark {
     }
   }
 
-  .zadark-translate__button {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 3;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-
-    padding: 0;
-    margin: 0;
-    transform: translate(-50%, 50%);
-
-    border: 1px solid var(--zadark-primary-dark);
-    border-radius: 32px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
-
-    background-color: var(--zadark-primary-base);
-    opacity: 0;
-    cursor: pointer;
-
-    .zadark-icon {
-      color: #fff;
-      font-size: 18px;
-    }
-  }
-
-  .card--text:hover {
-    .zadark-translate__button {
-      opacity: 1;
-    }
-  }
-
-  .zadark-translate__content {
-    margin-top: 10px;
-    padding: 12px;
-
-    border: 1px solid var(--white-message-border);
-    border-radius: var(--zadark-rounded-base);
-
-    background: var(--white-quote);
-    font-size: 0.875rem;
-
-    &__title {
-      color: var(--text-quote);
-      user-select: none;
-    }
-
-    &__title + div {
-      margin-top: 4px;
-    }
-
-    .zadark-icon {
-      position: relative;
-      top: 2px;
-      font-size: 16px;
-    }
-
-    &--error {
-      border-color: var(--error-border) !important;
-      background: transparent !important;
-      color: var(--text-errors) !important;
-    }
-  }
-
-  .card--text.me {
-    .zadark-translate__content {
-      border-color: var(--blue-message-border);
-      background: var(--blue-quote);
-    }
-  }
+  @include translate.translate-message();
 }

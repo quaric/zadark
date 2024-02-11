@@ -27,8 +27,8 @@
         "libs/libs.min.js",
         "js/fonts.min.js",
         "js/browser.min.js",
-        "js/utils.min.js",
         "js/zadark-translate.min.js",
+        "js/utils.min.js",
         "js/zadark.min.js"
       ]
     }

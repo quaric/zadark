@@ -95,14 +95,6 @@
       document.documentElement.setAttribute('data-zadark-font-size', fontSize)
     },
 
-    setTranslateTargetAttr: (translateTarget) => {
-      document.documentElement.setAttribute('data-zadark-trans-target', translateTarget)
-    },
-
-    getTranslateTargetAttr: () => {
-      return document.documentElement.getAttribute('data-zadark-trans-target') || 'vi'
-    },
-
     setHideLatestMessageAttr: function (isEnabled) {
       this.toggleBodyClassName('zadark-prv--latest-message', isEnabled)
     },
@@ -268,7 +260,6 @@
       const {
         theme,
         fontSize,
-        translateTarget,
 
         enabledHideLatestMessage,
         enabledHideConvAvatar,
@@ -280,7 +271,6 @@
 
       this.setPageTheme(theme)
       this.setFontSizeAttr(fontSize)
-      this.setTranslateTargetAttr(translateTarget)
 
       this.setHideLatestMessageAttr(enabledHideLatestMessage)
       this.setHideConvAvatarAttr(enabledHideConvAvatar)
@@ -364,8 +354,7 @@
     },
 
     updateTranslateTarget: async function (translateTarget) {
-      await ZaDarkBrowser.saveExtensionSettings({ translateTarget })
-      this.setTranslateTargetAttr(translateTarget)
+      return ZaDarkBrowser.saveExtensionSettings({ translateTarget })
     },
 
     updateHideLatestMessage: async function (enabledHideLatestMessage) {

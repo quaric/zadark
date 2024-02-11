@@ -21,30 +21,34 @@
     }
   }
 
-  $.fn.zadarkTranslateMessage = function (getTargetLanguage) {
-    return this.each(function () {
-      $(this).on('mouseenter', '.card.card--text', function (e) {
-        const cardEl = $(this)
+  $.fn.enableTranslateMessage = function (translateTarget) {
+    if (!translateTarget || translateTarget === 'none') {
+      return
+    }
 
-        if (cardEl.find('.zadark-translate__button').length) {
+    return this.each(function () {
+      $(this).on('mouseenter.zadark-translate-msg', '.card.card--text', function (e) {
+        const $cardEl = $(this)
+
+        if ($cardEl.find('.zadark-translate-msg__button').length) {
           return
         }
 
-        const textEl = cardEl.find('div > span-15')
-        const text = textEl ? textEl.text().replace(/(?:\r\n|\r|\n)/g, '<br>') : ''
+        const $textEl = $cardEl.find('div > span-15')
+        const text = $textEl ? $textEl.text().replace(/(?:\r\n|\r|\n)/g, '<br>') : ''
 
-        const buttonEl = $('<button>')
-          .addClass('zadark-translate__button')
+        const $buttonEl = $('<button>')
+          .addClass('zadark-translate-msg__button')
           .html('<i class="zadark-icon zadark-icon--translate"></i>')
 
-        buttonEl.on('click', function (e) {
+        $buttonEl.on('click', function (e) {
           e.preventDefault()
           e.stopPropagation()
 
-          const prevTranslateEl = cardEl.find('.zadark-translate__content')
+          const $prevTranslateEl = $cardEl.find('.zadark-translate-msg__content')
 
-          if (prevTranslateEl.length) {
-            prevTranslateEl.remove()
+          if ($prevTranslateEl.length) {
+            $prevTranslateEl.remove()
             return
           }
 
@@ -52,34 +56,28 @@
             return
           }
 
-          const translateTarget = typeof getTargetLanguage === 'function' ? getTargetLanguage() : 'vi'
-
-          if (!translateTarget) {
-            return
-          }
-
-          const nextTranslationEl = $('<div>')
-            .addClass('zadark-translate__content')
+          const $nextTranslationEl = $('<div>')
+            .addClass('zadark-translate-msg__content')
             .html(`
-              <div class="zadark-translate__content__title">
+              <div class="zadark-translate-msg__content__title">
                 <i class="zadark-icon zadark-icon--translate"></i>
                 Đang dịch ...
               </div>
             `)
 
-          cardEl.append(nextTranslationEl)
+          $cardEl.append($nextTranslationEl)
 
           translate(text, translateTarget).then((res) => {
             if (!res.success) {
-              nextTranslationEl
-                .addClass('zadark-translate__content--error')
+              $nextTranslationEl
+                .addClass('zadark-translate-msg__content--error')
                 .html('Lỗi: ' + res.message)
               return
             }
 
-            nextTranslationEl
+            $nextTranslationEl
               .html(`
-                <div class="zadark-translate__content__title">
+                <div class="zadark-translate-msg__content__title">
                   <i class="zadark-icon zadark-icon--translate"></i>
                   ${res.languageName}
                 </div>
@@ -88,8 +86,18 @@
           })
         })
 
-        cardEl.append(buttonEl)
+        $cardEl.append($buttonEl)
       })
+    })
+  }
+
+  $.fn.disableTranslateMessage = function () {
+    return this.each(function () {
+      // Remove event listener
+      $(this).off('mouseenter.zadark-translate-msg')
+
+      // Remove translate button
+      $(this).find('.zadark-translate-msg__button').remove()
     })
   }
 
@@ -642,18 +650,17 @@
 
   $.fn.setLanguagesOptions = function (defaultLanguage = 'vi') {
     return this.each(function () {
-      const selectElement = $(this)
+      const $selectEl = $(this)
 
-      selectElement.empty()
-
-      selectElement.append($('<option>').val('none').text('Tắt'))
+      $selectEl.empty()
+      $selectEl.append($('<option>').val('none').text('Tắt'))
 
       LANGUAGES.forEach(function (language) {
         const option = $('<option>').val(language.code).text(`Tiếng ${language.name}`)
-        selectElement.append(option)
+        $selectEl.append(option)
       })
 
-      selectElement.val(defaultLanguage)
+      $selectEl.val(defaultLanguage)
     })
   }
 })(jQuery)
