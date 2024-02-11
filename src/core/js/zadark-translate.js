@@ -54,6 +54,10 @@
 
           const translateTarget = typeof getTargetLanguage === 'function' ? getTargetLanguage() : 'vi'
 
+          if (!translateTarget) {
+            return
+          }
+
           const nextTranslationEl = $('<div>')
             .addClass('zadark-translate__content')
             .html(`
@@ -641,6 +645,8 @@
       const selectElement = $(this)
 
       selectElement.empty()
+
+      selectElement.append($('<option>').val('none').text('Tắt'))
 
       LANGUAGES.forEach(function (language) {
         const option = $('<option>').val(language.code).text(`Tiếng ${language.name}`)

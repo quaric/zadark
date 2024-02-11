@@ -1345,7 +1345,9 @@
       }
     })
 
-    $(document).zadarkTranslateMessage(ZaDarkUtils.getTranslateTargetAttr)
+    if (ZaDarkUtils.getTranslateTargetAttr() !== 'none') {
+      $(document).zadarkTranslateMessage(ZaDarkUtils.getTranslateTargetAttr)
+    }
   }
 
   const observer = new MutationObserver((mutationsList) => {
