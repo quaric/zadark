@@ -5,6 +5,7 @@
 
 - Sửa lỗi Dark Mode: Sticker mùa lễ hội
 - Cho phép tắt dịch tin nhắn
+- Tối ưu mã nguồn
 
 ## ZaDark 24.2.1
 > PC 12.6 và Web 9.23
