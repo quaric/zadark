@@ -95,19 +95,19 @@
 
     return this.each(function () {
       $(this).on('mouseenter.zadark-translate-msg', '.card.card--text', function (e) {
-        const $cardEl = $(this)
-        const $contentEl = $cardEl
-        const $textEl = $contentEl.find('div > span-15')
+        const $card = $(this)
+        const $content = $card
+        const $text = $content.find('div > span-15')
 
-        addTranslateListener($cardEl, $contentEl, $textEl, translateTarget)
+        addTranslateListener($card, $content, $text, translateTarget)
       })
 
       $(this).on('mouseenter.zadark-translate-msg', '.chatImageMessage', function (e) {
-        const $cardEl = $(this).find('.img-msg-v2__ft')
-        const $contentEl = $(this).find('.img-msg-v2__cap')
-        const $textEl = $contentEl.find('span-15')
+        const $card = $(this).find('.img-msg-v2__ft')
+        const $content = $(this).find('.img-msg-v2__cap')
+        const $text = $content.find('span-15')
 
-        addTranslateListener($cardEl, $contentEl, $textEl, translateTarget)
+        addTranslateListener($card, $content, $text, translateTarget)
       })
     })
   }
