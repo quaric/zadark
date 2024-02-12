@@ -4,6 +4,7 @@
 > PC 12.7 và Web 9.24
 
 - Sửa lỗi Dark Mode: Sticker mùa lễ hội
+- Sửa lỗi Dark Mode: Double Click vào tin nhắn hình ảnh
 - Cho phép tắt dịch tin nhắn
 - Hỗ trợ dịch tin nhắn có hình ảnh
 - Thêm giải thích khi chọn ngôn ngữ

@@ -897,6 +897,9 @@ html[data-zadark-theme="dark"] {
     .img-msg-v2:not(.-caption).-highlight {
       background-color: transparent;
     }
+    .img-msg-v2.-caption.-highlight > .img-msg-v2__bub > .img-msg-v2__ft {
+      background-color: var(--blue-message-selected);
+    }
 
     .sticker-selector__menu {
       height: 48px;
