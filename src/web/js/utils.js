@@ -312,6 +312,12 @@
         content: '<p>Nhập tên phông chữ từ <strong>Google Fonts</strong><br>(Lưu ý kí tự in hoa, khoảng cách).</p><p>Bỏ trống nếu dùng phông mặc định.</p><p>Nhấn <strong>Enter</strong> để áp dụng.</p>',
         trigger: 'focus'
       })
+
+      tippy('#js-select-translate-target', {
+        theme: 'zadark',
+        allowHTML: true,
+        content: 'Chọn ngôn ngữ hiển thị'
+      })
     },
 
     updateTheme: async function (theme) {
