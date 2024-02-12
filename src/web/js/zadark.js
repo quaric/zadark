@@ -42,11 +42,6 @@
     $(elName).prop('checked', enabled)
   }
 
-  function handleSelectThemeChange () {
-    const theme = $(this).val()
-    ZaDarkUtils.updateTheme(theme)
-  }
-
   const handleNextTheme = async () => {
     const {
       theme
@@ -56,9 +51,7 @@
 
     const nextIndex = themes.indexOf(theme) + 1
     const nextTheme = themes[nextIndex] || themes[0]
-
-    setRadioInputTheme(nextTheme)
-    ZaDarkUtils.updateTheme(nextTheme)
+    updateTheme(nextTheme)
   }
 
   async function handleInputFontFamilyKeyPress (event) {
@@ -76,11 +69,6 @@
     }
   }
 
-  function handleSelectFontSizeChange () {
-    const fontSize = $(this).val()
-    ZaDarkUtils.updateFontSize(fontSize)
-  }
-
   const handleNextFontSize = async (count) => {
     const {
       fontSize
@@ -93,34 +81,7 @@
       : Math.max(fontSizes.indexOf(fontSize) - 1, 0)
 
     const nextFontSize = fontSizes[nextIndex]
-
-    setSelect(selectFontSizeElName, nextFontSize)
-    handleSelectFontSizeChange.bind($(selectFontSizeElName))()
-  }
-
-  function handleSelectTranslateTargetChange () {
-    const translateTarget = $(this).val()
-    ZaDarkUtils.updateTranslateTarget(translateTarget)
-  }
-
-  function handleHideLatestMessageChange () {
-    const enabledHideLatestMessage = $(this).is(':checked')
-    ZaDarkUtils.updateHideLatestMessage(enabledHideLatestMessage)
-  }
-
-  function handleHideConvAvatarChange () {
-    const enabledHideConvAvatar = $(this).is(':checked')
-    ZaDarkUtils.updateHideConvAvatar(enabledHideConvAvatar)
-  }
-
-  function handleHideConvNameChange () {
-    const enabledHideConvName = $(this).is(':checked')
-    ZaDarkUtils.updateHideConvName(enabledHideConvName)
-  }
-
-  function handleHideThreadChatMessageChange () {
-    const enabledHideThreadChatMessage = $(this).is(':checked')
-    ZaDarkUtils.updateHideThreadChatMessage(enabledHideThreadChatMessage)
+    updateFontSize(nextFontSize)
   }
 
   const handleBlockingRuleChange = (ruleId) => {
@@ -137,9 +98,8 @@
   }
 
   function handleUseHotkeysChange () {
-    const useHotkeys = $(this).is(':checked')
-    ZaDarkUtils.updateUseHotkeys(useHotkeys)
-    loadHotkeys(useHotkeys)
+    const isEnabled = $(this).is(':checked')
+    useHotkeys(isEnabled)
   }
 
   const zadarkButtonHTML = `
@@ -474,32 +434,28 @@
         // Hide latest message
         case 'command+1':
         case 'ctrl+1': {
-          setSwitch(switchHideLatestMessageElName, !enabledHideLatestMessage)
-          handleHideLatestMessageChange.bind($(switchHideLatestMessageElName))()
+          hideLatestMessage(!enabledHideLatestMessage)
           return
         }
 
         // Hide thread chat message
         case 'command+2':
         case 'ctrl+2': {
-          setSwitch(switchHideThreadChatMessageElName, !enabledHideThreadChatMessage)
-          handleHideThreadChatMessageChange.bind($(switchHideThreadChatMessageElName))()
+          hideThreadChatMessage(!enabledHideThreadChatMessage)
           return
         }
 
         // Hide conversation avatar
         case 'command+3':
         case 'ctrl+3': {
-          setSwitch(switchHideConvAvatarElName, !enabledHideConvAvatar)
-          handleHideConvAvatarChange.bind($(switchHideConvAvatarElName))()
+          hideConvAvatar(!enabledHideConvAvatar)
           return
         }
 
         // Hide conversation name
         case 'command+7':
         case 'ctrl+7': {
-          setSwitch(switchHideConvNameElName, !enabledHideConvName)
-          handleHideConvNameChange.bind($(switchHideConvNameElName))()
+          hideConvName(!enabledHideConvName)
           return
         }
 
@@ -555,18 +511,15 @@
       theme,
       fontFamily,
       fontSize,
-      translateTarget,
       enabledHideLatestMessage,
       enabledHideConvAvatar,
       enabledHideConvName,
-      enabledHideThreadChatMessage,
-      useHotkeys
+      enabledHideThreadChatMessage
     } = await ZaDarkBrowser.getExtensionSettings()
 
     setRadioInputTheme(theme)
     setSelect(inputFontFamilyElName, fontFamily)
     setSelect(selectFontSizeElName, fontSize)
-    $(selectTranslateTargetElName).setLanguagesOptions(translateTarget)
 
     setSwitch(switchHideLatestMessageElName, enabledHideLatestMessage)
     setSwitch(switchHideConvAvatarElName, enabledHideConvAvatar)
@@ -574,11 +527,11 @@
     setSwitch(switchHideThreadChatMessageElName, enabledHideThreadChatMessage)
 
     loadBlocking(ZaDarkUtils.isSupportDeclarativeNetRequest())
-    setSwitch(switchUseHotkeysElName, useHotkeys)
   }
 
   const loadHotkeysState = async () => {
     const { useHotkeys } = await ZaDarkBrowser.getExtensionSettings()
+    setSwitch(switchUseHotkeysElName, useHotkeys)
     loadHotkeys(useHotkeys)
   }
 
@@ -621,7 +574,13 @@
     })
   }
 
-  const setZaDarkPopupVisible = (popupInstance, buttonEl, popupEl, visible = true) => {
+  const loadTranslate = async () => {
+    const { translateTarget } = await ZaDarkBrowser.getExtensionSettings()
+    $(selectTranslateTargetElName).setLanguagesOptions(translateTarget)
+    $(document).enableTranslateMessage(translateTarget)
+  }
+
+  const setZaDarkPopupVisible = (buttonEl, popupEl, visible = true) => {
     if (visible) {
       buttonEl.classList.add('selected')
       popupEl.setAttribute('data-visible', '')
@@ -629,29 +588,19 @@
       buttonEl.classList.remove('selected')
       popupEl.removeAttribute('data-visible')
     }
-
-    popupInstance.setOptions((options) => ({
-      ...options,
-      modifiers: [
-        ...options.modifiers,
-        { name: 'eventListeners', enabled: visible }
-      ]
-    }))
-
-    popupInstance.update()
   }
 
-  const handleOpenZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
+  const handleOpenZaDarkPopup = (buttonEl, popupEl) => {
     return () => {
       loadPopupState()
       updateKnownVersionState(buttonEl)
 
-      setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, true)
+      setZaDarkPopupVisible(buttonEl, popupEl, true)
       calcPopupScroll()
     }
   }
 
-  const handleCloseZaDarkPopup = (popupInstance, buttonEl, popupEl) => {
+  const handleCloseZaDarkPopup = (buttonEl, popupEl) => {
     return (event) => {
       const isOpen = popupEl.getAttribute('data-visible') !== null
       const isClickOutside = isOpen && !popupEl.contains(event.target) && !buttonEl.contains(event.target)
@@ -660,7 +609,7 @@
         return
       }
 
-      setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, false)
+      setZaDarkPopupVisible(buttonEl, popupEl, false)
     }
   }
 
@@ -719,15 +668,42 @@
     // const settingsWrapper = getSettingsWrapper()
     // settingsWrapper.insertAdjacentHTML('beforeend', zadarkPopupHTML)
 
-    $(radioInputThemeElName).on('change', handleSelectThemeChange)
-    $(inputFontFamilyElName).keypress(handleInputFontFamilyKeyPress)
-    $(selectFontSizeElName).on('change', handleSelectFontSizeChange)
-    $(selectTranslateTargetElName).on('change', handleSelectTranslateTargetChange)
+    $(radioInputThemeElName).on('change', function () {
+      const theme = $(this).val()
+      updateTheme(theme)
+    })
 
-    $(switchHideLatestMessageElName).on('change', handleHideLatestMessageChange)
-    $(switchHideConvAvatarElName).on('change', handleHideConvAvatarChange)
-    $(switchHideConvNameElName).on('change', handleHideConvNameChange)
-    $(switchHideThreadChatMessageElName).on('change', handleHideThreadChatMessageChange)
+    $(inputFontFamilyElName).keypress(handleInputFontFamilyKeyPress)
+
+    $(selectFontSizeElName).on('change', function () {
+      const fontSize = $(this).val()
+      updateFontSize(fontSize)
+    })
+
+    $(selectTranslateTargetElName).on('change', function () {
+      const translateTarget = $(this).val()
+      updateTranslateTarget(translateTarget)
+    })
+
+    $(switchHideLatestMessageElName).on('change', function () {
+      const isEnabled = $(this).is(':checked')
+      hideLatestMessage(isEnabled)
+    })
+
+    $(switchHideConvAvatarElName).on('change', function () {
+      const isEnabled = $(this).is(':checked')
+      hideConvAvatar(isEnabled)
+    })
+
+    $(switchHideConvNameElName).on('change', function () {
+      const isEnabled = $(this).is(':checked')
+      hideConvName(isEnabled)
+    })
+
+    $(switchHideThreadChatMessageElName).on('change', function () {
+      const isEnabled = $(this).is(':checked')
+      hideThreadChatMessage(isEnabled)
+    })
 
     $(switchBlockTypingElName).on('change', handleBlockingRuleChange('rules_block_typing'))
     $(switchBlockSeenElName).on('change', handleBlockingRuleChange('rules_block_seen'))
@@ -738,17 +714,13 @@
     const popupEl = document.querySelector('#js-zadark-popup')
     const buttonEl = document.getElementById('div_Main_TabZaDark')
 
-    const popupInstance = Popper.createPopper(buttonEl, popupEl, {
-      placement: 'right'
-    })
-
-    buttonEl.addEventListener('click', handleOpenZaDarkPopup(popupInstance, buttonEl, popupEl))
+    buttonEl.addEventListener('click', handleOpenZaDarkPopup(buttonEl, popupEl))
 
     const closeEventNames = ['click', 'contextmenu']
     closeEventNames.forEach((eventName) => {
       window.addEventListener(
         eventName,
-        handleCloseZaDarkPopup(popupInstance, buttonEl, popupEl),
+        handleCloseZaDarkPopup(buttonEl, popupEl),
         true
       )
     })
@@ -757,6 +729,8 @@
     loadHotkeysState()
     loadKnownVersionState(buttonEl)
     loadPopupScrollEvent()
+    loadTranslate()
+
     ZaDarkUtils.initTippy()
 
     $('[data-zdk-intro]').on('click', function (e) {
@@ -775,19 +749,17 @@
         return
       }
 
-      setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, false)
+      setZaDarkPopupVisible(buttonEl, popupEl, false)
 
       const introOptions = {
-        onExit: () => setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, true),
-        onComplete: () => setZaDarkPopupVisible(popupInstance, buttonEl, popupEl, true)
+        onExit: () => setZaDarkPopupVisible(buttonEl, popupEl, true),
+        onComplete: () => setZaDarkPopupVisible(buttonEl, popupEl, true)
       }
 
       if (introId === 'hideThreadChatMessage') {
         ZaDarkUtils.showIntroHideThreadChatMessage(introOptions)
       }
     })
-
-    $(document).zadarkTranslateMessage(ZaDarkUtils.getTranslateTargetAttr)
   }
 
   const observer = new MutationObserver((mutationsList) => {
@@ -803,70 +775,100 @@
 
   observer.observe(document.querySelector('#app'), { subtree: false, childList: true })
 
+  const updateTheme = (theme = 'dark') => {
+    setRadioInputTheme(theme)
+    ZaDarkUtils.updateTheme(theme)
+  }
+
+  const updateFontSize = (fontSize = 'medium') => {
+    setSelect(selectFontSizeElName, fontSize)
+    ZaDarkUtils.updateFontSize(fontSize)
+  }
+
+  const updateTranslateTarget = (translateTarget = 'none') => {
+    setSelect(selectTranslateTargetElName, translateTarget)
+    ZaDarkUtils.updateTranslateTarget(translateTarget)
+
+    $(document).disableTranslateMessage()
+    if (translateTarget !== 'none') {
+      $(document).enableTranslateMessage(translateTarget)
+    }
+  }
+
+  const hideLatestMessage = (isEnabled) => {
+    setSwitch(switchHideLatestMessageElName, isEnabled)
+    ZaDarkUtils.updateHideLatestMessage(isEnabled)
+  }
+
+  const hideConvAvatar = (isEnabled) => {
+    setSwitch(switchHideConvAvatarElName, isEnabled)
+    ZaDarkUtils.updateHideConvAvatar(isEnabled)
+  }
+
+  const hideConvName = (isEnabled) => {
+    setSwitch(switchHideConvNameElName, isEnabled)
+    ZaDarkUtils.updateHideConvName(isEnabled)
+  }
+
+  const hideThreadChatMessage = (isEnabled) => {
+    setSwitch(switchHideThreadChatMessageElName, isEnabled)
+    ZaDarkUtils.updateHideThreadChatMessage(isEnabled)
+  }
+
+  const useHotkeys = (isEnabled) => {
+    setSwitch(switchUseHotkeysElName, isEnabled)
+    loadHotkeys(isEnabled)
+    ZaDarkUtils.updateUseHotkeys(isEnabled)
+  }
+
   const MSG_ACTIONS = ZaDarkUtils.MSG_ACTIONS
 
   ZaDarkBrowser.addMessageListener((message, sender, sendResponse) => {
     if (message.action === MSG_ACTIONS.CHANGE_THEME) {
-      const theme = message.payload.theme
-      setRadioInputTheme(theme)
-      ZaDarkUtils.setPageTheme(theme)
-
+      const { theme } = message.payload
+      updateTheme(theme)
       sendResponse({ received: true })
     }
 
     if (message.action === MSG_ACTIONS.CHANGE_FONT_SIZE) {
-      const fontSize = message.payload.fontSize
-      setSelect(selectFontSizeElName, fontSize)
-      ZaDarkUtils.setFontSizeAttr(fontSize)
-
+      const { fontSize } = message.payload
+      updateFontSize(fontSize)
       sendResponse({ received: true })
     }
 
     if (message.action === MSG_ACTIONS.CHANGE_TRANSLATE_TARGET) {
-      const translateTarget = message.payload.translateTarget
-      setSelect(selectTranslateTargetElName, translateTarget)
-      ZaDarkUtils.setTranslateTargetAttr(translateTarget)
-
+      const { translateTarget } = message.payload
+      updateTranslateTarget(translateTarget)
       sendResponse({ received: true })
     }
 
     if (message.action === MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE) {
-      const isEnabled = message.payload.enabledHideLatestMessage
-      setSwitch(switchHideLatestMessageElName, isEnabled)
-      ZaDarkUtils.setHideLatestMessageAttr(isEnabled)
-
+      const { isEnabled } = message.payload
+      hideLatestMessage(isEnabled)
       sendResponse({ received: true })
     }
 
     if (message.action === MSG_ACTIONS.CHANGE_HIDE_CONV_AVATAR) {
-      const isEnabled = message.payload.enabledHideConvAvatar
-      setSwitch(switchHideConvAvatarElName, isEnabled)
-      ZaDarkUtils.setHideConvAvatarAttr(isEnabled)
-
+      const { isEnabled } = message.payload
+      hideConvAvatar(isEnabled)
       sendResponse({ received: true })
     }
 
     if (message.action === MSG_ACTIONS.CHANGE_HIDE_CONV_NAME) {
-      const isEnabled = message.payload.enabledHideConvName
-      setSwitch(switchHideConvNameElName, isEnabled)
-      ZaDarkUtils.setHideConvNameAttr(isEnabled)
-
+      const { isEnabled } = message.payload
+      hideConvName(isEnabled)
       sendResponse({ received: true })
     }
 
     if (message.action === MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE) {
-      const isEnabled = message.payload.enabledHideThreadChatMessage
-      setSwitch(switchHideThreadChatMessageElName, isEnabled)
-      ZaDarkUtils.setHideThreadChatMessageAttr(isEnabled)
-
+      const { isEnabled } = message.payload
+      hideThreadChatMessage(isEnabled)
       sendResponse({ received: true })
     }
 
     if (message.action === MSG_ACTIONS.CHANGE_USE_HOTKEYS) {
-      const isEnabled = message.payload.useHotkeys
-      loadHotkeys(isEnabled)
-      ZaDarkUtils.setUseHotkeysAttr(isEnabled)
-
+      const { isEnabled } = message.payload
+      useHotkeys(isEnabled)
       sendResponse({ received: true })
     }
 

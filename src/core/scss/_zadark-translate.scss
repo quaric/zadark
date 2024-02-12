@@ -1,0 +1,78 @@
+@mixin translate-message {
+  .zadark-translate-msg__button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+
+    padding: 0;
+    margin: 0;
+    transform: translate(-50%, 50%);
+
+    border: 1px solid var(--zadark-primary-dark);
+    border-radius: 32px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+
+    background-color: var(--zadark-primary-base);
+    opacity: 0;
+    cursor: pointer;
+
+    .zadark-icon {
+      color: #fff;
+      font-size: 18px;
+    }
+  }
+
+  .card--text:hover,
+  .chatImageMessage:hover {
+    .zadark-translate-msg__button {
+      opacity: 1;
+    }
+  }
+
+  .zadark-translate-msg__content {
+    margin-top: 10px;
+    padding: 12px;
+
+    border: 1px solid var(--white-message-border);
+    border-radius: var(--zadark-rounded-base);
+
+    background: var(--white-quote);
+    font-size: 0.875rem;
+
+    &__title {
+      color: var(--text-quote);
+      user-select: none;
+    }
+
+    &__title + div {
+      margin-top: 4px;
+    }
+
+    &--error {
+      border-color: var(--error-border) !important;
+      background: transparent !important;
+      color: var(--text-errors) !important;
+    }
+
+    .zadark-icon {
+      position: relative;
+      top: 2px;
+      font-size: 16px;
+    }
+  }
+
+  .card--text.me,
+  .chatImageMessage.-me {
+    .zadark-translate-msg__content {
+      border-color: var(--blue-message-border);
+      background: var(--blue-quote);
+    }
+  }
+}

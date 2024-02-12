@@ -1,5 +1,15 @@
 # Changelog
 
+## ZaDark 24.2.2
+> PC 12.7 và Web 9.24
+
+- Sửa lỗi Dark Mode: Sticker mùa lễ hội
+- Sửa lỗi Dark Mode: Double Click vào tin nhắn hình ảnh
+- Cho phép tắt dịch tin nhắn
+- Hỗ trợ dịch tin nhắn có hình ảnh
+- Thêm giải thích khi chọn ngôn ngữ
+- Tối ưu mã nguồn
+
 ## ZaDark 24.2.1
 > PC 12.6 và Web 9.23
 

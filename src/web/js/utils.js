@@ -95,14 +95,6 @@
       document.documentElement.setAttribute('data-zadark-font-size', fontSize)
     },
 
-    setTranslateTargetAttr: (translateTarget) => {
-      document.documentElement.setAttribute('data-zadark-trans-target', translateTarget)
-    },
-
-    getTranslateTargetAttr: () => {
-      return document.documentElement.getAttribute('data-zadark-trans-target') || 'vi'
-    },
-
     setHideLatestMessageAttr: function (isEnabled) {
       this.toggleBodyClassName('zadark-prv--latest-message', isEnabled)
     },
@@ -268,7 +260,6 @@
       const {
         theme,
         fontSize,
-        translateTarget,
 
         enabledHideLatestMessage,
         enabledHideConvAvatar,
@@ -280,7 +271,6 @@
 
       this.setPageTheme(theme)
       this.setFontSizeAttr(fontSize)
-      this.setTranslateTargetAttr(translateTarget)
 
       this.setHideLatestMessageAttr(enabledHideLatestMessage)
       this.setHideConvAvatarAttr(enabledHideConvAvatar)
@@ -321,6 +311,12 @@
         allowHTML: true,
         content: '<p>Nhập tên phông chữ từ <strong>Google Fonts</strong><br>(Lưu ý kí tự in hoa, khoảng cách).</p><p>Bỏ trống nếu dùng phông mặc định.</p><p>Nhấn <strong>Enter</strong> để áp dụng.</p>',
         trigger: 'focus'
+      })
+
+      tippy('#js-select-translate-target', {
+        theme: 'zadark',
+        allowHTML: true,
+        content: 'Bạn muốn dịch sang ngôn ngữ nào?'
       })
     },
 
@@ -364,8 +360,7 @@
     },
 
     updateTranslateTarget: async function (translateTarget) {
-      await ZaDarkBrowser.saveExtensionSettings({ translateTarget })
-      this.setTranslateTargetAttr(translateTarget)
+      return ZaDarkBrowser.saveExtensionSettings({ translateTarget })
     },
 
     updateHideLatestMessage: async function (enabledHideLatestMessage) {

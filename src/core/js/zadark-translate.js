@@ -21,71 +21,104 @@
     }
   }
 
-  $.fn.zadarkTranslateMessage = function (getTargetLanguage) {
-    return this.each(function () {
-      $(this).on('mouseenter', '.card.card--text', function (e) {
-        const cardEl = $(this)
+  /**
+   *
+   * @param {jQuery} $buttonWrapper Element will have "translation button" added.
+   * @param {jQuery} $resultWrapper Element will have "translated content" added.
+   * @param {jQuery} $text Element contains the message content to be translated.
+   * @param {string} translateTarget Language to be translated into.
+   * @returns
+   */
+  const addTranslateListener = ($buttonWrapper, $resultWrapper, $text, translateTarget) => {
+    if ($buttonWrapper.find('.zadark-translate-msg__button').length) {
+      return
+    }
 
-        if (cardEl.find('.zadark-translate__button').length) {
+    const text = $text ? $text.text().replace(/(?:\r\n|\r|\n)/g, '<br>') : ''
+
+    const $button = $('<button>')
+      .addClass('zadark-translate-msg__button')
+      .html('<i class="zadark-icon zadark-icon--translate"></i>')
+
+    $button.on('click', function (e) {
+      e.preventDefault()
+      e.stopPropagation()
+
+      const $prevTranslation = $resultWrapper.find('.zadark-translate-msg__content')
+
+      if ($prevTranslation.length) {
+        $prevTranslation.remove()
+        return
+      }
+
+      if (!text) {
+        return
+      }
+
+      const $nextTranslation = $('<div>')
+        .addClass('zadark-translate-msg__content')
+        .html(`
+            <div class="zadark-translate-msg__content__title">
+              <i class="zadark-icon zadark-icon--translate"></i>
+              Đang dịch ...
+            </div>
+          `)
+
+      $resultWrapper.append($nextTranslation)
+
+      translate(text, translateTarget).then((res) => {
+        if (!res.success) {
+          $nextTranslation
+            .addClass('zadark-translate-msg__content--error')
+            .html('Lỗi: ' + res.message)
           return
         }
 
-        const textEl = cardEl.find('div > span-15')
-        const text = textEl ? textEl.text().replace(/(?:\r\n|\r|\n)/g, '<br>') : ''
-
-        const buttonEl = $('<button>')
-          .addClass('zadark-translate__button')
-          .html('<i class="zadark-icon zadark-icon--translate"></i>')
-
-        buttonEl.on('click', function (e) {
-          e.preventDefault()
-          e.stopPropagation()
-
-          const prevTranslateEl = cardEl.find('.zadark-translate__content')
-
-          if (prevTranslateEl.length) {
-            prevTranslateEl.remove()
-            return
-          }
-
-          if (!text) {
-            return
-          }
-
-          const translateTarget = typeof getTargetLanguage === 'function' ? getTargetLanguage() : 'vi'
-
-          const nextTranslationEl = $('<div>')
-            .addClass('zadark-translate__content')
-            .html(`
-              <div class="zadark-translate__content__title">
+        $nextTranslation
+          .html(`
+              <div class="zadark-translate-msg__content__title">
                 <i class="zadark-icon zadark-icon--translate"></i>
-                Đang dịch ...
+                ${res.languageName}
               </div>
+              <div>${res.translation}</div>
             `)
-
-          cardEl.append(nextTranslationEl)
-
-          translate(text, translateTarget).then((res) => {
-            if (!res.success) {
-              nextTranslationEl
-                .addClass('zadark-translate__content--error')
-                .html('Lỗi: ' + res.message)
-              return
-            }
-
-            nextTranslationEl
-              .html(`
-                <div class="zadark-translate__content__title">
-                  <i class="zadark-icon zadark-icon--translate"></i>
-                  ${res.languageName}
-                </div>
-                <div>${res.translation}</div>
-              `)
-          })
-        })
-
-        cardEl.append(buttonEl)
       })
+    })
+
+    $buttonWrapper.append($button)
+  }
+
+  $.fn.enableTranslateMessage = function (translateTarget) {
+    if (!translateTarget || translateTarget === 'none') {
+      return
+    }
+
+    return this.each(function () {
+      $(this).on('mouseenter.zadark-translate-msg', '.card.card--text', function (e) {
+        const $card = $(this)
+        const $content = $card
+        const $text = $content.find('div > span-15')
+
+        addTranslateListener($card, $content, $text, translateTarget)
+      })
+
+      $(this).on('mouseenter.zadark-translate-msg', '.chatImageMessage', function (e) {
+        const $card = $(this).find('.img-msg-v2__ft')
+        const $content = $(this).find('.img-msg-v2__cap')
+        const $text = $content.find('span-15')
+
+        addTranslateListener($card, $content, $text, translateTarget)
+      })
+    })
+  }
+
+  $.fn.disableTranslateMessage = function () {
+    return this.each(function () {
+      // Remove event listener
+      $(this).off('mouseenter.zadark-translate-msg')
+
+      // Remove translate button
+      $(this).find('.zadark-translate-msg__button').remove()
     })
   }
 
@@ -638,16 +671,17 @@
 
   $.fn.setLanguagesOptions = function (defaultLanguage = 'vi') {
     return this.each(function () {
-      const selectElement = $(this)
+      const $selectEl = $(this)
 
-      selectElement.empty()
+      $selectEl.empty()
+      $selectEl.append($('<option>').val('none').text('Tắt'))
 
       LANGUAGES.forEach(function (language) {
         const option = $('<option>').val(language.code).text(`Tiếng ${language.name}`)
-        selectElement.append(option)
+        $selectEl.append(option)
       })
 
-      selectElement.val(defaultLanguage)
+      $selectEl.val(defaultLanguage)
     })
   }
 })(jQuery)
