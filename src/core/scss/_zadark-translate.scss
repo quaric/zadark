@@ -29,7 +29,8 @@
     }
   }
 
-  .card--text:hover {
+  .card--text:hover,
+  .chatImageMessage:hover {
     .zadark-translate-msg__button {
       opacity: 1;
     }
@@ -67,7 +68,8 @@
     }
   }
 
-  .card--text.me {
+  .card--text.me,
+  .chatImageMessage.-me {
     .zadark-translate-msg__content {
       border-color: var(--blue-message-border);
       background: var(--blue-quote);

@@ -1205,7 +1205,7 @@
     tippy('#js-select-translate-target', {
       theme: 'zadark',
       allowHTML: true,
-      content: 'Chọn ngôn ngữ hiển thị'
+      content: 'Bạn muốn dịch sang ngôn ngữ nào?'
     })
   }
 

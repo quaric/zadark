@@ -5,6 +5,7 @@
 
 - Sửa lỗi Dark Mode: Sticker mùa lễ hội
 - Cho phép tắt dịch tin nhắn
+- Hỗ trợ dịch tin nhắn có hình ảnh
 - Thêm giải thích khi chọn ngôn ngữ
 - Tối ưu mã nguồn
 
