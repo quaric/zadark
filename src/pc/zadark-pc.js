@@ -70,26 +70,20 @@ const updateMetaContentSecurityPolicyTag = (htmlElement) => {
     return
   }
 
-  const contentValue = metaTag.getAttribute('content')
-
-  let newContentValue
+  let contentValue = metaTag.getAttribute('content')
 
   if (contentValue.indexOf('https://fonts.googleapis.com') === -1) {
     const regex = /style-src[^;]*/
-    newContentValue = contentValue.replace(regex, '$& https://fonts.googleapis.com')
+    contentValue = contentValue.replace(regex, '$& https://fonts.googleapis.com')
   }
 
   if (contentValue.indexOf(ZADARK_API_DOMAIN) === -1) {
     const regexConnect = /connect-src[^;]*/
-    newContentValue = contentValue.replace(regexConnect, `$& ${ZADARK_API_DOMAIN}`)
-  }
-
-  if (!newContentValue) {
-    return
+    contentValue = contentValue.replace(regexConnect, `$& ${ZADARK_API_DOMAIN}`)
   }
 
   printDebug('- updateContentSecurityPolicy')
-  metaTag.setAttribute('content', newContentValue)
+  metaTag.setAttribute('content', contentValue)
 }
 
 const writeIndexFile = (zaloDir) => {
