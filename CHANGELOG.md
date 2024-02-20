@@ -1,5 +1,10 @@
 # Changelog
 
+## ZaDark 24.2.3
+> PC 12.7.1
+
+- Sửa lỗi không tải được phông chữ
+
 ## ZaDark 24.2.2
 > PC 12.7 và Web 9.24
 
