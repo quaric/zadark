@@ -1,40 +1,50 @@
 @mixin prv-lastest-message {
-  .conv-item .conv-item-body__main .conv-message {
-    position: relative;
+  .conv-item {
+    .conv-item-body__main .conv-message,
+    .conv-unread-react {
+      position: relative;
 
-    &::after {
-      content: "••••••";
-      position: absolute;
-      top: 0;
-      left: 0;
+      &::after {
+        content: "••••••";
+        position: absolute;
+        top: 0;
+        left: 0;
 
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
 
-      color: var(--text-secondary);
-      font-size: 16px;
-      letter-spacing: 1px;
-      line-height: normal;
-      opacity: 1;
+        color: var(--text-secondary);
+        font-size: 16px;
+        letter-spacing: 1px;
+        line-height: normal;
+        opacity: 1;
 
-      transition: opacity 100ms ease-in-out;
+        transition: opacity 100ms ease-in-out;
+      }
+
+      * {
+        opacity: 0;
+        transition: opacity 100ms ease-in-out;
+      }
     }
 
-    * {
-      opacity: 0;
-      transition: opacity 100ms ease-in-out;
-    }
-  }
-
-  .conv-item:hover .conv-item-body__main .conv-message {
-    &::after {
-      opacity: 0;
+    .conv-unread-react::after {
+      font-size: 14px;
     }
 
-    * {
-      opacity: 1;
+    &:hover {
+      .conv-item-body__main .conv-message,
+      .conv-unread-react {
+        &::after {
+          opacity: 0;
+        }
+
+        * {
+          opacity: 1;
+        }
+      }
     }
   }
 }
