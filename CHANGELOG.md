@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 24.3.1
+
+> PC 12.8 và Web 9.25
+
+- Sửa lỗi nút dịch tin nhắn khi bật "Ẩn tin nhắn trong cuộc trò chuyện"
+- Sửa lỗi vẫn hiện thông tin người bày tỏ cảm xúc tin nhắn khi bật "Ẩn tin nhắn gần nhất" ([#113](https://github.com/quaric/zadark/issues/113))
+
 ## ZaDark 24.2.3
 > PC 12.7.1
 
