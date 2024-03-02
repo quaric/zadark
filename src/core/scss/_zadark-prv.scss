@@ -43,7 +43,7 @@
   .chat-message:not(.multi-select-mode) {
     .card:not(.card--oa):not(.card--sticker):not(.card--group-photo),
     .call-msg {
-      > * {
+      > *:not(.zadark-translate-msg__button) {
         opacity: 0.1;
         transition: opacity 100ms ease-in-out;
       }
@@ -94,7 +94,7 @@
     .chat-message:not(.multi-select-mode) {
       .card:not(.card--oa):not(.card--sticker):not(.card--group-photo),
       .call-msg {
-        > * {
+        > *:not(.zadark-translate-msg__button) {
           opacity: 1;
         }
       }
