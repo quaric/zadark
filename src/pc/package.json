@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
-    "name": "Quaric",
+    "name": "Quaric Co., Ltd.",
     "email": "hello@quaric.com",
     "url": "https://quaric.com"
   },
@@ -13,7 +13,7 @@
     {
       "name": "Nguyen Chanh Dai",
       "email": "hello@chanhdai.com",
-      "url": "https://github.com/iamncdai"
+      "url": "https://github.com/ncdai"
     }
   ],
   "license": "MPL-2.0"
