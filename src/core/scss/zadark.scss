@@ -593,7 +593,6 @@ html[data-zadark-theme="dark"] {
     }
 
     .title-name.unfocus {
-      // color: var(--text-primary);
       opacity: 0;
     }
 
@@ -613,7 +612,7 @@ html[data-zadark-theme="dark"] {
       color: var(--text-secondary);
     }
 
-    // About Zalo > Version
+    // ? About Zalo > Version
     .app-info__header {
       align-items: center;
       color: #fff;
@@ -817,14 +816,19 @@ html[data-zadark-theme="dark"] {
       background-color: var(--WA100);
     }
 
-    .chat-input__content.highlight {
+    // TODO: Zalo < v24.3.1 (Will be removed in the future)
+    .chat-input__content.highlight,
+    // * Zalo >= v24.3.1
+    .chat-box-input.highlight-v3,
+    .chat-box-input.highlight-v4,
+    .chat-box-input--audit-2023.highlight-v3,
+    .chat-box-input--audit-2023.highlight-v4 {
       border-color: var(--NG30);
     }
 
+    // TODO: Zalo < v24.3.1 (Will be removed in the future)
     .chat-input__content__input .quote-banner {
-      height: 40px;
-      margin: 12px 16px 0;
-      background-color: var(--NG10);
+      background-color: var(--white-quote);
     }
 
     .chat-message {
@@ -980,7 +984,7 @@ html[data-zadark-theme="dark"] {
       background-color: var(--white-message-action);
     }
 
-    // Todo (Other)
+    // ? Todo (Other)
     .td-msg-btn {
       border-color: var(--white-message-btn-border);
       background-color: var(--white-message-btn);
@@ -1015,7 +1019,7 @@ html[data-zadark-theme="dark"] {
         border: 1px solid var(--admin-message-border);
       }
 
-      // Self
+      // ? Self
       &.me {
         border-color: var(--blue-message-border);
 
@@ -1062,7 +1066,7 @@ html[data-zadark-theme="dark"] {
           background-color: var(--blue-quote-line);
         }
 
-        // Todo (Self)
+        // ? Todo (Self)
         .td-msg-btn {
           border-color: var(--blue-message-btn-border);
           background-color: var(--blue-message-btn);
@@ -1094,7 +1098,7 @@ html[data-zadark-theme="dark"] {
       }
     }
 
-    // Contact Card (Self)
+    // ? Contact Card (Self)
     .bubble-contact-card-container > .me.bubble-contact-card > .footer {
       border-color: var(--blue-message-border);
 
@@ -1103,7 +1107,7 @@ html[data-zadark-theme="dark"] {
       }
     }
 
-    // Contact Card (Other)
+    // ? Contact Card (Other)
     .bubble-contact-card-container > .bubble-contact-card > .footer {
       border-top: 1px solid var(--border);
 
@@ -1112,7 +1116,7 @@ html[data-zadark-theme="dark"] {
       }
     }
 
-    // Reactions (Self)
+    // ? Reactions (Self)
     .message-reaction-container {
       &.me {
         .reacts-list,
@@ -1133,7 +1137,7 @@ html[data-zadark-theme="dark"] {
       color: var(--text-primary);
     }
 
-    // Quick Message
+    // ? Quick Message
     .qrsc {
       background: var(--WA100);
     }
@@ -1217,7 +1221,7 @@ html[data-zadark-theme="dark"] {
       }
     }
 
-    // Multi Select Mode
+    // ? Multi Select Mode
     .multi-select-mode-selected {
       .card {
         border-color: var(--blue-message-selected-border);
@@ -1229,7 +1233,7 @@ html[data-zadark-theme="dark"] {
             }
           }
 
-          // Quote
+          // ? Quote
           .quote-banner,
           .quote-file {
             background-color: var(--blue-quote-selected) !important;
@@ -1240,7 +1244,7 @@ html[data-zadark-theme="dark"] {
           }
         }
 
-        // Link, Picture, Sticker, Video, Doodle (Selected)
+        // ? Link, Picture, Sticker, Video, Doodle (Selected)
         &.card--link:before,
         &.card--oa .chat-message-picture__gif__wrapper:before,
         &.card--picture .chat-message-picture__gif__wrapper:before,
@@ -1255,7 +1259,7 @@ html[data-zadark-theme="dark"] {
         color: var(--text-primary-50);
       }
 
-      // Quote (Selected)
+      // ? Quote (Selected)
       .quote-name-container .quote-name {
         color: var(--text-primary);
       }
@@ -1263,7 +1267,7 @@ html[data-zadark-theme="dark"] {
         color: var(--text-primary-50);
       }
 
-      // Reactions (Selected)
+      // ? Reactions (Selected)
       .message-reaction-container {
         .reacts-list,
         .msg-reaction-icon {
@@ -1276,12 +1280,12 @@ html[data-zadark-theme="dark"] {
         }
       }
 
-      // Contact Card (Selected)
+      // ? Contact Card (Selected)
       .bubble-contact-card-container > .me.bubble-contact-card > .footer {
         border-color: var(--blue-message-action-border);
       }
 
-      // Todo (Selected)
+      // ? Todo (Selected)
       .td-msg-btn {
         border-color: var(--blue-message-btn-border);
         background-color: var(--blue-message-btn);
@@ -1294,13 +1298,13 @@ html[data-zadark-theme="dark"] {
       }
     }
 
-    // Multi Select Mode
+    // ? Multi Select Mode
     .card--group-sticker__row__item__sticker.multi-select-mode.selected-overlay:before,
     .card.card--group-photo .card--group-photo__row__item__content.selected-overlay:before {
       background-color: #000;
     }
 
-    // Call
+    // ? Call
     .call-msg.--callee {
       background-color: var(--white-message);
     }
@@ -1309,7 +1313,7 @@ html[data-zadark-theme="dark"] {
     }
 
     .chat-message.me {
-      // Call
+      // ? Call
       .call-msg {
         border-color: var(--blue-message-border); // var(--B40);
         background-color: var(--blue-message);
@@ -1355,7 +1359,7 @@ html[data-zadark-theme="dark"] {
       bottom: 0;
     }
 
-    // Zavi Meeting
+    // ? Zavi Meeting
     .zavi {
       &-clock__date,
       &-clock__time {
@@ -1372,15 +1376,15 @@ html[data-zadark-theme="dark"] {
       color: var(--text-primary);
     }
 
-    // zavi-sidebar-list-item
+    // ? zavi-sidebar-list-item
     .zavi-sidebar-list-item.chat-message.first-selected,
     .zavi-sidebar-list-item.chat-message.last-selected,
     .zavi-sidebar-list-item.selected
-    // contact-list-item
+    // ? contact-list-item
     .contact-list-item.chat-message.first-selected,
     .contact-list-item.chat-message.last-selected,
     .contact-list-item.selected,
-    // file-sidebar__option
+    // ? file-sidebar__option
     .file-sidebar__option.chat-message.first-selected,
     .file-sidebar__option.chat-message.last-selected,
     .file-sidebar__option.selected {
@@ -1427,7 +1431,7 @@ html[data-zadark-theme="dark"] {
       }
     }
 
-    // Example: You can also view this File on mobile
+    // ? Example: You can also view this File on mobile
     .toast,
     .toast-v2 .toast-content {
       color: var(--text-primary);
@@ -1443,7 +1447,7 @@ html[data-zadark-theme="dark"] {
       box-shadow: 4px 4px 12px var(--BA50);
     }
 
-    // App Lock
+    // ? App Lock
 
     .app-lock__main__input {
       display: flex;
@@ -1510,14 +1514,14 @@ html[data-zadark-theme="dark"] {
       border: 1px solid var(--NG30);
       color: var(--text-primary);
 
-      // Chrome, Firefox, Opera, Safari 10.1+
+      // ? Chrome, Firefox, Opera, Safari 10.1+
       &::placeholder {
         color: var(--text-secondary);
         opacity: 1; /* Firefox */
       }
 
-      // Microsoft Edge
-      // Internet Explorer 10-11
+      // ? Microsoft Edge
+      // ? Internet Explorer 10-11
       &::-ms-input-placeholder {
         color: var(--text-secondary);
       }
@@ -1654,7 +1658,7 @@ html[data-zadark-theme="dark"] {
       color: var(--text-secondary);
     }
 
-    // Typing
+    // ? Typing
     .dot-flashing,
     .dot-flashing-csc {
       --NG60: var(--text-primary);
@@ -1895,7 +1899,6 @@ html[data-zadark-theme="dark"] {
     }
 
     #contact-search-input {
-      // border-radius: 50rem;
       border-radius: var(--zadark-rounded-base);
       border-color: var(--border);
     }
@@ -1908,7 +1911,7 @@ html[data-zadark-theme="dark"] {
       color: var(--text-secondary);
     }
 
-    // Conversation Info > Files
+    // ? Conversation Info > Files
     .file-cloud-indicator[style*="assets/on-cloud"] {
       filter: brightness(2.4);
     }
@@ -1954,7 +1957,10 @@ html[data-zadark-theme="dark"] {
       filter: invert(0.8);
     }
 
+    // TODO: Zalo < v24.3.1 (Will be removed in the future)
     #text-color-indicator[style*="rgb(5, 10, 25)"],
+    // * Zalo >= v24.3.1
+    .rtf-text-color-indicator[style*="rgb(5, 10, 25)"],
     .text-color-menu-container .text-color-menu[style*="rgb(5, 10, 25)"] {
       background-color: var(--text-primary) !important;
     }
@@ -2061,10 +2067,16 @@ html[data-zadark-theme="dark"] {
       }
     }
 
-    // Seasonal
+    // ? Seasonal
     .fss-preview-volume,
     .seasonal-item-preview > i {
       color: #fff;
+    }
+
+    // * Zalo >= v24.3.1
+    // ? Sticker suggestion
+    .fixed-chat-box-popover {
+      background: var(--layer-background);
     }
   }
 }
@@ -2193,7 +2205,7 @@ body.zadark {
     @include prv.prv-conv-name();
   }
 
-  // Conv font size
+  // ? Conv font size
   .card--text,
   .msg-info-popup,
   .img-msg-v2__cap {
@@ -2246,12 +2258,13 @@ body.zadark {
     }
   }
 
-  .chat-input__content__input {
-    // .chat-input-container > div:first-child {
-    //   align-items: center;
-    // }
-
-    .rich-input {
+  // TODO: Zalo < v24.3.1 (Will be removed in the future)
+  .chat-input__content__input,
+  // * Zalo >= v24.3.1
+  .chat-box-input__content__input {
+    .rich-input,
+    .rich-text-input,
+    .rich-text-input .input-v4 {
       font-size: var(--zadark-cnv-font-size);
     }
 
@@ -2264,6 +2277,20 @@ body.zadark {
     .chat-input-btns .emoji-outer {
       top: 0 !important;
     }
+  }
+
+  // * Zalo >= v24.3.1
+  .chat-input-container--audit-2023 .chat-input-content {
+    .rich-input,
+    .rich-text-input,
+    .rich-text-input .input-v4 {
+      font-size: var(--zadark-cnv-font-size);
+    }
+  }
+
+  // * Zalo >= v24.3.1
+  .chat-input-container--audit-2023.--rtf-mode .rtf-placeholder {
+    font-size: var(--zadark-cnv-font-size);
   }
 
   @include translate.translate-message();

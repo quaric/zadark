@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 24.3.2
+
+> PC 12.9 và Web 9.26
+
+- Sửa lỗi Dark Mode khung soạn tin nhắn
+- Sửa lỗi Dark Mode gợi ý sticker
+
 ## ZaDark 24.3.1
 
 > PC 12.8 và Web 9.25
