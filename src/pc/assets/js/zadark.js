@@ -62,15 +62,15 @@
       true: 'Đã bật Ẩn Tên cuộc trò chuyện',
       false: 'Đã tắt Ẩn Tên cuộc trò chuyện'
     },
-    rules_block_typing: {
+    block_typing: {
       true: 'Đã bật Ẩn trạng thái Đang soạn tin',
       false: 'Đã tắt Ẩn trạng thái Đang soạn tin'
     },
-    rules_block_delivered: {
+    block_delivered: {
       true: 'Đã bật Ẩn trạng thái Đã nhận',
       false: 'Đã tắt Ẩn trạng thái Đã nhận'
     },
-    rules_block_seen: {
+    block_seen: {
       true: 'Đã bật Ẩn trạng thái Đã xem',
       false: 'Đã tắt Ẩn trạng thái Đã xem'
     },
@@ -511,8 +511,8 @@
 
     updateBlockSettings: function (blockId, isEnabled) {
       ZaDarkStorage.saveBlockSettings(blockId, isEnabled)
-      ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE[blockId][isEnabled])
-      ZaDarkUtils.showToast(COMMON_TOAST_MESSAGE.needToRestart, {
+      this.showToast(HOTKEYS_TOAST_MESSAGE[blockId][isEnabled])
+      this.showToast(COMMON_TOAST_MESSAGE.needToRestart, {
         className: 'toastify--warning',
         duration: 10000
       })

@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.4.1
+
+> PC 12.10 và Web 9.27
+
+- Sửa lỗi không hiện thông báo khi bật/tắt ẩn trạng thái đang soạn tin, đã nhận, đã xem
+
 ## ZaDark 24.3.2
 
 > PC 12.9 và Web 9.26
