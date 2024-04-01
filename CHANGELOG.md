@@ -5,6 +5,7 @@
 > PC 12.10 và Web 9.27
 
 - Sửa lỗi không hiện thông báo khi bật/tắt ẩn trạng thái đang soạn tin, đã nhận, đã xem
+- Sửa lỗi ẩn tin nhắn trong cuộc trò chuyện (khung soạn tin nhắn)
 
 ## ZaDark 24.3.2
 
