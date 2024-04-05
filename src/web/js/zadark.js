@@ -113,7 +113,6 @@
     <div class="zadark-popup__header">
       <div class="zadark-popup__header__logo">
         <img src="${ZaDarkBrowser.getURL('images/zadark-lockup.svg')}" alt="ZaDark" class="zadark-popup__header__logo-img" />
-        <span class="zadark-popup__header__pro"></span>
       </div>
 
       <div class="zadark-popup__header__menu-list">
@@ -195,7 +194,7 @@
             <label class="font-settings__label" style="flex: 1;">
               Dịch tin nhắn
               <i class="zadark-icon zadark-icon--question" data-tippy-content='Bạn di chuyển chuột vào đoạn tin nhắn<br/>và chọn biểu tượng <i class="zadark-icon zadark-icon--translate" style="position: relative; top: 3px; font-size: 18px;"></i> để dịch tin nhắn.'></i>
-              <span class="zadark-beta"></span>
+              <span class="zadark-trial"></span>
             </label>
 
             <select id="js-select-translate-target" class="zadark-select"></select>

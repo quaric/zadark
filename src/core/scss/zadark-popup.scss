@@ -315,6 +315,36 @@ body:not(.zadark--use-hotkeys) {
     }
   }
 
+  .zadark-trial,
+  .zadark-pro {
+    padding: 0 4px;
+    border-radius: 4px;
+
+    font-size: 12px;
+    font-weight: var(--zadark-font-semibold);
+    line-height: 12px;
+  }
+
+  .zadark-trial {
+    border: 1px solid var(--zadark-blue-base);
+    color: var(--zadark-blue-base);
+    // border: 1px solid var(--zadark-neutral-700);
+    // color: var(--zadark-neutral-500);
+
+    &::after {
+      content: "Trial";
+    }
+  }
+
+  .zadark-pro {
+    border: 1px solid var(--zadark-blue-base);
+    color: var(--zadark-blue-base);
+
+    &::after {
+      content: "Pro";
+    }
+  }
+
   .zadark-form__label {
     display: block;
     margin-bottom: 8px;
@@ -644,6 +674,11 @@ body:not(.zadark--use-hotkeys) {
     .zadark-beta {
       position: relative;
       bottom: 1px;
+      margin-left: 6px;
+    }
+
+    .zadark-pro,
+    .zadark-trial {
       margin-left: 6px;
     }
   }
