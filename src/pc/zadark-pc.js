@@ -5,7 +5,7 @@ const asar = require('@electron/asar')
 const HTMLParser = require('node-html-parser')
 const glob = require('glob')
 
-const { printDebug, copyRecursiveSync, printError } = require('./utils')
+const { printDebug, printError, copyRecursiveAsync } = require('./utils')
 
 const { PLATFORM, IS_MAC, OS_NAME, ZADARK_VERSION, ZADARK_TMP_PATH, ZALO_PROCESS_NAMES, ZADARK_API_DOMAIN } = require('./constants')
 const psList = require('./packages/ps-list')
@@ -288,7 +288,7 @@ const writeZNotificationFile = (zaloDir) => {
   fs.writeFileSync(srcPath, root.toString())
 }
 
-const copyAssetDir = (zaloDir, { dest, src }) => {
+const copyAssetDir = async (zaloDir, { dest, src }) => {
   const srcPath = path.join(__dirname, `./assets/${src}`)
   const destPath = path.join(zaloDir, `app/${dest}`)
 
@@ -297,7 +297,42 @@ const copyAssetDir = (zaloDir, { dest, src }) => {
   }
 
   printDebug('- copyDir:', src, '>', destPath)
-  copyRecursiveSync(srcPath, destPath)
+  await copyRecursiveAsync(srcPath, destPath)
+}
+
+const copyAssets = async () => {
+  // Copy assets
+  const assets = [
+    {
+      // "pc/assets/fonts/*" to "ZADARK_TMP_PATH/app/pc-dist/fonts"
+      src: 'fonts',
+      dest: 'pc-dist/fonts'
+    },
+    {
+      // "pc/assets/images/*" to "ZADARK_TMP_PATH/app/pc-dist"
+      src: 'images',
+      dest: 'pc-dist'
+    },
+    {
+      // "pc/assets/css/*" to "ZADARK_TMP_PATH/app/pc-dist"
+      src: 'css',
+      dest: 'pc-dist'
+    },
+    {
+      // "pc/assets/js/*" to "ZADARK_TMP_PATH/app/pc-dist"
+      src: 'js',
+      dest: 'pc-dist'
+    },
+    {
+      // "pc/assets/libs/*" to "ZADARK_TMP_PATH/app/pc-dist"
+      src: 'libs',
+      dest: 'pc-dist'
+    }
+  ]
+
+  for (const asset of assets) {
+    await copyAssetDir(ZADARK_TMP_PATH, asset)
+  }
 }
 
 const installZaDark = async (zaloDir) => {
@@ -329,47 +364,24 @@ const installZaDark = async (zaloDir) => {
   asar.extractAll(appAsarPath, appDirTmpPath)
 
   // Copy assets
-  const assets = [
-    {
-      // "pc/assets/fonts/*" to "ZADARK_TMP_PATH/app/pc-dist/fonts"
-      src: 'fonts',
-      dest: 'pc-dist/fonts'
-    },
-    {
-      // "pc/assets/images/*" to "ZADARK_TMP_PATH/app/pc-dist"
-      src: 'images',
-      dest: 'pc-dist'
-    },
-    {
-      // "pc/assets/css/*" to "ZADARK_TMP_PATH/app/pc-dist"
-      src: 'css',
-      dest: 'pc-dist'
-    },
-    {
-      // "pc/assets/js/*" to "ZADARK_TMP_PATH/app/pc-dist"
-      src: 'js',
-      dest: 'pc-dist'
-    },
-    {
-      // "pc/assets/libs/*" to "ZADARK_TMP_PATH/app/pc-dist"
-      src: 'libs',
-      dest: 'pc-dist'
-    }
+  await copyAssets()
+
+  const writeFilePromises = [
+    // Add "themeAttributes, classNames, fonts, stylesheets and scripts" to "ZADARK_TMP_PATH/app/pc-dist/index.html"
+    writeIndexFile(ZADARK_TMP_PATH),
+
+    // Add zadark-main to "ZADARK_TMP_PATH/app/bootstrap.js"
+    writeBootstrapFile(ZADARK_TMP_PATH)
   ]
-  assets.forEach((asset) => {
-    copyAssetDir(ZADARK_TMP_PATH, asset)
-  })
-
-  // Add "themeAttributes, classNames, fonts, stylesheets and scripts" to "ZADARK_TMP_PATH/app/pc-dist/index.html"
-  writeIndexFile(ZADARK_TMP_PATH)
-
-  // Add zadark-main to "ZADARK_TMP_PATH/app/bootstrap.js"
-  writeBootstrapFile(ZADARK_TMP_PATH)
 
   if (!IS_MAC) {
     // Add fonts, stylesheets and scripts" to "ZADARK_TMP_PATH/app/pc-dist/znotification.html"
-    writeZNotificationFile(ZADARK_TMP_PATH)
+    writeFilePromises.push(
+      writeZNotificationFile(ZADARK_TMP_PATH)
+    )
   }
+
+  await Promise.all(writeFilePromises)
 
   // Create package "ZADARK_TMP_PATH/app.asar" from "ZADARK_TMP_PATH/app"
   printDebug('- createAsar:', appDirTmpPath, '>', appAsarTmpPath)

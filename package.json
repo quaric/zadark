@@ -51,11 +51,11 @@
     "nodemon": "^2.0.15",
     "pkg": "^5.8.1",
     "resedit": "^2.0.0",
-    "sass": "^1.49.8",
+    "sass": "^1.74.1",
     "standard": "^16.0.4"
   },
   "dependencies": {
-    "@electron/asar": "^3.2.8",
+    "@electron/asar": "^3.2.9",
     "chalk": "4.1.2",
     "cross-spawn": "^7.0.3",
     "del": "^6.0.0",

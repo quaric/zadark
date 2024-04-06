@@ -194,7 +194,7 @@
             <label class="font-settings__label" style="flex: 1;">
               Dịch tin nhắn
               <i class="zadark-icon zadark-icon--question" data-tippy-content='Bạn di chuyển chuột vào đoạn tin nhắn<br/>và chọn biểu tượng <i class="zadark-icon zadark-icon--translate" style="position: relative; top: 3px; font-size: 18px;"></i> để dịch tin nhắn.'></i>
-              <span class="zadark-trial"></span>
+              <span class="zadark-trial" data-tippy-content="Bạn có 10 lượt dịch tin nhắn mỗi ngày"></span>
             </label>
 
             <select id="js-select-translate-target" class="zadark-select"></select>
@@ -568,7 +568,9 @@
     $(popupScrollableElName).on('scroll', ZaDarkUtils.debounce(calcPopupScroll, 150))
     $(window).on('resize', ZaDarkUtils.debounce(calcPopupScroll, 250))
 
-    $(btnScrollElName).on('click', () => {
+    $(btnScrollElName).on('click', (e) => {
+      e.stopPropagation()
+      e.preventDefault()
       $(popupScrollableElName).animate({ scrollTop: $(popupScrollableElName).height() }, 1000)
     })
   }

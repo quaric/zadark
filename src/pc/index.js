@@ -89,12 +89,19 @@ const handleInstall = async (zaloResDirList) => {
 
   await handleQuitZalo()
 
-  for (const zaloResDir of zaloResDirList) {
-    print('')
-    print(chalk('>> Dang cai dat', chalk.bold(zaloResDir)))
-    print(chalk.cyanBright('>> Vui long cho trong giay lat. Co the se mat vai phut ...'))
-    await zadarkPC.installZaDark(zaloResDir)
-  }
+  // Install latest version
+  const zaloResDir = zaloResDirList[zaloResDirList.length - 1]
+  print('')
+  print(chalk('>> Dang cai dat', chalk.bold(zaloResDir)))
+  print(chalk.cyanBright('>> Vui long cho trong giay lat. Co the se mat vai phut ...'))
+  await zadarkPC.installZaDark(zaloResDir)
+
+  // for (const zaloResDir of zaloResDirList) {
+  //   print('')
+  //   print(chalk('>> Dang cai dat', chalk.bold(zaloResDir)))
+  //   print(chalk.cyanBright('>> Vui long cho trong giay lat. Co the se mat vai phut ...'))
+  //   await zadarkPC.installZaDark(zaloResDir)
+  // }
 
   print('')
   print(chalk.greenBright('>> Da cai dat ZaDark. Vui long mo lai Zalo PC.'))

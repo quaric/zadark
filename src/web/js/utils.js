@@ -302,7 +302,7 @@
       tippy('#div_Main_TabZaDark', {
         theme: 'zadark',
         allowHTML: true,
-        content: 'Cài đặt ZaDark',
+        content: `Cài đặt ZaDark ${ZaDarkBrowser.getManifest().version}`,
         placement: 'right'
       })
 
