@@ -62,15 +62,15 @@
       true: 'Đã bật Ẩn Tên cuộc trò chuyện',
       false: 'Đã tắt Ẩn Tên cuộc trò chuyện'
     },
-    rules_block_typing: {
+    block_typing: {
       true: 'Đã bật Ẩn trạng thái Đang soạn tin',
       false: 'Đã tắt Ẩn trạng thái Đang soạn tin'
     },
-    rules_block_delivered: {
+    block_delivered: {
       true: 'Đã bật Ẩn trạng thái Đã nhận',
       false: 'Đã tắt Ẩn trạng thái Đã nhận'
     },
-    rules_block_seen: {
+    block_seen: {
       true: 'Đã bật Ẩn trạng thái Đã xem',
       false: 'Đã tắt Ẩn trạng thái Đã xem'
     },
@@ -236,6 +236,10 @@
   }
 
   const ZaDarkUtils = {
+    getZaDarkVersion: () => {
+      return $('html').data('zadark-version')
+    },
+
     toggleBodyClassName: (className, isEnabled) => {
       if (isEnabled) {
         document.body.classList.add(className)
@@ -511,8 +515,8 @@
 
     updateBlockSettings: function (blockId, isEnabled) {
       ZaDarkStorage.saveBlockSettings(blockId, isEnabled)
-      ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE[blockId][isEnabled])
-      ZaDarkUtils.showToast(COMMON_TOAST_MESSAGE.needToRestart, {
+      this.showToast(HOTKEYS_TOAST_MESSAGE[blockId][isEnabled])
+      this.showToast(COMMON_TOAST_MESSAGE.needToRestart, {
         className: 'toastify--warning',
         duration: 10000
       })
@@ -701,7 +705,6 @@
     <div class="zadark-popup__header">
       <div class="zadark-popup__header__logo">
         <img src="zadark-lockup.svg" alt="ZaDark" class="zadark-popup__header__logo-img" />
-        <span class="zadark-popup__header__pro"></span>
       </div>
 
       <div class="zadark-popup__header__menu-list">
@@ -783,7 +786,7 @@
             <label class="font-settings__label" style="flex: 1;">
               Dịch tin nhắn
               <i class="zadark-icon zadark-icon--question" data-tippy-content='Bạn di chuyển chuột vào đoạn tin nhắn<br/>và chọn biểu tượng <i class="zadark-icon zadark-icon--translate" style="position: relative; top: 3px; font-size: 18px;"></i> để dịch tin nhắn.'></i>
-              <span class="zadark-beta"></span>
+              <span class="zadark-trial" data-tippy-content="Bạn có 10 lượt dịch tin nhắn mỗi ngày"></span>
             </label>
 
             <select id="js-select-translate-target" class="zadark-select"></select>
@@ -1138,7 +1141,9 @@
     $(popupScrollableElName).on('scroll', ZaDarkUtils.debounce(calcPopupScroll, 150))
     $(window).on('resize', ZaDarkUtils.debounce(calcPopupScroll, 250))
 
-    $(btnScrollElName).on('click', () => {
+    $(btnScrollElName).on('click', (e) => {
+      e.stopPropagation()
+      e.preventDefault()
       $(popupScrollableElName).animate({ scrollTop: $(popupScrollableElName).height() }, 1000)
     })
   }
@@ -1191,7 +1196,7 @@
     tippy('#div_Main_TabZaDark', {
       theme: 'zadark',
       allowHTML: true,
-      content: 'Cài đặt ZaDark',
+      content: `Cài đặt ZaDark ${ZaDarkUtils.getZaDarkVersion()}`,
       placement: 'right'
     })
 

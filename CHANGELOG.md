@@ -1,5 +1,17 @@
 # Changelog
 
+## ZaDark 24.4.1
+
+> PC 12.10 và Web 9.27
+
+- Sửa lỗi không hiện thông báo khi bật/tắt ẩn trạng thái đang soạn tin, đã nhận, đã xem
+- Sửa lỗi ẩn tin nhắn trong cuộc trò chuyện (khung soạn tin nhắn)
+- Sửa lỗi Dark Mode đính kèm tập tin hình ảnh ở khung soạn tin nhắn
+- Sửa lỗi Dark Mode các chi tiết nhỏ khác
+- Cải thiện độ tương phản của button (blue, red)
+- Bổ sung thông tin phiên bản ZaDark khi rê chuột vào biểu tượng ZaDark
+- Tối ưu quá trình cài đặt ZaDark PC
+
 ## ZaDark 24.3.2
 
 > PC 12.9 và Web 9.26

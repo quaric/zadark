@@ -44,6 +44,31 @@ const copyRecursiveSync = (src, dest) => {
   fs.writeFileSync(dest, fileContent)
 }
 
+const fsPromises = fs.promises
+
+const copyRecursiveAsync = async (src, dest) => {
+  const stats = await fsPromises.stat(src)
+  const isDirectory = stats.isDirectory()
+
+  if (isDirectory) {
+    await fsPromises.mkdir(dest, { recursive: true })
+    const files = await fsPromises.readdir(src)
+    await Promise.all(files.map(async (childItemName) => {
+      await copyRecursiveAsync(
+        path.join(src, childItemName),
+        path.join(dest, childItemName)
+      )
+    }))
+  } else {
+    const destDir = path.dirname(dest)
+    if (!(await fsPromises.access(destDir))) {
+      await fsPromises.mkdir(destDir, { recursive: true })
+    }
+    const fileContent = await fsPromises.readFile(src)
+    await fsPromises.writeFile(dest, fileContent)
+  }
+}
+
 const killProcess = (pid) => {
   try {
     const args = IS_MAC ? [pid.toString()] : ['/F', '/PID', pid.toString()]
@@ -66,6 +91,7 @@ module.exports = {
 
   openWebsite,
   copyRecursiveSync,
+  copyRecursiveAsync,
 
   killProcess,
   killProcesses

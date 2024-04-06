@@ -3,8 +3,26 @@
   Made by Quaric
 */
 
+@use "sass:color";
+@use "sass:map";
+
 @use "zadark-prv" as prv;
 @use "zadark-translate" as translate;
+
+@mixin create-color-variables($color-list) {
+  @each $name, $color in $color-list {
+    --#{$name}: #{$color};
+  }
+}
+
+@mixin create-color-alpha-variables($color-list, $name, $alpha-list) {
+  @each $alpha in $alpha-list {
+    $color: map-get($color-list, $name);
+    $color_alpha: color.change($color, $alpha: $alpha);
+
+    --#{$name}-alpha-#{$alpha * 100}: #{$color_alpha};
+  }
+}
 
 @mixin zadark-colors {
   // Neutral
@@ -42,21 +60,40 @@
   --NG100: #f6f6f6;
 
   // Blue
-  --B10: #0f2345;
-  --B15: #0f2345;
-  --B20: #0e2d5b;
-  --B25: #0e2d5b;
-  --B30: #0b3a7e;
-  --B40: #074bad;
-  --B50: #0068ff;
-  --B55: #0068ff;
-  --B60: #3989ff;
-  --B70: #3989ff;
-  --B80: #72abff;
-  --B85: #72abff;
-  --B90: #72abff;
-  --B95: #72abff;
-  --B100: #72abff;
+  // --B10: #0f2345;
+  // --B15: #0f2345;
+  // --B20: #0e2d5b;
+  // --B25: #0e2d5b;
+  // --B30: #0b3a7e;
+  // --B40: #074bad;
+  // --B50: #0068ff;
+  // --B55: #0068ff;
+  // --B60: #3989ff;
+  // --B70: #3989ff;
+  // --B80: #72abff;
+  // --B85: #72abff;
+  // --B90: #72abff;
+  // --B95: #72abff;
+  // --B100: #72abff;
+  $blue-colors: (
+    B10: #0f2345,
+    B15: #0f2345,
+    B20: #0e2d5b,
+    B25: #0e2d5b,
+    B30: #0b3a7e,
+    B40: #074bad,
+    B50: #0068ff,
+    B55: #0068ff,
+    B60: #3989ff,
+    B70: #3989ff,
+    B80: #72abff,
+    B85: #72abff,
+    B90: #72abff,
+    B95: #72abff,
+    B100: #72abff
+  );
+  @include create-color-variables($blue-colors);
+  @include create-color-alpha-variables($blue-colors, "B50", (0.1, 0.2, 0.3));
 
   // TealBlue
   --STB10: #25374b;
@@ -93,21 +130,40 @@
   --SKB100: #3ac8f0;
 
   // Red
-  --R10: #5c0011;
-  --R15: #5c0011;
-  --R20: #820014;
-  --R25: #820014;
-  --R30: #a8071a;
-  --R40: #cf1322;
-  --R50: #f5222d;
-  --R55: #f5222d;
-  --R60: #f5222d;
-  --R70: #f5222d;
-  --R80: #f5222d;
-  --R85: #f5222d;
-  --R90: #f5222d;
-  --R95: #f5222d;
-  --R100: #f5222d;
+  // --R10: #5c0011;
+  // --R15: #5c0011;
+  // --R20: #820014;
+  // --R25: #820014;
+  // --R30: #a8071a;
+  // --R40: #cf1322;
+  // --R50: #f5222d;
+  // --R55: #f5222d;
+  // --R60: #f5222d;
+  // --R70: #f5222d;
+  // --R80: #f5222d;
+  // --R85: #f5222d;
+  // --R90: #f5222d;
+  // --R95: #f5222d;
+  // --R100: #f5222d;
+  $red-colors: (
+    R10: #5c0011,
+    R15: #5c0011,
+    R20: #820014,
+    R25: #820014,
+    R30: #a8071a,
+    R40: #cf1322,
+    R50: #f5222d,
+    R55: #f5222d,
+    R60: #f5222d,
+    R70: #f5222d,
+    R80: #f5222d,
+    R85: #f5222d,
+    R90: #f5222d,
+    R95: #f5222d,
+    R100: #f5222d
+  );
+  @include create-color-variables($red-colors);
+  @include create-color-alpha-variables($red-colors, "R50", (0.1, 0.2, 0.3));
 
   // Orange
   --OR10: #612500;
@@ -425,20 +481,20 @@
   --button-primary-normal: var(--B55);
   --button-primary-hover: var(--B60);
   --button-primary-pressed: var(--B80);
-  --button-primary-disabled: var(--B25);
+  --button-primary-disabled: var(--B50-alpha-10); // #{color.change(map.get($blue-colors, "B50"), $alpha: 0.1)};
   --button-primary-text: #fff;
-  --button-primary-text-disabled: var(--B50);
+  --button-primary-text-disabled: var(--B40);
   --button-primary-focus-bg: var(--B60);
   --button-primary-focus-text: #fff;
 
-  --button-secondary-normal: var(--B15);
-  --button-secondary-hover: var(--B20);
-  --button-secondary-pressed: var(--B25);
-  --button-secondary-disabled: var(--B15);
-  --button-secondary-text: var(--B55);
-  --button-secondary-text-disabled: var(--B25);
-  --button-secondary-focus-bg: var(--B20);
-  --button-secondary-focus-text: var(--B55);
+  --button-secondary-normal: var(--B50-alpha-10); // #{color.change(map.get($blue-colors, "B50"), $alpha: 0.1)};
+  --button-secondary-hover: var(--B50-alpha-20); // #{color.change(map.get($blue-colors, "B50"), $alpha: 0.2)};
+  --button-secondary-pressed: var(--B50-alpha-30); // #{color.change(map.get($blue-colors, "B50"), $alpha: 0.3)};
+  --button-secondary-disabled: var(--B50-alpha-10); // #{color.change(map.get($blue-colors, "B50"), $alpha: 0.1)};
+  --button-secondary-text: var(--B50);
+  --button-secondary-text-disabled: var(--B40);
+  --button-secondary-focus-bg: var(--B50-alpha-20); // #{color.change(map.get($blue-colors, "B50"), $alpha: 0.2)};
+  --button-secondary-focus-text: var(--B50);
 
   --button-danger-normal: var(--R60);
   --button-danger-hover: var(--R70);
@@ -449,14 +505,14 @@
   --button-danger-focus-bg: var(--R70);
   --button-danger-focus-text: #fff;
 
-  --button-secondary-danger-normal: var(--R15);
-  --button-secondary-danger-hover: var(--R20);
-  --button-secondary-danger-pressed: var(--R25);
-  --button-secondary-danger-disabled: var(--R15);
-  --button-secondary-danger-text: var(--R60);
-  --button-secondary-danger-text-disabled: var(--R25);
-  --button-secondary-danger-focus-bg: var(--R20);
-  --button-secondary-danger-focus-text: var(--R60);
+  --button-secondary-danger-normal: var(--R50-alpha-10); // #{color.change(map.get($red-colors, "R50"), $alpha: 0.1)};
+  --button-secondary-danger-hover: var(--R50-alpha-20); // #{color.change(map.get($red-colors, "R50"), $alpha: 0.2)};
+  --button-secondary-danger-pressed: var(--R50-alpha-30); // #{color.change(map.get($red-colors, "R50"), $alpha: 0.3)};
+  --button-secondary-danger-disabled: var(--R50-alpha-10); // #{color.change(map.get($red-colors, "R50"), $alpha: 0.1)};
+  --button-secondary-danger-text: var(--R50);
+  --button-secondary-danger-text-disabled: var(--R40);
+  --button-secondary-danger-focus-bg: var(--R50-alpha-20); // #{color.change(map.get($red-colors, "R50"), $alpha: 0.2)};
+  --button-secondary-danger-focus-text: var(--R50);
 
   --button-neutral-normal: var(--N20);
   --button-neutral-hover: var(--N30);
@@ -492,7 +548,9 @@
   --button-tertiary-neutral-focus: var(--B15);
   --button-tertiary-neutral-text: var(--N300);
   --button-tertiary-neutral-text-disabled: var(--N60);
-  --button-tertiary-neutral-focus-bg: var(--B15);
+  --button-tertiary-neutral-focus-bg: var(
+    --B50-alpha-10
+  ); // #{color.change(map.get($blue-colors, "B50"), $alpha: 0.1)};
   --button-tertiary-neutral-focus-text: var(--B55);
 
   // ZaDark
@@ -504,7 +562,8 @@
   --selection: #0068ff;
   --selection-text: #fff;
 
-  --popper-shadow: var(--BA50) 0px 0px 0px 5000px;
+  // --popper-shadow: var(--BA50) 0px 0px 0px 5000px;
+  --popper-shadow: 0px 0px 12px var(--BA50);
 
   --black: 900;
   --extrabold: 800;
@@ -2077,6 +2136,44 @@ html[data-zadark-theme="dark"] {
     // ? Sticker suggestion
     .fixed-chat-box-popover {
       background: var(--layer-background);
+    }
+
+    .chat-box-input__img-preview__thumb {
+      overflow: hidden;
+    }
+
+    .chat-box-input__img-preview__thumb__title {
+      color: var(--text-primary);
+      background-color: var(--BA80);
+    }
+
+    .previewItem .close-btn {
+      background: transparent;
+    }
+
+    .input-preview-item-actions {
+      background: var(--layer-background);
+      outline: 1px solid var(--border);
+    }
+
+    .input-preview-area .input-preview-area-header__delete-all {
+      color: var(--text-secondary);
+    }
+
+    .zl-modal__dialog {
+      border: 1px solid var(--border) !important;
+    }
+
+    .z-checkbox.--active.--disabled > i {
+      color: var(--NG40);
+    }
+
+    #calendar-v3 > .cal-content .cal-item.selected.is-today {
+      color: #fff;
+    }
+
+    .dd-options:hover:not(.prevent-hover) {
+      background: var(--B50-alpha-10);
     }
   }
 }
