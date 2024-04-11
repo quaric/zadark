@@ -314,15 +314,25 @@ const zipMacOSARM64 = () => {
 const tarGzipMacOSX64 = () => {
   return src(distUtils.getFilePath('MACOS_X64', true))
     .pipe(rename('zadark'))
-    .pipe(tar(distUtils.getFileNameMacOSTar()))
+    .pipe(tar(distUtils.getFileNameMacOSTar('x64')))
     .pipe(gzip())
     .pipe(dest(distUtils.getFileDir('MACOS_X64')))
 }
 
+const tarGzipMacOSARM64 = () => {
+  return src(distUtils.getFilePath('MACOS_ARM64', true))
+    .pipe(rename('zadark'))
+    .pipe(tar(distUtils.getFileNameMacOSTar('arm64')))
+    .pipe(gzip())
+    .pipe(dest(distUtils.getFileDir('MACOS_ARM64')))
+}
+
 const hashsumMacOS = () => {
-  const inp = path.join(distUtils.getFileDir('MACOS_X64'), distUtils.getFileNameMacOSTar() + '.gz')
-  const out = distUtils.getFileDir('MACOS_X64')
-  return src(inp).pipe(hashsum({ hash: 'sha256', dest: out }))
+  const inp = [
+    path.join(distUtils.getFileDir('MACOS_X64'), distUtils.getFileNameMacOSTar('x64') + '.gz'),
+    path.join(distUtils.getFileDir('MACOS_ARM64'), distUtils.getFileNameMacOSTar('arm64') + '.gz')
+  ]
+  return src(inp).pipe(hashsum({ hash: 'sha256', dest: distUtils.getFileDir('MACOS_X64') }))
 }
 
 const zipWindows = () => {
@@ -370,6 +380,7 @@ const pcDist = series(
   zipMacOSX64,
   zipMacOSARM64,
   tarGzipMacOSX64,
+  tarGzipMacOSARM64,
   hashsumMacOS,
   zipWindows,
   parallel(

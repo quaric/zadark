@@ -60,7 +60,14 @@ const handlePromptCustomZaloPath = () => {
 
 const renderHeader = () => {
   print('')
-  print(chalk.blueBright.bold(`ZaDark for ${IS_MAC ? 'macOS' : 'Windows'} ${ZADARK_VERSION}`))
+
+  if (IS_MAC) {
+    const arch = process.arch === 'arm64' ? 'Apple Chip' : 'Intel Chip'
+    print(chalk.blueBright.bold(`ZaDark for macOS ${ZADARK_VERSION} (${arch})`))
+  } else {
+    print(chalk.blueBright.bold(`ZaDark for Windows ${ZADARK_VERSION}`))
+  }
+
   print(chalk.blueBright(chalk.underline('https://zadark.com')))
   print('')
 }
