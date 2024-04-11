@@ -60,7 +60,7 @@ const handlePromptCustomZaloPath = () => {
 
 const renderHeader = () => {
   print('')
-  print(chalk.blueBright.bold(`ZaDark for ${IS_MAC ? 'macOS' : 'Windows'} ${ZADARK_VERSION}`))
+  print(chalk.blueBright.bold(`ZaDark for ${IS_MAC ? 'macOS' : 'Windows'} ${ZADARK_VERSION} (${process.arch})`))
   print(chalk.blueBright(chalk.underline('https://zadark.com')))
   print('')
 }
@@ -150,7 +150,7 @@ const handleOpenDocs = () => {
       }
 
       if (['-v', '--version'].includes(action)) {
-        print(`ZaDark ${ZADARK_VERSION}`)
+        print(`ZaDark ${ZADARK_VERSION} (${process.arch})`)
       }
     } catch (error) {
       print(chalk.magentaBright.bold('[XAY RA LOI]'))

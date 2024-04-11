@@ -68,8 +68,8 @@ const getFileNameZip = (plat) => {
   return FILE_NAME_ZIP[plat]
 }
 
-const getFileNameMacOSTar = () => {
-  return `zadark-macos-${pcPackageJSON.version}.tar`
+const getFileNameMacOSTar = (arch = 'x64') => {
+  return `zadark-macos-${pcPackageJSON.version}-${arch}.tar`
 }
 
 const getFileDir = (platform) => {
