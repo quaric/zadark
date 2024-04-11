@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 24.4.2
+
+> PC 12.10.1
+
+- Hiển thị tên kiến trúc (x64, arm64) khi cài đặt ZaDark
+- **[macOS]** Homebrew: Tự động lựa chọn phiên bản ZaDark (Apple Chip, Intel Chip) phù hợp với kiến trúc máy Mac
+
 ## ZaDark 24.4.1
 
 > PC 12.10 và Web 9.27
