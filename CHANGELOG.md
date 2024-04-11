@@ -5,7 +5,7 @@
 > PC 12.10.1
 
 - Hiển thị tên kiến trúc (x64, arm64) khi cài đặt ZaDark
-- **[macOS]** Homebrew: Tự động lựa chọn phiên bản ZaDark (Apple Chip, Intel Chip) phù hợp với kiến trúc máy Mac
+- **[macOS]** Homebrew: Tự động lựa chọn phiên bản ZaDark (Apple Chip, Intel Chip) phù hợp với kiến trúc máy Mac ([#119](https://github.com/quaric/zadark/issues/119))
 
 ## ZaDark 24.4.1
 
