@@ -50,27 +50,29 @@
 }
 
 @mixin prv-thread-chat-message {
+  $opacity: 0;
+
   .chat-message:not(.multi-select-mode) {
     .card:not(.card--oa):not(.card--sticker):not(.card--group-photo),
     .call-msg {
       > *:not(.zadark-translate-msg__button) {
-        opacity: 0.1;
+        opacity: #{$opacity};
         transition: opacity 100ms ease-in-out;
       }
     }
 
     .img-msg-v2 .image-box__image {
-      opacity: 0;
+      opacity: #{$opacity};
       transition: opacity 100ms ease-in-out;
     }
 
     .img-msg-v2 .img-msg-v2__ft {
-      opacity: 0.1;
+      opacity: #{$opacity};
       transition: opacity 100ms ease-in-out;
     }
 
     .card--sticker .card--group-sticker__row__item {
-      opacity: 0.5;
+      opacity: 0.1;
       filter: var(--prv-sticker-filter);
       transition:
         opacity 100ms ease-in-out,
@@ -78,7 +80,7 @@
     }
 
     .card--group-photo .card--group-photo__row__item .image-box__image {
-      opacity: 0;
+      opacity: #{$opacity};
       transition: opacity 100ms ease-in-out;
     }
   }
@@ -89,14 +91,14 @@
   .e2ee-event-info,
   .reminder-info-v2 {
     > * {
-      opacity: 0.1;
+      opacity: #{$opacity};
       transition: opacity 100ms ease-in-out;
     }
   }
 
   // Pin message
   .chat-group-topic__item .info-container > .content-container {
-    opacity: 0.1;
+    opacity: #{$opacity};
     transition: opacity 100ms ease-in-out;
   }
 
@@ -150,12 +152,36 @@
   .chat-input-container--audit-2023 .chat-input-content {
     #richInput,
     .rich-text-input {
-      opacity: 0.1;
+      opacity: #{$opacity};
       transition: opacity 100ms ease-in-out;
 
       &:hover {
         opacity: 1;
       }
+    }
+  }
+}
+
+@mixin prv-thread-chat-message-v2 {
+  .chat-group-topic-outer,
+  #messageViewContainer {
+    opacity: 0;
+    transition: opacity 100ms ease-in-out;
+  }
+
+  #messageView:hover {
+    .chat-group-topic-outer,
+    #messageViewContainer {
+      opacity: 1;
+    }
+  }
+
+  .chat-input-container--audit-2023__left-layout {
+    opacity: 0;
+    transition: opacity 100ms ease-in-out;
+
+    &:hover {
+      opacity: 1;
     }
   }
 }

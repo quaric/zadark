@@ -1,5 +1,17 @@
 # Changelog
 
+## ZaDark 24.4.3
+
+> PC 12.11 và Web 9.28
+
+- Ẩn tin nhắn trong cuộc trò chuyện v2: Ẩn hoàn toàn nội dung
+- Sửa lỗi Dark Mode một số chi tiết sau:
+  - Biểu tượng "**Lưu bền Cloud**" trong tin nhắn đính kèm tập tin
+  - Biểu tượng "**Chưa có trên Cloud**"
+  - Biểu tượng bày tỏ cảm xúc (Like) trong tin nhắn của bạn bè
+  - Biểu tượng bày tỏ cảm xúc (Like) trong trình xem ảnh/video (Media Viewer)
+  - Danh sách lựa chọn cảm xúc trong trình xem ảnh/video (Media Viewer)
+
 ## ZaDark 24.4.2
 
 > PC 12.10.1
