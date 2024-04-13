@@ -401,11 +401,11 @@
             intro: 'Bạn di chuột vào vùng này để <strong>xem nội dung tin nhắn</strong>'
           },
           {
-            element: document.querySelector('.chat-input__content__input'),
+            element: document.querySelector('#chatInput'),
             intro: 'Bạn di chuyển chuột vào vùng này để <strong>xem nội dung khung soạn tin nhắn</strong>'
           },
           {
-            element: document.querySelector('#ztoolbar'),
+            element: document.querySelector('.chat-box-bar'),
             intro: 'Bạn di chuyển chuột vào vùng này để: <strong>Ẩn nội dung tin nhắn</strong> (bên trên), <strong>Ẩn nội dung khung soạn tin nhắn</strong> (bên dưới)'
           }
         ],
