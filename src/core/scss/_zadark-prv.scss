@@ -50,7 +50,7 @@
 }
 
 @mixin prv-thread-chat-message {
-  $opacity: 0;
+  $opacity: 0.1;
 
   .chat-message:not(.multi-select-mode) {
     .card:not(.card--oa):not(.card--sticker):not(.card--group-photo),
@@ -62,7 +62,7 @@
     }
 
     .img-msg-v2 .image-box__image {
-      opacity: #{$opacity};
+      opacity: 0;
       transition: opacity 100ms ease-in-out;
     }
 
@@ -80,7 +80,7 @@
     }
 
     .card--group-photo .card--group-photo__row__item .image-box__image {
-      opacity: #{$opacity};
+      opacity: 0;
       transition: opacity 100ms ease-in-out;
     }
   }
@@ -162,29 +162,29 @@
   }
 }
 
-@mixin prv-thread-chat-message-v2 {
-  .chat-group-topic-outer,
-  #messageViewContainer {
-    opacity: 0;
-    transition: opacity 100ms ease-in-out;
-  }
+// @mixin prv-thread-chat-message-v2 {
+//   .chat-group-topic-outer,
+//   #messageViewContainer {
+//     opacity: 0;
+//     transition: opacity 100ms ease-in-out;
+//   }
 
-  #messageView:hover {
-    .chat-group-topic-outer,
-    #messageViewContainer {
-      opacity: 1;
-    }
-  }
+//   #messageView:hover {
+//     .chat-group-topic-outer,
+//     #messageViewContainer {
+//       opacity: 1;
+//     }
+//   }
 
-  .chat-input-container--audit-2023__left-layout {
-    opacity: 0;
-    transition: opacity 100ms ease-in-out;
+//   .chat-input-container--audit-2023__left-layout {
+//     opacity: 0;
+//     transition: opacity 100ms ease-in-out;
 
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
+//     &:hover {
+//       opacity: 1;
+//     }
+//   }
+// }
 
 @mixin prv-conv-avatar {
   // Conv Avatar
