@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.4.4
+
+> PC 12.11.1 và Web 9.28.1
+
+- Ẩn tin nhắn trong cuộc trò chuyện: Quay về phiên bản v1, chỉ làm mờ nội dung, không ẩn hoàn toàn
+
 ## ZaDark 24.4.3
 
 > PC 12.11 và Web 9.28

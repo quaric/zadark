@@ -2310,8 +2310,8 @@ body.zadark {
   }
 
   &.zadark-prv--thread-chat-message #chatView {
-    // @include prv.prv-thread-chat-message();
-    @include prv.prv-thread-chat-message-v2();
+    @include prv.prv-thread-chat-message();
+    // @include prv.prv-thread-chat-message-v2();
   }
 
   &.zadark-prv--conv-avatar {
