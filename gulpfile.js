@@ -81,7 +81,6 @@ const buildCoreStyles = () => {
     }))
     .pipe(dest('./build/chrome/css'))
     .pipe(dest('./build/firefox/css'))
-    .pipe(dest('./build/opera/css'))
     .pipe(dest('./build/edge/css'))
     .pipe(dest(path.join(SAFARI_RESOURCES, '/css')))
     .pipe(dest('./build/pc/assets/css'))
@@ -95,7 +94,6 @@ const buildWebStyles = () => {
     }))
     .pipe(dest('./build/chrome/css'))
     .pipe(dest('./build/firefox/css'))
-    .pipe(dest('./build/opera/css'))
     .pipe(dest('./build/edge/css'))
     .pipe(dest(path.join(SAFARI_RESOURCES, '/css')))
 }
@@ -140,10 +138,6 @@ const buildChrome = () => {
 
 const buildFirefox = () => {
   return buildWeb('firefox')
-}
-
-const buildOpera = () => {
-  return buildWeb('opera')
 }
 
 const buildEdge = () => {
@@ -355,12 +349,6 @@ const firefoxDist = () => {
     .pipe(dest(distUtils.getFileDir('FIREFOX')))
 }
 
-const operaDist = () => {
-  return src('./build/opera/**')
-    .pipe(gulpZip(distUtils.getFileNameZip('OPERA')))
-    .pipe(dest(distUtils.getFileDir('OPERA')))
-}
-
 const edgeDist = () => {
   return src('./build/edge/**')
     .pipe(gulpZip(distUtils.getFileNameZip('EDGE')))
@@ -399,7 +387,6 @@ const buildAll = series(
     buildWebStyles,
     buildChrome,
     buildFirefox,
-    buildOpera,
     buildEdge,
     buildSafari,
     buildPC
@@ -412,7 +399,6 @@ const distAll = series(
   parallel(
     chromeDist,
     firefoxDist,
-    operaDist,
     edgeDist,
     pcDist
   )
@@ -423,7 +409,6 @@ const distWeb = series(
   parallel(
     chromeDist,
     firefoxDist,
-    operaDist,
     edgeDist
   )
 )

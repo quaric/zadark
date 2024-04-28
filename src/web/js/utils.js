@@ -185,7 +185,7 @@
       const browserVersion = parseFloat(browser.version)
 
       // Chrome (Chromium) 84+ supports Declarative Net Request WebExtensions API
-      if (['Chrome', 'Microsoft Edge', 'Opera'].includes(browserName) && browserVersion >= 84) {
+      if (['Chrome', 'Microsoft Edge'].includes(browserName) && browserVersion >= 84) {
         return true
       }
 
@@ -214,10 +214,6 @@
 
         case 'Edge': {
           return 'https://microsoftedge.microsoft.com/addons/detail/nbcljbcabjegmmogkcegephdkhckegcf'
-        }
-
-        case 'Opera': {
-          return 'https://addons.opera.com/en/extensions/details/zadark-best-dark-theme-for-zalo'
         }
 
         case 'Firefox': {
@@ -363,6 +359,12 @@
       return ZaDarkBrowser.saveExtensionSettings({ translateTarget })
     },
 
+    updateThreadChatBg: async function (imageBase64) {
+      await ZaDarkBrowser.saveExtensionSettingsLocal({ threadChatBg: imageBase64 })
+      this.refreshThreadChatBg(imageBase64)
+      this.showToast(imageBase64 ? 'Đã thay đổi hình nền' : 'Đã xóa hình nền')
+    },
+
     updateHideLatestMessage: async function (enabledHideLatestMessage) {
       await ZaDarkBrowser.saveExtensionSettings({ enabledHideLatestMessage })
       this.toggleBodyClassName('zadark-prv--latest-message', enabledHideLatestMessage)
@@ -412,6 +414,31 @@
         onExit,
         onComplete
       })
+    },
+
+    refreshThreadChatBg: (imageBase64 = '') => {
+      const styleTagId = 'zadark-thread-chat-bg'
+
+      let styleElement = document.getElementById(styleTagId)
+
+      if (!imageBase64) {
+        if (styleElement) styleElement.remove()
+        return
+      }
+
+      const cssRule = `.message-view__blur__overlay { background-image: url('${imageBase64}') !important; }`
+
+      if (styleElement) {
+        styleElement.innerHTML = cssRule
+        return
+      }
+
+      styleElement = document.createElement('style')
+      styleElement.type = 'text/css'
+      styleElement.id = styleTagId
+      styleElement.appendChild(document.createTextNode(cssRule))
+
+      document.head.appendChild(styleElement)
     },
 
     debounce: (func, delay) => {

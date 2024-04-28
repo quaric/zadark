@@ -16,6 +16,7 @@
   const ZADARK_FONT_FAMILY_KEY = '@ZaDark:FONT_FAMILY'
   const ZADARK_FONT_SIZE_KEY = '@ZaDark:FONT_SIZE'
   const ZADARK_TRANSLATE_TARGET_KEY = '@ZaDark:TRANSLATE_TARGET'
+  const ZADARK_THREAD_CHAT_BG_KEY = '@ZaDark:THREAD_CHAT_BG_KEY'
 
   const ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_LATEST_MESSAGE'
   const ZADARK_ENABLED_HIDE_CONV_AVATAR_KEY = '@ZaDark:ENABLED_HIDE_CONV_AVATAR'
@@ -163,6 +164,13 @@
     },
     getTranslateTarget: () => {
       return localStorage.getItem(ZADARK_TRANSLATE_TARGET_KEY) || 'vi'
+    },
+
+    saveThreadChatBg: (imageBase64) => {
+      return localStorage.setItem(ZADARK_THREAD_CHAT_BG_KEY, imageBase64)
+    },
+    getThreadChatBg: () => {
+      return localStorage.getItem(ZADARK_THREAD_CHAT_BG_KEY)
     },
 
     saveEnabledHideLatestMessage: (isEnabled) => {
@@ -489,6 +497,12 @@
       ZaDarkStorage.saveTranslateTarget(translateTarget)
     },
 
+    updateThreadChatBg: async function (imageBase64) {
+      ZaDarkStorage.saveThreadChatBg(imageBase64)
+      this.refreshThreadChatBg(imageBase64)
+      ZaDarkUtils.showToast(imageBase64 ? 'Đã thay đổi hình nền' : 'Đã xóa hình nền')
+    },
+
     updateHideLatestMessage: function (isEnabled) {
       ZaDarkStorage.saveEnabledHideLatestMessage(isEnabled)
       this.toggleBodyClassName('zadark-prv--latest-message', isEnabled)
@@ -555,6 +569,31 @@
       })
     },
 
+    refreshThreadChatBg: (imageBase64 = '') => {
+      const styleTagId = 'zadark-thread-chat-bg'
+
+      let styleElement = document.getElementById(styleTagId)
+
+      if (!imageBase64) {
+        if (styleElement) styleElement.remove()
+        return
+      }
+
+      const cssRule = `.message-view__blur__overlay { background-image: url('${imageBase64}') !important; }`
+
+      if (styleElement) {
+        styleElement.innerHTML = cssRule
+        return
+      }
+
+      styleElement = document.createElement('style')
+      styleElement.type = 'text/css'
+      styleElement.id = styleTagId
+      styleElement.appendChild(document.createTextNode(cssRule))
+
+      document.head.appendChild(styleElement)
+    },
+
     debounce: (func, delay) => {
       let timer
       return () => {
@@ -603,6 +642,8 @@
   const inputFontFamilyElName = '#js-input-font-family'
   const selectFontSizeElName = '#js-select-font-size'
   const selectTranslateTargetElName = '#js-select-translate-target'
+  const inputThreadChatBgElName = '#js-input-thread-chat-bg'
+  const buttonDelThreadChatBgElName = '#js-button-del-thread-chat-bg'
 
   const switchHideLatestMessageElName = '#js-switch-hide-latest-message'
   const switchHideConvAvatarElName = '#js-switch-hide-conv-avatar'
@@ -790,6 +831,18 @@
             </label>
 
             <select id="js-select-translate-target" class="zadark-select"></select>
+          </div>
+
+          <div class="font-settings">
+            <label class="font-settings__label" style="flex: 1;">
+              Hình nền cuộc trò chuyện
+              <span class="zadark-beta"></span>
+            </label>
+
+            <input type="file" id="js-input-thread-chat-bg" class="zadark-input-file" accept=".jpg, .jpeg, .png" />
+            <label for="js-input-thread-chat-bg"></label>
+
+            <button id="js-button-del-thread-chat-bg" class="btn-del" style="margin-left: 12px;">Xoá</button>
           </div>
         </div>
       </div>
@@ -1154,6 +1207,17 @@
     $(document).enableTranslateMessage(translateTarget)
   }
 
+  const loadThreadChatBg = () => {
+    const imageBase64 = ZaDarkStorage.getThreadChatBg()
+
+    if (!imageBase64) {
+      return
+    }
+
+    ZaDarkUtils.refreshThreadChatBg(imageBase64)
+    $(inputThreadChatBgElName).addClass('zadark-input-file--loaded')
+  }
+
   const setZaDarkPopupVisible = (buttonEl, popupEl, visible = true) => {
     if (visible) {
       buttonEl.classList.add('selected')
@@ -1248,6 +1312,35 @@
       }
     })
 
+    $(inputThreadChatBgElName).on('change', function () {
+      const file = this.files[0]
+
+      if (!file) {
+        return
+      }
+
+      if (file.size > 4 * 1024 * 1024) {
+        ZaDarkUtils.showToast('Dung lượng ảnh tối đa là 4MB', {
+          className: 'toastify--error',
+          duration: 3000
+        })
+        return
+      }
+
+      ZaDarkShared.convertImageToBase64(file)
+        .then((imageBase64) => {
+          ZaDarkUtils.updateThreadChatBg(imageBase64)
+          $(this).addClass('zadark-input-file--loaded')
+        }).catch((error) => {
+          ZaDarkUtils.showToast(`Lỗi khi tải ảnh: ${error.message}`)
+        })
+    })
+
+    $(buttonDelThreadChatBgElName).on('click', function () {
+      ZaDarkUtils.updateThreadChatBg('')
+      $(inputThreadChatBgElName).removeClass('zadark-input-file--loaded')
+    })
+
     $(switchHideLatestMessageElName).on('change', function () {
       const isEnabled = $(this).is(':checked')
       ZaDarkUtils.updateHideLatestMessage(isEnabled)
@@ -1297,6 +1390,7 @@
     loadKnownVersionState(buttonEl)
     loadPopupScrollEvent()
     loadTranslate()
+    loadThreadChatBg()
     loadTippy()
 
     ZaDarkUtils.migrateData()

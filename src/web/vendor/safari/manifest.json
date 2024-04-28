@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "ZaDark for Safari",
-  "version": "9.28.1",
+  "version": "9.29",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
   "author": "Quaric",
@@ -26,6 +26,7 @@
       ],
       "js": [
         "libs/libs.min.js",
+        "js/zadark-shared.min.js",
         "js/fonts.min.js",
         "js/browser.min.js",
         "js/zadark-translate.min.js",

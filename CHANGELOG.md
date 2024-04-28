@@ -1,5 +1,14 @@
 # Changelog
 
+## ZaDark 24.4.5
+
+> PC 12.12 và Web 9.29
+
+- Thêm chức năng tuỳ chỉnh hình nền cho cuộc trò chuyện ([#122](https://github.com/quaric/zadark/issues/122))
+- Sửa lỗi Dark Mode:
+  - Trình xem ảnh/video (Media Viewer): Số lượng bày tỏ cảm xúc
+  - Quản lý dữ liệu Cloud của tôi (Manage My Cloud data)
+
 ## ZaDark 24.4.4
 
 > PC 12.11.1 và Web 9.28.1

@@ -169,6 +169,12 @@ const writeIndexFile = (zaloDir) => {
       htmlElement: bodyElement
     },
     {
+      selector: 'script[src="zadark-shared.min.js"]',
+      where: 'beforeend',
+      html: '<script src="zadark-shared.min.js"></script>',
+      htmlElement: bodyElement
+    },
+    {
       selector: 'script[src="zadark-translate.min.js"]',
       where: 'beforeend',
       html: '<script src="zadark-translate.min.js"></script>',
