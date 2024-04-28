@@ -2,7 +2,6 @@ const path = require('path')
 
 const chromeManifest = require('./src/web/vendor/chrome/manifest.json')
 const firefoxManifest = require('./src/web/vendor/firefox/manifest.json')
-const operaManifest = require('./src/web/vendor/opera/manifest.json')
 const edgeManifest = require('./src/web/vendor/edge/manifest.json')
 const pcPackageJSON = require('./src/pc/package.json')
 
@@ -12,8 +11,6 @@ const getVersion = (platform) => {
       return chromeManifest.version
     case 'FIREFOX':
       return firefoxManifest.version
-    case 'OPERA':
-      return operaManifest.version
     case 'EDGE':
       return edgeManifest.version
     case 'MACOS':
@@ -28,7 +25,6 @@ const getVersion = (platform) => {
 const FILE_DIR = {
   CHROME: './dist/chrome',
   FIREFOX: './dist/firefox',
-  OPERA: './dist/opera',
   EDGE: './dist/edge',
   MACOS: './dist/macos',
   MACOS_X64: './dist/macos',

@@ -685,7 +685,9 @@ html[data-zadark-theme="dark"] {
       &__blur__overlay {
         &,
         &_noavatar {
-          background: var(--message-view-gradient);
+          background-image: var(--message-view-gradient);
+          // background-size: cover;
+          // background-position: center;
         }
       }
     }
@@ -1583,7 +1585,7 @@ html[data-zadark-theme="dark"] {
       border: 1px solid var(--NG30);
       color: var(--text-primary);
 
-      // ? Chrome, Firefox, Opera, Safari 10.1+
+      // ? Chrome, Firefox, Safari 10.1+
       &::placeholder {
         color: var(--text-secondary);
         opacity: 1; /* Firefox */
@@ -2227,6 +2229,10 @@ html[data-zadark-theme="dark"] {
       color: var(--text-secondary);
       font-weight: 400;
     }
+
+    .chat-message__actions {
+      background-color: var(--NG20);
+    }
   }
 }
 
@@ -2289,6 +2295,14 @@ body.zadark {
   .message-view {
     font-family: var(--zadark-font-family);
     letter-spacing: normal;
+
+    &__blur__overlay {
+      &,
+      &_noavatar {
+        background-size: cover;
+        background-position: center;
+      }
+    }
   }
 
   #div_Main_TabZaDark {

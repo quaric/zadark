@@ -72,6 +72,7 @@
       "ZaDarkUtils",
       "ZaDarkFonts",
       "ZaDarkTranslate",
+      "ZaDarkShared",
       "$",
       "jQuery",
       "chrome",
@@ -87,6 +88,8 @@
       "MutationObserver",
       "fetch",
       "Blob",
+      "FileReader",
+      "Image",
       "DEBUG",
       "ZADARK_API_DOMAIN",
       "ZADARK_API_URL"

@@ -25,6 +25,7 @@
       ],
       "js": [
         "libs/libs.min.js",
+        "js/zadark-shared.min.js",
         "js/fonts.min.js",
         "js/browser.min.js",
         "js/zadark-translate.min.js",

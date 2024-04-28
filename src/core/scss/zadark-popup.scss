@@ -308,6 +308,7 @@ body:not(.zadark--use-hotkeys) {
     border: 1px solid var(--zadark-blue-base);
     border-radius: 16px;
     font-size: 10px;
+    font-weight: var(--zadark-font-semibold);
     padding: 0 6px;
 
     &::after {
@@ -605,6 +606,73 @@ body:not(.zadark--use-hotkeys) {
     &:focus {
       outline: none;
       border-color: var(--zadark-blue-400);
+    }
+  }
+
+  .zadark-input-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+
+    + label {
+      display: inline-flex;
+      align-items: center;
+      height: 32px;
+      padding: 0 12px;
+
+      // border: 1px solid var(--zadark-border-base);
+      border-radius: var(--zadark-border-radius-base);
+
+      background-color: var(--zadark-grey-500);
+      color: var(--zadark-neutral-base);
+
+      transition: all 0.25s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--zadark-grey-400);
+      }
+    }
+
+    + label::before {
+      content: "Chọn hình nền";
+    }
+
+    ~ .btn-del {
+      display: none !important;
+    }
+
+    &--loaded {
+      + label::before {
+        content: "Đổi hình nền";
+      }
+
+      ~ .btn-del {
+        display: flex !important;
+      }
+    }
+  }
+
+  .btn-del {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 32px;
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+    color: var(--zadark-neutral-500);
+
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--zadark-neutral-base);
     }
   }
 
