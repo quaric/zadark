@@ -533,7 +533,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MARKETING_VERSION = 9.28.1;
+				MARKETING_VERSION = 9.29;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -572,7 +572,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MARKETING_VERSION = 9.28.1;
+				MARKETING_VERSION = 9.29;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
