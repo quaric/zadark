@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.5.1
+
+> PC 12.12.1 và Web 9.29.1
+
+- Hình nền cho cuộc trò chuyện: Tăng chất lượng hình ảnh ([#124](https://github.com/quaric/zadark/issues/124))
+
 ## ZaDark 24.4.5
 
 > PC 12.12 và Web 9.29

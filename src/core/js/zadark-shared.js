@@ -11,16 +11,16 @@
           const canvas = document.createElement('canvas')
           const ctx = canvas.getContext('2d')
 
-          const MAX_WIDTH = 720
-          const scale = MAX_WIDTH / img.width
-          const newHeight = img.height * scale
+          const MAX_HEIGHT = 1920
+          const scale = MAX_HEIGHT / img.height
+          const newWidth = img.width * scale
 
-          canvas.width = MAX_WIDTH
-          canvas.height = newHeight
+          canvas.width = newWidth
+          canvas.height = MAX_HEIGHT
 
-          ctx.drawImage(img, 0, 0, MAX_WIDTH, newHeight)
+          ctx.drawImage(img, 0, 0, newWidth, MAX_HEIGHT)
 
-          const imageBase64 = canvas.toDataURL('image/webp', 0.8)
+          const imageBase64 = canvas.toDataURL('image/jpg', 1)
           resolve(imageBase64)
         }
 
