@@ -227,7 +227,7 @@
     },
 
     initOSName: function () {
-      const { parsedResult: { os } } = window.bowser.getParser(window.navigator.userAgent)
+      const { parsedResult: { os } } = bowser.getParser(window.navigator.userAgent)
       this.setOSAttr(os.name)
     },
 

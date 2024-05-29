@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.5.2
+
+> Firefox 9.29.2
+
+- Sửa lỗi ZaDark không hoạt động trên Firefox ([#126](https://github.com/quaric/zadark/issues/126))
+
 ## ZaDark 24.5.1
 
 > PC 12.12.1 và Web 9.29.1
