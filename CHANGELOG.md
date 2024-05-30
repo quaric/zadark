@@ -2,6 +2,12 @@
 
 ## ZaDark 24.5.2
 
+> PC 12.13 và Web 9.30
+
+- Hỗ trợ hình nền cho cuộc trò chuyện Group/Community
+
+## ZaDark 24.5.2
+
 > Firefox 9.29.2
 
 - Sửa lỗi ZaDark không hoạt động trên Firefox ([#126](https://github.com/quaric/zadark/issues/126))
