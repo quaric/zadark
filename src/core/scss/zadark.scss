@@ -2237,6 +2237,11 @@ html[data-zadark-theme="dark"] {
     .zcloud-onboard-content__bottom {
       color: #fff;
     }
+
+    .cloud-media-item > .duration__cl__video,
+    .cloud-media-item > .size__cl__photo__video {
+      color: #fff;
+    }
   }
 }
 
