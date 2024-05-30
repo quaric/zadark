@@ -426,7 +426,7 @@
         return
       }
 
-      const cssRule = `.message-view__blur__overlay { background-image: url('${imageBase64}') !important; }`
+      const cssRule = `.message-view__blur__overlay, .message-view__blur__overlay_noavatar { background-image: url('${imageBase64}') !important; }`
 
       if (styleElement) {
         styleElement.innerHTML = cssRule
