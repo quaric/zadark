@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 24.6.1
+
+> PC 12.13 và Web 9.30
+
+- Hỗ trợ hình nền cho cuộc trò chuyện Nhóm/Cộng đồng
+- Sửa lỗi Dark Mode "Dữ liệu Cloud của tôi"
+
 ## ZaDark 24.5.2
 
 > Firefox 9.29.2
