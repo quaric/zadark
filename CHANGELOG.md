@@ -1,6 +1,6 @@
 # Changelog
 
-## ZaDark 24.5.2
+## ZaDark 24.6.1
 
 > PC 12.13 và Web 9.30
 

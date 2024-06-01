@@ -2242,6 +2242,14 @@ html[data-zadark-theme="dark"] {
     .cloud-media-item > .size__cl__photo__video {
       color: #fff;
     }
+
+    .cloud-media-item > .icon__cl__video__indicator {
+      color: #fff;
+    }
+
+    .share-msg__nav__tab-name.selected {
+      color: var(--tab-active);
+    }
   }
 }
 
