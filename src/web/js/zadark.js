@@ -195,8 +195,7 @@
           <div class="font-settings">
             <label class="font-settings__label" style="flex: 1;">
               Dịch tin nhắn
-              <i class="zadark-icon zadark-icon--question" data-tippy-content='Bạn di chuyển chuột vào đoạn tin nhắn<br/>và chọn biểu tượng <i class="zadark-icon zadark-icon--translate" style="position: relative; top: 3px; font-size: 18px;"></i> để dịch tin nhắn.'></i>
-              <span class="zadark-trial" data-tippy-content="Bạn có 10 lượt dịch tin nhắn mỗi ngày"></span>
+              <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Bạn di chuyển chuột vào đoạn tin nhắn và chọn biểu tượng <i class="zadark-icon zadark-icon--translate" style="position: relative; top: 3px; font-size: 18px;"></i> để dịch tin nhắn.</p><p>Bạn có 10 lượt dịch tin nhắn mỗi ngày.</p>'></i>
             </label>
 
             <select id="js-select-translate-target" class="zadark-select"></select>
@@ -205,7 +204,6 @@
           <div class="font-settings">
             <label class="font-settings__label" style="flex: 1;">
               Hình nền cuộc trò chuyện
-              <span class="zadark-beta"></span>
             </label>
 
             <input type="file" id="js-input-thread-chat-bg" class="zadark-input-file" accept=".jpg, .jpeg, .png" />
