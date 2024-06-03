@@ -2250,6 +2250,13 @@ html[data-zadark-theme="dark"] {
     .share-msg__nav__tab-name.selected {
       color: var(--tab-active);
     }
+
+    .zcloud-tab.chat-message.first-selected,
+    .zcloud-tab.chat-message.last-selected,
+    .zcloud-tab.selected {
+      color: var(--tab-active);
+      border-bottom: 2px solid var(--tab-active);
+    }
   }
 }
 
