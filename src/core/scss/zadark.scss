@@ -385,6 +385,7 @@
   --text-success: var(--G60);
   --text-warning: var(--OR60);
   --text-information: var(--B60);
+  --text-mention: var(--B60);
 
   --icon-primary: var(--N80);
   --icon-secondary: var(--N60);
@@ -435,6 +436,11 @@
   --field-bg-filled-hover: var(--N30);
   --field-bg-outline: var(--WA100);
   --field-bg-outline-hover: var(--N10);
+
+  --input-field-bg-filled: var(--NG20);
+  --input-field-bg-filled-hover: var(--NG20);
+  --input-field-bg-outline: var(--bg-default);
+  --input-field-bg-outline-hover: var(--bg-default);
 
   // Self Message
 
