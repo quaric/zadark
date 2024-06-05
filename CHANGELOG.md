@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 24.6.2
+
+> PC 12.14 và Web 9.31
+
+- Sửa lỗi Dark Mode "Search Input"
+- Sửa lỗi Dark Mode "Dữ liệu Cloud của tôi: Tabs"
+
 ## ZaDark 24.6.1
 
 > PC 12.13 và Web 9.30

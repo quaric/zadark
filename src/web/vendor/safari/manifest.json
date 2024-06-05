@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "ZaDark for Safari",
-  "version": "9.30",
+  "version": "9.31",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
   "author": "Quaric",
