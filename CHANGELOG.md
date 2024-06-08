@@ -1,5 +1,13 @@
 # Changelog
 
+## ZaDark 24.6.3
+
+> PC 12.14.1
+
+- [**Windows**] Khắc phục lỗi nghiêm trọng: Trình kiểm tra virus phát hiện `Trojan.Win64.Agent`, nguồn báo cáo:
+  - https://github.com/quaric/zadark/issues/131
+  - https://www.virustotal.com
+
 ## ZaDark 24.6.2
 
 > PC 12.14 và Web 9.31
