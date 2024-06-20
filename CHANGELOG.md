@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.6.4
+
+> PC 12.15 và Web 9.32
+
+- Sửa lỗi Dark Mode "Nhãn thông báo" (Noti badge)
+
 ## ZaDark 24.6.3
 
 > PC 12.14.1

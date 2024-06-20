@@ -379,7 +379,7 @@
   --text-disabled: var(--N60);
 
   --text-on-disabled-color: var(--N70);
-  --text-on-color: var(--WA100); // !TODO
+  --text-on-color: #fff;
 
   --text-errors: var(--R55);
   --text-success: var(--G60);
@@ -391,7 +391,7 @@
   --icon-secondary: var(--N60);
   --icon-disabled: var(--N60);
   --icon-on-disabled-color: var(--N70);
-  --icon-on-color: var(--WA100); // !TODO
+  --icon-on-color: #fff;
   --icon-errors: var(--R55);
   --icon-success: var(--G60);
   --icon-warning: var(--OR60);
@@ -2262,6 +2262,16 @@ html[data-zadark-theme="dark"] {
     .zcloud-tab.selected {
       color: var(--tab-active);
       border-bottom: 2px solid var(--tab-active);
+    }
+
+    .z-noti-badge.--dot.--small {
+      width: 6px;
+      height: 6px;
+    }
+
+    .z-noti-badge.--dot.--big {
+      width: 8px;
+      height: 8px;
     }
   }
 }
