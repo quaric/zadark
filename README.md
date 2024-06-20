@@ -12,6 +12,8 @@
   [![Edge](https://img.shields.io/badge/Edge-00002D.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=3989FF)](https://go.quaric.com/zadark-edge)
   [![Firefox](https://img.shields.io/badge/Firefox-00002D.svg?&style=for-the-badge&logo=firefox&logoColor=3989FF)](https://go.quaric.com/zadark-firefox)
 
+  <a href="https://www.producthunt.com/posts/zadark-zalo-dark-mode?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-zadark&#0045;zalo&#0045;dark&#0045;mode" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=463902&theme=light" alt="ZaDark&#0032;–&#0032;Zalo&#0032;Dark&#0032;Mode - Best&#0032;Dark&#0032;Mode&#0032;for&#0032;Zalo | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
   <img src="./.github/zadark-by-quaric.svg" alt="ZaDark by Quaric" />
 </div>
 
