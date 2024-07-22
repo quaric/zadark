@@ -64,6 +64,10 @@
       }
     },
 
+    getCurrentConvId: () => {
+      return document.body.getAttribute('data-current-conv-id')
+    },
+
     toggleBodyClassName: (className, isEnabled) => {
       if (isEnabled) {
         document.body.classList.add(className)
@@ -359,8 +363,24 @@
       return ZaDarkBrowser.saveExtensionSettings({ translateTarget })
     },
 
+    getThreadChatBgSettingKey: function () {
+      const convId = this.getCurrentConvId()
+      if (!convId) return null
+      return `threadChatBg_${convId}`
+    },
+
     updateThreadChatBg: async function (imageBase64) {
-      await ZaDarkBrowser.saveExtensionSettingsLocal({ threadChatBg: imageBase64 })
+      const settingKey = this.getThreadChatBgSettingKey()
+      if (!settingKey) {
+        throw new Error('Bạn cần chọn một cuộc trò chuyện')
+      }
+
+      if (imageBase64) {
+        await ZaDarkBrowser.saveExtensionSettingsLocal({ [settingKey]: imageBase64 })
+      } else {
+        await ZaDarkBrowser.removeExtensionSettingsLocal([settingKey])
+      }
+
       this.refreshThreadChatBg(imageBase64)
       this.showToast(imageBase64 ? 'Đã thay đổi hình nền' : 'Đã xóa hình nền')
     },
@@ -417,36 +437,41 @@
     },
 
     refreshThreadChatBg: (imageBase64 = '') => {
-      const styleTagId = 'zadark-thread-chat-bg'
+      const convId = ZaDarkUtils.getCurrentConvId()
+      const styleTagId = ZaDarkUtils.getThreadChatBgSettingKey()
 
       let styleElement = document.getElementById(styleTagId)
 
       if (!imageBase64) {
-        if (styleElement) styleElement.remove()
+        if (!styleElement) return
+
+        // Remove style tag
+        styleElement.remove()
+
+        // Revoke blob URL to free up memory
+        const blobURL = styleElement.getAttribute('data-blob-url')
+        URL.revokeObjectURL(blobURL)
+
         return
       }
 
-      const cssRule = `.message-view__blur__overlay, .message-view__blur__overlay_noavatar { background-image: url('${imageBase64}') !important; }`
+      const blob = ZaDarkShared.convertBase64ToBlob(imageBase64)
+      const blobURL = URL.createObjectURL(blob)
+      const cssRule = `body[data-current-conv-id="${convId}"] { --zadark-thread-chat-bg-url: url('${blobURL}'); }`
 
       if (styleElement) {
+        // Update existing style tag
         styleElement.innerHTML = cssRule
         return
       }
 
+      // Create new style tag
       styleElement = document.createElement('style')
       styleElement.type = 'text/css'
       styleElement.id = styleTagId
+      styleElement.setAttribute('data-blob-url', blobURL)
       styleElement.appendChild(document.createTextNode(cssRule))
-
       document.head.appendChild(styleElement)
-    },
-
-    debounce: (func, delay) => {
-      let timer
-      return () => {
-        clearTimeout(timer)
-        timer = setTimeout(func, delay)
-      }
     }
   }
 

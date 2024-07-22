@@ -95,6 +95,7 @@ https://zadark.com/awards
 - https://docs.brew.sh/Formula-Cookbook
 - https://docs.brew.sh/Taps
 - https://rubydoc.brew.sh/Formula
+- https://stackoverflow.com/questions/9515704/access-variables-and-functions-defined-in-page-context-from-an-extension/9517879#9517879
 
 ---
 

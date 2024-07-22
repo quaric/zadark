@@ -691,7 +691,7 @@ html[data-zadark-theme="dark"] {
       &__blur__overlay {
         &,
         &_noavatar {
-          background-image: var(--message-view-gradient);
+          background-image: var(--zadark-thread-chat-bg-url, var(--message-view-gradient));
           // background-size: cover;
           // background-position: center;
         }

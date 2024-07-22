@@ -56,6 +56,7 @@ browser.runtime.onInstalled.addListener((details) => {
 
   if (details.reason === 'update') {
     browser.runtime.setUninstallURL(UNINSTALL_URL)
+    browser.storage.local.remove(['threadChatBg'])
     handleLoadRulesets()
   }
 })

@@ -119,6 +119,10 @@
 
       <div class="zadark-popup__header__menu-list">
         <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+          <a href="https://www.producthunt.com/products/zadark-zalo-dark-mode#zadark-zalo-dark-mode" title="Product Hunt" target="_blank">Product Hunt</a>
+        </span>
+
+        <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
           <a href="https://zadark.com/blog" title="Góp ý" target="_blank">Blog</a>
         </span>
 
@@ -195,7 +199,7 @@
           <div class="font-settings">
             <label class="font-settings__label" style="flex: 1;">
               Dịch tin nhắn
-              <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Bạn di chuyển chuột vào đoạn tin nhắn và chọn biểu tượng <i class="zadark-icon zadark-icon--translate" style="position: relative; top: 3px; font-size: 18px;"></i> để dịch tin nhắn.</p><p>Bạn có 10 lượt dịch tin nhắn mỗi ngày.</p>'></i>
+              <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Bạn di chuyển chuột vào đoạn tin nhắn và chọn biểu tượng <i class="zadark-icon zadark-icon--translate" style="position: relative; top: 3px; font-size: 18px;"></i> để dịch tin nhắn.</p><p>Bạn có 20 lượt dịch tin nhắn mỗi ngày.</p>'></i>
             </label>
 
             <select id="js-select-translate-target" class="zadark-select"></select>
@@ -204,6 +208,7 @@
           <div class="font-settings">
             <label class="font-settings__label" style="flex: 1;">
               Hình nền cuộc trò chuyện
+              <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Chọn một cuộc trò chuyện bất kỳ để thêm hình nền.</p><p>Hình nền được lưu trên trình duyệt của bạn, không đồng bộ với Zalo Mobile và mất khi bạn gỡ cài đặt ZaDark.</p>'></i>
             </label>
 
             <input type="file" id="js-input-thread-chat-bg" class="zadark-input-file" accept=".jpg, .jpeg, .png" />
@@ -577,8 +582,8 @@
   const loadPopupScrollEvent = () => {
     calcPopupScroll()
 
-    $(popupScrollableElName).on('scroll', ZaDarkUtils.debounce(calcPopupScroll, 150))
-    $(window).on('resize', ZaDarkUtils.debounce(calcPopupScroll, 250))
+    $(popupScrollableElName).on('scroll', ZaDarkShared.debounce(calcPopupScroll, 150))
+    $(window).on('resize', ZaDarkShared.debounce(calcPopupScroll, 250))
 
     $(btnScrollElName).on('click', (e) => {
       e.stopPropagation()
@@ -594,14 +599,31 @@
   }
 
   const loadThreadChatBg = async () => {
-    const { threadChatBg } = await ZaDarkBrowser.getExtensionSettingsLocal()
-
-    if (!threadChatBg) {
+    const settingKey = ZaDarkUtils.getThreadChatBgSettingKey()
+    if (!settingKey) {
+      ZaDarkUtils.showToast('Không thể tải hình nền vì không xác định được cuộc trò chuyện hiện tại', {
+        className: 'toastify--error',
+        duration: 3000
+      })
       return
     }
 
-    ZaDarkUtils.refreshThreadChatBg(threadChatBg)
-    $(inputThreadChatBgElName).addClass('zadark-input-file--loaded')
+    const styleElement = document.getElementById(settingKey)
+    let hasImage = true
+
+    if (!styleElement) {
+      const settings = await ZaDarkBrowser.getExtensionSettingsLocal({ [settingKey]: '' })
+      const imageBase64 = settings[settingKey]
+      hasImage = !!imageBase64
+      ZaDarkUtils.refreshThreadChatBg(imageBase64)
+    }
+
+    const className = 'zadark-input-file--loaded'
+    if (hasImage) {
+      $(inputThreadChatBgElName).addClass(className)
+    } else {
+      $(inputThreadChatBgElName).removeClass(className)
+    }
   }
 
   const setZaDarkPopupVisible = (buttonEl, popupEl, visible = true) => {
@@ -709,6 +731,14 @@
       updateTranslateTarget(translateTarget)
     })
 
+    $(inputThreadChatBgElName).on('click', function (e) {
+      const convId = ZaDarkUtils.getCurrentConvId()
+      if (convId) return
+
+      e.preventDefault()
+      ZaDarkUtils.showToast('Chọn một cuộc trò chuyện để đặt hình nền')
+    })
+
     $(inputThreadChatBgElName).on('change', function () {
       const file = this.files[0]
 
@@ -783,7 +813,6 @@
     loadKnownVersionState(buttonEl)
     loadPopupScrollEvent()
     loadTranslate()
-    loadThreadChatBg()
 
     ZaDarkUtils.initTippy()
 
@@ -813,6 +842,15 @@
       if (introId === 'hideThreadChatMessage') {
         ZaDarkUtils.showIntroHideThreadChatMessage(introOptions)
       }
+    })
+
+    const s = document.createElement('script')
+    s.src = ZaDarkBrowser.getURL('js/zadark-zconv.min.js')
+    s.onload = function () { this.remove() };
+    (document.head || document.documentElement).append(s)
+
+    document.addEventListener('@ZaDark:CONV_ID_CHANGE', function () {
+      loadThreadChatBg()
     })
   }
 
@@ -928,6 +966,12 @@
 
     if (message.action === MSG_ACTIONS.REFRESH_ZALO_TABS) {
       window.location.reload()
+      sendResponse({ received: true })
+    }
+
+    if (message.action === 'ncdai') {
+      console.log('conv', message.payload)
+      // window.location.reload()
       sendResponse({ received: true })
     }
   })

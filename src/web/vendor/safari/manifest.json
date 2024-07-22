@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "ZaDark for Safari",
-  "version": "9.32",
+  "version": "9.33",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
   "author": "Quaric",
@@ -42,6 +42,7 @@
   },
   "permissions": [
     "storage",
+    "unlimitedStorage",
     "declarativeNetRequest",
     "*://chat.zalo.me/*"
   ],
@@ -76,6 +77,7 @@
     }
   },
   "web_accessible_resources": [
+    "js/zadark-zconv.min.js",
     "fonts/*",
     "images/*"
   ]
