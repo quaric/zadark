@@ -1,7 +1,7 @@
 {
   "name": "zadark",
   "description": "Dark Mode tốt nhất cho Zalo",
-  "version": "24.6.4",
+  "version": "24.7.1",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
     "name": "Quaric",
@@ -90,6 +90,7 @@
       "Blob",
       "FileReader",
       "Image",
+      "CustomEvent",
       "DEBUG",
       "ZADARK_API_DOMAIN",
       "ZADARK_API_URL"

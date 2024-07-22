@@ -1,4 +1,12 @@
 (function (global) {
+  const debounce = (func, delay) => {
+    let timer
+    return () => {
+      clearTimeout(timer)
+      timer = setTimeout(func, delay)
+    }
+  }
+
   const convertImageToBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader()
@@ -20,7 +28,7 @@
 
           ctx.drawImage(img, 0, 0, newWidth, MAX_HEIGHT)
 
-          const imageBase64 = canvas.toDataURL('image/jpg', 1)
+          const imageBase64 = canvas.toDataURL('image/jpeg', 1)
           resolve(imageBase64)
         }
 
@@ -33,7 +41,23 @@
     })
   }
 
+  const convertBase64ToBlob = (base64) => {
+    const mime = base64.match(/^data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+);base64,/)[1]
+
+    const byteString = window.atob(base64.split(',')[1])
+    const arrayBuffer = new ArrayBuffer(byteString.length)
+    const uint8Array = new Uint8Array(arrayBuffer)
+
+    for (let i = 0; i < byteString.length; ++i) {
+      uint8Array[i] = byteString.charCodeAt(i)
+    }
+
+    return new Blob([uint8Array], { type: mime })
+  }
+
   global.ZaDarkShared = {
-    convertImageToBase64
+    debounce,
+    convertImageToBase64,
+    convertBase64ToBlob
   }
 })(this)

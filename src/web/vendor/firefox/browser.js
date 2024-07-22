@@ -57,10 +57,11 @@
     // but can be increased by requesting the "unlimitedStorage" permission.
     // We recommend using storage.local to store larger amounts of data.
     // ? Ref: https://developer.chrome.com/docs/extensions/reference/api/storage#storage_areas
-    getExtensionSettingsLocal: () => {
+    getExtensionSettingsLocal: (keys = {}) => {
       return new Promise((resolve, reject) => {
         browser.storage.local.get({
-          threadChatBg: ''
+          threadChatBg: '',
+          ...keys
         }, (items) => {
           resolve(items)
         })
@@ -68,6 +69,12 @@
     },
     saveExtensionSettingsLocal: (items) => {
       return browser.storage.local.set(items)
+    },
+    /**
+     * @param {string[]} items
+     */
+    removeExtensionSettingsLocal: (items) => {
+      return browser.storage.local.remove(items)
     },
 
     getZaloTabs: async () => {

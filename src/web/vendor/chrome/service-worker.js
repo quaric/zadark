@@ -56,6 +56,7 @@ chrome.runtime.onInstalled.addListener((details) => {
 
   if (details.reason === 'update') {
     chrome.runtime.setUninstallURL(UNINSTALL_URL)
+    chrome.storage.local.remove(['threadChatBg'])
     handleLoadRulesets()
   }
 })

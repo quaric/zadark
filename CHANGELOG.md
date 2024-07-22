@@ -1,5 +1,15 @@
 # Changelog
 
+## ZaDark 24.7.1
+
+> PC 12.16 và Web 9.33
+
+- Hỗ trợ thay đổi hình nền ở từng cuộc trò chuyện. Hình nền cũ sẽ bị xoá, nên bạn cần cập nhật lại hình ảnh ở từng cuộc trò chuyện ([#135](https://github.com/quaric/zadark/issues/135))
+  - Zalo PC: Hình nền được lưu trên máy tính của bạn, không đồng bộ với Zalo Mobile và mất khi bạn xoá Zalo PC.
+  - Zalo Web: Hình nền được lưu trên trình duyệt của bạn, không đồng bộ với Zalo Mobile và mất khi bạn gỡ cài đặt ZaDark.
+- Tăng số lần dịch tin nhắn miễn phí lên 20 lần
+- Thêm link Product Hunt
+
 ## ZaDark 24.6.4
 
 > PC 12.15 và Web 9.32

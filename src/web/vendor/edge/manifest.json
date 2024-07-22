@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ZaDark – Zalo Dark Mode",
-  "version": "9.32",
+  "version": "9.33",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
   "author": "Quaric",
@@ -39,6 +39,7 @@
   },
   "permissions": [
     "storage",
+    "unlimitedStorage",
     "declarativeNetRequest"
   ],
   "host_permissions": [
@@ -75,6 +76,7 @@
   "web_accessible_resources": [
     {
       "resources": [
+        "js/zadark-zconv.min.js",
         "fonts/*",
         "images/*"
       ],

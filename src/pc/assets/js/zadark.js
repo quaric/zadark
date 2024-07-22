@@ -10,13 +10,14 @@
     window.Toastify = require('./zadark-toastify.min.js')
     window.WebFont = require('./zadark-webfont.min.js')
     window.introJs = require('./zadark-introjs.min.js')
+    window.localforage = require('./zadark-localforage.min.js')
   }
 
   const ZADARK_THEME_KEY = '@ZaDark:THEME'
   const ZADARK_FONT_FAMILY_KEY = '@ZaDark:FONT_FAMILY'
   const ZADARK_FONT_SIZE_KEY = '@ZaDark:FONT_SIZE'
   const ZADARK_TRANSLATE_TARGET_KEY = '@ZaDark:TRANSLATE_TARGET'
-  const ZADARK_THREAD_CHAT_BG_KEY = '@ZaDark:THREAD_CHAT_BG_KEY'
+  const ZADARK_THREAD_CHAT_BG_KEY = 'THREAD_CHAT_BG' // localforage key
 
   const ZADARK_ENABLED_HIDE_LATEST_MESSAGE_KEY = '@ZaDark:ENABLED_HIDE_LATEST_MESSAGE'
   const ZADARK_ENABLED_HIDE_CONV_AVATAR_KEY = '@ZaDark:ENABLED_HIDE_CONV_AVATAR'
@@ -38,7 +39,7 @@
   const ZALO_APP_VERSION_KEY = 'sh_app_ver'
 
   const ZADARK_MIGRATION_KEY = '@ZaDark:MIGRATION'
-  const ZADARK_MIGRATION_VALUE = 'S2zhgZnVijSf9MSi'
+  const ZADARK_MIGRATION_VALUE = 'm+Jd9BU7kPe66ysM'
 
   const HOTKEYS_TOAST_MESSAGE = {
     fontSize: {
@@ -84,6 +85,10 @@
   const COMMON_TOAST_MESSAGE = {
     needToRestart: 'Bạn vui lòng tắt & mở lại Zalo PC để áp dụng thay đổi'
   }
+
+  const zadarkLocalforage = window.localforage.createInstance({
+    name: 'zadark'
+  })
 
   const ZaDarkCookie = {
     isSupport: () => {
@@ -166,11 +171,26 @@
       return localStorage.getItem(ZADARK_TRANSLATE_TARGET_KEY) || 'vi'
     },
 
-    saveThreadChatBg: (imageBase64) => {
-      return localStorage.setItem(ZADARK_THREAD_CHAT_BG_KEY, imageBase64)
+    /**
+     *
+     * @param {string} key
+     * @param {File} imageFile
+     * @returns {Promise<File>}
+     */
+    saveThreadChatBg: (key, imageFile) => {
+      if (!imageFile) {
+        return zadarkLocalforage.removeItem(key)
+      }
+      return zadarkLocalforage.setItem(key, imageFile)
     },
-    getThreadChatBg: () => {
-      return localStorage.getItem(ZADARK_THREAD_CHAT_BG_KEY)
+    /**
+     * @async
+     * @function getThreadChatBg
+     * @param {string} key
+     * @returns {Promise<File>}
+     */
+    getThreadChatBg: (key) => {
+      return zadarkLocalforage.getItem(key)
     },
 
     saveEnabledHideLatestMessage: (isEnabled) => {
@@ -246,6 +266,10 @@
   const ZaDarkUtils = {
     getZaDarkVersion: () => {
       return $('html').data('zadark-version')
+    },
+
+    getCurrentConvId: () => {
+      return document.body.getAttribute('data-current-conv-id')
     },
 
     toggleBodyClassName: (className, isEnabled) => {
@@ -497,10 +521,26 @@
       ZaDarkStorage.saveTranslateTarget(translateTarget)
     },
 
-    updateThreadChatBg: async function (imageBase64) {
-      ZaDarkStorage.saveThreadChatBg(imageBase64)
-      this.refreshThreadChatBg(imageBase64)
-      ZaDarkUtils.showToast(imageBase64 ? 'Đã thay đổi hình nền' : 'Đã xóa hình nền')
+    getThreadChatBgSettingKey: function () {
+      const convId = this.getCurrentConvId()
+      if (!convId) return null
+      return `${ZADARK_THREAD_CHAT_BG_KEY}_${convId}`
+    },
+
+    /**
+     * @function updateThreadChatBg
+     * @param {File} imageFile
+     */
+    updateThreadChatBg: async function (imageFile) {
+      const settingKey = this.getThreadChatBgSettingKey()
+      if (!settingKey) {
+        throw new Error('Bạn cần chọn một cuộc trò chuyện')
+      }
+
+      await ZaDarkStorage.saveThreadChatBg(settingKey, imageFile)
+
+      this.refreshThreadChatBg(imageFile)
+      ZaDarkUtils.showToast(imageFile ? 'Đã thay đổi hình nền' : 'Đã xóa hình nền')
     },
 
     updateHideLatestMessage: function (isEnabled) {
@@ -569,52 +609,62 @@
       })
     },
 
-    refreshThreadChatBg: (imageBase64 = '') => {
-      const styleTagId = 'zadark-thread-chat-bg'
+    /**
+     * @function refreshThreadChatBg
+     * @param {File} imageFile
+     * @returns
+     */
+    refreshThreadChatBg: (imageFile) => {
+      const convId = ZaDarkUtils.getCurrentConvId()
+      const styleTagId = ZaDarkUtils.getThreadChatBgSettingKey()
 
       let styleElement = document.getElementById(styleTagId)
 
-      if (!imageBase64) {
-        if (styleElement) styleElement.remove()
+      // Remove style tag if imageBase64 is empty
+      if (!imageFile) {
+        if (!styleElement) return
+
+        // Remove style tag
+        styleElement.remove()
+
+        // Revoke blob URL to free up memory
+        const blobURL = styleElement.getAttribute('data-blob-url')
+        URL.revokeObjectURL(blobURL)
+
         return
       }
 
-      const cssRule = `.message-view__blur__overlay, .message-view__blur__overlay_noavatar { background-image: url('${imageBase64}') !important; }`
+      const blobURL = URL.createObjectURL(imageFile)
+      const cssRule = `body[data-current-conv-id="${convId}"] { --zadark-thread-chat-bg-url: url('${blobURL}'); }`
 
       if (styleElement) {
+        // Update existing style tag
         styleElement.innerHTML = cssRule
         return
       }
 
+      // Create new style tag
       styleElement = document.createElement('style')
       styleElement.type = 'text/css'
       styleElement.id = styleTagId
+      styleElement.setAttribute('data-blob-url', blobURL)
       styleElement.appendChild(document.createTextNode(cssRule))
-
       document.head.appendChild(styleElement)
-    },
-
-    debounce: (func, delay) => {
-      let timer
-      return () => {
-        clearTimeout(timer)
-        timer = setTimeout(func, delay)
-      }
     },
 
     migrateData: async function () {
       const isMigrationNeeded = ZaDarkStorage.isMigrationNeeded()
 
-      if (!isMigrationNeeded) {
-        return
-      }
+      if (!isMigrationNeeded) return
 
-      const blockSettings = ZaDarkStorage.getBlockSettings()
-      await Promise.all([
-        ZaDarkCookie.set(ZADARK_ENABLED_BLOCK_TYPING_KEY, blockSettings.block_typing),
-        ZaDarkCookie.set(ZADARK_ENABLED_BLOCK_DELIVERED_KEY, blockSettings.block_delivered),
-        ZaDarkCookie.set(ZADARK_ENABLED_BLOCK_SEEN_KEY, blockSettings.block_seen)
-      ])
+      // const blockSettings = ZaDarkStorage.getBlockSettings()
+      // await Promise.all([
+      //   ZaDarkCookie.set(ZADARK_ENABLED_BLOCK_TYPING_KEY, blockSettings.block_typing),
+      //   ZaDarkCookie.set(ZADARK_ENABLED_BLOCK_DELIVERED_KEY, blockSettings.block_delivered),
+      //   ZaDarkCookie.set(ZADARK_ENABLED_BLOCK_SEEN_KEY, blockSettings.block_seen)
+      // ])
+
+      localStorage.removeItem('@ZaDark:THREAD_CHAT_BG_KEY')
 
       // Flag migration is done
       ZaDarkStorage.setMigrationDone()
@@ -750,6 +800,10 @@
 
       <div class="zadark-popup__header__menu-list">
         <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+          <a href="https://www.producthunt.com/products/zadark-zalo-dark-mode#zadark-zalo-dark-mode" title="Product Hunt" target="_blank">Product Hunt</a>
+        </span>
+
+        <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
           <a href="https://zadark.com/blog" title="Blog" target="_blank">Blog</a>
         </span>
 
@@ -826,7 +880,7 @@
           <div class="font-settings">
             <label class="font-settings__label" style="flex: 1;">
               Dịch tin nhắn
-              <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Bạn di chuyển chuột vào đoạn tin nhắn và chọn biểu tượng <i class="zadark-icon zadark-icon--translate" style="position: relative; top: 3px; font-size: 18px;"></i> để dịch tin nhắn.</p><p>Bạn có 10 lượt dịch tin nhắn mỗi ngày.</p>'></i>
+              <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Bạn di chuyển chuột vào đoạn tin nhắn và chọn biểu tượng <i class="zadark-icon zadark-icon--translate" style="position: relative; top: 3px; font-size: 18px;"></i> để dịch tin nhắn.</p><p>Bạn có 20 lượt dịch tin nhắn mỗi ngày.</p>'></i>
             </label>
 
             <select id="js-select-translate-target" class="zadark-select"></select>
@@ -835,6 +889,7 @@
           <div class="font-settings">
             <label class="font-settings__label" style="flex: 1;">
               Hình nền cuộc trò chuyện
+              <i class="zadark-icon zadark-icon--question" data-tippy-content='<p>Bạn chọn một cuộc trò chuyện bất kỳ để thêm hình nền.</p><p>Hình nền được lưu trên máy tính của bạn, không đồng bộ với Zalo Mobile và mất khi bạn xoá Zalo PC.</p>'></i>
             </label>
 
             <input type="file" id="js-input-thread-chat-bg" class="zadark-input-file" accept=".jpg, .jpeg, .png" />
@@ -1189,8 +1244,8 @@
   const loadPopupScrollEvent = () => {
     calcPopupScroll()
 
-    $(popupScrollableElName).on('scroll', ZaDarkUtils.debounce(calcPopupScroll, 150))
-    $(window).on('resize', ZaDarkUtils.debounce(calcPopupScroll, 250))
+    $(popupScrollableElName).on('scroll', ZaDarkShared.debounce(calcPopupScroll, 150))
+    $(window).on('resize', ZaDarkShared.debounce(calcPopupScroll, 250))
 
     $(btnScrollElName).on('click', (e) => {
       e.stopPropagation()
@@ -1205,15 +1260,31 @@
     $(document).enableTranslateMessage(translateTarget)
   }
 
-  const loadThreadChatBg = () => {
-    const imageBase64 = ZaDarkStorage.getThreadChatBg()
-
-    if (!imageBase64) {
+  const loadThreadChatBg = async () => {
+    const settingKey = ZaDarkUtils.getThreadChatBgSettingKey()
+    if (!settingKey) {
+      ZaDarkUtils.showToast('Không thể tải hình nền vì không xác định được cuộc trò chuyện hiện tại', {
+        className: 'toastify--error',
+        duration: 3000
+      })
       return
     }
 
-    ZaDarkUtils.refreshThreadChatBg(imageBase64)
-    $(inputThreadChatBgElName).addClass('zadark-input-file--loaded')
+    const styleElement = document.getElementById(settingKey)
+    let hasImage = true
+
+    if (!styleElement) {
+      const imageBlob = await ZaDarkStorage.getThreadChatBg(settingKey)
+      hasImage = !!imageBlob
+      ZaDarkUtils.refreshThreadChatBg(imageBlob)
+    }
+
+    const className = 'zadark-input-file--loaded'
+    if (hasImage) {
+      $(inputThreadChatBgElName).addClass(className)
+    } else {
+      $(inputThreadChatBgElName).removeClass(className)
+    }
   }
 
   const setZaDarkPopupVisible = (buttonEl, popupEl, visible = true) => {
@@ -1310,6 +1381,14 @@
       }
     })
 
+    $(inputThreadChatBgElName).on('click', function (e) {
+      const convId = ZaDarkUtils.getCurrentConvId()
+      if (convId) return
+
+      e.preventDefault()
+      ZaDarkUtils.showToast('Chọn một cuộc trò chuyện để đặt hình nền')
+    })
+
     $(inputThreadChatBgElName).on('change', function () {
       const file = this.files[0]
 
@@ -1325,13 +1404,12 @@
         return
       }
 
-      ZaDarkShared.convertImageToBase64(file)
-        .then((imageBase64) => {
-          ZaDarkUtils.updateThreadChatBg(imageBase64)
-          $(this).addClass('zadark-input-file--loaded')
-        }).catch((error) => {
-          ZaDarkUtils.showToast(`Lỗi khi tải ảnh: ${error.message}`)
-        })
+      try {
+        ZaDarkUtils.updateThreadChatBg(file)
+        $(this).addClass('zadark-input-file--loaded')
+      } catch (error) {
+        ZaDarkUtils.showToast(`Lỗi khi tải ảnh: ${error.message}`)
+      }
     })
 
     $(buttonDelThreadChatBgElName).on('click', function () {
@@ -1388,7 +1466,6 @@
     loadKnownVersionState(buttonEl)
     loadPopupScrollEvent()
     loadTranslate()
-    loadThreadChatBg()
     loadTippy()
 
     ZaDarkUtils.migrateData()
@@ -1419,6 +1496,15 @@
       if (introId === 'hideThreadChatMessage') {
         ZaDarkUtils.showIntroHideThreadChatMessage(introOptions)
       }
+    })
+
+    const s = document.createElement('script')
+    s.src = 'zadark-zconv.min.js'
+    s.onload = function () { this.remove() };
+    (document.head || document.documentElement).append(s)
+
+    document.addEventListener('@ZaDark:CONV_ID_CHANGE', function () {
+      loadThreadChatBg()
     })
   }
 
