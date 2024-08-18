@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.8.1
+
+> Web 9.33.1
+
+- Sửa lỗi Extension Popup
+
 ## ZaDark 24.7.1
 
 > PC 12.16 và Web 9.33
