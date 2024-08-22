@@ -1,7 +1,7 @@
 {
   "name": "zadark",
   "description": "Dark Mode tốt nhất cho Zalo",
-  "version": "24.8.1",
+  "version": "24.8.2",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
     "name": "Quaric",
@@ -55,10 +55,11 @@
     "standard": "^16.0.4"
   },
   "dependencies": {
-    "@electron/asar": "^3.2.9",
+    "@electron/asar": "^3.2.10",
     "chalk": "4.1.2",
     "cross-spawn": "^7.0.3",
     "del": "^6.0.0",
+    "fs-extra": "^11.2.0",
     "glob": "^7.2.0",
     "inquirer": "^8.0.0",
     "node-html-parser": "^5.2.0",
