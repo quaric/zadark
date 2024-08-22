@@ -84,6 +84,9 @@ const handleQuitZalo = async () => {
   killProcesses(zaloPIDs)
 }
 
+/**
+ * @param {string[]} zaloResDirList
+ */
 const handleInstall = async (zaloResDirList) => {
   print(chalk.magentaBright.bold('[CAI DAT ZADARK]'))
 
@@ -107,6 +110,9 @@ const handleInstall = async (zaloResDirList) => {
   print(chalk.greenBright('>> Da cai dat ZaDark. Vui long mo lai Zalo PC.'))
 }
 
+/**
+ * @param {string[]} zaloResDirList
+ */
 const handleUninstall = async (zaloResDirList) => {
   print(chalk.magentaBright.bold('[GO CAI DAT ZADARK]'))
 
@@ -138,7 +144,7 @@ const handleOpenDocs = () => {
 
     try {
       if (!zaloResDirList.length) {
-        throw new Error(`Khong tim thay Zalo PC (${zaloPath || DEFAULT_ZALO_PATH}).\nVui long cai dat Zalo PC: https://zalo.me/pc`)
+        throw new Error(`Khong tim thay Zalo PC ${zaloPath || DEFAULT_ZALO_PATH} (E008).\nVui long cai dat Zalo PC: https://zalo.me/pc`)
       }
 
       if (['install', 'in'].includes(action)) {
@@ -172,7 +178,7 @@ const handleOpenDocs = () => {
       zaloResDirList = zadarkPC.getZaloResDirList(customZaloPath)
 
       if (!zaloResDirList.length) {
-        throw new Error(`Khong tim thay Zalo PC (${customZaloPath}).\nVui long cai dat Zalo PC: https://zalo.me/pc`)
+        throw new Error(`Khong tim thay Zalo PC ${customZaloPath} (E009).\nVui long cai dat Zalo PC: https://zalo.me/pc`)
       }
     }
 
@@ -216,12 +222,6 @@ const handleOpenDocs = () => {
     //
   } finally {
     print('')
-
-    if (IS_MAC) {
-      print(chalk.cyanBright('Neu ban muon chay lai ZaDark for macOS, truy cap:'))
-      print(chalk.bold.cyanBright('Finder > Applications > ZaDark'))
-      print('')
-    }
 
     print('Cam on ban da su dung ZaDark, chuc ban lam viec hieu qua!')
     print('')

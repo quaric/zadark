@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 24.8.2
+
+> PC 14.0
+
+- Sửa lỗi không tải được ảnh trên Zalo PC ([#139](https://github.com/quaric/zadark/issues/139))
+- Tối ưu quá trình cài đặt ZaDark PC
+
 ## ZaDark 24.8.1
 
 > Web 9.33.1
