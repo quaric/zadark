@@ -1,6 +1,5 @@
 const fs = require('fs-extra')
 const path = require('path')
-const del = require('del')
 const asar = require('@electron/asar')
 const HTMLParser = require('node-html-parser')
 const glob = require('glob')
@@ -471,25 +470,31 @@ const installZaDark = async (zaloDir) => {
   const appAsarBakPath = path.join(zaloDir, 'app.asar.bak')
   const appDirTmpPath = path.join(ZADARK_TMP_PATH, 'app')
 
-  if (!isFile(appAsarPath)) {
-    throw new Error(zaloDir + ' khong co tap tin "app.asar" (E002).')
+  if (!isFile(appAsarPath) && !isFile(appAsarBakPath)) {
+    throw new Error(zaloDir + ' khong co tap tin "app.asar" hoac "app.asar.bak" (E002).')
+  }
+
+  // Delete dir "ZADARK_TMP_PATH"
+  if (fs.existsSync(ZADARK_TMP_PATH)) {
+    printDebug('- deleteDir:', ZADARK_TMP_PATH)
+    fs.rmSync(ZADARK_TMP_PATH, { recursive: true })
   }
 
   // Delete dir "resources/app.asar"
   if (isDirectory(appAsarPath)) {
     printDebug('- deleteDir:', appAsarPath)
-    await del(appAsarPath, { force: true })
+    fs.rmSync(appAsarPath, { recursive: true })
   }
 
-  // Delete dir "ZADARK_TMP_PATH"
-  if (isDirectory(ZADARK_TMP_PATH)) {
-    printDebug('- deleteDir:', ZADARK_TMP_PATH)
-    await del(ZADARK_TMP_PATH, { force: true })
+  // Rename file "resources/app.asar.bak" to "resources/app.asar"
+  if (!isFile(appAsarPath) && isFile(appAsarBakPath)) {
+    printDebug('- renameFile:', appAsarBakPath, '>', appAsarPath)
+    fs.renameSync(appAsarBakPath, appAsarPath)
   }
 
   // Create dir "ZADARK_TMP_PATH"
   printDebug('- createDir:', ZADARK_TMP_PATH)
-  fs.mkdirSync(ZADARK_TMP_PATH)
+  fs.mkdirSync(ZADARK_TMP_PATH, { recursive: true })
 
   // Extract file "resources/app.asar" to dir "ZADARK_TMP_PATH/app"
   printDebug('- extractAsar:', appAsarPath, '>', appDirTmpPath)
@@ -526,7 +531,7 @@ const installZaDark = async (zaloDir) => {
 
   // Delete dir "ZADARK_TMP_PATH"
   printDebug('- deleteDir:', ZADARK_TMP_PATH)
-  await del(ZADARK_TMP_PATH, { force: true })
+  fs.rmSync(ZADARK_TMP_PATH, { recursive: true })
 }
 
 /**
@@ -555,7 +560,7 @@ const uninstallZaDark = async (zaloDir) => {
   // Delete dir "resources/app.asar"
   if (isDirectory(appAsarPath)) {
     printDebug('- deleteDir:', appDirPath)
-    await del(appAsarPath, { force: true })
+    fs.rmSync(appAsarPath, { recursive: true })
   }
 
   // Rename file "resources/app.asar.bak" to "resources/app.asar"

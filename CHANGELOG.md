@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 24.8.3
+
+> PC 14.0.1
+
+- Sửa lỗi cài đặt ZaDark PC: `EEXIST: file already exists, mkdir 'C:\Users\ncdai\zadark-tmp'`
+- Hỗ trợ cài lại ZaDark PC mà không cần gỡ ZaDark PC trước khi cài
+
 ## ZaDark 24.8.2
 
 > PC 14.0
