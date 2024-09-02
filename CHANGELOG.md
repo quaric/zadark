@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.9.1
+
+> PC 14.0.2 và Web 9.33.2
+
+- Hỗ trợ ảnh nền cuộc trò chuyện ở giao diện **Sáng** ([#142](https://github.com/quaric/zadark/issues/142))
+
 ## ZaDark 24.8.3
 
 > PC 14.0.1
