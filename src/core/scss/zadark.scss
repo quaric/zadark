@@ -617,9 +617,13 @@ html[data-zadark-use-font="true"] body.zadark {
 
 html[data-zadark-theme="light"] {
   &:root {
+    --icon-count-noti-enable-bg: var(--R50);
+
     --popper-shadow: var(--BA50) 0px 0px 0px 5000px;
     --prv-sticker-filter: invert(0.5) brightness(2);
-    --zadark-known-version-dot: var(--R50);
+
+    --zadark-custom-leftbar-text: #fff;
+    --zadark-custom-leftbar-text-hover: #fff;
   }
 }
 
@@ -628,7 +632,9 @@ html[data-zadark-theme="dark"] {
     @include zadark-colors();
 
     --prv-sticker-filter: invert(0.5);
-    --zadark-known-version-dot: var(--R60);
+
+    --zadark-custom-leftbar-text: var(--N80);
+    --zadark-custom-leftbar-text-hover: var(--text-primary);
   }
 
   // Scrollbar
@@ -726,80 +732,6 @@ html[data-zadark-theme="dark"] {
       color: hsla(0, 0%, 27%, 0.7); // var(--WA70);
       border: 0.5px solid #3d3f40; //  var(--NG30);
       background-color: #232526; // var(--WA100);
-    }
-
-    .leftbar-unread {
-      top: 6px;
-      right: 10px;
-      min-width: 22px;
-      box-shadow: 0 0 0 3px var(--layer-background-leftmenu);
-      color: #fff !important;
-      font-size: 9px;
-    }
-
-    .leftbar-mark-unread {
-      top: 6px;
-      right: 10px;
-
-      width: 8px;
-      height: 8px;
-
-      box-shadow: 0 0 0 3px var(--layer-background-leftmenu);
-    }
-
-    .leftbar-tab {
-      height: 56px;
-      color: var(--N80);
-
-      &,
-      &:before {
-        transition: background-color 100ms ease-in-out;
-      }
-
-      &:before {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        top: 4px;
-        left: 8px;
-
-        width: calc(100% - 16px);
-        height: calc(100% - 8px);
-        border-radius: 8px;
-
-        opacity: 0;
-        background-color: var(--layer-background-leftmenu-hover);
-      }
-
-      &:hover {
-        background-color: transparent;
-        color: var(--text-primary);
-
-        &:before {
-          opacity: 1;
-        }
-      }
-
-      &.chat-message.first-selected,
-      &.chat-message.last-selected,
-      &.selected {
-        background-color: transparent;
-        color: var(--text-primary);
-
-        &:before {
-          opacity: 1;
-        }
-
-        .leftbar-unread {
-          top: 4px;
-          right: 8px;
-        }
-
-        .leftbar-mark-unread {
-          top: 2px;
-          right: 6px;
-        }
-      }
     }
 
     .user-status-footer {
@@ -2252,16 +2184,6 @@ html[data-zadark-theme="dark"] {
       color: var(--tab-active);
       border-bottom: 2px solid var(--tab-active);
     }
-
-    .z-noti-badge.--dot.--small {
-      width: 6px;
-      height: 6px;
-    }
-
-    .z-noti-badge.--dot.--big {
-      width: 8px;
-      height: 8px;
-    }
   }
 }
 
@@ -2314,11 +2236,66 @@ body.zadark {
     color: var(--text-secondary) !important;
   }
 
-  .leftbar-mark-unread {
+  .z-noti-badge.--dot.--small {
+    width: 6px;
+    height: 6px;
+  }
+
+  .z-noti-badge.--dot.--big {
     width: 8px;
     height: 8px;
-    top: 10px;
-    right: 10px;
+  }
+
+  .leftbar-unread-badge {
+    transition: none;
+  }
+
+  .leftbar-tab {
+    height: 56px;
+    color: var(--zadark-custom-leftbar-text);
+
+    &:before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 4px;
+      left: 8px;
+
+      width: calc(100% - 16px);
+      height: calc(100% - 8px);
+      border-radius: 8px;
+
+      opacity: 0;
+      background-color: var(--layer-background-leftmenu-selected);
+    }
+
+    &:hover {
+      background-color: transparent;
+      color: var(--zadark-custom-leftbar-text-hover);
+
+      &:before {
+        opacity: 1;
+      }
+
+      .leftbar-unread-badge {
+        outline-color: var(--layer-background-leftmenu-selected);
+      }
+    }
+
+    &.chat-message.first-selected,
+    &.chat-message.last-selected,
+    &.selected {
+      background-color: transparent;
+      color: var(--zadark-custom-leftbar-text-hover);
+
+      &:before {
+        opacity: 1;
+      }
+
+      .leftbar-unread-badge {
+        outline-color: var(--layer-background-leftmenu-selected);
+      }
+    }
   }
 
   .message-view {
@@ -2336,18 +2313,22 @@ body.zadark {
   }
 
   #div_Main_TabZaDark {
-    &.zadark-known-version {
-      &::after {
-        content: "";
-        position: absolute;
-        top: 10px;
-        right: 14px;
+    &.zadark-known-version::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      right: 14px;
 
-        width: 8px;
-        height: 8px;
-        border-radius: 4px;
-        background: var(--zadark-known-version-dot);
-        box-shadow: 0 0 0 2px var(--layer-background-leftmenu);
+      width: 8px;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--icon-count-noti-enable-bg);
+      outline: 2px solid var(--layer-background-leftmenu);
+    }
+
+    &:hover {
+      &.zadark-known-version::after {
+        outline-color: var(--layer-background-leftmenu-selected);
       }
     }
 
