@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.9.3
+
+> PC 14.0.4 và Web 9.33.4
+
+- Làm cuộc trò chuyện được ghim nổi bật hơn ([#146](https://github.com/quaric/zadark/issues/146))
+
 ## ZaDark 24.9.2
 
 > PC 14.0.3 và Web 9.33.3

@@ -1164,7 +1164,7 @@ html[data-zadark-theme="dark"] {
       }
 
       &.pinned {
-        background-color: initial;
+        background-color: var(--WA10);
         &.selected {
           background-color: var(--layer-background-selected);
         }
