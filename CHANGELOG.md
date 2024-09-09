@@ -1,5 +1,13 @@
 # Changelog
 
+## ZaDark 24.9.3
+
+> PC 14.1 và Web 9.33.4
+
+- Sửa lỗi Dark Mode "Trình xem ảnh/video (Media Viewer)" ([#147](https://github.com/quaric/zadark/issues/147))
+- Cập nhật cuộc trò chuyện được ghim nổi bật hơn ([#146](https://github.com/quaric/zadark/issues/146))
+- Hiển thị tên người dùng Zalo trên Title Bar ([#148](https://github.com/quaric/zadark/issues/148))
+
 ## ZaDark 24.9.2
 
 > PC 14.0.3 và Web 9.33.3

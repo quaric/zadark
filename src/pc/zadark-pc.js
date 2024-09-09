@@ -333,15 +333,15 @@ const writeZNotificationFile = (zaloDir) => {
     return
   }
 
-  const indexHTMLContent = fs.readFileSync(srcPath, 'utf8')
-  const root = HTMLParser.parse(indexHTMLContent)
+  const htmlContent = fs.readFileSync(srcPath, 'utf8')
+  const root = HTMLParser.parse(htmlContent)
 
   const headElement = root.getElementsByTagName('head')[0]
   const bodyElement = root.getElementsByTagName('body')[0]
 
   removeZaDarkCSSAndJS({ headElement, bodyElement })
 
-  // Required fonts, stylesheets and scripts
+  // Required stylesheets and scripts
   const elements = [
     {
       selector: 'link[href="zadark-znotification.min.css"]',
@@ -369,6 +369,56 @@ const writeZNotificationFile = (zaloDir) => {
       htmlElement.insertAdjacentHTML(where, html)
     }
   })
+
+  // Required classNames
+  const zaDarkClassNames = ['zadark', 'zadark-pc', `zadark-${PLATFORM}`]
+  zaDarkClassNames.forEach((className) => {
+    bodyElement.classList.add(className)
+  })
+
+  printDebug('- writeFile:', srcPath)
+  fs.writeFileSync(srcPath, root.toString())
+}
+
+/**
+ * @param {string} zaloDir - The directory where the Zalo application is located.
+ *                           This is the base path for the `popup-viewer.html` file.
+ */
+const writePopupViewerFile = (zaloDir) => {
+  const src = 'pc-dist/popup-viewer.html'
+  const srcPath = path.join(zaloDir, `app/${src}`)
+
+  if (!isFile(srcPath)) {
+    printError('- writeFile:', srcPath, 'skip: file does not exist.')
+    return
+  }
+
+  const htmlContent = fs.readFileSync(srcPath, 'utf8')
+  const root = HTMLParser.parse(htmlContent)
+
+  const headElement = root.getElementsByTagName('head')[0]
+  const bodyElement = root.getElementsByTagName('body')[0]
+
+  removeZaDarkCSSAndJS({ headElement, bodyElement })
+
+  // Required scripts
+  const elements = [
+    {
+      selector: 'script[src="zadark-popup-viewer.min.js"]',
+      where: 'beforeend',
+      html: '<script src="zadark-popup-viewer.min.js"></script>',
+      htmlElement: bodyElement
+    }
+  ]
+  elements.forEach((element) => {
+    const { selector, where, html, htmlElement } = element
+    const elementExists = root.querySelectorAll(selector)
+    if (!elementExists.length) {
+      htmlElement.insertAdjacentHTML(where, html)
+    }
+  })
+
+  updateMetaContentSecurityPolicyTag(headElement)
 
   // Required classNames
   const zaDarkClassNames = ['zadark', 'zadark-pc', `zadark-${PLATFORM}`]
@@ -507,11 +557,14 @@ const installZaDark = async (zaloDir) => {
     writeIndexFile(ZADARK_TMP_PATH),
 
     // Inject zadark-main to file "ZADARK_TMP_PATH/app/bootstrap.js"
-    writeBootstrapFile(ZADARK_TMP_PATH)
+    writeBootstrapFile(ZADARK_TMP_PATH),
+
+    // Inject scripts to "ZADARK_TMP_PATH/app/pc-dist/popup-viewer.html"
+    writePopupViewerFile(ZADARK_TMP_PATH)
   ]
 
   if (!IS_MAC) {
-    // Inject fonts, stylesheets and scripts" to "ZADARK_TMP_PATH/app/pc-dist/znotification.html"
+    // Inject "stylesheets and scripts" to "ZADARK_TMP_PATH/app/pc-dist/znotification.html"
     writeFilePromises.push(
       writeZNotificationFile(ZADARK_TMP_PATH)
     )
