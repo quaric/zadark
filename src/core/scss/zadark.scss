@@ -2471,4 +2471,8 @@ body.zadark {
   }
 
   @include translate.translate-message();
+
+  .nav__tabs__bottom .tab-icon-container:after {
+    content: none;
+  }
 }
