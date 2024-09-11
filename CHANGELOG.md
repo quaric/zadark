@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.9.4
+
+> PC 14.1.1 và Web 9.33.5
+
+- Sửa lỗi biểu tượng zCloud có đường gạch dưới ở **Menu trái**
+
 ## ZaDark 24.9.3
 
 > PC 14.1 và Web 9.33.4
