@@ -2475,4 +2475,8 @@ body.zadark {
   .nav__tabs__bottom .tab-icon-container:after {
     content: none;
   }
+
+  .leftbar-tab[data-id="div_Main_Tab_zCloud"] + svg {
+    display: none;
+  }
 }

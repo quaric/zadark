@@ -210,7 +210,7 @@ const pkgMacOS = () => {
     pkg.exec([
       './build/pc/index.js',
       '--config', './pkg.config.json',
-      '--targets', 'node16-macos-x64,node16-macos-arm64',
+      '--targets', 'node16.16.0-macos-x64,node16.16.0-macos-arm64',
       '--output', distUtils.getFilePath('MACOS', true)
     ]).then(() => {
       //
@@ -226,7 +226,7 @@ const pkgWindows = () => {
     pkg.exec([
       './build/pc/index.js',
       '--config', './pkg.config.json',
-      '--targets', 'node16-win-x64',
+      '--targets', 'node16.16.0-win-x64',
       '--output', distUtils.getFilePath('WINDOWS', true)
     ]).then(() => {
       resolve(true)

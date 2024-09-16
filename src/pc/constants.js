@@ -27,10 +27,6 @@ const EXAMPLE_CUSTOM_ZALO_PATH = IS_MAC
   ? '/ThuMucDaCaiZalo/Zalo.app'
   : 'D:\\ThuMucDaCaiZalo\\Zalo'
 
-const DOWNLOAD_ZADARK_URL = IS_MAC
-  ? 'https://sourceforge.net/projects/zadark/files/ZaDarkPC/macOS'
-  : 'https://sourceforge.net/projects/zadark/files/ZaDarkPC/Windows'
-
 const COMMON_ERRORS_URL = IS_MAC
   ? 'https://zadark.com/pc/macos#common-errors'
   : 'https://zadark.com/pc/windows#common-errors'
@@ -55,7 +51,6 @@ module.exports = {
   DEFAULT_ZALO_PATH,
   EXAMPLE_CUSTOM_ZALO_PATH,
 
-  DOWNLOAD_ZADARK_URL,
   COMMON_ERRORS_URL,
   DOCS_URL,
   CONTACT_URL

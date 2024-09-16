@@ -11,7 +11,6 @@ const {
   COMMON_ERRORS_URL,
   DEFAULT_ZALO_PATH,
   EXAMPLE_CUSTOM_ZALO_PATH,
-  DOWNLOAD_ZADARK_URL,
   DOCS_URL
 } = require('./constants')
 
@@ -32,7 +31,6 @@ const promptFeatureIndex = async () => {
           name: 'Go cai dat ZaDark',
           value: '2'
         },
-        new inquirer.Separator('─────────────────'),
         {
           name: 'Huong dan',
           value: '3'
@@ -67,7 +65,8 @@ const renderHeader = () => {
 
 const renderNotes = () => {
   print(chalk.redBright('- DE DAM BAO AN TOAN, vui long tai ZaDark tai:'))
-  print(' ', chalk.underline.redBright(DOWNLOAD_ZADARK_URL))
+  print(' ', chalk.underline.redBright('https://zadark.com'))
+  print(' ', chalk.underline.redBright('https://sourceforge.net/projects/zadark'))
   print(chalk.redBright('- Vui long cai dat lai ZaDark sau khi cap nhat Zalo PC.'))
   print('')
 }
@@ -99,13 +98,6 @@ const handleInstall = async (zaloResDirList) => {
   print(chalk.cyanBright('>> Vui long cho trong giay lat. Co the se mat vai phut ...'))
   await zadarkPC.installZaDark(zaloResDir)
 
-  // for (const zaloResDir of zaloResDirList) {
-  //   print('')
-  //   print(chalk('>> Dang cai dat', chalk.bold(zaloResDir)))
-  //   print(chalk.cyanBright('>> Vui long cho trong giay lat. Co the se mat vai phut ...'))
-  //   await zadarkPC.installZaDark(zaloResDir)
-  // }
-
   print('')
   print(chalk.greenBright('>> Da cai dat ZaDark. Vui long mo lai Zalo PC.'))
 }
@@ -118,11 +110,11 @@ const handleUninstall = async (zaloResDirList) => {
 
   await handleQuitZalo()
 
-  for (const zaloResDir of zaloResDirList) {
-    print('')
-    print(chalk('>> Dang go cai dat', chalk.bold(zaloResDir)))
-    await zadarkPC.uninstallZaDark(zaloResDir)
-  }
+  // Uninstall latest version
+  const zaloResDir = zaloResDirList[zaloResDirList.length - 1]
+  print('')
+  print(chalk('>> Dang go cai dat', chalk.bold(zaloResDir)))
+  zadarkPC.uninstallZaDark(zaloResDir)
 
   print('')
   print(chalk.greenBright('>> Da go cai dat ZaDark. Vui long mo lai Zalo PC.'))

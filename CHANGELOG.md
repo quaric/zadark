@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 24.9.5
+
+> PC 15.0 và Web 9.33.6
+
+- Tối ưu quá trình cài đặt ZaDark PC
+- Ẩn nhãn "New" biểu tượng zCloud ở **Menu trái**
+
 ## ZaDark 24.9.4
 
 > PC 14.1.1 và Web 9.33.5

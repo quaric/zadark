@@ -5,12 +5,12 @@
 
 (function () {
   if (typeof require === 'function') {
-    window.$ = require('./zadark-jquery.min.js')
-    window.hotkeys = require('./zadark-hotkeys-js.min.js')
-    window.Toastify = require('./zadark-toastify.min.js')
-    window.WebFont = require('./zadark-webfont.min.js')
-    window.introJs = require('./zadark-introjs.min.js')
-    window.localforage = require('./zadark-localforage.min.js')
+    window.$ = require('zadark/libs/zadark-jquery.min.js')
+    window.hotkeys = require('zadark/libs/zadark-hotkeys-js.min.js')
+    window.Toastify = require('zadark/libs/zadark-toastify.min.js')
+    window.WebFont = require('zadark/libs/zadark-webfont.min.js')
+    window.introJs = require('zadark/libs/zadark-introjs.min.js')
+    window.localforage = require('zadark/libs/zadark-localforage.min.js')
   }
 
   const ZADARK_THEME_KEY = '@ZaDark:THEME'
@@ -795,7 +795,7 @@
   const popupHeaderHTML = `
     <div class="zadark-popup__header">
       <div class="zadark-popup__header__logo">
-        <img src="zadark-lockup.svg" alt="ZaDark" class="zadark-popup__header__logo-img" />
+        <img src="zadark/images/zadark-lockup.svg" alt="ZaDark" class="zadark-popup__header__logo-img" />
       </div>
 
       <div class="zadark-popup__header__menu-list">
@@ -1499,7 +1499,7 @@
     })
 
     const s = document.createElement('script')
-    s.src = 'zadark-zconv.min.js'
+    s.src = 'zadark/js/zadark-zconv.min.js'
     s.onload = function () { this.remove() };
     (document.head || document.documentElement).append(s)
 

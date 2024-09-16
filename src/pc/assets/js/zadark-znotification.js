@@ -4,7 +4,7 @@
 */
 
 if (typeof require === 'function') {
-  window.WebFont = require('./zadark-webfont.min.js')
+  window.WebFont = require('zadark/libs/zadark-webfont.min.js')
 }
 
 document.documentElement.setAttribute('data-zadark-theme', 'dark')
