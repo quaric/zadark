@@ -622,8 +622,23 @@ html[data-zadark-theme="light"] {
     --popper-shadow: var(--BA50) 0px 0px 0px 5000px;
     --prv-sticker-filter: invert(0.5) brightness(2);
 
-    --zadark-custom-leftbar-text: #fff;
-    --zadark-custom-leftbar-text-hover: #fff;
+    --zadark-custom-leftmenu-text: #7589a3;
+    --zadark-custom-leftmenu-text-hover: #005ae0;
+
+    --layer-background-leftmenu: #fff;
+    --layer-background-leftmenu-hover: #e5efff;
+    --layer-background-leftmenu-selected: #e5efff;
+  }
+
+  .zadark {
+    #main-tab {
+      border-right: 1px solid var(--border);
+    }
+
+    .tds-banner-download__container {
+      background-color: var(--NG10);
+      border-bottom: 1px solid var(--border);
+    }
   }
 }
 
@@ -633,8 +648,8 @@ html[data-zadark-theme="dark"] {
 
     --prv-sticker-filter: invert(0.5);
 
-    --zadark-custom-leftbar-text: var(--N80);
-    --zadark-custom-leftbar-text-hover: var(--text-primary);
+    --zadark-custom-leftmenu-text: var(--N80);
+    --zadark-custom-leftmenu-text-hover: var(--text-primary);
   }
 
   // Scrollbar
@@ -2253,7 +2268,7 @@ body.zadark {
 
   .leftbar-tab {
     height: 56px;
-    color: var(--zadark-custom-leftbar-text);
+    color: var(--zadark-custom-leftmenu-text);
 
     &:before {
       content: "";
@@ -2272,7 +2287,7 @@ body.zadark {
 
     &:hover {
       background-color: transparent;
-      color: var(--zadark-custom-leftbar-text-hover);
+      color: var(--zadark-custom-leftmenu-text-hover);
 
       &:before {
         opacity: 1;
@@ -2287,7 +2302,7 @@ body.zadark {
     &.chat-message.last-selected,
     &.selected {
       background-color: transparent;
-      color: var(--zadark-custom-leftbar-text-hover);
+      color: var(--zadark-custom-leftmenu-text-hover);
 
       &:before {
         opacity: 1;

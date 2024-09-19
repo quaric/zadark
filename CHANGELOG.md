@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.9.6
+
+> PC 15.0.1 và Web 9.33.7
+
+- Cập nhật giao diện **Menu trái** ở chế độ **Sáng** ([#152](https://github.com/quaric/zadark/issues/152))
+
 ## ZaDark 24.9.5
 
 > PC 15.0 và Web 9.33.6
