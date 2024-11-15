@@ -2200,6 +2200,13 @@ html[data-zadark-theme="dark"] {
       color: var(--tab-active);
       border-bottom: 2px solid var(--tab-active);
     }
+
+    .zcloud-promo-content {
+      background: var(--layer-background);
+    }
+    .zcloud-promo-content__close-btn {
+      color: var(--text-secondary);
+    }
   }
 }
 
