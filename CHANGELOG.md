@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.11.1
+
+> PC 15.0.2 và Web 9.33.8
+
+- Sửa lỗi Dark Mode `zCloud Promo`
+
 ## ZaDark 24.9.6
 
 > PC 15.0.1 và Web 9.33.7
