@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 24.12.1
+
+> PC 15.1 và Web 9.34
+
+- Sửa lỗi Dark Mode do Zalo **thay đổi bộ màu** và chính thức **ra mắt Dark Mode** trên Zalo Web (Zalo PC sẽ sớm được Zalo cập nhật).
+  - Tìm hiểu Dark Mode chính thức của Zalo [**tại đây**](https://zadark.com/blog/zalo-chinh-thuc-ra-mat-giao-dien-dark-mode)
+
 ## ZaDark 24.11.1
 
 > PC 15.0.2 và Web 9.33.8
