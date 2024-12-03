@@ -366,6 +366,14 @@
   --layer-background-leftmenu-hover: #3a3d3e;
   --layer-background-leftmenu-selected: #3a3d3e;
 
+  --layer-background-navbar-normal: #2d3031;
+  --layer-background-navbar-hover: #3a3d3e;
+  --layer-background-navbar-selected: #3a3d3e;
+
+  --layer-background-navbar-sublevel-normal: #2d3031;
+  --layer-background-navbar-sublevel-hover: #3a3d3e;
+  --layer-background-navbar-sublevel-selected: #3a3d3e;
+
   --layer-alert-background: var(--R60);
   --layer-error-background: var(--R10);
   --layer-success-background: var(--G10);
@@ -412,11 +420,8 @@
 
   --divider: var(--NG30);
   --divider-subtle: var(--NG25);
-  --divider-bold: var(--NG40);
+  --divider-bold: var(--NG30);
 
-  --curtain: var(--NG30);
-  --curtain-subtle: var(--BA30);
-  --curtain-bold: var(--BA70);
   --skeleton: var(--NG20);
   --skeleton-subtle: var(--NG15);
 
@@ -502,6 +507,15 @@
   --button-secondary-focus-bg: var(--B50-alpha-20); // #{color.change(map.get($blue-colors, "B50"), $alpha: 0.2)};
   --button-secondary-focus-text: var(--B50);
 
+  --button-secondary-neutral-normal: var(--N20);
+  --button-secondary-neutral-hover: var(--N30);
+  --button-secondary-neutral-pressed: var(--N50);
+  --button-secondary-neutral-disabled: var(--N20);
+  --button-secondary-neutral-text: var(--N300);
+  --button-secondary-neutral-text-disabled: var(--N60);
+  --button-secondary-neutral-focus-bg: var(--N30);
+  --button-secondary-neutral-focus-text: var(--N300);
+
   --button-danger-normal: var(--R60);
   --button-danger-hover: var(--R70);
   --button-danger-pressed: var(--R80);
@@ -568,7 +582,6 @@
   --selection: #0068ff;
   --selection-text: #fff;
 
-  // --popper-shadow: var(--BA50) 0px 0px 0px 5000px;
   --popper-shadow: 0px 0px 12px var(--BA50);
 
   --black: 900;
@@ -628,6 +641,10 @@ html[data-zadark-theme="light"] {
     --layer-background-leftmenu: #fff;
     --layer-background-leftmenu-hover: #e5efff;
     --layer-background-leftmenu-selected: #e5efff;
+
+    --layer-background-navbar-normal: #fff;
+    --layer-background-navbar-hover: #e5efff;
+    --layer-background-navbar-selected: #e5efff;
   }
 
   .zadark {
@@ -2206,6 +2223,16 @@ html[data-zadark-theme="dark"] {
     }
     .zcloud-promo-content__close-btn {
       color: var(--text-secondary);
+    }
+
+    .system-banner {
+      &__container {
+        border-bottom: 1px solid var(--N30);
+      }
+    }
+
+    .lb-more-menu .more-pop-item__icon {
+      opacity: 1 !important;
     }
   }
 }
