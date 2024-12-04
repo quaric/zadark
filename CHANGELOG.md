@@ -1,5 +1,13 @@
 # Changelog
 
+## ZaDark 24.12.2
+
+> PC 15.1.1 và Web 9.34.1
+
+- Sửa lỗi Dark Mode màn hình "Đang đăng nhập..." (Ban đầu nền trắng, đăng nhập xong thì nền đen)
+- Sửa lỗi đảo ngược màu ảnh minh hoạ tại Slide giới thiệu Dark Mode ở màn hình chính
+- Sửa lỗi Dark Mode một số chi tiết khác
+
 ## ZaDark 24.12.1
 
 > PC 15.1 và Web 9.34
