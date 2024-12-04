@@ -351,7 +351,7 @@
   --tip-bg: var(--B50);
 
   --surface-background: var(--NG20);
-  --surface-background-subtle: var(--NG15);
+  --surface-background-subtle: #18191a; // var(--NG15);
   --surface-alt: var(--WA100);
 
   --layer-background: var(--WA100);
@@ -507,14 +507,12 @@
   --button-secondary-focus-bg: var(--B50-alpha-20); // #{color.change(map.get($blue-colors, "B50"), $alpha: 0.2)};
   --button-secondary-focus-text: var(--B50);
 
-  --button-secondary-neutral-normal: var(--N20);
-  --button-secondary-neutral-hover: var(--N30);
-  --button-secondary-neutral-pressed: var(--N50);
-  --button-secondary-neutral-disabled: var(--N20);
-  --button-secondary-neutral-text: var(--N300);
-  --button-secondary-neutral-text-disabled: var(--N60);
-  --button-secondary-neutral-focus-bg: var(--N30);
-  --button-secondary-neutral-focus-text: var(--N300);
+  --button-primary-tonal-normal: var(--B50-alpha-10);
+  --button-primary-tonal-hover: var(--B50-alpha-20);
+  --button-primary-tonal-pressed: var(--B50-alpha-30);
+  --button-primary-tonal-disabled: var(--B50-alpha-10);
+  --button-primary-tonal-text: var(--B50);
+  --button-primary-tonal-text-disabled: var(--B40);
 
   --button-danger-normal: var(--R60);
   --button-danger-hover: var(--R70);
@@ -534,6 +532,13 @@
   --button-secondary-danger-focus-bg: var(--R50-alpha-20); // #{color.change(map.get($red-colors, "R50"), $alpha: 0.2)};
   --button-secondary-danger-focus-text: var(--R50);
 
+  --button-danger-tonal-normal: var(--R50-alpha-10);
+  --button-danger-tonal-hover: var(--R50-alpha-20);
+  --button-danger-tonal-pressed: var(--R50-alpha-30);
+  --button-danger-tonal-disabled: var(--R50-alpha-10);
+  --button-danger-tonal-text: var(--R50);
+  --button-danger-tonal-text-disabled: var(--R50);
+
   --button-neutral-normal: var(--N20);
   --button-neutral-hover: var(--N30);
   --button-neutral-pressed: var(--N50);
@@ -542,6 +547,15 @@
   --button-neutral-text-disabled: var(--N60);
   --button-neutral-focus-bg: var(--N30);
   --button-neutral-focus-text: var(--N300);
+
+  --button-secondary-neutral-normal: var(--N20);
+  --button-secondary-neutral-hover: var(--N30);
+  --button-secondary-neutral-pressed: var(--N50);
+  --button-secondary-neutral-disabled: var(--N20);
+  --button-secondary-neutral-text: var(--N300);
+  --button-secondary-neutral-text-disabled: var(--N60);
+  --button-secondary-neutral-focus-bg: var(--N30);
+  --button-secondary-neutral-focus-text: var(--N300);
 
   --button-tertiary-primary-normal: transparent;
   --button-tertiary-primary-hover: var(--B15);
@@ -2245,6 +2259,10 @@ html[data-zadark-theme="dark"] {
       background-color: var(--layer-background) !important;
       color: var(--text-primary) !important;
     }
+
+    // .contact-pages.page-container {
+    //   background: var(--message-view-gradient);
+    // }
   }
 }
 
