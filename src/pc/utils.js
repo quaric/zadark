@@ -83,6 +83,8 @@ const killProcesses = (processIds = []) => {
   processIds.forEach((pid) => killProcess(pid))
 }
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
 module.exports = {
   print,
   printDebug,
@@ -95,5 +97,7 @@ module.exports = {
   isDirectory,
 
   killProcess,
-  killProcesses
+  killProcesses,
+
+  sleep
 }

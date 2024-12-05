@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.12.3
+
+> PC 15.1.2
+
+- Khắc phục lỗi cài đặt ZaDark trên Zalo PC: ZaDark nhận diện sai phiên bản Zalo PC mới nhất trong quá trình cài đặt. ([#161](https://github.com/quaric/zadark/issues/161))
+
 ## ZaDark 24.12.2
 
 > PC 15.1.1 và Web 9.34.1
