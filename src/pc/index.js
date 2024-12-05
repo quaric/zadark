@@ -3,7 +3,7 @@ const chalk = require('chalk')
 const inquirer = require('inquirer')
 
 const zadarkPC = require('./zadark-pc')
-const { print, printError, openWebsite, clearScreen, killProcesses } = require('./utils')
+const { print, printError, openWebsite, clearScreen, killProcesses, sleep } = require('./utils')
 
 const {
   ZADARK_VERSION,
@@ -81,6 +81,8 @@ const handleQuitZalo = async () => {
   print('')
   print(chalk('>> Dang thoat Zalo PC ...'))
   killProcesses(zaloPIDs)
+
+  await sleep(1000)
 }
 
 /**

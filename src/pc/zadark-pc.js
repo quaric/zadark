@@ -10,6 +10,26 @@ const { PLATFORM, IS_MAC, IS_WIN, OS_NAME, ZADARK_VERSION, ZADARK_TMP_PATH, ZALO
 
 const psList = require('./packages/ps-list')
 
+const getVersionFromPath = (str) => {
+  const match = str.match(/Zalo-(\d+\.\d+\.\d+)/)
+  return match ? match[1] : '0.0.0'
+}
+
+const parseVersion = (version) => version.split('.').map(Number)
+
+const compareVersionPaths = (pathA, pathB) => {
+  const versionA = parseVersion(getVersionFromPath(pathA))
+  const versionB = parseVersion(getVersionFromPath(pathB))
+
+  for (let i = 0; i < 3; i++) {
+    if (versionA[i] !== versionB[i]) {
+      return versionA[i] - versionB[i]
+    }
+  }
+
+  return 0
+}
+
 /**
  * Get Zalo resources directory list
  * @param {string} customZaloPath - The custom Zalo path
@@ -32,7 +52,7 @@ const getZaloResDirList = (customZaloPath) => {
     return []
   }
 
-  return resources.sort()
+  return resources.sort(compareVersionPaths)
 }
 
 /**
