@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.12.4
+
+> PC 15.1.3 và Web 9.34.2
+
+- Sửa lỗi Dark Mode
+
 ## ZaDark 24.12.3
 
 > PC 15.1.2
