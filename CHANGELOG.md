@@ -5,6 +5,7 @@
 > PC 15.1.3 và Web 9.34.2
 
 - Sửa lỗi Dark Mode
+- Mặc dù Zalo đã phát hành Dark Mode chính thức, nhưng ZaDark vẫn duy trì Dark Mode trong thời gian tới dành cho những bạn thích Dark Mode tone màu "đen" của ZaDark
 
 ## ZaDark 24.12.3
 
