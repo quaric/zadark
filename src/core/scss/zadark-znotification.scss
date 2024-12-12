@@ -1,12 +1,13 @@
-:root {
-  --text-primary: #001a33;
-  --text-secondary: #767676;
+// :root {
+//   --text-primary: #001a33;
+//   --text-secondary: #767676;
 
-  --N20: #eaedf0;
-}
+//   --N20: #eaedf0;
+// }
 
 html[data-zadark-theme="dark"] {
-  &:root {
+  &:root,
+  .zadark.zadark-pc {
     --text-primary: #e5e5e5;
     --text-secondary: #9e9f9f;
 
@@ -21,7 +22,7 @@ html[data-zadark-theme="dark"] {
     --N40: #696b6b;
   }
 
-  .zadark {
+  .zadark.zadark-pc {
     font-family: "Open Sans", sans-serif;
 
     #zbg {
