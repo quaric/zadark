@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 24.12.5
+
+> PC 15.1.4
+
+- Sửa lỗi Dark Mode thông báo trên Windows
+
 ## ZaDark 24.12.4
 
 > PC 15.1.3 và Web 9.34.2
