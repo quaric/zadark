@@ -1594,36 +1594,46 @@ html[data-zadark-theme="dark"] {
     }
 
     #chatOnboard {
-      .slideshow__page__image {
-        padding: 16px;
-        background-color: #fff !important;
-        border-radius: 16px;
-        border: 1px solid var(--BA20);
-        filter: invert(0.9);
+      // .slideshow__page__image {
+      //   padding: 16px;
+      //   background-color: #fff !important;
+      //   border-radius: 16px;
+      //   border: 1px solid var(--BA20);
+      //   filter: invert(0.9);
+      // }
+      // .slideshow__page__image[alt*="darkmode"] {
+      //   padding: 0 !important;
+      //   background-color: #000 !important;
+      //   border: 1px solid #000 !important;
+      //   filter: invert(0) !important;
+      // }
+      // .slideshow__page__text__title {
+      //   margin-top: 24px;
+      //   margin-bottom: 8px;
+      //   font-weight: var(--bold);
+      // }
+      // .slideshow__bottom {
+      //   margin-top: 24px;
+      // }
+
+      // .chat-onboard {
+      //   > div:nth-child(1) {
+      //     width: 480px !important;
+      //     margin-bottom: 32px !important;
+      //   }
+      // }
+
+      .slideshow__page__text__title .title-rtf__text {
+        color: var(--text-primary);
       }
-      .slideshow__page__image[alt*="darkmode"] {
-        padding: 0 !important;
-        background-color: #000 !important;
-        border: 1px solid #000 !important;
-        filter: invert(0) !important;
-      }
-      .slideshow__page__text__title {
-        margin-top: 24px;
-        margin-bottom: 8px;
-        font-weight: var(--bold);
-      }
-      .slideshow__bottom {
-        margin-top: 24px;
+      .slideshow__page__text .subtitle-rtf {
+        color: var(--text-secondary);
       }
       .slideshow__btn {
         color: var(--text-secondary);
       }
-
-      .chat-onboard {
-        > div:nth-child(1) {
-          width: 480px !important;
-          margin-bottom: 32px !important;
-        }
+      .slideshow__bottom__dot.selected {
+        background-color: var(--NG40);
       }
     }
 

@@ -2,6 +2,12 @@
 
 ## ZaDark 24.12.5
 
+> PC 15.1.5 và Web 9.34.3
+
+- Cập nhật Side giới thiệu ở màn hình chính
+
+## ZaDark 24.12.5
+
 > PC 15.1.4
 
 - Sửa lỗi Dark Mode thông báo trên Windows
