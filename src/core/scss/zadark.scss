@@ -379,6 +379,7 @@
   --layer-success-background: var(--G10);
   --layer-warning-background: var(--Y10);
   --layer-information-background: var(--B10);
+  --layer-neutral-information-background: #303233; // --NG20
 
   --text-primary: #e5e5e5; // --N300;
   --text-primary-50: rgba(229, 229, 229, 0.5); // --N300, Alpha 0.5
@@ -2279,6 +2280,10 @@ html[data-zadark-theme="dark"] {
     // .contact-pages.page-container {
     //   background: var(--message-view-gradient);
     // }
+
+    .msg-info-popup {
+      background-color: var(--layer-background-subtle);
+    }
   }
 }
 

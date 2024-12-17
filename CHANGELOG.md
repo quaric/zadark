@@ -1,10 +1,13 @@
 # Changelog
 
-## ZaDark 24.12.5
+## ZaDark 24.12.6
 
 > PC 15.1.5 và Web 9.34.3
 
 - Cập nhật Side giới thiệu ở màn hình chính
+- Sửa lỗi Dark Mode
+  - Đồng bộ tin nhắn ([#169](https://github.com/quaric/zadark/issues/169))
+  - Thông tin tin nhắn ([#170](https://github.com/quaric/zadark/issues/170))
 
 ## ZaDark 24.12.5
 
