@@ -494,6 +494,8 @@
   --accent-grey-bg: var(--N20);
   --accent-grey-bg-bold: var(--N30);
 
+  --floating-menu: var(--N10);
+
   // Buttons
 
   --button-primary-normal: var(--B55);
@@ -2488,6 +2490,13 @@ body.zadark {
     a,
     .text,
     .editor-input {
+      font-size: var(--zadark-cnv-font-size);
+    }
+  }
+  // * Zalo >= v24.12.2
+  .card .text-message__container {
+    div-15,
+    span-15 {
       font-size: var(--zadark-cnv-font-size);
     }
   }
