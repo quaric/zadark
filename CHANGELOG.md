@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 25.1.1
+
+> PC 15.1.6 và Web 9.34.4
+
+- Sửa lỗi Dark Mode
+- Sửa lỗi "Cỡ chữ của tin nhắn"
+
 ## ZaDark 24.12.6
 
 > PC 15.1.5 và Web 9.34.3
