@@ -1,5 +1,13 @@
 # Changelog
 
+## ZaDark 25.1.2
+
+> PC 15.1.7 và Web 9.34.5
+
+- Sửa lỗi Dark Mode
+  - Khi xem tin nhắn được trả lời ([#174](https://github.com/quaric/zadark/issues/174))
+  - Khi double click vào tin nhắn
+
 ## ZaDark 25.1.1
 
 > PC 15.1.6 và Web 9.34.4
