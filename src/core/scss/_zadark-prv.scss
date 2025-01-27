@@ -54,7 +54,9 @@
 
   .chat-message:not(.multi-select-mode) {
     .card:not(.card--oa):not(.card--sticker):not(.card--group-photo),
-    .call-msg {
+    .call-message,
+    .call-msg,
+    .video-message__video-player {
       > *:not(.zadark-translate-msg__button) {
         opacity: #{$opacity};
         transition: opacity 100ms ease-in-out;
@@ -71,6 +73,7 @@
       transition: opacity 100ms ease-in-out;
     }
 
+    .card--sticker--container,
     .card--sticker .card--group-sticker__row__item {
       opacity: 0.1;
       filter: var(--prv-sticker-filter);
@@ -79,6 +82,7 @@
         filter 100ms ease-in-out;
     }
 
+    .video-message__video-player,
     .card--group-photo .card--group-photo__row__item .image-box__image {
       opacity: 0;
       transition: opacity 100ms ease-in-out;
@@ -105,6 +109,7 @@
   #messageView:hover {
     .chat-message:not(.multi-select-mode) {
       .card:not(.card--oa):not(.card--sticker):not(.card--group-photo),
+      .call-message,
       .call-msg {
         > *:not(.zadark-translate-msg__button) {
           opacity: 1;
@@ -119,11 +124,13 @@
         opacity: 1;
       }
 
+      .card--sticker--container,
       .card--sticker .card--group-sticker__row__item {
         opacity: 1;
         filter: none;
       }
 
+      .video-message__video-player,
       .card--group-photo .card--group-photo__row__item .image-box__image {
         opacity: 1;
       }
