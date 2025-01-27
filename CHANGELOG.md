@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 25.1.3
+
+> PC 15.1.8 và Web 9.34.6
+
+- Sửa lỗi "Ẩn Tin nhắn trong cuộc trò chuyện" ([#176](https://github.com/quaric/zadark/issues/176))
+- Sửa lỗi "Dịch tin nhắn" ([#177](https://github.com/quaric/zadark/issues/177))
+
 ## ZaDark 25.1.2
 
 > PC 15.1.7 và Web 9.34.5

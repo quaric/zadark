@@ -21,6 +21,11 @@
     }
   }
 
+  const isValidURL = (string) => {
+    const regex = /^(https?:\/\/)[\w.-]+(\.[a-z]{2,})+([/?].*)?$/i
+    return regex.test(string)
+  }
+
   /**
    *
    * @param {jQuery} $buttonWrapper Element will have "translation button" added.
@@ -36,6 +41,16 @@
 
     const text = $text ? $text.text().replace(/(?:\r\n|\r|\n)/g, '<br>') : ''
 
+    // Skip if the text is empty
+    if (!text) {
+      return
+    }
+
+    // Skip if the text is a URL
+    if (isValidURL(text)) {
+      return
+    }
+
     const $button = $('<button>')
       .addClass('zadark-translate-msg__button')
       .html('<i class="zadark-icon zadark-icon--translate"></i>')
@@ -48,10 +63,6 @@
 
       if ($prevTranslation.length) {
         $prevTranslation.remove()
-        return
-      }
-
-      if (!text) {
         return
       }
 
@@ -94,7 +105,7 @@
     }
 
     return this.each(function () {
-      $(this).on('mouseenter.zadark-translate-msg', '.card.card--text', function (e) {
+      $(this).on('mouseenter.zadark-translate-msg', '.card', function (e) {
         const $card = $(this)
         const $content = $card
         const $text = $content.find('div > span-15')
@@ -102,7 +113,7 @@
         addTranslateListener($card, $content, $text, translateTarget)
       })
 
-      $(this).on('mouseenter.zadark-translate-msg', '.chatImageMessage', function (e) {
+      $(this).on('mouseenter.zadark-translate-msg', '.chatImageMessage,.chatImageMessage--audit', function (e) {
         const $card = $(this).find('.img-msg-v2__ft')
         const $content = $(this).find('.img-msg-v2__cap')
         const $text = $content.find('span-15')
