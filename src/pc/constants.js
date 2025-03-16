@@ -16,7 +16,7 @@ const ZADARK_API_DOMAIN = process.env.NODE_ENV === 'development'
   : 'https://api.zadark.com'
 
 const ZALO_PROCESS_NAMES = IS_MAC
-  ? ['zalo', '/applications/za']
+  ? ['zalo']
   : ['zalo.exe']
 
 const DEFAULT_ZALO_PATH = IS_MAC
