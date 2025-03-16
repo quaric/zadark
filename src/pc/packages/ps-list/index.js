@@ -51,7 +51,7 @@ const windows = async () => {
 
 const nonWindowsMultipleCalls = async (options = {}) => {
   const flags = (options.all === false ? '' : 'a') + 'wwxo'
-  const ret = {}
+  const returnValue = {}
 
   await Promise.all(['comm', 'args', 'ppid', 'uid', '%cpu', '%mem'].map(async cmd => {
     const { stdout } = await execFile('ps', [flags, `pid,${cmd}`], { maxBuffer: TEN_MEGABYTES })
@@ -59,19 +59,19 @@ const nonWindowsMultipleCalls = async (options = {}) => {
     for (let line of stdout.trim().split('\n').slice(1)) {
       line = line.trim()
       const [pid] = line.split(' ', 1)
-      const val = line.slice(pid.length + 1).trim()
+      const value = line.slice(pid.length + 1).trim()
 
-      if (ret[pid] === undefined) {
-        ret[pid] = {}
+      if (returnValue[pid] === undefined) {
+        returnValue[pid] = {}
       }
 
-      ret[pid][cmd] = val
+      returnValue[pid][cmd] = value
     }
   }))
 
   // Filter out inconsistencies as there might be race
   // issues due to differences in `ps` between the spawns
-  return Object.entries(ret)
+  return Object.entries(returnValue)
     .filter(([, value]) => value.comm && value.args && value.ppid && value.uid && value['%cpu'] && value['%mem'])
     .map(([key, value]) => ({
       pid: Number.parseInt(key, 10),
@@ -86,39 +86,37 @@ const nonWindowsMultipleCalls = async (options = {}) => {
 
 const ERROR_MESSAGE_PARSING_FAILED = 'ps output parsing failed'
 
-const psFields = 'pid,ppid,uid,%cpu,%mem,comm,args'
+const psOutputRegex = /^[ \t]*(?<pid>\d+)[ \t]+(?<ppid>\d+)[ \t]+(?<uid>[-\d]+)[ \t]+(?<cpu>\d+\.\d+)[ \t]+(?<memory>\d+\.\d+)[ \t]+(?<comm>.*)?/
 
-// TODO: Use named capture groups when targeting Node.js 10
-const psOutputRegex = /^[ \t]*(?<pid>\d+)[ \t]+(?<ppid>\d+)[ \t]+(?<uid>\d+)[ \t]+(?<cpu>\d+\.\d+)[ \t]+(?<memory>\d+\.\d+)[ \t]+/
-
-const nonWindowsSingleCall = async (options = {}) => {
+const nonWindowsCall = async (options = {}) => {
   const flags = options.all === false ? 'wwxo' : 'awwxo'
 
-  // TODO: Use the promise version of `execFile` when https://github.com/nodejs/node/issues/28244 is fixed.
-  const [psPid, stdout] = await new Promise((resolve, reject) => {
-    const child = childProcess.execFile('ps', [flags, psFields], { maxBuffer: TEN_MEGABYTES }, (error, stdout) => {
-      if (error === null) {
-        resolve([child.pid, stdout])
-      } else {
-        reject(error)
-      }
-    })
-  })
+  const psPromises = [
+    execFile('ps', [flags, 'pid,ppid,uid,%cpu,%mem,comm'], { maxBuffer: TEN_MEGABYTES }),
+    execFile('ps', [flags, 'pid,args'], { maxBuffer: TEN_MEGABYTES })
+  ]
 
-  const lines = stdout.trim().split('\n')
-  lines.shift()
+  const [psLines, psArgsLines] = (await Promise.all(psPromises)).map(({ stdout }) => stdout.trim().split('\n'))
 
-  let psIndex
-  let commPosition
-  let argsPosition
+  const psPids = new Set(psPromises.map(promise => promise.child.pid))
 
-  const processes = lines.map((line, index) => {
+  psLines.shift()
+  psArgsLines.shift()
+
+  const processCmds = {}
+  for (const line of psArgsLines) {
+    const [pid, cmds] = line.trim().split(' ')
+    processCmds[pid] = cmds.join(' ')
+  }
+
+  const processes = psLines.map(line => {
     const match = psOutputRegex.exec(line)
+
     if (match === null) {
       throw new Error(ERROR_MESSAGE_PARSING_FAILED)
     }
 
-    const { pid, ppid, uid, cpu, memory } = match.groups
+    const { pid, ppid, uid, cpu, memory, comm } = match.groups
 
     const processInfo = {
       pid: Number.parseInt(pid, 10),
@@ -126,37 +124,20 @@ const nonWindowsSingleCall = async (options = {}) => {
       uid: Number.parseInt(uid, 10),
       cpu: Number.parseFloat(cpu),
       memory: Number.parseFloat(memory),
-      name: undefined,
-      cmd: undefined
-    }
-
-    if (processInfo.pid === psPid) {
-      psIndex = index
-      commPosition = line.indexOf('ps', match[0].length)
-      argsPosition = line.indexOf('ps', commPosition + 2)
+      name: path.basename(comm),
+      cmd: processCmds[pid]
     }
 
     return processInfo
-  })
+  }).filter(processInfo => !psPids.has(processInfo.pid))
 
-  if (psIndex === undefined || commPosition === -1 || argsPosition === -1) {
-    throw new Error(ERROR_MESSAGE_PARSING_FAILED)
-  }
-
-  const commLength = argsPosition - commPosition
-  for (const [index, line] of lines.entries()) {
-    processes[index].name = line.slice(commPosition, commPosition + commLength).trim()
-    processes[index].cmd = line.slice(argsPosition).trim()
-  }
-
-  processes.splice(psIndex, 1)
   return processes
 }
 
 const nonWindows = async (options = {}) => {
   try {
-    return await nonWindowsSingleCall(options)
-  } catch (_) { // If the error is not a parsing error, it should manifest itself in multicall version too.
+    return await nonWindowsCall(options)
+  } catch { // If the error is not a parsing error, it should manifest itself in multicall version too.
     return nonWindowsMultipleCalls(options)
   }
 }

@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 25.3.1
+
+> PC 15.1.9
+
+- **[macOS]** Sửa lỗi không tự động tắt Zalo PC khi cài ZaDark
+- Nâng cấp `@electron/asar@3.3.1`: Công cụ giải nén, đóng gói tập tin `asar`
+
 ## ZaDark 25.1.3
 
 > PC 15.1.8 và Web 9.34.6
