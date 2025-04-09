@@ -87,6 +87,7 @@
       "localStorage",
       "MutationObserver",
       "fetch",
+      "requestAnimationFrame",
       "Blob",
       "FileReader",
       "Image",
