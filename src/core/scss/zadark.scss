@@ -8,6 +8,7 @@
 
 @use "zadark-prv" as prv;
 @use "zadark-translate" as translate;
+@use "zadark-reaction" as reaction;
 
 @mixin create-color-variables($color-list) {
   @each $name, $color in $color-list {
@@ -663,6 +664,8 @@ html[data-zadark-theme="light"] {
     --zadark-custom-leftmenu-text: #7589a3;
     --zadark-custom-leftmenu-text-hover: #005ae0;
 
+    --zadark-reaction-background: var(--reaction-background);
+
     --layer-background-leftmenu: #fff;
     --layer-background-leftmenu-hover: #e5efff;
     --layer-background-leftmenu-selected: #e5efff;
@@ -692,6 +695,8 @@ html[data-zadark-theme="dark"] {
 
     --zadark-custom-leftmenu-text: var(--N80);
     --zadark-custom-leftmenu-text-hover: var(--text-primary);
+
+    --zadark-reaction-background: rgb(35, 37, 38);
   }
 
   // Scrollbar
@@ -2581,6 +2586,7 @@ body.zadark {
   }
 
   @include translate.translate-message();
+  @include reaction.expand-zalo-reaction();
 
   .nav__tabs__bottom .tab-icon-container:after {
     content: none;

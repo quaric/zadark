@@ -128,6 +128,7 @@ const buildWeb = (browser) => {
       .pipe(dest(libsDir)),
     src(getWebPath('./images/**/*')).pipe(dest(imagesDir)),
     src(getCorePath('./fonts/**/*')).pipe(dest(fontsDir)),
+    src(getCorePath('./images/**/*')).pipe(dest(imagesDir)),
     src(getWebPath('./rules/**/*')).pipe(dest(rulesDir))
   )
 }
@@ -159,6 +160,7 @@ const buildSafari = () => {
   const localesDir = path.join(SAFARI_RESOURCES, '/_locales')
   const libsDir = path.join(SAFARI_RESOURCES, '/libs')
   const fontsDir = path.join(SAFARI_RESOURCES, '/fonts')
+  const imagesDir = path.join(SAFARI_RESOURCES, '/images')
   const rulesDir = path.join(SAFARI_RESOURCES, '/rules')
 
   return mergeStream(
@@ -181,6 +183,7 @@ const buildSafari = () => {
       .pipe(concat('libs.min.js'))
       .pipe(dest(libsDir)),
     src(getCorePath('./fonts/**/*')).pipe(dest(fontsDir)),
+    src(getCorePath('./images/**/*')).pipe(dest(imagesDir)),
     src(getWebPath('./rules/**/*')).pipe(dest(rulesDir))
   )
 }
@@ -199,6 +202,7 @@ const buildPC = () => {
     ]).pipe(minify(minifyOptions)).pipe(dest('./build/pc/assets/js')),
 
     src(getCorePath('./fonts/**/*')).pipe(dest('./build/pc/assets/fonts')),
+    src(getCorePath('./images/**/*')).pipe(dest('./build/pc/assets/images')),
     buildSass(getPCPath('./assets/scss/*.scss'), './build/pc/assets/css')
   )
 }

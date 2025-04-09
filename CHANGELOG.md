@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 25.4.1
+
+> PC 15.2 và Web 9.35
+
+- Bày tỏ cảm xúc tin nhắn (Reaction): Thêm 82 biểu tượng cảm xúc ([#183](https://github.com/quaric/zadark/issues/183)) / Cảm ơn bạn @anhwaivo đã đóng góp ý tưởng và script tham khảo.
+
 ## ZaDark 25.3.1
 
 > PC 15.1.9

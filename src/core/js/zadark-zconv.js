@@ -1,4 +1,6 @@
 (function () {
+  // const log = console.log.bind(console, '[zadark-zconv]')
+
   /**
    * @param {HTMLElement} convItem
    * @returns {string}
@@ -35,22 +37,24 @@
     document.dispatchEvent(new CustomEvent('@ZaDark:CONV_ID_CHANGE'))
   }
 
-  const conversationList = document.getElementById('conversationListId')
+  function addConvClickEventListener () {
+    const conversationList = document.getElementById('conversationListId')
 
-  conversationList && conversationList.addEventListener('click', function (event) {
-    const convItem = event.target.closest('.msg-item')
-    if (!convItem || !conversationList.contains(convItem)) {
-      return
-    }
+    conversationList && conversationList.addEventListener('click', function (event) {
+      const convItem = event.target.closest('.msg-item')
+      if (!convItem || !conversationList.contains(convItem)) {
+        return
+      }
 
-    const moreButton = convItem.querySelector('.conv-item-title__more')
-    if (moreButton && (moreButton === event.target || moreButton.contains(event.target))) {
-      return
-    }
+      const moreButton = convItem.querySelector('.conv-item-title__more')
+      if (moreButton && (moreButton === event.target || moreButton.contains(event.target))) {
+        return
+      }
 
-    const convId = getConvId(convItem)
-    fireConvIdChange(convId)
-  })
+      const convId = getConvId(convItem)
+      fireConvIdChange(convId)
+    })
+  }
 
   function handleWindowFocus () {
     const main = document.querySelector('#container > main')
@@ -69,22 +73,34 @@
     fireConvIdChange(convId)
   }
 
-  const debounce = (func, delay) => {
+  function debounce (func, delay) {
     let timer
-    return () => {
+    return function () {
       clearTimeout(timer)
       timer = setTimeout(func, delay)
     }
   }
 
-  const isPC = document.body.classList.contains('zadark-pc')
-  const DEBOUCE_DELAY = 200
-
-  const func = debounce(handleWindowFocus, DEBOUCE_DELAY)
-
-  if (isPC) {
-    window.$zwindow.onVisibilityChange(func)
-  } else {
-    window.addEventListener('focus', func)
+  function addFocusEventListener () {
+    if (document.body.classList.contains('zadark-pc')) {
+      window.$zwindow.onVisibilityChange(debounce(handleWindowFocus, 200))
+    } else {
+      window.addEventListener('focus', debounce(handleWindowFocus, 200))
+    }
   }
+
+  const observer = new MutationObserver((mutationsList) => {
+    mutationsList.forEach((mutation) => {
+      mutation.addedNodes.forEach((addedNode) => {
+        if (addedNode.id === 'app-page') {
+          addConvClickEventListener()
+          addFocusEventListener()
+
+          observer.disconnect()
+        }
+      })
+    })
+  })
+
+  observer.observe(document.querySelector('#app'), { subtree: false, childList: true })
 })()
