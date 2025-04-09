@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 25.4.2
+
+> PC 15.2.1 và Web 9.35.1
+
+- Tối ưu hiệu năng cho tính năng Bày tỏ cảm xúc tin nhắn (Reaction)
+
 ## ZaDark 25.4.1
 
 > PC 15.2 và Web 9.35
