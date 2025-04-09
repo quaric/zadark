@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ZaDark – Zalo Dark Mode",
-  "version": "9.34.6",
+  "version": "9.35",
   "description": "__MSG_appDesc__",
   "default_locale": "vi",
   "author": "Quaric",
@@ -31,6 +31,17 @@
         "js/zadark-translate.min.js",
         "js/utils.min.js",
         "js/zadark.min.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://chat.zalo.me/*"
+      ],
+      "run_at": "document_end",
+      "world": "MAIN",
+      "js": [
+        "js/zadark-zconv.min.js",
+        "js/zadark-reaction.min.js"
       ]
     }
   ],

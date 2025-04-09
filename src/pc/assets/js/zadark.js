@@ -678,6 +678,8 @@
 
   ZaDarkUtils.initPageSettings()
 
+  document.documentElement.setAttribute('data-zadark-emoji-url', 'zadark/images/zalo-emoji-md.png')
+
   window.matchMedia('(prefers-color-scheme: dark)').addListener((event) => {
     const theme = ZaDarkStorage.getTheme()
     if (theme === 'auto') {
@@ -1497,11 +1499,6 @@
         ZaDarkUtils.showIntroHideThreadChatMessage(introOptions)
       }
     })
-
-    const s = document.createElement('script')
-    s.src = 'zadark/js/zadark-zconv.min.js'
-    s.onload = function () { this.remove() };
-    (document.head || document.documentElement).append(s)
 
     document.addEventListener('@ZaDark:CONV_ID_CHANGE', function () {
       loadThreadChatBg()

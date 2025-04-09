@@ -5,8 +5,12 @@
 */
 
 (function () {
+  // const log = console.log.bind(console, '[zadark-reaction]')
+
   ZaDarkBrowser.initClassNames()
   ZaDarkUtils.initPageSettings()
+
+  document.documentElement.setAttribute('data-zadark-emoji-url', ZaDarkBrowser.getURL('/images/zalo-emoji-md.png'))
 
   const popupScrollableElName = '#js-zadark-popup__scrollable'
   const btnScrollElName = '#js-btn-scroll'
@@ -843,11 +847,6 @@
         ZaDarkUtils.showIntroHideThreadChatMessage(introOptions)
       }
     })
-
-    const s = document.createElement('script')
-    s.src = ZaDarkBrowser.getURL('js/zadark-zconv.min.js')
-    s.onload = function () { this.remove() };
-    (document.head || document.documentElement).append(s)
 
     document.addEventListener('@ZaDark:CONV_ID_CHANGE', function () {
       loadThreadChatBg()

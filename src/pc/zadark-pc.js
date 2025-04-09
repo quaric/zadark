@@ -230,6 +230,16 @@ const writeIndexFile = (zaloDir) => {
     },
     {
       where: 'beforeend',
+      html: '<script src="zadark/js/zadark-zconv.min.js"></script>',
+      htmlElement: bodyElement
+    },
+    {
+      where: 'beforeend',
+      html: '<script src="zadark/js/zadark-reaction.min.js"></script>',
+      htmlElement: bodyElement
+    },
+    {
+      where: 'beforeend',
       html: '<script src="zadark/js/zadark.min.js"></script>',
       htmlElement: bodyElement
     }
