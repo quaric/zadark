@@ -1,5 +1,5 @@
 (function () {
-  const log = console.log.bind(console, '[zadark-reaction]')
+  // const log = console.log.bind(console, '[zadark-reaction]')
 
   const EMOJI_POS = {
     ':)': '82.00% 17.50%',
@@ -1814,7 +1814,7 @@
     const cacheKey = `${emoji.rType}:${emoji.rIcon}`
 
     if (emojiCache.has(cacheKey)) {
-      log('using cached emoji', cacheKey)
+      // log('using cached emoji', cacheKey)
 
       const cachedEl = emojiCache.get(cacheKey).cloneNode(true)
       attachClickHandler(cachedEl, emoji, sendReaction, closePopover)
@@ -1822,7 +1822,7 @@
       return cachedEl
     }
 
-    log('creating new emoji', cacheKey)
+    // log('creating new emoji', cacheKey)
 
     const emojiUrl = document.documentElement.getAttribute('data-zadark-emoji-url')
 
