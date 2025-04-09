@@ -1,5 +1,5 @@
 (function () {
-  const log = console.log.bind(console, '[zadark-reaction]')
+  // const log = console.log.bind(console, '[zadark-reaction]')
 
   const EMOJI_POS = {
     ':)': '82.00% 17.50%',
@@ -1444,6 +1444,8 @@
     ':flag-zw:': '78.00% 17.50%'
   }
 
+  const EMOJI_POS_MAP = new Map(Object.entries(EMOJI_POS))
+
   const EMOJI_LIST = [
     {
       rType: 0,
@@ -1775,9 +1777,15 @@
     }
   ].map((emoji) => ({
     ...emoji,
-    backgroundPosition: EMOJI_POS[emoji.rIcon] || '0% 0%'
+    backgroundPosition: EMOJI_POS_MAP.get(emoji.rIcon) || '0% 0%'
   }))
 
+  /**
+   * Retrieves the internal React Fiber node from a given DOM element.
+   *
+   * @param {HTMLElement} el - The DOM element to inspect.
+   * @returns {Object|null} - The corresponding React Fiber node if found, otherwise null.
+   */
   const getReactFiber = (el) => {
     for (const k in el) {
       if (k.startsWith('__reactInternalInstance')) {
@@ -1787,7 +1795,35 @@
     return null
   }
 
+  /**
+   * A cache map for storing previously created emoji elements,
+   * keyed by a combination of emoji type and icon.
+   */
+  const emojiCache = new Map()
+
+  /**
+   * Creates a new emoji DOM element, or reuses one from cache if available.
+   * Adds necessary styling and click behavior.
+   *
+   * @param {Object} emoji - Contains properties like rType, rIcon, and backgroundPosition.
+   * @param {Function} sendReaction - Callback triggered when the emoji is clicked.
+   * @param {Function} closePopover - Callback to close the emoji selection UI.
+   * @returns {HTMLElement} - A fully prepared DOM element representing the emoji.
+   */
   const createEmojiEl = (emoji, sendReaction, closePopover) => {
+    const cacheKey = `${emoji.rType}:${emoji.rIcon}`
+
+    if (emojiCache.has(cacheKey)) {
+      // log('using cached emoji', cacheKey)
+
+      const cachedEl = emojiCache.get(cacheKey).cloneNode(true)
+      attachClickHandler(cachedEl, emoji, sendReaction, closePopover)
+
+      return cachedEl
+    }
+
+    // log('creating new emoji', cacheKey)
+
     const emojiUrl = document.documentElement.getAttribute('data-zadark-emoji-url')
 
     const wrapperEl = document.createElement('div')
@@ -1806,7 +1842,25 @@
 
     wrapperEl.appendChild(emojiEl)
 
-    wrapperEl.addEventListener('click', (e) => {
+    emojiCache.set(cacheKey, wrapperEl.cloneNode(true))
+    attachClickHandler(wrapperEl, emoji, sendReaction, closePopover)
+
+    return wrapperEl
+  }
+
+  /**
+   * Attaches a click event handler to an emoji element that:
+   * - Prevents default behavior and stops event propagation.
+   * - Invokes the sendReaction callback with emoji data if provided.
+   * - Closes the emoji popover if the closePopover callback is defined.
+   *
+   * @param {HTMLElement} el - The target element to bind the event to.
+   * @param {Object} emoji - Contains rType and rIcon for reaction payload.
+   * @param {Function} sendReaction - Function to handle the emoji click action.
+   * @param {Function} closePopover - Function to close the emoji popover UI.
+   */
+  const attachClickHandler = (el, emoji, sendReaction, closePopover) => {
+    el.addEventListener('click', (e) => {
       e.preventDefault()
       e.stopPropagation()
 
@@ -1821,76 +1875,89 @@
         closePopover()
       }
     })
+  }
 
-    return wrapperEl
+  /**
+   * Traverses up the React Fiber tree starting from a given DOM element,
+   * looking for a fiber node that contains a `sendReaction` function in its props.
+   *
+   * @param {HTMLElement} el - The DOM element to begin traversal from.
+   * @param {number} [maxDepth=10] - Maximum number of parent levels to search through.
+   * @returns {Function|null} - The found sendReaction function, or null if not found.
+   */
+  const getReactFiberUpToDepth = (el, maxDepth = 10) => {
+    let fiber = getReactFiber(el)
+    let depth = 0
+
+    while (fiber && depth < maxDepth) {
+      if (fiber.memoizedProps && typeof fiber.memoizedProps.sendReaction === 'function') {
+        return fiber.memoizedProps.sendReaction
+      }
+      fiber = fiber.return
+      ++depth
+    }
+
+    return null
   }
 
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((m) => {
-      if (m.type === 'childList' && m.addedNodes.length > 0 && Array.from(m.addedNodes).some((n) => n.querySelector && n.querySelector('.reaction-emoji-list'))) {
-        setTimeout(() => {
-          document.querySelectorAll('.reaction-emoji-list').forEach((el) => {
-            if (el.getAttribute('data-init-zadark-reaction') === 'true') {
-              return
-            }
+      if (m.type !== 'childList' || m.addedNodes.length === 0) return
 
-            el.setAttribute('data-init-zadark-reaction', 'true')
+      const targetNode = Array.from(m.addedNodes).find(
+        (n) => n.querySelector && n.querySelector('.reaction-emoji-list')
+      )
 
-            const zaloEmojiListWrapperEl = el.closest('.emoji-list-wrapper')
-            if (!zaloEmojiListWrapperEl) {
-              return
-            }
+      if (!targetNode) return
 
-            let fiber = getReactFiber(zaloEmojiListWrapperEl)
-            let sendReaction = null
-            let count = 0
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.reaction-emoji-list').forEach((el) => {
+          if (el.getAttribute('data-zadark-reaction-initialized') === 'true') {
+            return
+          }
 
-            if (fiber) {
-              while (fiber) {
-                ++count
-                if (fiber.memoizedProps && typeof fiber.memoizedProps.sendReaction === 'function') {
-                  log('found fiber', count, fiber.memoizedProps)
-                  sendReaction = fiber.memoizedProps.sendReaction
-                  break
-                }
-                fiber = fiber.return
-              }
-            }
+          el.setAttribute('data-zadark-reaction-initialized', 'true')
 
-            const containerEl = document.createElement('div')
-            containerEl.className = 'zadark-reaction'
-            containerEl.setAttribute('data-open', 'false')
+          const zaloEmojiListWrapperEl = el.closest('.emoji-list-wrapper')
+          if (!zaloEmojiListWrapperEl) {
+            return
+          }
 
-            const popoverTriggerEl = document.createElement('button')
-            popoverTriggerEl.classList.add('zadark-reaction__popover__trigger')
-            popoverTriggerEl.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>'
-            popoverTriggerEl.addEventListener('click', (e) => {
-              e.preventDefault()
-              e.stopPropagation()
+          const sendReaction = getReactFiberUpToDepth(zaloEmojiListWrapperEl, 10)
 
-              const isOpen = containerEl.getAttribute('data-open') === 'true'
-              containerEl.setAttribute('data-open', !isOpen)
-            })
+          const containerEl = document.createElement('div')
+          containerEl.className = 'zadark-reaction'
+          containerEl.setAttribute('data-open', 'false')
 
-            const closePopover = () => {
-              containerEl.setAttribute('data-open', 'false')
-            }
+          const popoverTriggerEl = document.createElement('button')
+          popoverTriggerEl.classList.add('zadark-reaction__popover__trigger')
+          popoverTriggerEl.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>'
+          popoverTriggerEl.addEventListener('click', (e) => {
+            e.preventDefault()
+            e.stopPropagation()
 
-            const popoverContentEl = document.createElement('div')
-            popoverContentEl.className = 'zadark-reaction__popover__content'
-
-            const popoverContentChildNodes = EMOJI_LIST.map((reaction) => createEmojiEl(reaction, sendReaction, closePopover))
-            popoverContentEl.append(...popoverContentChildNodes)
-
-            containerEl.appendChild(popoverTriggerEl)
-            containerEl.appendChild(popoverContentEl)
-
-            el.appendChild(containerEl)
+            const isOpen = containerEl.getAttribute('data-open') === 'true'
+            containerEl.setAttribute('data-open', String(!isOpen))
           })
-        }, 50)
-      }
+
+          const closePopover = () => {
+            containerEl.setAttribute('data-open', 'false')
+          }
+
+          const popoverContentEl = document.createElement('div')
+          popoverContentEl.className = 'zadark-reaction__popover__content'
+
+          const popoverContentChildNodes = EMOJI_LIST.map((reaction) => createEmojiEl(reaction, sendReaction, closePopover))
+          popoverContentEl.append(...popoverContentChildNodes)
+
+          containerEl.appendChild(popoverTriggerEl)
+          containerEl.appendChild(popoverContentEl)
+
+          el.appendChild(containerEl)
+        })
+      })
     })
   })
 
-  observer.observe(document.body, { childList: true, subtree: true })
+  observer.observe(document.querySelector('#app'), { childList: true, subtree: true })
 })()

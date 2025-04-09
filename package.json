@@ -1,7 +1,7 @@
 {
   "name": "zadark",
   "description": "Dark Mode tốt nhất cho Zalo",
-  "version": "25.4.1",
+  "version": "25.4.2",
   "repository": "https://github.com/quaric/zadark.git",
   "author": {
     "name": "Quaric",
@@ -87,6 +87,7 @@
       "localStorage",
       "MutationObserver",
       "fetch",
+      "requestAnimationFrame",
       "Blob",
       "FileReader",
       "Image",
