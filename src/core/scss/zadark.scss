@@ -665,6 +665,7 @@ html[data-zadark-theme="light"] {
     --zadark-custom-leftmenu-text-hover: #005ae0;
 
     --zadark-reaction-background: var(--reaction-background);
+    --zadark-reaction-border: transparent;
 
     --layer-background-leftmenu: #fff;
     --layer-background-leftmenu-hover: #e5efff;
@@ -697,6 +698,7 @@ html[data-zadark-theme="dark"] {
     --zadark-custom-leftmenu-text-hover: var(--text-primary);
 
     --zadark-reaction-background: rgb(35, 37, 38);
+    --zadark-reaction-border: rgb(61, 63, 64);
   }
 
   // Scrollbar

@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 25.4.3
+
+> PC 15.2.2 và Web 9.35.2
+
+- Bày tỏ cảm xúc trong tin nhắn (Reaction): Hiển thị danh sách biểu tượng cảm xúc đã sử dụng gần đây.
+
 ## ZaDark 25.4.2
 
 > PC 15.2.1 và Web 9.35.1
