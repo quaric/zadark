@@ -1,5 +1,5 @@
 (function () {
-  // const log = console.log.bind(console, '[zadark-reaction]')
+  const log = console.log.bind(console, '[zadark-reaction]')
 
   const EMOJI_POS = {
     ':)': '82.00% 17.50%',
@@ -1446,6 +1446,14 @@
 
   const EMOJI_POS_MAP = new Map(Object.entries(EMOJI_POS))
 
+  /**
+   * @typedef {Object} Emoji
+   * @property {number} rType - The type of the emoji (e.g. 0 for default).
+   * @property {string} rIcon - The textual representation of the emoji.
+   * @property {string} backgroundPosition - The CSS background-position for sprite sheets.
+   */
+
+  /** @type {Emoji[]} */
   const EMOJI_LIST = [
     {
       rType: 0,
@@ -1795,6 +1803,86 @@
     return null
   }
 
+  const RECENT_EMOJI_LIST_KEY = 'zadark/reaction-recent-emojis'
+
+  /**
+   * Saves the list of recently used emojis to localStorage.
+   *
+   * @param {Emoji[]} emojis - An array of emoji objects to be saved.
+   */
+  const saveRecentEmojis = (emojis) => {
+    try {
+      localStorage.setItem(RECENT_EMOJI_LIST_KEY, JSON.stringify(emojis))
+    } catch (e) {
+      log('Failed to save recent emojis to localStorage', e)
+    }
+  }
+
+  /**
+   * Adds a new emoji to the recent emoji list.
+   * If the emoji already exists, it is moved to the top of the list.
+   * The list is trimmed to a maximum of 5 emojis.
+   *
+   * @param {Emoji} emoji - The emoji object to be added.
+   */
+  const addRecentEmoji = (emoji) => {
+    const existingIndex = RECENT_EMOJI_LIST.findIndex(e => e.rIcon === emoji.rIcon)
+
+    if (existingIndex !== -1) {
+      RECENT_EMOJI_LIST.splice(existingIndex, 1)
+    }
+
+    RECENT_EMOJI_LIST.unshift(emoji)
+
+    if (RECENT_EMOJI_LIST.length > 5) {
+      RECENT_EMOJI_LIST.length = 5
+    }
+
+    saveRecentEmojis(RECENT_EMOJI_LIST)
+  }
+
+  /**
+   * Cleans a list of emojis by filtering out those not found in the global EMOJI_LIST.
+   *
+   * @param {Emoji[]} emojis - An optional array of emoji objects to clean.
+   * @returns {Emoji[]} A filtered and validated list of emoji objects.
+   */
+  const cleanEmojis = (emojis) => {
+    if (!Array.isArray(emojis)) {
+      return []
+    }
+
+    if (emojis.length === 0) {
+      return []
+    }
+
+    const emojiListMap = new Map(EMOJI_LIST.map((e) => [e.rIcon, e]))
+    return emojis.map((e) => emojiListMap.get(e.rIcon)).filter(Boolean)
+  }
+
+  /**
+   * Retrieves the list of recently used emojis from localStorage.
+   * Returns a cleaned list with only valid emojis based on EMOJI_LIST.
+   *
+   * @returns {Emoji[]} An array of recently used emoji objects.
+   */
+  const getRecentEmojis = () => {
+    const recentEmojis = localStorage.getItem(RECENT_EMOJI_LIST_KEY)
+
+    if (!recentEmojis) {
+      return []
+    }
+
+    try {
+      return cleanEmojis(JSON.parse(recentEmojis))
+    } catch (e) {
+      log('Failed to parse recent emojis from localStorage', e)
+      return []
+    }
+  }
+
+  const RECENT_EMOJI_LIST = getRecentEmojis()
+
   /**
    * A cache map for storing previously created emoji elements,
    * keyed by a combination of emoji type and icon.
@@ -1805,7 +1893,7 @@
    * Creates a new emoji DOM element, or reuses one from cache if available.
    * Adds necessary styling and click behavior.
    *
-   * @param {Object} emoji - Contains properties like rType, rIcon, and backgroundPosition.
+   * @param {Emoji} emoji - Contains properties like rType, rIcon, and backgroundPosition.
    * @param {Function} sendReaction - Callback triggered when the emoji is clicked.
    * @param {Function} closePopover - Callback to close the emoji selection UI.
    * @returns {HTMLElement} - A fully prepared DOM element representing the emoji.
@@ -1837,8 +1925,6 @@
     emojiEl.style.backgroundImage = `url("${emojiUrl}?v=250409")`
     emojiEl.style.backgroundPosition = emoji.backgroundPosition
     emojiEl.style.margin = '-1px'
-    emojiEl.style.position = 'relative'
-    emojiEl.style.top = '2px'
 
     wrapperEl.appendChild(emojiEl)
 
@@ -1855,7 +1941,7 @@
    * - Closes the emoji popover if the closePopover callback is defined.
    *
    * @param {HTMLElement} el - The target element to bind the event to.
-   * @param {Object} emoji - Contains rType and rIcon for reaction payload.
+   * @param {Emoji} emoji - Contains rType and rIcon for reaction payload.
    * @param {Function} sendReaction - Function to handle the emoji click action.
    * @param {Function} closePopover - Function to close the emoji popover UI.
    */
@@ -1869,6 +1955,7 @@
           rType: emoji.rType,
           rIcon: emoji.rIcon
         })
+        addRecentEmoji(emoji)
       }
 
       if (typeof closePopover === 'function') {
@@ -1929,26 +2016,63 @@
           containerEl.className = 'zadark-reaction'
           containerEl.setAttribute('data-open', 'false')
 
+          const closePopover = () => {
+            containerEl.setAttribute('data-open', 'false')
+          }
+
+          const popoverContentListFragment = document.createDocumentFragment()
+          for (const emoji of EMOJI_LIST) {
+            const emojiEl = createEmojiEl(emoji, sendReaction, closePopover)
+            popoverContentListFragment.appendChild(emojiEl)
+          }
+
+          const popoverContentListEl = document.createElement('div')
+          popoverContentListEl.className = 'zadark-reaction__popover-content__list'
+          popoverContentListEl.appendChild(popoverContentListFragment)
+
+          const popoverContentRecentEl = document.createElement('div')
+          popoverContentRecentEl.className = 'zadark-reaction__popover-content__recent'
+
+          const popoverContentEl = document.createElement('div')
+          popoverContentEl.className = 'zadark-reaction__popover-content'
+          popoverContentEl.appendChild(popoverContentListEl)
+          popoverContentEl.appendChild(popoverContentRecentEl)
+
+          let lastRenderedRecentEmojis = ''
+
           const popoverTriggerEl = document.createElement('button')
-          popoverTriggerEl.classList.add('zadark-reaction__popover__trigger')
+          popoverTriggerEl.classList = 'zadark-reaction__popover-trigger'
           popoverTriggerEl.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>'
+
           popoverTriggerEl.addEventListener('click', (e) => {
             e.preventDefault()
             e.stopPropagation()
 
             const isOpen = containerEl.getAttribute('data-open') === 'true'
             containerEl.setAttribute('data-open', String(!isOpen))
+
+            if (!isOpen) {
+              const recentKey = RECENT_EMOJI_LIST.slice(0, 5).map((e) => `${e.rType}:${e.rIcon}`).join(',')
+
+              if (recentKey === lastRenderedRecentEmojis) {
+                return
+              }
+
+              lastRenderedRecentEmojis = recentKey
+
+              const recentIconEl = document.createElement('span')
+              recentIconEl.className = 'zadark-reaction__popover-content__recent-icon'
+              recentIconEl.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history-icon lucide-history"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>'
+
+              const recentEmojisFragment = document.createDocumentFragment()
+              recentEmojisFragment.appendChild(recentIconEl)
+              for (const emoji of RECENT_EMOJI_LIST.slice(0, 5)) {
+                recentEmojisFragment.appendChild(createEmojiEl(emoji, sendReaction, closePopover))
+              }
+              popoverContentRecentEl.setAttribute('data-has-recent-emojis', String(RECENT_EMOJI_LIST.length > 0))
+              popoverContentRecentEl.replaceChildren(recentEmojisFragment)
+            }
           })
-
-          const closePopover = () => {
-            containerEl.setAttribute('data-open', 'false')
-          }
-
-          const popoverContentEl = document.createElement('div')
-          popoverContentEl.className = 'zadark-reaction__popover__content'
-
-          const popoverContentChildNodes = EMOJI_LIST.map((reaction) => createEmojiEl(reaction, sendReaction, closePopover))
-          popoverContentEl.append(...popoverContentChildNodes)
 
           containerEl.appendChild(popoverTriggerEl)
           containerEl.appendChild(popoverContentEl)

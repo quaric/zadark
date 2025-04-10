@@ -1,6 +1,6 @@
 @mixin expand-zalo-reaction {
   .emoji-list-wrapper.hide-elist {
-    .zadark-reaction__popover__content {
+    .zadark-reaction__popover-content {
       display: none;
     }
   }
@@ -12,11 +12,11 @@
     margin: 0 8px;
 
     &[data-open="true"] {
-      .zadark-reaction__popover__trigger svg {
+      .zadark-reaction__popover-trigger svg {
         transform: rotate(45deg);
       }
 
-      .zadark-reaction__popover__content {
+      .zadark-reaction__popover-content {
         visibility: visible;
         opacity: 1;
         pointer-events: auto;
@@ -24,7 +24,7 @@
     }
 
     &[data-open="false"] {
-      .zadark-reaction__popover__content {
+      .zadark-reaction__popover-content {
         visibility: hidden;
         opacity: 0;
         pointer-events: none;
@@ -32,7 +32,7 @@
     }
   }
 
-  .zadark-reaction__popover__trigger {
+  .zadark-reaction__popover-trigger {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,29 +53,61 @@
     }
   }
 
-  .zadark-reaction__popover__content {
+  .zadark-reaction__popover-content {
     position: absolute;
     top: 0;
-    overflow: auto;
 
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    display: flex;
+    flex-direction: column;
     width: 202px;
     height: 202px;
-    padding: 5px;
-    transform: translate(-188px, -205px);
+    transform: translate(-180px, -198px);
 
+    border: 1px solid var(--zadark-reaction-border);
     background-color: var(--zadark-reaction-background);
     border-radius: var(--zadark-rounded-base);
     box-shadow: 4px 4px 12px var(--BA50);
     transition:
       opacity 0.2s ease-in-out,
       visibility 0.2s ease-in-out;
+  }
+
+  .zadark-reaction__popover-content__list {
+    position: relative;
+    overflow: auto;
+
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    padding: 5px;
 
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
     &::-webkit-scrollbar {
       display: none;
+    }
+  }
+
+  .zadark-reaction__popover-content__recent {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+
+    &[data-has-recent-emojis="true"] {
+      padding: 2px 5px;
+      border-top: 1px solid var(--border);
+    }
+
+    &-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      color: var(--text-secondary);
+    }
+
+    .emoji-sizer.emoji-outer {
+      top: 0;
     }
   }
 
