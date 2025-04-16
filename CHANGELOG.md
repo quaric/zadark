@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 25.4.4
+
+> PC 15.2.3 và Web 9.35.3
+
+- Bày tỏ cảm xúc trong tin nhắn (Reaction): Ẩn hộp lựa chọn khi di chuyển chuột ra ngoài
+
 ## ZaDark 25.4.3
 
 > PC 15.2.2 và Web 9.35.2
