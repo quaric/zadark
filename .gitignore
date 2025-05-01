@@ -5,7 +5,7 @@ node_modules/
 build/
 dist/
 .zadark
-.env
+.env*
 tools/macos/notarytool_log.json
 
 # Xcode
