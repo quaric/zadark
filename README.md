@@ -43,7 +43,7 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 1. Fork the project
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Read [contributing/DEVELOPMENT.md](./contributing/DEVELOPMENT.md)
+3. Read [DEVELOPMENT.md](./DEVELOPMENT.md)
 4. Commit your changes (`git commit -m "Add some amazing feature"`)
 5. Push to the branch (`git push origin feature/amazing-feature`)
 6. Open a pull request

@@ -3,8 +3,8 @@ const mergeStream = require('merge-stream')
 const sass = require('sass')
 const yupSass = require('gulp-sass')(sass)
 const gulpZip = require('gulp-zip')
-const tar = require('gulp-tar')
-const gzip = require('gulp-gzip')
+// const tar = require('gulp-tar')
+// const gzip = require('gulp-gzip')
 const pkg = require('pkg')
 const path = require('path')
 const del = require('del')
@@ -297,38 +297,22 @@ const setWindowsExeInfo = async () => {
 
 const zipMacOSX64 = () => {
   return src(distUtils.getFilePath('MACOS_X64', true))
-    .pipe(rename(distUtils.getFileNameOriginal('MACOS_X64_FRIENDLY')))
+    .pipe(rename('zadark'))
     .pipe(gulpZip(distUtils.getFileNameZip('MACOS_X64')))
     .pipe(dest(distUtils.getFileDir('MACOS_X64')))
 }
 
 const zipMacOSARM64 = () => {
   return src(distUtils.getFilePath('MACOS_ARM64', true))
-    .pipe(rename(distUtils.getFileNameOriginal('MACOS_ARM64_FRIENDLY')))
+    .pipe(rename('zadark'))
     .pipe(gulpZip(distUtils.getFileNameZip('MACOS_ARM64')))
-    .pipe(dest(distUtils.getFileDir('MACOS_ARM64')))
-}
-
-const tarGzipMacOSX64 = () => {
-  return src(distUtils.getFilePath('MACOS_X64', true))
-    .pipe(rename('zadark'))
-    .pipe(tar(distUtils.getFileNameMacOSTar('x64')))
-    .pipe(gzip())
-    .pipe(dest(distUtils.getFileDir('MACOS_X64')))
-}
-
-const tarGzipMacOSARM64 = () => {
-  return src(distUtils.getFilePath('MACOS_ARM64', true))
-    .pipe(rename('zadark'))
-    .pipe(tar(distUtils.getFileNameMacOSTar('arm64')))
-    .pipe(gzip())
     .pipe(dest(distUtils.getFileDir('MACOS_ARM64')))
 }
 
 const hashsumMacOS = () => {
   const inp = [
-    path.join(distUtils.getFileDir('MACOS_X64'), distUtils.getFileNameMacOSTar('x64') + '.gz'),
-    path.join(distUtils.getFileDir('MACOS_ARM64'), distUtils.getFileNameMacOSTar('arm64') + '.gz')
+    path.join(distUtils.getFileDir('MACOS_X64'), distUtils.getFileNameZip('MACOS_X64')),
+    path.join(distUtils.getFileDir('MACOS_ARM64'), distUtils.getFileNameZip('MACOS_ARM64'))
   ]
   return src(inp).pipe(hashsum({ hash: 'sha256', dest: distUtils.getFileDir('MACOS_X64') }))
 }
@@ -369,12 +353,12 @@ const pcDist = series(
   pkgMacOS,
   pkgWindows,
   setWindowsExeInfo,
-  zipMacOSX64,
-  zipMacOSARM64,
-  tarGzipMacOSX64,
-  tarGzipMacOSARM64,
+  parallel(
+    zipMacOSX64,
+    zipMacOSARM64,
+    zipWindows
+  ),
   hashsumMacOS,
-  zipWindows,
   parallel(
     delTmpFile(distUtils.getFilePath('MACOS_X64', true)),
     delTmpFile(distUtils.getFilePath('MACOS_ARM64', true)),

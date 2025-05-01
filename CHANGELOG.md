@@ -1,6 +1,6 @@
 # Changelog
 
-## ZaDark 25.4.4
+## ZaDark 25.5.1
 
 > PC 15.2.3 và Web 9.35.3
 
