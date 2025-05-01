@@ -2288,12 +2288,12 @@ html[data-zadark-theme="dark"] {
       color: var(--text-primary) !important;
     }
 
-    // .contact-pages.page-container {
-    //   background: var(--message-view-gradient);
-    // }
-
     .msg-info-popup {
       background-color: var(--layer-background-subtle);
+    }
+
+    .z-banner.--emphasis-info {
+      background-color: var(--N20);
     }
   }
 }

@@ -2038,6 +2038,10 @@
           popoverContentEl.appendChild(popoverContentListEl)
           popoverContentEl.appendChild(popoverContentRecentEl)
 
+          popoverContentEl.addEventListener('mouseleave', (e) => {
+            containerEl.setAttribute('data-open', 'false')
+          })
+
           let lastRenderedRecentEmojis = ''
 
           const popoverTriggerEl = document.createElement('button')

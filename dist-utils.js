@@ -22,38 +22,24 @@ const getVersion = (platform) => {
   }
 }
 
-const FILE_DIR = {
-  CHROME: './dist/chrome',
-  FIREFOX: './dist/firefox',
-  EDGE: './dist/edge',
-  MACOS: './dist/macos',
-  MACOS_X64: './dist/macos',
-  MACOS_ARM64: './dist/macos',
-  WINDOWS: './dist/windows'
-}
-
 const FILE_NAME_ORIGINAL = {
-  CHROME: `ZaDark Chrome ${getVersion('CHROME')}.zip`,
-  FIREFOX: `ZaDark Firefox ${getVersion('FIREFOX')}.zip`,
-  OPERA: `ZaDark Opera ${getVersion('OPERA')}.zip`,
-  EDGE: `ZaDark Edge ${getVersion('EDGE')}.zip`,
-  MACOS: `ZaDark ${getVersion('MACOS')}`,
-  MACOS_X64: `ZaDark ${getVersion('MACOS')}-x64`,
-  MACOS_ARM64: `ZaDark ${getVersion('MACOS')}-arm64`,
-  MACOS_X64_FRIENDLY: `ZaDark ${getVersion('MACOS')} - Intel Chip`,
-  MACOS_ARM64_FRIENDLY: `ZaDark ${getVersion('MACOS')} - Apple Chip`,
-  WINDOWS: `ZaDark ${getVersion('WINDOWS')}.exe`
+  CHROME: `zadark${getVersion('CHROME')}-chrome.zip`,
+  FIREFOX: `zadark${getVersion('FIREFOX')}-firefox.zip`,
+  EDGE: `zadark${getVersion('EDGE')}-edge.zip`,
+  MACOS: `zadark${getVersion('MACOS')}-macos`,
+  MACOS_X64: `zadark${getVersion('MACOS')}-macos-x64`,
+  MACOS_ARM64: `zadark${getVersion('MACOS')}-macos-arm64`,
+  WINDOWS: `zadark${getVersion('WINDOWS')}-windows.exe`
 }
 
 const FILE_NAME_ZIP = {
-  CHROME: `ZaDark Chrome ${getVersion('CHROME')}.zip`,
-  FIREFOX: `ZaDark Firefox ${getVersion('FIREFOX')}.zip`,
-  OPERA: `ZaDark Opera ${getVersion('OPERA')}.zip`,
-  EDGE: `ZaDark Edge ${getVersion('EDGE')}.zip`,
-  MACOS: `ZaDark ${getVersion('MACOS')}.zip`,
-  MACOS_X64: `ZaDark ${getVersion('MACOS')} - Intel Chip.zip`,
-  MACOS_ARM64: `ZaDark ${getVersion('MACOS')} - Apple Chip.zip`,
-  WINDOWS: `ZaDark ${getVersion('WINDOWS')}.zip`
+  CHROME: `zadark${getVersion('CHROME')}-chrome.zip`,
+  FIREFOX: `zadark${getVersion('FIREFOX')}-firefox.zip`,
+  EDGE: `zadark${getVersion('EDGE')}-edge.zip`,
+  MACOS: `zadark${getVersion('MACOS')}-macos.zip`,
+  MACOS_X64: `zadark${getVersion('MACOS')}-macos-x64.zip`,
+  MACOS_ARM64: `zadark${getVersion('MACOS')}-macos-arm64.zip`,
+  WINDOWS: `zadark${getVersion('WINDOWS')}-windows.zip`
 }
 
 const getFileNameOriginal = (plat) => {
@@ -64,18 +50,13 @@ const getFileNameZip = (plat) => {
   return FILE_NAME_ZIP[plat]
 }
 
-const getFileNameMacOSTar = (arch = 'x64') => {
-  return `zadark-macos-${pcPackageJSON.version}-${arch}.tar`
-}
-
 const getFileDir = (platform) => {
-  return path.join(__dirname, FILE_DIR[platform])
+  return path.join(__dirname, './dist')
 }
 
 const getFilePath = (platform, isOriginalFile = false) => {
   return path.join(
-    __dirname,
-    FILE_DIR[platform],
+    getFileDir(platform),
     isOriginalFile
       ? getFileNameOriginal(platform)
       : getFileNameZip(platform)
@@ -87,7 +68,6 @@ module.exports = {
 
   getFileNameOriginal,
   getFileNameZip,
-  getFileNameMacOSTar,
 
   getFileDir,
   getFilePath
