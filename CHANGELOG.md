@@ -5,6 +5,7 @@
 > PC 15.2.3 và Web 9.35.3
 
 - Bày tỏ cảm xúc trong tin nhắn (Reaction): Ẩn hộp lựa chọn khi di chuyển chuột ra ngoài
+- Đổi màu nền của banner khuyến nghị cài Zalo PC
 
 ## ZaDark 25.4.3
 
