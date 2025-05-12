@@ -24,6 +24,7 @@ const getVersion = (platform) => {
 
 const FILE_NAME_ORIGINAL = {
   CHROME: `zadark${getVersion('CHROME')}-chrome.zip`,
+  CHROME_CRX: `zadark${getVersion('CHROME')}-chrome.crx`,
   FIREFOX: `zadark${getVersion('FIREFOX')}-firefox.zip`,
   EDGE: `zadark${getVersion('EDGE')}-edge.zip`,
   MACOS: `zadark${getVersion('MACOS')}-macos`,
@@ -34,6 +35,7 @@ const FILE_NAME_ORIGINAL = {
 
 const FILE_NAME_ZIP = {
   CHROME: `zadark${getVersion('CHROME')}-chrome.zip`,
+  CHROME_CRX: `zadark${getVersion('CHROME')}-chrome.crx`,
   FIREFOX: `zadark${getVersion('FIREFOX')}-firefox.zip`,
   EDGE: `zadark${getVersion('EDGE')}-edge.zip`,
   MACOS: `zadark${getVersion('MACOS')}-macos.zip`,

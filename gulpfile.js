@@ -3,6 +3,7 @@ const mergeStream = require('merge-stream')
 const sass = require('sass')
 const yupSass = require('gulp-sass')(sass)
 const gulpZip = require('gulp-zip')
+const gulpCrx = require('gulp-crx-pack')
 // const tar = require('gulp-tar')
 // const gzip = require('gulp-gzip')
 const pkg = require('pkg')
@@ -331,6 +332,15 @@ const chromeDist = () => {
     .pipe(dest(distUtils.getFileDir('CHROME')))
 }
 
+const chromeCrxPack = () => {
+  return src('./build/chrome')
+    .pipe(gulpCrx({
+      privateKey: fs.readFileSync('./certs/privatekey.pem', 'utf8'),
+      filename: distUtils.getFileNameZip('CHROME_CRX')
+    }))
+    .pipe(dest(distUtils.getFileDir('CHROME')))
+}
+
 const firefoxDist = () => {
   return src('./build/firefox/**')
     .pipe(gulpZip(distUtils.getFileNameZip('FIREFOX')))
@@ -386,6 +396,7 @@ const distAll = series(
   // cleanDist,
   parallel(
     chromeDist,
+    chromeCrxPack,
     firefoxDist,
     edgeDist,
     pcDist
@@ -396,6 +407,7 @@ const distWeb = series(
   buildAll,
   parallel(
     chromeDist,
+    chromeCrxPack,
     firefoxDist,
     edgeDist
   )

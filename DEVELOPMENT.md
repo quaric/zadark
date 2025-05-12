@@ -75,27 +75,23 @@ This document describes the process for running this application on your local c
 ### For Other Platforms
 
 ```bash
+# Create a signing key pair (https://developer.chrome.com/docs/webstore/update#protect-package-updates)
+openssl genrsa -out ./certs/privatekey.pem 2048
+
 yarn dist
 
 # ➜ Output:
 # dist/
-#   chrome/
-#     ZaDark Chrome [VERSION].zip
-#
-#   edge/
-#     ZaDark Edge [VERSION].zip
-#
-#   firefox/
-#     ZaDark Firefox [VERSION].zip
-#
-#   windows/
-#     ZaDark [VERSION].zip
-#
-#   macos/
-#     ZaDark [VERSION] - Intel Chip.zip
-#     ZaDark [VERSION] - Apple Chip.zip
+#   zadark[VERSION]-chrome.zip
+#   zadark[VERSION]-chrome.crx
+#   zadark[VERSION]-edge.zip
+#   zadark[VERSION]-firefox.zip
+#   zadark[VERSION]-windows.zip
+#   zadark[VERSION]-macos-arm64.zip
+#   zadark[VERSION]-macos-x64.zip
 ```
 
-- For Chrome, Edge and Firefox: Distribute `dist/[PLATFORM]/ZaDark [PLATFORM] [VERSION].zip` to Store
-- For Windows: Distribute `dist/windows/ZaDark [VERSION].zip` directly to users
-- For macOS: Distribute `dist/macos/ZaDark [VERSION] [TARGET].zip` directly to users
+- For Chrome, Edge and Firefox: Distribute `dist/zadark[VERSION]-[PLATFORM].zip` to Store
+  - Protect your package updates: https://developer.chrome.com/docs/webstore/update#protect-package-updates
+- For Windows: Distribute `dist/zadark[VERSION]-windows.zip` directly to users
+- For macOS: Distribute `dist/zadark[VERSION]-macos-[ARCH].zip` directly to users
