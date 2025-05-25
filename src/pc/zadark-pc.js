@@ -472,8 +472,16 @@ const installZaDark = async (zaloDir) => {
     fs.renameSync(appAsarPath, appAsarBakPath)
   }
 
-  printDebug('- createAsar:', appDirTmpPath, '>', appAsarPath)
-  await asar.createPackage(appDirTmpPath, appAsarPath)
+  if (IS_MAC) {
+    printDebug('- createAsar:', appDirTmpPath, '>', appAsarPath)
+    await asar.createPackage(appDirTmpPath, appAsarPath)
+  } else {
+    // On Windows, do not package the "extracted app folder" into an app.asar file
+    // to resolve the issue with not being able to send images from the clipboard (https://github.com/quaric/zadark/issues/190).
+    // Instead, rename the folder to app.asar so that Electron can launch it.
+    printDebug('- moveAppAsar:', appDirTmpPath, '>', appAsarPath)
+    await fs.move(appDirTmpPath, appAsarPath)
+  }
 
   printDebug('- deleteDir:', ZADARK_TMP_PATH)
   fs.rmSync(ZADARK_TMP_PATH, { recursive: true })

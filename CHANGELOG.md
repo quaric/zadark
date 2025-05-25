@@ -1,5 +1,11 @@
 # Changelog
 
+## ZaDark 25.5.2
+
+> PC 15.2.4
+
+- Sửa lỗi không thể gửi ảnh từ Clipboard trên Zalo PC (Windows) [#190](https://github.com/quaric/zadark/issues/190)
+
 ## ZaDark 25.5.1
 
 > PC 15.2.3 và Web 9.35.3
