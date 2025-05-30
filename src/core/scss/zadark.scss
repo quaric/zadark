@@ -2484,6 +2484,10 @@ body.zadark {
     // @include prv.prv-thread-chat-message-v2();
   }
 
+  &.zadark-prv--thread-chat-message #chatInfo {
+    @include prv.prv-thread-chat-info();
+  }
+
   &.zadark-prv--conv-avatar {
     @include prv.prv-conv-avatar();
   }
@@ -2584,6 +2588,13 @@ body.zadark {
 
   // * Zalo >= v24.3.1
   .chat-input-container--audit-2023.--rtf-mode .rtf-placeholder {
+    font-size: var(--zadark-cnv-font-size);
+  }
+
+  // * Zalo >= v25.5.3
+  .rich-input,
+  .zl-compose > .rich-input,
+  .rich-text-input .input-v4 {
     font-size: var(--zadark-cnv-font-size);
   }
 
