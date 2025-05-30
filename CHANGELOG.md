@@ -1,5 +1,14 @@
 # Changelog
 
+## ZaDark 25.10
+
+- Đồng bộ cách đặt tên phiên bản ZaDark `[Năm].[STT bản cập nhật trong Năm]`
+- Sửa lỗi ẩn hình ảnh, video trong cuộc trò chuyện
+- Sửa lỗi tuỳ chỉnh cỡ chữ không hoạt động trong khung soạn tin nhắn
+- Hỗ trợ bảo vệ nội dung ở phần "Thông tin hội thoại" (Bên phải màn hình nhắn tin):
+  - Ẩn hình ảnh, video
+  - Làm mờ tập tin, liên kết, bình chọn, ghi chú, nhắc nhỡ
+
 ## ZaDark 25.5.2
 
 > PC 15.2.4
