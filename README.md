@@ -62,13 +62,7 @@ https://zadark.com/awards
 
 ## Star History
 
-<a href="https://www.star-history.com/#quaric/zadark&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=quaric/zadark&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=quaric/zadark&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=quaric/zadark&type=Date" />
-  </picture>
-</a>
+[![Star History](https://starchart.cc/quaric/zadark.svg?variant=adaptive)](https://starchart.cc/quaric/zadark)
 
 ## Acknowledgments
 
