@@ -1,5 +1,12 @@
 # Changelog
 
+## ZaDark 26.1
+
+- Tuỳ chỉnh cỡ chữ: Cho phép tuỳ chỉnh linh hoạt từ 12px - 24px
+- Bày tỏ cảm xúc trong tin nhắn (Reaction):
+  - Sửa lỗi biểu tượng cảm xúc
+  - Tối ưu hiệu năng
+
 ## ZaDark 25.10
 
 - Đồng bộ cách đặt tên phiên bản ZaDark `[Năm].[STT bản cập nhật trong Năm]`
