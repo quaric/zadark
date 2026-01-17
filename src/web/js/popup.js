@@ -32,7 +32,7 @@ const switchUseHotkeysElName = '#js-switch-use-hotkeys'
 
 $(ratingElName).attr('href', ZaDarkUtils.getRatingURL(ZaDarkBrowser.name))
 
-ZaDarkBrowser.getExtensionSettings().then(({
+ZaDarkBrowser.getExtensionSettings().then(async ({
   theme,
   fontFamily,
   fontSize,
@@ -46,9 +46,26 @@ ZaDarkBrowser.getExtensionSettings().then(({
   ZaDarkUtils.setPageTheme(theme)
   ZaDarkUtils.setUseHotkeysAttr(useHotkeys)
 
+  // Migration: Convert old fontSize values to new numeric values
+  const fontSizeMigrationMap = {
+    small: '13',
+    medium: '16',
+    big: '18',
+    'very-big': '20'
+  }
+
+  let migratedFontSize = fontSize
+  if (fontSizeMigrationMap[fontSize]) {
+    migratedFontSize = fontSizeMigrationMap[fontSize]
+    // Save migrated value
+    await ZaDarkBrowser.saveExtensionSettings({ fontSize: migratedFontSize })
+    // Update Zalo tabs with new value
+    ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_FONT_SIZE, { fontSize: migratedFontSize })
+  }
+
   $(radioInputThemeElName).filter(`[value="${theme}"]`).attr('checked', true)
   $(inputFontFamilyElName).val(fontFamily).blur()
-  $(selectFontSizeElName).val(fontSize)
+  $(selectFontSizeElName).val(migratedFontSize)
   $(selectTranslateTargetElName).setLanguagesOptions(translateTarget)
 
   $(switchHideLatestMessageElName).prop('checked', enabledHideLatestMessage)
@@ -59,7 +76,7 @@ ZaDarkBrowser.getExtensionSettings().then(({
   $(switchUseHotkeysElName).prop('checked', useHotkeys)
 })
 
-$(radioInputThemeElName).on('change', async function () {
+$(radioInputThemeElName).on('change', function () {
   const theme = $(this).val()
 
   // Set theme for popup
@@ -86,37 +103,37 @@ $(inputFontFamilyElName).keypress(async function (event) {
   }
 })
 
-$(selectFontSizeElName).on('change', async function () {
+$(selectFontSizeElName).on('change', function () {
   const fontSize = $(this).val()
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_FONT_SIZE, { fontSize })
 })
 
-$(selectTranslateTargetElName).on('change', async function () {
+$(selectTranslateTargetElName).on('change', function () {
   const translateTarget = $(this).val()
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_TRANSLATE_TARGET, { translateTarget })
 })
 
-$(switchHideLatestMessageElName).on('change', async function () {
+$(switchHideLatestMessageElName).on('change', function () {
   const isEnabled = $(this).is(':checked')
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_LATEST_MESSAGE, { isEnabled })
 })
 
-$(switchHideConvAvatarElName).on('change', async function () {
+$(switchHideConvAvatarElName).on('change', function () {
   const isEnabled = $(this).is(':checked')
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_CONV_AVATAR, { isEnabled })
 })
 
-$(switchHideConvNameElName).on('change', async function () {
+$(switchHideConvNameElName).on('change', function () {
   const isEnabled = $(this).is(':checked')
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_CONV_NAME, { isEnabled })
 })
 
-$(switchHideThreadChatMessageElName).on('change', async function () {
+$(switchHideThreadChatMessageElName).on('change', function () {
   const isEnabled = $(this).is(':checked')
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_HIDE_THREAD_CHAT_MESSAGE, { isEnabled })
 })
 
-$(switchUseHotkeysElName).on('change', async function () {
+$(switchUseHotkeysElName).on('change', function () {
   const isEnabled = $(this).is(':checked')
   ZaDarkBrowser.sendMessage2ZaloTabs(MSG_ACTIONS.CHANGE_USE_HOTKEYS, { isEnabled })
 })

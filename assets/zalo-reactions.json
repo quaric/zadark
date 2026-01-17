@@ -1,0 +1,330 @@
+[
+  {
+    "rType": 0,
+    "rIcon": ":>"
+  },
+  {
+    "rType": 1,
+    "rIcon": "--b"
+  },
+  {
+    "rType": 2,
+    "rIcon": ":-(("
+  },
+  {
+    "rType": 3,
+    "rIcon": "/-strong"
+  },
+  {
+    "rType": 4,
+    "rIcon": "/-weak"
+  },
+  {
+    "rType": 5,
+    "rIcon": "/-heart"
+  },
+  {
+    "rType": 6,
+    "rIcon": ":d"
+  },
+  {
+    "rType": 7,
+    "rIcon": ":')"
+  },
+  {
+    "rType": 8,
+    "rIcon": ":-*"
+  },
+  {
+    "rType": 9,
+    "rIcon": ":3"
+  },
+  {
+    "rType": 10,
+    "rIcon": ":b"
+  },
+  {
+    "rType": 11,
+    "rIcon": ";d"
+  },
+  {
+    "rType": 12,
+    "rIcon": ":~"
+  },
+  {
+    "rType": 13,
+    "rIcon": ";p"
+  },
+  {
+    "rType": 14,
+    "rIcon": ":*"
+  },
+  {
+    "rType": 15,
+    "rIcon": ";o"
+  },
+  {
+    "rType": 16,
+    "rIcon": ":(("
+  },
+  {
+    "rType": 17,
+    "rIcon": ":)"
+  },
+  {
+    "rType": 18,
+    "rIcon": ":p"
+  },
+  {
+    "rType": 19,
+    "rIcon": ":$"
+  },
+  {
+    "rType": 20,
+    "rIcon": ":-h"
+  },
+  {
+    "rType": 21,
+    "rIcon": "x-)"
+  },
+  {
+    "rType": 22,
+    "rIcon": "8-)"
+  },
+  {
+    "rType": 23,
+    "rIcon": ";-d"
+  },
+  {
+    "rType": 24,
+    "rIcon": ":q"
+  },
+  {
+    "rType": 25,
+    "rIcon": ":("
+  },
+  {
+    "rType": 26,
+    "rIcon": "b-)"
+  },
+  {
+    "rType": 27,
+    "rIcon": ";?"
+  },
+  {
+    "rType": 28,
+    "rIcon": ":|"
+  },
+  {
+    "rType": 29,
+    "rIcon": ";xx"
+  },
+  {
+    "rType": 30,
+    "rIcon": ":--|"
+  },
+  {
+    "rType": 31,
+    "rIcon": ";g"
+  },
+  {
+    "rType": 32,
+    "rIcon": ":o"
+  },
+  {
+    "rType": 33,
+    "rIcon": ":z"
+  },
+  {
+    "rType": 34,
+    "rIcon": ":l"
+  },
+  {
+    "rType": 35,
+    "rIcon": "p-("
+  },
+  {
+    "rType": 36,
+    "rIcon": ":-bye"
+  },
+  {
+    "rType": 37,
+    "rIcon": ":x"
+  },
+  {
+    "rType": 38,
+    "rIcon": "|-)"
+  },
+  {
+    "rType": 39,
+    "rIcon": ":wipe"
+  },
+  {
+    "rType": 40,
+    "rIcon": ":!"
+  },
+  {
+    "rType": 41,
+    "rIcon": "8*"
+  },
+  {
+    "rType": 42,
+    "rIcon": ":-dig"
+  },
+  {
+    "rType": 43,
+    "rIcon": ":t"
+  },
+  {
+    "rType": 44,
+    "rIcon": "&-("
+  },
+  {
+    "rType": 45,
+    "rIcon": ";-)"
+  },
+  {
+    "rType": 46,
+    "rIcon": ":handclap"
+  },
+  {
+    "rType": 47,
+    "rIcon": ">-|"
+  },
+  {
+    "rType": 48,
+    "rIcon": ":-f"
+  },
+  {
+    "rType": 49,
+    "rIcon": ":-l"
+  },
+  {
+    "rType": 50,
+    "rIcon": ":-r"
+  },
+  {
+    "rType": 51,
+    "rIcon": ";-/"
+  },
+  {
+    "rType": 52,
+    "rIcon": ";-x"
+  },
+  {
+    "rType": 53,
+    "rIcon": ":-o"
+  },
+  {
+    "rType": 54,
+    "rIcon": ";-s"
+  },
+  {
+    "rType": 56,
+    "rIcon": ";!"
+  },
+  {
+    "rType": 57,
+    "rIcon": ";f"
+  },
+  {
+    "rType": 58,
+    "rIcon": ":;"
+  },
+  {
+    "rType": 59,
+    "rIcon": ":v"
+  },
+  {
+    "rType": 60,
+    "rIcon": ";-a"
+  },
+  {
+    "rType": 61,
+    "rIcon": ":-<"
+  },
+  {
+    "rType": 62,
+    "rIcon": ":))"
+  },
+  {
+    "rType": 63,
+    "rIcon": "$-)"
+  },
+  {
+    "rType": 65,
+    "rIcon": "/-break"
+  },
+  {
+    "rType": 66,
+    "rIcon": "/-shit"
+  },
+  {
+    "rType": 67,
+    "rIcon": "/-li"
+  },
+  {
+    "rType": 68,
+    "rIcon": "/-ok"
+  },
+  {
+    "rType": 69,
+    "rIcon": "/-v"
+  },
+  {
+    "rType": 70,
+    "rIcon": "/-thanks"
+  },
+  {
+    "rType": 71,
+    "rIcon": "/-punch"
+  },
+  {
+    "rType": 72,
+    "rIcon": "/-share"
+  },
+  {
+    "rType": 73,
+    "rIcon": "_()_"
+  },
+  {
+    "rType": 84,
+    "rIcon": ":christmas_tree:"
+  },
+  {
+    "rType": 86,
+    "rIcon": ":snowman:"
+  },
+  {
+    "rType": 95,
+    "rIcon": ":gift:"
+  },
+  {
+    "rType": 120,
+    "rIcon": "/-rose"
+  },
+  {
+    "rType": 121,
+    "rIcon": "/-fade"
+  },
+  {
+    "rType": 126,
+    "rIcon": "/-bd"
+  },
+  {
+    "rType": 127,
+    "rIcon": "/-bome"
+  },
+  {
+    "rType": 131,
+    "rIcon": "/-no"
+  },
+  {
+    "rType": 132,
+    "rIcon": "/-bad"
+  },
+  {
+    "rType": 133,
+    "rIcon": "/-loveu"
+  }
+]

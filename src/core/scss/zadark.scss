@@ -624,19 +624,45 @@
 }
 
 $FONT_SIZES: (
-  // 13px
-  "small": "0.8125rem",
-  // 16px
-  "big": "1rem",
-  // 18px
-  "very-big": "1.125rem"
+  "12": "12px",
+  "13": "13px",
+  "14": "14px",
+  "15": "15px",
+  "16": "16px",
+  "17": "17px",
+  "18": "18px",
+  "19": "19px",
+  "20": "20px",
+  "21": "21px",
+  "22": "22px",
+  "23": "23px",
+  "24": "24px"
+);
+
+$LINE_HEIGHTS: (
+  "12": "18px",  // 12 * 1.5
+  "13": "19.5px", // 13 * 1.5
+  "14": "21px",  // 14 * 1.5
+  "15": "22.5px", // 15 * 1.5
+  "16": "24px",  // 16 * 1.5
+  "17": "25.5px", // 17 * 1.5
+  "18": "27px",  // 18 * 1.5
+  "19": "28.5px", // 19 * 1.5
+  "20": "30px",  // 20 * 1.5
+  "21": "31.5px", // 21 * 1.5
+  "22": "33px",  // 22 * 1.5
+  "23": "34.5px", // 23 * 1.5
+  "24": "36px"   // 24 * 1.5
 );
 
 @mixin zadark-font-sizes() {
   @each $name, $value in $FONT_SIZES {
+    $lineHeight: map-get($LINE_HEIGHTS, $name);
+
     html[data-zadark-font-size="#{$name}"] {
       &:root {
         --zadark-cnv-font-size: #{$value};
+        --zadark-cnv-line-height: #{$lineHeight};
       }
     }
   }
@@ -644,6 +670,7 @@ $FONT_SIZES: (
 
 :root {
   --zadark-cnv-font-size: inherit;
+  --zadark-cnv-line-height: inherit;
   --zadark-font-family: inherit;
   --zadark-rounded-base: 8px;
 }
@@ -2504,6 +2531,7 @@ body.zadark {
     .text,
     .editor-input {
       font-size: var(--zadark-cnv-font-size);
+      line-height: var(--zadark-cnv-line-height) !important;
     }
   }
   // * Zalo >= v24.12.2
@@ -2511,6 +2539,7 @@ body.zadark {
     div-15,
     span-15 {
       font-size: var(--zadark-cnv-font-size);
+      line-height: var(--zadark-cnv-line-height) !important;
     }
   }
 
@@ -2564,6 +2593,7 @@ body.zadark {
     .rich-text-input,
     .rich-text-input .input-v4 {
       font-size: var(--zadark-cnv-font-size);
+      line-height: var(--zadark-cnv-line-height) !important;
     }
 
     .chat-input-btns > div:first-child {
@@ -2583,12 +2613,14 @@ body.zadark {
     .rich-text-input,
     .rich-text-input .input-v4 {
       font-size: var(--zadark-cnv-font-size);
+      line-height: var(--zadark-cnv-line-height) !important;
     }
   }
 
   // * Zalo >= v24.3.1
   .chat-input-container--audit-2023.--rtf-mode .rtf-placeholder {
     font-size: var(--zadark-cnv-font-size);
+    line-height: var(--zadark-cnv-line-height) !important;
   }
 
   // * Zalo >= v25.5.3
@@ -2596,6 +2628,7 @@ body.zadark {
   .zl-compose > .rich-input,
   .rich-text-input .input-v4 {
     font-size: var(--zadark-cnv-font-size);
+    line-height: var(--zadark-cnv-line-height) !important;
   }
 
   @include translate.translate-message();

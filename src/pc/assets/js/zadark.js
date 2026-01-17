@@ -42,11 +42,8 @@
   const ZADARK_MIGRATION_VALUE = 'm+Jd9BU7kPe66ysM'
 
   const HOTKEYS_TOAST_MESSAGE = {
-    fontSize: {
-      small: 'Đã áp dụng cỡ chữ 90%',
-      medium: 'Đã áp dụng cỡ chữ 100%',
-      big: 'Đã áp dụng cỡ chữ 110%',
-      'very-big': 'Đã áp dụng cỡ chữ 125%'
+    fontSize: function (fontSize) {
+      return `Đã áp dụng cỡ chữ ${fontSize}px`
     },
     hideLatestMessage: {
       true: 'Đã bật Ẩn Tin nhắn gần nhất',
@@ -158,7 +155,7 @@
     },
 
     getFontSize: () => {
-      return localStorage.getItem(ZADARK_FONT_SIZE_KEY) || 'medium'
+      return localStorage.getItem(ZADARK_FONT_SIZE_KEY) || '16'
     },
     saveFontSize: (fontSize) => {
       return localStorage.setItem(ZADARK_FONT_SIZE_KEY, fontSize)
@@ -452,7 +449,7 @@
       this.setFontFamilyAttr(fontFamily)
     },
 
-    initPageSettings: async function () {
+    initPageSettings: function () {
       this.initFontFamily()
       this.initBlockSettings()
 
@@ -514,7 +511,7 @@
     updateFontSize: function (fontSize) {
       ZaDarkStorage.saveFontSize(fontSize)
       this.setFontSizeAttr(fontSize)
-      ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.fontSize[fontSize])
+      ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.fontSize(fontSize))
     },
 
     updateTranslateTarget: function (translateTarget) {
@@ -652,7 +649,7 @@
       document.head.appendChild(styleElement)
     },
 
-    migrateData: async function () {
+    migrateData: function () {
       const isMigrationNeeded = ZaDarkStorage.isMigrationNeeded()
 
       if (!isMigrationNeeded) return
@@ -747,13 +744,19 @@
   const handleNextFontSize = (count) => {
     const fontSize = ZaDarkStorage.getFontSize()
 
-    const fontSizes = ['small', 'medium', 'big', 'very-big']
+    // Parse fontSize to number, fallback to 16 if invalid
+    const currentSize = parseInt(fontSize) || 16
 
-    const nextIndex = count > 0
-      ? Math.min(fontSizes.indexOf(fontSize) + 1, fontSizes.length - 1)
-      : Math.max(fontSizes.indexOf(fontSize) - 1, 0)
+    // Define valid font sizes (12-24)
+    const minSize = 12
+    const maxSize = 24
 
-    const nextFontSize = fontSizes[nextIndex]
+    // Calculate next size
+    const nextSize = count > 0
+      ? Math.min(currentSize + 1, maxSize)
+      : Math.max(currentSize - 1, minSize)
+
+    const nextFontSize = String(nextSize)
 
     ZaDarkUtils.setSelect(selectFontSizeElName, nextFontSize)
     ZaDarkUtils.updateFontSize(nextFontSize)
@@ -802,19 +805,19 @@
 
       <div class="zadark-popup__header__menu-list">
         <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
-          <a href="https://www.producthunt.com/products/zadark-zalo-dark-mode#zadark-zalo-dark-mode" title="Product Hunt" target="_blank">Product Hunt</a>
-        </span>
-
-        <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
-          <a href="https://zadark.com/blog" title="Blog" target="_blank">Blog</a>
+          <a href="https://zadark.com?utm_source=zadark-pc" title="Website" target="_blank">Website</a>
         </span>
 
         <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
           <a href="${ZaDarkUtils.getRatingURL()}" title="Đánh giá" target="_blank">Đánh giá</a>
         </span>
 
+        <span class="zadark-popup__header__menu-item zadark-popup__header__menu-divider">
+          <a href="https://zadark.canny.io?utm_source=zadark-pc" title="Góp ý" target="_blank">Góp ý</a>
+        </span>
+
         <span class="zadark-popup__header__menu-item">
-          <a href="https://zadark.canny.io" title="Góp ý" target="_blank">Góp ý</a>
+          <a href="https://zadark.com/sponsors?utm_source=zadark-pc" title="Nhà tài trợ" target="_blank">Nhà tài trợ</a>
         </span>
       </div>
     </div>
@@ -872,10 +875,19 @@
             </span>
 
             <select id="js-select-font-size" class="zadark-select">
-              <option value="small">90%</option>
-              <option value="medium">100%</option>
-              <option value="big">110%</option>
-              <option value="very-big">125%</option>
+              <option value="12">12px</option>
+              <option value="13">13px</option>
+              <option value="14">14px</option>
+              <option value="15">15px</option>
+              <option value="16">16px</option>
+              <option value="17">17px</option>
+              <option value="18">18px</option>
+              <option value="19">19px</option>
+              <option value="20">20px</option>
+              <option value="21">21px</option>
+              <option value="22">22px</option>
+              <option value="23">23px</option>
+              <option value="24">24px</option>
             </select>
           </div>
 
@@ -1026,7 +1038,7 @@
 
   const popupFooterHTML = `
     <div class="zadark-popup__footer">
-      <a href="https://quaric.com" target="_blank" title="ZaDark by Quaric" class="zadark-publisher">
+      <a href="https://quaric.com?utm_source=zadark-pc" target="_blank" title="ZaDark by Quaric" class="zadark-publisher">
         <span class="zadark-publisher__by">ZaDark by</span>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 64" fill="none" class="zadark-publisher__lockup"><path fill="currentColor" fill-rule="evenodd" d="M264 64V54h-12.998A24.892 24.892 0 0 0 256 39V25c0-13.807-11.193-25-25-25h-46c-13.807 0-25 11.193-25 25v14c0 13.807 11.193 25 25 25h79Zm-79-54c-8.284 0-15 6.716-15 15v14c0 8.284 6.716 15 15 15h46.019C239.294 53.99 246 47.278 246 39V25c0-8.284-6.716-15-15-15h-46Z" clip-rule="evenodd"/><path fill="currentColor" d="M282 0v39c0 8.284 6.716 15 15 15h37V0h10v64h-47c-13.807 0-25-11.193-25-25V0h10Z"/><path fill="currentColor" fill-rule="evenodd" d="M415 0h-39v10h39c7.948 0 14.452 6.182 14.967 14H380c-11.046 0-20 8.954-20 20s8.954 20 20 20h60V25c0-13.807-11.193-25-25-25Zm-35 34h50v20h-50c-5.523 0-10-4.477-10-10s4.477-10 10-10Z" clip-rule="evenodd"/><path fill="currentColor" d="M456 25c0-13.807 11.193-25 25-25h45v10h-45c-8.284 0-15 6.716-15 15v39h-10V25ZM544 64V0h-10v64h10ZM570 25c0-8.284 6.716-15 15-15h55V0h-55c-13.807 0-25 11.193-25 25v14c0 13.807 11.193 25 25 25h55V54h-55c-8.284 0-15-6.716-15-15V25ZM72 0l44.313 15.783c15.583 5.172 15.583 27.263 0 32.434L72 64V53.338l41.161-14.66c6.416-2.13 6.416-11.226 0-13.356L78.518 12.75 56 64 11.687 48.218c-15.583-5.172-15.583-27.263 0-32.435L56 0v10.662l-41.161 14.66c-6.416 2.13-6.416 11.226 0 13.356L49.482 51.25 72 0Z"/></svg>
       </a>
@@ -1189,7 +1201,22 @@
     const fontFamily = ZaDarkStorage.getFontFamily()
     ZaDarkUtils.setSelect(inputFontFamilyElName, fontFamily)
 
-    const fontSize = ZaDarkStorage.getFontSize()
+    // Migration: Convert old fontSize values to new numeric values
+    const fontSizeMigrationMap = {
+      small: '13',
+      medium: '16',
+      big: '18',
+      'very-big': '20'
+    }
+
+    let fontSize = ZaDarkStorage.getFontSize()
+    if (fontSizeMigrationMap[fontSize]) {
+      const migratedFontSize = fontSizeMigrationMap[fontSize]
+      ZaDarkStorage.saveFontSize(migratedFontSize)
+      ZaDarkUtils.setFontSizeAttr(migratedFontSize)
+      fontSize = migratedFontSize
+    }
+
     ZaDarkUtils.setSelect(selectFontSizeElName, fontSize)
 
     const enabledHideLatestMessage = ZaDarkStorage.getEnabledHideLatestMessage()
@@ -1217,7 +1244,7 @@
     ZaDarkUtils.setSwitch(switchUseHotkeysElName, useHotkeys)
   }
 
-  const loadHotkeysState = async () => {
+  const loadHotkeysState = () => {
     const useHotkeys = ZaDarkStorage.getUseHotkeys()
     loadHotkeys(useHotkeys)
   }

@@ -28,7 +28,7 @@
         chrome.storage.sync.get({
           theme: 'dark',
           fontFamily: 'Open Sans',
-          fontSize: 'medium',
+          fontSize: '16',
           translateTarget: 'vi',
 
           enabledHideLatestMessage: false,
