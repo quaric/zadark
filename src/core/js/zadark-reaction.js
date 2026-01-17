@@ -1745,15 +1745,15 @@
     },
     {
       rType: 84,
-      rIcon: '🎄'
+      rIcon: ':christmas_tree:'
     },
     {
       rType: 86,
-      rIcon: '⛄️'
+      rIcon: ':snowman:'
     },
     {
       rType: 95,
-      rIcon: '🎁'
+      rIcon: ':gift:'
     },
     {
       rType: 120,
