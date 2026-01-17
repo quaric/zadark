@@ -24,11 +24,8 @@
     },
 
     HOTKEYS_TOAST_MESSAGE: {
-      fontSize: {
-        small: 'Đã áp dụng cỡ chữ 90%',
-        medium: 'Đã áp dụng cỡ chữ 100%',
-        big: 'Đã áp dụng cỡ chữ 110%',
-        'very-big': 'Đã áp dụng cỡ chữ 125%'
+      fontSize: function (fontSize) {
+        return `Đã áp dụng cỡ chữ ${fontSize}px`
       },
       hideLatestMessage: {
         true: 'Đã bật Ẩn Tin nhắn gần nhất',
@@ -356,10 +353,10 @@
     updateFontSize: async function (fontSize) {
       await ZaDarkBrowser.saveExtensionSettings({ fontSize })
       this.setFontSizeAttr(fontSize)
-      ZaDarkUtils.showToast(this.HOTKEYS_TOAST_MESSAGE.fontSize[fontSize])
+      ZaDarkUtils.showToast(this.HOTKEYS_TOAST_MESSAGE.fontSize(fontSize))
     },
 
-    updateTranslateTarget: async function (translateTarget) {
+    updateTranslateTarget: function (translateTarget) {
       return ZaDarkBrowser.saveExtensionSettings({ translateTarget })
     },
 

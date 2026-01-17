@@ -42,11 +42,8 @@
   const ZADARK_MIGRATION_VALUE = 'm+Jd9BU7kPe66ysM'
 
   const HOTKEYS_TOAST_MESSAGE = {
-    fontSize: {
-      small: 'Đã áp dụng cỡ chữ 90%',
-      medium: 'Đã áp dụng cỡ chữ 100%',
-      big: 'Đã áp dụng cỡ chữ 110%',
-      'very-big': 'Đã áp dụng cỡ chữ 125%'
+    fontSize: function (fontSize) {
+      return `Đã áp dụng cỡ chữ ${fontSize}px`
     },
     hideLatestMessage: {
       true: 'Đã bật Ẩn Tin nhắn gần nhất',
@@ -158,7 +155,7 @@
     },
 
     getFontSize: () => {
-      return localStorage.getItem(ZADARK_FONT_SIZE_KEY) || 'medium'
+      return localStorage.getItem(ZADARK_FONT_SIZE_KEY) || '16'
     },
     saveFontSize: (fontSize) => {
       return localStorage.setItem(ZADARK_FONT_SIZE_KEY, fontSize)
@@ -452,7 +449,7 @@
       this.setFontFamilyAttr(fontFamily)
     },
 
-    initPageSettings: async function () {
+    initPageSettings: function () {
       this.initFontFamily()
       this.initBlockSettings()
 
@@ -514,7 +511,7 @@
     updateFontSize: function (fontSize) {
       ZaDarkStorage.saveFontSize(fontSize)
       this.setFontSizeAttr(fontSize)
-      ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.fontSize[fontSize])
+      ZaDarkUtils.showToast(HOTKEYS_TOAST_MESSAGE.fontSize(fontSize))
     },
 
     updateTranslateTarget: function (translateTarget) {
@@ -652,7 +649,7 @@
       document.head.appendChild(styleElement)
     },
 
-    migrateData: async function () {
+    migrateData: function () {
       const isMigrationNeeded = ZaDarkStorage.isMigrationNeeded()
 
       if (!isMigrationNeeded) return
@@ -747,13 +744,19 @@
   const handleNextFontSize = (count) => {
     const fontSize = ZaDarkStorage.getFontSize()
 
-    const fontSizes = ['small', 'medium', 'big', 'very-big']
+    // Parse fontSize to number, fallback to 16 if invalid
+    const currentSize = parseInt(fontSize) || 16
 
-    const nextIndex = count > 0
-      ? Math.min(fontSizes.indexOf(fontSize) + 1, fontSizes.length - 1)
-      : Math.max(fontSizes.indexOf(fontSize) - 1, 0)
+    // Define valid font sizes (12-24)
+    const minSize = 12
+    const maxSize = 24
 
-    const nextFontSize = fontSizes[nextIndex]
+    // Calculate next size
+    const nextSize = count > 0
+      ? Math.min(currentSize + 1, maxSize)
+      : Math.max(currentSize - 1, minSize)
+
+    const nextFontSize = String(nextSize)
 
     ZaDarkUtils.setSelect(selectFontSizeElName, nextFontSize)
     ZaDarkUtils.updateFontSize(nextFontSize)
@@ -872,10 +875,19 @@
             </span>
 
             <select id="js-select-font-size" class="zadark-select">
-              <option value="small">90%</option>
-              <option value="medium">100%</option>
-              <option value="big">110%</option>
-              <option value="very-big">125%</option>
+              <option value="12">12px</option>
+              <option value="13">13px</option>
+              <option value="14">14px</option>
+              <option value="15">15px</option>
+              <option value="16">16px</option>
+              <option value="17">17px</option>
+              <option value="18">18px</option>
+              <option value="19">19px</option>
+              <option value="20">20px</option>
+              <option value="21">21px</option>
+              <option value="22">22px</option>
+              <option value="23">23px</option>
+              <option value="24">24px</option>
             </select>
           </div>
 
@@ -1189,7 +1201,22 @@
     const fontFamily = ZaDarkStorage.getFontFamily()
     ZaDarkUtils.setSelect(inputFontFamilyElName, fontFamily)
 
-    const fontSize = ZaDarkStorage.getFontSize()
+    // Migration: Convert old fontSize values to new numeric values
+    const fontSizeMigrationMap = {
+      small: '13',
+      medium: '16',
+      big: '18',
+      'very-big': '20'
+    }
+
+    let fontSize = ZaDarkStorage.getFontSize()
+    if (fontSizeMigrationMap[fontSize]) {
+      const migratedFontSize = fontSizeMigrationMap[fontSize]
+      ZaDarkStorage.saveFontSize(migratedFontSize)
+      ZaDarkUtils.setFontSizeAttr(migratedFontSize)
+      fontSize = migratedFontSize
+    }
+
     ZaDarkUtils.setSelect(selectFontSizeElName, fontSize)
 
     const enabledHideLatestMessage = ZaDarkStorage.getEnabledHideLatestMessage()
@@ -1217,7 +1244,7 @@
     ZaDarkUtils.setSwitch(switchUseHotkeysElName, useHotkeys)
   }
 
-  const loadHotkeysState = async () => {
+  const loadHotkeysState = () => {
     const useHotkeys = ZaDarkStorage.getUseHotkeys()
     loadHotkeys(useHotkeys)
   }

@@ -80,14 +80,19 @@
       fontSize
     } = await ZaDarkBrowser.getExtensionSettings()
 
-    const fontSizes = ['small', 'medium', 'big', 'very-big']
+    // Parse fontSize to number, fallback to 16 if invalid
+    const currentSize = parseInt(fontSize) || 16
 
-    const nextIndex = count > 0
-      ? Math.min(fontSizes.indexOf(fontSize) + 1, fontSizes.length - 1)
-      : Math.max(fontSizes.indexOf(fontSize) - 1, 0)
+    // Define valid font sizes (12-24)
+    const minSize = 12
+    const maxSize = 24
 
-    const nextFontSize = fontSizes[nextIndex]
-    updateFontSize(nextFontSize)
+    // Calculate next size
+    const nextSize = count > 0
+      ? Math.min(currentSize + 1, maxSize)
+      : Math.max(currentSize - 1, minSize)
+
+    updateFontSize(String(nextSize))
   }
 
   const handleBlockingRuleChange = (ruleId) => {
@@ -193,10 +198,19 @@
             </span>
 
             <select id="js-select-font-size" class="zadark-select">
-              <option value="small">90%</option>
-              <option value="medium">100%</option>
-              <option value="big">110%</option>
-              <option value="very-big">125%</option>
+              <option value="12">12px</option>
+              <option value="13">13px</option>
+              <option value="14">14px</option>
+              <option value="15">15px</option>
+              <option value="16">16px</option>
+              <option value="17">17px</option>
+              <option value="18">18px</option>
+              <option value="19">19px</option>
+              <option value="20">20px</option>
+              <option value="21">21px</option>
+              <option value="22">22px</option>
+              <option value="23">23px</option>
+              <option value="24">24px</option>
             </select>
           </div>
 
@@ -537,9 +551,26 @@
       enabledHideThreadChatMessage
     } = await ZaDarkBrowser.getExtensionSettings()
 
+    // Migration: Convert old fontSize values to new numeric values
+    const fontSizeMigrationMap = {
+      small: '13',
+      medium: '16',
+      big: '18',
+      'very-big': '20'
+    }
+
+    let migratedFontSize = fontSize
+    if (fontSizeMigrationMap[fontSize]) {
+      migratedFontSize = fontSizeMigrationMap[fontSize]
+      // Save migrated value
+      await ZaDarkBrowser.saveExtensionSettings({ fontSize: migratedFontSize })
+      // Update font size attribute
+      ZaDarkUtils.setFontSizeAttr(migratedFontSize)
+    }
+
     setRadioInputTheme(theme)
     setSelect(inputFontFamilyElName, fontFamily)
-    setSelect(selectFontSizeElName, fontSize)
+    setSelect(selectFontSizeElName, migratedFontSize)
 
     setSwitch(switchHideLatestMessageElName, enabledHideLatestMessage)
     setSwitch(switchHideConvAvatarElName, enabledHideConvAvatar)
@@ -871,7 +902,7 @@
     ZaDarkUtils.updateTheme(theme)
   }
 
-  const updateFontSize = (fontSize = 'medium') => {
+  const updateFontSize = (fontSize = '16') => {
     setSelect(selectFontSizeElName, fontSize)
     ZaDarkUtils.updateFontSize(fontSize)
   }
