@@ -1,5 +1,9 @@
 # Changelog
 
+## ZaDark 26.1.1
+
+- Cải thiện ZaDark PC: Cho phép xem phiên bản khi chưa cài đặt Zalo PC (`zadark -v` hoặc `zadark --version`)
+
 ## ZaDark 26.1
 
 - Tuỳ chỉnh cỡ chữ: Cho phép tuỳ chỉnh linh hoạt từ 12px - 24px

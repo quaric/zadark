@@ -134,9 +134,13 @@ const handleOpenDocs = () => {
   const shouldUseCommand = ['install', 'in', 'uninstall', 'un', '-v', '--version'].includes(action)
 
   if (shouldUseCommand) {
-    const zaloResDirList = zadarkPC.getZaloResDirList(zaloPath || DEFAULT_ZALO_PATH)
-
     try {
+      if (['-v', '--version'].includes(action)) {
+        print(`ZaDark ${ZADARK_VERSION} (${process.arch})`)
+      }
+
+      const zaloResDirList = zadarkPC.getZaloResDirList(zaloPath || DEFAULT_ZALO_PATH)
+
       if (!zaloResDirList.length) {
         throw new Error(`Khong tim thay Zalo PC ${zaloPath || DEFAULT_ZALO_PATH} (E008).\nVui long cai dat Zalo PC: https://zalo.me/pc`)
       }
@@ -147,10 +151,6 @@ const handleOpenDocs = () => {
 
       if (['uninstall', 'un'].includes(action)) {
         await handleUninstall(zaloResDirList)
-      }
-
-      if (['-v', '--version'].includes(action)) {
-        print(`ZaDark ${ZADARK_VERSION} (${process.arch})`)
       }
     } catch (error) {
       print(chalk.magentaBright.bold('[XAY RA LOI]'))
